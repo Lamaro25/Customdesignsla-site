@@ -1,2 +1,19 @@
 
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Charms & Pendants</title><link rel="stylesheet" href="/styles.css"></head><body><header class="site-header"><div class="brand"><img src="/images/logo.svg" class="logo"><div><h1>Charms & Pendants</h1></div></div><nav><a href="/index.html">Home</a></nav></header><main class="container"><h2>Charm & Pendant Configurator</h2><div id="charmsCalcRoot">Loading...</div><p>Submit your design request and we will contact you to finalize details.</p><script src="/js/calculators.js"></script><script>initCharmsCalc('charmsCalcRoot');</script></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Charm Builder</title></head>
+<body>
+  <h1>Charm Builder</h1>
+  <form name="charm-design" method="POST" data-netlify="true">
+    <p>Choose Size:</p>
+    <select name="size">
+      <option value="13">Small Charm (17.9mm) $13</option>
+      <option value="15">Medium Charm (19mm) $15</option>
+      <option value="18">Large Charm (21.2mm) $18</option>
+    </select>
+    <p>Engraving:</p>
+    <textarea name="engraving" placeholder="Type engraving here..."></textarea>
+    <p><button type="submit">Submit Design</button></p>
+  </form>
+</body>
+</html>
