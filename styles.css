@@ -3,9 +3,17 @@ body{font-family:Arial,Helvetica,sans-serif;margin:0;color:#222}
 .site-header{background:#111;color:#fff;padding:12px}
 .brand{display:flex;gap:12px;align-items:center}
 .logo{height:64px}
-nav{margin-top:8px}
+.topnav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px;align-items:center}
+.topnav a{color:#fff;text-decoration:none}
+.dropdown{position:relative}
+.dropdown-menu{display:none;position:absolute;background:#fff;color:#111;padding:10px;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08);min-width:220px}
+.dropdown:hover .dropdown-menu{display:block}
+.dropdown-menu ul{list-style:none;padding:0;margin:0}
+.dropdown-menu a{color:#111;text-decoration:none}
 .container{max-width:1000px;margin:28px auto;padding:0 18px}
 .btn{display:inline-block;padding:10px 14px;background:#222;color:#fff;border-radius:6px;text-decoration:none;margin-right:8px}
 .grid{display:flex;gap:12px}
 .card{border:1px solid #eee;padding:8px;border-radius:6px;width:30%;text-align:center;background:#fff}
 .calc{background:#fafafa;border:1px solid #eee;padding:12px;border-radius:6px}
+label{display:block;margin:8px 0}
+textarea{width:100%;min-height:80px}
