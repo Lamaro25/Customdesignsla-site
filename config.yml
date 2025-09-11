@@ -16,3 +16,31 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "ringbuilder"
+    label: "Ring Builder"
+    files:
+      - file: "rings.html"
+        label: "Rings Page"
+        name: "rings"
+        fields:
+          - { label: "Band Height", name: "band_height", widget: "string" }
+          - { label: "Engraving", name: "engraving", widget: "text" }
+
+  - name: "charmbuilder"
+    label: "Charm Builder"
+    files:
+      - file: "charms.html"
+        label: "Charms Page"
+        name: "charms"
+        fields:
+          - { label: "Size", name: "size", widget: "string" }
+          - { label: "Engraving", name: "engraving", widget: "text" }
+
+  - name: "collections"
+    label: "Collections"
+    folder: "collections"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
