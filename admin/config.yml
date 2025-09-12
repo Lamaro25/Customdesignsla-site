@@ -25,9 +25,10 @@ collections:
         name: "rings"
         fields:
           - { label: "Band Height", name: "band_height", widget: "string" }
-          - { label: "Text Style", name: "text_style", widget: "select", options: ["Engraved", "Embossed", "Both"] }
-          - { label: "Placement", name: "placement", widget: "select", options: ["Inside Band", "Outside Band", "Both"] }
-          - { label: "Engraving Text", name: "engraving", widget: "text" }
+          - { label: "Inner Band Text", name: "inner_text", widget: "text" }
+          - { label: "Inner Band Style", name: "inner_style", widget: "select", options: ["Engraved","Embossed"] }
+          - { label: "Outer Band Text", name: "outer_text", widget: "text" }
+          - { label: "Outer Band Style", name: "outer_style", widget: "select", options: ["Engraved","Embossed"] }
 
   - name: "charmbuilder"
     label: "Charm Builder"
@@ -37,14 +38,20 @@ collections:
         name: "charms"
         fields:
           - { label: "Size", name: "size", widget: "string" }
-          - { label: "Text Style", name: "text_style", widget: "select", options: ["Engraved", "Embossed", "Both"] }
-          - { label: "Placement", name: "placement", widget: "select", options: ["Inside", "Outside", "Both"] }
-          - { label: "Engraving Text", name: "engraving", widget: "text" }
+          - { label: "Front Text", name: "front_text", widget: "text" }
+          - { label: "Front Style", name: "front_style", widget: "select", options: ["Engraved","Embossed"] }
+          - { label: "Back Text", name: "back_text", widget: "text" }
+          - { label: "Back Style", name: "back_style", widget: "select", options: ["Engraved","Embossed"] }
 
-  - name: "collections"
-    label: "Collections"
-    folder: "collections"
+  - name: "cubanrings"
+    label: "Cuban Link Ring Collection"
+    folder: "collections/cuban-rings"
     create: true
+    slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Product Image", name: "image", widget: "image" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Metal", name: "metal", widget: "select", options: ["Silver"] }
+      - { label: "Customization Breakdown", name: "customization", widget: "markdown" }
