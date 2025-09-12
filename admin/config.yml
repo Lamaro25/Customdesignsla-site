@@ -25,7 +25,9 @@ collections:
         name: "rings"
         fields:
           - { label: "Band Height", name: "band_height", widget: "string" }
-          - { label: "Engraving", name: "engraving", widget: "text" }
+          - { label: "Text Style", name: "text_style", widget: "select", options: ["Engraved", "Embossed", "Both"] }
+          - { label: "Placement", name: "placement", widget: "select", options: ["Inside Band", "Outside Band", "Both"] }
+          - { label: "Engraving Text", name: "engraving", widget: "text" }
 
   - name: "charmbuilder"
     label: "Charm Builder"
@@ -35,7 +37,9 @@ collections:
         name: "charms"
         fields:
           - { label: "Size", name: "size", widget: "string" }
-          - { label: "Engraving", name: "engraving", widget: "text" }
+          - { label: "Text Style", name: "text_style", widget: "select", options: ["Engraved", "Embossed", "Both"] }
+          - { label: "Placement", name: "placement", widget: "select", options: ["Inside", "Outside", "Both"] }
+          - { label: "Engraving Text", name: "engraving", widget: "text" }
 
   - name: "collections"
     label: "Collections"
