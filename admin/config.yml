@@ -1,0 +1,32 @@
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "rings"
+    label: "Rings"
+    folder: "collections/rings/cuban"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Ring Name", name: "title", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Price", name: "price", widget: "number"}
+      - {label: "Description", name: "body", widget: "text"}
+      - {label: "Customize", name: "customize", widget: "boolean"}
+  - name: "bronze_money_clips"
+    label: "Bronze Money Clips"
+    folder: "collections/bronze/money_clips"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Name", name: "title", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Metal", name: "metal", widget: "select", options: ["Sterling Silver $150", "Ancient Bronze $50"]}
+      - {label: "Engraving ($4/word)", name: "engraving", widget: "string", required: false}
+      - {label: "Disclaimer", name: "disclaimer", widget: "hidden", default: "Images must be clean, clear JPEG format. Non-licensed and non-trademarked images only."}
+      - {label: "Confirm Rights", name: "confirm_rights", widget: "boolean", default: false}
