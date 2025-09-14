@@ -1,39 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ring Builder</title>
   <style>
-    body {font-family: Arial, sans-serif; margin: 20px; max-width: 900px;}
-    pre {background: #f5f5f5; padding: 12px; border: 1px solid #ddd;}
-    .note {margin-top: 10px; color: #555;}
+    body { font-family: Arial, sans-serif; margin:20px; }
+    pre { background:#f5f5f5; padding:10px; border:1px solid #ddd; }
   </style>
   <script>
     const presets = {
-      "cuban-original": {band: "Flat", customization: []},
-      "cuban-classic": {band: "Domed", customization: [{type:"engraved", position:"outside", text:"Name Here"}]},
-      "cuban-elegance": {band: "Apex", customization: [{type:"embossed", position:"inside", text:"Forever"}]},
-      "cuban-intricate": {band: "Flat", customization: [{type:"engraved pattern"}]},
-      "cuban-statement-thin": {band: "Flat", customization: [{type:"rope braid"}]},
-      "cuban-statement-thick": {band: "Domed", customization: [{type:"cuban link large"}]}
+      "cuban-original": {band:"Flat", customizations:["Engraving: Name Here (outside)"]},
+      "cuban-classic": {band:"Domed", customizations:["Engraving: Name Here (inside)"]},
+      "cuban-elegance": {band:"Apex", customizations:["Embossed: Forever (outside)"]},
+      "cuban-intricate": {band:"Flat", customizations:["Engraved pattern"]},
+      "cuban-statement-thin": {band:"Flat", customizations:["Rope braid"]},
+      "cuban-statement-thick": {band:"Domed", customizations:["Cuban link large + channel"]}
     };
-
     window.onload = () => {
       const params = new URLSearchParams(window.location.search);
       const presetKey = params.get("preset");
-      const out = document.getElementById("output");
-      if (presetKey && presets[presetKey]) {
+      const output = document.getElementById("output");
+      if(presetKey && presets[presetKey]){
         const data = presets[presetKey];
-        out.textContent = "Loaded preset: " + presetKey + "\n\n" + JSON.stringify(data, null, 2);
+        output.textContent = "Loaded preset: " + presetKey + "\n" + JSON.stringify(data,null,2);
       } else {
-        out.textContent = "No preset loaded. Choose a ring from a collection to start.";
+        output.textContent = "No preset loaded.";
       }
     };
   </script>
 </head>
 <body>
   <h1>Ring Builder</h1>
+  <p>This builder will load preset options for each ring. You can then modify them.</p>
   <pre id="output"></pre>
-  <div class="note">This is a working preset loader. Next step: wire these values into the real form controls and dynamic price calculator.</div>
 </body>
 </html>
