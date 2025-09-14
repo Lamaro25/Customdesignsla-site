@@ -6,8 +6,8 @@ media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
-  - name: "cuban_rings"
-    label: "Cuban Link Rings"
+  - name: "cuban"
+    label: "Cuban"
     folder: "collections/rings/cuban"
     create: true
     slug: "{{slug}}"
@@ -16,9 +16,8 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
-  - name: "faith_rings"
-    label: "Faith Rings"
+  - name: "faith"
+    label: "Faith"
     folder: "collections/rings/faith"
     create: true
     slug: "{{slug}}"
@@ -27,9 +26,8 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
-  - name: "western_rings"
-    label: "Western Rings"
+  - name: "western"
+    label: "Western"
     folder: "collections/rings/western"
     create: true
     slug: "{{slug}}"
@@ -38,9 +36,8 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
-  - name: "faith_charms"
-    label: "Faith Charms"
+  - name: "faith"
+    label: "Faith"
     folder: "collections/charms/faith"
     create: true
     slug: "{{slug}}"
@@ -49,9 +46,8 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
-  - name: "western_charms"
-    label: "Western Charms"
+  - name: "western"
+    label: "Western"
     folder: "collections/charms/western"
     create: true
     slug: "{{slug}}"
@@ -60,9 +56,8 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
-  - name: "medical_charms"
-    label: "Medical Charms"
+  - name: "medical"
+    label: "Medical"
     folder: "collections/charms/medical"
     create: true
     slug: "{{slug}}"
@@ -71,9 +66,8 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
-  - name: "charm_bracelets"
-    label: "Charm Bracelets"
+  - name: "charm"
+    label: "Charm"
     folder: "collections/bracelets/charm"
     create: true
     slug: "{{slug}}"
@@ -82,9 +76,8 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
-  - name: "cuff_bracelets"
-    label: "Cuff Bracelets"
+  - name: "cuff"
+    label: "Cuff"
     folder: "collections/bracelets/cuff"
     create: true
     slug: "{{slug}}"
@@ -93,9 +86,8 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
   - name: "money_clips"
-    label: "Bronze Money Clips"
+    label: "Money Clips"
     folder: "collections/bronze/money_clips"
     create: true
     slug: "{{slug}}"
@@ -104,9 +96,8 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
   - name: "belt_buckles"
-    label: "Bronze Belt Buckles"
+    label: "Belt Buckles"
     folder: "collections/bronze/belt_buckles"
     create: true
     slug: "{{slug}}"
@@ -115,9 +106,8 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
   - name: "cowboy_toothpicks"
-    label: "Bronze Cowboy Toothpicks"
+    label: "Cowboy Toothpicks"
     folder: "collections/bronze/cowboy_toothpicks"
     create: true
     slug: "{{slug}}"
@@ -126,9 +116,8 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
   - name: "keychains"
-    label: "Bronze Keychains"
+    label: "Keychains"
     folder: "collections/bronze/keychains"
     create: true
     slug: "{{slug}}"
@@ -137,7 +126,6 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
   - name: "mini_ranch_brands"
     label: "Mini Ranch Brands"
     folder: "collections/bronze/mini_ranch_brands"
@@ -148,7 +136,6 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
   - name: "earrings"
     label: "Earrings"
     folder: "earrings"
@@ -159,7 +146,6 @@ collections:
       - {label: "Price", name: "price", widget: "string"}
       - {label: "Description", name: "body", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-
   - name: "pendants"
     label: "Pendants"
     folder: "pendants"
