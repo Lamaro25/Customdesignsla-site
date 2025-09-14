@@ -1,0 +1,15 @@
+backend:
+  name: git-gateway
+  branch: main
+  auth_type: implicit
+  app_id: X8mseT6hodGlF4JXnEVSHuuioC0caGs4
+
+# Explicitly enable GitHub login via Auth0
+auth:
+  providers:
+    - github
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+# Add collections here...
