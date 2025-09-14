@@ -3,12 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Cuban Elegance</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; max-width: 800px; }
+    img { max-width: 300px; display: block; margin-bottom: 20px; }
+    .options { margin-top: 20px; }
+    button { margin-right: 10px; padding: 8px 12px; }
+  </style>
 </head>
 <body>
   <h1>Cuban Elegance</h1>
   <img src="../../../../assets/uploads/placeholder.png" alt="Cuban Elegance" />
+  <p><strong>Material:</strong> Sterling Silver</p>
   <p><strong>Price:</strong> $___</p>
-  <p><strong>Description:</strong> This is a placeholder description for Cuban Elegance.</p>
+  <p><strong>Description:</strong> This is a placeholder description for Cuban Elegance, with its base design and customization options.</p>
   <h3>Customization Breakdown</h3>
   <ul>
     <li>Engraving: $4 per word/symbol</li>
@@ -21,7 +28,30 @@
     <li>Cuban link small: $5 (+ channel $4)</li>
     <li>Cuban link large: $30 (+ channel $4)</li>
   </ul>
-  <button>Customize this ring</button>
-  <br><a href="index.html">Back to Cuban</a>
+  <div class="options">
+    <label for="ring-size"><strong>Select Ring Size:</strong></label>
+    <select id="ring-size" name="ring-size">
+      <option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+<option>10</option>
+<option>11</option>
+<option>5.5</option>
+<option>6.5</option>
+<option>7.5</option>
+<option>8.5</option>
+<option>9.5</option>
+<option>10.5</option>
+<option>11.5</option>
+    </select>
+    <p><em>If you do not see your size, add it below and we will let you know if we can make it:</em></p>
+    <input type="text" placeholder="Size here" />
+  </div>
+  <br>
+  <button onclick="window.location.href='../../../../builder/rings.html?preset=cuban-elegance'">Customize this Ring</button>
+  <button>Add to Cart</button>
+  <br><br><a href="index.html">Back to Cuban Collection</a>
 </body>
 </html>
