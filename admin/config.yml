@@ -3,3 +3,15 @@ backend:
   branch: main
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
+
+collections:
+  - name: "rings"
+    label: "Rings"
+    folder: "collections/rings"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Product Name", name: "title", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Price", name: "price", widget: "number"}
+      - {label: "Description", name: "body", widget: "text"}
