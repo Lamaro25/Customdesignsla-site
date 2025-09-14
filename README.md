@@ -1,21 +1,17 @@
-# Custom Designs LA Website
+# Custom Designs LA — V6.26
 
-## Deployment Steps
-1. Download the latest ZIP (e.g., V6.17).
-2. Unzip it on your computer.
-3. Open GitHub Desktop and go to your `Customdesignsla-site` repo folder.
-4. Replace the old files with these new ones.
-5. Commit your changes with a clear summary (see below).
-6. Push to GitHub → Netlify will auto-deploy.
+## What's new
+- Calculators (Ring + Charm/Pendant) now accept **URL defaults** so product detail pages can open them **pre-filled**.
+- Added **live total** and **line-item price breakdown** that updates in real time.
+- Included **Reset to Defaults** and **Save My Customization** (downloads a JSON summary).
+- Detail pages for example products link to calculators with sensible defaults pre-selected.
 
-## Commit Message Example
-**Summary:** Upload V6.17 website build with logo fixes and stable admin
-**Description:**
-- Added Honeycomb LA logo to favicon and header banner
-- Fixed header to show "Custom Design’s" + logo (no duplicate text)
-- Included stable admin/config.yml to prevent CMS login issues
-- Added placeholder collection pages to avoid 404 errors
+## How to use
+- Link to the calculators with query params:
+  - Ring: `ring_calculator.html?product=NAME&band_height=small|medium|large&band_style=flat|domed|apex&cuban_small=1&channel=1&engrave_inside=2...`
+  - Charm: `charm_calculator.html?product=NAME&size=penny|dime|...&design_fee=25&engraving_words=2&beading=1...`
 
-## Notes
-- Always keep previous ZIP versions as backups.
-- Logo is stored in `assets/uploads/honeycomb_la_logo.png`.
+- You can keep defaults in CMS and render links accordingly, or paste links manually for now.
+
+## Next
+- If you'd like, we can wire Netlify CMS entries to **auto-generate these calculator links** so you never have to touch code.
