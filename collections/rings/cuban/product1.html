@@ -1,40 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Name TBD</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    .product { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    img { max-width: 100%; border: 1px solid #ddd; border-radius: 8px; }
-    .price { font-size: 20px; font-weight: bold; margin: 10px 0; }
-    .breakdown { background: #f9f9f9; border: 1px solid #ddd; padding: 10px; border-radius: 6px; }
-    .btn { padding: 8px 14px; background: #111; color: #fff; border-radius: 6px; text-decoration: none; margin-right: 8px; }
-    .btn.secondary { background: #777; }
-    @media(max-width: 820px) { .product { grid-template-columns: 1fr; } }
-  </style>
-</head>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Cuban Original</title>
+<style>
+body{font-family:Arial;margin:20px}
+.wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.main-img{max-width:100%;border:1px solid #ddd;border-radius:8px}
+.thumbs{display:flex;gap:6px;margin-top:8px}
+.thumbs img{width:60px;height:60px;object-fit:cover;cursor:pointer;border:2px solid transparent;border-radius:6px}
+.thumbs img.active{border-color:#111}
+</style></head>
 <body>
-<a href="../index.html">&larr; Back to Collection</a>
-<div class="product">
-  <div><img src="../../assets/uploads/placeholder.png" alt="Product Name TBD"></div>
-  <div>
-    <h1>Product Name TBD</h1>
-    <div class="price">$0.00</div>
-    <p>Description coming soon</p>
-    <div class="breakdown">
-      <h3>Price Breakdown</h3>
-      <ul>
-        <li>Base price from CMS defaults</li>
-        <li>Customizations available in calculator</li>
-      </ul>
-    </div>
-    <p>
-      <a class="btn" href="../../ring_calculator.html?product=Product Name TBD">Customize This Item</a>
-      <a class="btn secondary" href="../index.html">Back to Collection</a>
-    </p>
-  </div>
+<a href="index.html">&larr; Back to Collection</a>
+<div class="wrap">
+ <div>
+   <img id="main" src="../../../assets/uploads/placeholder.png" class="main-img">
+   <div class="thumbs">
+     <img src="../../../assets/uploads/placeholder.png" class="active" onclick="swap(this)">
+     <img src="../../../assets/uploads/placeholder.png" onclick="swap(this)">
+     <img src="../../../assets/uploads/placeholder.png" onclick="swap(this)">
+     <img src="../../../assets/uploads/placeholder.png" onclick="swap(this)">
+     <img src="../../../assets/uploads/placeholder.png" onclick="swap(this)">
+   </div>
+ </div>
+ <div>
+   <h1>Cuban Original</h1>
+   <p>$0.00</p>
+   <p>Description coming soon.</p>
+ </div>
 </div>
-</body>
-</html>
+<script>
+function swap(el){document.getElementById('main').src=el.src;document.querySelectorAll('.thumbs img').forEach(i=>i.classList.remove('active'));el.classList.add('active');}
+</script>
+</body></html>
