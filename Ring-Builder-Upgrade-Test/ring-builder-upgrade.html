@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ring Builder Upgrade Test</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .section { margin-bottom: 25px; }
+    .instructions { background: #f9f9f9; padding: 15px; border: 1px solid #ddd; margin-bottom: 10px; }
+    textarea { width: 100%; height: 80px; }
+    img { max-width: 100px; margin: 5px; display: inline-block; }
+    .option { margin: 5px 0; }
+    .price-box { border-top: 2px solid #333; margin-top: 20px; padding-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Ring Builder Upgrade Test</h1>
+
+  <div class="section">
+    <h2>Band Options</h2>
+    <p>Choose Band Height and Style (example images below):</p>
+    <img src="assets/placeholder.png" alt="Band Heights">
+    <div>
+      <label><input type="radio" name="style"> Domed Band</label><img src="assets/placeholder.png">
+      <label><input type="radio" name="style"> Flat Band</label><img src="assets/placeholder.png">
+      <label><input type="radio" name="style"> Apex Band</label><img src="assets/placeholder.png">
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Engraving / Embossing Text</h2>
+    <label>Engraved Inner Band: <input type="text" id="engravedInner"></label><br>
+    <label>Embossed Inner Band: <input type="text" id="embossedInner"></label><br>
+    <label>Engraved Outer Band: <input type="text" id="engravedOuter"></label><br>
+    <label>Embossed Outer Band: <input type="text" id="embossedOuter"></label><br>
+    <p id="textCost">Text Cost: $0</p>
+  </div>
+
+  <div class="section">
+    <h2>Symbols</h2>
+    <p>Select symbols ($4 each, choose Engraved or Embossed):</p>
+    <div id="symbols"></div>
+    <p id="symbolCost">Symbol Cost: $0</p>
+  </div>
+
+  <div class="section">
+    <h2>Decoration Options</h2>
+    <div class="option"><input type="checkbox" id="beading"> Beading (requires channel)</div>
+    <div class="option"><input type="number" id="ropeBraid" min="0" max="2" value="0"> Rope Braid (1-2)</div>
+    <div class="option"><input type="number" id="cubanSmall" min="0" max="2" value="0"> Cuban Link Small (1-2)</div>
+    <div class="option"><input type="checkbox" id="cubanLarge"> Cuban Link Large</div>
+    <div class="option"><input type="number" id="channel" min="0" max="3" value="0"> Channel (1-3)</div>
+    <div class="option"><input type="checkbox" id="engravedPattern"> Engraved Pattern ($45)</div>
+    <div class="option"><input type="checkbox" id="cutoutSymbol"> Cut-out Symbol ($4)</div>
+    <p id="decorationCost">Decoration Cost: $0</p>
+  </div>
+
+  <div class="section">
+    <h2>Notes</h2>
+    <div class="instructions">
+      Add any info or inspiration you’d like for your ring. For the text keep in mind it is case sensitive — it will be as you type it uppercase or lowercase.<br><br>
+      Add it in and specify which words you would like engraved or embossed (“raised”).<br>
+      Example: I Love ❤️ Custom Design’s LA<br>
+      I want I Love ❤️ Custom Design’s LA engraved inside the band and I would like a ❤️ after the word Love engraved also!<br><br>
+      For any special requests not listed above leave us a comment and we will do our best to accommodate.<br>
+      You will receive a 3D rendered video of the ring before production.
+    </div>
+    <textarea id="notes" placeholder="Enter your notes here..."></textarea>
+  </div>
+
+  <div class="section price-box">
+    <h2>Price Breakdown</h2>
+    <div id="priceBreakdown">
+      Base Band: $0<br>
+      Text: $0<br>
+      Symbols: $0<br>
+      Decorations: $0<br>
+      -------------------<br>
+      Grand Total: $0
+    </div>
+  </div>
+
+<script>
+function countWords(str) {
+  return str.trim() === "" ? 0 : str.trim().split(/\s+/).length;
+}
+
+function updatePricing() {
+  let textCost = 0;
+  ['engravedInner','embossedInner','engravedOuter','embossedOuter'].forEach(id => {
+    textCost += countWords(document.getElementById(id).value) * 4;
+  });
+  document.getElementById('textCost').innerText = "Text Cost: $" + textCost;
+
+  let symbolCount = document.querySelectorAll('.symbol:checked').length;
+  let symbolCost = symbolCount * 4;
+  document.getElementById('symbolCost').innerText = "Symbol Cost: $" + symbolCost;
+
+  let decorationCost = 0;
+  if(document.getElementById('beading').checked) decorationCost += 30 + 4; // Beading + channel
+  let rope = parseInt(document.getElementById('ropeBraid').value);
+  decorationCost += rope * (5 + 4); // Rope braid + channel
+  let cubanSmall = parseInt(document.getElementById('cubanSmall').value);
+  decorationCost += cubanSmall * (5 + 4);
+  if(document.getElementById('cubanLarge').checked) decorationCost += 30 + 4;
+  let channels = parseInt(document.getElementById('channel').value);
+  decorationCost += channels * 4;
+  if(document.getElementById('engravedPattern').checked) decorationCost += 45;
+  if(document.getElementById('cutoutSymbol').checked) decorationCost += 4;
+  document.getElementById('decorationCost').innerText = "Decoration Cost: $" + decorationCost;
+
+  let total = textCost + symbolCost + decorationCost;
+  document.getElementById('priceBreakdown').innerHTML =
+    "Base Band: $0<br>" +
+    "Text: $" + textCost + "<br>" +
+    "Symbols: $" + symbolCost + "<br>" +
+    "Decorations: $" + decorationCost + "<br>" +
+    "-------------------<br>" +
+    "Grand Total: $" + total;
+}
+
+['engravedInner','embossedInner','engravedOuter','embossedOuter',
+ 'beading','ropeBraid','cubanSmall','cubanLarge','channel',
+ 'engravedPattern','cutoutSymbol'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updatePricing);
+  document.getElementById(id).addEventListener('change', updatePricing);
+});
+
+// Generate 28 symbol placeholders
+let symbolsDiv = document.getElementById('symbols');
+for(let i=1; i<=28; i++) {
+  let div = document.createElement('div');
+  div.innerHTML = '<label><input type="checkbox" class="symbol"> ' + i + '. Symbol <img src="assets/placeholder.png"></label>';
+  symbolsDiv.appendChild(div);
+}
+</script>
+
+</body>
+</html>
