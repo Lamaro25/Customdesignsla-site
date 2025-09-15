@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Ring Builder Advanced - Part D</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { font-size: 1.4em; }
+    .option { margin-bottom: 12px; }
+    .option img { width: 80px; display: block; margin-top: 4px; }
+    .note { font-size: 0.9em; color: #555; }
+    .total { font-weight: bold; margin-top: 20px; font-size: 1.2em; }
+  </style>
+  <script>
+    function updateTotal() {
+      let total = 0;
+
+      // Rope braid ($5 each, requires channel $4 each)
+      let rope = document.getElementById('rope').value;
+      total += rope * 5 + rope * 4;
+
+      // Cuban link small ($5 each, requires channel $4 each)
+      let cubanSmall = document.getElementById('cubanSmall').value;
+      total += cubanSmall * 5 + cubanSmall * 4;
+
+      // Cuban link large ($30 each, requires channel $4 each)
+      let cubanLarge = document.getElementById('cubanLarge').value;
+      total += cubanLarge * 30 + cubanLarge * 4;
+
+      // Beading ($30, requires channel $4)
+      if(document.getElementById('beading').checked){
+        total += 30 + 4;
+      }
+
+      // Engraved pattern ($45)
+      if(document.getElementById('engravedPattern').checked){
+        total += 45;
+      }
+
+      // Cut-out ($4)
+      if(document.getElementById('cutOut').checked){
+        total += 4;
+      }
+
+      // Patterns (3 available, free selection but optional)
+      // No cost added, only description
+
+      document.getElementById('total').innerText = "$" + total.toFixed(2);
+    }
+  </script>
+</head>
+<body>
+  <h1>Ring Builder Advanced - Part D (Decorations + Patterns)</h1>
+
+  <div class="option">
+    <label>Rope Braid (Select 0-2)</label>
+    <select id="rope" onchange="updateTotal()">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select>
+    <img src="placeholder.png" alt="Rope braid example">
+    <div class="note">Each rope braid adds $5 + requires channel $4</div>
+  </div>
+
+  <div class="option">
+    <label>Cuban Link Small (Select 0-2)</label>
+    <select id="cubanSmall" onchange="updateTotal()">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select>
+    <img src="placeholder.png" alt="Cuban link small example">
+    <div class="note">Each small Cuban link adds $5 + requires channel $4</div>
+  </div>
+
+  <div class="option">
+    <label>Cuban Link Large (Select 0-2)</label>
+    <select id="cubanLarge" onchange="updateTotal()">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select>
+    <img src="placeholder.png" alt="Cuban link large example">
+    <div class="note">Each large Cuban link adds $30 + requires channel $4</div>
+  </div>
+
+  <div class="option">
+    <label><input type="checkbox" id="beading" onchange="updateTotal()"> Beading ($30 + $4 channel)</label>
+    <img src="placeholder.png" alt="Beading example">
+  </div>
+
+  <div class="option">
+    <label><input type="checkbox" id="engravedPattern" onchange="updateTotal()"> Engraved Pattern ($45)</label>
+    <img src="placeholder.png" alt="Engraved pattern example">
+  </div>
+
+  <div class="option">
+    <label><input type="checkbox" id="cutOut" onchange="updateTotal()"> Cut-Out Symbol ($4)</label>
+    <img src="placeholder.png" alt="Cut-out example">
+    <div class="note">The symbol you select will be cut all the way through the ring band as seen in image.</div>
+  </div>
+
+  <h2>Pattern Choices (no extra cost)</h2>
+  <div class="option">
+    <label>Pattern 1</label>
+    <img src="placeholder.png" alt="Pattern 1 example">
+    <div class="note">Description placeholder</div>
+  </div>
+  <div class="option">
+    <label>Pattern 2</label>
+    <img src="placeholder.png" alt="Pattern 2 example">
+    <div class="note">Description placeholder</div>
+  </div>
+  <div class="option">
+    <label>Pattern 3</label>
+    <img src="placeholder.png" alt="Pattern 3 example">
+    <div class="note">Description placeholder</div>
+  </div>
+
+  <div class="total">Decoration Total: <span id="total">$0.00</span></div>
+</body>
+</html>
