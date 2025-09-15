@@ -1,0 +1,81 @@
+backend:
+  name: git-gateway
+  branch: main
+  auth_type: implicit
+  app_id: X8mseT6hodGlF4JXnEVSHuuioC0caGs4
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "rings"
+    label: "Rings"
+    folder: "collections/rings"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Ring Name", name: "title", widget: "string" }
+      - { label: "Collection", name: "collection", widget: "select", options: ["Cuban Link", "Faith", "Western"] }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Customize", name: "customize", widget: "boolean", default: true }
+
+  - name: "charms"
+    label: "Charms"
+    folder: "collections/charms"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Charm Name", name: "title", widget: "string" }
+      - { label: "Collection", name: "collection", widget: "select", options: ["Faith", "Western", "Medical Field"] }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image" }
+
+  - name: "bracelets"
+    label: "Bracelets"
+    folder: "collections/bracelets"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Bracelet Name", name: "title", widget: "string" }
+      - { label: "Type", name: "collection", widget: "select", options: ["Charm Bracelet", "Cuff Bracelet"] }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image" }
+
+  - name: "bronze"
+    label: "Bronze Collection"
+    folder: "collections/bronze"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Item Name", name: "title", widget: "string" }
+      - { label: "Collection", name: "collection", widget: "select", options: ["Money Clips", "Belt Buckles", "Cowboy Toothpicks", "Keychains", "Mini Ranch Brands"] }
+      - { label: "Material", name: "material", widget: "select", options: ["Ancient Bronze", "Sterling Silver"] }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image" }
+
+  - name: "earrings"
+    label: "Earrings"
+    folder: "collections/earrings"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Earring Name", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image" }
+
+  - name: "pendants"
+    label: "Pendants"
+    folder: "collections/pendants"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Pendant Name", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image" }
