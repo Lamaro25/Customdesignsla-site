@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Customize My Ring</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --gap:16px; }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, Arial, sans-serif; margin:0; background:#fff; color:#111; }
+    header { position: sticky; top:0; background:#ffffffcc; backdrop-filter: blur(6px); border-bottom:1px solid #eee; padding:12px 20px; z-index:5; }
+    main { max-width: 1080px; margin: 0 auto; padding: 20px; }
+    h1 { font-size: 1.8rem; margin: 12px 0 6px; }
+    .preset-note { color: #0a7a3e; margin-bottom: 14px; }
+    .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap); }
+    .card { border:1px solid #e8e8e8; border-radius:12px; padding:16px; background:#fafafa; }
+    .section-title { font-size:1.1rem; margin:0 0 8px; }
+    textarea, select, input[type="text"], input[type="number"] { width:100%; padding:10px; border:1px solid #ddd; border-radius:10px; background:#fff; }
+    .row { display:flex; gap: var(--gap); flex-wrap: wrap; }
+    .col { flex:1 1 280px; min-width:260px; }
+    .thumb { width:100%; height:140px; border:2px dashed #cfcfcf; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#777; font-size:.9rem; background:#fff; }
+    .pill { display:inline-block; padding:4px 10px; border-radius:20px; border:1px solid #ddd; margin:4px 6px 0 0; font-size:.9rem; }
+    .muted { color:#666; font-size:.9rem; }
+    .price-line { display:flex; justify-content:space-between; margin:6px 0; font-size:.95rem; }
+    .price-line .tag { color:#666; }
+    .total { display:flex; justify-content:space-between; font-weight:700; font-size:1.15rem; padding-top:10px; border-top:1px dashed #ddd; margin-top:10px; }
+    .actions { position: sticky; bottom:0; background:#ffffffee; backdrop-filter: blur(6px); padding:12px 16px; border-top:1px solid #eee; display:flex; gap:12px; }
+    button { padding:11px 16px; border:none; border-radius:10px; cursor:pointer; }
+    .btn-dark { background:#111; color:#fff; }
+    .btn-ghost { background:#f3f3f3; color:#111; }
+    @media (max-width: 720px){
+      .grid { grid-template-columns: repeat(6, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>Customize My Ring</strong>
+  </header>
+  <main>
+    <div id="presetBanner" class="preset-note"></div>
+
+    <!-- Band Options -->
+    <section class="card">
+      <h2 class="section-title">Band Options</h2>
+      <div class="row">
+        <div class="col">
+          <label>Band Height</label>
+          <select id="bandHeight">
+            <option value="">Select height</option>
+            <option value="3-6mm">3–6mm ($30)</option>
+            <option value="6-9mm">6–9mm ($60)</option>
+            <option value="10-13mm">10–13mm ($90)</option>
+          </select>
+          <div class="thumb" id="heightThumb">Band heights preview</div>
+        </div>
+        <div class="col">
+          <label>Band Style</label>
+          <select id="bandStyle">
+            <option value="">Select style</option>
+            <option value="Domed">Domed</option>
+            <option value="Flat">Flat</option>
+            <option value="Apex">Apex</option>
+          </select>
+          <div class="thumb">Band styles preview</div>
+        </div>
+      </div>
+      <div class="muted" style="margin-top:8px;">Preview images are placeholders — swap with your own references later.</div>
+    </section>
+
+    <!-- Text Areas -->
+    <section class="card">
+      <h2 class="section-title">Text (Engraved / Embossed)</h2>
+      <div class="row">
+        <div class="col">
+          <label>Engraved — Inner band</label>
+          <textarea id="engravedInner" placeholder="Type your text (counted per word)"></textarea>
+          <div class="muted" id="engravedInnerMeta">0 words ($0)</div>
+        </div>
+        <div class="col">
+          <label>Embossed — Inner band</label>
+          <textarea id="embossedInner" placeholder="Type your text (counted per word)"></textarea>
+          <div class="muted" id="embossedInnerMeta">0 words ($0)</div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px;">
+        <div class="col">
+          <label>Engraved — Outer band</label>
+          <textarea id="engravedOuter" placeholder="Type your text (counted per word)"></textarea>
+          <div class="muted" id="engravedOuterMeta">0 words ($0)</div>
+        </div>
+        <div class="col">
+          <label>Embossed — Outer band</label>
+          <textarea id="embossedOuter" placeholder="Type your text (counted per word)"></textarea>
+          <div class="muted" id="embossedOuterMeta">0 words ($0)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Symbols -->
+    <section class="card">
+      <h2 class="section-title">Symbols</h2>
+      <div class="muted" style="margin-bottom:8px;">Pick any symbols and describe placement in the notes below.</div>
+      <div id="symbolsWrap" class="row"></div>
+    </section>
+
+    <!-- Decorations -->
+    <section class="card">
+      <h2 class="section-title">Decorations</h2>
+      <div class="row">
+        <div class="col">
+          <label>Rope braid (0–2)</label>
+          <select id="ropeCount">
+            <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+          </select>
+          <div class="muted">Adds $5 each + auto channel $4 each</div>
+        </div>
+        <div class="col">
+          <label>Cuban link — Small (0–2)</label>
+          <select id="cubanSmallCount">
+            <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+          </select>
+          <div class="muted">Adds $5 each + auto channel $4 each</div>
+        </div>
+        <div class="col">
+          <label>Cuban link — Large (0–2)</label>
+          <select id="cubanLargeCount">
+            <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+          </select>
+          <div class="muted">Adds $30 each + auto channel $4 each</div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px;">
+        <div class="col">
+          <label><input type="checkbox" id="beading"> Beading</label>
+          <div class="muted">Adds $30 + auto channel $4</div>
+        </div>
+        <div class="col">
+          <label><input type="checkbox" id="engravedPattern"> Engraved pattern</label>
+          <div class="muted">Adds $45</div>
+        </div>
+        <div class="col">
+          <label><input type="checkbox" id="cutOut"> Cut‑out symbol</label>
+          <div class="muted">Adds $4 — cut all the way through</div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px;">
+        <div class="col">
+          <label>Pattern 1</label>
+          <div class="thumb">Pattern 1 image</div>
+          <input type="text" id="pattern1Desc" placeholder="Description (optional)">
+        </div>
+        <div class="col">
+          <label>Pattern 2</label>
+          <div class="thumb">Pattern 2 image</div>
+          <input type="text" id="pattern2Desc" placeholder="Description (optional)">
+        </div>
+        <div class="col">
+          <label>Pattern 3</label>
+          <div class="thumb">Pattern 3 image</div>
+          <input type="text" id="pattern3Desc" placeholder="Description (optional)">
+        </div>
+      </div>
+    </section>
+
+    <!-- Notes -->
+    <section class="card">
+      <h2 class="section-title">Notes for our jeweler</h2>
+      <div class="muted" style="margin-bottom:6px;">
+        Add any info or inspiration you’d like for your ring. Text is case‑sensitive (UPPER/lower shown as typed).
+        Specify which words are engraved or embossed (raised). Example: I Love ❤️ Custom Designs LA — engrave inside band,
+        and add a ❤️ after “Love”. For special requests not listed above, leave a comment; we’ll try to accommodate.
+        You’ll receive a 3D rendered video before production.
+      </div>
+      <textarea id="notes" placeholder="Your notes…"></textarea>
+    </section>
+
+    <!-- Size + Summary -->
+    <section class="card">
+      <h2 class="section-title">Ring size & summary</h2>
+      <div class="row">
+        <div class="col">
+          <label>Ring size</label>
+          <select id="ringSize">
+            <option value="">Select size</option>
+            <option>5</option><option>5.5</option><option>6</option><option>6.5</option>
+            <option>7</option><option>7.5</option><option>8</option><option>8.5</option>
+            <option>9</option><option>9.5</option><option>10</option><option>10.5</option>
+            <option>11</option><option>11.5</option>
+          </select>
+          <input type="text" id="customSize" placeholder="If your size isn’t listed, type it here" style="margin-top:8px;">
+        </div>
+        <div class="col">
+          <div id="priceBreakdown" class="card" style="background:#fff;"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button class="btn-ghost" id="saveDraft">Save draft</button>
+      <button class="btn-dark" id="addToCart">Add to cart</button>
+    </div>
+  </main>
+
+  <script>
+    const WORD_PRICE = 4;
+    const PRICES = {
+      height: { "3-6mm":30, "6-9mm":60, "10-13mm":90 },
+      rope: 5, channel: 4, cubanSmall: 5, cubanLarge: 30, beading: 30, engravedPattern: 45, cutOut: 4
+    };
+    const SYMBOLS = ["Cross","Acts","Praying hands","Horse","Horse shoe","Yin and Yang","Turtle dove","Elephant","Cardinal","Heart","Star","Crescent moon","Sunflower","Paw","Sun","Rose","Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"];
+
+    const sw = document.getElementById('symbolsWrap');
+    SYMBOLS.forEach((name, i)=>{
+      const wrap = document.createElement('label');
+      wrap.className = 'pill';
+      const cb = document.createElement('input');
+      cb.type = 'checkbox'; cb.value = name; cb.onchange = compute;
+      wrap.appendChild(cb);
+      wrap.appendChild(document.createTextNode(` ${i+1}. ${name}`));
+      sw.appendChild(wrap);
+    });
+
+    const $ = (id)=>document.getElementById(id);
+    const words = (t)=> t.trim()? t.trim().split(/\s+/).length : 0;
+
+    function compute(){
+      // live word meta
+      $('engravedInnerMeta').textContent  = `${words($('engravedInner').value)} words ($$${words($('engravedInner').value)*WORD_PRICE})`;
+      $('embossedInnerMeta').textContent  = `${words($('embossedInner').value)} words ($$${words($('embossedInner').value)*WORD_PRICE})`;
+      $('engravedOuterMeta').textContent  = `${words($('engravedOuter').value)} words ($$${words($('engravedOuter').value)*WORD_PRICE})`;
+      $('embossedOuterMeta').textContent  = `${words($('embossedOuter').value)} words ($$${words($('embossedOuter').value)*WORD_PRICE})`;
+
+      let breakdown = [];
+      let total = 0;
+
+      // Base
+      const h = $('bandHeight').value;
+      if (PRICES.height[h]){ breakdown.push({label:`Band height ${h}`, price:PRICES.height[h]}); total += PRICES.height[h]; }
+
+      // Words
+      const w = words($('engravedInner').value)+words($('embossedInner').value)+words($('engravedOuter').value)+words($('embossedOuter').value);
+      breakdown.push({label:`Text (${w} words @ $${WORD_PRICE})`, price:w*WORD_PRICE}); total += w*WORD_PRICE;
+
+      // Decorations + channels
+      const rope = parseInt($('ropeCount').value||'0',10); if (rope){ const c= rope*PRICES.rope + rope*PRICES.channel; breakdown.push({label:`Rope braid x${rope} (incl. channels)`, price:c}); total+=c; }
+      const cs = parseInt($('cubanSmallCount').value||'0',10); if (cs){ const c= cs*PRICES.cubanSmall + cs*PRICES.channel; breakdown.push({label:`Cuban link small x${cs} (incl. channels)`, price:c}); total+=c; }
+      const cl = parseInt($('cubanLargeCount').value||'0',10); if (cl){ const c= cl*PRICES.cubanLarge + cl*PRICES.channel; breakdown.push({label:`Cuban link large x${cl} (incl. channels)`, price:c}); total+=c; }
+      if ($('beading').checked){ breakdown.push({label:`Beading (incl. channel)`, price:PRICES.beading+PRICES.channel}); total+=PRICES.beading+PRICES.channel; }
+      if ($('engravedPattern').checked){ breakdown.push({label:`Engraved pattern`, price:PRICES.engravedPattern}); total+=PRICES.engravedPattern; }
+      if ($('cutOut').checked){ breakdown.push({label:`Cut‑out symbol`, price:PRICES.cutOut}); total+=PRICES.cutOut; }
+
+      const chosenSymbols = Array.from(document.querySelectorAll('#symbolsWrap input[type=checkbox]:checked')).map(el=>el.value);
+      if (chosenSymbols.length){ const c = chosenSymbols.length*WORD_PRICE; breakdown.push({label:`Symbols (${chosenSymbols.length} @ $${WORD_PRICE})`, price:c, note:chosenSymbols.join(', ')}); total+=c; }
+
+      const wrap = $('priceBreakdown');
+      wrap.innerHTML = '<div class="price-line"><span class="tag">Item</span><span class="tag">Price</span></div>';
+      breakdown.forEach(it=>{
+        const line=document.createElement('div'); line.className='price-line';
+        line.innerHTML = `<span>${it.label}${it.note?` — <span class='muted'>${it.note}</span>`:''}</span><span>$${it.price.toFixed(2)}</span>`;
+        wrap.appendChild(line);
+      });
+      const tot = document.createElement('div'); tot.className='total'; tot.innerHTML = `<span>Total</span><span>$${total.toFixed(2)}</span>`; wrap.appendChild(tot);
+    }
+
+    // Events
+    ['bandHeight','bandStyle','engravedInner','embossedInner','engravedOuter','embossedOuter','ropeCount','cubanSmallCount','cubanLargeCount','beading','engravedPattern','cutOut','notes','ringSize','customSize'].forEach(id=>{
+      const el = $(id); if(!el) return;
+      const evt = (el.tagName==='INPUT' && el.type==='checkbox') ? 'change' : (el.tagName==='SELECT' ? 'change' : 'input');
+      el.addEventListener(evt, compute);
+    });
+    document.getElementById('symbolsWrap').addEventListener('change', compute);
+
+    function presetFromQuery(){
+      const qp = new URLSearchParams(location.search);
+      const ring = qp.get('ring');
+      let note = '';
+      if (ring==='cuban-original'){ $('bandStyle').value='Flat'; $('bandHeight').value='6-9mm'; $('engravedPattern').checked=true; note='Preset: Cuban Original'; }
+      else if (ring==='cuban-classic'){ $('bandStyle').value='Flat'; $('bandHeight').value='10-13mm'; $('ropeCount').value='2'; $('engravedPattern').checked=true; note='Preset: Cuban Classic'; }
+      else if (ring==='cuban-elegance'){ $('bandStyle').value='Domed'; $('bandHeight').value='6-9mm'; $('cubanSmallCount').value='2'; note='Preset: Cuban Elegance'; }
+      else if (ring==='cuban-intricate'){ $('bandStyle').value='Apex'; $('bandHeight').value='10-13mm'; $('cubanLargeCount').value='1'; $('beading').checked=true; note='Preset: Cuban Intricate'; }
+      else if (ring==='cuban-thin'){ $('bandStyle').value='Flat'; $('bandHeight').value='3-6mm'; $('cubanSmallCount').value='1'; note='Preset: Cuban Statement Thin'; }
+      else if (ring==='cuban-thick'){ $('bandStyle').value='Flat'; $('bandHeight').value='10-13mm'; $('cubanLargeCount').value='2'; note='Preset: Cuban Statement Thick'; }
+      $('presetBanner').textContent = note;
+      compute();
+    }
+    window.addEventListener('load', presetFromQuery);
+    window.addEventListener('load', compute);
+
+    document.getElementById('saveDraft').addEventListener('click', ()=>alert('Saved draft (placeholder).'));
+    document.getElementById('addToCart').addEventListener('click', ()=>{ compute(); alert('Added to cart (placeholder).'); });
+  </script>
+</body>
+</html>
