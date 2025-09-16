@@ -1,10 +1,6 @@
 {
   "Cuban": [
     { "name": "Cuban Original", "img": "assets/rings/cuban/cuban-original.jpg" },
-    { "name": "Cuban Classic", "img": "assets/rings/cuban/cuban-classic.jpg" },
-    { "name": "Cuban Elegance", "img": "assets/rings/cuban/cuban-elegance.jpg" },
-    { "name": "Cuban Intricate", "img": "assets/rings/cuban/cuban-intricate.jpg" },
-    { "name": "Cuban Statement Ring Thin", "img": "assets/rings/cuban/cuban-thin.jpg" },
-    { "name": "Cuban Statement Ring Thick", "img": "assets/rings/cuban/cuban-thick.jpg" }
+    { "name": "Cuban Classic", "img": "assets/rings/cuban/cuban-classic.jpg" }
   ]
 }

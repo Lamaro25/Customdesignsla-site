@@ -1,7 +1,5 @@
 {
   "Medical": [
-    { "name": "Medical Charm 1", "img": "assets/charms/medical/medical-1.jpg" },
-    { "name": "Medical Charm 2", "img": "assets/charms/medical/medical-2.jpg" },
-    { "name": "Medical Charm 3", "img": "assets/charms/medical/medical-3.jpg" }
+    { "name": "Medical Charm 1", "img": "assets/charms/medical/medical-1.jpg" }
   ]
 }

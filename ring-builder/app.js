@@ -13,6 +13,8 @@ let currentMetal = "Silver";
 let selectedAddOns = [];
 let engravingTextInside = "";
 let engravingTextOutside = "";
+let cart = [];
+let wishlist = [];
 
 function calculatePrice() {
   let base = pricingData.designFee || 0;
@@ -34,6 +36,8 @@ function render() {
         <img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/200?text=No+Image'" />
         <div class="ring-preview" style="background:${currentColor}">${mode==='rings'?'💍':'⭐'}</div>
         <p>${item.name}</p>
+        <button onclick="addToCart('${item.name}')">Add to Cart</button>
+        <button onclick="addToWishlist('${item.name}')">♡ Wishlist</button>
       </div>`
   ).join("");
 
@@ -83,6 +87,12 @@ function render() {
     ${addOnCheckboxes}
     <div class="product-grid">${products}</div>
     <div class="price-box"><h2>Total Price: $${price}</h2></div>
+    <div class="cart-box">
+      <h3>🛒 Cart (${cart.length})</h3>
+      <ul>${cart.map(c => `<li>${c}</li>`).join("")}</ul>
+      <h3>♡ Wishlist (${wishlist.length})</h3>
+      <ul>${wishlist.map(w => `<li>${w}</li>`).join("")}</ul>
+    </div>
   `;
 }
 
@@ -94,6 +104,8 @@ window.setSize = s => { currentSize=s; render(); }
 window.setMetal = m => { currentMetal=m; render(); }
 window.toggleAddOn = (a,checked)=>{ if(checked) selectedAddOns.push(a); else selectedAddOns=selectedAddOns.filter(x=>x!==a); render(); }
 window.setEngraving = (t,v)=>{ if(t==='inside') engravingTextInside=v; if(t==='outside') engravingTextOutside=v; render(); }
+window.addToCart = name => { cart.push(name); render(); }
+window.addToWishlist = name => { wishlist.push(name); render(); }
 
 async function loadData() {
   const [ringsResp, charmsResp, pricingResp] = await Promise.all([

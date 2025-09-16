@@ -1,4 +1,4 @@
-/* Reuse v6.16+ polished UI styling */
+/* Reuse polished styles from v6.18 */
 body { font-family: 'Segoe UI', sans-serif; margin:0; padding:0; background:#fafafa; color:#333; }
 header { background:#111; color:#fff; padding:15px; text-align:center; }
 footer { background:#111; color:#fff; text-align:center; padding:10px; margin-top:30px; }
@@ -13,4 +13,4 @@ button:hover { background:#555; }
 .ring-preview { width:60px; height:60px; border:2px solid #ccc; border-radius:50%; margin:10px auto; display:flex; align-items:center; justify-content:center; }
 .color-option { display:inline-block; width:30px; height:30px; margin:5px; border:2px solid #333; border-radius:50%; cursor:pointer; }
 .price-box { margin-top:20px; padding:15px; background:#fff; border:1px solid #ddd; border-radius:12px; box-shadow:0 1px 4px rgba(0,0,0,0.1); text-align:center; }
-@media (max-width:768px){ header h1{font-size:18px;} .product-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));} select,button,input{font-size:12px;} }
+.cart-box { margin-top:20px; padding:15px; background:#fefefe; border:1px solid #ccc; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.05); }
