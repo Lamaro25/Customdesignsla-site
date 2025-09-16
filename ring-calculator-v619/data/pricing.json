@@ -1,0 +1,8 @@
+{
+  "designFee": 25,
+  "engravingPerWord": 5,
+  "ringHeights": { "3-6mm": 50, "6-9mm": 75, "10-13mm": 100 },
+  "charmSizes": { "Dime (17.9mm)": 30, "Quarter (24.3mm)": 45 },
+  "addOns": { "Engraved Pattern": 45, "Beading": 5 },
+  "metals": { "Silver": 0, "Gold": 100 }
+}

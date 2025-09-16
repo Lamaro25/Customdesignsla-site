@@ -1,0 +1,6 @@
+{
+  "Cuban": [
+    { "name": "Cuban Original", "img": "assets/rings/cuban/cuban-original.jpg" },
+    { "name": "Cuban Classic", "img": "assets/rings/cuban/cuban-classic.jpg" }
+  ]
+}
