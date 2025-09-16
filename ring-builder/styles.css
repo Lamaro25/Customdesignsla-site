@@ -11,30 +11,9 @@ select, button, input {
   padding: 8px;
   margin: 5px 0;
 }
-.ring-preview {
-  width: 200px;
-  height: 200px;
-  border: 2px solid #ccc;
-  border-radius: 50%;
-  margin: 10px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  background-position: center;
-}
-.color-option {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin: 5px;
-  border: 2px solid #333;
-  border-radius: 50%;
-  cursor: pointer;
-}
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 15px;
   margin-top: 20px;
 }
@@ -51,6 +30,25 @@ select, button, input {
   height: auto;
   border-radius: 6px;
   margin-bottom: 8px;
+}
+.ring-preview {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.color-option {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  cursor: pointer;
 }
 .price-box {
   margin-top: 20px;

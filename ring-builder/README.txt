@@ -1,15 +1,20 @@
 Ring & Charm Builder - Custom Designs LA
 ---------------------------------
 
-Version: v6.14
+Version: v6.15
 
 Summary:
-- Expanded add-on catalog with new options (Rope Twist, Cuban Weave Tight, Cuban Weave Loose).
-- Added image placeholders for all rings and charms (via placeholder.com).
-- Product cards now display preview images above the color preview and name.
-- Maintains engraving, metal selector, pricing ladder, and collections from v6.13.
+- Integrated real image file paths for all products (rings & charms).
+- Added /assets folder structure for product photos (rings/cuban, western, faith; charms/cuban, western, faith, medical).
+- Product cards show real product images (fallbacks to placeholder if missing).
+- Maintains all features from v6.14: engraving, metals, pricing ladder, expanded add-ons.
 
 Changelog:
+v6.15
+- Set up /assets folder for real product photos.
+- Updated product collections to load local image files.
+- Product images now primary in cards; placeholder used if missing.
+
 v6.14
 - Expanded add-ons: Rope Twist, Cuban Weave Tight, Cuban Weave Loose.
 - Added placeholder product images for all rings and charms.
@@ -46,10 +51,12 @@ v6.9
 
 Deployment Instructions:
 1. Unzip this folder.
-2. Upload/extract contents into your Netlify (or local) project folder.
-3. Deploy — this will override the old builder with new updates.
+2. Upload/extract into your Netlify (or local) project repo.
+3. Place your product photos in the /assets subfolders (e.g., assets/rings/cuban/cuban-original.jpg).
+4. Ensure filenames match the code references in app.js.
+5. Deploy — updated builder will show your real photos.
 
 Next Updates:
-- Replace placeholder images with real product photos.
-- Polish UI styling and responsiveness for customer-facing launch.
-- Integrate with CMS for dynamic product loading.
+- Polish UI styling for mobile responsiveness.
+- Integrate with CMS to load product data dynamically.
+- Begin preparing customer-facing launch version.
