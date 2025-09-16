@@ -92,12 +92,23 @@ const addOns = {
   "Cut-outs": 10
 };
 
+// Metal types
+const metals = {
+  Silver: 0,
+  Gold: 100,
+  RoseGold: 120,
+  Platinum: 200
+};
+
 let currentColor = 'silver';
 let mode = 'rings'; // 'rings' or 'charms'
 let currentCollection = 'Cuban';
 let currentHeight = "3-6mm";
 let currentSize = "Dime (17.9mm)";
+let currentMetal = "Silver";
 let selectedAddOns = [];
+let engravingTextInside = "";
+let engravingTextOutside = "";
 
 function calculatePrice() {
   let base = 25; // design fee
@@ -106,9 +117,13 @@ function calculatePrice() {
   } else {
     base += charmSizes[currentSize];
   }
+  base += metals[currentMetal];
   selectedAddOns.forEach(addon => {
     base += addOns[addon];
   });
+  // Engraving costs $5 per word
+  let engravingWords = (engravingTextInside + " " + engravingTextOutside).trim().split(/\s+/).filter(Boolean).length;
+  base += engravingWords * 5;
   return base;
 }
 
@@ -124,6 +139,10 @@ function render() {
 
   const addOnCheckboxes = Object.keys(addOns).map(a =>
     `<label><input type="checkbox" onchange="toggleAddOn('${a}', this.checked)"> ${a} (+$${addOns[a]})</label><br/>`
+  ).join("");
+
+  const metalOptions = Object.keys(metals).map(m =>
+    `<option value="${m}" ${m===currentMetal ? "selected":""}>${m} (+$${metals[m]})</option>`
   ).join("");
 
   const price = calculatePrice();
@@ -162,6 +181,12 @@ function render() {
         ).join("")}
       </select>
     `}
+    <h3>Select Metal:</h3>
+    <select onchange="setMetal(this.value)">${metalOptions}</select>
+    <h3>Engraving Options:</h3>
+    <label>Inside Text: <input type="text" oninput="setEngraving('inside', this.value)" placeholder="Inside engraving" /></label><br/>
+    <label>Outside Text: <input type="text" oninput="setEngraving('outside', this.value)" placeholder="Outside engraving" /></label><br/>
+    <small>$5 per word</small>
     <h3>Customization Add-ons:</h3>
     ${addOnCheckboxes}
     <div class="product-grid">${products}</div>
@@ -197,12 +222,23 @@ window.setSize = function(s) {
   render();
 }
 
+window.setMetal = function(m) {
+  currentMetal = m;
+  render();
+}
+
 window.toggleAddOn = function(addon, checked) {
   if (checked) {
     selectedAddOns.push(addon);
   } else {
     selectedAddOns = selectedAddOns.filter(a => a !== addon);
   }
+  render();
+}
+
+window.setEngraving = function(type, value) {
+  if (type === 'inside') engravingTextInside = value;
+  if (type === 'outside') engravingTextOutside = value;
   render();
 }
 

@@ -1,15 +1,22 @@
 Ring & Charm Builder - Custom Designs LA
 ---------------------------------
 
-Version: v6.12
+Version: v6.13
 
 Summary:
-- Added pricing ladder for rings (band height tiers) and charms (size tiers).
-- Integrated base design fee ($25).
-- Added add-on features: Engraved Pattern, Carved Channels, Beading, Rope Braid, Cut-outs.
-- Live price calculation updates automatically with selections.
+- Added engraving options (inside and outside text).
+- Engraving cost: $5 per word (calculated dynamically).
+- Added metal type selector: Silver (default), Gold, Rose Gold, Platinum.
+- Metal costs added to pricing calculation.
+- Preserves all pricing ladder, collections, and add-ons from v6.12.
 
 Changelog:
+v6.13
+- Integrated engraving inputs (inside & outside text).
+- Engraving price calculated at $5 per word.
+- Added metal selector with costs for Gold, Rose Gold, and Platinum.
+- Price updates live with engraving and metal selections.
+
 v6.12
 - Pricing ladder implemented for rings and charms.
 - Base design fee included ($25).
@@ -39,6 +46,6 @@ Deployment Instructions:
 3. Deploy — this will override the old builder with new updates.
 
 Next Updates:
-- Add inside/outside text engraving (priced per word/symbol).
-- Add metal type selector (default Silver).
-- Expand add-on catalog and pricing controls.
+- Expand add-on catalog (rope variations, Cuban weave options).
+- Add photo preview placeholders for products.
+- Prepare for customer-facing launch.
