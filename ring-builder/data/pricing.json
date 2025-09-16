@@ -1,0 +1,36 @@
+{
+  "designFee": 25,
+  "engravingPerWord": 5,
+  "ringHeights": {
+    "3-6mm": 50,
+    "6-9mm": 75,
+    "10-13mm": 100
+  },
+  "charmSizes": {
+    "Dime (17.9mm)": 30,
+    "Penny (19mm)": 35,
+    "Nickel (21.2mm)": 40,
+    "Quarter (24.3mm)": 45,
+    "Lin (25.4mm)": 50,
+    "Half-Dollar (30.6mm)": 60,
+    "Large (38.1mm)": 70,
+    "X-Large (50.8mm)": 85,
+    "XX-Large (63.5mm)": 100
+  },
+  "addOns": {
+    "Engraved Pattern": 45,
+    "Carved Channels": 4,
+    "Beading": 5,
+    "Rope Braid": 5,
+    "Rope Twist": 7,
+    "Cuban Weave Tight": 10,
+    "Cuban Weave Loose": 8,
+    "Cut-outs": 10
+  },
+  "metals": {
+    "Silver": 0,
+    "Gold": 100,
+    "RoseGold": 120,
+    "Platinum": 200
+  }
+}

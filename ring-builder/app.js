@@ -2,6 +2,7 @@ const app = document.getElementById('app');
 
 let ringsData = {};
 let charmsData = {};
+let pricingData = {};
 
 let currentColor = 'silver';
 let mode = 'rings';
@@ -13,28 +14,14 @@ let selectedAddOns = [];
 let engravingTextInside = "";
 let engravingTextOutside = "";
 
-// Pricing structures
-const ringHeights = { "3-6mm": 50, "6-9mm": 75, "10-13mm": 100 };
-const charmSizes = {
-  "Dime (17.9mm)": 30, "Penny (19mm)": 35, "Nickel (21.2mm)": 40,
-  "Quarter (24.3mm)": 45, "Lin (25.4mm)": 50, "Half-Dollar (30.6mm)": 60,
-  "Large (38.1mm)": 70, "X-Large (50.8mm)": 85, "XX-Large (63.5mm)": 100
-};
-const addOns = {
-  "Engraved Pattern": 45, "Carved Channels": 4, "Beading": 5,
-  "Rope Braid": 5, "Rope Twist": 7, "Cuban Weave Tight": 10,
-  "Cuban Weave Loose": 8, "Cut-outs": 10
-};
-const metals = { Silver: 0, Gold: 100, RoseGold: 120, Platinum: 200 };
-
 function calculatePrice() {
-  let base = 25;
-  if (mode === 'rings') base += ringHeights[currentHeight];
-  else base += charmSizes[currentSize];
-  base += metals[currentMetal];
-  selectedAddOns.forEach(addon => { base += addOns[addon]; });
+  let base = pricingData.designFee || 0;
+  if (mode === 'rings') base += pricingData.ringHeights[currentHeight];
+  else base += pricingData.charmSizes[currentSize];
+  base += pricingData.metals[currentMetal];
+  selectedAddOns.forEach(addon => { base += pricingData.addOns[addon]; });
   let engravingWords = (engravingTextInside + " " + engravingTextOutside).trim().split(/\s+/).filter(Boolean).length;
-  base += engravingWords * 5;
+  base += engravingWords * (pricingData.engravingPerWord || 0);
   return base;
 }
 
@@ -50,12 +37,12 @@ function render() {
       </div>`
   ).join("");
 
-  const addOnCheckboxes = Object.keys(addOns).map(a =>
-    `<label><input type="checkbox" onchange="toggleAddOn('${a}', this.checked)"> ${a} (+$${addOns[a]})</label><br/>`
+  const addOnCheckboxes = Object.keys(pricingData.addOns||{}).map(a =>
+    `<label><input type="checkbox" onchange="toggleAddOn('${a}', this.checked)"> ${a} (+$${pricingData.addOns[a]})</label><br/>`
   ).join("");
 
-  const metalOptions = Object.keys(metals).map(m =>
-    `<option value="${m}" ${m===currentMetal ? "selected":""}>${m} (+$${metals[m]})</option>`
+  const metalOptions = Object.keys(pricingData.metals||{}).map(m =>
+    `<option value="${m}" ${m===currentMetal ? "selected":""}>${m} (+$${pricingData.metals[m]})</option>`
   ).join("");
 
   const price = calculatePrice();
@@ -78,12 +65,12 @@ function render() {
     ${mode==='rings' ? `
       <h3>Select Band Height:</h3>
       <select onchange="setHeight(this.value)">
-        ${Object.keys(ringHeights).map(h => `<option value="${h}" ${h===currentHeight ? "selected":""}>${h} (+$${ringHeights[h]})</option>`).join("")}
+        ${Object.keys(pricingData.ringHeights||{}).map(h => `<option value="${h}" ${h===currentHeight ? "selected":""}>${h} (+$${pricingData.ringHeights[h]})</option>`).join("")}
       </select>
     ` : `
       <h3>Select Charm Size:</h3>
       <select onchange="setSize(this.value)">
-        ${Object.keys(charmSizes).map(s => `<option value="${s}" ${s===currentSize ? "selected":""}>${s} (+$${charmSizes[s]})</option>`).join("")}
+        ${Object.keys(pricingData.charmSizes||{}).map(s => `<option value="${s}" ${s===currentSize ? "selected":""}>${s} (+$${pricingData.charmSizes[s]})</option>`).join("")}
       </select>
     `}
     <h3>Select Metal:</h3>
@@ -91,7 +78,7 @@ function render() {
     <h3>Engraving Options:</h3>
     <label>Inside Text: <input type="text" oninput="setEngraving('inside', this.value)" /></label><br/>
     <label>Outside Text: <input type="text" oninput="setEngraving('outside', this.value)" /></label><br/>
-    <small>$5 per word</small>
+    <small>$${pricingData.engravingPerWord} per word</small>
     <h3>Customization Add-ons:</h3>
     ${addOnCheckboxes}
     <div class="product-grid">${products}</div>
@@ -109,10 +96,14 @@ window.toggleAddOn = (a,checked)=>{ if(checked) selectedAddOns.push(a); else sel
 window.setEngraving = (t,v)=>{ if(t==='inside') engravingTextInside=v; if(t==='outside') engravingTextOutside=v; render(); }
 
 async function loadData() {
-  const ringsResp = await fetch('data/rings.json');
+  const [ringsResp, charmsResp, pricingResp] = await Promise.all([
+    fetch('data/rings.json'),
+    fetch('data/charms.json'),
+    fetch('data/pricing.json')
+  ]);
   ringsData = await ringsResp.json();
-  const charmsResp = await fetch('data/charms.json');
   charmsData = await charmsResp.json();
+  pricingData = await pricingResp.json();
   render();
 }
 
