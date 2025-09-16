@@ -1,15 +1,21 @@
 Ring & Charm Builder - Custom Designs LA
 ---------------------------------
 
-Version: v6.15
+Version: v6.16
 
 Summary:
-- Integrated real image file paths for all products (rings & charms).
-- Added /assets folder structure for product photos (rings/cuban, western, faith; charms/cuban, western, faith, medical).
-- Product cards show real product images (fallbacks to placeholder if missing).
-- Maintains all features from v6.14: engraving, metals, pricing ladder, expanded add-ons.
+- Polished UI styling for a professional look (modern fonts, shadows, hover effects).
+- Improved mobile responsiveness with breakpoints for smaller screens.
+- Header and footer added for brand identity.
+- Preserves all features from v6.15: assets folder for real photos, pricing, engraving, metals, add-ons.
 
 Changelog:
+v6.16
+- Added header and footer sections.
+- Updated CSS with modern design system (rounded corners, shadows, hover effects).
+- Mobile-friendly layout for phones and tablets.
+- Product grid adapts to smaller screens.
+
 v6.15
 - Set up /assets folder for real product photos.
 - Updated product collections to load local image files.
@@ -54,9 +60,8 @@ Deployment Instructions:
 2. Upload/extract into your Netlify (or local) project repo.
 3. Place your product photos in the /assets subfolders (e.g., assets/rings/cuban/cuban-original.jpg).
 4. Ensure filenames match the code references in app.js.
-5. Deploy — updated builder will show your real photos.
+5. Deploy — updated builder will show your real photos with polished UI.
 
 Next Updates:
-- Polish UI styling for mobile responsiveness.
-- Integrate with CMS to load product data dynamically.
-- Begin preparing customer-facing launch version.
+- Integrate CMS data (so collections/products load dynamically).
+- Add customer-facing enhancements (wishlist, add-to-cart mockups).
