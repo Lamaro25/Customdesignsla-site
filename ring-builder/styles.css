@@ -7,6 +7,10 @@ body {
 #app {
   padding: 20px;
 }
+select, button {
+  padding: 8px;
+  margin: 5px 0;
+}
 .ring-preview {
   width: 200px;
   height: 200px;
@@ -25,4 +29,18 @@ body {
   border: 2px solid #333;
   border-radius: 50%;
   cursor: pointer;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+.product-card {
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
