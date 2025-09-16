@@ -4,10 +4,24 @@
     <meta charset="utf-8" />
     <title>Custom Designs LA CMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Netlify CMS Loader -->
-    <script src="https://unpkg.com/netlify-cms-app@^2.0.0/dist/netlify-cms.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+      #loading {
+        font-size: 1.2rem;
+        color: #555;
+      }
+    </style>
   </head>
   <body>
-    <!-- CMS will auto-load config.yml -->
+    <div id="loading">Loading CMS…</div>
+    <!-- Netlify CMS Loader (moved here so body exists) -->
+    <script src="https://unpkg.com/netlify-cms@2.10.192/dist/netlify-cms.js"></script>
   </body>
 </html>
