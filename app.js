@@ -108,15 +108,32 @@ window.addToCart = name => { cart.push(name); render(); }
 window.addToWishlist = name => { wishlist.push(name); render(); }
 
 async function loadData() {
-  const [ringsResp, charmsResp, pricingResp] = await Promise.all([
-    fetch('data/rings.json'),
-    fetch('data/charms.json'),
-    fetch('data/pricing.json')
-  ]);
-  ringsData = await ringsResp.json();
-  charmsData = await charmsResp.json();
-  pricingData = await pricingResp.json();
-  render();
+  try {
+    const [ringsResp, charmsResp, pricingResp] = await Promise.all([
+      fetch('data/rings.json'),
+      fetch('data/charms.json'),
+      fetch('data/pricing.json')
+    ]);
+
+    console.log("Rings fetch status:", ringsResp.status);
+    console.log("Charms fetch status:", charmsResp.status);
+    console.log("Pricing fetch status:", pricingResp.status);
+
+    ringsData = await ringsResp.json();
+    charmsData = await charmsResp.json();
+    pricingData = await pricingResp.json();
+
+    console.log("Rings data loaded:", ringsData);
+    console.log("Charms data loaded:", charmsData);
+    console.log("Pricing data loaded:", pricingData);
+
+    render();
+  } catch (e) {
+    console.error("Error loading data:", e);
+  }
 }
+
+loadData();
+
 
 loadData();
