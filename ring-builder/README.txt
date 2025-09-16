@@ -1,19 +1,26 @@
 Ring & Charm Builder - Custom Designs LA
 ---------------------------------
 
-Version: v6.11
+Version: v6.12
 
 Summary:
+- Added pricing ladder for rings (band height tiers) and charms (size tiers).
+- Integrated base design fee ($25).
+- Added add-on features: Engraved Pattern, Carved Channels, Beading, Rope Braid, Cut-outs.
+- Live price calculation updates automatically with selections.
+
+Changelog:
+v6.12
+- Pricing ladder implemented for rings and charms.
+- Base design fee included ($25).
+- Add-ons integrated with checkbox selections.
+- Total price displayed dynamically.
+
+v6.11
 - Added charm collections with dropdown (Cuban, Western, Faith, Medical).
 - Added mode toggle between Ring Builder and Charm Builder.
 - Each charm collection has 6 placeholder products.
 - Ring and charm previews share the same color selector.
-
-Changelog:
-v6.11
-- Integrated charms into builder.
-- Added toggle button to switch between Rings and Charms.
-- Medical charms included as a 4th category.
 
 v6.10
 - Added dropdown for ring collections (Cuban, Western, Faith).
@@ -32,5 +39,6 @@ Deployment Instructions:
 3. Deploy — this will override the old builder with new updates.
 
 Next Updates:
-- Implement pricing ladder (ring height, charm sizes).
-- Add customization options (engraving, beading, rope, etc.).
+- Add inside/outside text engraving (priced per word/symbol).
+- Add metal type selector (default Silver).
+- Expand add-on catalog and pricing controls.

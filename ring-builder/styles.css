@@ -44,3 +44,11 @@ select, button {
   text-align: center;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
+.price-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
