@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Lamaro25/Customdesignsla-site   # replace with your repo
   branch: main
+  base_url: https://your-site.com       # your deployed site with Auth0
+  auth_endpoint: auth
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
