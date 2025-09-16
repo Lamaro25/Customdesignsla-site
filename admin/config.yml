@@ -1,8 +1,6 @@
 backend:
   name: git-gateway
   branch: main
-  auth_type: implicit
-  app_id: X8mseT6hodGlF4JXnEVSHuuioC0caGs4
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
