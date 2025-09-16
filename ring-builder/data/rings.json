@@ -1,0 +1,26 @@
+{
+  "Cuban": [
+    { "name": "Cuban Original", "img": "assets/rings/cuban/cuban-original.jpg" },
+    { "name": "Cuban Classic", "img": "assets/rings/cuban/cuban-classic.jpg" },
+    { "name": "Cuban Elegance", "img": "assets/rings/cuban/cuban-elegance.jpg" },
+    { "name": "Cuban Intricate", "img": "assets/rings/cuban/cuban-intricate.jpg" },
+    { "name": "Cuban Statement Ring Thin", "img": "assets/rings/cuban/cuban-thin.jpg" },
+    { "name": "Cuban Statement Ring Thick", "img": "assets/rings/cuban/cuban-thick.jpg" }
+  ],
+  "Western": [
+    { "name": "Western Style 1", "img": "assets/rings/western/western-1.jpg" },
+    { "name": "Western Style 2", "img": "assets/rings/western/western-2.jpg" },
+    { "name": "Western Style 3", "img": "assets/rings/western/western-3.jpg" },
+    { "name": "Western Style 4", "img": "assets/rings/western/western-4.jpg" },
+    { "name": "Western Style 5", "img": "assets/rings/western/western-5.jpg" },
+    { "name": "Western Style 6", "img": "assets/rings/western/western-6.jpg" }
+  ],
+  "Faith": [
+    { "name": "Faith Style 1", "img": "assets/rings/faith/faith-1.jpg" },
+    { "name": "Faith Style 2", "img": "assets/rings/faith/faith-2.jpg" },
+    { "name": "Faith Style 3", "img": "assets/rings/faith/faith-3.jpg" },
+    { "name": "Faith Style 4", "img": "assets/rings/faith/faith-4.jpg" },
+    { "name": "Faith Style 5", "img": "assets/rings/faith/faith-5.jpg" },
+    { "name": "Faith Style 6", "img": "assets/rings/faith/faith-6.jpg" }
+  ]
+}

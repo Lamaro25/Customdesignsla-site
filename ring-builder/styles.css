@@ -1,106 +1,16 @@
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #fafafa;
-  color: #333;
-}
-header {
-  background: #111;
-  color: #fff;
-  padding: 15px;
-  text-align: center;
-}
-footer {
-  background: #111;
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-  margin-top: 30px;
-}
-main {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-select, button, input {
-  padding: 8px;
-  margin: 5px 0;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-button {
-  cursor: pointer;
-  background: #333;
-  color: #fff;
-  border: none;
-  transition: background 0.3s;
-}
-button:hover {
-  background: #555;
-}
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-.product-card {
-  padding: 15px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-}
-.product-card:hover {
-  transform: translateY(-5px);
-}
-.product-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-.ring-preview {
-  width: 60px;
-  height: 60px;
-  border: 2px solid #ccc;
-  border-radius: 50%;
-  margin: 10px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.color-option {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin: 5px;
-  border: 2px solid #333;
-  border-radius: 50%;
-  cursor: pointer;
-}
-.price-box {
-  margin-top: 20px;
-  padding: 15px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  text-align: center;
-}
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 18px;
-  }
-  .product-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  }
-  select, button, input {
-    font-size: 12px;
-  }
-}
+/* Reuse v6.16 styling for polished UI and responsiveness */
+body { font-family: 'Segoe UI', sans-serif; margin:0; padding:0; background:#fafafa; color:#333; }
+header { background:#111; color:#fff; padding:15px; text-align:center; }
+footer { background:#111; color:#fff; text-align:center; padding:10px; margin-top:30px; }
+main { padding:20px; max-width:1200px; margin:0 auto; }
+select,button,input { padding:8px; margin:5px 0; border-radius:6px; border:1px solid #ccc; font-size:14px; }
+button { cursor:pointer; background:#333; color:#fff; border:none; transition:background 0.3s; }
+button:hover { background:#555; }
+.product-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; margin-top:20px; }
+.product-card { padding:15px; background:#fff; border:1px solid #ddd; border-radius:12px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.1); transition:transform 0.2s; }
+.product-card:hover { transform:translateY(-5px); }
+.product-card img { max-width:100%; height:auto; border-radius:8px; margin-bottom:10px; }
+.ring-preview { width:60px; height:60px; border:2px solid #ccc; border-radius:50%; margin:10px auto; display:flex; align-items:center; justify-content:center; }
+.color-option { display:inline-block; width:30px; height:30px; margin:5px; border:2px solid #333; border-radius:50%; cursor:pointer; }
+.price-box { margin-top:20px; padding:15px; background:#fff; border:1px solid #ddd; border-radius:12px; box-shadow:0 1px 4px rgba(0,0,0,0.1); text-align:center; }
+@media (max-width:768px){ header h1{font-size:18px;} .product-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));} select,button,input{font-size:12px;} }

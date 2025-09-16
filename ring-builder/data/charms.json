@@ -1,0 +1,34 @@
+{
+  "Cuban": [
+    { "name": "Cuban Charm 1", "img": "assets/charms/cuban/cuban-1.jpg" },
+    { "name": "Cuban Charm 2", "img": "assets/charms/cuban/cuban-2.jpg" },
+    { "name": "Cuban Charm 3", "img": "assets/charms/cuban/cuban-3.jpg" },
+    { "name": "Cuban Charm 4", "img": "assets/charms/cuban/cuban-4.jpg" },
+    { "name": "Cuban Charm 5", "img": "assets/charms/cuban/cuban-5.jpg" },
+    { "name": "Cuban Charm 6", "img": "assets/charms/cuban/cuban-6.jpg" }
+  ],
+  "Western": [
+    { "name": "Western Charm 1", "img": "assets/charms/western/western-1.jpg" },
+    { "name": "Western Charm 2", "img": "assets/charms/western/western-2.jpg" },
+    { "name": "Western Charm 3", "img": "assets/charms/western/western-3.jpg" },
+    { "name": "Western Charm 4", "img": "assets/charms/western/western-4.jpg" },
+    { "name": "Western Charm 5", "img": "assets/charms/western/western-5.jpg" },
+    { "name": "Western Charm 6", "img": "assets/charms/western/western-6.jpg" }
+  ],
+  "Faith": [
+    { "name": "Faith Charm 1", "img": "assets/charms/faith/faith-1.jpg" },
+    { "name": "Faith Charm 2", "img": "assets/charms/faith/faith-2.jpg" },
+    { "name": "Faith Charm 3", "img": "assets/charms/faith/faith-3.jpg" },
+    { "name": "Faith Charm 4", "img": "assets/charms/faith/faith-4.jpg" },
+    { "name": "Faith Charm 5", "img": "assets/charms/faith/faith-5.jpg" },
+    { "name": "Faith Charm 6", "img": "assets/charms/faith/faith-6.jpg" }
+  ],
+  "Medical": [
+    { "name": "Medical Charm 1", "img": "assets/charms/medical/medical-1.jpg" },
+    { "name": "Medical Charm 2", "img": "assets/charms/medical/medical-2.jpg" },
+    { "name": "Medical Charm 3", "img": "assets/charms/medical/medical-3.jpg" },
+    { "name": "Medical Charm 4", "img": "assets/charms/medical/medical-4.jpg" },
+    { "name": "Medical Charm 5", "img": "assets/charms/medical/medical-5.jpg" },
+    { "name": "Medical Charm 6", "img": "assets/charms/medical/medical-6.jpg" }
+  ]
+}
