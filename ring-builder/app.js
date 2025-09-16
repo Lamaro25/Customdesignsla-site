@@ -1,67 +1,25 @@
 const app = document.getElementById('app');
 
-// Product collections for rings
+// Product collections for rings with image placeholders
 const ringCollections = {
   Cuban: [
-    "Cuban Original",
-    "Cuban Classic",
-    "Cuban Elegance",
-    "Cuban Intricate",
-    "Cuban Statement Ring Thin",
-    "Cuban Statement Ring Thick"
+    { name: "Cuban Original", img: "https://via.placeholder.com/150?text=Cuban+Original" },
+    { name: "Cuban Classic", img: "https://via.placeholder.com/150?text=Cuban+Classic" },
+    { name: "Cuban Elegance", img: "https://via.placeholder.com/150?text=Cuban+Elegance" },
+    { name: "Cuban Intricate", img: "https://via.placeholder.com/150?text=Cuban+Intricate" },
+    { name: "Cuban Statement Ring Thin", img: "https://via.placeholder.com/150?text=Statement+Thin" },
+    { name: "Cuban Statement Ring Thick", img: "https://via.placeholder.com/150?text=Statement+Thick" }
   ],
-  Western: [
-    "Western Style 1",
-    "Western Style 2",
-    "Western Style 3",
-    "Western Style 4",
-    "Western Style 5",
-    "Western Style 6"
-  ],
-  Faith: [
-    "Faith Style 1",
-    "Faith Style 2",
-    "Faith Style 3",
-    "Faith Style 4",
-    "Faith Style 5",
-    "Faith Style 6"
-  ]
+  Western: Array.from({length:6}, (_,i)=>({name:`Western Style ${i+1}`, img:`https://via.placeholder.com/150?text=Western+${i+1}`})),
+  Faith: Array.from({length:6}, (_,i)=>({name:`Faith Style ${i+1}`, img:`https://via.placeholder.com/150?text=Faith+${i+1}`}))
 };
 
-// Product collections for charms
+// Product collections for charms with image placeholders
 const charmCollections = {
-  Cuban: [
-    "Cuban Charm 1",
-    "Cuban Charm 2",
-    "Cuban Charm 3",
-    "Cuban Charm 4",
-    "Cuban Charm 5",
-    "Cuban Charm 6"
-  ],
-  Western: [
-    "Western Charm 1",
-    "Western Charm 2",
-    "Western Charm 3",
-    "Western Charm 4",
-    "Western Charm 5",
-    "Western Charm 6"
-  ],
-  Faith: [
-    "Faith Charm 1",
-    "Faith Charm 2",
-    "Faith Charm 3",
-    "Faith Charm 4",
-    "Faith Charm 5",
-    "Faith Charm 6"
-  ],
-  Medical: [
-    "Medical Charm 1",
-    "Medical Charm 2",
-    "Medical Charm 3",
-    "Medical Charm 4",
-    "Medical Charm 5",
-    "Medical Charm 6"
-  ]
+  Cuban: Array.from({length:6}, (_,i)=>({name:`Cuban Charm ${i+1}`, img:`https://via.placeholder.com/150?text=Cuban+Charm+${i+1}`})),
+  Western: Array.from({length:6}, (_,i)=>({name:`Western Charm ${i+1}`, img:`https://via.placeholder.com/150?text=Western+Charm+${i+1}`})),
+  Faith: Array.from({length:6}, (_,i)=>({name:`Faith Charm ${i+1}`, img:`https://via.placeholder.com/150?text=Faith+Charm+${i+1}`})),
+  Medical: Array.from({length:6}, (_,i)=>({name:`Medical Charm ${i+1}`, img:`https://via.placeholder.com/150?text=Medical+Charm+${i+1}`}))
 };
 
 // Pricing structures
@@ -83,12 +41,15 @@ const charmSizes = {
   "XX-Large (63.5mm)": 100
 };
 
-// Add-ons
+// Add-ons expanded
 const addOns = {
   "Engraved Pattern": 45,
   "Carved Channels": 4,
   "Beading": 5,
   "Rope Braid": 5,
+  "Rope Twist": 7,
+  "Cuban Weave Tight": 10,
+  "Cuban Weave Loose": 8,
   "Cut-outs": 10
 };
 
@@ -101,7 +62,7 @@ const metals = {
 };
 
 let currentColor = 'silver';
-let mode = 'rings'; // 'rings' or 'charms'
+let mode = 'rings';
 let currentCollection = 'Cuban';
 let currentHeight = "3-6mm";
 let currentSize = "Dime (17.9mm)";
@@ -111,7 +72,7 @@ let engravingTextInside = "";
 let engravingTextOutside = "";
 
 function calculatePrice() {
-  let base = 25; // design fee
+  let base = 25;
   if (mode === 'rings') {
     base += ringHeights[currentHeight];
   } else {
@@ -121,7 +82,6 @@ function calculatePrice() {
   selectedAddOns.forEach(addon => {
     base += addOns[addon];
   });
-  // Engraving costs $5 per word
   let engravingWords = (engravingTextInside + " " + engravingTextOutside).trim().split(/\s+/).filter(Boolean).length;
   base += engravingWords * 5;
   return base;
@@ -130,10 +90,11 @@ function calculatePrice() {
 function render() {
   const collections = mode === 'rings' ? ringCollections : charmCollections;
   const products = collections[currentCollection].map(
-    name => `
+    item => `
       <div class="product-card">
+        <img src="${item.img}" alt="${item.name}" />
         <div class="ring-preview" style="background:${currentColor}">${mode==='rings'?'💍':'⭐'}</div>
-        <p>${name}</p>
+        <p>${item.name}</p>
       </div>`
   ).join("");
 

@@ -1,16 +1,20 @@
 Ring & Charm Builder - Custom Designs LA
 ---------------------------------
 
-Version: v6.13
+Version: v6.14
 
 Summary:
-- Added engraving options (inside and outside text).
-- Engraving cost: $5 per word (calculated dynamically).
-- Added metal type selector: Silver (default), Gold, Rose Gold, Platinum.
-- Metal costs added to pricing calculation.
-- Preserves all pricing ladder, collections, and add-ons from v6.12.
+- Expanded add-on catalog with new options (Rope Twist, Cuban Weave Tight, Cuban Weave Loose).
+- Added image placeholders for all rings and charms (via placeholder.com).
+- Product cards now display preview images above the color preview and name.
+- Maintains engraving, metal selector, pricing ladder, and collections from v6.13.
 
 Changelog:
+v6.14
+- Expanded add-ons: Rope Twist, Cuban Weave Tight, Cuban Weave Loose.
+- Added placeholder product images for all rings and charms.
+- Enhanced product cards with image previews.
+
 v6.13
 - Integrated engraving inputs (inside & outside text).
 - Engraving price calculated at $5 per word.
@@ -46,6 +50,6 @@ Deployment Instructions:
 3. Deploy — this will override the old builder with new updates.
 
 Next Updates:
-- Expand add-on catalog (rope variations, Cuban weave options).
-- Add photo preview placeholders for products.
-- Prepare for customer-facing launch.
+- Replace placeholder images with real product photos.
+- Polish UI styling and responsiveness for customer-facing launch.
+- Integrate with CMS for dynamic product loading.

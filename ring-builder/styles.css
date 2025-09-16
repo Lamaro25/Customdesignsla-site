@@ -16,10 +16,12 @@ select, button, input {
   height: 200px;
   border: 2px solid #ccc;
   border-radius: 50%;
-  margin: 20px auto;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-size: cover;
+  background-position: center;
 }
 .color-option {
   display: inline-block;
@@ -32,8 +34,8 @@ select, button, input {
 }
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
   margin-top: 20px;
 }
 .product-card {
@@ -43,6 +45,12 @@ select, button, input {
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.product-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 8px;
 }
 .price-box {
   margin-top: 20px;
