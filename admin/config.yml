@@ -1,8 +1,8 @@
 backend:
-  name: github
-  repo: Lamaro25/Customdesignsla-site   # replace with your repo
+  name: git-gateway
   branch: main
-  base_url: https://your-site.com       # your deployed site with Auth0
+  identity_url: https://customdesignsla.com/.netlify/identity
+  gateway_url: https://customdesignsla.com/.netlify/functions
   auth_endpoint: auth
 
 media_folder: "assets/uploads"
