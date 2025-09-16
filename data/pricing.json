@@ -1,0 +1,35 @@
+{
+  "designFee": 25,
+  "engravingPerWord": 4,
+  "ringHeights": {
+    "3-6mm": 30,
+    "6-9mm": 60,
+    "10-13mm": 90
+  },
+  "charmSizes": {
+    "Dime (17.9mm)": 25,
+    "Penny (19mm)": 30,
+    "Nickel (21.2mm)": 35,
+    "Quarter (24.3mm)": 40,
+    "Lin (25.4mm)": 45,
+    "Half Dollar (30.6mm)": 55,
+    "Large 38.1mm": 65,
+    "XL 50.8mm": 75,
+    "XXL 63.5mm": 85
+  },
+  "metals": {
+    "Silver": 0,
+    "Gold": 100,
+    "Rose Gold": 120,
+    "Black Rhodium": 140
+  },
+  "addOns": {
+    "Beading": 30,
+    "Rope Braid": 5,
+    "Cuban Link Small": 5,
+    "Cuban Link Large": 30,
+    "Channel": 4,
+    "Engraved Pattern": 45,
+    "Cut-out Symbol": 4
+  }
+}
