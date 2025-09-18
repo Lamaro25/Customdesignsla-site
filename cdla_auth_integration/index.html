@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Custom Designs LA CMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      #auth-bar {
+        background: #f0f0f0;
+        padding: 10px;
+        text-align: right;
+      }
+      #user-info {
+        font-size: 0.9rem;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="auth-bar">
+      <button id="btn-login" onclick="login()">Log in</button>
+      <button id="btn-logout" onclick="logout()" disabled>Log out</button>
+      <span id="user-info"></span>
+    </div>
+
+    <div id="app"></div>
+
+    <!-- Netlify CMS Loader -->
+    <script src="https://unpkg.com/netlify-cms@2.10.192/dist/netlify-cms.js"></script>
+
+    <!-- Auth0 SDK -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+    <script src="public/js/auth.js"></script>
+    <script src="public/js/app.js"></script>
+  </body>
+</html>
