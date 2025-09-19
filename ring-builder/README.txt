@@ -17,4 +17,4 @@ Deployment Instructions:
 
 Next Updates:
 - v6.20 → Hook into NetlifyCMS for product management.
-- v6.21 → Final polish for launch candidate.
+- v6.21 → Final polish for launch candidate. 
