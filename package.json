@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "jsonwebtoken": "^9.0.2",
-    "jwks-rsa": "^3.0.1"
+    "jwks-rsa": "^3.0.1",
+    "netlify-cms-oauth-provider-node": "^1.0.3"
   }
 }
