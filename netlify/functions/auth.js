@@ -1,15 +1,13 @@
 // netlify/functions/auth.js
-const { auth } = require("netlify-cms-oauth-provider-node");
+const { default: oauthProvider } = require("netlify-cms-oauth-provider-node");
 
-exports.handler = auth({
-  // These are injected from your Netlify environment variables
+exports.handler = oauthProvider({
+  // use your Auth0 details here
+  provider: "auth0",
   client_id: process.env.AUTH0_CLIENT_ID,
   client_secret: process.env.AUTH0_CLIENT_SECRET,
-
-  // Auth0 endpoints
-  auth_url: "https://dev-i1asef6df0034r3d.us.auth0.com/authorize",
+  auth_url: "https://dev-i1asef6df0034r3d.us.auth0.com",
   token_url: "https://dev-i1asef6df0034r3d.us.auth0.com/oauth/token",
-
-  // Where Auth0 should redirect after login
-  redirect_url: "https://customdesignsla.com/.netlify/functions/auth/callback",
+  // match your API identifier
+  audience: "https://api.customdesignsla.com",
 });
