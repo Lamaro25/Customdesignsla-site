@@ -8,7 +8,7 @@ site_url: https://customdesignsla.com
 
 auth:
   provider: auth0
-  domain: dev-i1asef6df0034r3d.us.auth0.com
+  domain: dev-i1asef6df0034r3d.auth0.com 
   client_id: X8mseT6hodGlF4JXnEVSHuuioC0caGs4
   auth_type: implicit
 
