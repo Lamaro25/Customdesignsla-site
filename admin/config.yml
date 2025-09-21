@@ -1,6 +1,5 @@
 backend:
-  backend:
-  name: auth0
+  name: git-gateway
   branch: main
 
 local_backend: true
@@ -13,17 +12,3 @@ auth:
   client_id: X8mseT6hodGlF4JXnEVSHuuioC0caGs4
   auth_type: pkce
   audience: https://dev-i1asef6df0034r3d.auth0.com/userinfo
-
-media_folder: "static/img"
-public_folder: "/img"
-
-collections:
-  - name: "pages"
-    label: "Pages"
-    files:
-      - file: "content/index.md"
-        label: "Home Page"
-        name: "home"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
