@@ -1,14 +1,20 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Lamaro25/Customdesignsla-site
   branch: main
-
-local_backend: true
 
 site_url: https://customdesignsla.com
 
-auth:
-  provider: auth0
-  domain: dev-i1asef6df0034r3d.auth0.com
-  client_id: X8mseT6hodGlF4JXnEVSHuuioC0caGs4
-  auth_type: pkce
-  audience: https://dev-i1asef6df0034r3d.auth0.com/userinfo
+media_folder: "static/img"
+public_folder: "/img"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "content/index.md"
+        label: "Home Page"
+        name: "home"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
