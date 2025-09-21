@@ -1,15 +1,54 @@
 // netlify/functions/auth.js
-const { auth } = require("netlify-cms-oauth-provider-node");
+const jwt = require("jsonwebtoken");
+const jwksClient = require("jwks-rsa");
 
-exports.handler = auth({
-  // These are injected from your Netlify environment variables
-  client_id: process.env.AUTH0_CLIENT_ID,
-  client_secret: process.env.AUTH0_CLIENT_SECRET,
-
-  // Auth0 endpoints
-  auth_url: "https://dev-i1asef6df0034r3d.us.auth0.com/authorize",
-  token_url: "https://dev-i1asef6df0034r3d.us.auth0.com/oauth/token",
-
-  // Where Auth0 should redirect after login
-  redirect_url: "https://customdesignsla.com/.netlify/functions/auth/callback",
+const client = jwksClient({
+  jwksUri: "https://dev-i1asef6df0034r3d.us.auth0.com/.well-known/jwks.json"
 });
+
+function getKey(header, callback) {
+  client.getSigningKey(header.kid, function (err, key) {
+    if (err) {
+      callback(err, null);
+    } else {
+      const signingKey = key.getPublicKey();
+      callback(null, signingKey);
+    }
+  });
+}
+
+exports.handler = async (event) => {
+  const token = event.headers.authorization?.split(" ")[1];
+
+  if (!token) {
+    return {
+      statusCode: 401,
+      body: JSON.stringify({ error: "No token provided" })
+    };
+  }
+
+  return new Promise((resolve) => {
+    jwt.verify(
+      token,
+      getKey,
+      {
+        audience: "https://api.customdesignsla.com",
+        issuer: "https://dev-i1asef6df0034r3d.us.auth0.com/",
+        algorithms: ["RS256"]
+      },
+      (err, decoded) => {
+        if (err) {
+          resolve({
+            statusCode: 401,
+            body: JSON.stringify({ error: "Invalid token", details: err.message })
+          });
+        } else {
+          resolve({
+            statusCode: 200,
+            body: JSON.stringify({ message: "Token is valid", user: decoded })
+          });
+        }
+      }
+    );
+  });
+};
