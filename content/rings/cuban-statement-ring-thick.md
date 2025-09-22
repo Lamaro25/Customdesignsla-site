@@ -20,4 +20,7 @@ images:
 **Ring Size:**\
 Select your ring size
 
-Go into ring customization and your name to outer front of band, you can also add text to the inner band!
+Go into the ring builder to add your **custom text**:  
+
+* Outer band (front of the ring)  
+* Inner band (inside the ring)
