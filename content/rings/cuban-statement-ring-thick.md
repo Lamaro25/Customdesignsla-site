@@ -1,26 +1,25 @@
 ---
-title: Cuban Statement Ring Thick
+title: "Cuban Statement Ring Thick"
 price: 146
 images:
   - /img/cuban-statement-ring-thick-frontview.png
   - /img/cuban-statement-ring-thick-sideview.png
 ---
+
 **Material:** Sterling Silver  
 
 **Base Price:** $90  
 
 **Customization Breakdown**  
+1. Engraving — $4 × 1 = $4  
+2. Small Cuban Link Braid — $5 × 2 = $10  
+3. Channels (required) — $4 × 2 = $8  
+4. Large Cuban Link Braid — $30 × 1 = $30  
+5. Channel (required) — $4 × 1 = $4  
 
-1. Engraving — $4 × 1 = $4 
-2. Small Cuban Link Braid — $5 × 2 = $10
-3. Channels (required) — $4 × 2 = $8
-4. Large Cuban Link Braid — $30 × 1 = $30
-5. Channel (required) — $4 × 1 = $4
-
-**Ring Size:**\
-Select your ring size
+**Ring Size:**  
+Select your ring size  
 
 Go into the ring builder to add your **custom text**:  
-
-* Outer band (front of the ring)  
-* Inner band (inside the ring)
+- Outer band (front of the ring)  
+- Inner band (inside the ring)
