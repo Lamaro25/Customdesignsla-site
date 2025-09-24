@@ -1,0 +1,23 @@
+<div id="ring-breakdown"></div>
+<div id="ring-total"></div>
+
+<script type="module">
+  import { calculateRingPrice } from "./ring-pricing.js";
+
+  // Example static data — replace with CMS data
+  const ringData = {
+    band_height: "90",
+    addons: { rope_braid: 2, large_cuban: 1, channels: 1, beading: true, cutouts: 3, pattern: "floral", symbols: 2 },
+    engraving: { inside: "Forever", outside: "" }
+  };
+
+  const result = calculateRingPrice(ringData);
+
+  document.getElementById("ring-breakdown").innerHTML =
+    "<h3>Price Breakdown</h3><ul>" +
+    result.breakdown.map(item => `<li>${item.label}: ${item.value}</li>`).join("") +
+    "</ul>";
+
+  document.getElementById("ring-total").innerHTML =
+    `<strong>Total: $${result.total}</strong>`;
+</script>
