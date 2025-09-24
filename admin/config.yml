@@ -9,6 +9,7 @@ media_folder: "static/img"
 public_folder: "/img"
 
 collections:
+  # Pages (static content like Home)
   - name: "pages"
     label: "Pages"
     files:
@@ -20,6 +21,7 @@ collections:
           - { label: "Body", name: "body", widget: "markdown" }
           - { label: "Image", name: "image", widget: "image" }
 
+  # Rings
   - name: "rings"
     label: "Rings"
     folder: "content/rings"
@@ -27,8 +29,98 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "body", widget: "markdown" }
       - { label: "Price", name: "price", widget: "number", value_type: "float", min: 0 }
+      - { label: "Description", name: "body", widget: "markdown" }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+      - label: "Customizations"
+        name: "customizations"
+        widget: "list"
+        fields:
+          - { label: "Option", name: "option", widget: "string" }
+          - { label: "Price", name: "price", widget: "number", value_type: "float", min: 0 }
+
+  # Charms
+  - name: "charms"
+    label: "Charms"
+    folder: "content/charms"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "number", value_type: "float", min: 0 }
+      - { label: "Description", name: "body", widget: "markdown" }
+      - { label: "Size", name: "size", widget: "select", options: ["Dime", "Nickel", "Quarter", "Half Dollar", "2 inch", "2.5 inch"] }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+
+  # Earrings
+  - name: "earrings"
+    label: "Earrings"
+    folder: "content/earrings"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "number", value_type: "float", min: 0 }
+      - { label: "Description", name: "body", widget: "markdown" }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+
+  # Bracelets
+  - name: "bracelets"
+    label: "Bracelets"
+    folder: "content/bracelets"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "number", value_type: "float", min: 0 }
+      - { label: "Description", name: "body", widget: "markdown" }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+      - label: "Customizations"
+        name: "customizations"
+        widget: "list"
+        fields:
+          - { label: "Option", name: "option", widget: "string" }
+          - { label: "Price", name: "price", widget: "number", value_type: "float", min: 0 }
+
+  # Pendants
+  - name: "pendants"
+    label: "Pendants"
+    folder: "content/pendants"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "number", value_type: "float", min: 0 }
+      - { label: "Description", name: "body", widget: "markdown" }
+      - { label: "Size", name: "size", widget: "select", options: ["Dime", "Nickel", "Quarter", "Half Dollar", "2 inch", "2.5 inch"] }
+      - { label: "Bale Option", name: "bale", widget: "select", options: ["None", "Small Bale", "Large Bale"] }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+
+  # Bronze
+  - name: "bronze"
+    label: "Bronze"
+    folder: "content/bronze"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "number", value_type: "float", min: 0 }
+      - { label: "Description", name: "body", widget: "markdown" }
       - label: "Images"
         name: "images"
         widget: "list"
