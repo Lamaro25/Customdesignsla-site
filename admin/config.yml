@@ -1,35 +1,167 @@
 backend:
-  name: github
-  repo: Lamaro25/Customdesignsla-site
+  name: git-gateway
   branch: main
-
-site_url: https://customdesignsla.com
 
 media_folder: "static/img"
 public_folder: "/img"
 
 collections:
-  - name: "pages"
-    label: "Pages"
-    files:
-      - file: "content/index.md"
-        label: "Home Page"
-        name: "home"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
-          - { label: "Image", name: "image", widget: "image" }
-
+  # --------------------
+  # RINGS
+  # --------------------
   - name: "rings"
     label: "Rings"
     folder: "content/rings"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "body", widget: "markdown" }
-      - { label: "Price", name: "price", widget: "number", value_type: "float", min: 0 }
-      - label: "Images"
-        name: "images"
-        widget: "list"
-        field: { label: "Image", name: "image", widget: "image" }
+      - { label: "Ring Name", name: "title", widget: "string" }
+      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 3, max: 6 }
+      - label: "Collection"
+        name: "ring_collection"
+        widget: "select"
+        options: ["Cuban Link", "Western", "Faith"]
+      - label: "Base Band Height"
+        name: "band_height"
+        widget: "select"
+        options:
+          - { label: "Small (3mm) – $30", value: "30" }
+          - { label: "Medium (5mm) – $60", value: "60" }
+          - { label: "Large (8mm) – $90", value: "90" }
+      - label: "Material"
+        name: "material"
+        widget: "select"
+        default: "Silver"
+        options:
+          - { label: "Silver", value: "silver" }
+      - label: "Add-Ons"
+        name: "addons"
+        widget: "object"
+        fields:
+          - { label: "Rope Braid (qty × $5)", name: "rope_braid", widget: "number", default: 0, min: 0 }
+          - { label: "Small Cuban Link (qty × $5)", name: "small_cuban", widget: "number", default: 0, min: 0 }
+          - { label: "Large Cuban Link (qty × $30)", name: "large_cuban", widget: "number", default: 0, min: 0 }
+          - { label: "Channels (qty × $4)", name: "channels", widget: "number", default: 0, min: 0 }
+          - { label: "Beading (+$30)", name: "beading", widget: "boolean", default: false }
+          - { label: "Cut-Outs (qty × $4)", name: "cutouts", widget: "number", default: 0, min: 0 }
+          - label: "Pattern (+$35)"
+            name: "pattern"
+            widget: "select"
+            options:
+              - { label: "None", value: "none" }
+              - { label: "Western", value: "western" }
+              - { label: "Floral", value: "floral" }
+              - { label: "Aztec", value: "aztec" }
+          - { label: "Symbols (qty × $4)", name: "symbols", widget: "number", default: 0, min: 0 }
+      - label: "Engraving / Embossing"
+        name: "engraving"
+        widget: "object"
+        fields:
+          - { label: "Inside Text", name: "inside", widget: "text", required: false }
+          - { label: "Outside Text", name: "outside", widget: "text", required: false }
+      - { label: "Product Description", name: "body", widget: "markdown", required: false }
+
+  # --------------------
+  # BRACELETS
+  # --------------------
+  - name: "bracelets"
+    label: "Bracelets"
+    folder: "content/bracelets"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Bracelet Name", name: "title", widget: "string" }
+      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 2, max: 6 }
+      - label: "Collection"
+        name: "bracelet_collection"
+        widget: "select"
+        options: ["Cuff", "Charm"]
+      - label: "Material"
+        name: "material"
+        widget: "select"
+        default: "Silver"
+        options:
+          - { label: "Silver", value: "silver" }
+      - label: "Add-Ons"
+        name: "addons"
+        widget: "object"
+        fields:
+          - { label: "Rope Braid (qty × $5)", name: "rope_braid", widget: "number", default: 0, min: 0 }
+          - { label: "Channels (qty × $4)", name: "channels", widget: "number", default: 0, min: 0 }
+          - { label: "Beading (+$30)", name: "beading", widget: "boolean", default: false }
+      - { label: "Product Description", name: "body", widget: "markdown", required: false }
+
+  # --------------------
+  # CHARMS
+  # --------------------
+  - name: "charms"
+    label: "Charms"
+    folder: "content/charms"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Charm Name", name: "title", widget: "string" }
+      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 1, max: 4 }
+      - label: "Collection"
+        name: "charm_collection"
+        widget: "select"
+        options: ["Faith", "Western", "Medical"]
+      - label: "Size"
+        name: "size"
+        widget: "select"
+        options: ["Dime", "Nickel", "Quarter", "Half Dollar", "2 Inch", "2.5 Inch"]
+      - { label: "Add Bale (+$X)", name: "bale", widget: "boolean", default: false }
+      - { label: "Engraving Available?", name: "engraving", widget: "boolean", default: false }
+      - { label: "Product Description", name: "body", widget: "markdown", required: false }
+
+  # --------------------
+  # PENDANTS
+  # --------------------
+  - name: "pendants"
+    label: "Pendants"
+    folder: "content/pendants"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Pendant Name", name: "title", widget: "string" }
+      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 1, max: 4 }
+      - label: "Collection"
+        name: "pendant_collection"
+        widget: "select"
+        options: ["Faith", "Western"]
+      - label: "Size"
+        name: "size"
+        widget: "select"
+        options: ["Dime", "Nickel", "Quarter", "Half Dollar", "2 Inch", "2.5 Inch"]
+      - { label: "Add Bale (+$X)", name: "bale", widget: "boolean", default: false }
+      - { label: "Engraving Available?", name: "engraving", widget: "boolean", default: false }
+      - { label: "Product Description", name: "body", widget: "markdown", required: false }
+
+  # --------------------
+  # BRONZE AGE (Specialty Line)
+  # --------------------
+  - name: "bronze_age"
+    label: "Bronze Age"
+    folder: "content/bronze"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Product Name", name: "title", widget: "string" }
+      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 1, max: 4 }
+      - label: "Collection"
+        name: "bronze_collection"
+        widget: "select"
+        options: ["Cowboy Toothpick", "Money Clip", "Mini Ranch Brand", "Key Chain"]
+      - label: "Material"
+        name: "material"
+        widget: "select"
+        default: "Bronze"
+        options:
+          - { label: "Bronze", value: "bronze" }
+          - { label: "Silver", value: "silver" }
+      - label: "Customer Upload (for Mini Ranch Brand)"
+        name: "customer_brand"
+        widget: "file"
+        required: false
+      - { label: "Engraving Available?", name: "engraving", widget: "boolean", default: false }
+      - { label: "Product Description", name: "body", widget: "markdown", required: false }
