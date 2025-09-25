@@ -1,16 +1,13 @@
 backend:
   name: git-gateway
   branch: main
-  identity_url: https://<your-site-name>.netlify.app/.netlify/identity
-  gateway_url: https://<your-site-name>.netlify.app/.netlify/git
+  identity_url: https://customdesignsla.com/.netlify/identity
+  gateway_url: https://customdesignsla.com/.netlify/git
 
 media_folder: "static/img"
 public_folder: "/img"
 
 collections:
-  # --------------------
-  # RINGS
-  # --------------------
   - name: "rings"
     label: "Rings"
     folder: "content/rings"
@@ -63,9 +60,6 @@ collections:
           - { label: "Outside Text", name: "outside", widget: "text", required: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
 
-  # --------------------
-  # BRACELETS
-  # --------------------
   - name: "bracelets"
     label: "Bracelets"
     folder: "content/bracelets"
@@ -93,9 +87,6 @@ collections:
           - { label: "Beading (+$30)", name: "beading", widget: "boolean", default: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
 
-  # --------------------
-  # CHARMS
-  # --------------------
   - name: "charms"
     label: "Charms"
     folder: "content/charms"
@@ -116,9 +107,6 @@ collections:
       - { label: "Engraving Available?", name: "engraving", widget: "boolean", default: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
 
-  # --------------------
-  # PENDANTS
-  # --------------------
   - name: "pendants"
     label: "Pendants"
     folder: "content/pendants"
@@ -139,9 +127,6 @@ collections:
       - { label: "Engraving Available?", name: "engraving", widget: "boolean", default: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
 
-  # --------------------
-  # BRONZE AGE (Specialty Line)
-  # --------------------
   - name: "bronze_age"
     label: "Bronze Age"
     folder: "content/bronze"
