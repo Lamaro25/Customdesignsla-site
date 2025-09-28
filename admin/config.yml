@@ -67,6 +67,10 @@ collections:
     fields:
       - { label: "Bracelet Name", name: "title", widget: "string" }
       - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 2, max: 6 }
+      - label: "Size"
+        name: "size"
+        widget: "select"
+        options: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"]
       - label: "Collection"
         name: "bracelet_collection"
         widget: "select"
@@ -151,3 +155,58 @@ collections:
         required: false
       - { label: "Engraving Available?", name: "engraving", widget: "boolean", default: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
+
+  - name: "charm_bracelet_collection"
+    label: "Charm Bracelet Collection"
+    folder: "content/bracelets/charm"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Size", name: "size", widget: "select", options: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Images", name: "images", widget: "list", allow_add: true, field: {label: "Image", name: "image", widget: "image"} }
+    files:
+      - file: "content/bracelets/charm/midnight-curb.md"
+        label: "Midnight Curb Charm Bracelet (4.4 mm)"
+        fields:
+          - { name: "title", widget: "hidden", default: "Midnight Curb Charm Bracelet (4.4 mm)" }
+          - { name: "size", widget: "list", default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
+          - { name: "price", widget: "number", default: 78 }
+          - { name: "description", widget: "text", default: "A bold oxidized curb chain design with artisan finish, accented by a hand-cast bronze maker’s mark." }
+      - file: "content/bracelets/charm/hammered-oval-link.md"
+        label: "Hammered Oval Link Charm Bracelet (3 mm)"
+        fields:
+          - { name: "title", widget: "hidden", default: "Hammered Oval Link Charm Bracelet (3 mm)" }
+          - { name: "size", widget: "list", default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
+          - { name: "price", widget: "number", default: 56 }
+          - { name: "description", widget: "text", default: "Delicate hammered oval links that shimmer with texture, finished with our signature CDLA touch." }
+      - file: "content/bracelets/charm/linked-hearts-bond.md"
+        label: "Linked Heart’s Bond Charm Bracelet (9 mm)"
+        fields:
+          - { name: "title", widget: "hidden", default: "Linked Heart’s Bond Charm Bracelet (9 mm)" }
+          - { name: "size", widget: "list", default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
+          - { name: "price", widget: "number", default: 87 }
+          - { name: "description", widget: "text", default: "A bold and romantic statement — oversized heart links symbolizing eternal connection." }
+      - file: "content/bracelets/charm/hammered-grace.md"
+        label: "Hammered Grace Charm Bracelet (5.4 mm)"
+        fields:
+          - { name: "title", widget: "hidden", default: "Hammered Grace Charm Bracelet (5.4 mm)" }
+          - { name: "size", widget: "list", default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
+          - { name: "price", widget: "number", default: 93 }
+          - { name: "description", widget: "text", default: "An elegant hammered flat oval chain, balanced between strength and grace." }
+      - file: "content/bracelets/charm/twin-links.md"
+        label: "Twin Links Charm Bracelet (7 mm)"
+        fields:
+          - { name: "title", widget: "hidden", default: "Twin Links Charm Bracelet (7 mm)" }
+          - { name: "size", widget: "list", default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
+          - { name: "price", widget: "number", default: 123 }
+          - { name: "description", widget: "text", default: "A striking double-cable chain — two links side by side for a look of power and style." }
+      - file: "content/bracelets/charm/key-link-flow.md"
+        label: "Key Link Flow Charm Bracelet (3.2 mm)"
+        fields:
+          - { name: "title", widget: "hidden", default: "Key Link Flow Charm Bracelet (3.2 mm)" }
+          - { name: "size", widget: "list", default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
+          - { name: "price", widget: "number", default: 62 }
+          - { name: "description", widget: "text", default: "A rhythmic long-and-short link design, evoking movement and flow with subtle keyhole detailing." }
