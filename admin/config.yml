@@ -14,12 +14,11 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Ring Name", name: "title", widget: "string" }
-      - { label: "Featured Image", name: "featured_image", widget: "image" }
-      - { label: "Gallery", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 3, max: 6 }
+      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 3, max: 6 }
       - label: "Collection"
         name: "ring_collection"
         widget: "select"
-        options: ["Garden of Silver", "Western", "Faith", "Custom", "Other"]
+        options: ["Cuban Link", "Western", "Faith"]
       - label: "Base Band Height"
         name: "band_height"
         widget: "select"
@@ -27,19 +26,12 @@ collections:
           - { label: "Small (3mm) – $30", value: "30" }
           - { label: "Medium (5mm) – $60", value: "60" }
           - { label: "Large (8mm) – $90", value: "90" }
-      - label: "US Ring Size"
-        name: "ring_size"
-        widget: "select"
-        options: ["5", "6", "7", "8", "9", "10", "11", "12"]
-        required: false
       - label: "Material"
         name: "material"
         widget: "select"
-        default: "silver"
+        default: "Silver"
         options:
           - { label: "Silver", value: "silver" }
-          - { label: "Bronze", value: "bronze" }
-          - { label: "Mixed", value: "mixed" }
       - label: "Add-Ons"
         name: "addons"
         widget: "object"
@@ -74,12 +66,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Bracelet Name", name: "title", widget: "string" }
-      - { label: "Featured Image", name: "featured_image", widget: "image" }
-      - { label: "Gallery", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 2, max: 6 }
-      - label: "Size"
-        name: "size"
-        widget: "select"
-        options: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"]
+      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 2, max: 6 }
       - label: "Collection"
         name: "bracelet_collection"
         widget: "select"
@@ -87,11 +74,9 @@ collections:
       - label: "Material"
         name: "material"
         widget: "select"
-        default: "silver"
+        default: "Silver"
         options:
           - { label: "Silver", value: "silver" }
-          - { label: "Bronze", value: "bronze" }
-          - { label: "Mixed", value: "mixed" }
       - label: "Add-Ons"
         name: "addons"
         widget: "object"
@@ -99,7 +84,6 @@ collections:
           - { label: "Rope Braid (qty × $5)", name: "rope_braid", widget: "number", default: 0, min: 0 }
           - { label: "Channels (qty × $4)", name: "channels", widget: "number", default: 0, min: 0 }
           - { label: "Beading (+$30)", name: "beading", widget: "boolean", default: false }
-          - { label: "Symbols (qty × $4)", name: "symbols", widget: "number", default: 0, min: 0 }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
 
   - name: "charms"
@@ -109,8 +93,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Charm Name", name: "title", widget: "string" }
-      - { label: "Featured Image", name: "featured_image", widget: "image" }
-      - { label: "Gallery", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 1, max: 4 }
+      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 1, max: 4 }
       - label: "Collection"
         name: "charm_collection"
         widget: "select"
@@ -119,13 +102,6 @@ collections:
         name: "size"
         widget: "select"
         options: ["Dime", "Nickel", "Quarter", "Half Dollar", "2 Inch", "2.5 Inch"]
-      - label: "Material"
-        name: "material"
-        widget: "select"
-        default: "silver"
-        options:
-          - { label: "Silver", value: "silver" }
-          - { label: "Bronze", value: "bronze" }
       - { label: "Add Bale (+$X)", name: "bale", widget: "boolean", default: false }
       - { label: "Engraving Available?", name: "engraving", widget: "boolean", default: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
@@ -137,8 +113,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Pendant Name", name: "title", widget: "string" }
-      - { label: "Featured Image", name: "featured_image", widget: "image" }
-      - { label: "Gallery", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 1, max: 4 }
+      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 1, max: 4 }
       - label: "Collection"
         name: "pendant_collection"
         widget: "select"
@@ -147,13 +122,6 @@ collections:
         name: "size"
         widget: "select"
         options: ["Dime", "Nickel", "Quarter", "Half Dollar", "2 Inch", "2.5 Inch"]
-      - label: "Material"
-        name: "material"
-        widget: "select"
-        default: "silver"
-        options:
-          - { label: "Silver", value: "silver" }
-          - { label: "Bronze", value: "bronze" }
       - { label: "Add Bale (+$X)", name: "bale", widget: "boolean", default: false }
       - { label: "Engraving Available?", name: "engraving", widget: "boolean", default: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
@@ -165,8 +133,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Product Name", name: "title", widget: "string" }
-      - { label: "Featured Image", name: "featured_image", widget: "image" }
-      - { label: "Gallery", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 1, max: 4 }
+      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 1, max: 4 }
       - label: "Collection"
         name: "bronze_collection"
         widget: "select"
@@ -174,7 +141,7 @@ collections:
       - label: "Material"
         name: "material"
         widget: "select"
-        default: "bronze"
+        default: "Bronze"
         options:
           - { label: "Bronze", value: "bronze" }
           - { label: "Silver", value: "silver" }
@@ -184,65 +151,3 @@ collections:
         required: false
       - { label: "Engraving Available?", name: "engraving", widget: "boolean", default: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
-
-  - name: "charm_bracelet_collection"
-    label: "Charm Bracelet Collection"
-    folder: "content/bracelets/charm"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Size", name: "size", widget: "select", options: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
-      - { label: "Price", name: "price", widget: "number" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Featured Image", name: "featured_image", widget: "image" }
-      - { label: "Gallery", name: "images", widget: "list", allow_add: true, field: { label: "Image", name: "image", widget: "image" } }
-    files:
-      - file: "content/bracelets/charm/midnight-curb.md"
-        name: "midnight_curb"
-        label: "Midnight Curb Charm Bracelet (4.4 mm)"
-        fields:
-          - { name: "title", widget: "hidden", default: "Midnight Curb Charm Bracelet (4.4 mm)" }
-          - { name: "size", widget: "list", default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
-          - { name: "price", widget: "number", default: 78 }
-          - { name: "description", widget: "text", default: "A bold oxidized curb chain design with artisan finish, accented by a hand-cast bronze maker’s mark." }
-      - file: "content/bracelets/charm/hammered-oval-link.md"
-        name: "hammered_oval_link"
-        label: "Hammered Oval Link Charm Bracelet (3 mm)"
-        fields:
-          - { name: "title", widget: "hidden", default: "Hammered Oval Link Charm Bracelet (3 mm)" }
-          - { name: "size", widget: "list", default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
-          - { name: "price", widget: "number", default: 56 }
-          - { name: "description", widget: "text", default: "Delicate hammered oval links that shimmer with texture, finished with our signature CDLA touch." }
-      - file: "content/bracelets/charm/linked-hearts-bond.md"
-        name: "linked_hearts_bond"
-        label: "Linked Heart’s Bond Charm Bracelet (9 mm)"
-        fields:
-          - { name: "title", widget: "hidden", default: "Linked Heart’s Bond Charm Bracelet (9 mm)" }
-          - { name: "size", widget: "list", default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
-          - { name: "price", widget: "number", default: 87 }
-          - { name: "description", widget: "text", default: "A bold and romantic statement — oversized heart links symbolizing eternal connection." }
-      - file: "content/bracelets/charm/hammered-grace.md"
-        name: "hammered_grace"
-        label: "Hammered Grace Charm Bracelet (5.4 mm)"
-        fields:
-          - { name: "title", widget: "hidden", default: "Hammered Grace Charm Bracelet (5.4 mm)" }
-          - { name: "size", widget: "list", default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
-          - { name: "price", widget: "number", default: 93 }
-          - { name: "description", widget: "text", default: "An elegant hammered flat oval chain, balanced between strength and grace." }
-      - file: "content/bracelets/charm/twin-links.md"
-        name: "twin_links"
-        label: "Twin Links Charm Bracelet (7 mm)"
-        fields:
-          - { name: "title", widget: "hidden", default: "Twin Links Charm Bracelet (7 mm)" }
-          - { name: "size", widget: "list", default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
-          - { name: "price", widget: "number", default: 123 }
-          - { name: "description", widget: "text", default: "A striking double-cable chain — two links side by side for a look of power and style." }
-      - file: "content/bracelets/charm/key-link-flow.md"
-        name: "key_link_flow"
-        label: "Key Link Flow Charm Bracelet (3.2 mm)"
-        fields:
-          - { name: "title", widget: "hidden", default: "Key Link Flow Charm Bracelet (3.2 mm)" }
-          - { name: "size", widget: "list", default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"] }
-          - { name: "price", widget: "number", default: 62 }
-          - { name: "description", widget: "text", default: "A rhythmic long-and-short link design, evoking movement and flow with subtle keyhole detailing." }
