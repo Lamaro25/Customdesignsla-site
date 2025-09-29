@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <a href="/"><img src="/static/img/logo.png" alt="CDLA Logo" /></a>
+    <nav>
+      <a href="/rings">Rings</a>
+      <a href="/bracelets">Bracelets</a>
+      <a href="/charms">Charms</a>
+      <a href="/pendants">Pendants</a>
+      <a href="/bronze-age">Bronze Age</a>
+      <a href="/earrings">Earrings</a>
+    </nav>
+  </header>
+  <main>
+    {{ content | safe }}
+  </main>
+  <footer>
+    <p>&copy; 2025 Custom Designs LA</p>
+  </footer>
+</body>
+</html>
