@@ -1,14 +1,12 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Lamaro25/Customdesignsla-site
   branch: main
 
 media_folder: "static/img"
 public_folder: "/img"
 
 collections:
-  # --------------------
-  # RINGS
-  # --------------------
   - name: "rings"
     label: "Rings"
     folder: "content/rings"
@@ -61,9 +59,6 @@ collections:
           - { label: "Outside Text", name: "outside", widget: "text", required: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
 
-  # --------------------
-  # BRACELETS
-  # --------------------
   - name: "bracelets"
     label: "Bracelets"
     folder: "content/bracelets"
@@ -76,24 +71,18 @@ collections:
         name: "bracelet_collection"
         widget: "select"
         options: ["Cuff", "Charm"]
+      - label: "Available Sizes"
+        name: "sizes"
+        widget: "hidden"
+        default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"]
       - label: "Material"
         name: "material"
         widget: "select"
         default: "Silver"
         options:
           - { label: "Silver", value: "silver" }
-      - label: "Add-Ons"
-        name: "addons"
-        widget: "object"
-        fields:
-          - { label: "Rope Braid (qty × $5)", name: "rope_braid", widget: "number", default: 0, min: 0 }
-          - { label: "Channels (qty × $4)", name: "channels", widget: "number", default: 0, min: 0 }
-          - { label: "Beading (+$30)", name: "beading", widget: "boolean", default: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
 
-  # --------------------
-  # CHARMS
-  # --------------------
   - name: "charms"
     label: "Charms"
     folder: "content/charms"
@@ -114,9 +103,6 @@ collections:
       - { label: "Engraving Available?", name: "engraving", widget: "boolean", default: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
 
-  # --------------------
-  # PENDANTS
-  # --------------------
   - name: "pendants"
     label: "Pendants"
     folder: "content/pendants"
@@ -137,9 +123,6 @@ collections:
       - { label: "Engraving Available?", name: "engraving", widget: "boolean", default: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
 
-  # --------------------
-  # BRONZE AGE (Specialty Line)
-  # --------------------
   - name: "bronze_age"
     label: "Bronze Age"
     folder: "content/bronze"
