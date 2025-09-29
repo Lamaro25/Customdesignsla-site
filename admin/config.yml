@@ -71,14 +71,10 @@ collections:
         name: "bracelet_collection"
         widget: "select"
         options: ["Cuff", "Charm"]
-      - label: "Size"
-        name: "size"
-        widget: "select"
-        options:
-          - "Petite (6 5/8\")"
-          - "Standard (7 1/4\")"
-          - "Generous (8\")"
-          - "Extra (8 3/8\")"
+      - label: "Available Sizes"
+        name: "sizes"
+        widget: "hidden"
+        default: ["Petite (6 5/8\")", "Standard (7 1/4\")", "Generous (8\")", "Extra (8 3/8\")"]
       - label: "Material"
         name: "material"
         widget: "select"
