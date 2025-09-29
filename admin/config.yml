@@ -81,13 +81,6 @@ collections:
         default: "Silver"
         options:
           - { label: "Silver", value: "silver" }
-      - label: "Add-Ons"
-        name: "addons"
-        widget: "object"
-        fields:
-          - { label: "Rope Braid (qty × $5)", name: "rope_braid", widget: "number", default: 0, min: 0 }
-          - { label: "Channels (qty × $4)", name: "channels", widget: "number", default: 0, min: 0 }
-          - { label: "Beading (+$30)", name: "beading", widget: "boolean", default: false }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
 
   - name: "charms"
