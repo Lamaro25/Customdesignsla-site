@@ -1,4 +1,5 @@
 ---
+layout: base.njk
 title: "Midnight Curb Charm Bracelet (4.4 mm)"
 collection: "Charm Bracelets"
 description: ""
