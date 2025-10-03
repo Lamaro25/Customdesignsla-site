@@ -5,8 +5,8 @@ module.exports = function(eleventyConfig) {
   return {
     dir: {
       input: "content",
-      includes: "content/_includes",  // 👈 point to your actual folder
-      layouts: "content/_includes",   // 👈 layouts live here
+      includes: "content/_includes",   // ✅ matches your structure
+      layouts: "content/_includes",
       output: "_site"
     },
     templateFormats: ["md", "njk", "html"],
