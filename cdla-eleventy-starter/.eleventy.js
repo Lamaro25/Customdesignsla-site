@@ -4,9 +4,9 @@ module.exports = function(eleventyConfig) {
 
   return {
     dir: {
-      input: "content",          // all content lives in content/
-      includes: "_includes",     // Eleventy will look in content/_includes
-      layouts: "_includes",      // layouts also in content/_includes
+      input: "content",
+      includes: "content/_includes",   // ✅ matches your structure
+      layouts: "content/_includes",
       output: "_site"
     },
     templateFormats: ["md", "njk", "html"],
