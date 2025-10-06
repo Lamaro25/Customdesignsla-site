@@ -1,12 +1,14 @@
+const path = require("path");
+
 module.exports = function(eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("styles.css");
-  eleventyConfig.addPassthroughCopy("static");
+  eleventyConfig.addPassthroughCopy("cdla-eleventy-starter/styles.css");
+  eleventyConfig.addPassthroughCopy("cdla-eleventy-starter/static");
 
   return {
     dir: {
-      input: "content",
-      includes: "_includes",   // ✅ now correctly points to root
-      layouts: "_includes",
+      input: "cdla-eleventy-starter/content",
+      includes: "cdla-eleventy-starter/content/_includes",
+      layouts: "cdla-eleventy-starter/content/_includes",
       output: "_site"
     },
     templateFormats: ["md", "njk", "html"],
