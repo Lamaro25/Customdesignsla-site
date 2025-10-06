@@ -1,5 +1,3 @@
-const path = require("path");
-
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("styles.css");
   eleventyConfig.addPassthroughCopy("static");
@@ -7,8 +5,8 @@ module.exports = function(eleventyConfig) {
   return {
     dir: {
       input: "content",
-      includes: path.join("content", "_includes"), // ✅ absolute-safe path
-      layouts: path.join("content", "_includes"),
+      includes: "_includes",   // ✅ now correctly points to root
+      layouts: "_includes",
       output: "_site"
     },
     templateFormats: ["md", "njk", "html"],
