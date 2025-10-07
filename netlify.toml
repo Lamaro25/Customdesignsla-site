@@ -1,7 +1,6 @@
 [build]
   command = "npm run build"
   publish = "_site"
-  functions = "netlify/functions"
 
 [functions]
   directory = "netlify/functions"
@@ -11,8 +10,7 @@
   to = "/admin/index.html"
   status = 200
 
-# Optional: keep root (/) going to your custom homepage
 [[redirects]]
-  from = "/"
+  from = "/*"
   to = "/index.html"
   status = 200
