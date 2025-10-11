@@ -1,0 +1,44 @@
+---
+pagination:
+  data: collections.bracelets
+  size: 100
+permalink: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title or "Bracelets" }} – Custom Designs LA</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="bg-white text-gray-900">
+  <header class="p-6 border-b border-gray-200 flex items-center justify-between">
+    <a href="/" class="text-2xl font-bold">Custom Designs LA</a>
+    <a href="/shop_all.html" class="text-gray-700 hover:text-black">Shop All</a>
+  </header>
+
+  <main class="container mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-8">{{ title }}</h1>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for product in collections.bracelets %}
+        {% if product.data.bracelet_collection == category %}
+          <a href="/{{ product.data.permalink }}" class="block border border-gray-200 rounded-lg p-4 hover:shadow-lg transition">
+            {% if product.data.images and product.data.images[0] %}
+              <img src="{{ product.data.images[0] }}" alt="{{ product.data.title }}" class="rounded-lg mb-4 w-full object-cover">
+            {% endif %}
+            <h2 class="text-xl font-semibold">{{ product.data.title }}</h2>
+            {% if product.data.price %}
+              <p class="text-gray-700 mt-1">$ {{ product.data.price }}</p>
+            {% endif %}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </main>
+
+  <footer class="p-6 border-t border-gray-200 text-center text-sm">
+    © {{ "now" | date: "%Y" }} Custom Designs LA
+  </footer>
+</body>
+</html>
