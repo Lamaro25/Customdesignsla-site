@@ -1,1 +1,44 @@
-<!DOCTYPE html><html><body><h2>Shop All Collections</h2><p>All products coming soon.</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop All | Custom Designs LA</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body class="bg-white text-gray-900">
+    <header class="p-6 border-b border-gray-200 flex items-center justify-between">
+      <a href="/" class="text-2xl font-bold">Custom Designs LA</a>
+      <nav>
+        <a href="/rings/" class="mx-3 hover:text-gray-600">Rings</a>
+        <a href="/bracelets/" class="mx-3 hover:text-gray-600">Bracelets</a>
+        <a href="/charms/" class="mx-3 hover:text-gray-600">Charms</a>
+        <a href="/bronze/" class="mx-3 hover:text-gray-600">Bronze Age</a>
+      </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-10">
+      <h1 class="text-3xl font-bold mb-10 text-center">Shop All</h1>
+
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {% assign allProducts = collections.rings | concat: collections.bracelets | concat: collections.charms | concat: collections.bronze_age %}
+        {% for product in allProducts %}
+          <a href="/{{ product.data.permalink }}" class="block border border-gray-200 rounded-lg p-4 hover:shadow-lg transition">
+            {% if product.data.images and product.data.images[0] %}
+              <img src="{{ product.data.images[0] }}" alt="{{ product.data.title }}" class="rounded-lg mb-4 w-full object-cover">
+            {% endif %}
+            <h2 class="text-lg font-semibold">{{ product.data.title }}</h2>
+            {% if product.data.price %}
+              <p class="text-gray-700 mt-1">$ {{ product.data.price }}</p>
+            {% endif %}
+          </a>
+        {% endfor %}
+      </div>
+    </main>
+
+    <footer class="p-6 border-t border-gray-200 text-center text-sm">
+      © {{ "now" | date: "%Y" }} Custom Designs LA
+    </footer>
+  </body>
+</html>
