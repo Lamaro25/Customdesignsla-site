@@ -1,38 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ title or "Shop" }} – Custom Designs LA</title>
-  <link rel="stylesheet" href="/styles.css">
-</head>
-<body class="bg-white text-gray-900">
-  <header class="p-6 border-b border-gray-200 flex items-center justify-between">
-    <a href="/" class="text-2xl font-bold">Custom Designs LA</a>
-    <a href="/shop_all.html" class="text-gray-700 hover:text-black">Shop All</a>
-  </header>
+---
+title: {{ title }}
+layout: layouts/base.njk
+---
 
-  <main class="container mx-auto px-4 py-10">
-    <h1 class="text-3xl font-bold mb-8">{{ title or "Shop" }}</h1>
+<main class="container mx-auto px-4 py-10">
+  <h1 class="text-3xl font-bold mb-8">{{ title }}</h1>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {% for item in collections.all %}
-        {% if item.data.layout == "layouts/product.njk" %}
-          <a href="{{ item.url }}" class="block border border-gray-200 rounded-lg p-4 hover:shadow-lg transition">
-            {% if item.data.images and item.data.images[0] %}
-              <img src="{{ item.data.images[0] }}" alt="{{ item.data.title }}" class="rounded-lg mb-4 w-full object-cover">
-            {% endif %}
-            <h2 class="text-xl font-semibold">{{ item.data.title }}</h2>
-            {% if item.data.price %}
-              <p class="text-gray-700 mt-1">$ {{ item.data.price }}</p>
-            {% endif %}
-          </a>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for item in pagination.items %}
+      <a href="{{ item.url }}" class="block border border-gray-200 rounded-lg p-4 hover:shadow-lg transition">
+        {% if item.data.images and item.data.images[0] %}
+          <img src="{{ item.data.images[0] }}" alt="{{ item.data.title }}" class="rounded-lg mb-4 w-full object-cover">
         {% endif %}
-      {% endfor %}
-    </div>
-  </main>
-
-  <footer class="p-6 border-t border-gray-200 text-center text-sm">
-    © {{ "now" | date: "%Y" }} Custom Designs LA
-  </footer>
-</body>
-</html>
+        <h2 class="text-xl font-semibold">{{ item.data.title }}</h2>
+        {% if item.data.price %}
+          <p class="text-gray-700 mt-1">$ {{ item.data.price }}</p>
+        {% endif %}
+      </a>
+    {% endfor %}
+  </div>
+</main>
