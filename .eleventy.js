@@ -30,7 +30,7 @@ module.exports = function (eleventyConfig) {
         path.includes("content/charms") ||
         path.includes("content/bronze")
       ) {
-        return "layouts/product.njk";
+        return "category.njk"; // ✅ Simplified relative reference
       }
       return data.layout;
     },
@@ -39,9 +39,8 @@ module.exports = function (eleventyConfig) {
   return {
     dir: {
       input: ".",
-      output: "_site",
       includes: "_includes",
-      layouts: "_includes/layouts",
+      output: "_site",
     },
   };
 };
