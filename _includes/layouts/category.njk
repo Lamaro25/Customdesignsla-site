@@ -1,39 +1,48 @@
----
-pagination:
-  data: collections.bracelets
-  size: 100
-permalink: false
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ title or "Bracelets" }} – Custom Designs LA</title>
+  <title>{{ title or "Collection" }} – Custom Designs LA</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body class="bg-white text-gray-900">
   <header class="p-6 border-b border-gray-200 flex items-center justify-between">
     <a href="/" class="text-2xl font-bold">Custom Designs LA</a>
-    <a href="/shop_all.html" class="text-gray-700 hover:text-black">Shop All</a>
+    <nav>
+      <a href="/rings/" class="mx-3 hover:text-gray-600">Rings</a>
+      <div class="relative inline-block group">
+        <a href="/bracelets/" class="mx-3 hover:text-gray-600">Bracelets ▾</a>
+        <div class="absolute hidden group-hover:block bg-white border rounded-lg mt-2 shadow-lg">
+          <a href="/bracelets/charm/" class="block px-4 py-2 hover:bg-gray-100">Charm Bracelets</a>
+          <a href="/bracelets/cuff/" class="block px-4 py-2 hover:bg-gray-100">Cuff Bracelets</a>
+        </div>
+      </div>
+      <a href="/charms/" class="mx-3 hover:text-gray-600">Charms</a>
+      <a href="/bronze/" class="mx-3 hover:text-gray-600">Bronze Age</a>
+      <a href="/shop_all.html" class="mx-3 hover:text-gray-600">Shop All</a>
+    </nav>
   </header>
 
   <main class="container mx-auto px-4 py-10">
-    <h1 class="text-3xl font-bold mb-8">{{ title }}</h1>
+    <h1 class="text-3xl font-bold mb-10 text-center">{{ title or "Collection" }}</h1>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {% for product in collections.bracelets %}
-        {% if product.data.bracelet_collection == category %}
-          <a href="/{{ product.data.permalink }}" class="block border border-gray-200 rounded-lg p-4 hover:shadow-lg transition">
-            {% if product.data.images and product.data.images[0] %}
-              <img src="{{ product.data.images[0] }}" alt="{{ product.data.title }}" class="rounded-lg mb-4 w-full object-cover">
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      {% assign items = collections[title | slugify] %}
+      {% if items %}
+        {% for item in items %}
+          <a href="/{{ item.data.permalink }}" class="block border border-gray-200 rounded-lg p-4 hover:shadow-lg transition">
+            {% if item.data.images and item.data.images[0] %}
+              <img src="{{ item.data.images[0] }}" alt="{{ item.data.title }}" class="rounded-lg mb-4 w-full object-cover">
             {% endif %}
-            <h2 class="text-xl font-semibold">{{ product.data.title }}</h2>
-            {% if product.data.price %}
-              <p class="text-gray-700 mt-1">$ {{ product.data.price }}</p>
+            <h2 class="text-lg font-semibold">{{ item.data.title }}</h2>
+            {% if item.data.price %}
+              <p class="text-gray-700 mt-1">$ {{ item.data.price }}</p>
             {% endif %}
           </a>
-        {% endif %}
-      {% endfor %}
+        {% endfor %}
+      {% else %}
+        <p class="text-center text-gray-600">No products found in this collection.</p>
+      {% endif %}
     </div>
   </main>
 
