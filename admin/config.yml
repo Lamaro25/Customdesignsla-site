@@ -83,6 +83,34 @@ collections:
           - { label: "Silver", value: "silver" }
       - { label: "Product Description", name: "body", widget: "markdown", required: false }
 
+  - name: "charm_bracelets"
+    label: "Charm Bracelet Collection"
+    folder: "content/charm-bracelets"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "bracelets/{{slug}}"
+    fields:
+      - { label: "Product Name", name: "title", widget: "string" }
+      - { label: "Description", name: "body", widget: "markdown" }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+      - { label: "Material", name: "material", widget: "select", options: ["Sterling Silver", "Bronze", "Gold"] }
+      - label: "Bracelet Size"
+        name: "size"
+        widget: "select"
+        options:
+          - { label: "Small (6 5/8 in)", value: "small" }
+          - { label: "Medium (7 1/4 in)", value: "medium" }
+          - { label: "Large (8 in)", value: "large" }
+          - { label: "X-Large (8 3/8 in)", value: "xlarge" }
+      - { label: "Price (USD)", name: "price", widget: "number", value_type: "float", hint: "Retail price – enter numbers only" }
+      - { label: "SKU Code", name: "sku", widget: "string", hint: "Internal SKU (e.g., CB-4412)" }
+      - { label: "Published", name: "published", widget: "boolean", default: true }
+      - { label: "Layout Template", name: "layout", widget: "hidden", default: "product.njk" }
+      - { label: "Permalink", name: "permalink", widget: "hidden", default: "bracelets/{{slug}}/index.html" }
+
   - name: "charms"
     label: "Charms"
     folder: "content/charms"
