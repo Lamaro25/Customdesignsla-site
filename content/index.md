@@ -1,4 +1,5 @@
 ---
-title: Welcome to Custom Design's LA
+title: Rings
+layout: category.njk
 ---
-Welcome to Custom Design's LA
+Discover our handcrafted ring collections — from bold Cuban Links to detailed Western scrollwork, each piece is designed and finished in sterling silver for a lifetime of wear.
