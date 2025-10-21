@@ -1,0 +1,29 @@
+{# _includes/bracelet-weight.njk #}
+{% set size_factors = {
+  "Petite Fit (S)": 0.83,
+  "Classic Fit (M)": 1.00,
+  "Signature Fit (L)": 1.12,
+  "Grand Fit (XL)": 1.18
+} %}
+
+{% if base_weight %}
+  <div class="mt-4">
+    <h3 class="text-lg font-semibold mb-2">Approximate Weight by Size</h3>
+    <table class="w-full border border-gray-300 text-sm">
+      <thead>
+        <tr class="bg-gray-100 text-left">
+          <th class="p-2">Size</th>
+          <th class="p-2 text-right">Weight (g)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for size, factor in size_factors %}
+          <tr class="border-t">
+            <td class="p-2">{{ size }}</td>
+            <td class="p-2 text-right">{{ (base_weight * factor) | round(1) }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endif %}
