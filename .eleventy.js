@@ -1,11 +1,14 @@
 module.exports = function (eleventyConfig) {
-  // Copy static assets and admin folder
+  // ✅ Force full Eleventy rebuild on Netlify (clears cached layouts)
+  eleventyConfig.addWatchTarget(".");
+
+  // ✅ Copy static assets and admin folder
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("static");
   eleventyConfig.addPassthroughCopy("styles.css");
 
-  // Automatic permalink + default layout for product collections
+  // ✅ Automatic permalink + default layout for product collections
   eleventyConfig.addGlobalData("eleventyComputed", {
     permalink: (data) => {
       const path = data.page.filePathStem || "";
@@ -30,12 +33,14 @@ module.exports = function (eleventyConfig) {
         path.includes("content/charms") ||
         path.includes("content/bronze")
       ) {
-        return "category.njk"; // ✅ Simplified relative reference
+        // ✅ Use the correct simplified layout reference
+        return "category.njk";
       }
       return data.layout;
     },
   });
 
+  // ✅ Return directory settings for Eleventy
   return {
     dir: {
       input: ".",
