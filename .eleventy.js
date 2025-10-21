@@ -2,6 +2,10 @@ module.exports = function (eleventyConfig) {
   // ✅ Force full Eleventy rebuild on Netlify (clears cached layouts)
   eleventyConfig.addWatchTarget(".");
 
+  // ✅ Map any old references to the correct layout
+  eleventyConfig.addLayoutAlias("category", "category.njk");
+  eleventyConfig.addLayoutAlias("layouts/category.njk", "category.njk"); // <- hard redirect old path
+
   // ✅ Copy static assets and admin folder
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("assets");
@@ -33,14 +37,12 @@ module.exports = function (eleventyConfig) {
         path.includes("content/charms") ||
         path.includes("content/bronze")
       ) {
-        // ✅ Use the correct simplified layout reference
         return "category.njk";
       }
       return data.layout;
     },
   });
 
-  // ✅ Return directory settings for Eleventy
   return {
     dir: {
       input: ".",
