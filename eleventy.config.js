@@ -4,7 +4,7 @@ module.exports = function (eleventyConfig) {
 
   // ✅ Map any old references to the correct layout
   eleventyConfig.addLayoutAlias("category", "category.njk");
-  eleventyConfig.addLayoutAlias("layouts/category.njk", "category.njk"); // <- hard redirect old path
+  eleventyConfig.addLayoutAlias("layouts/category.njk", "category.njk");
 
   // ✅ Copy static assets and admin folder
   eleventyConfig.addPassthroughCopy("admin");
