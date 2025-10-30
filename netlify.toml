@@ -1,8 +1,7 @@
 [build]
   base = ""
   command = "npm run build"
-  publish = "site_build"
-  # Force Netlify to always redeploy even if no detected file changes
+  publish = "_site"
   ignore = "exit 1"
 
 [functions]
