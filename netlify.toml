@@ -12,13 +12,14 @@
   to = "/admin/index.html"
   status = 200
 
+# ✅ Global redirect to fix 404s and text-only index
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
+
 [[headers]]
   for = "/admin/config.yml"
   [headers.values]
     Content-Type = "text/yaml"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Content-Type = "text/html; charset=UTF-8"
-    X-Content-Type-Options = "nosniff"
