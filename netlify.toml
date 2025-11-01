@@ -2,6 +2,7 @@
   base = ""
   command = "npm run build"
   publish = "_site"
+  # Force Netlify to rebuild the entire site every deploy (ignore cache)
   ignore = "exit 1"
 
 [functions]
@@ -11,13 +12,6 @@
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
-
-# ✅ Global redirect to fix 404s and text-only index
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = true
 
 [[headers]]
   for = "/admin/config.yml"
