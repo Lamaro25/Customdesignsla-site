@@ -1,48 +1,19 @@
-<!-- version 1.0.5 final route fix -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom Designs LA</title>
-  <link rel="icon" type="image/png" href="/assets/uploads/logo.png" />
-  <link rel="stylesheet" href="/styles.css" />
-</head>
-<body>
-  <header>
-    <div class="brand">
-      <img src="/assets/uploads/logo.png" alt="CDLA Logo" height="32" />
-      <strong>Custom Designs LA</strong>
-    </div>
-    <nav>
-      <a href="/rings/">Rings</a>
-      <a href="/charms/">Charms</a>
-      <a href="/bracelets/">Bracelets</a>
-      <a href="/bronze/">Bronze</a>
-      <a href="/earrings/">Earrings</a>
-      <a href="/necklaces/">Necklaces</a>
-      <a href="/pendants/">Pendants</a>
-      <a href="/shop_all.html">Shop All</a>
-      <a href="/ring_calculator.html">Customize</a>
-    </nav>
-    <a class="cart" href="/cart.html"><span>🛒</span><span>Cart</span></a>
-  </header>
+---
+layout: layouts/base.njk
+title: "Custom Designs LA"
+---
 
-  <div class="hero"></div>
+<main class="section">
+  <h2>Welcome to Custom Designs LA</h2>
+  <p>Handcrafted rings, charms, bracelets, and more — design your own piece with engravings, patterns, and personal details.</p>
 
-  <main class="section">
-    <h2>Welcome to Custom Designs LA</h2>
-    <p>Handcrafted rings, charms, bracelets, and more — design your own piece with engravings, patterns, and personal details.</p>
-
-    <div class="grid">
-      <div class="card"><a href="/rings/"><img src="/assets/uploads/rings_cover.jpg" alt="Rings"><div>Rings</div></a></div>
-      <div class="card"><a href="/charms/"><img src="/assets/uploads/charms_cover.jpg" alt="Charms"><div>Charms</div></a></div>
-      <div class="card"><a href="/bracelets/"><img src="/assets/uploads/bracelets_cover.jpg" alt="Bracelets"><div>Bracelets</div></a></div>
-      <div class="card"><a href="/bronze/"><img src="/assets/uploads/bronze_cover.jpg" alt="Bronze"><div>Bronze</div></a></div>
-      <div class="card"><a href="/earrings/"><img src="/assets/uploads/earrings_cover.jpg" alt="Earrings"><div>Earrings</div></a></div>
-      <div class="card"><a href="/necklaces/"><img src="/assets/uploads/necklaces_cover.jpg" alt="Necklaces"><div>Necklaces</div></a></div>
-      <div class="card"><a href="/pendants/"><img src="/assets/uploads/pendants_cover.jpg" alt="Pendants"><div>Pendants</div></a></div>
-    </div>
-  </main>
-</body>
-</html>
+  <div class="grid">
+    <a href="/rings/" class="card">Rings</a>
+    <a href="/charms/" class="card">Charms</a>
+    <a href="/bracelets/" class="card">Bracelets</a>
+    <a href="/necklaces/" class="card">Necklaces</a>
+    <a href="/bronze/" class="card">Bronze</a>
+    <a href="/earrings/" class="card">Earrings</a>
+    <a href="/pendants/" class="card">Pendants</a>
+  </div>
+</main>
