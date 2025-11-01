@@ -1,74 +1,67 @@
-<!-- CDLA Homepage Fix — Version 1.0.3 -->
+<!-- Custom Designs LA — Final Live Homepage -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Designs LA</title>
-  <link rel="icon" type="image/png" href="./assets/uploads/logo.png">
+  <link rel="icon" type="image/png" href="/assets/uploads/logo.png">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Arial,Helvetica,sans-serif}
-    header{display:flex;align-items:center;justify-content:space-between;background:#111;color:#fff;padding:10px 16px;position:sticky;top:0;z-index:10}
+    body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#111}
+    header{display:flex;align-items:center;justify-content:space-between;
+      background:#111;color:#fff;padding:12px 18px;position:sticky;top:0;z-index:10}
     .brand{display:flex;align-items:center;gap:10px}
-    .brand img{height:32px}
-    nav{display:flex;gap:18px}
-    nav a{color:#fff;text-decoration:none}
+    .brand img{height:40px;width:auto}
+    nav{display:flex;flex-wrap:wrap;gap:18px}
+    nav a{color:#fff;text-decoration:none;font-weight:500}
     .cart{color:#fff;text-decoration:none;font-size:18px;display:flex;align-items:center;gap:6px}
-    .hero{width:100%;height:360px;background:url('./assets/uploads/hero_placeholder.jpg') center/cover no-repeat}
-    .section{padding:20px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px;margin-top:20px}
-    .card{border:1px solid #ddd;border-radius:8px;padding:10px;text-align:center;background:#f9f9f9}
-    .card img{width:100%;max-height:120px;object-fit:cover;margin-bottom:8px}
+    .hero{width:100%;height:360px;background:url('/assets/uploads/hero_placeholder.jpg') center/cover no-repeat}
+    .section{padding:30px 20px;max-width:1100px;margin:auto}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:22px;margin-top:25px}
+    .card{border:1px solid #ddd;border-radius:10px;padding:12px;text-align:center;background:#fafafa;transition:transform .2s}
+    .card:hover{transform:scale(1.03)}
+    .card img{width:100%;max-height:140px;object-fit:cover;margin-bottom:10px;border-radius:8px}
     a{text-decoration:none;color:#111}
-    @media(max-width:768px){nav{flex-direction:column;gap:10px}}
+    h2{text-align:center;margin-bottom:10px;font-size:1.6rem}
+    p{text-align:center;color:#444;font-size:1rem}
+    @media(max-width:768px){nav{justify-content:center}}
   </style>
 </head>
 <body>
 <header>
   <div class="brand">
-    <img src="./assets/uploads/logo.png" alt="Custom Designs LA Logo">
+    <img src="/assets/uploads/logo.png" alt="Custom Designs LA Logo">
     <strong>Custom Designs LA</strong>
   </div>
   <nav>
-    <a href="./rings/">Rings</a>
-    <a href="./charms/">Charms</a>
-    <a href="./bracelets/">Bracelets</a>
-    <a href="./bronze/">Bronze</a>
-    <a href="./earrings/">Earrings</a>
-    <a href="./pendants/">Pendants</a>
-    <a href="./shop_all.html">Shop All</a>
-    <a href="./ring_calculator.html">Customize</a>
+    <a href="/rings/">Rings</a>
+    <a href="/charms/">Charms</a>
+    <a href="/bracelets/">Bracelets</a>
+    <a href="/necklaces/">Necklaces</a>
+    <a href="/bronze/">Bronze</a>
+    <a href="/earrings/">Earrings</a>
+    <a href="/pendants/">Pendants</a>
+    <a href="/shop_all.html">Shop All</a>
+    <a href="/ring_calculator.html">Customize</a>
   </nav>
-  <a class="cart" href="./cart.html"><span>🛒</span><span>Cart</span></a>
+  <a class="cart" href="/cart.html">🛒 Cart</a>
 </header>
 
 <div class="hero"></div>
 
 <div class="section">
   <h2>Welcome to Custom Designs LA</h2>
-  <p>Handcrafted rings, charms, bracelets, and more — design your own piece with engravings, patterns, and personal details.</p>
+  <p>Hand-crafted rings, charms, bracelets, necklaces and more — each designed with precision and heart in Del Rio, Texas.</p>
   <div class="grid">
-    <div class="card">
-      <a href="./rings/"><img src="./assets/uploads/rings_cover.jpg" alt="Cuban Link Rings"><div>Cuban Link Rings</div></a>
-    </div>
-    <div class="card">
-      <a href="./rings/"><img src="./assets/uploads/faith_cover.jpg" alt="Faith Rings"><div>Faith Rings</div></a>
-    </div>
-    <div class="card">
-      <a href="./rings/"><img src="./assets/uploads/western_cover.jpg" alt="Western Rings"><div>Western Rings</div></a>
-    </div>
-    <div class="card">
-      <a href="./charms/"><img src="./assets/uploads/charms_cover.jpg" alt="Faith Charms"><div>Faith Charms</div></a>
-    </div>
-    <div class="card">
-      <a href="./bracelets/"><img src="./assets/uploads/bracelets_cover.jpg" alt="Charm Bracelets"><div>Charm Bracelets</div></a>
-    </div>
-    <div class="card">
-      <a href="./bronze/"><img src="./assets/uploads/bronze_cover.jpg" alt="Bronze Money Clips"><div>Bronze Money Clips</div></a>
-    </div>
+    <div class="card"><a href="/rings/"><img src="/assets/uploads/rings_cover.jpg" alt="Rings"><div>Rings Collection</div></a></div>
+    <div class="card"><a href="/charms/"><img src="/assets/uploads/charms_cover.jpg" alt="Charms"><div>Charms Collection</div></a></div>
+    <div class="card"><a href="/bracelets/"><img src="/assets/uploads/bracelets_cover.jpg" alt="Bracelets"><div>Bracelets Collection</div></a></div>
+    <div class="card"><a href="/necklaces/"><img src="/assets/uploads/necklaces_cover.jpg" alt="Necklaces"><div>Necklaces Collection</div></a></div>
+    <div class="card"><a href="/bronze/"><img src="/assets/uploads/bronze_cover.jpg" alt="Bronze"><div>Bronze Money Clips</div></a></div>
+    <div class="card"><a href="/pendants/"><img src="/assets/uploads/pendants_cover.jpg" alt="Pendants"><div>Pendants Collection</div></a></div>
   </div>
 </div>
 </body>
 </html>
-<!-- version 1.0.3 — relative-paths, logo restore, doubled text removed -->
+<!-- version 1.1.0 | absolute paths + fixed nav + logo restored + necklaces added -->
