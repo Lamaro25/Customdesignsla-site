@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title or "Custom Designs LA" }}</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container flex items-center justify-between py-4">
+      <a href="/" class="flex items-center space-x-2">
+        <span class="font-bold text-lg">Custom Designs</span>
+        <img src="/assets/uploads/logo.png" alt="LA Logo" class="h-6 w-auto">
+      </a>
+      <nav class="flex space-x-6 text-sm font-medium">
+        <a href="/rings/index.html">Rings</a>
+        <a href="/charms/index.html">Charms</a>
+        <a href="/bracelets/index.html">Bracelets</a>
+        <a href="/necklaces/index.html">Necklaces</a>
+        <a href="/bronze/index.html">Bronze</a>
+        <a href="/earrings/index.html">Earrings</a>
+        <a href="/pendants/index.html">Pendants</a>
+        <a href="/shop_all.html">Shop All</a>
+        <a href="/customize.html">Customize</a>
+        <a href="/cart.html">Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}
+    {{ content | safe }}
+    {% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <p style="text-align:center; font-size: 0.85rem; color: #666; margin-top: 2rem;">
+      © {{ "now" | date("YYYY") }} Custom Designs LA — All Rights Reserved.
+    </p>
+  </footer>
+</body>
+</html>
