@@ -1,4 +1,10 @@
-/* Global reset and base styles */
+/* ==========================================================
+   Custom Designs LA — Production Stylesheet
+   Updated: Nov 2025
+   Purpose: Unified global + header + product layout styling
+   ========================================================== */
+
+/* === Global Reset & Base === */
 body {
   font-family: "Segoe UI", sans-serif;
   margin: 0;
@@ -7,12 +13,15 @@ body {
   color: #222;
 }
 
-/* Header styling */
+/* === Header Styling (fixed logo + responsive nav) === */
 header.site-header {
-  background: #111;
-  color: #fff;
-  padding: 12px 20px;
-  border-bottom: 1px solid #333;
+  background: #fff;
+  color: #111;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 header .container {
@@ -21,49 +30,72 @@ header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-header a {
-  color: #fff;
+/* Brand + Logo */
+header a.flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   text-decoration: none;
-  transition: opacity 0.3s;
+  color: #111;
 }
 
-header a:hover {
-  opacity: 0.75;
+header a.flex span {
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
 }
 
-/* ✅ Logo control — this is what stops it from taking over */
 header img {
-  height: 38px; /* Adjust logo height here */
+  height: 48px;               /* ✅ fixed logo height */
   width: auto;
+  object-fit: contain;
   display: block;
+  max-width: 180px;
 }
 
-/* Navigation links */
+/* Navigation */
 nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
-  font-size: 0.9rem;
+  gap: 1.5rem;
+  font-size: 0.95rem;
 }
 
 nav a {
-  color: #ddd;
+  color: #111;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
 }
 
 nav a:hover {
-  color: #fff;
+  color: #555;
 }
 
-/* Main content area */
+/* Responsive stacking under 700px */
+@media (max-width: 700px) {
+  header .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav {
+    margin-top: 0.75rem;
+    justify-content: center;
+  }
+}
+
+/* === Main Content === */
 main {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-/* Footer */
+/* === Footer === */
 footer.site-footer {
   text-align: center;
   font-size: 0.85rem;
@@ -73,7 +105,7 @@ footer.site-footer {
   background: #fafafa;
 }
 
-/* Product Grid (for category/product pages) */
+/* === Product Grid === */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -101,7 +133,7 @@ footer.site-footer {
   border-radius: 8px;
 }
 
-/* Buttons and Inputs */
+/* === Buttons & Inputs === */
 button,
 select,
 input {
@@ -122,7 +154,7 @@ button:hover {
   background: #555;
 }
 
-/* Utility */
+/* === Utilities === */
 .text-center {
   text-align: center;
 }
