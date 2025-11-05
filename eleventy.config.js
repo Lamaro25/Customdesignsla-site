@@ -1,22 +1,22 @@
 module.exports = function (eleventyConfig) {
-  // ✅ Force full rebuild on Netlify to clear cached layouts
+  // ✅ Force full rebuilds (useful on Netlify for clearing cached templates)
   eleventyConfig.addWatchTarget(".");
 
-  // ✅ Layout aliases (resolves any layout: "layouts/..." or direct references)
-  eleventyConfig.addLayoutAlias("base", "base.njk");
-  eleventyConfig.addLayoutAlias("product", "product.njk");
+  // ✅ Layout aliases for compatibility
   eleventyConfig.addLayoutAlias("category", "category.njk");
-  eleventyConfig.addLayoutAlias("layouts/base.njk", "base.njk");
-  eleventyConfig.addLayoutAlias("layouts/product.njk", "product.njk");
   eleventyConfig.addLayoutAlias("layouts/category.njk", "category.njk");
+  eleventyConfig.addLayoutAlias("base", "base.njk");
+  eleventyConfig.addLayoutAlias("layouts/base.njk", "base.njk");
+  eleventyConfig.addLayoutAlias("product", "product.njk");
+  eleventyConfig.addLayoutAlias("layouts/product.njk", "product.njk");
 
-  // ✅ Copy static assets and CMS admin folder
+  // ✅ Passthrough copies (these files/folders get sent to _site as-is)
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("static");
-  eleventyConfig.addPassthroughCopy("styles.css");
+  eleventyConfig.addPassthroughCopy("styles.css"); // <-- ensures styling loads live
 
-  // ✅ Dynamic permalink + auto layout assignment for collections
+  // ✅ Computed data for automatic permalink + default layout logic
   eleventyConfig.addGlobalData("eleventyComputed", {
     permalink: (data) => {
       const path = data.page.filePathStem || "";
@@ -45,11 +45,11 @@ module.exports = function (eleventyConfig) {
         return "category.njk";
       }
 
-      // fallback to front-matter layout
-      return data.layout || "base.njk";
+      return data.layout || "base.njk"; // ✅ fallback for safety
     },
   });
 
+  // ✅ Return Eleventy directory structure
   return {
     dir: {
       input: ".",
