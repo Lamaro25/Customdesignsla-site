@@ -1,6 +1,6 @@
 ---
 title: "CDLA Collections"
-layout: layouts/category.njk
+layout: base.njk
 permalink: collections/index.html
 ---
 
