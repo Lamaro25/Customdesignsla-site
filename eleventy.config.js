@@ -1,18 +1,22 @@
 module.exports = function (eleventyConfig) {
-  // ✅ Force full Eleventy rebuild on Netlify (clears cached layouts)
+  // ✅ Force full rebuild on Netlify to clear cached layouts
   eleventyConfig.addWatchTarget(".");
 
-  // ✅ Map any old references to the correct layout
+  // ✅ Layout aliases (resolves any layout: "layouts/..." or direct references)
+  eleventyConfig.addLayoutAlias("base", "base.njk");
+  eleventyConfig.addLayoutAlias("product", "product.njk");
   eleventyConfig.addLayoutAlias("category", "category.njk");
+  eleventyConfig.addLayoutAlias("layouts/base.njk", "base.njk");
+  eleventyConfig.addLayoutAlias("layouts/product.njk", "product.njk");
   eleventyConfig.addLayoutAlias("layouts/category.njk", "category.njk");
 
-  // ✅ Copy static assets and admin folder
+  // ✅ Copy static assets and CMS admin folder
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("static");
   eleventyConfig.addPassthroughCopy("styles.css");
 
-  // ✅ Automatic permalink + default layout for product collections
+  // ✅ Dynamic permalink + auto layout assignment for collections
   eleventyConfig.addGlobalData("eleventyComputed", {
     permalink: (data) => {
       const path = data.page.filePathStem || "";
@@ -31,6 +35,7 @@ module.exports = function (eleventyConfig) {
 
     layout: (data) => {
       const path = data.page.filePathStem || "";
+
       if (
         path.includes("content/bracelets") ||
         path.includes("content/rings") ||
@@ -39,7 +44,9 @@ module.exports = function (eleventyConfig) {
       ) {
         return "category.njk";
       }
-      return data.layout;
+
+      // fallback to front-matter layout
+      return data.layout || "base.njk";
     },
   });
 
