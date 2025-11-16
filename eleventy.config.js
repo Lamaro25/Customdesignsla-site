@@ -59,10 +59,11 @@ module.exports = function (eleventyConfig) {
   });
 
   return {
-    dir: {
-      input: ".",        // keep root input
-      includes: "_includes",
-      output: "_site",
-    },
-  };
+  dir: {
+    input: "content",
+    includes: "../_includes",
+    data: "../data",
+    output: "_site",
+  },
+};
 };
