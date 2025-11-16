@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "Charms Collection — Custom Designs LA"
-description: "Faith, Frontier, and Service charm collections — hand-cast designs inspired by craftsmanship and meaning."
-permalink: /charms/index.html
+title: "Bracelet Charms Collection — Custom Designs LA"
+description: "Handcrafted bracelet charms in the CDLA collection — frontier, nature, and artisan designs."
+permalink: /bracelets/charm-bracelets/
 ---
