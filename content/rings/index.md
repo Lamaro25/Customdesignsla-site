@@ -1,23 +1,23 @@
 ---
 layout: layouts/base.njk
 title: "Rings"
+description: "Browse handcrafted Cuban Link, Signature, Western, and Faith ring designs by Custom Designs LA."
+permalink: /rings/index.html
 ---
 
-<h1>Rings</h1>
-<p>Browse handcrafted rings from all CDLA collections.</p>
+# Rings
 
-<ul>
-  <li><a href="/rings/cuban-link-origin-s-ring/">Cuban Link Origin’s Ring</a></li>
-  <li><a href="/rings/cuban-link-statement-ring-thick/">Cuban Link Statement Ring (Thick)</a></li>
-  <li><a href="/rings/cuban-link-statement-ring-thin/">Cuban Link Statement Ring (Thin)</a></li>
-  <li><a href="/rings/cuban-link-signature-ring/">Cuban Link Signature Ring</a></li>
-  <li><a href="/rings/cuban-link-twin-ring/">Cuban Link Twin Ring</a></li>
-  <li><a href="/rings/cuban-link-classic-ring/">Cuban Link Classic Ring</a></li>
+Browse handcrafted rings from all CDLA collections.
 
-  <li><a href="/rings/a-texas-story-ring/">A Texas Story Ring</a></li>
-  <li><a href="/rings/texas-long-horn-ring/">Texas Long Horn Ring</a></li>
-  <li><a href="/rings/lone-star-apex-ring/">Lone Star Apex Ring</a></li>
-  <li><a href="/rings/luck-of-the-west-ring/">Luck of the West Ring</a></li>
-  <li><a href="/rings/running-wild-ring/">Running Wild Ring</a></li>
-  <li><a href="/rings/cowboys-legacy-ring/">Cowboy’s Legacy Ring</a></li>
-</ul>
+- [Cuban Link Origin’s Ring](/rings/cuban-link-origins-ring/)
+- [Cuban Link Statement Ring (Thick)](/rings/cuban-link-statement-ring-thick/)
+- [Cuban Link Statement Ring (Thin)](/rings/cuban-link-statement-ring-thin/)
+- [Cuban Link Signature Ring](/rings/cuban-link-signature-ring/)
+- [Cuban Link Twin Ring](/rings/cuban-link-twin-ring/)
+- [Cuban Link Classic Ring](/rings/cuban-link-classic-ring/)
+- [A Texas Story Ring](/rings/texas-story-ring/)
+- [Texas Long Horn Ring](/rings/texas-long-horn-ring/)
+- [Lone Star Apex Ring](/rings/lone-star-apex-ring/)
+- [Luck of the West Ring](/rings/luck-of-the-west-ring/)
+- [Running Wild Ring](/rings/running-wild-ring/)
+- [Cowboy’s Legacy Ring](/rings/cowboys-legacy-ring/)
