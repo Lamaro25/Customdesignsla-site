@@ -2,6 +2,7 @@
 title: "Cuban Link Classic Ring"
 sku: "CL-001"
 collection: "Cuban Link Ring Collection"
+tags: ["cuban-link"]
 slug: "cuban-link-classic-ring"
 permalink: "/rings/cuban-link/cl-001-cuban-link-classic-ring/"
 price: 94
@@ -15,7 +16,6 @@ description: >
   Refined domed band with a recessed Cuban braid channel, polished exterior edges,
   and oxidized depth for timeless contrast. Hand-cast and finished in Del Rio, Texas.
 ---
-
 ## Overview
 The Cuban Link Classic Ring represents the foundational aesthetic of the collection.
 Its domed 7 mm profile and deep-set Cuban braid deliver a clean, bold, and timeless silhouette.
