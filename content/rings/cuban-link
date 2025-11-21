@@ -1,17 +1,47 @@
 ---
 layout: base.njk
 title: "Cuban Link Ring Collection — Custom Designs LA"
-description: "Handcrafted Cuban Link rings — sculpted, polished, and oxidized 925 sterling silver designs by Custom Designs LA."
+description: "Handcrafted Cuban Link rings — sculpted, oxidized, and polished .925 sterling silver pieces by Custom Designs LA."
 permalink: /rings/cuban-link/
 ---
 
 # Cuban Link Ring Collection
 
-Explore the full handcrafted Cuban Link Ring series:
+Explore the full handcrafted Cuban Link series — bold, sculpted, and polished pieces cast in .925 Sterling Silver.
 
-- [Cuban Link Origin’s Ring](/rings/cuban-link/cl-006-cuban-link-origins-ring/)
-- [Cuban Link Statement Ring (Thick)](/rings/cuban-link/cl-002-cuban-link-statement-ring-thick/)
-- [Cuban Link Statement Ring (Thin)](/rings/cuban-link/cl-003-cuban-link-statement-ring-thin/)
-- [Cuban Link Signature Ring](/rings/cuban-link/cl-005-cuban-link-signature-ring/)
-- [Cuban Link Twin Ring](/rings/cuban-link/cl-004-cuban-link-twin-ring/)
-- [Cuban Link Classic Ring](/rings/cuban-link/cl-001-cuban-link-classic-ring/)
+<div class="product-grid">
+
+{% for ring in collections["cuban-link"] %}
+  <div class="product-card">
+    <a href="{{ ring.url }}">
+      <img src="{{ ring.data.images[0] }}" alt="{{ ring.data.title }}" />
+      <h3>{{ ring.data.title }}</h3>
+      <p>${{ ring.data.price }} USD</p>
+    </a>
+  </div>
+{% endfor %}
+
+</div>
+
+<style>
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.product-card {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.product-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+</style>
