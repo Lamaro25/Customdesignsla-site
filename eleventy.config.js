@@ -1,8 +1,12 @@
 module.exports = function (eleventyConfig) {
-  // Watch all files
+  // ------------------------------
+  // WATCH ALL FILES
+  // ------------------------------
   eleventyConfig.addWatchTarget(".");
 
-  // Layout aliases
+  // ------------------------------
+  // LAYOUT ALIASES
+  // ------------------------------
   eleventyConfig.addLayoutAlias("category", "category.njk");
   eleventyConfig.addLayoutAlias("layouts/category.njk", "category.njk");
   eleventyConfig.addLayoutAlias("base", "base.njk");
@@ -10,38 +14,60 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addLayoutAlias("product", "product.njk");
   eleventyConfig.addLayoutAlias("layouts/product.njk", "product.njk");
 
-  // Passthrough
+  // ------------------------------
+  // PASSTHROUGH FILES
+  // ------------------------------
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("static");
   eleventyConfig.addPassthroughCopy("styles.css");
 
-  // --- PROCESS ALL MD FILES IN /content ---
+  // ------------------------------
+  // PROCESS ALL MARKDOWN IN /content
+  // ------------------------------
   eleventyConfig.addCollection("contentPages", function (collectionApi) {
     return collectionApi.getFilteredByGlob("content/**/*.md");
   });
 
-  // --- PRODUCT COLLECTIONS (NEW) ---
+  // ------------------------------
+  // PRODUCT COLLECTIONS (BY TAG)
+  // ------------------------------
   eleventyConfig.addCollection("cuban-link", function (collectionApi) {
     return collectionApi.getFilteredByTag("cuban-link");
   });
 
-  // Computed permalink + layout
+  // ------------------------------
+  // GLOBAL COMPUTED DATA
+  // ------------------------------
   eleventyConfig.addGlobalData("eleventyComputed", {
     permalink: (data) => {
       const path = data.page.filePathStem || "";
 
-      if (path.includes("content/bracelets"))
-        return `/bracelets/${data.page.fileSlug}/index.html`;
+      // Rings (individual product pages)
+      // Example: content/rings/cuban-link/cl-001... → /rings/cuban-link/cl-001/index.html
+      if (path.includes("content/rings/")) {
+        // Use the folder structure as part of the permalink
+        const cleanPath = path.replace("content/", "");
+        return `/${cleanPath}/index.html`;
+      }
 
-      if (path.includes("content/rings"))
-        return `/rings/${data.page.fileSlug}/index.html`;
+      // Bracelets
+      if (path.includes("content/bracelets")) {
+        const cleanPath = path.replace("content/", "");
+        return `/${cleanPath}/index.html`;
+      }
 
-      if (path.includes("content/charms"))
-        return `/charms/${data.page.fileSlug}/index.html`;
+      // Charms
+      if (path.includes("content/charms")) {
+        const cleanPath = path.replace("content/", "");
+        return `/${cleanPath}/index.html`;
+      }
 
-      if (path.includes("content/bronze"))
-        return `/bronze/${data.page.fileSlug}/index.html`;
+      // Bronze
+      if (path.includes("content/bronze")) {
+        const cleanPath = path.replace("content/", "");
+        return `/${cleanPath}/index.html`;
+      }
 
       return data.permalink;
     },
@@ -49,19 +75,24 @@ module.exports = function (eleventyConfig) {
     layout: (data) => {
       const path = data.page.filePathStem || "";
 
+      // Any product page inside these folders uses product.njk
       if (
-        path.includes("content/bracelets") ||
-        path.includes("content/rings") ||
-        path.includes("content/charms") ||
-        path.includes("content/bronze")
+        path.includes("content/rings/") ||
+        path.includes("content/bracelets/") ||
+        path.includes("content/charms/") ||
+        path.includes("content/bronze/")
       ) {
-        return "category.njk";
+        return "product.njk";
       }
 
+      // Default fallback layout
       return data.layout || "base.njk";
     },
   });
 
+  // ------------------------------
+  // ELEVENTY DIRECTORY SETTINGS
+  // ------------------------------
   return {
     dir: {
       input: "content",
