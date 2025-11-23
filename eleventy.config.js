@@ -16,10 +16,14 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("static");
   eleventyConfig.addPassthroughCopy("styles.css");
 
-  // --- IMPORTANT FIX ---
-  // Tell Eleventy that all Markdown inside /content should be processed as pages
+  // --- PROCESS ALL MD FILES IN /content ---
   eleventyConfig.addCollection("contentPages", function (collectionApi) {
     return collectionApi.getFilteredByGlob("content/**/*.md");
+  });
+
+  // --- PRODUCT COLLECTIONS (NEW) ---
+  eleventyConfig.addCollection("cuban-link", function (collectionApi) {
+    return collectionApi.getFilteredByTag("cuban-link");
   });
 
   // Computed permalink + layout
@@ -59,11 +63,11 @@ module.exports = function (eleventyConfig) {
   });
 
   return {
-  dir: {
-    input: "content",
-    includes: "../_includes",
-    data: "../data",
-    output: "_site",
-  },
-};
+    dir: {
+      input: "content",
+      includes: "../_includes",
+      data: "../data",
+      output: "_site",
+    },
+  };
 };
