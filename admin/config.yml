@@ -14,7 +14,13 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Ring Name", name: "title", widget: "string" }
-      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 3, max: 6 }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field:
+          label: "Image"
+          name: "image"
+          widget: "image"
       - label: "Collection"
         name: "ring_collection"
         widget: "select"
@@ -66,7 +72,13 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Bracelet Name", name: "title", widget: "string" }
-      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 2, max: 6 }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field:
+          label: "Image"
+          name: "image"
+          widget: "image"
       - label: "Collection"
         name: "bracelet_collection"
         widget: "select"
@@ -95,7 +107,10 @@ collections:
       - label: "Images"
         name: "images"
         widget: "list"
-        field: { label: "Image", name: "image", widget: "image" }
+        field:
+          label: "Image"
+          name: "image"
+          widget: "image"
       - { label: "Material", name: "material", widget: "select", options: ["Sterling Silver", "Bronze", "Gold"] }
       - label: "Bracelet Size"
         name: "size"
@@ -105,8 +120,8 @@ collections:
           - { label: "Medium (7 1/4 in)", value: "medium" }
           - { label: "Large (8 in)", value: "large" }
           - { label: "X-Large (8 3/8 in)", value: "xlarge" }
-      - { label: "Price (USD)", name: "price", widget: "number", value_type: "float", hint: "Retail price – enter numbers only" }
-      - { label: "SKU Code", name: "sku", widget: "string", hint: "Internal SKU (e.g., CB-4412)" }
+      - { label: "Price (USD)", name: "price", widget: "number", value_type: "float" }
+      - { label: "SKU Code", name: "sku", widget: "string" }
       - { label: "Published", name: "published", widget: "boolean", default: true }
       - { label: "Layout Template", name: "layout", widget: "hidden", default: "product.njk" }
       - { label: "Permalink", name: "permalink", widget: "hidden", default: "bracelets/{{slug}}/index.html" }
@@ -118,7 +133,13 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Charm Name", name: "title", widget: "string" }
-      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 1, max: 4 }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field:
+          label: "Image"
+          name: "image"
+          widget: "image"
       - label: "Collection"
         name: "charm_collection"
         widget: "select"
@@ -138,7 +159,13 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Pendant Name", name: "title", widget: "string" }
-      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 1, max: 4 }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field:
+          label: "Image"
+          name: "image"
+          widget: "image"
       - label: "Collection"
         name: "pendant_collection"
         widget: "select"
@@ -158,7 +185,13 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Product Name", name: "title", widget: "string" }
-      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, min: 1, max: 4 }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field:
+          label: "Image"
+          name: "image"
+          widget: "image"
       - label: "Collection"
         name: "bronze_collection"
         widget: "select"
