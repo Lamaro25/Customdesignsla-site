@@ -5,7 +5,8 @@ collection: "Cuban Link Ring Collection"
 tags: ["cuban-link"]
 slug: "cuban-link-signature-ring"
 permalink: "/rings/cuban-link/cl-005-cuban-link-signature-ring/"
-price: 98
+price: 118
+updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (high-polish + oxidized recess, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "product"
@@ -23,12 +24,12 @@ A personalized Cuban Link piece built around a raised name-plate centerpiece,
 balanced by a bold large braid and crisp structural lines.
 
 ## Breakdown
-- **Band 10 mm:** $60  
+- **Band 7 mm:** $80  
 - **Engraving (Name):** $4  
 - **Channel:** $4  
 - **Cuban Link Braid (Large):** $30  
 
-**➡️ Total: $98 USD**
+**➡️ Total: $118 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
@@ -43,4 +44,4 @@ balanced by a bold large braid and crisp structural lines.
 - Personalized engraved name panel  
 - Strong structural braid  
 - Modern minimal layout  
-- Signature CDLA craftsmanship  
+- Signature CDLA craftsmanship
