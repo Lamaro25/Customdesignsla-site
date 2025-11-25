@@ -13,6 +13,11 @@ layout: "product"
 images:
   - "/static/img/wr-005-running-wild-front.png"
   - "/static/img/wr-005-running-wild-side.png"
+
+# 🔥 Forces Eleventy to rebuild this item even if cached
+eleventyComputed:
+  bust: "WR-005-{{ updated }}"
+
 description: >
   A tribute to untamed freedom and the spirit of the open plains. The Running
   Wild Ring features nine embossed horses racing in continuous motion across
