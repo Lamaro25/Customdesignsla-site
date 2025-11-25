@@ -5,7 +5,8 @@ collection: "Cuban Link Ring Collection"
 tags: ["cuban-link"]
 slug: "cuban-link-twin-ring"
 permalink: "/rings/cuban-link/cl-004-cuban-link-twin-ring/"
-price: 82
+price: 102
+updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized depth with polished edges, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "product"
@@ -24,11 +25,11 @@ A balanced, structural Cuban Link design with dual braids, polished edges, and
 diamond-pattern detailing. Lightweight comfort with high visual impact.
 
 ## Breakdown
-- **Band 10 mm:** $60  
+- **Band 7 mm:** $80  
 - **Channels (×3):** $12  
 - **Cuban Link Braid (Small ×2):** $10  
 
-**➡️ Total: $82 USD**
+**➡️ Total: $102 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
@@ -44,4 +45,4 @@ diamond-pattern detailing. Lightweight comfort with high visual impact.
 - Symmetrical twin-braid architecture  
 - Clean center ridge for contrast  
 - Decorative diamond side etching  
-- Signature CDLA craftsmanship  
+- Signature CDLA craftsmanship
