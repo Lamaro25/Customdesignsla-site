@@ -5,7 +5,8 @@ collection: "Cuban Link Ring Collection"
 tags: ["cuban-link"]
 slug: "cuban-link-origins-ring"
 permalink: "/rings/cuban-link/cl-006-cuban-link-origins-ring/"
-price: 90
+price: 110
+updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized recess + polished peaks, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "product"
@@ -24,10 +25,10 @@ A clean, iconic Cuban Link braid representing the beginning of your signature
 design style. Minimalist, bold, and true to the roots of CDLA craftsmanship.
 
 ## Breakdown
-- **Band 7 mm:** $60  
+- **Band 7 mm:** $80  
 - **Original Cuban Link Braid:** $30  
 
-**➡️ Total: $90 USD**
+**➡️ Total: $110 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
@@ -42,4 +43,4 @@ design style. Minimalist, bold, and true to the roots of CDLA craftsmanship.
 - Foundational CDLA Cuban pattern  
 - Pure continuous sculpted braid  
 - Clean, bold, and iconic  
-- Signature CDLA craftsmanship  
+- Signature CDLA craftsmanship
