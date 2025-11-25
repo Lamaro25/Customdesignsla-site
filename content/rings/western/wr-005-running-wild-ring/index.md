@@ -5,7 +5,8 @@ collection: "Western Ring Collection"
 tags: ["western"]
 slug: "running-wild-ring"
 permalink: "/rings/western/wr-005-running-wild-ring/"
-price: 105
+price: 125
+updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "product"
@@ -26,12 +27,12 @@ that wrap fully around the band. A single channel and rope braid frame the
 motion, adding structure and elevated detailing to the design.
 
 ## Breakdown
-- **Ring 7 mm:** $60  
+- **Ring 7 mm:** $80  
 - **Symbols (Horses × 9):** $36  
 - **Channel:** $4  
 - **Rope Braid:** $5  
 
-**➡️ Total: $105 USD**
+**➡️ Total: $125 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
@@ -45,4 +46,4 @@ motion, adding structure and elevated detailing to the design.
 ## Notes
 - Continuous motion design  
 - High-polish details against a darkened patina  
-- Symbolic of freedom, movement, and Western spirit  
+- Symbolic of freedom, movement, and Western spirit
