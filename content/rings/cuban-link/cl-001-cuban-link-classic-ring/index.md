@@ -1,11 +1,11 @@
----
+ ---
 title: "Cuban Link Classic Ring"
 sku: "CL-001"
 collection: "Cuban Link Ring Collection"
 tags: ["cuban-link"]
 slug: "cuban-link-classic-ring"
 permalink: "/rings/cuban-link/cl-001-cuban-link-classic-ring/"
-price: 94
+price: 114
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "product"
@@ -22,11 +22,11 @@ The Cuban Link Classic Ring represents the foundational aesthetic of the collect
 Its domed 7 mm profile and deep-set Cuban braid deliver a clean, bold, and timeless silhouette.
 
 ## Breakdown
-- **Band 7 mm:** $60  
+- **Band 7 mm:** $80  
 - **Channel:** $4  
 - **Cuban Link Braid (Large):** $30  
 
-**Total: $94 USD**
+**Total: $114 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
