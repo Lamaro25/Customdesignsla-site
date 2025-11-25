@@ -5,13 +5,19 @@ collection: "Western Ring Collection"
 tags: ["western"]
 slug: "luck-of-the-west-ring"
 permalink: "/rings/western/wr-006-luck-of-the-west-ring/"
-price: 105
+price: 125
+updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "product"
 images:
   - "/static/img/wr-006-luck-of-the-west-front.png"
   - "/static/img/wr-006-luck-of-the-west-side.png"
+
+# 🔥 Forces Eleventy to rebuild this item even if cached
+eleventyComputed:
+  bust: "WR-006-{{ updated }}"
+
 description: >
   A symbol of Western heritage, unity, and good fortune. The Luck of the West
   Ring features ten interlocking embossed horseshoes wrapped around a 7 mm band,
@@ -25,11 +31,11 @@ a symbol of luck — into a continuous band of ten interlinked symbols. A polish
 rope braid crowns the design, adding structure and traditional Western detailing.
 
 ## Breakdown
-- **Ring 7 mm:** $60  
+- **Ring 7 mm:** $80  
 - **Symbols (Horseshoes × 10):** $40  
 - **Rope Braid:** $5  
 
-**➡️ Total: $105 USD**
+**➡️ Total: $125 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
@@ -43,4 +49,4 @@ rope braid crowns the design, adding structure and traditional Western detailing
 ## Notes
 - Horseshoe links symbolize unity & protection  
 - High-detail embossed relief  
-- Signature CDLA patina finish  
+- Signature CDLA patina finish
