@@ -5,7 +5,8 @@ collection: "Western Ring Collection"
 tags: ["western"]
 slug: "horse-rider-roping-ring"
 permalink: "/rings/western/wr-004-horse-rider-roping-ring/"
-price: 104
+price: 124
+updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "product"
@@ -27,13 +28,13 @@ the Western cowboy. The raised roping scene brings the band to life, while
 four channels and rope braids frame the design with structure and symmetry.
 
 ## Breakdown
-- **Flat Band 7 mm:** $60  
+- **Flat Band 7 mm:** $80  
 - **Engraved Name Panel:** $4  
 - **Channels (×4):** $16  
 - **Rope Braids (×4):** $20  
 - **Cowboy Roping Symbol:** $4  
 
-**➡️ Total: $104 USD**
+**➡️ Total: $124 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
@@ -48,4 +49,4 @@ four channels and rope braids frame the design with structure and symmetry.
 ## Notes
 - Detailed roping scene in motion  
 - Perfect Western heritage staple  
-- High-contrast CDLA patina finish  
+- High-contrast CDLA patina finish
