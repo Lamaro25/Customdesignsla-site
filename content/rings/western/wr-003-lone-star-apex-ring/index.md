@@ -5,7 +5,8 @@ collection: "Western Ring Collection"
 tags: ["western"]
 slug: "lone-star-apex-ring"
 permalink: "/rings/western/wr-003-lone-star-apex-ring/"
-price: 134
+price: 164
+updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "10 mm Apex"
 layout: "product"
@@ -26,13 +27,13 @@ heritage. Its sculpted apex rise, Texas silhouette cutout, and bold Lone
 Star centerpiece create a powerful and refined tribute to the Lone Star State.
 
 ## Breakdown
-- **Apex Band 10 mm:** $90  
+- **Apex Band 10 mm:** $120  
 - **Texas Shape Cutout:** $4  
 - **Lone Star Symbol:** $4  
 - **Channels (×4):** $16  
 - **Rope Braids (×4):** $20  
 
-**➡️ Total: $134 USD**
+**➡️ Total: $164 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
@@ -47,4 +48,4 @@ Star centerpiece create a powerful and refined tribute to the Lone Star State.
 ## Notes
 - Peak apex silhouette  
 - Deep oxidized background for high contrast  
-- Symbolic Texas centerpiece  
+- Symbolic Texas centerpiece
