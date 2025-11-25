@@ -1,13 +1,13 @@
 ---
 layout: base.njk
 title: "Faith Ring Collection — Custom Designs LA"
-description: "Handcrafted Faith-based rings — scripture engravings, symbolic crosses, devotional designs in .925 Sterling Silver by Custom Designs LA."
+description: "Faith-inspired rings — scripture engravings, symbolic crosses, and meaningful Christian designs in polished and oxidized .925 sterling silver by Custom Designs LA."
 permalink: /rings/faith/
 ---
 
 # Faith Ring Collection
 
-Explore handcrafted Faith-based rings inspired by scripture, devotion, and Christian symbolism — all cast in .925 Sterling Silver.
+A collection of spiritually inspired rings — each crafted with scripture, symbols of devotion, and meaningful design. Sculpted in .925 Sterling Silver, oxidized for depth, and polished by hand.
 
 <div class="product-grid">
 
