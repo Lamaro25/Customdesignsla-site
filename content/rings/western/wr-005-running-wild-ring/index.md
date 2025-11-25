@@ -6,7 +6,7 @@ tags: ["western"]
 slug: "running-wild-ring"
 permalink: "/rings/western/wr-005-running-wild-ring/"
 price: 125
-updated: "2025-11-24"
+updated: "2025-11-25-01"   # NEW timestamp to force rebuild
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "product"
@@ -14,9 +14,9 @@ images:
   - "/static/img/wr-005-running-wild-front.png"
   - "/static/img/wr-005-running-wild-side.png"
 
-# 🔥 Forces Eleventy to rebuild this item even if cached
+# 🔥 HARD CACHE BUST — Eleventy MUST rebuild
 eleventyComputed:
-  bust: "WR-005-{{ updated }}"
+  bust: "WR005-FORCE-{{ updated }}"
 
 description: >
   A tribute to untamed freedom and the spirit of the open plains. The Running
