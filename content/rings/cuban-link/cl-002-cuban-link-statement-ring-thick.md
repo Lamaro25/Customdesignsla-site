@@ -5,7 +5,8 @@ collection: "Cuban Link Ring Collection"
 tags: ["cuban-link"]
 slug: "cuban-link-statement-ring-thick"
 permalink: "/rings/cuban-link/cl-002-cuban-link-statement-ring-thick/"
-price: 146
+price: 176
+updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized recess + polished raised edges, hallmarked “LA”)"
 band_width: "10 mm"
 layout: "product"
@@ -26,13 +27,13 @@ The boldest Cuban Link design—heavy, sculptural, and built with layered braid
 architecture and a personalized engraving panel.
 
 ## Breakdown
-- **Band 10 mm:** $90  
+- **Band 10 mm:** $120  
 - **Engraving (Name):** $4  
 - **Channels (×3):** $12  
 - **Cuban Link Braid (Large):** $30  
 - **Cuban Link Braid (Small ×2):** $10  
 
-**➡️ Total: $146 USD**
+**➡️ Total: $176 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
@@ -48,4 +49,4 @@ architecture and a personalized engraving panel.
 - Heavyweight 10 mm silhouette  
 - Personalized name-plate centerpiece  
 - Deep sculpted braid channels  
-- Signature CDLA craftsmanship  
+- Signature CDLA craftsmanship
