@@ -1,13 +1,13 @@
 ---
 layout: base.njk
 title: "Western Ring Collection — Custom Designs LA"
-description: "Handcrafted Western rings — Texas-inspired designs sculpted in polished and oxidized .925 sterling silver by Custom Designs LA."
+description: "Handcrafted Western rings — Texas heritage, frontier symbolism, and sculpted sterling silver designs by Custom Designs LA."
 permalink: /rings/western/
 ---
 
 # Western Ring Collection
 
-Explore handcrafted Western rings inspired by Texas heritage — bold relief work, rope braids, longhorns, stars, horses, and the classic Western spirit.
+Explore handcrafted Western rings inspired by Texas heritage, frontier grit, and bold symbolic design — all cast in .925 Sterling Silver.
 
 <div class="product-grid">
 
