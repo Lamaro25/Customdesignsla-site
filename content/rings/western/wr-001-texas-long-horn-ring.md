@@ -5,7 +5,8 @@ collection: "Western Ring Collection"
 tags: ["western"]
 slug: "wr-001-texas-long-horn-ring"
 permalink: "/rings/western/wr-001-texas-long-horn-ring/"
-price: 123
+price: 143
+updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "product"
@@ -25,13 +26,13 @@ The Texas Long Horn Ring honors the bold spirit of Texas through sculpted relief
 and handcrafted silverwork. Each curve and braid shines against its darkened recessed finish.
 
 ## Breakdown
-- **Flat Band 7 mm:** $60  
+- **Flat Band 7 mm:** $80  
 - **Channel:** $4  
 - **Rope Braids ×2:** $10  
 - **Long Horn Symbol:** $4  
 - **Texas Flag (Wrap Image):** $45  
 
-**Total: $123 USD**
+**Total: $143 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
@@ -45,4 +46,4 @@ and handcrafted silverwork. Each curve and braid shines against its darkened rec
 ## Notes
 - Texas flag rendered completely in raised relief  
 - Strong Western character  
-- Comfort-fit interior  
+- Comfort-fit interior
