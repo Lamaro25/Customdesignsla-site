@@ -5,7 +5,8 @@ collection: "Cuban Link Ring Collection"
 tags: ["cuban-link"]
 slug: "cuban-link-statement-ring-thin"
 permalink: "/rings/cuban-link/cl-003-cuban-link-statement-ring-thin/"
-price: 116
+price: 176
+updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized recess & polished highlights, hallmarked “LA”)"
 band_width: "10 mm"
 layout: "product"
@@ -24,13 +25,13 @@ A lighter, more wearable alternative to the Thick Statement Ring—still bold,
 still sculptural, but easier for everyday comfort.
 
 ## Breakdown
-- **Band 10 mm:** $60  
+- **Band 10 mm:** $120  
 - **Engraving (Name):** $4  
 - **Channels (×3):** $12  
 - **Cuban Link Braid (Large):** $30  
 - **Cuban Link Braid (Small ×2):** $10  
 
-**➡️ Total: $116 USD**
+**➡️ Total: $176 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
@@ -46,4 +47,4 @@ still sculptural, but easier for everyday comfort.
 - Slimmer 10 mm profile  
 - Same bold structure as the Thick version  
 - Lightweight but visually strong  
-- Signature CDLA craftsmanship  
+- Signature CDLA craftsmanship
