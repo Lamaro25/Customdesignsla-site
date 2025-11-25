@@ -1,4 +1,4 @@
- ---
+---
 title: "Cuban Link Classic Ring"
 sku: "CL-001"
 collection: "Cuban Link Ring Collection"
@@ -6,6 +6,7 @@ tags: ["cuban-link"]
 slug: "cuban-link-classic-ring"
 permalink: "/rings/cuban-link/cl-001-cuban-link-classic-ring/"
 price: 114
+updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "product"
@@ -40,4 +41,4 @@ Its domed 7 mm profile and deep-set Cuban braid deliver a clean, bold, and timel
 ## Notes
 - Comfort-fit interior  
 - Large link Cuban braid pattern  
-- Signature CDLA craftsmanship  
+- Signature CDLA craftsmanship
