@@ -1,25 +1,35 @@
-/* --- HERO BACKGROUND --- */
+/* ===============================
+   LTR HERO SECTION (Western Theme)
+================================== */
+
 .ltr-hero {
   position: relative;
   padding: 3rem 1.5rem;
   text-align: center;
   font-family: "Georgia", serif;
 
-  /* Western saddle room background */
+  /* Default (MOBILE-FIRST) */
   background-image: url("/static/img/LTR-Western-Integration/IMG_1047.jpeg");
-  background-size: cover;
-  background-position: left center;   /* << shift image LEFT */
+  background-size: contain;       /* Show full image on mobile */
+  background-position: left top;  /* Shift image left for mobile */
   background-repeat: no-repeat;
 
   /* Sepia Western overlay */
   background-color: rgba(80, 60, 40, 0.55);
   background-blend-mode: multiply;
 
-  border: 8px solid #8b5a2b;      /* leather color */
+  border: 8px solid #8b5a2b;
   box-shadow: 0 0 40px rgba(0,0,0,0.6);
   border-radius: 6px;
-
   color: #fbe7c2;
+}
+
+/* Desktop Override */
+@media (min-width: 900px) {
+  .ltr-hero {
+    background-size: cover;       /* Fill full width on desktop */
+    background-position: center;  /* Center the saddle room */
+  }
 }
 
 /* --- TITLE --- */
@@ -32,7 +42,7 @@
   color: #ffe9c6;
 }
 
-/* --- PARAGRAPH --- */
+/* --- DESCRIPTION --- */
 .ltr-hero p {
   font-size: 1.1rem;
   max-width: 650px;
@@ -45,37 +55,30 @@
 .ltr-buttons {
   display: grid;
   gap: 1.5rem;
+  max-width: 650px;
+  margin: auto;
 }
 
-/* --- Wanted Poster Buttons --- */
+/* --- WANTED POSTER STYLE BUTTONS --- */
 .ltr-buttons a {
   background: #f4e3c3;
   color: #3b2a1b;
   text-decoration: none;
-
   padding: 1.2rem;
   border: 4px solid #5b4632;
-
-  /* Rough paper look */
   background-image: url("https://i.imgur.com/UpMhxSp.jpeg"); /* Old paper texture */
   background-size: cover;
-
   font-family: "Georgia", serif;
   font-weight: bold;
   font-size: 1.15rem;
   text-transform: uppercase;
-
   box-shadow: inset 0 0 15px rgba(0,0,0,0.6),
               4px 4px 10px rgba(0,0,0,0.4);
-
   border-radius: 6px;
-
-  /* Rope border (fake using shadows) */
-  outline: 5px solid #d5b896;
+  outline: 5px solid #d5b896; /* Rope effect */
   outline-offset: -10px;
 }
 
-/* Hover Effect */
 .ltr-buttons a:hover {
   background-color: #e2c89c;
   transform: scale(1.02);
