@@ -2,12 +2,11 @@
 
 {% block head %}
   {{ super() }}
-  <link rel="stylesheet" href="/static/LTR/css/ltr.css">
+  <link rel="stylesheet" href="/static/css/ltr.css">
 {% endblock %}
 
 {% block content %}
   <div class="ltr-hero">
-    <img class="ltr-bg" src="/static/LTR/img/ltr-bg.webp" alt="LTR Western Background">
 
     <h1>{{ title }}</h1>
     <p><em>{{ description }}</em></p>
@@ -15,5 +14,6 @@
     <div class="ltr-buttons">
       {{ content | safe }}
     </div>
+
   </div>
 {% endblock %}
