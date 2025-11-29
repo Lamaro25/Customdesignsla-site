@@ -1,17 +1,10 @@
 ---
 title: "Lena’s Tack Room Collection (LTR)"
-layout: "ltr"
+layout: "ltr.njk"
 permalink: "/LTR/"
 hide_from_nav: true
 description: "A hidden Western hardware division by Custom Designs LA. Available in Bronze & Sterling Silver."
 ---
-
-# Lena’s Tack Room Collection  
-_A Western Hardware Division by Custom Designs LA_
-
-Welcome to **LTR** — a private, invitation-only collection featuring handcrafted Western hardware in **Bronze** and **.925 Sterling Silver**.
-
-This page is not listed anywhere on the website. You found the Easter egg.
 
 ## Collections
 
