@@ -1,7 +1,6 @@
 /* ===============================
    LTR HERO SECTION (Western Theme)
 ================================== */
-
 .ltr-hero {
   position: relative;
   padding: 3rem 1.5rem;
@@ -9,12 +8,11 @@
   font-family: "Georgia", serif;
 
   /* Default (MOBILE-FIRST) */
-  background-image: url("/static/img/LTR-Western-Integration/IMG_1047.jpeg");
-  background-size: contain;       /* Show full image on mobile */
-  background-position: left top;  /* Shift image left for mobile */
+  background-image: url("/static/img/LTR-Western-Integration/IMG_1759.jpeg");
+  background-size: contain;       
+  background-position: left top;  
   background-repeat: no-repeat;
 
-  /* Sepia Western overlay */
   background-color: rgba(80, 60, 40, 0.55);
   background-blend-mode: multiply;
 
