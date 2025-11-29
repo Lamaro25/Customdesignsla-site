@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block content %}
+
+  <!-- HERO SECTION (Background Image Only) -->
   <div class="ltr-hero">
 
     <!-- Western Background Image -->
@@ -18,9 +20,17 @@
     <h1>{{ title }}</h1>
     <p><em>{{ description }}</em></p>
 
+  </div>
+
+  <!-- COLLECTIONS SECTION BELOW HERO -->
+  <section class="ltr-collections">
+
+    <h2>Collections</h2>
+
     <div class="ltr-buttons">
       {{ content | safe }}
     </div>
 
-  </div>
+  </section>
+
 {% endblock %}
