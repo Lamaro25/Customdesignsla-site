@@ -1,0 +1,25 @@
+
+/* LTR Western Layout */
+body {
+  background: url('/static/img/ltr-bg.webp') center/cover no-repeat fixed;
+  font-family: 'Georgia', serif;
+}
+
+.ltr-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.ltr-btn {
+  background: #f4e4c1;
+  padding: 1rem 2rem;
+  border: 4px solid #a67c52;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  filter: drop-shadow(0 0 8px rgba(0,0,0,0.4));
+}
