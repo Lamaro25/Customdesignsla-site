@@ -1,0 +1,29 @@
+/* ===============================
+   LTR HERO SECTION (Western Theme)
+================================== */
+.ltr-hero {
+  position: relative;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  font-family: "Georgia", serif;
+
+  background-image: url("/static/img/LTR-Western-Integration/IMG_1759.jpeg");
+  background-size: contain;
+  background-position: left top;
+  background-repeat: no-repeat;
+
+  background-color: rgba(80, 60, 40, 0.55);
+  background-blend-mode: multiply;
+
+  border: 8px solid #8b5a2b;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  border-radius: 6px;
+  color: #fbe7c2;
+}
+
+@media (min-width: 900px) {
+  .ltr-hero {
+    background-size: cover;
+    background-position: center;
+  }
+}
