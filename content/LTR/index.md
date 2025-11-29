@@ -1,6 +1,6 @@
 ---
 title: "Lena’s Tack Room Collection (LTR)"
-layout: "base"
+layout: "ltr.njk"
 permalink: "/LTR/"
 hide_from_nav: true
 description: "A hidden Western hardware division by Custom Designs LA. Available in Bronze & Sterling Silver."
