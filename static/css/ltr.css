@@ -1,31 +1,42 @@
 /* ===============================
-   LTR HERO SECTION (Western Theme)
+   LTR COLLECTION BUTTONS
 ================================== */
-.ltr-hero {
-  position: relative;
-  padding: 3rem 1.5rem;
-  text-align: center;
-  font-family: "Georgia", serif;
 
-  /* FIXED VERSION FOR MOBILE */
-  background-image: url("/static/img/LTR-Western-Integration/IMG_1759.jpeg");
-  background-size: cover;        /* FIXED */
-  background-position: center;   /* FIXED */
-  background-repeat: no-repeat;
-
-  background-color: rgba(80, 60, 40, 0.55);
-  background-blend-mode: multiply;
-
-  border: 8px solid #8b5a2b;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6);
-  border-radius: 6px;
-  color: #fbe7c2;
+.ltr-button-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem auto;
+  max-width: 700px;
 }
 
-/* Desktop (unchanged) */
-@media (min-width: 900px) {
-  .ltr-hero {
-    background-size: cover;
-    background-position: center;
-  }
+.ltr-button-list li {
+  margin: 0.75rem 0;
+}
+
+.ltr-button-list a {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1rem;
+
+  font-family: "Georgia", serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+
+  text-align: center;
+  text-decoration: none;
+
+  color: #5b4632;
+  background: #f9e5c2;
+
+  border: 3px solid #b88954;
+  border-radius: 8px;
+
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  transition: 0.2s ease;
+}
+
+.ltr-button-list a:hover {
+  background: #e6c596;
+  border-color: #a37645;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
 }
