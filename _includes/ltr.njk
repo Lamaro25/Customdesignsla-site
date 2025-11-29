@@ -2,18 +2,17 @@
 
 {% block head %}
   {{ super() }}
-  <link rel="stylesheet" href="/static/LTR-layout-files/css/ltr.css">
+  <link rel="stylesheet" href="/LTR-layout-files/static/css/ltr.css">
 {% endblock %}
 
 {% block content %}
-  <div class="ltr-wrapper">
-    <div class="ltr-header">
-      <img src="/static/LTR-layout-files/img/ltr-header.png" alt="Lena's Tack Room Logo" class="ltr-logo"/>
-      <h1 class="ltr-title">{{ title }}</h1>
-      <p class="ltr-subtitle">A Western Hardware Division by Custom Designs LA</p>
-    </div>
+  <div class="ltr-hero">
+    <img class="ltr-bg" src="/LTR-layout-files/static/img/ltr-bg.webp" alt="LTR Western Background">
+    
+    <h1>{{ title }}</h1>
+    <p><em>{{ description }}</em></p>
 
-    <div class="ltr-content">
+    <div class="ltr-buttons">
       {{ content | safe }}
     </div>
   </div>
