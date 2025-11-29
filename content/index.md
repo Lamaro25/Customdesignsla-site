@@ -1,19 +1,14 @@
 ---
-title: "CDLA Collections"
-layout: layouts/category.njk
-permalink: collections/index.html
+layout: layouts/base.njk
+title: "Custom Designs LA"
+description: "Handcrafted rings, charms, bracelets, and more."
+permalink: /
 ---
 
-# Explore CDLA Collections
-
-Discover handcrafted pieces designed in Del Rio, Texas — built to last, timeless by design.
-
----
-
-## English
-Browse **Rings**, **Bracelets**, and **Charms** below. New sections for **Bronze**, **Earrings**, **Pendants**, and **Necklaces** are on the way.
-
----
-
-## Español
-Explora nuestras colecciones de **Anillos**, **Pulseras** y **Dijes**. Las secciones de **Bronce**, **Aretes**, **Dijes/Pendientes** y **Collares** llegan muy pronto.
+<main class="section">
+  <h2>Welcome to Custom Designs LA</h2>
+  <p>
+    Handcrafted rings, charms, bracelets, and more — design your own piece with engravings,
+    patterns, and personal details.
+  </p>
+</main>

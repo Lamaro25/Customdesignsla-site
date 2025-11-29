@@ -1,6 +1,6 @@
 ---
 title: "Charms"
-layout: layouts/category.njk
+layout: base.njk
 permalink: charms/index.html
 category: "Charms"
 ---

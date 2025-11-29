@@ -4,29 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ title or "Custom Designs LA" }}</title>
-    <link rel="stylesheet" href="/styles.css" />
+
+    <!-- Correct stylesheet path -->
+    <link rel="stylesheet" href="/static/img/styles.css">
   </head>
 
   <body>
     <!-- Header -->
     <header class="site-header">
       <div class="container flex items-center justify-between py-4">
+
+        <!-- Logo + Brand -->
         <a href="/" class="flex items-center space-x-2">
           <span class="font-bold text-lg">Custom Designs</span>
           <img src="/assets/uploads/logo.png" alt="LA Logo" class="h-6 w-auto" />
         </a>
+
+        <!-- Navigation (fixed paths) -->
         <nav class="flex space-x-6 text-sm font-medium">
-          <a href="/rings/index.html">Rings</a>
-          <a href="/charms/index.html">Charms</a>
-          <a href="/bracelets/index.html">Bracelets</a>
-          <a href="/necklaces/index.html">Necklaces</a>
-          <a href="/bronze/index.html">Bronze</a>
-          <a href="/earrings/index.html">Earrings</a>
-          <a href="/pendants/index.html">Pendants</a>
+          <a href="/rings/">Rings</a>
+          <a href="/charms/">Charms</a>
+          <a href="/bracelets/">Bracelets</a>
+          <a href="/necklaces/">Necklaces</a>
+          <a href="/bronze/">Bronze</a>
+          <a href="/earrings/">Earrings</a>
+          <a href="/pendants/">Pendants</a>
           <a href="/shop_all.html">Shop All</a>
           <a href="/customize.html">Customize</a>
           <a href="/cart.html">Cart</a>
         </nav>
+
       </div>
     </header>
 

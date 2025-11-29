@@ -1,6 +1,6 @@
 ---
 title: "Bracelets"
-layout: layouts/category.njk
+layout: base.njk
 permalink: bracelets/index.html
 category: "Bracelets"
 ---
