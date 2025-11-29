@@ -7,19 +7,10 @@
 
 {% block content %}
 
-  <!-- HERO SECTION (Background Image Only) -->
+  <!-- HERO SECTION (CSS Background Only — NO IMG TAG) -->
   <div class="ltr-hero">
-
-    <!-- Western Background Image -->
-    <img 
-      class="ltr-bg" 
-      src="/static/img/LTR-Western-Integration/IMG_1047.jpeg" 
-      alt="LTR Western Background"
-    >
-
     <h1>{{ title }}</h1>
     <p><em>{{ description }}</em></p>
-
   </div>
 
   <!-- COLLECTIONS SECTION BELOW HERO -->
@@ -27,9 +18,10 @@
 
     <h2>Collections</h2>
 
-    <div class="ltr-buttons">
+    <!-- Western Button List -->
+    <ul class="ltr-button-list">
       {{ content | safe }}
-    </div>
+    </ul>
 
   </section>
 
