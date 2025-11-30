@@ -80,56 +80,37 @@
   margin-bottom: 1.25rem;
 }
 /* ===============================
-   WESTERN BUTTON LIST — BURNT WOOD STYLE
+   WOODEN WESTERN BUTTONS
 ================================== */
 
-.ltr-button-list {
-  list-style: none;
-  padding: 0;
-  margin: 1.25rem auto;
-  max-width: 700px;
-}
-
-.ltr-button-list li {
-  margin: 1rem 0;
-}
-
-/* BUTTON: Burnt Wood Style */
 .ltr-button-list a {
   display: block;
   width: 100%;
-  padding: 1.25rem 1rem;
+  padding: 1.3rem 1rem;
 
   font-family: "Georgia", serif;
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-align: center;
-  text-decoration: none;
 
-  /* Light wood base */
-  background: #e9d3a6;
+  color: #3a2815; /* dark engraved look */
+  text-shadow: 1px 1px 0 #e9d7b7; /* subtle burn highlight */
 
-  /* Burnt wood edges (inner + outer shadows) */
-  border: 4px solid #8b5a2b;
-  border-radius: 10px;
-  box-shadow:
-    inset 0 0 12px rgba(0,0,0,0.45),
-    inset 0 0 30px rgba(139,90,43,0.35),
-    0 6px 15px rgba(0,0,0,0.25);
+  /* Your wood plank background */
+  background-image: url("/static/img/ltr/wood-plank.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-  color: #4a2e12;
+  border: none;
+  border-radius: 6px;
 
-  transition: 0.25s ease;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* HOVER: Darkened burnt edges */
 .ltr-button-list a:hover {
-  background: #e2c997;
-  border-color: #6e441f;
-  box-shadow:
-    inset 0 0 18px rgba(0,0,0,0.55),
-    inset 0 0 40px rgba(139,90,43,0.45),
-    0 8px 20px rgba(0,0,0,0.3);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.5);
 }
