@@ -1,127 +1,66 @@
-/* ===============================
-   LTR HERO SECTION (Western Theme)
-================================== */
-.ltr-hero {
-  position: relative;
-  padding: 2.5rem 1.25rem;
-  text-align: center;
-  font-family: "Georgia", serif;
+/* ==========================================
+   WESTERN POSTER-STYLE COLLECTION BUTTONS
+   ========================================== */
 
-  /* Correct Hero Background */
-  background-image: url("/static/img/LTR-Western-Integration/IMG_1759.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* Western Overlay Tint */
-  background-color: rgba(80, 60, 40, 0.55);
-  background-blend-mode: multiply;
-
-  /* Western Border + Shadow */
-  border: 8px solid #8b5a2b;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6);
-  border-radius: 6px;
-
-  color: #fbe7c2;
-
-  max-width: 1100px;
+/* Remove the accidental bullets */
+.ltr-button-list {
+  list-style: none !important;
+  padding: 0;
   margin: 1.5rem auto;
-  min-height: 300px; /* Ensures banner shows on mobile */
+  max-width: 750px;
+  text-align: center;
+}
+
+/* Center the LI elements */
+.ltr-button-list li {
+  margin: 1rem auto;
   display: flex;
-  flex-direction: column;
   justify-content: center;
 }
 
-/* Hero Text */
-.ltr-hero h1 {
-  font-size: 1.9rem;
-  line-height: 1.2;
-  margin-bottom: 0.75rem;
-}
-
-.ltr-hero p {
-  font-size: 1rem;
-  max-width: 90%;
-  margin: 0 auto;
-  margin-top: 0.25rem;
-}
-
-/* Desktop Optimization */
-@media (min-width: 900px) {
-  .ltr-hero {
-    padding: 4rem 2rem;
-    min-height: 420px; /* Taller, premium banner */
-  }
-
-  .ltr-hero h1 {
-    font-size: 2.8rem;
-  }
-
-  .ltr-hero p {
-    font-size: 1.25rem;
-  }
-}
-
-
-/* ===============================
-   COLLECTIONS SECTION
-================================== */
-.ltr-collections {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 2rem 1.25rem;
-  background: #ffffff;
-  border-radius: 10px;
-  border: 3px solid #b88954;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-}
-
-.ltr-collections h2 {
-  text-align: center;
-  font-family: "Georgia", serif;
-  font-size: 2rem;
-  color: #5b3b20;
-  margin-bottom: 1.5rem;
-}
-
-
-/* ===============================
-   WESTERN BUTTON LIST
-================================== */
-.ltr-button-list {
-  list-style: none;
-  padding: 0;
-  margin: 1.25rem auto;
-  max-width: 700px;
-}
-
-.ltr-button-list li {
-  margin: 0.75rem 0;
-}
-
+/* Poster Card Style */
 .ltr-button-list a {
   display: block;
-  width: 100%;
+
+  /* Dimensions */
+  width: 95%;
+  max-width: 550px;
   padding: 1rem 1.25rem;
 
+  /* Typography */
   font-family: "Georgia", serif;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 700;
   text-align: center;
-
-  color: #5b4632;
   text-decoration: none;
 
-  background: #f9e5c2;
-  border: 3px solid #b88954;
-  border-radius: 8px;
+  /* COLORS — Western parchment + burnt border */
+  background: #f7e2c0;
+  color: #4a3218;
+  border: 4px solid #a67642;
 
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-  transition: 0.2s ease;
+  /* WANTED POSTER FEEL */
+  border-radius: 10px;
+  box-shadow: 
+    0 8px 18px rgba(0,0,0,0.25),
+    inset 0 0 12px rgba(0,0,0,0.22);
+
+  /* LIGHT ANGLED LOOK */
+  transform: rotate(-1deg);
+  transition: all 0.2s ease;
 }
 
+/* Alternate cards tilt slightly opposite for real paper feel */
+.ltr-button-list li:nth-child(even) a {
+  transform: rotate(1.4deg);
+}
+
+/* Hover effect */
 .ltr-button-list a:hover {
-  background: #e6c596;
-  border-color: #a37645;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  background: #ebd3a8;
+  border-color: #8a5e31;
+  box-shadow:
+    0 12px 22px rgba(0,0,0,0.35),
+    inset 0 0 16px rgba(0,0,0,0.25);
+  transform: scale(1.03) rotate(0deg);
 }
