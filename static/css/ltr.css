@@ -80,61 +80,23 @@
   margin-bottom: 1.25rem;
 }
 /* ===============================
-   LTR WOODEN BUTTON (PNG SYSTEM)
+   LTR WOOD BUTTON — SIZE CONTROL
 ================================== */
 
-.ltr-button-list {
-  list-style: none;
-  padding: 0;
-  margin: 2rem auto;
-  max-width: 800px;
-}
-
-.ltr-button-list li {
-  margin: 1.1rem 0;
-}
-
-.ltr-wood-button {
-  display: block;
+.ltr-wood-button img {
   width: 100%;
-  min-height: 125px;
+  max-width: 450px;   /* <<< reduce this number until perfect (400–500 recommended) */
+  height: auto;
 
-  /* USE YOUR PNG AS BACKGROUND */
-  background-image: url("/static/img/LTR-Western-Integration/wood-button-saddle.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  display: block;
+  margin: 0 auto;
 
-  /* Remove default link styles */
-  text-decoration: none;
-  color: #3a1e0c;
-
-  /* Western text style */
-  font-family: "Georgia", serif;
-  font-weight: 800;
-  font-size: 1.6rem;
-  text-align: center;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* Add spacing */
-  padding: 1.2rem 2rem;
-
-  /* Hover effect */
-  transition: transform 0.15s ease, filter 0.2s ease;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  image-rendering: crisp-edges;
 }
 
-.ltr-wood-button:hover {
-  transform: scale(1.03);
-  filter: brightness(1.05);
-}
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-  .ltr-wood-button {
-    font-size: 1.2rem;
-    min-height: 100px;
+@media (max-width: 650px) {
+  .ltr-wood-button img {
+    max-width: 300px;  /* mobile scaling */
   }
 }
