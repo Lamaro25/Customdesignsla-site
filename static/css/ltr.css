@@ -1,124 +1,53 @@
 /* ===============================
-   LTR HERO SECTION (Western Theme)
+   WANTED POSTER BUTTONS
 ================================== */
-.ltr-hero {
-  position: relative;
-  padding: 2.5rem 1.25rem;
-  text-align: center;
-  font-family: "Georgia", serif;
 
-  /* Hero Background (correct image path) */
-  background-image: url("/static/img/LTR-Western-Integration/IMG_1759.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* Western Color Overlay */
-  background-color: rgba(80, 60, 40, 0.55);
-  background-blend-mode: multiply;
-
-  /* Western Border + Shadows */
-  border: 8px solid #8b5a2b;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6);
-  border-radius: 6px;
-
-  color: #fbe7c2;
-
-  max-width: 1100px;
-  margin: 1.5rem auto;
-}
-
-/* Better hero text spacing */
-.ltr-hero h1 {
-  font-size: 2rem;
-  line-height: 1.2;
-  margin-bottom: 0.75rem;
-}
-
-.ltr-hero p {
-  font-size: 1rem;
-  max-width: 90%;
-  margin: 0 auto;
-}
-
-/* Desktop Optimization */
-@media (min-width: 900px) {
-  .ltr-hero {
-    padding: 4rem 2rem;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .ltr-hero h1 {
-    font-size: 2.6rem;
-  }
-
-  .ltr-hero p {
-    font-size: 1.2rem;
-  }
-}
-
-
-/* ===============================
-   COLLECTIONS SECTION
-================================== */
-.ltr-collections {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 1.75rem 1.25rem;
-  background: #fff;
-  border-radius: 10px;
-  border: 3px solid #b88954;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-}
-
-.ltr-collections h2 {
-  text-align: center;
-  font-family: "Georgia", serif;
-  font-size: 2rem;
-  color: #5b3b20;
-  margin-bottom: 1.25rem;
-}
-
-
-/* ===============================
-   WESTERN BUTTON LIST
-================================== */
 .ltr-button-list {
   list-style: none;
   padding: 0;
-  margin: 1.25rem auto;
+  margin: 1.5rem auto;
   max-width: 700px;
 }
 
 .ltr-button-list li {
-  margin: 0.75rem 0;
+  margin: 1rem 0;
 }
 
 .ltr-button-list a {
   display: block;
   width: 100%;
-  padding: 0.9rem 1rem;
+  padding: 1rem 1.25rem;
 
+  /* Western font style */
   font-family: "Georgia", serif;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 
   text-align: center;
   text-decoration: none;
 
-  color: #5b4632;
-  background: #f9e5c2;
+  /* Wanted poster parchment color */
+  background: #f3d7a4;
 
-  border: 3px solid #b88954;
-  border-radius: 8px;
+  /* Burnt edges effect */
+  border: 4px solid #7a4e22;
+  border-radius: 10px;
+  box-shadow:
+    0 0 4px #3b2a1b inset,              /* dark inner burn */
+    0 0 12px rgba(0,0,0,0.25),          /* outer glow */
+    0 4px 10px rgba(0,0,0,0.20);        /* drop shadow */
 
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-  transition: 0.2s ease;
+  color: #4a3318;
+  transition: all 0.2s ease;
 }
 
+/* Hover: darker parchment + stronger edge burn */
 .ltr-button-list a:hover {
-  background: #e6c596;
-  border-color: #a37645;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  background: #e7c48d;
+  border-color: #5d3815;
+  box-shadow:
+    0 0 6px #2b1c10 inset,
+    0 0 15px rgba(0,0,0,0.35),
+    0 6px 14px rgba(0,0,0,0.25);
 }
