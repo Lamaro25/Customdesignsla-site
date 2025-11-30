@@ -81,15 +81,15 @@
 }
 /* ===============================
    LTR WOOD BUTTON — SIZE CONTROL
-================================== */
+=============================== */
 
 .ltr-wood-button img {
   width: 100%;
-  max-width: 450px;   /* <<< reduce this number until perfect (400–500 recommended) */
+  max-width: 260px;   /* <<< MUCH SMALLER */
   height: auto;
 
   display: block;
-  margin: 0 auto;
+  margin: 1.25rem auto;
 
   transition: transform 0.2s ease, filter 0.2s ease;
   image-rendering: crisp-edges;
@@ -97,6 +97,6 @@
 
 @media (max-width: 650px) {
   .ltr-wood-button img {
-    max-width: 300px;  /* mobile scaling */
+    max-width: 200px; /* mobile version */
   }
 }
