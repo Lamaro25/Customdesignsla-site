@@ -1,65 +1,36 @@
 /* ===============================
-   LTR HERO — PERFECT FULL HERO
+   COLLECTION BUTTON LIST
 ================================== */
-.ltr-hero {
-  position: relative;
-  width: 100%;
-  max-width: 1400px;
-  margin: 2rem auto;
-
-  /* Full-size background */
-  background-image: url("/static/img/LTR-Western-Integration/IMG_1759.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-
-  /* REMOVE blur — blend mode creates blur */
-  background-color: transparent;
-  background-blend-mode: normal;
-
-  /* Hero height */
-  min-height: 450px;
-  
+.ltr-button-list {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  /* Clean border */
-  border: 8px solid #8b5a2b;
-  border-radius: 10px;
-  overflow: hidden;
-
-  box-shadow: 0 0 40px rgba(0,0,0,0.25);
+  flex-direction: column;   /* stack vertically */
+  align-items: center;      /* center each button */
+  gap: 1.75rem;             /* spacing between buttons */
+  margin-top: 1rem;
 }
 
-/* Text */
-.ltr-hero h1 {
-  color: #fbe7c2;
-  font-size: 2.6rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 0px 3px 6px rgba(0,0,0,0.55);
+
+/* ===============================
+   LTR WOOD BUTTON — FINAL SIZE
+================================== */
+.ltr-wood-button img {
+  width: 100%;
+  max-width: 280px;   /* Correct final size */
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.35));
+  transition: transform 0.2s ease;
 }
 
-.ltr-hero p {
-  color: #fbe7c2;
-  font-size: 1.25rem;
-  text-shadow: 0px 2px 4px rgba(0,0,0,0.6);
+.ltr-wood-button img:hover {
+  transform: scale(1.03);
 }
 
-/* MOBILE */
+/* Mobile adjustment */
 @media (max-width: 650px) {
-  .ltr-hero {
-    min-height: 500px;
-    background-position: center top; /* FIXES the RIGHT SHIFT */
-  }
-
-  .ltr-hero h1 {
-    font-size: 2rem;
-  }
-
-  .ltr-hero p {
-    font-size: 1.1rem;
-    width: 90%;
+  .ltr-wood-button img {
+    max-width: 240px; /* Slightly smaller on mobile */
   }
 }
