@@ -103,3 +103,11 @@
     max-width: 240px;  /* Slightly smaller on mobile */
   }
 }
+/* Stack LTR buttons vertically */
+.ltr-button-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
