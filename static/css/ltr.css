@@ -79,31 +79,62 @@
   color: #5b3b20;
   margin-bottom: 1.25rem;
 }
-/* ====================================
-   Western Wood Button (PNG Method)
-==================================== */
+/* ===============================
+   LTR WOODEN BUTTON (PNG SYSTEM)
+================================== */
 
 .ltr-button-list {
   list-style: none;
   padding: 0;
   margin: 2rem auto;
-  max-width: 750px;
+  max-width: 800px;
 }
 
 .ltr-button-list li {
-  margin: 1rem 0;
+  margin: 1.1rem 0;
 }
 
 .ltr-wood-button {
-  width: 100%;
-  height: auto;
   display: block;
-  border-radius: 6px;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35));
+  width: 100%;
+  min-height: 125px;
+
+  /* USE YOUR PNG AS BACKGROUND */
+  background-image: url("/static/img/LTR-Western-Integration/wood-button-saddle.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  /* Remove default link styles */
+  text-decoration: none;
+  color: #3a1e0c;
+
+  /* Western text style */
+  font-family: "Georgia", serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Add spacing */
+  padding: 1.2rem 2rem;
+
+  /* Hover effect */
   transition: transform 0.15s ease, filter 0.2s ease;
 }
 
-.ltr-button-list a:hover .ltr-wood-button {
-  transform: scale(1.02);
-  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45));
+.ltr-wood-button:hover {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .ltr-wood-button {
+    font-size: 1.2rem;
+    min-height: 100px;
+  }
 }
