@@ -79,24 +79,50 @@
   color: #5b3b20;
   margin-bottom: 1.25rem;
 }
-/* ===============================
-   LTR WOOD BUTTON — SIZE CONTROL
-=============================== */
+/* ============================================
+   LTR WOOD BUTTON SYSTEM — ONE COMPLETE BLOCK
+   ============================================ */
 
-.ltr-wood-button img {
-  width: 100%;
-  max-width: 260px;   /* <<< MUCH SMALLER */
-  height: auto;
-
-  display: block;
-  margin: 1.25rem auto;
-
-  transition: transform 0.2s ease, filter 0.2s ease;
-  image-rendering: crisp-edges;
+/* Container for buttons */
+.ltr-button-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem auto;
+  max-width: 300px;      /* keeps buttons narrow & centered */
+  display: flex;
+  flex-direction: column; 
+  gap: 1.25rem;
+  align-items: center;
 }
 
+/* Button wrapper */
+.ltr-wood-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Button image */
+.ltr-wood-button img {
+  width: 100%;
+  max-width: 180px;     /* <<< FINAL SIZE — adjust smaller if needed */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+
+  image-rendering: crisp-edges;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Hover effect */
+.ltr-wood-button img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+}
+
+/* Mobile scaling */
 @media (max-width: 650px) {
   .ltr-wood-button img {
-    max-width: 200px; /* mobile version */
+    max-width: 150px;  /* slightly smaller on phones */
   }
 }
