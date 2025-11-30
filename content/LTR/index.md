@@ -1,3 +1,5 @@
+## Collections
+
 <div class="ltr-button-list">
 
 <a class="ltr-button" href="/LTR/saddle-rings/">
@@ -29,3 +31,8 @@
 </a>
 
 </div>
+
+<p style="text-align:center; margin-top:1.5rem;">
+  More products will be added soon.<br>
+  For custom orders, wholesale pricing, or dealer access, contact us directly.
+</p>
