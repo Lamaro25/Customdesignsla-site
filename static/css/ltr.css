@@ -1,21 +1,77 @@
 /* ===============================
-   LTR WOOD BUTTON LIST
+   LTR HERO SECTION (Western Theme)
+================================== */
+.ltr-hero {
+  position: relative;
+  padding: 3rem 1.75rem;
+  text-align: center;
+  font-family: "Georgia", serif;
+
+  /* Hero Background */
+  background-image: url("/static/img/LTR-Western-Integration/IMG_1759.jpeg");
+  background-size: cover;        /* ⭐ Correct full banner */
+  background-position: center;   /* ⭐ No shifting */
+  background-repeat: no-repeat;
+
+  /* Color overlay for Western look */
+  background-color: rgba(80, 60, 40, 0.55);
+  background-blend-mode: multiply;
+
+  /* Western border + shadow */
+  border: 8px solid #8b5a2b;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  border-radius: 6px;
+
+  color: #fbe7c2;
+
+  max-width: 1200px;   /* ⭐ The size you liked */
+  margin: 2rem auto;
+}
+
+.ltr-hero h1 {
+  font-size: 2.6rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.ltr-hero p {
+  font-size: 1.2rem;
+  max-width: 850px;
+  margin: 0.5rem auto;
+}
+
+/* Mobile adjustments */
+@media (max-width: 650px) {
+  .ltr-hero {
+    padding: 2.5rem 1.25rem;
+  }
+  .ltr-hero h1 {
+    font-size: 1.9rem;
+  }
+  .ltr-hero p {
+    font-size: 1rem;
+  }
+}
+
+
+/* ===============================
+   LTR BUTTON LIST
 ================================== */
 .ltr-button-list {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.75rem;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
+
 /* ===============================
-   LTR WOOD BUTTON IMAGE SIZE
-   (The size you liked — restored)
+   LTR WOOD BUTTON SIZE (perfect)
 ================================== */
 .ltr-wood-button img {
   width: 100%;
-  max-width: 280px;   /* ⭐ Perfect size you liked */
+  max-width: 280px;   /* ⭐ The correct size */
   height: auto;
   display: block;
   margin: 1rem auto;
@@ -28,9 +84,9 @@
   transform: scale(1.03);
 }
 
-/* ============== MOBILE ============== */
+/* Mobile */
 @media (max-width: 650px) {
   .ltr-wood-button img {
-    max-width: 240px;  /* ⭐ Slightly smaller on mobile */
+    max-width: 240px;
   }
 }
