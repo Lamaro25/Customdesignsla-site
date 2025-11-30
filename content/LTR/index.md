@@ -1,9 +1,3 @@
-<!-- LTR HERO SECTION -->
-<div class="ltr-hero">
-  <h1>Lena’s Tack Room Collection (LTR)</h1>
-  <p>A hidden Western hardware division by Custom Designs LA. Available in Bronze & Sterling Silver.</p>
-</div>
-
 ## Collections
 
 <div class="ltr-button-list">
