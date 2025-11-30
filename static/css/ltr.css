@@ -7,17 +7,17 @@
   text-align: center;
   font-family: "Georgia", serif;
 
-  /* Hero Background (correct image path) */
+  /* Correct Hero Background */
   background-image: url("/static/img/LTR-Western-Integration/IMG_1759.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  /* Western Color Overlay */
+  /* Western Overlay Tint */
   background-color: rgba(80, 60, 40, 0.55);
   background-blend-mode: multiply;
 
-  /* Western Border + Shadows */
+  /* Western Border + Shadow */
   border: 8px solid #8b5a2b;
   box-shadow: 0 0 40px rgba(0,0,0,0.6);
   border-radius: 6px;
@@ -26,11 +26,15 @@
 
   max-width: 1100px;
   margin: 1.5rem auto;
+  min-height: 300px; /* Ensures banner shows on mobile */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Better hero text spacing */
+/* Hero Text */
 .ltr-hero h1 {
-  font-size: 2rem;
+  font-size: 1.9rem;
   line-height: 1.2;
   margin-bottom: 0.75rem;
 }
@@ -39,22 +43,22 @@
   font-size: 1rem;
   max-width: 90%;
   margin: 0 auto;
+  margin-top: 0.25rem;
 }
 
 /* Desktop Optimization */
 @media (min-width: 900px) {
   .ltr-hero {
     padding: 4rem 2rem;
-    background-size: cover;
-    background-position: center;
+    min-height: 420px; /* Taller, premium banner */
   }
 
   .ltr-hero h1 {
-    font-size: 2.6rem;
+    font-size: 2.8rem;
   }
 
   .ltr-hero p {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -65,8 +69,8 @@
 .ltr-collections {
   max-width: 1000px;
   margin: 2rem auto;
-  padding: 1.75rem 1.25rem;
-  background: #fff;
+  padding: 2rem 1.25rem;
+  background: #ffffff;
   border-radius: 10px;
   border: 3px solid #b88954;
   box-shadow: 0 5px 20px rgba(0,0,0,0.15);
@@ -77,7 +81,7 @@
   font-family: "Georgia", serif;
   font-size: 2rem;
   color: #5b3b20;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 
@@ -98,18 +102,17 @@
 .ltr-button-list a {
   display: block;
   width: 100%;
-  padding: 0.9rem 1rem;
+  padding: 1rem 1.25rem;
 
   font-family: "Georgia", serif;
   font-size: 1.1rem;
   font-weight: 600;
-
   text-align: center;
-  text-decoration: none;
 
   color: #5b4632;
-  background: #f9e5c2;
+  text-decoration: none;
 
+  background: #f9e5c2;
   border: 3px solid #b88954;
   border-radius: 8px;
 
