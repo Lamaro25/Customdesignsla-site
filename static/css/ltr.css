@@ -1,97 +1,65 @@
 /* ===============================
-   FULL-PAGE LTR HERO SECTION
+   LTR HERO — PERFECT FULL HERO
 ================================== */
 .ltr-hero {
   position: relative;
   width: 100%;
-  min-height: 100vh; /* Full screen height */
-  padding: 4rem 1.25rem 2rem 1.25rem;
-  text-align: center;
-  font-family: "Georgia", serif;
+  max-width: 1400px;
+  margin: 2rem auto;
 
-  /* Hero Background */
+  /* Full-size background */
   background-image: url("/static/img/LTR-Western-Integration/IMG_1759.jpeg");
   background-size: cover;
-  background-position: center top;
   background-repeat: no-repeat;
+  background-position: center center;
 
-  /* Western Color Overlay */
-  background-color: rgba(80, 60, 40, 0.55);
-  background-blend-mode: multiply;
+  /* REMOVE blur — blend mode creates blur */
+  background-color: transparent;
+  background-blend-mode: normal;
 
-  /* Western Border + Shadows */
+  /* Hero height */
+  min-height: 450px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* Clean border */
   border: 8px solid #8b5a2b;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6);
-  border-radius: 6px;
+  border-radius: 10px;
+  overflow: hidden;
 
-  color: #fbe7c2;
-
-  max-width: 1100px;
-  margin: 1.5rem auto;
+  box-shadow: 0 0 40px rgba(0,0,0,0.25);
 }
 
-/* Hero text */
+/* Text */
 .ltr-hero h1 {
+  color: #fbe7c2;
   font-size: 2.6rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0px 3px 6px rgba(0,0,0,0.55);
 }
 
 .ltr-hero p {
-  font-size: 1.2rem;
-  max-width: 700px;
-  margin: 0.5rem auto 2rem auto;
+  color: #fbe7c2;
+  font-size: 1.25rem;
+  text-shadow: 0px 2px 4px rgba(0,0,0,0.6);
 }
 
-/* Desktop Optimization */
-@media (min-width: 900px) {
+/* MOBILE */
+@media (max-width: 650px) {
   .ltr-hero {
-    padding: 5rem 2rem 3rem 2rem;
+    min-height: 500px;
+    background-position: center top; /* FIXES the RIGHT SHIFT */
   }
 
   .ltr-hero h1 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .ltr-hero p {
-    font-size: 1.3rem;
-  }
-}
-
-
-/* ===============================
-   COLLECTION BUTTON LIST
-================================== */
-.ltr-button-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.75rem;
-  margin-top: 1rem;
-}
-
-
-/* ===============================
-   LTR WOOD BUTTON STYLING
-================================== */
-.ltr-wood-button img {
-  width: 100%;
-  max-width: 280px;
-  height: auto;
-  display: block;
-  margin: 1rem auto;
-  image-rendering: crisp-edges;
-  filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.35));
-  transition: transform 0.2s ease;
-}
-
-.ltr-wood-button img:hover {
-  transform: scale(1.03);
-}
-
-/* Mobile size */
-@media (max-width: 650px) {
-  .ltr-wood-button img {
-    max-width: 240px; /* ✔ FIXED missing semicolon */
+    font-size: 1.1rem;
+    width: 90%;
   }
 }
