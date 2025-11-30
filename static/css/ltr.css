@@ -79,11 +79,10 @@
   color: #5b3b20;
   margin-bottom: 1.25rem;
 }
-
-
 /* ===============================
-   WESTERN BUTTON LIST
+   WESTERN BUTTON LIST — BURNT WOOD STYLE
 ================================== */
+
 .ltr-button-list {
   list-style: none;
   padding: 0;
@@ -92,33 +91,45 @@
 }
 
 .ltr-button-list li {
-  margin: 0.75rem 0;
+  margin: 1rem 0;
 }
 
+/* BUTTON: Burnt Wood Style */
 .ltr-button-list a {
   display: block;
   width: 100%;
-  padding: 0.9rem 1rem;
+  padding: 1.25rem 1rem;
 
   font-family: "Georgia", serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   text-align: center;
   text-decoration: none;
 
-  color: #5b4632;
-  background: #f9e5c2;
+  /* Light wood base */
+  background: #e9d3a6;
 
-  border: 3px solid #b88954;
-  border-radius: 8px;
+  /* Burnt wood edges (inner + outer shadows) */
+  border: 4px solid #8b5a2b;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 0 12px rgba(0,0,0,0.45),
+    inset 0 0 30px rgba(139,90,43,0.35),
+    0 6px 15px rgba(0,0,0,0.25);
 
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-  transition: 0.2s ease;
+  color: #4a2e12;
+
+  transition: 0.25s ease;
 }
 
+/* HOVER: Darkened burnt edges */
 .ltr-button-list a:hover {
-  background: #e6c596;
-  border-color: #a37645;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  background: #e2c997;
+  border-color: #6e441f;
+  box-shadow:
+    inset 0 0 18px rgba(0,0,0,0.55),
+    inset 0 0 40px rgba(139,90,43,0.45),
+    0 8px 20px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
 }
