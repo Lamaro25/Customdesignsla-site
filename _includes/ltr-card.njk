@@ -1,55 +1,56 @@
-<div class="ltr-card">
+<a href="{{ url }}" class="ltr-card">
+
+  <!-- IMAGE SLOT -->
   <div class="ltr-card-image">
-    {% if images and images[0] %}
-      <img src="{{ images[0] }}" alt="{{ title }}">
+    {% if image %}
+      <img src="{{ image }}" alt="{{ title }}">
     {% else %}
       <div class="ltr-placeholder">Image Coming Soon</div>
     {% endif %}
   </div>
 
+  <!-- TEXT -->
   <div class="ltr-card-text">
     <h3>{{ title }}</h3>
     {% if price %}
       <p>${{ price }} USD</p>
     {% endif %}
   </div>
-</div>
+
+</a>
 
 <style>
 .ltr-card {
   width: 100%;
-  max-width: 360px;
-  aspect-ratio: 1 / 1.2;
+  max-width: 340px;
   background-image: url("/static/img/LTR-Western-Integration/ltr-card-frame.png");
   background-size: cover;
   background-position: center;
-  padding: 1.2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: center;
+  text-decoration: none;
+}
+
+.ltr-card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ltr-card-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 6px;
 }
 
 .ltr-card-text {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   text-align: center;
   font-family: "Georgia", serif;
   color: #4a2e13;
-}
-
-.ltr-card-text h3 {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.ltr-card-text p {
-  font-size: 1rem;
-  margin-top: 0.3rem;
 }
 </style>
