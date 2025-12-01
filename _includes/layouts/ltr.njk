@@ -2,18 +2,27 @@
 
 {% block head %}
   {{ super() }}
-  <link rel="stylesheet" href="/static/LTR/css/ltr.css">
+  <link rel="stylesheet" href="/static/css/ltr.css">
 {% endblock %}
 
 {% block content %}
-  <div class="ltr-hero">
-    <img class="ltr-bg" src="/static/LTR/img/ltr-bg.webp" alt="LTR Western Background">
 
+  <!-- HERO SECTION (CSS Background Only — NO IMG TAG) -->
+  <div class="ltr-hero">
     <h1>{{ title }}</h1>
     <p><em>{{ description }}</em></p>
-
-    <div class="ltr-buttons">
-      {{ content | safe }}
-    </div>
   </div>
+
+  <!-- COLLECTIONS SECTION BELOW HERO -->
+  <section class="ltr-collections">
+
+    <h2>Collections</h2>
+
+    <!-- Western Button List -->
+    <ul class="ltr-button-list">
+      {{ content | safe }}
+    </ul>
+
+  </section>
+
 {% endblock %}
