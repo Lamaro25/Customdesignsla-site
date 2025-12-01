@@ -1,23 +1,27 @@
 ---
 title: "Signature Cowboy Hat Picks"
 layout: "base.njk"
-tags: ["cowboy_hat_picks_page"]
+tags:
+  - cowboy_hat_picks_page
 permalink: "/ltr/cowboy-hat-picks/"
 ---
 
-# Signature Cowboy Hat Picks
-Available in **Bronze & Sterling Silver**
+<h1>Signature Cowboy Hat Picks</h1>
 
-$75 Bronze  
-$150 Sterling Silver  
+<p>Available in <strong>Bronze &amp; Sterling Silver</strong></p>
+
+<p>
+$75 Bronze<br>
+$150 Sterling Silver<br>
 11 unique designs available
+</p>
 
 <div class="product-grid">
 {% for item in collections.cowboy_hat_picks %}
   {% include "ltr-card.njk" with {
     title: item.data.title,
     price: item.data.price,
-    image: item.data.images[0],
+    image: item.data.images and item.data.images[0] or null,
     url: item.url
   } %}
 {% endfor %}
