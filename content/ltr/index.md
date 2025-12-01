@@ -1,3 +1,9 @@
+---
+title: "Lena’s Tack Room (LTR)"
+layout: "base.njk"
+permalink: "/ltr/index.html"
+---
+
 <div class="ltr-hero">
   <h1>Lena’s Tack Room Collection (LTR)</h1>
 
