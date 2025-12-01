@@ -40,7 +40,7 @@ module.exports = function (eleventyConfig) {
   // LTR — Cowboy Hat Pick Collection
   // ------------------------------
  // LTR — Cowboy Hat Pick Collection
-eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
+eleventyConfig.addCollection("cowboy_hat_picks", function(collectionApi) {
   return collectionApi.getFilteredByGlob("content/LTR/cowboy-hat-picks/hat_pick_collection_cms/*.md");
 });
 
