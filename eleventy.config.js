@@ -41,7 +41,8 @@ module.exports = function (eleventyConfig) {
   // The tag "cowboy_hat_picks" is used in the frontmatter
   // This guarantees Eleventy registers the collection.
   // ------------------------------
-  eleventyConfig.addCollection("cowboy_hat_picks", function(collectionApi) {
+  // LTR — Cowboy Hat Pick Collection
+eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
   return collectionApi.getFilteredByGlob("content/LTR/cowboy-hat-picks/*.md");
 });
 
