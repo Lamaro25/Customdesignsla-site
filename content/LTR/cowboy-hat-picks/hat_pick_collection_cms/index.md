@@ -1,3 +1,9 @@
+---
+title: "Signature Cowboy Hat Picks"
+layout: "base.njk"
+permalink: "/LTR/cowboy-hat-picks/index.html"
+---
+
 # Signature Cowboy Hat Picks  
 Available in **Bronze & Sterling Silver**
 
