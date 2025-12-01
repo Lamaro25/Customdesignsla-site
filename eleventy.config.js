@@ -30,19 +30,20 @@ module.exports = function (eleventyConfig) {
   });
 
   // ------------------------------
-  // PRODUCT COLLECTIONS (BY TAG)
+  // PRODUCT COLLECTIONS (EXISTING)
   // ------------------------------
   eleventyConfig.addCollection("cuban-link", function (collectionApi) {
     return collectionApi.getFilteredByTag("cuban-link");
   });
 
   // ------------------------------
-  // LTR — Cowboy Hat Pick Collection
+  // ** FIXED — Cowboy Hat Pick Collection **
+  // The tag "cowboy_hat_picks" is used in the frontmatter
+  // This guarantees Eleventy registers the collection.
   // ------------------------------
- // LTR — Cowboy Hat Pick Collection
-eleventyConfig.addCollection("cowboy_hat_picks", function(collectionApi) {
-  return collectionApi.getFilteredByGlob("content/LTR/cowboy-hat-picks/hat_pick_collection_cms/*.md");
-});
+  eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
+    return collectionApi.getFilteredByTag("cowboy_hat_picks");
+  });
 
   // ------------------------------
   // GLOBAL COMPUTED DATA
@@ -51,7 +52,7 @@ eleventyConfig.addCollection("cowboy_hat_picks", function(collectionApi) {
     permalink: (data) => {
       const path = data.page.filePathStem || "";
 
-      // Rings (individual product pages)
+      // Rings
       if (path.includes("content/rings/")) {
         const cleanPath = path.replace("content/", "");
         return `/${cleanPath}/index.html`;
@@ -75,14 +76,14 @@ eleventyConfig.addCollection("cowboy_hat_picks", function(collectionApi) {
         return `/${cleanPath}/index.html`;
       }
 
-      // Let other content follow whatever permalink is defined
+      // Allow other markdown files to control their own permalink
       return data.permalink;
     },
 
     layout: (data) => {
       const path = data.page.filePathStem || "";
 
-      // Product layout assignment
+      // Product layout auto-switch
       if (
         path.includes("content/rings/") ||
         path.includes("content/bracelets/") ||
