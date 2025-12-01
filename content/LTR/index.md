@@ -1,6 +1,6 @@
 ---
 title: "Lena’s Tack Room (LTR)"
-layout: "base.njk"
+layout: "base"
 permalink: "/LTR/index.html"
 ---
 
