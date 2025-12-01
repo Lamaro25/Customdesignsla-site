@@ -39,9 +39,10 @@ module.exports = function (eleventyConfig) {
   // ------------------------------
   // LTR — Cowboy Hat Pick Collection
   // ------------------------------
-  eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("content/ltr/hat-picks/*.md");
-  });
+ // LTR — Cowboy Hat Pick Collection
+eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
+  return collectionApi.getFilteredByGlob("content/LTR/cowboy-hat-picks/hat_pick_collection_cms/*.md");
+});
 
   // ------------------------------
   // GLOBAL COMPUTED DATA
