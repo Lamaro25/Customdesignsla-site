@@ -11,31 +11,31 @@
 
   <div class="ltr-button-list">
 
-    <a class="ltr-wood-button" href="/LTR/saddle-rings/">
+    <a class="ltr-wood-button" href="/ltr/saddle-rings/">
       <img src="/static/img/LTR-Western-Integration/button-saddle-ring-series.png">
     </a>
 
-    <a class="ltr-wood-button" href="/LTR/spur-buckles/">
+    <a class="ltr-wood-button" href="/ltr/spur-buckles/">
       <img src="/static/img/LTR-Western-Integration/button-western-spur-strap.png">
     </a>
 
-    <a class="ltr-wood-button" href="/LTR/conchos/">
+    <a class="ltr-wood-button" href="/ltr/conchos/">
       <img src="/static/img/LTR-Western-Integration/button-concho-collection.png">
     </a>
 
-    <a class="ltr-wood-button" href="/LTR/cowboy-hat-picks/">
+    <a class="ltr-wood-button" href="/ltr/cowboy-hat-picks/">
       <img src="/static/img/LTR-Western-Integration/button-cowboy-hat-picks.png">
     </a>
 
-    <a class="ltr-wood-button" href="/LTR/flank-buckles/">
+    <a class="ltr-wood-button" href="/ltr/flank-buckles/">
       <img src="/static/img/LTR-Western-Integration/button-flank-buckle.png">
     </a>
 
-    <a class="ltr-wood-button" href="/LTR/ranch-brand-stamps/">
+    <a class="ltr-wood-button" href="/ltr/ranch-brand-stamps/">
       <img src="/static/img/LTR-Western-Integration/button-mini-ranch-brand.png">
     </a>
 
-    <a class="ltr-wood-button" href="/LTR/horn-knots/">
+    <a class="ltr-wood-button" href="/ltr/horn-knots/">
       <img src="/static/img/LTR-Western-Integration/button-horn-knot.png">
     </a>
 
