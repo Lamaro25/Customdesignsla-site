@@ -37,6 +37,13 @@ module.exports = function (eleventyConfig) {
   });
 
   // ------------------------------
+  // LTR — Cowboy Hat Pick Collection
+  // ------------------------------
+  eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
+    return collectionApi.getFilteredByGlob("content/ltr/hat-picks/*.md");
+  });
+
+  // ------------------------------
   // GLOBAL COMPUTED DATA
   // ------------------------------
   eleventyConfig.addGlobalData("eleventyComputed", {
@@ -44,9 +51,7 @@ module.exports = function (eleventyConfig) {
       const path = data.page.filePathStem || "";
 
       // Rings (individual product pages)
-      // Example: content/rings/cuban-link/cl-001... → /rings/cuban-link/cl-001/index.html
       if (path.includes("content/rings/")) {
-        // Use the folder structure as part of the permalink
         const cleanPath = path.replace("content/", "");
         return `/${cleanPath}/index.html`;
       }
@@ -63,19 +68,20 @@ module.exports = function (eleventyConfig) {
         return `/${cleanPath}/index.html`;
       }
 
-      // Bronze
+      // Bronze Age
       if (path.includes("content/bronze")) {
         const cleanPath = path.replace("content/", "");
         return `/${cleanPath}/index.html`;
       }
 
+      // Let other content follow whatever permalink is defined
       return data.permalink;
     },
 
     layout: (data) => {
       const path = data.page.filePathStem || "";
 
-      // Any product page inside these folders uses product.njk
+      // Product layout assignment
       if (
         path.includes("content/rings/") ||
         path.includes("content/bracelets/") ||
@@ -85,7 +91,7 @@ module.exports = function (eleventyConfig) {
         return "product.njk";
       }
 
-      // Default fallback layout
+      // Default fallback
       return data.layout || "base.njk";
     },
   });
