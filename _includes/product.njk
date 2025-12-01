@@ -1,8 +1,6 @@
----
-title: "{{ title }}"
-layout: "base.njk"
----
+{% extends "base.njk" %}
 
+{% block content %}
 <section class="product-page">
   <div class="container mx-auto px-4 py-10">
     <div class="grid md:grid-cols-2 gap-10">
@@ -49,3 +47,4 @@ layout: "base.njk"
     </div>
   </div>
 </section>
+{% endblock %}
