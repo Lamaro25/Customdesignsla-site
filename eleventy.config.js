@@ -6,10 +6,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget(".");
 
   // ------------------------------
-  // LAYOUT ALIASES
+  // LAYOUT ALIASES (FIXED)
   // ------------------------------
-  eleventyConfig.addLayoutAlias("category", "category.njk");
   eleventyConfig.addLayoutAlias("base", "base.njk");
+  eleventyConfig.addLayoutAlias("category", "category.njk");
   eleventyConfig.addLayoutAlias("product", "product.njk");
 
   // ------------------------------
@@ -28,14 +28,14 @@ module.exports = function (eleventyConfig) {
   });
 
   // ------------------------------
-  // PRODUCT COLLECTIONS
+  // PRODUCT COLLECTIONS (EXISTING)
   // ------------------------------
   eleventyConfig.addCollection("cuban-link", function (collectionApi) {
     return collectionApi.getFilteredByTag("cuban-link");
   });
 
   // ------------------------------
-  // ** FIXED — Cowboy Hat Pick Collection **
+  // LTR — Cowboy Hat Pick Collection (FIXED)
   // ------------------------------
   eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
     return collectionApi.getFilteredByGlob("content/LTR/cowboy-hat-picks/*.md");
@@ -46,38 +46,41 @@ module.exports = function (eleventyConfig) {
   // ------------------------------
   eleventyConfig.addGlobalData("eleventyComputed", {
 
-    // ----- PERMALINK CONTROLLER -----
     permalink: (data) => {
       const path = data.page.filePathStem || "";
 
       // Rings
       if (path.includes("content/rings/")) {
-        return `/${path.replace("content/", "")}/index.html`;
+        const cleanPath = path.replace("content/", "");
+        return `/${cleanPath}/index.html`;
       }
 
       // Bracelets
-      if (path.includes("content/bracelets")) {
-        return `/${path.replace("content/", "")}/index.html`;
+      if (path.includes("content/bracelets/")) {
+        const cleanPath = path.replace("content/", "");
+        return `/${cleanPath}/index.html`;
       }
 
       // Charms
-      if (path.includes("content/charms")) {
-        return `/${path.replace("content/", "")}/index.html`;
+      if (path.includes("content/charms/")) {
+        const cleanPath = path.replace("content/", "");
+        return `/${cleanPath}/index.html`;
       }
 
       // Bronze
-      if (path.includes("content/bronze")) {
-        return `/${path.replace("content/", "")}/index.html`;
+      if (path.includes("content/bronze/")) {
+        const cleanPath = path.replace("content/", "");
+        return `/${cleanPath}/index.html`;
       }
 
-      // Otherwise follow frontmatter permalink
+      // All other files use their own permalink
       return data.permalink;
     },
 
-    // ----- LAYOUT AUTO-SELECTION -----
     layout: (data) => {
       const path = data.page.filePathStem || "";
 
+      // Assign product layout automatically for product directories
       if (
         path.includes("content/rings/") ||
         path.includes("content/bracelets/") ||
@@ -87,6 +90,7 @@ module.exports = function (eleventyConfig) {
         return "product.njk";
       }
 
+      // Default fallback
       return data.layout || "base.njk";
     },
   });
