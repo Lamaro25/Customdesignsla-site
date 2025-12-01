@@ -1,4 +1,5 @@
 module.exports = function (eleventyConfig) {
+
   // ------------------------------
   // WATCH ALL FILES
   // ------------------------------
@@ -8,11 +9,8 @@ module.exports = function (eleventyConfig) {
   // LAYOUT ALIASES
   // ------------------------------
   eleventyConfig.addLayoutAlias("category", "category.njk");
-  eleventyConfig.addLayoutAlias("layouts/category.njk", "category.njk");
   eleventyConfig.addLayoutAlias("base", "base.njk");
-  eleventyConfig.addLayoutAlias("layouts/base.njk", "base.njk");
   eleventyConfig.addLayoutAlias("product", "product.njk");
-  eleventyConfig.addLayoutAlias("layouts/product.njk", "product.njk");
 
   // ------------------------------
   // PASSTHROUGH FILES
@@ -30,7 +28,7 @@ module.exports = function (eleventyConfig) {
   });
 
   // ------------------------------
-  // PRODUCT COLLECTIONS (EXISTING)
+  // PRODUCT COLLECTIONS
   // ------------------------------
   eleventyConfig.addCollection("cuban-link", function (collectionApi) {
     return collectionApi.getFilteredByTag("cuban-link");
@@ -38,53 +36,48 @@ module.exports = function (eleventyConfig) {
 
   // ------------------------------
   // ** FIXED — Cowboy Hat Pick Collection **
-  // The tag "cowboy_hat_picks" is used in the frontmatter
-  // This guarantees Eleventy registers the collection.
   // ------------------------------
-  // LTR — Cowboy Hat Pick Collection
-eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
-  return collectionApi.getFilteredByGlob("content/LTR/cowboy-hat-picks/*.md");
-});
+  eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
+    return collectionApi.getFilteredByGlob("content/LTR/cowboy-hat-picks/*.md");
+  });
 
   // ------------------------------
   // GLOBAL COMPUTED DATA
   // ------------------------------
   eleventyConfig.addGlobalData("eleventyComputed", {
+
+    // ----- PERMALINK CONTROLLER -----
     permalink: (data) => {
       const path = data.page.filePathStem || "";
 
       // Rings
       if (path.includes("content/rings/")) {
-        const cleanPath = path.replace("content/", "");
-        return `/${cleanPath}/index.html`;
+        return `/${path.replace("content/", "")}/index.html`;
       }
 
       // Bracelets
       if (path.includes("content/bracelets")) {
-        const cleanPath = path.replace("content/", "");
-        return `/${cleanPath}/index.html`;
+        return `/${path.replace("content/", "")}/index.html`;
       }
 
       // Charms
       if (path.includes("content/charms")) {
-        const cleanPath = path.replace("content/", "");
-        return `/${cleanPath}/index.html`;
+        return `/${path.replace("content/", "")}/index.html`;
       }
 
-      // Bronze Age
+      // Bronze
       if (path.includes("content/bronze")) {
-        const cleanPath = path.replace("content/", "");
-        return `/${cleanPath}/index.html`;
+        return `/${path.replace("content/", "")}/index.html`;
       }
 
-      // Allow other markdown files to control their own permalink
+      // Otherwise follow frontmatter permalink
       return data.permalink;
     },
 
+    // ----- LAYOUT AUTO-SELECTION -----
     layout: (data) => {
       const path = data.page.filePathStem || "";
 
-      // Product layout auto-switch
       if (
         path.includes("content/rings/") ||
         path.includes("content/bracelets/") ||
@@ -94,7 +87,6 @@ eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
         return "product.njk";
       }
 
-      // Default fallback
       return data.layout || "base.njk";
     },
   });
