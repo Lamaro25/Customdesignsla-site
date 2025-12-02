@@ -1,7 +1,7 @@
 ---
 title: "Charms"
-layout: base.njk
-permalink: charms/index.html
+layout: "base.njk"
+permalink: "/charms/index.html"
 category: "Charms"
 ---
 
