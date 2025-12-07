@@ -255,3 +255,48 @@ footer.site-footer {
 .text-center {
   text-align: center;
 }
+/* ===== Homepage Premium Slider ===== */
+
+.home-slider {
+  width: 100%;
+  max-width: 900px;
+  margin: 25px auto 40px auto;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.4s ease;
+  touch-action: pan-y;
+}
+
+.slider-track img {
+  width: 100%;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+/* Dots */
+.slider-dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.slider-dots .dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.slider-dots .dot.active {
+  background-color: #333;
+}
