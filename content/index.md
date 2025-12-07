@@ -5,6 +5,16 @@ description: "Handcrafted rings, charms, bracelets, and custom pieces made in Te
 permalink: /
 ---
 
+<!-- ============================
+     HOMEPAGE IMAGE SLIDER
+============================= -->
+<div class="homepage-slider">
+  <div class="slider-track">
+    <!-- Images will be injected by JS -->
+  </div>
+  <div class="slider-dots"></div>
+</div>
+
 <main class="section">
   <h2>Welcome to Custom Design’s LA</h2>
 
