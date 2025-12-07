@@ -9,7 +9,7 @@ permalink: /
   <h2>Welcome to Custom Design’s LA</h2>
 
   <p>
-    What began in 2021 as a simple idea, learning to cast metal and create meaningful pieces, has grown into a handcrafted jewelry brand built from the ground up in Del Rio, Texas.
+    What began in 2021 as a simple idea — learning to cast metal and create meaningful pieces — has grown into a handcrafted jewelry brand built from the ground up in Del Rio, Texas.
   </p>
 
   <p>
@@ -17,6 +17,6 @@ permalink: /
   </p>
 
   <p>
-    Custom Design’s LA is more than jewelry. It is craftsmanship, story, and legacy woven into every piece. Thank you for being a part of this journey, Del Rio, and welcome to the rest of the world.
+    Custom Design’s LA is more than jewelry. It is craftsmanship, story, and legacy woven into every piece. Thank you for being a part of this journey, Del Rio — and welcome to the rest of the world.
   </p>
 </main>
