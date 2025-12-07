@@ -1,11 +1,14 @@
 /* ==========================================================
-   Custom Designs LA — Unified Production Stylesheet
+   Custom Design’s LA — Unified Production Stylesheet
    Updated: Dec 2025
-   Purpose: Global layout + header + premium button bar +
-            product display styling
+   Purpose:
+   • Global layout
+   • Header + premium metal button bar
+   • Homepage slider
+   • Product display
    ========================================================== */
 
-/* === Global Reset & Base === */
+/* === GLOBAL RESET & BASE === */
 body {
   font-family: "Segoe UI", sans-serif;
   margin: 0;
@@ -14,11 +17,11 @@ body {
   color: #222;
 }
 
-/* === Header Styling === */
+/* === HEADER STYLING === */
 header.site-header {
   background: #fff;
   color: #111;
-  padding: 0.75rem 1rem 0 1rem; /* top padding reduced for button bar alignment */
+  padding: 0.75rem 1rem 0 1rem;
   border-bottom: 1px solid #e5e5e5;
   position: sticky;
   top: 0;
@@ -57,7 +60,7 @@ header img {
   max-width: 180px;
 }
 
-/* === Standard Navigation Text (legacy) === */
+/* Legacy text nav (hidden but preserved in layout) */
 nav {
   display: flex;
   flex-wrap: wrap;
@@ -69,7 +72,7 @@ nav a {
   color: #111;
   font-weight: 500;
   text-decoration: none;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.2s;
 }
 
 nav a:hover {
@@ -77,7 +80,7 @@ nav a:hover {
 }
 
 /* ==========================================================
-      PREMIUM METAL BUTTON BAR — FINAL WORKING VERSION
+      PREMIUM METAL BUTTON BAR — FINAL VERSION
    ========================================================== */
 .top-button-bar {
   display: flex;
@@ -89,27 +92,22 @@ nav a:hover {
   margin-bottom: 1rem;
 }
 
-/* Base button sizing */
+/* All category buttons (Rings, Charms, etc.) */
 .top-button-bar img {
-  height: 56px;     /* Uniform height for all */
-  width: auto;      /* Natural width preserved */
+  height: 56px;     /* Uniform height */
+  width: auto;      /* Preserve natural width */
   object-fit: contain;
   display: block;
 }
 
-/* Bronze fix — same height, natural width */
-.top-button-bar img[alt="Bronze"] {
-  height: 56px !important;
-  width: auto !important;
-}
-
-/* Cart fix — stays short but same height */
+/* Bronze & Cart — ensure consistent height */
+.top-button-bar img[alt="Bronze"],
 .top-button-bar img[alt="Cart"] {
   height: 56px !important;
   width: auto !important;
 }
 
-/* Mobile tweaks */
+/* Mobile adjustments */
 @media (max-width: 700px) {
   .top-button-bar {
     gap: 1rem;
@@ -118,14 +116,77 @@ nav a:hover {
   }
 }
 
-/* === Main Content === */
+/* ==========================================================
+      HOMEPAGE IMAGE SLIDER — PREMIUM CDLA VERSION
+   ========================================================== */
+.homepage-slider {
+  width: 100%;
+  max-width: 650px;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #000;
+  position: relative;
+  box-shadow: 0 0 25px rgba(0,0,0,0.25);
+}
+
+.slider-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.45s ease-in-out;
+}
+
+.slider-track img {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Dots under slider */
+.slider-dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.slider-dots span {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin: 4px;
+  border-radius: 50%;
+  background: #bbb;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.slider-dots .active {
+  background: #333;
+  transform: scale(1.2);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 700px) {
+  .homepage-slider {
+    max-width: 95%;
+    border-radius: 12px;
+  }
+}
+
+/* ==========================================================
+      MAIN CONTENT
+   ========================================================== */
 main {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-/* === Product Grid === */
+/* ==========================================================
+      PRODUCT GRID
+   ========================================================== */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -139,12 +200,12 @@ main {
   border-radius: 10px;
   padding: 15px;
   text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: 0.2s transform, 0.2s box-shadow;
 }
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .product-card img {
@@ -153,7 +214,9 @@ main {
   border-radius: 8px;
 }
 
-/* === Buttons & Inputs === */
+/* ==========================================================
+      FORM BUTTONS + INPUTS
+   ========================================================== */
 button,
 select,
 input {
@@ -174,7 +237,9 @@ button:hover {
   background: #555;
 }
 
-/* === Footer === */
+/* ==========================================================
+      FOOTER
+   ========================================================== */
 footer.site-footer {
   text-align: center;
   font-size: 0.85rem;
@@ -184,7 +249,9 @@ footer.site-footer {
   background: #fafafa;
 }
 
-/* === Utilities === */
+/* ==========================================================
+      UTILITIES
+   ========================================================== */
 .text-center {
   text-align: center;
 }
