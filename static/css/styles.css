@@ -76,40 +76,45 @@ nav a:hover {
   color: #555;
 }
 
-/* === PREMIUM SMALL METAL BUTTON BAR === */
+/* ==========================================================
+      PREMIUM METAL BUTTON BAR — FINAL WORKING VERSION
+   ========================================================== */
 .top-button-bar {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  padding: 0.75rem 0 0.5rem 0;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-/* Each button uses a metal PNG, natural width preserved */
+/* Base button sizing */
 .top-button-bar img {
-  height: 48px;       /* Uniform height for all buttons */
-  width: auto;        /* Allow natural width (Cart PNG is naturally shorter) */
+  height: 56px;     /* Uniform height for all */
+  width: auto;      /* Natural width preserved */
   object-fit: contain;
   display: block;
 }
 
-/* Specific fix for bronze button if PNG was irregular */
+/* Bronze fix — same height, natural width */
 .top-button-bar img[alt="Bronze"] {
-  height: 48px !important;
+  height: 56px !important;
   width: auto !important;
 }
 
-/* Cart button rule — same height, naturally shorter frame */
+/* Cart fix — stays short but same height */
 .top-button-bar img[alt="Cart"] {
-  height: 48px !important;
+  height: 56px !important;
   width: auto !important;
 }
 
-/* --- Mobile stack for button bar --- */
+/* Mobile tweaks */
 @media (max-width: 700px) {
   .top-button-bar {
-    gap: 0.6rem;
-    padding: 0.5rem 0 0.5rem;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
   }
 }
 
