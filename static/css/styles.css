@@ -4,7 +4,7 @@
    Purpose:
    • Global layout
    • Header + premium metal button bar
-   • Homepage slider
+   • Homepage MULTI-IMAGE slider (NEW)
    • Product display
 ========================================================== */
 
@@ -99,14 +99,12 @@ nav a:hover {
   display: block;
 }
 
-/* Bronze & Cart consistency */
 .top-button-bar img[alt="Bronze"],
 .top-button-bar img[alt="Cart"] {
   height: 56px !important;
   width: auto !important;
 }
 
-/* Mobile spacing */
 @media (max-width: 700px) {
   .top-button-bar {
     gap: 1rem;
@@ -116,16 +114,20 @@ nav a:hover {
 }
 
 /* ==========================================================
-   HOMEPAGE PREMIUM SLIDER — FINAL CONSOLIDATED VERSION
+   HOMEPAGE MULTI-IMAGE SLIDER (NEW SYSTEM)
+   • Ensures all images same size
+   • Shows 4 per view (2 mobile)
+   • Crops evenly with object-fit: cover
 ========================================================== */
+
 .homepage-slider {
   width: 100%;
   max-width: 900px;
-  margin: 40px auto;        /* Correct spacing above & below */
+  margin: 40px auto;
   overflow: hidden;
   position: relative;
-  border-radius: 12px;
   background: #000;
+  border-radius: 12px;
   box-shadow: 0 0 25px rgba(0,0,0,0.25);
 }
 
@@ -135,20 +137,33 @@ nav a:hover {
   touch-action: pan-y;
 }
 
-.slider-track img {
+/* Slides: 4 per view desktop */
+.slider-slide {
+  min-width: 25%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.slider-slide img {
   width: 100%;
-  height: auto;
-  flex-shrink: 0;
+  height: 100%;
   object-fit: cover;
   user-select: none;
   -webkit-user-drag: none;
-  border-radius: 12px;
 }
 
-/* Slider navigation dots */
+/* Mobile: show 2 per view */
+@media (max-width: 700px) {
+  .slider-slide {
+    min-width: 50%;
+    height: 220px;
+  }
+}
+
+/* Slider dots */
 .slider-dots {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .slider-dots span {
@@ -167,7 +182,7 @@ nav a:hover {
   transform: scale(1.2);
 }
 
-/* Mobile slider refinement */
+/* Mobile spacing around slider */
 @media (max-width: 700px) {
   .homepage-slider {
     max-width: 95%;
