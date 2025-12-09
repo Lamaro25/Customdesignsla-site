@@ -1,132 +1,69 @@
-/* ==========================================================
-   Custom Designs LA — Responsive Multi-Image Slider
-   Desktop: shows 3 images at a time
-   Mobile: shows 1 image at a time
-   Supports swipe, dots, and dynamic slide groups
-========================================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
+
+  // ---- 1. LIST OF IMAGES ----
+  const imageFiles = [
+    "IMG_0816.jpg",
+    "IMG_0817.jpg",
+    "Photoroom_000_20250116_153758.JPG",
+    "Photoroom_000_20250306_160221.JPG",
+    "Photoroom_000_20250424_164308.JPEG",
+    "Photoroom_001_20240816_174919 2.JPG",
+    "Photoroom_001_20250116_153758.JPG",
+    "Photoroom_003_20250216_210022.JPG",
+    "Photoroom_006_20240816_142521 2.JPG",
+    "Photoroom_007_20240816_142521 2.JPG"
+  ];
+
+  const IMAGES_PER_SLIDE = 4;
 
   const track = document.querySelector(".slider-track");
   const dotsContainer = document.querySelector(".slider-dots");
 
-  // Collect all images inside the slider
-  const images = Array.from(track.querySelectorAll("img"));
+  // ---- 2. GROUP IMAGES INTO SLIDES OF 4 ----
+  const slides = [];
+  for (let i = 0; i < imageFiles.length; i += IMAGES_PER_SLIDE) {
+    slides.push(imageFiles.slice(i, i + IMAGES_PER_SLIDE));
+  }
 
-  let groupSize = window.innerWidth <= 700 ? 1 : 3;      // 1 on mobile, 3 on desktop
+  // ---- 3. BUILD SLIDER HTML ----
+  slides.forEach(group => {
+    const slideDiv = document.createElement("div");
+    slideDiv.classList.add("slide");
+
+    group.forEach(filename => {
+      const img = document.createElement("img");
+      img.src = `/static/img/homepage-slider/${filename}`;
+      slideDiv.appendChild(img);
+    });
+
+    track.appendChild(slideDiv);
+  });
+
+  // ---- 4. CREATE DOTS ----
+  slides.forEach((_, idx) => {
+    const dot = document.createElement("span");
+    dot.dataset.index = idx;
+    if (idx === 0) dot.classList.add("active");
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll(".slider-dots span");
+
   let currentIndex = 0;
 
-  /* ----------------------------------------------------------
-     Build slide groups dynamically (groups of 3 or 1)
-  ---------------------------------------------------------- */
-  const buildSlides = () => {
-    const totalGroups = Math.ceil(images.length / groupSize);
+  function updateSlider() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-    // Clear track & rebuild grouped slides
-    track.innerHTML = "";
-    dotsContainer.innerHTML = "";
-
-    for (let i = 0; i < totalGroups; i++) {
-      const group = document.createElement("div");
-      group.classList.add("slide-group");
-      group.style.display = "flex";
-      group.style.width = "100%";
-
-      const start = i * groupSize;
-      const end = start + groupSize;
-
-      images.slice(start, end).forEach(img => {
-        const wrapper = document.createElement("div");
-        wrapper.style.flex = `1`;
-        wrapper.style.display = "flex";
-        wrapper.style.justifyContent = "center";
-        wrapper.style.alignItems = "center";
-        wrapper.style.overflow = "hidden";
-
-        // Force uniform sizing
-        img.style.width = "100%";
-        img.style.height = "350px";
-        img.style.objectFit = "cover";
-        img.style.borderRadius = "12px";
-
-        wrapper.appendChild(img);
-        group.appendChild(wrapper);
-      });
-
-      track.appendChild(group);
-
-      // Create corresponding dot
-      const dot = document.createElement("span");
-      dot.dataset.index = i;
-      dotsContainer.appendChild(dot);
-    }
-
-    updateSlider(0);
-  };
-
-  /* ----------------------------------------------------------
-     Move Slider
-  ---------------------------------------------------------- */
-  const updateSlider = (index) => {
-    const slideWidth = track.clientWidth;
-    track.style.transform = `translateX(${-index * slideWidth}px)`;
-
-    const dots = dotsContainer.querySelectorAll("span");
     dots.forEach(dot => dot.classList.remove("active"));
-    if (dots[index]) dots[index].classList.add("active");
+    dots[currentIndex].classList.add("active");
+  }
 
-    currentIndex = index;
-  };
-
-  /* ----------------------------------------------------------
-     Dot Navigation
-  ---------------------------------------------------------- */
-  dotsContainer.addEventListener("click", (e) => {
-    if (e.target.tagName !== "SPAN") return;
-    const dotIndex = Number(e.target.dataset.index);
-    updateSlider(dotIndex);
+  dots.forEach(dot => {
+    dot.addEventListener("click", () => {
+      currentIndex = Number(dot.dataset.index);
+      updateSlider();
+    });
   });
 
-  /* ----------------------------------------------------------
-     Swipe Navigation (Mobile)
-  ---------------------------------------------------------- */
-  let startX = 0;
-  let isSwiping = false;
-
-  track.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-    isSwiping = true;
-  });
-
-  track.addEventListener("touchend", (e) => {
-    if (!isSwiping) return;
-    isSwiping = false;
-
-    const endX = e.changedTouches[0].clientX;
-    const deltaX = endX - startX;
-
-    const totalGroups = dotsContainer.querySelectorAll("span").length;
-
-    if (deltaX > 50 && currentIndex > 0) {
-      updateSlider(currentIndex - 1);
-    } else if (deltaX < -50 && currentIndex < totalGroups - 1) {
-      updateSlider(currentIndex + 1);
-    }
-  });
-
-  /* ----------------------------------------------------------
-     Rebuild slider on resize (switch between 1 & 3 images)
-  ---------------------------------------------------------- */
-  window.addEventListener("resize", () => {
-    const newSize = window.innerWidth <= 700 ? 1 : 3;
-    if (newSize !== groupSize) {
-      groupSize = newSize;
-      buildSlides();
-    }
-  });
-
-  /* ----------------------------------------------------------
-     Initialize slider
-  ---------------------------------------------------------- */
-  buildSlides();
+  updateSlider();
 });
