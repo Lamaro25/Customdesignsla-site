@@ -1,69 +1,72 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* ==========================================================
+   HOMEPAGE SLIDER — MULTI-IMAGE SLIDE VERSION
+========================================================== */
 
-  // ---- 1. LIST OF IMAGES ----
-  const imageFiles = [
-    "IMG_0816.jpg",
-    "IMG_0817.jpg",
-    "Photoroom_000_20250116_153758.JPG",
-    "Photoroom_000_20250306_160221.JPG",
-    "Photoroom_000_20250424_164308.JPEG",
-    "Photoroom_001_20240816_174919 2.JPG",
-    "Photoroom_001_20250116_153758.JPG",
-    "Photoroom_003_20250216_210022.JPG",
-    "Photoroom_006_20240816_142521 2.JPG",
-    "Photoroom_007_20240816_142521 2.JPG"
-  ];
+.homepage-slider {
+  width: 100%;
+  max-width: 1100px;
+  margin: 40px auto;
+  overflow: hidden;
+  position: relative;
+  border-radius: 14px;
+  background: #000;
+  box-shadow: 0 0 25px rgba(0,0,0,0.25);
+}
 
-  const IMAGES_PER_SLIDE = 4;
+/* Track holds all slides horizontally */
+.slider-track {
+  display: flex;
+  transition: transform 0.45s ease-in-out;
+}
 
-  const track = document.querySelector(".slider-track");
-  const dotsContainer = document.querySelector(".slider-dots");
+/* Each slide is a row of images */
+.slide {
+  min-width: 100%;
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  box-sizing: border-box;
+}
 
-  // ---- 2. GROUP IMAGES INTO SLIDES OF 4 ----
-  const slides = [];
-  for (let i = 0; i < imageFiles.length; i += IMAGES_PER_SLIDE) {
-    slides.push(imageFiles.slice(i, i + IMAGES_PER_SLIDE));
+/* Images inside each slide */
+.slide img {
+  width: calc(25% - 6px);  /* 4 images per slide */
+  height: 360px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+/* Dots */
+.slider-dots {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.slider-dots span {
+  width: 12px;
+  height: 12px;
+  background: #bbb;
+  display: inline-block;
+  margin: 4px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.slider-dots .active {
+  background: #333;
+  transform: scale(1.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .slide img {
+    width: calc(50% - 6px); /* Show 2 images per row on mobile */
+    height: 220px;
   }
 
-  // ---- 3. BUILD SLIDER HTML ----
-  slides.forEach(group => {
-    const slideDiv = document.createElement("div");
-    slideDiv.classList.add("slide");
-
-    group.forEach(filename => {
-      const img = document.createElement("img");
-      img.src = `/static/img/homepage-slider/${filename}`;
-      slideDiv.appendChild(img);
-    });
-
-    track.appendChild(slideDiv);
-  });
-
-  // ---- 4. CREATE DOTS ----
-  slides.forEach((_, idx) => {
-    const dot = document.createElement("span");
-    dot.dataset.index = idx;
-    if (idx === 0) dot.classList.add("active");
-    dotsContainer.appendChild(dot);
-  });
-
-  const dots = document.querySelectorAll(".slider-dots span");
-
-  let currentIndex = 0;
-
-  function updateSlider() {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-    dots.forEach(dot => dot.classList.remove("active"));
-    dots[currentIndex].classList.add("active");
+  .slide {
+    flex-wrap: wrap; /* stack into 2×2 grid */
   }
-
-  dots.forEach(dot => {
-    dot.addEventListener("click", () => {
-      currentIndex = Number(dot.dataset.index);
-      updateSlider();
-    });
-  });
-
-  updateSlider();
-});
+}
