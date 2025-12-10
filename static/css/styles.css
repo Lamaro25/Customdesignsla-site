@@ -114,7 +114,10 @@ nav a:hover {
 }
 
 /* ==========================================================
-   HOMEPAGE SLIDER — MULTI-IMAGE SLIDE VERSION
+   HOMEPAGE MULTI-IMAGE CAROUSEL (FINAL VERSION)
+   Desktop: 1 image visible per swipe (full interactive dragging)
+   Mobile: 1 image visible per swipe
+   Optimized for 1600×900 black-background images
 ========================================================== */
 
 .homepage-slider {
@@ -123,48 +126,55 @@ nav a:hover {
   margin: 40px auto;
   overflow: hidden;
   position: relative;
-  border-radius: 14px;
   background: #000;
+  border-radius: 14px;
   box-shadow: 0 0 25px rgba(0,0,0,0.25);
 }
 
-/* Track holds all slides horizontally */
 .slider-track {
   display: flex;
-  transition: transform 0.45s ease-in-out;
+  transition: transform 0.35s ease-in-out;
+  will-change: transform;
 }
 
-/* Each slide is a row of images */
+/* ===== Each slide (now 1 image per slide) ===== */
 .slider-slide {
-  min-width: 100%;
-  display: flex;
-  gap: 8px;
-  padding: 12px;
-  box-sizing: border-box;
-}
-
-/* Images inside each slide */
-.slider-slide img {
-  width: calc(25% - 6px);  /* 4 images per slide on desktop */
+  flex: 0 0 100%;
   height: 360px;
-  object-fit: cover;
-  border-radius: 12px;
-  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
 }
 
-/* Dots */
+.slider-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  border-radius: 14px;
+}
+
+/* ===== Mobile adjustment ===== */
+@media (max-width: 700px) {
+  .slider-slide {
+    height: 260px;
+  }
+}
+
+/* ===== Dots ===== */
 .slider-dots {
   text-align: center;
   margin-top: 12px;
 }
 
 .slider-dots span {
-  width: 12px;
-  height: 12px;
-  background: #bbb;
+  width: 11px;
+  height: 11px;
   display: inline-block;
   margin: 4px;
   border-radius: 50%;
+  background: #bbb;
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
 }
@@ -172,18 +182,6 @@ nav a:hover {
 .slider-dots .active {
   background: #333;
   transform: scale(1.2);
-}
-
-/* Mobile Responsive */
-@media (max-width: 600px) {
-  .slider-slide img {
-    width: calc(50% - 6px); /* 2 per row (2×2 layout) */
-    height: 220px;
-  }
-
-  .slider-slide {
-    flex-wrap: wrap;
-  }
 }
 
 /* ==========================================================
