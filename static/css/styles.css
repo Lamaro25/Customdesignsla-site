@@ -114,52 +114,56 @@ nav a:hover {
 }
 
 /* ==========================================================
-   HOMEPAGE MULTI-IMAGE SLIDER — MATCH JS CLASS .slide
+   HOMEPAGE MULTI-IMAGE CAROUSEL (FINAL VERSION)
+   Desktop: 4 images visible, drag one-by-one
+   Mobile: 1 image visible, swipe one-by-one
 ========================================================== */
 
 .homepage-slider {
   width: 100%;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 40px auto;
   overflow: hidden;
   position: relative;
   background: #000;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 0 25px rgba(0,0,0,0.25);
 }
 
 .slider-track {
   display: flex;
-  transition: transform 0.45s ease-in-out;
-  touch-action: pan-y;
+  transition: transform 0.35s ease-in-out;
+  will-change: transform;
 }
 
-/* One slide = a group of images */
-.slide {
-  min-width: 100%;
-  display: flex;
-  gap: 8px;
-  padding: 12px;
-  box-sizing: border-box;
-}
+/* ===== Slides ===== */
 
-/* Images inside each slide */
-.slide img {
-  flex: 1;
-  width: 100%;
+/* Desktop: 4 per row */
+.slider-slide {
+  flex: 0 0 25%;
   height: 260px;
-  object-fit: cover;
-  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
 }
 
-/* Mobile: show smaller height */
+.slider-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ===== Mobile: 1 per row ===== */
 @media (max-width: 700px) {
-  .slide img {
-    height: 200px;
+  .slider-slide {
+    flex: 0 0 100%;
+    height: 240px;
   }
 }
 
-/* Slider dots */
+/* ===== Dots ===== */
 .slider-dots {
   text-align: center;
   margin-top: 12px;
