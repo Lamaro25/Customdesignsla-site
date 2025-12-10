@@ -1,72 +1,76 @@
-/* ==========================================================
-   HOMEPAGE SLIDER — MULTI-IMAGE SLIDE VERSION
-========================================================== */
+document.addEventListener("DOMContentLoaded", () => {
 
-.homepage-slider {
-  width: 100%;
-  max-width: 1100px;
-  margin: 40px auto;
-  overflow: hidden;
-  position: relative;
-  border-radius: 14px;
-  background: #000;
-  box-shadow: 0 0 25px rgba(0,0,0,0.25);
-}
+  // ---- 1. LIST OF IMAGES ----
+  const imageFiles = [
+    "slider_01.jpg",
+    "slider_02.jpg",
+    "slider_03.jpg",
+    "slider_04.jpg",
+    "slider_05.jpg",
+    "slider_06.jpg",
+    "slider_07.jpg",
+    "slider_08.jpg",
+    "slider_09.jpg",
+    "slider_10.jpg",
+    "slider_11.jpg",
+    "slider_12.jpg",
+    "slider_13.jpg",
+    "slider_14.jpg",
+    "slider_15.jpg",
+    "slider_16.jpg",
+    "slider_17.jpg",
+    "slider_18.jpg",
+    "slider_19.jpg",
+    "slider_20.jpg",
+    "slider_21.jpg",
+    "slider_22.jpg",
+    "slider_23.jpg",
+    "slider_24.jpg",
+    "slider_25.jpg",
+    "slider_26.jpg",
+    "slider_27.jpg",
+    "slider_28.jpg"
+  ];
 
-/* Track holds all slides horizontally */
-.slider-track {
-  display: flex;
-  transition: transform 0.45s ease-in-out;
-}
+  const track = document.querySelector(".slider-track");
+  const dotsContainer = document.querySelector(".slider-dots");
 
-/* Each slide is a row of images */
-.slide {
-  min-width: 100%;
-  display: flex;
-  gap: 8px;
-  padding: 12px;
-  box-sizing: border-box;
-}
+  // Build slides: ONE IMAGE PER SLIDE (mobile + desktop compatible)
+  imageFiles.forEach(filename => {
+    const slideDiv = document.createElement("div");
+    slideDiv.classList.add("slider-slide");
 
-/* Images inside each slide */
-.slide img {
-  width: calc(25% - 6px);  /* 4 images per slide */
-  height: 360px;
-  object-fit: cover;
-  border-radius: 12px;
-  flex-shrink: 0;
-}
+    const img = document.createElement("img");
+    img.src = `/static/img/homepage-slider/${filename}`;
 
-/* Dots */
-.slider-dots {
-  text-align: center;
-  margin-top: 12px;
-}
+    slideDiv.appendChild(img);
+    track.appendChild(slideDiv);
+  });
 
-.slider-dots span {
-  width: 12px;
-  height: 12px;
-  background: #bbb;
-  display: inline-block;
-  margin: 4px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
-}
+  // ---- DOTS ----
+  imageFiles.forEach((_, idx) => {
+    const dot = document.createElement("span");
+    dot.dataset.index = idx;
+    if (idx === 0) dot.classList.add("active");
+    dotsContainer.appendChild(dot);
+  });
 
-.slider-dots .active {
-  background: #333;
-  transform: scale(1.2);
-}
+  const dots = document.querySelectorAll(".slider-dots span");
 
-/* Mobile Responsive */
-@media (max-width: 600px) {
-  .slide img {
-    width: calc(50% - 6px); /* Show 2 images per row on mobile */
-    height: 220px;
+  let currentIndex = 0;
+
+  function updateSlider() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[currentIndex].classList.add("active");
   }
 
-  .slide {
-    flex-wrap: wrap; /* stack into 2×2 grid */
-  }
-}
+  dots.forEach(dot => {
+    dot.addEventListener("click", () => {
+      currentIndex = Number(dot.dataset.index);
+      updateSlider();
+    });
+  });
+
+  updateSlider();
+});
