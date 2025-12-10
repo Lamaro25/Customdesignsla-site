@@ -114,10 +114,7 @@ nav a:hover {
 }
 
 /* ==========================================================
-   HOMEPAGE MULTI-IMAGE SLIDER (NEW SYSTEM)
-   • Ensures all images same size
-   • Shows 4 per view (2 mobile)
-   • Crops evenly with object-fit: cover
+   HOMEPAGE MULTI-IMAGE SLIDER — MATCH JS CLASS .slide
 ========================================================== */
 
 .homepage-slider {
@@ -137,26 +134,28 @@ nav a:hover {
   touch-action: pan-y;
 }
 
-/* Slides: 4 per view desktop */
-.slider-slide {
-  min-width: 25%;
-  height: 260px;
-  overflow: hidden;
+/* One slide = a group of images */
+.slide {
+  min-width: 100%;
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  box-sizing: border-box;
 }
 
-.slider-slide img {
+/* Images inside each slide */
+.slide img {
+  flex: 1;
   width: 100%;
-  height: 100%;
+  height: 260px;
   object-fit: cover;
-  user-select: none;
-  -webkit-user-drag: none;
+  border-radius: 10px;
 }
 
-/* Mobile: show 2 per view */
+/* Mobile: show smaller height */
 @media (max-width: 700px) {
-  .slider-slide {
-    min-width: 50%;
-    height: 220px;
+  .slide img {
+    height: 200px;
   }
 }
 
@@ -180,15 +179,6 @@ nav a:hover {
 .slider-dots .active {
   background: #333;
   transform: scale(1.2);
-}
-
-/* Mobile spacing around slider */
-@media (max-width: 700px) {
-  .homepage-slider {
-    max-width: 95%;
-    margin-top: 30px;
-    margin-bottom: 20px;
-  }
 }
 
 /* ==========================================================
