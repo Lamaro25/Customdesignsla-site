@@ -113,46 +113,47 @@ nav a:hover {
   }
 }
 
-/* ==========================================================
-   HOMEPAGE MULTI-IMAGE CAROUSEL (FINAL VERSION)
-   Desktop: 1 image visible per swipe (full interactive dragging)
-   Mobile: 1 image visible per swipe
-   Optimized for 1600×900 black-background images
-========================================================== */
+/* === NEW SINGLE-IMAGE SLIDER SIZING === */
 
 .homepage-slider {
   width: 100%;
   max-width: 1100px;
   margin: 40px auto;
   overflow: hidden;
-  position: relative;
   background: #000;
-  border-radius: 14px;
+  border-radius: 18px;
   box-shadow: 0 0 25px rgba(0,0,0,0.25);
+  height: 520px; /* Adjust slider height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slider-track {
   display: flex;
-  transition: transform 0.35s ease-in-out;
-  will-change: transform;
+  transition: transform 0.45s ease-in-out;
 }
 
-/* ===== Each slide (now 1 image per slide) ===== */
 .slider-slide {
   flex: 0 0 100%;
-  height: 360px;
-  overflow: hidden;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slider-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
   display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-  border-radius: 14px;
+  margin: 0 auto;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .homepage-slider {
+    height: 340px;
+  }
 }
 
 /* ===== Mobile adjustment ===== */
