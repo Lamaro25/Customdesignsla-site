@@ -39,24 +39,3 @@ Explore handcrafted rings from all Custom Designs LA signature series.
   </a>
 
 </section>
-
-<style>
-.collection-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.collection-card {
-  background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  text-align: center;
-  border: 1px solid #ddd;
-}
-
-.collection-card:hover {
-  background: #f6f6f6;
-}
-</style>
