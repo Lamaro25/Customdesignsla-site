@@ -51,33 +51,53 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     TRUE SWIPE + DRAG
-     (MOBILE + DESKTOP)
+     PREMIUM DRAG / SWIPE
+     - Desktop drag works (pointer capture)
+     - Mobile stops page-scroll during horizontal swipe
   ========================== */
   let startX = 0;
+  let startY = 0;
   let currentX = 0;
   let isDragging = false;
-  let hasMoved = false;
-  const SWIPE_THRESHOLD = 60;
+  let isHorizontal = null; // null until we decide if gesture is horizontal or vertical
 
-  function onStart(x) {
+  const SWIPE_THRESHOLD = 60;
+  const AXIS_LOCK_THRESHOLD = 10; // pixels before deciding direction
+
+  function onStart(x, y) {
     startX = x;
+    startY = y;
     currentX = x;
     isDragging = true;
-    hasMoved = false;
+    isHorizontal = null;
   }
 
-  function onMove(x) {
+  function onMove(x, y) {
     if (!isDragging) return;
-    currentX = x;
-    hasMoved = true;
+
+    const dx = x - startX;
+    const dy = y - startY;
+
+    // Decide gesture axis once the user moves a bit
+    if (isHorizontal === null) {
+      if (Math.abs(dx) > AXIS_LOCK_THRESHOLD || Math.abs(dy) > AXIS_LOCK_THRESHOLD) {
+        isHorizontal = Math.abs(dx) > Math.abs(dy);
+      } else {
+        return;
+      }
+    }
+
+    // If horizontal swipe, keep tracking X
+    if (isHorizontal) {
+      currentX = x;
+    }
   }
 
   function onEnd() {
-    if (!isDragging || !hasMoved) {
-      isDragging = false;
-      return;
-    }
+    if (!isDragging) return;
+    isDragging = false;
+
+    if (!isHorizontal) return;
 
     const diff = startX - currentX;
 
@@ -86,34 +106,36 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (diff < -SWIPE_THRESHOLD) {
       goToSlide(currentIndex - 1);
     }
-
-    isDragging = false;
   }
 
-  /* ---- Touch Events ---- */
-  slider.addEventListener("touchstart", e => {
-    onStart(e.touches[0].clientX);
-  }, { passive: true });
+  // --- Pointer Events (Desktop + modern mobile browsers) ---
+  slider.addEventListener("pointerdown", (e) => {
+    // Only primary button for mouse
+    if (e.pointerType === "mouse" && e.button !== 0) return;
 
-  slider.addEventListener("touchmove", e => {
-    onMove(e.touches[0].clientX);
-  }, { passive: true });
+    slider.setPointerCapture(e.pointerId);
+    onStart(e.clientX, e.clientY);
+  });
 
-  slider.addEventListener("touchend", onEnd);
-  slider.addEventListener("touchcancel", () => {
+  slider.addEventListener("pointermove", (e) => {
+    if (!isDragging) return;
+
+    onMove(e.clientX, e.clientY);
+
+    // If we determined it's horizontal, prevent page scroll / drag behavior
+    if (isHorizontal) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  slider.addEventListener("pointerup", (e) => {
+    try { slider.releasePointerCapture(e.pointerId); } catch (_) {}
+    onEnd();
+  });
+
+  slider.addEventListener("pointercancel", () => {
     isDragging = false;
+    isHorizontal = null;
   });
-
-  /* ---- Mouse Events ---- */
-  slider.addEventListener("mousedown", e => {
-    e.preventDefault();
-    onStart(e.clientX);
-  });
-
-  window.addEventListener("mousemove", e => {
-    onMove(e.clientX);
-  });
-
-  window.addEventListener("mouseup", onEnd);
 
 });
