@@ -17,20 +17,20 @@ document.addEventListener("DOMContentLoaded", () => {
      DOM ELEMENTS
   ========================== */
   const track = document.querySelector(".slider-track");
-  const dotsContainer = document.querySelector(".slider-dots");
+  const dotsContainer = document.querySelector(".slider-dots"); // OPTIONAL
 
-  if (!track || !dotsContainer) {
-    console.warn("Slider elements not found");
+  if (!track) {
+    console.warn("Slider track not found");
     return;
   }
 
   let currentIndex = 0;
+  let dots = [];
 
   /* =========================
-     BUILD SLIDES + DOTS
+     BUILD SLIDES
   ========================== */
   imageFiles.forEach((filename, idx) => {
-    // Slide
     const slide = document.createElement("div");
     slide.className = "slider-slide";
 
@@ -41,79 +41,84 @@ document.addEventListener("DOMContentLoaded", () => {
     slide.appendChild(img);
     track.appendChild(slide);
 
-    // Dot
-    const dot = document.createElement("span");
-    if (idx === 0) dot.classList.add("active");
-    dot.addEventListener("click", () => goToSlide(idx));
-    dotsContainer.appendChild(dot);
+    // Build dots ONLY if container exists
+    if (dotsContainer) {
+      const dot = document.createElement("span");
+      if (idx === 0) dot.classList.add("active");
+      dot.addEventListener("click", () => goToSlide(idx));
+      dotsContainer.appendChild(dot);
+      dots.push(dot);
+    }
   });
-
-  const dots = Array.from(dotsContainer.children);
 
   /* =========================
      SLIDE CONTROL
   ========================== */
   function goToSlide(index) {
-    if (index < 0 || index >= imageFiles.length) return;
+    if (index < 0) index = 0;
+    if (index >= imageFiles.length) index = imageFiles.length - 1;
 
     currentIndex = index;
     track.style.transform = `translateX(-${index * 100}%)`;
 
-    dots.forEach(d => d.classList.remove("active"));
-    dots[index].classList.add("active");
+    if (dots.length) {
+      dots.forEach(d => d.classList.remove("active"));
+      dots[index]?.classList.add("active");
+    }
   }
 
- /* =========================
-   ENHANCED SWIPE + DRAG
-   (NATIVE FEEL)
-========================== */
-let startX = 0;
-let currentX = 0;
-let isDragging = false;
-const SWIPE_THRESHOLD = 60;
+  /* =========================
+     SWIPE + DRAG (STABLE)
+  ========================== */
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+  const SWIPE_THRESHOLD = 60;
 
-// Touch (mobile)
-track.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-  currentX = startX;
-  isDragging = true;
-}, { passive: true });
+  // Touch (mobile)
+  track.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+    currentX = startX;
+    isDragging = true;
+  }, { passive: true });
 
-track.addEventListener("touchmove", e => {
-  if (!isDragging) return;
-  currentX = e.touches[0].clientX;
-}, { passive: true });
+  track.addEventListener("touchmove", e => {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX;
+  }, { passive: true });
 
-track.addEventListener("touchend", () => {
-  if (!isDragging) return;
-  const diff = startX - currentX;
-  handleSwipe(diff);
-  isDragging = false;
-});
+  track.addEventListener("touchend", () => {
+    if (!isDragging) return;
+    const diff = startX - currentX;
+    handleSwipe(diff);
+    isDragging = false;
+  });
 
-// Mouse (desktop)
-track.addEventListener("mousedown", e => {
-  startX = e.clientX;
-  currentX = startX;
-  isDragging = true;
-});
+  // Mouse (desktop)
+  track.addEventListener("mousedown", e => {
+    startX = e.clientX;
+    currentX = startX;
+    isDragging = true;
+  });
 
-track.addEventListener("mousemove", e => {
-  if (!isDragging) return;
-  currentX = e.clientX;
-});
+  track.addEventListener("mousemove", e => {
+    if (!isDragging) return;
+    currentX = e.clientX;
+  });
 
-window.addEventListener("mouseup", () => {
-  if (!isDragging) return;
-  const diff = startX - currentX;
-  handleSwipe(diff);
-  isDragging = false;
-});
+  window.addEventListener("mouseup", () => {
+    if (!isDragging) return;
+    const diff = startX - currentX;
+    handleSwipe(diff);
+    isDragging = false;
+  });
 
-function handleSwipe(diff) {
-  if (diff > SWIPE_THRESHOLD && currentIndex < imageFiles.length - 1) {
-    goToSlide(currentIndex + 1);
-  } else if (diff < -SWIPE_THRESHOLD && currentIndex > 0) {
-    goToSlide(currentIndex - 1);
+  function handleSwipe(diff) {
+    if (diff > SWIPE_THRESHOLD) {
+      goToSlide(currentIndex + 1);
+    } else if (diff < -SWIPE_THRESHOLD) {
+      goToSlide(currentIndex - 1);
+    }
   }
-}
+
+});
