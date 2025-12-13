@@ -24,6 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // HARD STOP browser drag/selection (DESKTOP FIX)
+  slider.style.userSelect = "none";
+  slider.style.webkitUserSelect = "none";
+  slider.style.msUserSelect = "none";
+  slider.style.cursor = "grab";
+
   let currentIndex = 0;
 
   /* =========================
@@ -37,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     img.src = `/static/img/homepage-slider/${filename}`;
     img.alt = `Custom piece ${idx + 1}`;
     img.draggable = false;
+    img.style.pointerEvents = "none"; // critical for desktop drag
 
     slide.appendChild(img);
     track.appendChild(slide);
@@ -51,91 +58,89 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     PREMIUM DRAG / SWIPE
-     - Desktop drag works (pointer capture)
-     - Mobile stops page-scroll during horizontal swipe
+     UNIVERSAL DRAG / SWIPE
+     (DESKTOP + MOBILE)
   ========================== */
   let startX = 0;
   let startY = 0;
   let currentX = 0;
+  let currentY = 0;
   let isDragging = false;
-  let isHorizontal = null; // null until we decide if gesture is horizontal or vertical
+  let lockAxis = null; // "x" | "y"
 
   const SWIPE_THRESHOLD = 60;
-  const AXIS_LOCK_THRESHOLD = 10; // pixels before deciding direction
+  const AXIS_LOCK_THRESHOLD = 12;
 
-  function onStart(x, y) {
+  function start(x, y) {
     startX = x;
     startY = y;
     currentX = x;
+    currentY = y;
     isDragging = true;
-    isHorizontal = null;
+    lockAxis = null;
+    slider.style.cursor = "grabbing";
   }
 
-  function onMove(x, y) {
+  function move(x, y) {
     if (!isDragging) return;
 
     const dx = x - startX;
     const dy = y - startY;
 
-    // Decide gesture axis once the user moves a bit
-    if (isHorizontal === null) {
+    if (!lockAxis) {
       if (Math.abs(dx) > AXIS_LOCK_THRESHOLD || Math.abs(dy) > AXIS_LOCK_THRESHOLD) {
-        isHorizontal = Math.abs(dx) > Math.abs(dy);
+        lockAxis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
       } else {
         return;
       }
     }
 
-    // If horizontal swipe, keep tracking X
-    if (isHorizontal) {
+    if (lockAxis === "x") {
       currentX = x;
     }
   }
 
-  function onEnd() {
+  function end() {
     if (!isDragging) return;
-    isDragging = false;
 
-    if (!isHorizontal) return;
+    slider.style.cursor = "grab";
 
-    const diff = startX - currentX;
+    if (lockAxis === "x") {
+      const diff = startX - currentX;
 
-    if (diff > SWIPE_THRESHOLD) {
-      goToSlide(currentIndex + 1);
-    } else if (diff < -SWIPE_THRESHOLD) {
-      goToSlide(currentIndex - 1);
+      if (diff > SWIPE_THRESHOLD) {
+        goToSlide(currentIndex + 1);
+      } else if (diff < -SWIPE_THRESHOLD) {
+        goToSlide(currentIndex - 1);
+      }
     }
+
+    isDragging = false;
+    lockAxis = null;
   }
 
-  // --- Pointer Events (Desktop + modern mobile browsers) ---
-  slider.addEventListener("pointerdown", (e) => {
-    // Only primary button for mouse
-    if (e.pointerType === "mouse" && e.button !== 0) return;
+  /* ---------- TOUCH (MOBILE) ---------- */
+  slider.addEventListener("touchstart", e => {
+    start(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
 
-    slider.setPointerCapture(e.pointerId);
-    onStart(e.clientX, e.clientY);
-  });
-
-  slider.addEventListener("pointermove", (e) => {
-    if (!isDragging) return;
-
-    onMove(e.clientX, e.clientY);
-
-    // If we determined it's horizontal, prevent page scroll / drag behavior
-    if (isHorizontal) {
-      e.preventDefault();
-    }
+  slider.addEventListener("touchmove", e => {
+    move(e.touches[0].clientX, e.touches[0].clientY);
   }, { passive: false });
 
-  slider.addEventListener("pointerup", (e) => {
-    try { slider.releasePointerCapture(e.pointerId); } catch (_) {}
-    onEnd();
+  slider.addEventListener("touchend", end);
+  slider.addEventListener("touchcancel", end);
+
+  /* ---------- MOUSE (DESKTOP) ---------- */
+  slider.addEventListener("mousedown", e => {
+    e.preventDefault(); // REQUIRED for desktop
+    start(e.clientX, e.clientY);
   });
 
-  slider.addEventListener("pointercancel", () => {
-    isDragging = false;
-    isHorizontal = null;
+  window.addEventListener("mousemove", e => {
+    move(e.clientX, e.clientY);
   });
+
+  window.addEventListener("mouseup", end);
 
 });
