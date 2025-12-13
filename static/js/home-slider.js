@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "slider_25.jpg","slider_26.jpg","slider_27.jpg","slider_28.jpg"
   ];
 
+  /* =========================
+     DOM ELEMENTS
+  ========================== */
   const track = document.querySelector(".slider-track");
   const dotsContainer = document.querySelector(".slider-dots");
 
@@ -61,46 +64,45 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-   SWIPE + DRAG SUPPORT
-========================== */
-let startX = 0;
-let isDragging = false;
-const SWIPE_THRESHOLD = 50;
+     SWIPE + DRAG SUPPORT
+     (STABLE + CRASH-PROOF)
+  ========================== */
+  let startX = 0;
+  let isDragging = false;
+  const SWIPE_THRESHOLD = 50;
 
-// Touch (mobile)
-slider.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-  isDragging = true;
-}, { passive: true });
+  // ---- Touch (Mobile) ----
+  track.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  }, { passive: true });
 
-slider.addEventListener("touchend", e => {
-  if (!isDragging) return;
-  const diff = startX - e.changedTouches[0].clientX;
-  handleSwipe(diff);
-  isDragging = false;
-});
+  track.addEventListener("touchend", e => {
+    if (!isDragging) return;
+    const diff = startX - e.changedTouches[0].clientX;
+    handleSwipe(diff);
+    isDragging = false;
+  });
 
-// Mouse (desktop)
-slider.addEventListener("mousedown", e => {
-  startX = e.clientX;
-  isDragging = true;
-});
+  // ---- Mouse (Desktop) ----
+  track.addEventListener("mousedown", e => {
+    startX = e.clientX;
+    isDragging = true;
+  });
 
-slider.addEventListener("mouseup", e => {
-  if (!isDragging) return;
-  const diff = startX - e.clientX;
-  handleSwipe(diff);
-  isDragging = false;
-});
+  window.addEventListener("mouseup", e => {
+    if (!isDragging) return;
+    const diff = startX - e.clientX;
+    handleSwipe(diff);
+    isDragging = false;
+  });
 
-slider.addEventListener("mouseleave", () => {
-  isDragging = false;
-});
-
-function handleSwipe(diff) {
-  if (diff > SWIPE_THRESHOLD && currentIndex < imageFiles.length - 1) {
-    goToSlide(currentIndex + 1);
-  } else if (diff < -SWIPE_THRESHOLD && currentIndex > 0) {
-    goToSlide(currentIndex - 1);
+  function handleSwipe(diff) {
+    if (diff > SWIPE_THRESHOLD && currentIndex < imageFiles.length - 1) {
+      goToSlide(currentIndex + 1);
+    } else if (diff < -SWIPE_THRESHOLD && currentIndex > 0) {
+      goToSlide(currentIndex - 1);
+    }
   }
-}
+
+});
