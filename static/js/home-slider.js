@@ -61,42 +61,46 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     SWIPE SUPPORT
-  ========================== */
-  let startX = 0;
-  let isDragging = false;
+   SWIPE + DRAG SUPPORT
+========================== */
+let startX = 0;
+let isDragging = false;
+const SWIPE_THRESHOLD = 50;
 
-  track.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-  });
+// Touch (mobile)
+slider.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+  isDragging = true;
+}, { passive: true });
 
-  track.addEventListener("touchend", e => {
-    if (!isDragging) return;
-    const diff = startX - e.changedTouches[0].clientX;
-    handleSwipe(diff);
-    isDragging = false;
-  });
-
-  track.addEventListener("mousedown", e => {
-    startX = e.clientX;
-    isDragging = true;
-  });
-
-  window.addEventListener("mouseup", e => {
-    if (!isDragging) return;
-    const diff = startX - e.clientX;
-    handleSwipe(diff);
-    isDragging = false;
-  });
-
-  function handleSwipe(diff) {
-    if (diff > 50 && currentIndex < imageFiles.length - 1) {
-      goToSlide(currentIndex + 1);
-    }
-    if (diff < -50 && currentIndex > 0) {
-      goToSlide(currentIndex - 1);
-    }
-  }
-
+slider.addEventListener("touchend", e => {
+  if (!isDragging) return;
+  const diff = startX - e.changedTouches[0].clientX;
+  handleSwipe(diff);
+  isDragging = false;
 });
+
+// Mouse (desktop)
+slider.addEventListener("mousedown", e => {
+  startX = e.clientX;
+  isDragging = true;
+});
+
+slider.addEventListener("mouseup", e => {
+  if (!isDragging) return;
+  const diff = startX - e.clientX;
+  handleSwipe(diff);
+  isDragging = false;
+});
+
+slider.addEventListener("mouseleave", () => {
+  isDragging = false;
+});
+
+function handleSwipe(diff) {
+  if (diff > SWIPE_THRESHOLD && currentIndex < imageFiles.length - 1) {
+    goToSlide(currentIndex + 1);
+  } else if (diff < -SWIPE_THRESHOLD && currentIndex > 0) {
+    goToSlide(currentIndex - 1);
+  }
+}
