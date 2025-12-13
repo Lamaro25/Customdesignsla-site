@@ -9,30 +9,36 @@ permalink: /rings/
 
 Explore handcrafted rings from all Custom Designs LA signature series.
 
-<div class="collection-grid">
+<section class="collection-grid">
 
-  <div class="collection-card">
-    <a href="/rings/cuban-link/">
-      <h3>Cuban Link Ring Collection</h3>
+  <!-- Cuban Link -->
+  <a href="/rings/cuban-link/" class="collection-card">
+    <img src="/img/collection-plate.webp" alt="Cuban Link Ring Collection">
+    <div class="collection-text">
+      <h2>Cuban Link Ring Collection</h2>
       <p>Bold, sculpted, iconic Cuban Link designs in .925 Sterling Silver.</p>
-    </a>
-  </div>
+    </div>
+  </a>
 
-  <div class="collection-card">
-    <a href="/rings/western/">
-      <h3>Western Ring Collection</h3>
+  <!-- Western -->
+  <a href="/rings/western/" class="collection-card">
+    <img src="/img/collection-plate.webp" alt="Western Ring Collection">
+    <div class="collection-text">
+      <h2>Western Ring Collection</h2>
       <p>Texas-inspired craftsmanship — longhorns, stars, rope braids, and heritage motifs.</p>
-    </a>
-  </div>
+    </div>
+  </a>
 
-  <div class="collection-card">
-    <a href="/rings/faith/">
-      <h3>Faith Ring Collection</h3>
+  <!-- Faith -->
+  <a href="/rings/faith/" class="collection-card">
+    <img src="/img/collection-plate.webp" alt="Faith Ring Collection">
+    <div class="collection-text">
+      <h2>Faith Ring Collection</h2>
       <p>Scripture engravings, crosses, and devotional designs in sterling silver.</p>
-    </a>
-  </div>
+    </div>
+  </a>
 
-</div>
+</section>
 
 <style>
 .collection-grid {
