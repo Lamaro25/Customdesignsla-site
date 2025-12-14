@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =========================
-     IMAGE LIST (28 IMAGES)
-  ========================== */
   const imageFiles = [
     "slider_01.jpg","slider_02.jpg","slider_03.jpg","slider_04.jpg",
     "slider_05.jpg","slider_06.jpg","slider_07.jpg","slider_08.jpg",
@@ -13,32 +10,24 @@ document.addEventListener("DOMContentLoaded", () => {
     "slider_25.jpg","slider_26.jpg","slider_27.jpg","slider_28.jpg"
   ];
 
-  /* =========================
-     DOM ELEMENTS
-  ========================== */
   const slider = document.querySelector(".homepage-slider");
   const track = document.querySelector(".slider-track");
 
-  if (!slider || !track) {
-    console.warn("Homepage slider not found");
-    return;
-  }
+  if (!slider || !track) return;
 
-  slider.style.userSelect = "none";
-  slider.style.cursor = "grab";
+  /* 🔥 THIS IS THE FIX */
+  track.style.width = `${imageFiles.length * 100}%`;
 
   let currentIndex = 0;
+  slider.style.cursor = "grab";
 
-  /* =========================
-     BUILD SLIDES (FIXED PATH)
-  ========================== */
-  imageFiles.forEach((filename, idx) => {
+  imageFiles.forEach((file, i) => {
     const slide = document.createElement("div");
     slide.className = "slider-slide";
 
     const img = document.createElement("img");
-    img.src = "/static/img/homepage-slider/" + filename;
-    img.alt = "Custom Designs LA piece " + (idx + 1);
+    img.src = `/static/img/homepage-slider/${file}`;
+    img.alt = `Custom Designs LA ${i + 1}`;
     img.draggable = false;
 
     slide.appendChild(img);
@@ -46,55 +35,44 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function goToSlide(index) {
-    if (index < 0) index = 0;
-    if (index >= imageFiles.length) index = imageFiles.length - 1;
-    currentIndex = index;
-    track.style.transform = "translateX(-" + (index * 100) + "%)";
+    currentIndex = Math.max(0, Math.min(index, imageFiles.length - 1));
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
   }
 
-  /* =========================
-     DRAG / SWIPE SUPPORT
-  ========================== */
   let startX = 0;
   let currentX = 0;
-  let isDragging = false;
+  let dragging = false;
 
-  const SWIPE_THRESHOLD = 60;
-
-  function start(x) {
-    startX = x;
-    currentX = x;
-    isDragging = true;
-    slider.style.cursor = "grabbing";
-  }
-
-  function move(x) {
-    if (!isDragging) return;
-    currentX = x;
-  }
-
-  function end() {
-    if (!isDragging) return;
-    slider.style.cursor = "grab";
-
-    const diff = startX - currentX;
-    if (diff > SWIPE_THRESHOLD) goToSlide(currentIndex + 1);
-    if (diff < -SWIPE_THRESHOLD) goToSlide(currentIndex - 1);
-
-    isDragging = false;
-  }
-
-  /* TOUCH */
-  slider.addEventListener("touchstart", e => start(e.touches[0].clientX), { passive: true });
-  slider.addEventListener("touchmove", e => move(e.touches[0].clientX), { passive: true });
-  slider.addEventListener("touchend", end);
-
-  /* MOUSE */
   slider.addEventListener("mousedown", e => {
-    e.preventDefault();
-    start(e.clientX);
+    startX = e.clientX;
+    currentX = startX;
+    dragging = true;
+    slider.style.cursor = "grabbing";
   });
-  window.addEventListener("mousemove", e => move(e.clientX));
-  window.addEventListener("mouseup", end);
+
+  window.addEventListener("mousemove", e => {
+    if (!dragging) return;
+    currentX = e.clientX;
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (!dragging) return;
+    slider.style.cursor = "grab";
+    const diff = startX - currentX;
+    if (diff > 60) goToSlide(currentIndex + 1);
+    if (diff < -60) goToSlide(currentIndex - 1);
+    dragging = false;
+  });
+
+  slider.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+    currentX = startX;
+  });
+
+  slider.addEventListener("touchend", e => {
+    const diff = startX - currentX;
+    if (diff > 60) goToSlide(currentIndex + 1);
+    if (diff < -60) goToSlide(currentIndex - 1);
+  });
 
 });
