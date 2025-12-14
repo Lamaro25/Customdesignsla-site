@@ -12,45 +12,39 @@ body {
   color: #222;
 }
 
-/* === HEADER STYLING === */
-header.site-header {
-  background: #fff;
-  color: #111;
-  padding: 0.75rem 1rem 0;
-  border-bottom: 1px solid #e5e5e5;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+.homepage-slider {
+  max-width: 1100px;
+  height: 520px;
+  margin: 40px auto;
+  overflow: hidden;
+  background: #000;
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.25);
 }
 
-header .container {
-  max-width: 1200px;
-  margin: 0 auto;
+.slider-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+
+.slider-slide {
+  flex: 0 0 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
-/* Brand + Logo */
-header a.flex {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  color: #111;
-}
-
-header a.flex span {
-  font-weight: 700;
-  font-size: 1.125rem;
-}
-
-header img {
-  height: 48px;
-  width: auto;
+.slider-slide img {
+  max-width: 90%;
+  max-height: 90%;
   object-fit: contain;
-  display: block;
+}
+
+@media (max-width: 700px) {
+  .homepage-slider {
+    height: 340px;
+  }
 }
 
 /* ==========================================================
