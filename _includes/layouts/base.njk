@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ title | default("Custom Designs LA") }}</title>
 
-
-  <!-- Global styles -->
   <link rel="stylesheet" href="/static/css/styles.css">
   <link rel="stylesheet" href="/static/css/ltr.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
   <header class="site-header">
     <div class="container">
       <a href="/" class="flex">
@@ -36,14 +33,12 @@
     </div>
   </header>
 
-  <!-- MAIN -->
   <main>
     {{ content | safe }}
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
-    <p>© {{ "now" | date: "%Y" }} Custom Designs LA — All Rights Reserved.</p>
+    <p>© <script>document.write(new Date().getFullYear())</script> Custom Designs LA — All Rights Reserved.</p>
   </footer>
 
   <script src="/static/js/home-slider.js"></script>
