@@ -10,13 +10,13 @@ title: Custom Design's LA
     <h1>Custom Made. Your Way.</h1>
 
     <p>
-      Custom Design’s LA is built on one idea — creating meaningful,
+      Custom Design’s LA is built on one idea. Creating meaningful,
       made-to-order pieces designed around you.
     </p>
 
     <p>
       Below are <strong>28 custom pieces</strong> created between
-      <strong>2021 and today</strong> — a living, growing archive that shows
+      <strong>2021 and today</strong>. A living, growing archive that shows
       where we started, how far we’ve come, and what’s possible when every
       piece is made with intention.
     </p>
