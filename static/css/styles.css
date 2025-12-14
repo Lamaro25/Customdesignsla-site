@@ -355,3 +355,28 @@ footer.site-footer {
     box-shadow: 0 18px 40px rgba(0,0,0,0.22);
   }
 }
+
+/* HARD RESET for collection card links */
+.collection-card,
+.collection-card * {
+  background: transparent !important;
+  box-shadow: none;
+}
+
+.collection-card {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.collection-card a {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.collection-card a:focus,
+.collection-card a:focus-visible,
+.collection-card a:hover,
+.collection-card a:active {
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
