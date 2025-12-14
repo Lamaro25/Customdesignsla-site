@@ -1,12 +1,13 @@
 ---
 layout: layouts/base.njk
-title: "Custom Designs LA"
-permalink: /
+title: Custom Designs LA
 ---
 
-<div class="text-center" style="max-width:900px;margin:0 auto;">
+<section class="hero text-center">
   <h1>Custom Designs LA</h1>
-  <p>
-    Handcrafted sterling silver jewelry, western hardware, and custom metalwork.
-  </p>
-</div>
+  <p>Handcrafted sterling silver jewelry, western hardware, and custom metalwork.</p>
+</section>
+
+<section class="homepage-slider">
+  <!-- SLIDER MARKUP GOES HERE -->
+</section>
