@@ -5,8 +5,8 @@ title: Custom Design's LA
 
 <section class="homepage-hero">
 
-  <!-- INTRO / STORY TEXT -->
-  <div class="hero-text" style="text-align:center; max-width:900px; margin: 0 auto 40px;">
+  <!-- INTRO TEXT -->
+  <div class="hero-text" style="text-align:center; max-width:900px; margin:0 auto 40px;">
     <h1>Our Custom Journey</h1>
 
     <p>
@@ -27,10 +27,10 @@ title: Custom Design's LA
     <p><strong>Your piece could be next.</strong></p>
   </div>
 
-  <!-- SLIDER -->
+  <!-- SLIDER (THIS WAS THE MISSING PIECE) -->
   <div class="homepage-slider">
     <div class="slider-track">
-      <!-- JS injects 28 images here -->
+      <!-- Images are injected here by home-slider.js -->
     </div>
   </div>
 
