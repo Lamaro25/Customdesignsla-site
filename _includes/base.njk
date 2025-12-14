@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ title or "Custom Designs LA" }}</title>
 
-    <!-- Correct stylesheet paths -->
+    <!-- Global Styles -->
     <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="/static/css/ltr.css">
   </head>
@@ -14,16 +14,13 @@
 
     <!-- HEADER -->
     <header class="site-header">
-
-      <!-- BRAND ROW -->
-      <div class="container flex items-center justify-between">
-        <a href="/" class="flex items-center space-x-2">
-          <span class="font-bold text-lg">Custom Designs</span>
-          <img src="/assets/uploads/logo.png" alt="LA Logo" />
+      <div class="container">
+        <a href="/" class="flex">
+          <span>Custom Designs</span>
+          <img src="/assets/uploads/logo.png" alt="LA Logo">
         </a>
       </div>
 
-      <!-- PREMIUM METAL BUTTON BAR -->
       <div class="top-button-bar">
         <a href="/rings/"><img src="/static/img/buttons/rings.png" alt="Rings"></a>
         <a href="/charms/"><img src="/static/img/buttons/charms.png" alt="Charms"></a>
@@ -36,26 +33,19 @@
         <a href="/customize.html"><img src="/static/img/buttons/customize.png" alt="Customize"></a>
         <a href="/cart.html"><img src="/static/img/buttons/cart.png" alt="Cart"></a>
       </div>
-
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN -->
     <main>
-      {% block content %}
-        {{ content | safe }}
-      {% endblock %}
+      {{ content | safe }}
     </main>
 
     <!-- FOOTER -->
     <footer class="site-footer">
-      <p style="text-align:center; font-size:0.85rem; color:#666; margin-top:2rem;">
-        © <script>document.write(new Date().getFullYear());</script>
-        Custom Designs LA — All Rights Reserved.
+      <p>
+        © {{ "now" | date: "%Y" }} Custom Designs LA — All Rights Reserved.
       </p>
     </footer>
-
-    <!-- HOMEPAGE SLIDER SCRIPT (FIX) -->
-    <script src="/static/js/home-slider.js"></script>
 
   </body>
 </html>
