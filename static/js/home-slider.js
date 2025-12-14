@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   const imageFiles = [
     "slider_01.jpg","slider_02.jpg","slider_03.jpg","slider_04.jpg",
     "slider_05.jpg","slider_06.jpg","slider_07.jpg","slider_08.jpg",
@@ -13,21 +12,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const slider = document.querySelector(".homepage-slider");
   const track = document.querySelector(".slider-track");
 
-  if (!slider || !track) return;
+  if (!slider || !track) {
+    console.warn("Slider container not found");
+    return;
+  }
 
-  /* 🔥 THIS IS THE FIX */
-  track.style.width = `${imageFiles.length * 100}%`;
+  slider.style.cursor = "grab";
+  slider.style.userSelect = "none";
 
   let currentIndex = 0;
-  slider.style.cursor = "grab";
 
-  imageFiles.forEach((file, i) => {
+  /* BUILD SLIDES */
+  imageFiles.forEach((filename, idx) => {
     const slide = document.createElement("div");
     slide.className = "slider-slide";
 
     const img = document.createElement("img");
-    img.src = `/static/img/homepage-slider/${file}`;
-    img.alt = `Custom Designs LA ${i + 1}`;
+
+    // ✅ THIS IS THE CRITICAL PATH
+    img.src = `/static/img/homepage-slider/${filename}`;
+    img.alt = `Custom piece ${idx + 1}`;
     img.draggable = false;
 
     slide.appendChild(img);
@@ -39,40 +43,32 @@ document.addEventListener("DOMContentLoaded", () => {
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
   }
 
+  /* DESKTOP + MOBILE SWIPE */
   let startX = 0;
-  let currentX = 0;
-  let dragging = false;
+  let isDragging = false;
 
   slider.addEventListener("mousedown", e => {
+    isDragging = true;
     startX = e.clientX;
-    currentX = startX;
-    dragging = true;
     slider.style.cursor = "grabbing";
   });
 
-  window.addEventListener("mousemove", e => {
-    if (!dragging) return;
-    currentX = e.clientX;
-  });
-
-  window.addEventListener("mouseup", () => {
-    if (!dragging) return;
-    slider.style.cursor = "grab";
-    const diff = startX - currentX;
+  window.addEventListener("mouseup", e => {
+    if (!isDragging) return;
+    const diff = startX - e.clientX;
     if (diff > 60) goToSlide(currentIndex + 1);
     if (diff < -60) goToSlide(currentIndex - 1);
-    dragging = false;
+    isDragging = false;
+    slider.style.cursor = "grab";
   });
 
   slider.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
-    currentX = startX;
   });
 
   slider.addEventListener("touchend", e => {
-    const diff = startX - currentX;
+    const diff = startX - e.changedTouches[0].clientX;
     if (diff > 60) goToSlide(currentIndex + 1);
     if (diff < -60) goToSlide(currentIndex - 1);
   });
-
 });
