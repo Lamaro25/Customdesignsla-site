@@ -3,25 +3,27 @@ layout: layouts/base.njk
 title: Custom Design's LA
 ---
 
-<section class="slider-intro text-center">
+<section class="slider-intro">
+  <h1>Our Custom Journey</h1>
 
-# Our Custom Journey
+  <p>
+    Presented here are <strong>28 custom pieces</strong> created between
+    <strong>2021 and today</strong> — a living archive of our growth,
+    our learning, and our craft.
+  </p>
 
-Presented here are **28 custom pieces** created between **2021 and today** —  
-a living archive of our growth, our learning, and our craft.
+  <p>
+    Some pieces come from the early days, when we were first learning the art.
+    Others reflect where we are now — refined, intentional, and evolving.
+  </p>
 
-Some pieces come from the early days, when we were first learning the art.  
-Others reflect where we are now — refined, intentional, and evolving.
+  <p>
+    This gallery will continue to change as new custom work is created.
+  </p>
 
-This gallery will continue to change as new custom work is created.
-
-**Your piece could be next.**
-
+  <p><strong>Your piece could be next.</strong></p>
 </section>
 
-<!--
-NOTE:
-The homepage image slider is rendered by /static/js/home-slider.js
-and injected into the .homepage-slider container in the layout.
-Do NOT add images here.
--->
+<div class="homepage-slider">
+  <div class="slider-track"></div>
+</div>
