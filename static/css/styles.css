@@ -171,3 +171,11 @@ body {
 .homepage-hero {
   background: transparent;
 }
+
+/* === GLOBAL SITE BACKGROUND (LOCKED) === */
+body {
+  background-color: #fafafa;
+  background-image: url("/static/img/backgrounds/la-honeycomb.svg");
+  background-repeat: repeat;
+  background-size: 420px 420px;
+}
