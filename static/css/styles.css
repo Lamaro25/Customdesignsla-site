@@ -150,6 +150,18 @@ body {
   }
 }
 
+/* === SLIDER WIDTH FIX (CRITICAL) === */
+.slider-track {
+  display: flex;
+  height: 100%;
+  width: calc(100% * 28); /* MUST MATCH IMAGE COUNT */
+}
+
+.slider-slide {
+  width: 100%;
+  flex-shrink: 0;
+}
+
 /* ==========================================================
    MAIN CONTENT
 ========================================================== */
