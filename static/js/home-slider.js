@@ -32,8 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
     track.appendChild(slide);
   });
 
-  track.style.width = `${imageFiles.length * 100}%`;
-
   function goToSlide(index) {
     currentIndex = Math.max(0, Math.min(index, imageFiles.length - 1));
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
