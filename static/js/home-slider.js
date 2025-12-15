@@ -22,14 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentIndex = 0;
 
-  /* BUILD SLIDES */
+  /* =========================
+     BUILD SLIDES
+  ========================== */
   imageFiles.forEach((filename, idx) => {
     const slide = document.createElement("div");
     slide.className = "slider-slide";
 
     const img = document.createElement("img");
-
-    // ✅ THIS IS THE CRITICAL PATH
     img.src = `/static/img/homepage-slider/${filename}`;
     img.alt = `Custom piece ${idx + 1}`;
     img.draggable = false;
@@ -38,12 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
     track.appendChild(slide);
   });
 
+  /* ✅ CRITICAL FIX — LOCK TRACK WIDTH */
+  track.style.width = `${imageFiles.length * 100}%`;
+
   function goToSlide(index) {
     currentIndex = Math.max(0, Math.min(index, imageFiles.length - 1));
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
   }
 
-  /* DESKTOP + MOBILE SWIPE */
+  /* =========================
+     DESKTOP + MOBILE SWIPE
+  ========================== */
   let startX = 0;
   let isDragging = false;
 
