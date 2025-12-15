@@ -3,27 +3,38 @@
    Updated: Dec 2025
 ========================================================== */
 
-/* === GLOBAL RESET & BASE === */
+/* ==========================================================
+   GLOBAL RESET & BASE (BACKGROUND LIVES HERE)
+========================================================== */
 html {
   min-height: 100%;
   background-color: #fafafa;
-  background-image: url("/static/img/backgrounds/la-honeycomb.svg");
+
+  /* ✅ CORRECT PRODUCTION PATH */
+  background-image: url("/img/backgrounds/la-honeycomb.svg");
   background-repeat: repeat;
   background-size: 420px 420px;
 }
 
 body {
   min-height: 100vh;
-  font-family: "Segoe UI", sans-serif;
   margin: 0;
   padding: 0;
+
+  font-family: "Segoe UI", sans-serif;
   color: #222;
+
+  /* 🔑 MUST stay transparent */
   background: transparent;
 }
 
 /* ==========================================================
    HEADER / BRANDING
 ========================================================== */
+.site-header {
+  background: transparent; /* 🔑 allow background through */
+}
+
 .header-row {
   display: flex;
   align-items: center;
@@ -58,6 +69,8 @@ body {
   flex-wrap: wrap;
   gap: 1.25rem;
   margin: 1rem 0;
+
+  background: transparent; /* 🔑 */
 }
 
 .top-button-bar img {
@@ -67,7 +80,14 @@ body {
 }
 
 /* ==========================================================
-   HOMEPAGE IMAGE SLIDER (FINAL, LOCKED)
+   HOMEPAGE HERO
+========================================================== */
+.homepage-hero {
+  background: transparent; /* 🔑 REQUIRED */
+}
+
+/* ==========================================================
+   HOMEPAGE IMAGE SLIDER (LOCKED & ISOLATED)
 ========================================================== */
 .homepage-slider {
   width: 100%;
@@ -75,6 +95,7 @@ body {
   height: 520px;
   margin: 40px auto;
   overflow: hidden;
+
   background: #000;
   border-radius: 18px;
   box-shadow: 0 0 25px rgba(0,0,0,0.25);
@@ -82,6 +103,7 @@ body {
   position: relative;
   z-index: 10;
 
+  /* 🔒 prevents slider from breaking layout */
   isolation: isolate;
   contain: layout paint;
 }
@@ -107,7 +129,6 @@ body {
   display: block;
 }
 
-/* Mobile slider height */
 @media (max-width: 700px) {
   .homepage-slider {
     height: 340px;
@@ -121,11 +142,8 @@ main {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
-  background: transparent;
-}
 
-.homepage-hero {
-  background: transparent;
+  background: transparent; /* 🔑 */
 }
 
 /* ==========================================================
@@ -137,7 +155,8 @@ footer.site-footer {
   color: #777;
   padding: 30px 0;
   border-top: 1px solid #ddd;
-  background: transparent; /* 🔑 CRITICAL CHANGE */
+
+  background: transparent; /* 🔑 FINAL FIX */
 }
 
 /* ==========================================================
