@@ -10,7 +10,6 @@ body {
   padding: 0;
   color: #222;
 
-  /* Base background */
   background-color: #fafafa;
 
   /* Subtle honeycomb pattern */
@@ -20,30 +19,26 @@ body {
       rgba(0, 0, 0, 0.025) 12%,
       transparent 12.5%,
       transparent 87%,
-      rgba(0, 0, 0, 0.025) 87.5%,
-      rgba(0, 0, 0, 0.025)
+      rgba(0, 0, 0, 0.025) 87.5%
     ),
     linear-gradient(
       150deg,
       rgba(0, 0, 0, 0.025) 12%,
       transparent 12.5%,
       transparent 87%,
-      rgba(0, 0, 0, 0.025) 87.5%,
-      rgba(0, 0, 0, 0.025)
+      rgba(0, 0, 0, 0.025) 87.5%
     ),
     linear-gradient(
       90deg,
       rgba(0, 0, 0, 0.02) 2%,
       transparent 2.5%,
       transparent 97%,
-      rgba(0, 0, 0, 0.02) 97.5%,
-      rgba(0, 0, 0, 0.02)
+      rgba(0, 0, 0, 0.02) 97.5%
     );
 
   background-size: 80px 140px;
   background-position: 0 0;
 }
-
 
 /* ==========================================================
    HEADER / BRANDING
@@ -91,26 +86,7 @@ body {
 }
 
 /* ==========================================================
-   HOMEPAGE INTRO TEXT (NEW / FIXED)
-========================================================== */
-.slider-intro {
-  max-width: 900px;
-  margin: 0 auto 40px auto;
-  text-align: center;
-}
-
-.slider-intro h1 {
-  font-size: 2.4rem;
-  margin-bottom: 1rem;
-}
-
-.slider-intro p {
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-
-/* ==========================================================
-   HOMEPAGE IMAGE SLIDER (SINGLE SOURCE OF TRUTH)
+   HOMEPAGE IMAGE SLIDER (FINAL, LOCKED)
 ========================================================== */
 .homepage-slider {
   width: 100%;
@@ -121,16 +97,21 @@ body {
   background: #000;
   border-radius: 18px;
   box-shadow: 0 0 25px rgba(0,0,0,0.25);
+
+  position: relative;
+  z-index: 10; /* ABOVE BACKGROUND */
 }
 
 .slider-track {
   display: flex;
   height: 100%;
+  width: calc(100% * 28); /* MUST MATCH IMAGE COUNT */
   transition: transform 0.4s ease;
 }
 
 .slider-slide {
   flex: 0 0 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,6 +122,9 @@ body {
   max-height: 90%;
   object-fit: contain;
   display: block;
+
+  position: relative;
+  z-index: 11;
 }
 
 /* Mobile slider height */
@@ -148,28 +132,6 @@ body {
   .homepage-slider {
     height: 340px;
   }
-}
-
-/* === SLIDER WIDTH FIX (CRITICAL) === */
-.slider-track {
-  display: flex;
-  height: 100%;
-  width: calc(100% * 28); /* MUST MATCH IMAGE COUNT */
-}
-
-.slider-slide {
-  width: 100%;
-  flex-shrink: 0;
-}
-
-.homepage-slider {
-  position: relative;
-  z-index: 2;
-}
-
-.homepage-slider img {
-  position: relative;
-  z-index: 3;
 }
 
 /* ==========================================================
@@ -194,7 +156,7 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   FOOTER BRANDING (LOGO + TEXT)
+   FOOTER BRANDING
 ========================================================== */
 .footer-brand {
   display: flex;
