@@ -162,6 +162,16 @@ body {
   flex-shrink: 0;
 }
 
+.homepage-slider {
+  position: relative;
+  z-index: 2;
+}
+
+.homepage-slider img {
+  position: relative;
+  z-index: 3;
+}
+
 /* ==========================================================
    MAIN CONTENT
 ========================================================== */
