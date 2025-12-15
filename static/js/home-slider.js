@@ -12,25 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const slider = document.querySelector(".homepage-slider");
   const track = document.querySelector(".slider-track");
 
-  if (!slider || !track) {
-    console.warn("Slider container not found");
-    return;
-  }
+  if (!slider || !track) return;
 
   slider.style.cursor = "grab";
   slider.style.userSelect = "none";
 
   let currentIndex = 0;
 
-  /* =========================
-     BUILD SLIDES
-  ========================== */
   imageFiles.forEach((filename, idx) => {
     const slide = document.createElement("div");
     slide.className = "slider-slide";
 
     const img = document.createElement("img");
-    img.src = `/img/homepage-slider/${filename}`;
+    img.src = `/static/img/slider/${filename}`; // ✅ CORRECT PATH
     img.alt = `Custom piece ${idx + 1}`;
     img.draggable = false;
 
@@ -38,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
     track.appendChild(slide);
   });
 
-  /* ✅ CRITICAL FIX — LOCK TRACK WIDTH */
   track.style.width = `${imageFiles.length * 100}%`;
 
   function goToSlide(index) {
@@ -46,9 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
   }
 
-  /* =========================
-     DESKTOP + MOBILE SWIPE
-  ========================== */
   let startX = 0;
   let isDragging = false;
 
