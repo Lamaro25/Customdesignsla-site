@@ -105,13 +105,11 @@ body {
 .slider-track {
   display: flex;
   height: 100%;
-  width: calc(100% * 28); /* MUST MATCH IMAGE COUNT */
   transition: transform 0.4s ease;
 }
 
 .slider-slide {
   flex: 0 0 100%;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
