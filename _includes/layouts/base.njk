@@ -37,12 +37,11 @@
   </div>
 </header>
 
+<main>
+  {{ content | safe }}
+</main>
 
-  <main>
-    {{ content | safe }}
-  </main>
-
- <footer class="site-footer">
+<footer class="site-footer">
   <div class="footer-brand">
     <span class="footer-text">Custom Design’s</span>
     <img
@@ -58,3 +57,8 @@
   </p>
 </footer>
 
+<!-- ✅ REQUIRED: HOMEPAGE SLIDER SCRIPT -->
+<script src="/static/js/home-slider.js"></script>
+
+</body>
+</html>
