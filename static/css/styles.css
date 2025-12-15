@@ -4,14 +4,19 @@
 ========================================================== */
 
 /* === GLOBAL RESET & BASE === */
+html {
+  background-color: #fafafa;
+  background-image: url("/static/img/backgrounds/la-honeycomb.svg");
+  background-repeat: repeat;
+  background-size: 420px 420px;
+}
+
 body {
   font-family: "Segoe UI", sans-serif;
   margin: 0;
   padding: 0;
   color: #222;
-
-  background-color: #fafafa;
-  background-image: url("/static/img/backgrounds/la-honeycomb.svg");
+  background: transparent;
 }
 
 /* ==========================================================
@@ -73,9 +78,8 @@ body {
   box-shadow: 0 0 25px rgba(0,0,0,0.25);
 
   position: relative;
-  z-index: 10; /* ABOVE BACKGROUND */
+  z-index: 10;
 
-  /* 🔒 CRITICAL FIX */
   isolation: isolate;
   contain: layout paint;
 }
@@ -84,8 +88,6 @@ body {
   display: flex;
   height: 100%;
   transition: transform 0.4s ease;
-
-  /* 🔒 CRITICAL FIX */
   will-change: transform;
 }
 
@@ -117,6 +119,12 @@ main {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
+  background: transparent;
+}
+
+/* Allow background to show */
+.homepage-hero {
+  background: transparent;
 }
 
 /* ==========================================================
@@ -157,25 +165,4 @@ footer.site-footer {
 .footer-copy {
   font-size: 0.8rem;
   color: #777;
-}
-
-/* === GLOBAL BACKGROUND (LOCKED) === */
-body {
-  background-color: #fafafa;
-  background-image: url("/static/img/backgrounds/la-honeycomb.svg");
-  background-repeat: repeat;
-  background-size: 420px 420px;
-}
-
-/* === ALLOW GLOBAL BACKGROUND TO SHOW THROUGH === */
-.homepage-hero {
-  background: transparent;
-}
-
-/* === GLOBAL SITE BACKGROUND (LOCKED) === */
-body {
-  background-color: #fafafa;
-  background-image: url("/static/img/backgrounds/la-honeycomb.svg");
-  background-repeat: repeat;
-  background-size: 420px 420px;
 }
