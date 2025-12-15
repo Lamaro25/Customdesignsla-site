@@ -42,10 +42,19 @@
     {{ content | safe }}
   </main>
 
-  <footer class="site-footer">
-    <p>© <script>document.write(new Date().getFullYear())</script> Custom Design's LA — All Rights Reserved.</p>
-  </footer>
+ <footer class="site-footer">
+  <div class="footer-brand">
+    <span class="footer-text">Custom Design’s</span>
+    <img
+      src="/assets/uploads/logo.png"
+      alt="Custom Design’s LA Logo"
+      class="footer-logo"
+    />
+  </div>
 
-  <script src="/static/js/home-slider.js"></script>
-</body>
-</html>
+  <p class="footer-copy">
+    © <script>document.write(new Date().getFullYear())</script>
+    Custom Design’s LA — All Rights Reserved.
+  </p>
+</footer>
+
