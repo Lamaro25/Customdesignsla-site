@@ -158,3 +158,11 @@ footer.site-footer {
   font-size: 0.8rem;
   color: #777;
 }
+
+/* === GLOBAL BACKGROUND (LOCKED) === */
+body {
+  background-color: #fafafa;
+  background-image: url("/static/img/backgrounds/la-honeycomb.svg");
+  background-repeat: repeat;
+  background-size: 420px 420px;
+}
