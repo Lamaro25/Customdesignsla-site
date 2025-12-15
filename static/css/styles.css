@@ -9,9 +9,7 @@
 html {
   min-height: 100%;
   background-color: #fafafa;
-
-  /* ✅ CORRECT PRODUCTION PATH */
-  background-image: url("/img/backgrounds/la-honeycomb.svg");
+  background-image: url("/static/img/backgrounds/la-honeycomb.svg");
   background-repeat: repeat;
   background-size: 420px 420px;
 }
@@ -185,4 +183,9 @@ footer.site-footer {
 .footer-copy {
   font-size: 0.8rem;
   color: #777;
+}
+
+/* === DEBUG FORCE BACKGROUND (TEMP) === */
+html {
+  background-image: url("/static/img/backgrounds/la-honeycomb.svg") !important;
 }
