@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     slide.className = "slider-slide";
 
     const img = document.createElement("img");
-    img.src = `/static/img/slider/${filename}`; // ✅ CORRECT PATH
+    img.src = `/static/img/homepage-slider/${filename}`; // ✅ FIXED
     img.alt = `Custom piece ${idx + 1}`;
     img.draggable = false;
 
