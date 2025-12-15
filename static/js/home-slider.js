@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     slide.className = "slider-slide";
 
     const img = document.createElement("img");
-    img.src = `/static/img/homepage-slider/${filename}`;
+    img.src = `/img/homepage-slider/${filename}`;
     img.alt = `Custom piece ${idx + 1}`;
     img.draggable = false;
 
