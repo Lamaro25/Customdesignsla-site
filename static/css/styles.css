@@ -100,12 +100,19 @@ body {
 
   position: relative;
   z-index: 10; /* ABOVE BACKGROUND */
+
+  /* 🔒 CRITICAL FIX */
+  isolation: isolate;
+  contain: layout paint;
 }
 
 .slider-track {
   display: flex;
   height: 100%;
   transition: transform 0.4s ease;
+
+  /* 🔒 CRITICAL FIX */
+  will-change: transform;
 }
 
 .slider-slide {
@@ -120,9 +127,6 @@ body {
   max-height: 90%;
   object-fit: contain;
   display: block;
-
-  position: relative;
-  z-index: 11;
 }
 
 /* Mobile slider height */
