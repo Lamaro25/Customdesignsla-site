@@ -9,6 +9,13 @@ permalink: /rings/cuban-link/
 
 Explore the full handcrafted Cuban Link series — bold, sculpted, and polished pieces cast in .925 Sterling Silver.
 
+<div class="collection-hero">
+  <img
+    src="/img/collection-plate.webp"
+    alt="Cuban Link Ring Collection Plate"
+  />
+</div>
+
 <div class="product-grid">
 
 {% for ring in collections["cuban-link"] %}
