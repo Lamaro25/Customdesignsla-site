@@ -14,6 +14,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!slider || !track) return;
 
+  /* ==========================================================
+     HARDEN SLIDER LAYOUT (prevents CSS from stacking images)
+     Only affects the slider elements.
+  ========================================================== */
+  slider.style.overflow = "hidden";
+  slider.style.position = "relative";
+
+  track.style.display = "flex";
+  track.style.flexDirection = "row";
+  track.style.height = "100%";
+  track.style.width = "100%";
+  track.style.transition = "transform 0.4s ease";
+  track.style.willChange = "transform";
+
   slider.style.cursor = "grab";
   slider.style.userSelect = "none";
 
@@ -23,10 +37,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const slide = document.createElement("div");
     slide.className = "slider-slide";
 
+    /* Force each slide to be 1 viewport wide so it cannot stack */
+    slide.style.flex = "0 0 100%";
+    slide.style.height = "100%";
+    slide.style.display = "flex";
+    slide.style.alignItems = "center";
+    slide.style.justifyContent = "center";
+
     const img = document.createElement("img");
     img.src = `/static/img/homepage-slider/${filename}`; // ✅ FIXED
     img.alt = `Custom piece ${idx + 1}`;
     img.draggable = false;
+
+    /* Prevent global image CSS from breaking slider */
+    img.style.width = "auto";
+    img.style.height = "100%";
+    img.style.maxWidth = "100%";
+    img.style.maxHeight = "100%";
+    img.style.objectFit = "contain";
+    img.style.display = "block";
 
     slide.appendChild(img);
     track.appendChild(slide);
