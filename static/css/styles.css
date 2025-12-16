@@ -84,8 +84,8 @@ main {
 }
 
 /* ==========================================================
-   IMAGE SAFETY NET (CRITICAL FIX)
-   Prevents blown-out product images
+   GLOBAL IMAGE SAFETY NET
+   (Does NOT touch collection cards or sliders)
 ========================================================== */
 main img {
   max-width: 100%;
@@ -93,9 +93,15 @@ main img {
   display: block;
 }
 
-main > img,
-main p > img {
+/* ==========================================================
+   PRODUCT / DETAIL PAGE IMAGE NORMALIZATION
+   (Fixes blown-out Cuban Link pages)
+========================================================== */
+main img:not(.collection-card img):not(.collection-image img) {
   max-width: 720px;
+  max-height: 480px;
+  width: auto;
+  height: auto;
   margin: 1.5rem 0;
 }
 
@@ -183,7 +189,7 @@ footer.site-footer {
   overflow: hidden;
 }
 
-.collection-image img {
+.collection-card .collection-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -226,17 +232,4 @@ footer.site-footer {
   font-size: 0.95rem;
   color: #555;
   line-height: 1.4;
-}
-
-/* ==========================================================
-   COLLECTION DETAIL PAGE IMAGE FIX
-   Prevents blown-out hero images
-========================================================== */
-
-main img:not(.collection-image img) {
-  max-width: 720px;
-  max-height: 480px;
-  width: auto;
-  height: auto;
-  margin: 1.5rem 0;
 }
