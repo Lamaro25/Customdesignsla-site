@@ -7,6 +7,37 @@
 
   <link rel="stylesheet" href="/static/css/styles.css">
   <link rel="stylesheet" href="/static/css/ltr.css">
+
+  <!-- Collections Toggle Styles -->
+  <style>
+    .collections-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin: 0.75rem 1rem;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 999px;
+      border: 1px solid #ccc;
+      background: linear-gradient(to bottom, #f2f2f2, #dcdcdc);
+      color: #111;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 #fff;
+    }
+
+    .collections-toggle:hover {
+      background: linear-gradient(to bottom, #ffffff, #e3e3e3);
+    }
+
+    .top-button-bar {
+      display: none;
+    }
+
+    .top-button-bar.is-open {
+      display: flex;
+    }
+  </style>
 </head>
 
 <body>
@@ -23,18 +54,18 @@
     </a>
   </div>
 
-  <!-- MOBILE COLLECTIONS TOGGLE (NEW, SAFE) -->
+  <!-- ✅ COLLECTIONS TOGGLE -->
   <button
     class="collections-toggle"
+    type="button"
     aria-expanded="false"
-    aria-controls="collections-menu"
-    onclick="toggleCollections()"
+    aria-controls="collections-bar"
   >
     ☰ Collections
   </button>
 
-  <!-- EXISTING BUTTON BAR (UNCHANGED, JUST WRAPPED) -->
-  <div class="top-button-bar" id="collections-menu">
+  <!-- ✅ EXISTING BUTTONS (UNCHANGED) -->
+  <div class="top-button-bar" id="collections-bar">
     <a href="/rings/"><img src="/static/img/buttons/rings.png" alt="Rings"></a>
     <a href="/charms/"><img src="/static/img/buttons/charms.png" alt="Charms"></a>
     <a href="/bracelets/"><img src="/static/img/buttons/bracelets.png" alt="Bracelets"></a>
@@ -68,19 +99,23 @@
   </p>
 </footer>
 
-<!-- HOMEPAGE SLIDER (UNCHANGED, LOCKED) -->
-<script src="/static/js/home-slider.js" defer></script>
-
-<!-- MOBILE COLLECTIONS TOGGLE SCRIPT (SCOPED) -->
+<!-- ✅ COLLECTIONS TOGGLE SCRIPT (SCOPED) -->
 <script>
-  function toggleCollections() {
-    const menu = document.getElementById("collections-menu");
-    const btn = document.querySelector(".collections-toggle");
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.querySelector(".collections-toggle");
+    const bar = document.querySelector(".top-button-bar");
 
-    const isOpen = menu.classList.toggle("open");
-    btn.setAttribute("aria-expanded", isOpen);
-  }
+    if (!toggle || !bar) return;
+
+    toggle.addEventListener("click", () => {
+      const isOpen = bar.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", isOpen);
+    });
+  });
 </script>
+
+<!-- ✅ HOMEPAGE SLIDER (UNCHANGED) -->
+<script src="/static/js/home-slider.js" defer></script>
 
 </body>
 </html>
