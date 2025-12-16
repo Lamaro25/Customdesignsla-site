@@ -150,19 +150,20 @@ footer.site-footer {
 /* ==========================================================
    COLLECTION IMAGE AREA (LOCKED HEIGHT + TRUE CENTER)
 ========================================================== */
+
 .collection-image {
   width: 100%;
-  height: 260px;
+  height: 320px; /* 🔑 BIGGER image area */
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 0.5rem; /* 🔑 less padding = more image */
+  padding: 0; /* 🔑 edge-to-edge */
 
   background: linear-gradient(
     to bottom,
-    #d6d6d6 0%,
-    #f2f2f2 55%,
+    #cfcfcf 0%,
+    #f0f0f0 55%,
     #ffffff 100%
   );
 
@@ -172,11 +173,11 @@ footer.site-footer {
 .collection-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 🔑 fills the card */
+  object-fit: cover; /* fills the frame */
   display: block;
 
   filter:
-    drop-shadow(0 10px 22px rgba(0,0,0,0.3))
+    drop-shadow(0 12px 24px rgba(0,0,0,0.28))
     contrast(1.1);
 }
 
