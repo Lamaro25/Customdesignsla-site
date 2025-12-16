@@ -23,33 +23,28 @@
     </a>
   </div>
 
-  <!-- ==========================================================
-       MOBILE COLLECTIONS WRAPPER (STEP A)
-       Desktop behavior unchanged
-  ========================================================== -->
-  <div class="mobile-collections">
+  <!-- MOBILE COLLECTIONS TOGGLE (NEW, SAFE) -->
+  <button
+    class="collections-toggle"
+    aria-expanded="false"
+    aria-controls="collections-menu"
+    onclick="toggleCollections()"
+  >
+    ☰ Collections
+  </button>
 
-    <button
-      class="mobile-collections-toggle"
-      aria-expanded="false"
-      aria-label="Toggle Collections Menu"
-    >
-      ☰ <span>Collections</span>
-    </button>
-
-    <div class="top-button-bar">
-      <a href="/rings/"><img src="/static/img/buttons/rings.png" alt="Rings"></a>
-      <a href="/charms/"><img src="/static/img/buttons/charms.png" alt="Charms"></a>
-      <a href="/bracelets/"><img src="/static/img/buttons/bracelets.png" alt="Bracelets"></a>
-      <a href="/necklaces/"><img src="/static/img/buttons/necklaces.png" alt="Necklaces"></a>
-      <a href="/bronze/"><img src="/static/img/buttons/bronze.png" alt="Bronze"></a>
-      <a href="/earrings/"><img src="/static/img/buttons/earrings.png" alt="Earrings"></a>
-      <a href="/pendants/"><img src="/static/img/buttons/pendants.png" alt="Pendants"></a>
-      <a href="/shop_all.html"><img src="/static/img/buttons/shop-all.png" alt="Shop All"></a>
-      <a href="/customize.html"><img src="/static/img/buttons/customize.png" alt="Customize"></a>
-      <a href="/cart.html"><img src="/static/img/buttons/cart.png" alt="Cart"></a>
-    </div>
-
+  <!-- EXISTING BUTTON BAR (UNCHANGED, JUST WRAPPED) -->
+  <div class="top-button-bar" id="collections-menu">
+    <a href="/rings/"><img src="/static/img/buttons/rings.png" alt="Rings"></a>
+    <a href="/charms/"><img src="/static/img/buttons/charms.png" alt="Charms"></a>
+    <a href="/bracelets/"><img src="/static/img/buttons/bracelets.png" alt="Bracelets"></a>
+    <a href="/necklaces/"><img src="/static/img/buttons/necklaces.png" alt="Necklaces"></a>
+    <a href="/bronze/"><img src="/static/img/buttons/bronze.png" alt="Bronze"></a>
+    <a href="/earrings/"><img src="/static/img/buttons/earrings.png" alt="Earrings"></a>
+    <a href="/pendants/"><img src="/static/img/buttons/pendants.png" alt="Pendants"></a>
+    <a href="/shop_all.html"><img src="/static/img/buttons/shop-all.png" alt="Shop All"></a>
+    <a href="/customize.html"><img src="/static/img/buttons/customize.png" alt="Customize"></a>
+    <a href="/cart.html"><img src="/static/img/buttons/cart.png" alt="Cart"></a>
   </div>
 </header>
 
@@ -73,8 +68,19 @@
   </p>
 </footer>
 
-<!-- ✅ REQUIRED: HOMEPAGE SLIDER SCRIPT (UNCHANGED) -->
+<!-- HOMEPAGE SLIDER (UNCHANGED, LOCKED) -->
 <script src="/static/js/home-slider.js" defer></script>
+
+<!-- MOBILE COLLECTIONS TOGGLE SCRIPT (SCOPED) -->
+<script>
+  function toggleCollections() {
+    const menu = document.getElementById("collections-menu");
+    const btn = document.querySelector(".collections-toggle");
+
+    const isOpen = menu.classList.toggle("open");
+    btn.setAttribute("aria-expanded", isOpen);
+  }
+</script>
 
 </body>
 </html>
