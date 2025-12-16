@@ -4,7 +4,7 @@
 ========================================================== */
 
 /* ==========================================================
-   GLOBAL RESET & BASE (BACKGROUND LIVES HERE)
+   GLOBAL RESET & BASE
 ========================================================== */
 html {
   min-height: 100%;
@@ -18,19 +18,16 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-
   font-family: "Segoe UI", sans-serif;
   color: #222;
-
-  /* 🔑 MUST stay transparent */
-  background: transparent;
+  background: transparent; /* MUST stay transparent */
 }
 
 /* ==========================================================
    HEADER / BRANDING
 ========================================================== */
 .site-header {
-  background: transparent; /* 🔑 allow background through */
+  background: transparent;
 }
 
 .header-row {
@@ -67,8 +64,7 @@ body {
   flex-wrap: wrap;
   gap: 1.25rem;
   margin: 1rem 0;
-
-  background: transparent; /* 🔑 */
+  background: transparent;
 }
 
 .top-button-bar img {
@@ -78,70 +74,13 @@ body {
 }
 
 /* ==========================================================
-   HOMEPAGE HERO
-========================================================== */
-.homepage-hero {
-  background: transparent; /* 🔑 REQUIRED */
-}
-
-/* ==========================================================
-   HOMEPAGE IMAGE SLIDER (LOCKED & ISOLATED)
-========================================================== */
-.homepage-slider {
-  width: 100%;
-  max-width: 1100px;
-  height: 520px;
-  margin: 40px auto;
-  overflow: hidden;
-
-  background: #000;
-  border-radius: 18px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.25);
-
-  position: relative;
-  z-index: 10;
-
-  /* 🔒 prevents slider from breaking layout */
-  isolation: isolate;
-  contain: layout paint;
-}
-
-.slider-track {
-  display: flex;
-  height: 100%;
-  transition: transform 0.4s ease;
-  will-change: transform;
-}
-
-.slider-slide {
-  flex: 0 0 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slider-slide img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-  display: block;
-}
-
-@media (max-width: 700px) {
-  .homepage-slider {
-    height: 340px;
-  }
-}
-
-/* ==========================================================
    MAIN CONTENT
 ========================================================== */
 main {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
-
-  background: transparent; /* 🔑 */
+  background: transparent;
 }
 
 /* ==========================================================
@@ -153,13 +92,9 @@ footer.site-footer {
   color: #777;
   padding: 30px 0;
   border-top: 1px solid #ddd;
-
-  background: transparent; /* 🔑 FINAL FIX */
+  background: transparent;
 }
 
-/* ==========================================================
-   FOOTER BRANDING
-========================================================== */
 .footer-brand {
   display: flex;
   flex-direction: column;
@@ -171,13 +106,11 @@ footer.site-footer {
 .footer-text {
   font-weight: 700;
   font-size: 1.1rem;
-  letter-spacing: 0.02em;
 }
 
 .footer-logo {
   height: 48px;
   width: auto;
-  opacity: 0.95;
 }
 
 .footer-copy {
@@ -185,15 +118,9 @@ footer.site-footer {
   color: #777;
 }
 
-/* === DEBUG FORCE BACKGROUND (TEMP) === */
-html {
-  background-image: url("/static/img/backgrounds/la-honeycomb.svg") !important;
-}
-
 /* ==========================================================
-   RING COLLECTION GRID (PREMIUM IMAGE + SILVER PLATE)
+   RING COLLECTION GRID
 ========================================================== */
-
 .collection-grid {
   max-width: 1100px;
   margin: 3rem auto;
@@ -220,7 +147,7 @@ html {
 }
 
 /* ==========================================================
-   COLLECTION IMAGE AREA (FIXED)
+   COLLECTION IMAGE AREA (CONSISTENT & CENTERED)
 ========================================================== */
 .collection-image {
   width: 100%;
@@ -228,23 +155,21 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1.5rem;
 
-  padding: 1.75rem;
-
-  background:
-    linear-gradient(
-      to bottom,
-      #d0d0d0 0%,
-      #f2f2f2 55%,
-      #ffffff 100%
-    );
+  background: linear-gradient(
+    to bottom,
+    #d6d6d6 0%,
+    #f2f2f2 55%,
+    #ffffff 100%
+  );
 
   overflow: hidden;
 }
 
 .collection-image img {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   display: block;
 
@@ -253,41 +178,18 @@ html {
     contrast(1.15);
 }
 
-/* 🔑 PREMIUM SILVER PLATE */
-.collection-plate {
-  padding: 1.4rem 1.6rem 1.7rem;
-  background: linear-gradient(
-    180deg,
-    #f3f3f3 0%,
-    #ffffff 55%
-  );
-}
-
-.collection-plate h2 {
-  margin: 0 0 0.4rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.collection-plate p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #555;
-}
-
 /* ==========================================================
    COLLECTION PLATE (PREMIUM SILVER PANEL)
 ========================================================== */
 .collection-plate {
-  background:
-    linear-gradient(
-      to bottom,
-      #e6e6e6 0%,
-      #f9f9f9 55%,
-      #ffffff 100%
-    );
+  background: linear-gradient(
+    to bottom,
+    #e6e6e6 0%,
+    #f9f9f9 55%,
+    #ffffff 100%
+  );
 
-  padding: 1.4rem 1.6rem 1.6rem;
+  padding: 1.2rem 1.5rem 1.4rem;
   border-top: 1px solid rgba(0,0,0,0.08);
 
   box-shadow:
@@ -296,9 +198,10 @@ html {
 }
 
 .collection-plate h2 {
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.35rem;
   font-size: 1.25rem;
   font-weight: 700;
+  line-height: 1.25;
   color: #111;
 }
 
