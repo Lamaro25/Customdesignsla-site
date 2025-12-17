@@ -12,7 +12,6 @@ band_width: "7 mm"
 layout: "product"
 images:
   - "/static/img/cuban-link-classic-frontview.png"
-  - "/static/img/cuban-link-classic-sideview.png"
 description: >
   Refined domed band with a recessed Cuban braid channel, polished exterior edges,
   and oxidized depth for timeless contrast. Hand-cast and finished in Del Rio, Texas.
