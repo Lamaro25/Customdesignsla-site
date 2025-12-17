@@ -13,7 +13,7 @@ Explore handcrafted Western rings inspired by Texas heritage, frontier grit, and
 
 {% for ring in collections["western"] %}
   <a href="{{ ring.url }}" class="collection-card">
-    <img src="{{ ring.data.images[0] }}" alt="{{ ring.data.title }}">
+    <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
     <div class="collection-card-text">
       <h3>{{ ring.data.title }}</h3>
       <p class="price">${{ ring.data.price }} USD</p>
