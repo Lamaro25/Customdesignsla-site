@@ -11,8 +11,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)
 band_width: "10 mm"
 layout: "product"
 images:
-  - "/static/img/wr-002-a-day-in-texas-frontview.png"
-  - "/static/img/wr-002-a-day-in-texas-sideview.png"
+  - "/img/rings/western/a-day-in-texas-ring.jpg"
 description: >
   Every side tells a story of Texas. Sculpted fully in raised relief, the 
   **A Day in Texas Ring** brings two iconic scenes to life — the hunt and the 
