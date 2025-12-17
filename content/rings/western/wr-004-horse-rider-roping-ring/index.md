@@ -11,8 +11,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked â€
 band_width: "7 mm"
 layout: "product"
 images:
-  - "/static/img/wr-004-horse-rider-roping-front.png"
-  - "/static/img/wr-004-horse-rider-roping-side.png"
+  - "/img/rings/western/horse-rider-roping-ring.jpg"
 description: >
   A tribute to the working cowboy and the legacy he leaves behind. The Horse
   Rider Roping Ring captures the heart of Western tradition â€” grit, motion,
