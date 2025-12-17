@@ -50,27 +50,23 @@ module.exports = function (eleventyConfig) {
       const path = data.page.filePathStem || "";
 
       // Rings
-      if (path.includes("content/rings/")) {
-        const cleanPath = path.replace("content/", "");
-        return `/${cleanPath}/index.html`;
+      if (path.startsWith("rings/")) {
+        return `/${path}/index.html`;
       }
 
       // Bracelets
-      if (path.includes("content/bracelets/")) {
-        const cleanPath = path.replace("content/", "");
-        return `/${cleanPath}/index.html`;
+      if (path.startsWith("bracelets/")) {
+        return `/${path}/index.html`;
       }
 
       // Charms
-      if (path.includes("content/charms/")) {
-        const cleanPath = path.replace("content/", "");
-        return `/${cleanPath}/index.html`;
+      if (path.startsWith("charms/")) {
+        return `/${path}/index.html`;
       }
 
       // Bronze
-      if (path.includes("content/bronze/")) {
-        const cleanPath = path.replace("content/", "");
-        return `/${cleanPath}/index.html`;
+      if (path.startsWith("bronze/")) {
+        return `/${path}/index.html`;
       }
 
       // All other files use their own permalink
@@ -78,30 +74,26 @@ module.exports = function (eleventyConfig) {
     },
 
     layout: (data) => {
-  const path = data.page.filePathStem || "";
+      const path = data.page.filePathStem || "";
 
-  const isProductFamily =
-    path.includes("content/rings/") ||
-    path.includes("content/bracelets/") ||
-    path.includes("content/charms/") ||
-    path.includes("content/bronze/");
+      const isProductFamily =
+        path.startsWith("rings/") ||
+        path.startsWith("bracelets/") ||
+        path.startsWith("charms/") ||
+        path.startsWith("bronze/");
 
-  // ✅ Collection landing pages use category layout
-  // Examples:
-  // content/rings/cuban-link/index.md  -> /rings/cuban-link/
-  // content/rings/western/index.md     -> /rings/western/
-  const isCollectionIndex = path.endsWith("/index");
+      // Collection landing pages → category
+      const isCollectionIndex = !path.includes("/");
 
-  if (isProductFamily && isCollectionIndex) return "category.njk";
+      if (isProductFamily && isCollectionIndex) return "category.njk";
 
-  // ✅ Actual product pages use product layout
-  if (isProductFamily) return "product.njk";
+      // Product pages → product
+      if (isProductFamily) return "product.njk";
 
-  // Default fallback
-  return data.layout || "base.njk";
-},
+      // Default fallback
+      return data.layout || "base.njk";
+    }
 
-    },
   });
 
   // ------------------------------
