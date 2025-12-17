@@ -103,3 +103,4 @@ Explore handcrafted Western rings inspired by Texas heritage, frontier grit, and
   font-size: 0.95rem;
 }
 </style>
+ 
