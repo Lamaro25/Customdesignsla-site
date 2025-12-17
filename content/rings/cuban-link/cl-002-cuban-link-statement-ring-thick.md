@@ -12,7 +12,6 @@ band_width: "10 mm"
 layout: "product"
 images:
   - "/static/img/cuban-statement-ring-thick-frontview.png"
-  - "/static/img/cuban-statement-ring-thick-sideview.png"
 description: >
   The Thick Statement Ring is the bold centerpiece of the Cuban Link Collection.
   A full 10 mm domed band with a personalized name-plate engraving panel, framed
