@@ -11,7 +11,7 @@ material: "Solid .925 Sterling Silver (oxidized recess + polished raised edges, 
 band_width: "10 mm"
 layout: "product"
 images:
-  - "/static/img/cuban-statement-ring-thick-frontview.png"
+  - "/static/img/rings/cuban/cuban-link-statement-thick-ring.jpg"
 description: >
   The Thick Statement Ring is the bold centerpiece of the Cuban Link Collection.
   A full 10 mm domed band with a personalized name-plate engraving panel, framed
