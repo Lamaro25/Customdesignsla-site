@@ -11,8 +11,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 band_width: "7 mm"
 layout: "product"
 images:
-  - "/img/rings/western/running-wild-ring.jpg"
-
+  - "/static/img/rings/western/running-wild-ring.jpg"
 # 🔥 HARD CACHE BUST — Eleventy MUST rebuild
 eleventyComputed:
   bust: "WR005-FORCE-{{ updated }}"
