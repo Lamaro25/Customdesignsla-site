@@ -11,7 +11,7 @@ material: "Solid .925 Sterling Silver (oxidized recess + polished peaks, hallmar
 band_width: "7 mm"
 layout: "product"
 images:
-  - "/static/img/cuban-origins-ring-frontview.png"
+  - "/static/img/rings/cuban/cuban-link-origins-ring.jpg"
 description: >
   The Origin’s Ring is the very first Cuban Link design you ever sculpted — the
   foundation from which the entire collection was built. A pure continuous Cuban
