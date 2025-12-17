@@ -12,7 +12,6 @@ band_width: "10 mm"
 layout: "product"
 images:
   - "/static/img/cuban-statement-ring-thin-frontview.png"
-  - "/static/img/cuban-statement-ring-thin-sideview.png"
 description: >
   The Statement Ring (Thin) carries the same bold design language as the Thick
   version, but with a lighter, more comfortable weight. A 10 mm domed band 
