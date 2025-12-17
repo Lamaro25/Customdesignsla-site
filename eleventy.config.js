@@ -78,20 +78,29 @@ module.exports = function (eleventyConfig) {
     },
 
     layout: (data) => {
-      const path = data.page.filePathStem || "";
+  const path = data.page.filePathStem || "";
 
-      // Assign product layout automatically for product directories
-      if (
-        path.includes("content/rings/") ||
-        path.includes("content/bracelets/") ||
-        path.includes("content/charms/") ||
-        path.includes("content/bronze/")
-      ) {
-        return "product.njk";
-      }
+  const isProductFamily =
+    path.includes("content/rings/") ||
+    path.includes("content/bracelets/") ||
+    path.includes("content/charms/") ||
+    path.includes("content/bronze/");
 
-      // Default fallback
-      return data.layout || "base.njk";
+  // ✅ Collection landing pages use category layout
+  // Examples:
+  // content/rings/cuban-link/index.md  -> /rings/cuban-link/
+  // content/rings/western/index.md     -> /rings/western/
+  const isCollectionIndex = path.endsWith("/index");
+
+  if (isProductFamily && isCollectionIndex) return "category.njk";
+
+  // ✅ Actual product pages use product layout
+  if (isProductFamily) return "product.njk";
+
+  // Default fallback
+  return data.layout || "base.njk";
+},
+
     },
   });
 
