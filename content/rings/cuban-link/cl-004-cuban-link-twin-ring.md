@@ -12,7 +12,6 @@ band_width: "7 mm"
 layout: "product"
 images:
   - "/static/img/cuban-twin-ring-frontview.png"
-  - "/static/img/cuban-twin-ring-sideview.png"
 description: >
   The Twin Ring delivers symmetry and detail — a 7 mm domed band divided into two
   small Cuban braids, separated by a clean center ridge. The outer walls feature
