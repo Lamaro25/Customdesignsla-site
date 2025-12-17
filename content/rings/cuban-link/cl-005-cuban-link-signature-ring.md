@@ -11,7 +11,7 @@ material: "Solid .925 Sterling Silver (high-polish + oxidized recess, hallmarked
 band_width: "7 mm"
 layout: "product"
 images:
-  - "/static/img/cuban-signature-ring-frontview.png"
+  - "/static/img/rings/cuban/cuban-link-signature-ring.jpg"
 description: >
   The Signature Ring places its personality up front — a name-plate panel centered
   on a 7 mm domed band, bordered by a defined channel and a bold large Cuban braid.
