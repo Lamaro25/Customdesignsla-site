@@ -12,7 +12,6 @@ band_width: "7 mm"
 layout: "product"
 images:
   - "/static/img/cuban-signature-ring-frontview.png"
-  - "/static/img/cuban-signature-ring-sideview.png"
 description: >
   The Signature Ring places its personality up front — a name-plate panel centered
   on a 7 mm domed band, bordered by a defined channel and a bold large Cuban braid.
