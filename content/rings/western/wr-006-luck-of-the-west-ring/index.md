@@ -11,8 +11,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked â€
 band_width: "7 mm"
 layout: "product"
 images:
-  - "/static/img/wr-006-luck-of-the-west-front.png"
-  - "/static/img/wr-006-luck-of-the-west-side.png"
+  - "/img/rings/western/luck-of-the-west-ring.jpg"
 
 # ðŸ”¥ Forces Eleventy to rebuild this item even if cached
 eleventyComputed:
