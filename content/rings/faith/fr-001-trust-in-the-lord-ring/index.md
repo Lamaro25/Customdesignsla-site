@@ -10,8 +10,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked â€
 band_width: "7 mm"
 layout: "product"
 images:
-  - "/static/img/faith-trust-in-the-lord-frontview.png"
-  - "/static/img/faith-trust-in-the-lord-sideview.png"
+  - "/static/img/rings/faith/trust-in-the-lord-ring.jpg"
 description: >
   A testament of quiet devotion, the Trust in the Lord Ring symbolizes unwavering faith
   in moments of uncertainty. A polished 7 mm domed band carries a recessed cross on the outside,
