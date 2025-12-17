@@ -35,6 +35,15 @@ module.exports = function (eleventyConfig) {
   });
 
   // ------------------------------
+  // WESTERN RING COLLECTION (ADDED)
+  // ------------------------------
+  eleventyConfig.addCollection("western", function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("content/rings/western/**/index.md")
+      .sort((a, b) => a.data.sku.localeCompare(b.data.sku));
+  });
+
+  // ------------------------------
   // LTR — Cowboy Hat Pick Collection (FIXED)
   // ------------------------------
   eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
@@ -74,31 +83,30 @@ module.exports = function (eleventyConfig) {
     },
 
     layout: (data) => {
-  const path = data.page.filePathStem || "";
+      const path = data.page.filePathStem || "";
 
-  const isProductFamily =
-    path.startsWith("rings/") ||
-    path.startsWith("bracelets/") ||
-    path.startsWith("charms/") ||
-    path.startsWith("bronze/");
+      const isProductFamily =
+        path.startsWith("rings/") ||
+        path.startsWith("bracelets/") ||
+        path.startsWith("charms/") ||
+        path.startsWith("bronze/");
 
-  // ✅ Correct collection index detection
-  const isCollectionIndex = path.endsWith("/index");
+      // ✅ Correct collection index detection
+      const isCollectionIndex = path.endsWith("/index");
 
-  // Collection landing pages → category
-  if (isProductFamily && isCollectionIndex) {
-    return "category.njk";
-  }
+      // Collection landing pages → category
+      if (isProductFamily && isCollectionIndex) {
+        return "category.njk";
+      }
 
-  // Product pages → product
-  if (isProductFamily) {
-    return "product.njk";
-  }
+      // Product pages → product
+      if (isProductFamily) {
+        return "product.njk";
+      }
 
-  // Default fallback
-  return data.layout || "base.njk";
-}
-
+      // Default fallback
+      return data.layout || "base.njk";
+    }
 
   });
 
