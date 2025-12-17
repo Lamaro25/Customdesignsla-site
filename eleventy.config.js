@@ -35,13 +35,14 @@ module.exports = function (eleventyConfig) {
   });
 
   // ------------------------------
-  // WESTERN RING COLLECTION (ADDED)
-  // ------------------------------
-  eleventyConfig.addCollection("western", function (collectionApi) {
-    return collectionApi
-      .getFilteredByGlob("content/rings/western/**/index.md")
-      .sort((a, b) => a.data.sku.localeCompare(b.data.sku));
-  });
+// WESTERN RING COLLECTION (FIXED)
+// ------------------------------
+eleventyConfig.addCollection("western", function (collectionApi) {
+  return collectionApi
+    .getFilteredByGlob("content/rings/western/**/*.md")
+    .filter(item => item.data.layout === "product")
+    .sort((a, b) => (a.data.sku || "").localeCompare(b.data.sku || ""));
+});
 
   // ------------------------------
   // LTR — Cowboy Hat Pick Collection (FIXED)
