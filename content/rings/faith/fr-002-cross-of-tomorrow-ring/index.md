@@ -10,8 +10,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)
 band_width: "7 mm"
 layout: "product"
 images:
-  - "/static/img/faith-cross-of-tomorrow-frontview.png"
-  - "/static/img/faith-cross-of-tomorrow-sideview.png"
+  - "/static/img/rings/faith/cross-of-tomorrow-ring.jpg"
 description: >
   The Cross of Tomorrow Ring carries the message of peace beyond worry. A raised 
   continuous cross wraps around the exterior of the 7 mm domed band, symbolizing 
