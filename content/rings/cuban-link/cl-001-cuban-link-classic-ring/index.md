@@ -11,7 +11,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked â€
 band_width: "7 mm"
 layout: "product"
 images:
-  - "/static/img/cuban-link-classic-frontview.png"
+  - "/static/img/rings/cuban/cuban-link-classic-ring.jpg"
 description: >
   Refined domed band with a recessed Cuban braid channel, polished exterior edges,
   and oxidized depth for timeless contrast. Hand-cast and finished in Del Rio, Texas.
