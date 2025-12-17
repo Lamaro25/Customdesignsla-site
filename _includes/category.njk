@@ -30,13 +30,25 @@ module.exports = function (eleventyConfig) {
 
     layout: (data) => {
       const path = data.page.filePathStem || "";
-      if (
-        path.includes("content/bracelets") ||
-        path.includes("content/rings") ||
-        path.includes("content/charms") ||
-        path.includes("content/bronze")
-      ) {
-        return "category.njk";
+      layout: (data) => {
+  const path = data.page.filePathStem || "";
+
+  // Apply category layout ONLY to collection index pages
+  if (
+    path.endsWith("/index") &&
+    (
+      path.includes("content/bracelets") ||
+      path.includes("content/rings") ||
+      path.includes("content/charms") ||
+      path.includes("content/bronze")
+    )
+  ) {
+    return "category.njk";
+  }
+
+  return data.layout;
+},
+
       }
       return data.layout;
     },
