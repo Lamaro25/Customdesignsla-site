@@ -10,8 +10,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)
 band_width: "10 mm"
 layout: "product"
 images:
-  - "/static/img/faith-path-of-faith-frontview.png"
-  - "/static/img/faith-path-of-faith-sideview.png"
+  - "/static/img/rings/faith/path-of-faith-ring.jpg"
 description: >
   Commanding and purposeful, the Path of Faith Ring rises on a broad 10 mm apex band.
   Its defining feature — a centered cut-out cross — symbolizes surrender, direction, 
