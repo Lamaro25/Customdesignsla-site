@@ -10,8 +10,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)
 band_width: "7 mm"
 layout: "product"
 images:
-  - "/static/img/faith-acts-ring-frontview.png"
-  - "/static/img/faith-acts-ring-sideview.png"
+  - "/static/img/rings/faith/acts-ring.jpg"
 description: >
   Rooted in community, courage, and devotion, the ACTS Ring was originally created for
   the Teen ACTS Retreat of 2023 at St. Joseph’s Church in Del Rio, Texas. Inside, the
