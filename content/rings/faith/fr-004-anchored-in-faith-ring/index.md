@@ -10,8 +10,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)
 band_width: "7 mm"
 layout: "product"
 images:
-  - "/static/img/faith-anchored-in-faith-frontview.png"
-  - "/static/img/faith-anchored-in-faith-sideview.png"
+  - "/static/img/rings/faith/anchored-in-faith-ring.jpg"
 description: >
   Simple yet powerful, the Anchored in Faith Ring is built upon a 7 mm domed band
   displaying four evenly spaced cut-out crosses. These crosses represent anchor
