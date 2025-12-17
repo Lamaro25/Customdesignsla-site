@@ -34,14 +34,11 @@ module.exports = function (eleventyConfig) {
     return collectionApi.getFilteredByTag("cuban-link");
   });
 
-  // ------------------------------
-// WESTERN RING COLLECTION (FIXED)
-// ------------------------------
-eleventyConfig.addCollection("western", function (collectionApi) {
+  eleventyConfig.addCollection("western", function (collectionApi) {
   return collectionApi
     .getFilteredByGlob("content/rings/western/**/*.md")
-    .filter(item => item.data.layout === "product")
-    .sort((a, b) => (a.data.sku || "").localeCompare(b.data.sku || ""));
+    .filter(item => item.data.sku)
+    .sort((a, b) => a.data.sku.localeCompare(b.data.sku));
 });
 
   // ------------------------------
