@@ -2,7 +2,7 @@ module.exports = function (eleventyConfig) {
   // ✅ Add date filter for Nunjucks
   eleventyConfig.addNunjucksFilter("date", function (value, format = "%Y") {
     const date = value === "now" ? new Date() : new Date(value);
-    return date.getFullYear(); // Only output year
+    return date.getFullYear();
   });
 
   // Copy static assets and admin folder
@@ -16,13 +16,13 @@ module.exports = function (eleventyConfig) {
     permalink: (data) => {
       const path = data.page.filePathStem || "";
 
-      if (path.includes("content/bracelets"))
+      if (path.startsWith("bracelets/"))
         return `/bracelets/${data.page.fileSlug}/index.html`;
-      if (path.includes("content/rings"))
+      if (path.startsWith("rings/"))
         return `/rings/${data.page.fileSlug}/index.html`;
-      if (path.includes("content/charms"))
+      if (path.startsWith("charms/"))
         return `/charms/${data.page.fileSlug}/index.html`;
-      if (path.includes("content/bronze"))
+      if (path.startsWith("bronze/"))
         return `/bronze/${data.page.fileSlug}/index.html`;
 
       return data.permalink;
@@ -30,14 +30,21 @@ module.exports = function (eleventyConfig) {
 
     layout: (data) => {
       const path = data.page.filePathStem || "";
-      if (
-        path.includes("content/bracelets") ||
-        path.includes("content/rings") ||
-        path.includes("content/charms") ||
-        path.includes("content/bronze")
-      ) {
+
+      const isProductFamily =
+        path.startsWith("bracelets/") ||
+        path.startsWith("rings/") ||
+        path.startsWith("charms/") ||
+        path.startsWith("bronze/");
+
+      const isCollectionIndex = !path.includes("/");
+
+      // ✅ Only collection landing pages use category layout
+      if (isProductFamily && isCollectionIndex) {
         return "category.njk";
       }
+
+      // Otherwise, respect existing layout
       return data.layout;
     },
   });
