@@ -11,7 +11,7 @@ material: "Solid .925 Sterling Silver (oxidized depth with polished edges, hallm
 band_width: "7 mm"
 layout: "product"
 images:
-  - "/static/img/cuban-twin-ring-frontview.png"
+  - "/static/img/rings/cuban/cuban-twin-ring.jpg"
 description: >
   The Twin Ring delivers symmetry and detail — a 7 mm domed band divided into two
   small Cuban braids, separated by a clean center ridge. The outer walls feature
