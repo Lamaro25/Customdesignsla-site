@@ -11,8 +11,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked â€
 band_width: "7 mm"
 layout: "product"
 images:
-  - "/static/img/wr-001-texas-long-horn-front.png"
-  - "/static/img/wr-001-texas-long-horn-side.png"
+  - "/img/rings/western/texas-long-horn-ring.jpg"
 description: >
   Forged in tribute to the Lone Star State, the Texas Long Horn Ring captures the unmistakable 
   strength and identity of Texas culture. Sculpted on a 7 mm flat band, the ring features a central 
