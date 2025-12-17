@@ -11,8 +11,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked â€
 band_width: "10 mm Apex"
 layout: "product"
 images:
-  - "/static/img/wr-003-lone-star-apex-front.png"
-  - "/static/img/wr-003-lone-star-apex-side.png"
+  - "/img/rings/western/lone-star-apex-ring.jpg"
 description: >
   A fusion of apex architecture and Texas tradition. Sculpted on a 10 mm
   peak-contoured band, the Lone Star Apex Ring showcases a precision Texas
