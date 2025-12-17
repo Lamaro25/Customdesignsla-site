@@ -10,8 +10,7 @@ updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized recess & polished highlights, hallmarked “LA”)"
 band_width: "10 mm"
 layout: "product"
-images:
-  - "/static/img/cuban-statement-ring-thin-frontview.png"
+/static/img/rings/cuban/
 description: >
   The Statement Ring (Thin) carries the same bold design language as the Thick
   version, but with a lighter, more comfortable weight. A 10 mm domed band 
