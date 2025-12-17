@@ -10,8 +10,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)
 band_width: "3 mm (rising to 7 mm cross peak)"
 layout: "product"
 images:
-  - "/static/img/faith-tree-of-faith-frontview.png"
-  - "/static/img/faith-tree-of-faith-sideview.png"
+  - "/static/img/rings/faith/tree-of-faith-ring.jpg"
 description: >
   The Tree of Faith Ring draws its symbolism from endurance, growth, and the living
   nature of the cross. Carved on a slender custom 3 mm band that rises to a 7 mm
