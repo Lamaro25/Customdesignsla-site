@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/static/css/styles.css">
   <link rel="stylesheet" href="/static/css/ltr.css">
 
-  <!-- Collections Toggle Styles -->
+    <!-- Collections Toggle Styles + Sticky Header -->
   <style>
     .collections-toggle {
       display: inline-flex;
@@ -37,7 +37,24 @@
     .top-button-bar.is-open {
       display: flex;
     }
+
+    /* === Sticky header for logo + collections bar === */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1500;
+      background: #f8f8f8ee;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* Add top padding so content doesn't hide under the sticky header */
+    main {
+      padding-top: 6.5rem;
+    }
   </style>
+
 </head>
 
 <body>
