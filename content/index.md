@@ -4,15 +4,15 @@
   <div class="hero-wrapper" style="position:relative; text-align:center; margin-bottom:40px;">
     
     <img 
-      src="/static/img/home/cdla-hero-faith-display.jpg"
-      alt=""
+      src="/static/img/cdla-hero-faith-display.jpg"
+      alt="CDLA Faith display hero image"
       style="width:100%; height:auto; display:block;"
     />
 
     <!-- CARD IMAGE OVERLAY -->
     <img
-      src="/static/img/home/cdla-hero-card-display.jpg"
-      alt=""
+      src="/static/img/cdla-card-hero-custom-made-v1.jpg"
+      alt="Custom Jewelry Made Your Way card overlay"
       class="hero-card-img"
       style="
         position:absolute;
