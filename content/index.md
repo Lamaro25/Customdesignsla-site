@@ -1,8 +1,3 @@
----
-layout: layouts/base.njk
-title: Custom Design's LA
----
-
 <section class="homepage-hero">
 
   <!-- HERO IMAGE + CARD OVERLAY -->
@@ -11,12 +6,12 @@ title: Custom Design's LA
     <img 
       src="/static/img/home/cdla-hero-faith-display.jpg"
       alt=""
-      style="width:100%; height:auto; display:block; border-radius:6px;"
+      style="width:100%; height:auto; display:block;"
     />
 
     <!-- CARD IMAGE OVERLAY -->
     <img
-      src="/static/img/cards/hero-custom-jewelry-card.jpg"
+      src="/static/img/home/cdla-hero-card-display.jpg"
       alt=""
       class="hero-card-img"
       style="
@@ -27,6 +22,7 @@ title: Custom Design's LA
         width:82%;
         max-width:650px;
         display:block;
+        z-index:10;
       "
     />
 
