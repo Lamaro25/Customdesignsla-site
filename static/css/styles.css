@@ -263,3 +263,25 @@ body.home main {
 .hero-wrapper {
   margin-top: 20px;
 }
+
+/* ============================================
+   FULL-BLEED HERO — fixes white margins
+============================================ */
+.homepage-hero.full-bleed {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.homepage-hero .hero-wrapper {
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.homepage-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
