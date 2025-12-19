@@ -35,4 +35,11 @@ description: ""
 
 </section>
 
+<!-- HOMEPAGE SLIDER (RESTORED) -->
+<section class="homepage-slider">
+  <div class="slider-track">
+    <!-- Slider images injected by home-slider.js -->
+  </div>
+</section>
+
 <!-- BEFORE ANY OTHER HOMEPAGE CONTENT -->
