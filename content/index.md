@@ -10,11 +10,11 @@ description: ""
 
     <!-- RESPONSIVE HERO IMAGE -->
     <img 
-      src="/static/img/cdla-hero-faith-desktop.jpg"
-      alt="CDLA Faith hero image"
-      class="hero-img"
-      style="width:100%; height:auto; display:block; margin:0 auto;"
-    />
+  src="/static/img/hero-img-Desktop-1920x650.jpg"
+  alt="CDLA homepage hero image"
+  class="hero-img"
+  style="width:100%; height:auto; display:block; margin:0 auto;"
+/>
 
   </div>
 
