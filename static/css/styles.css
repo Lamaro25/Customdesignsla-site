@@ -233,3 +233,13 @@ footer.site-footer {
   color: #555;
   line-height: 1.4;
 }
+
+/* ============================
+   RESPONSIVE HERO FOR MOBILE
+===============================*/
+
+@media (max-width: 768px) {
+  .hero-img {
+    content: url("/static/img/cdla-hero-faith-mobile.jpg");
+  }
+}
