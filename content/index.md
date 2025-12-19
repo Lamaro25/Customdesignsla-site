@@ -30,11 +30,25 @@ description: ""
   />
 
   <!-- Fallback -->
-  <img
+ <picture>
+  <!-- mobile first -->
+  <source 
+    srcset="/static/img/hero-img-mobile-1080x1500.jpg"
+    media="(max-width: 640px)">
+  
+  <!-- tablet -->
+  <source 
+    srcset="/static/img/hero-img-tablet-1536x900.jpg"
+    media="(max-width: 1200px)">
+
+  <!-- desktop (default fallback) -->
+  <img 
     src="/static/img/hero-img-Desktop-1920x650.jpg"
     alt="CDLA homepage hero image"
     style="width:100%; height:auto; display:block; margin:0 auto;"
-  />
+  >
+</picture>
+
 </picture>
 
 
