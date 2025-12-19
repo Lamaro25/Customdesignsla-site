@@ -1,17 +1,19 @@
 <section class="homepage-hero">
 
+ <section class="homepage-hero">
+
   <!-- HERO IMAGE + CARD OVERLAY -->
   <div class="hero-wrapper" style="position:relative; text-align:center; margin-bottom:40px;">
     
     <img 
-      src="/static/img/cdla-hero-faith-display.jpg"
+      src="/static/img/cdla-hero-faith-display-2400x1600.jpg"
       alt="CDLA Faith display hero image"
       style="width:100%; height:auto; display:block;"
     />
 
     <!-- CARD IMAGE OVERLAY -->
     <img
-      src="/static/img/cdla-card-hero-custom-made-v1.jpg"
+      src="/static/img/cdla-hero-card-display.jpg"
       alt="Custom Jewelry Made Your Way card overlay"
       class="hero-card-img"
       style="
