@@ -243,3 +243,23 @@ footer.site-footer {
     content: url("/static/img/cdla-hero-faith-mobile.jpg");
   }
 }
+
+/* ==========================================
+   HOMEPAGE HERO FIX – remove top gap + overlap
+==============================================*/
+
+/* Prevent main margin pushing hero image downward */
+body.home main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Make sure hero sits below header cleanly */
+.homepage-hero {
+  padding-top: 20px;
+}
+
+/* Fix spacing so card sits fully visible at load */
+.hero-wrapper {
+  margin-top: 20px;
+}
