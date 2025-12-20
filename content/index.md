@@ -9,24 +9,25 @@ description: ""
   <div class="hero-wrapper" style="position:relative; text-align:center; margin-bottom:40px;">
 
     <!-- RESPONSIVE HERO IMAGE -->
-   <picture>
+  <picture>
 
   <!-- mobile first -->
   <source 
     srcset="/static/img/hero-img-mobile-1080x1500.jpg"
-    media="(max-width: 600px)"
+    media="(max-width: 640px)"
   />
 
   <!-- tablet -->
   <source 
     srcset="/static/img/hero-img-tablet-1536x900.jpg"
-    media="(max-width: 1024px)"
+    media="(min-width: 641px) and (max-width: 1200px)"
   />
 
-  <!-- desktop default -->
+  <!-- desktop -->
   <img 
     src="/static/img/hero-img-Desktop-1920x650.jpg"
     alt="CDLA homepage hero image"
+    class="hero-img"
     style="width:100%; height:auto; display:block; margin:0 auto;"
   />
 
