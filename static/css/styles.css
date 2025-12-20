@@ -234,16 +234,6 @@ footer.site-footer {
   line-height: 1.4;
 }
 
-/* ============================
-   RESPONSIVE HERO FOR MOBILE
-===============================*/
-
-@media (max-width: 768px) {
-  .hero-img {
-    content: url("/static/img/cdla-hero-faith-mobile.jpg");
-  }
-}
-
 /* ==========================================
    HOMEPAGE HERO FIX – remove top gap + overlap
 ==============================================*/
@@ -285,3 +275,16 @@ body.home main {
   height: auto;
   display: block;
 }
+
+/* =======================================================
+   RESPONSIVE HERO SELECTION — UNIVERSAL WIDTH SAFETY NET
+========================================================= */
+
+.homepage-hero picture,
+.homepage-hero img,
+.hero-wrapper {
+  width: 100%;
+  display: block;
+  max-width: 100%;
+}
+
