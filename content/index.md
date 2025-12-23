@@ -9,7 +9,6 @@ description: ""
 
     <!-- RESPONSIVE HERO IMAGE -->
  <picture class="hero-picture">
-
   <!-- MOBILE -->
   <source
     srcset="/static/img/hero-mobile.jpg"
@@ -23,15 +22,21 @@ description: ""
   />
 
   <!-- DESKTOP -->
+  <source
+    srcset="/static/img/hero-desktop.jpg"
+    media="(min-width: 1024px)"
+  />
+
+  <!-- Fallback (never used unless browser is ancient) -->
   <img
     src="/static/img/hero-desktop.jpg"
-    alt="Custom Designs LA – Handcrafted Custom Jewelry"
+    alt="Custom Design’s LA — handcrafted custom jewelry"
     class="hero-img"
     loading="eager"
     decoding="async"
   />
-
 </picture>
+
   </div>
 </section>
 
