@@ -211,3 +211,28 @@ footer.site-footer {
   display: block;
   margin-top: 0;
 }
+
+/* ==========================================================
+   HERO FULL-BLEED OVERRIDE (DESKTOP + MOBILE FIX)
+========================================================== */
+
+/* Allow hero to escape main container */
+.homepage-hero {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+/* Kill any inherited horizontal padding */
+.homepage-hero {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Mobile Safari top-gap killer */
+@supports (-webkit-touch-callout: none) {
+  body.home main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
