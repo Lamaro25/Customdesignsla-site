@@ -8,28 +8,25 @@ description: ""
   <div class="hero-wrapper" style="position:relative; text-align:center; margin-bottom:40px;">
 
     <!-- RESPONSIVE HERO IMAGE -->
-   <picture>
-
+  <picture>
   <!-- MOBILE -->
-  <source 
-    srcset="/static/img/hero-img-mobile-1080x1500.jpg"
+  <source
+    srcset="/static/img/hero-mobile.jpg"
     media="(max-width: 767px)"
   />
 
   <!-- TABLET -->
-  <source 
-    srcset="/static/img/hero-img-tablet-1536x900.jpg"
+  <source
+    srcset="/static/img/hero-tablet.jpg"
     media="(min-width: 768px) and (max-width: 1023px)"
   />
 
-  <!-- DESKTOP fallback -->
-  <img 
-    src="/static/img/hero-img-Desktop-1920x650.jpg"
-    alt="CDLA homepage hero image"
+  <!-- DESKTOP (fallback) -->
+  <img
+    src="/static/img/hero-desktop.jpg"
+    alt="Custom Designs LA hero image"
     class="hero-img"
-    style="width:100%; height:auto; display:block; margin:0 auto;"
   />
-
 </picture>
 
   </div>
