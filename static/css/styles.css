@@ -26,8 +26,13 @@ body {
 /* ==========================================================
    HEADER / BRANDING
 ========================================================== */
+/* ==========================================================
+   HEADER / BRANDING
+========================================================== */
 .site-header {
   background: transparent;
+  margin-bottom: 0;      /* GAP FIX */
+  padding-bottom: 0;     /* GAP FIX */
 }
 
 .header-row {
@@ -53,6 +58,20 @@ body {
   height: 42px;
   width: auto;
   display: block;
+}
+
+/* ==========================================================
+   HEADER → HERO GAP FIX (FINAL)
+========================================================== */
+
+/* Remove space below collections bar */
+.top-button-bar {
+  margin-bottom: 0;
+}
+
+/* Ensure hero starts immediately */
+.homepage-hero {
+  margin-top: 0;
 }
 
 /* ==========================================================
