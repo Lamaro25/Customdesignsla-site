@@ -8,7 +8,8 @@ description: ""
   <div class="hero-wrapper" style="position:relative; text-align:center; margin-bottom:40px;">
 
     <!-- RESPONSIVE HERO IMAGE -->
-  <picture>
+ <picture class="hero-picture">
+
   <!-- MOBILE -->
   <source
     srcset="/static/img/hero-mobile.jpg"
@@ -21,14 +22,16 @@ description: ""
     media="(min-width: 768px) and (max-width: 1023px)"
   />
 
-  <!-- DESKTOP (fallback) -->
+  <!-- DESKTOP -->
   <img
     src="/static/img/hero-desktop.jpg"
-    alt="Custom Designs LA hero image"
+    alt="Custom Designs LA – Handcrafted Custom Jewelry"
     class="hero-img"
+    loading="eager"
+    decoding="async"
   />
-</picture>
 
+</picture>
   </div>
 </section>
 
