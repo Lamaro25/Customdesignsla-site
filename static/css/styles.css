@@ -104,14 +104,14 @@ body {
 ========================================================== */
 main {
   max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 20px;
+  margin: 0 auto;              /* no top margin */
+  padding: 0 20px 20px;        /* ⬅️ NO TOP PADDING */
   background: transparent;
 }
 
-/* Homepage-specific override (REAL FIX) */
-main:has(.homepage-hero) {
-  margin-top: 0;
+/* Interior pages spacing (NOT homepage hero) */
+main > section:not(.homepage-hero):first-child {
+  margin-top: 20px;
 }
 
 /* ==========================================================
