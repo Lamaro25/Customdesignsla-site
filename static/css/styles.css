@@ -78,9 +78,14 @@ body {
 ========================================================== */
 main {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 20px auto; /* 🔧 CHANGED from 40px → 20px */
   padding: 0 20px;
   background: transparent;
+}
+
+/* Homepage-specific override (KEEPING PREVIOUS FIX) */
+body.home main {
+  margin-top: 0;
 }
 
 /* ==========================================================
@@ -191,22 +196,18 @@ footer.site-footer {
 /* ==========================================================
    HOMEPAGE HERO — FULL BLEED (RESTORED & LOCKED)
 ========================================================== */
-
 .homepage-hero {
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  padding-top: 20px;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .homepage-hero .hero-wrapper {
-  width: 100%;
-  margin: 0;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .homepage-hero picture,
 .homepage-hero img {
-  width: 100%;
   display: block;
-  max-width: none;
+  margin-top: 0;
 }
