@@ -104,13 +104,13 @@ body {
 ========================================================== */
 main {
   max-width: 1200px;
-  margin: 20px auto; /* 🔧 CHANGED from 40px → 20px */
+  margin: 20px auto;
   padding: 0 20px;
   background: transparent;
 }
 
-/* Homepage-specific override (KEEPING PREVIOUS FIX) */
-body.home main {
+/* Homepage-specific override (REAL FIX) */
+main:has(.homepage-hero) {
   margin-top: 0;
 }
 
