@@ -26,9 +26,6 @@ body {
 /* ==========================================================
    HEADER / BRANDING
 ========================================================== */
-/* ==========================================================
-   HEADER / BRANDING
-========================================================== */
 .site-header {
   background: transparent;
   margin-bottom: 0;      /* GAP FIX */
@@ -61,17 +58,27 @@ body {
 }
 
 /* ==========================================================
-   HEADER → HERO GAP FIX (FINAL)
+   HEADER → HERO HARD LOCK (FINAL FINAL)
 ========================================================== */
 
-/* Remove space below collections bar */
+/* Collapse all header spacing */
+.site-header,
+.header-row,
 .top-button-bar {
   margin-bottom: 0;
+  padding-bottom: 0;
 }
 
-/* Ensure hero starts immediately */
-.homepage-hero {
+/* Prevent phantom line-height space */
+.site-header *,
+.header-row * {
+  line-height: normal;
+}
+
+/* Force hero to start immediately after header */
+.site-header + main .homepage-hero {
   margin-top: 0;
+  padding-top: 0;
 }
 
 /* ==========================================================
