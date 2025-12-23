@@ -85,9 +85,9 @@ main {
 
 /* ==========================================================
    GLOBAL IMAGE SAFETY NET
-   (Does NOT touch collection cards or sliders)
+   (EXCLUDES HERO IMAGE)
 ========================================================== */
-main img {
+main img:not(.hero-img) {
   max-width: 100%;
   height: auto;
   display: block;
@@ -95,9 +95,7 @@ main img {
 
 /* ==========================================================
    PRODUCT / DETAIL PAGE IMAGE NORMALIZATION
-   (Fixes blown-out Cuban Link pages)
 ========================================================== */
-/* Prevent hero image from being constrained */
 main img:not(.hero-img):not(.collection-card img):not(.collection-image img) {
   max-width: 720px;
   max-height: 480px;
@@ -170,7 +168,7 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   COLLECTION IMAGE AREA (INTENTIONALLY LARGE)
+   COLLECTION IMAGE AREA
 ========================================================== */
 .collection-image {
   width: 100%;
@@ -179,14 +177,6 @@ footer.site-footer {
   align-items: center;
   justify-content: center;
   padding: 0;
-
-  background: linear-gradient(
-    to bottom,
-    #cfcfcf 0%,
-    #f0f0f0 55%,
-    #ffffff 100%
-  );
-
   overflow: hidden;
 }
 
@@ -195,80 +185,17 @@ footer.site-footer {
   height: 100%;
   object-fit: cover;
   display: block;
-
-  filter:
-    drop-shadow(0 12px 24px rgba(0,0,0,0.28))
-    contrast(1.1);
 }
 
 /* ==========================================================
-   COLLECTION PLATE (PREMIUM SILVER PANEL)
+   HOMEPAGE HERO
 ========================================================== */
-.collection-plate {
-  background: linear-gradient(
-    to bottom,
-    #e6e6e6 0%,
-    #f9f9f9 55%,
-    #ffffff 100%
-  );
-
-  padding: 1.2rem 1.5rem 1.4rem;
-  border-top: 1px solid rgba(0,0,0,0.08);
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.9),
-    inset 0 -1px 0 rgba(0,0,0,0.04);
-}
-
-.collection-plate h2 {
-  margin: 0 0 0.35rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.25;
-  color: #111;
-}
-
-.collection-plate p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.4;
-}
-
-/* ==========================================
-   HOMEPAGE HERO FIX – remove top gap + overlap
-==============================================*/
-
-/* Prevent main margin pushing hero image downward */
-body.home main {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* Make sure hero sits below header cleanly */
 .homepage-hero {
   padding-top: 20px;
 }
 
-/* Fix spacing so card sits fully visible at load */
 .hero-wrapper {
   margin-top: 20px;
-}
-
-/* ============================================
-   FULL-BLEED HERO — fixes white margins
-============================================ */
-.homepage-hero.full-bleed {
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
-.homepage-hero .hero-wrapper {
-  position: relative;
-  text-align: center;
-  margin-bottom: 40px;
-  width: 100%;
 }
 
 .homepage-hero img {
@@ -277,10 +204,6 @@ body.home main {
   display: block;
 }
 
-/* =======================================================
-   RESPONSIVE HERO SELECTION — UNIVERSAL WIDTH SAFETY NET
-========================================================= */
-
 .homepage-hero picture,
 .homepage-hero img,
 .hero-wrapper {
@@ -288,4 +211,3 @@ body.home main {
   display: block;
   max-width: 100%;
 }
-
