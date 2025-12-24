@@ -15,8 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!slider || !track) return;
 
   /* ==========================================================
-     HARDEN SLIDER LAYOUT (prevents CSS from stacking images)
-     Only affects the slider elements.
+     HARDEN SLIDER LAYOUT (PREVENT STACKING)
   ========================================================== */
   slider.style.overflow = "hidden";
   slider.style.position = "relative";
@@ -25,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   track.style.flexDirection = "row";
   track.style.height = "100%";
   track.style.width = "100%";
-  track.style.transition = "transform 0.4s ease";
+  track.style.transition = "transform 0.45s ease";
   track.style.willChange = "transform";
 
   slider.style.cursor = "grab";
@@ -33,11 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentIndex = 0;
 
+  /* ==========================================================
+     BUILD SLIDES
+  ========================================================== */
   imageFiles.forEach((filename, idx) => {
     const slide = document.createElement("div");
     slide.className = "slider-slide";
-
-    /* Force each slide to be 1 viewport wide so it cannot stack */
     slide.style.flex = "0 0 100%";
     slide.style.height = "100%";
     slide.style.display = "flex";
@@ -45,11 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
     slide.style.justifyContent = "center";
 
     const img = document.createElement("img");
-    img.src = `/static/img/homepage-slider/${filename}`; // ✅ FIXED
+    img.src = `/static/img/homepage-slider/${filename}`;
     img.alt = `Custom piece ${idx + 1}`;
     img.draggable = false;
 
-    /* Prevent global image CSS from breaking slider */
     img.style.width = "auto";
     img.style.height = "100%";
     img.style.maxWidth = "100%";
@@ -61,11 +60,56 @@ document.addEventListener("DOMContentLoaded", () => {
     track.appendChild(slide);
   });
 
+  /* ==========================================================
+     SLIDE CONTROL
+  ========================================================== */
   function goToSlide(index) {
-    currentIndex = Math.max(0, Math.min(index, imageFiles.length - 1));
+    if (index < 0) index = imageFiles.length - 1;
+    if (index >= imageFiles.length) index = 0;
+
+    currentIndex = index;
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    dots.forEach((dot, i) =>
+      dot.classList.toggle("active", i === currentIndex)
+    );
   }
 
+  /* ==========================================================
+     ARROWS
+  ========================================================== */
+  const leftArrow = document.createElement("div");
+  leftArrow.className = "slider-arrow left";
+
+  const rightArrow = document.createElement("div");
+  rightArrow.className = "slider-arrow right";
+
+  slider.appendChild(leftArrow);
+  slider.appendChild(rightArrow);
+
+  leftArrow.addEventListener("click", () => goToSlide(currentIndex - 1));
+  rightArrow.addEventListener("click", () => goToSlide(currentIndex + 1));
+
+  /* ==========================================================
+     DOTS
+  ========================================================== */
+  const dotsContainer = document.createElement("div");
+  dotsContainer.className = "slider-dots";
+
+  const dots = imageFiles.map((_, index) => {
+    const dot = document.createElement("div");
+    dot.className = "slider-dot";
+    if (index === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+    return dot;
+  });
+
+  slider.appendChild(dotsContainer);
+
+  /* ==========================================================
+     DRAG / SWIPE SUPPORT
+  ========================================================== */
   let startX = 0;
   let isDragging = false;
 
@@ -86,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   slider.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
-  });
+  }, { passive: true });
 
   slider.addEventListener("touchend", e => {
     const diff = startX - e.changedTouches[0].clientX;
