@@ -247,6 +247,28 @@ footer.site-footer {
 }
 
 /* ==========================================================
+   HOMEPAGE SLIDER — FULL BLEED (NEW)
+========================================================== */
+
+/* Allow slider to escape main container */
+.homepage-slider {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow: hidden;
+  position: relative;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Ensure slider images fill cleanly */
+.homepage-slider img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================
    HERO FULL-BLEED OVERRIDE (DESKTOP + MOBILE FIX)
 ========================================================== */
 
