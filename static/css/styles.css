@@ -269,6 +269,87 @@ footer.site-footer {
 }
 
 /* ==========================================================
+   HOMEPAGE SLIDER — DOTS & ARROWS (PRODUCTION)
+========================================================== */
+
+.homepage-slider {
+  position: relative;
+}
+
+/* ---------- ARROWS ---------- */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.slider-arrow:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.slider-arrow.left {
+  left: 20px;
+}
+
+.slider-arrow.right {
+  right: 20px;
+}
+
+.slider-arrow::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid #111;
+  border-right: 3px solid #111;
+}
+
+.slider-arrow.left::before {
+  transform: rotate(-135deg);
+}
+
+.slider-arrow.right::before {
+  transform: rotate(45deg);
+}
+
+/* ---------- DOTS ---------- */
+.slider-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 20;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.slider-dot.active {
+  background: #000;
+  transform: scale(1.2);
+}
+
+/* ==========================================================
    HERO FULL-BLEED OVERRIDE (DESKTOP + MOBILE FIX)
 ========================================================== */
 
