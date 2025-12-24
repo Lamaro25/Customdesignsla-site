@@ -71,3 +71,49 @@ permalink: /rings/
     <!-- Slider images injected by home-slider.js -->
   </div>
 </section>
+
+---
+layout: layouts/base.njk
+title: "Custom Design's LA — Handcrafted Jewelry"
+description: "Custom handcrafted sterling silver jewelry — rings, charms, bracelets, and heirloom pieces by Custom Designs LA."
+permalink: /
+---
+
+<!-- HOMEPAGE SLIDER -->
+<section class="homepage-slider">
+  <div class="slider-track">
+    <!-- Slider images injected by home-slider.js -->
+  </div>
+</section>
+
+<!-- HERO 2.0 — CUSTOMIZATION -->
+<section class="homepage-hero hero-secondary full-bleed">
+  <picture>
+    <!-- MOBILE -->
+    <source
+      srcset="/static/img/hero-2.0-mobile.jpg"
+      media="(max-width: 767px)"
+    />
+
+    <!-- TABLET -->
+    <source
+      srcset="/static/img/hero-2.0-tablet.jpg"
+      media="(min-width: 768px) and (max-width: 1023px)"
+    />
+
+    <!-- DESKTOP -->
+    <source
+      srcset="/static/img/hero-2.0-desktop.jpg"
+      media="(min-width: 1024px)"
+    />
+
+    <!-- FALLBACK -->
+    <img
+      src="/static/img/hero-2.0-desktop.jpg"
+      alt="Custom jewelry customization options by Custom Designs LA"
+      loading="lazy"
+    />
+  </picture>
+</section>
+
+<!-- REST OF HOMEPAGE CONTENT CONTINUES BELOW (UNCHANGED) -->
