@@ -8,7 +8,7 @@
 ========================================================== */
 html {
   min-height: 100%;
-  background-color: #fafafa;
+  background-color: #000; /* 🔥 critical */
   background-image: url("/static/img/backgrounds/la-honeycomb.svg");
   background-repeat: repeat;
   background-size: 420px 420px;
@@ -20,7 +20,7 @@ body {
   padding: 0;
   font-family: "Segoe UI", sans-serif;
   color: #222;
-  background: transparent;
+  background: #000; /* 🔥 REQUIRED */
 }
 
 /* ==========================================================
@@ -145,6 +145,14 @@ main img:not(.brand-logo):not(.footer-logo) {
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   padding: 0;
+  background: #000; /* 🔥 ADD THIS */
+}
+
+.homepage-hero picture,
+.homepage-hero img {
+  display: block;
+  width: 100%;
+  background: #000;
 }
 
 /* ==========================================================
@@ -205,21 +213,41 @@ object-position: center;
   pointer-events: auto;
 }
 
-.homepage-slider .slider-dot {
+/* ==========================================================
+   🔒 FORCE TRUE CIRCULAR DOTS (iOS / SAFARI FIX)
+========================================================== */
+.homepage-slider .slider-dots button {
+  appearance: none;
+  -webkit-appearance: none;
+
   width: 8px;
   height: 8px;
+  min-width: 8px;
+  min-height: 8px;
+
+  padding: 0;
+  margin: 0;
+
   border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.4);
+
+  font-size: 0;
+  line-height: 1;
 }
 
 @media (min-width: 768px) {
-  .homepage-slider .slider-dot {
+  .homepage-slider .slider-dots button {
     width: 10px;
     height: 10px;
+    min-width: 10px;
+    min-height: 10px;
   }
 }
 
-.homepage-slider .slider-dot.is-active {
-  opacity: 1;
+.homepage-slider .slider-dots button.is-active {
+  background: #fff;
+  border-color: #fff;
 }
 
 /* ==========================================================
@@ -339,5 +367,5 @@ footer.site-footer {
 .homepage-slider {
   position: relative;
   z-index: 1;
-  margin-top: clamp(24px, 6vw, 64px);
+  margin-top: 0; /* 🔥 REMOVE GAP */
 }
