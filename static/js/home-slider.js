@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // 🔒 SAFETY: Only run slider on homepage
+  if (!document.body.classList.contains("page-home")) return;
 
   /* ==========================================================
      SLIDER IMAGE SETS
