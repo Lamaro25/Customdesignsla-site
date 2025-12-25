@@ -5,30 +5,39 @@ description: "Custom handcrafted sterling silver jewelry — rings, charms, brac
 permalink: /
 ---
 
-<!-- PRIMARY HERO -->
-<section class="homepage-hero full-bleed">
-  <picture>
-    <source srcset="/static/img/hero-mobile.jpg" media="(max-width: 767px)">
-    <source srcset="/static/img/hero-tablet.jpg" media="(min-width: 768px) and (max-width: 1023px)">
-    <source srcset="/static/img/hero-desktop.jpg" media="(min-width: 1024px)">
-    <img
-      src="/static/img/hero-desktop.jpg"
-      alt="Custom Design’s LA — handcrafted custom jewelry"
-      loading="eager">
-  </picture>
+<!-- ✅ MASTER BLACK FRAME (PRIMARY HERO + SLIDER ONLY) -->
+<section class="hero-frame">
+  <div class="hero-inner">
+
+    <!-- PRIMARY HERO -->
+    <section class="homepage-hero full-bleed">
+      <picture>
+        <source srcset="/static/img/hero-mobile.jpg" media="(max-width: 767px)">
+        <source srcset="/static/img/hero-tablet.jpg" media="(min-width: 768px) and (max-width: 1023px)">
+        <source srcset="/static/img/hero-desktop.jpg" media="(min-width: 1024px)">
+        <img
+          src="/static/img/hero-desktop.jpg"
+          alt="Custom Design’s LA — handcrafted custom jewelry"
+          loading="eager">
+      </picture>
+    </section>
+
+    <!-- HOMEPAGE SLIDER -->
+    <section class="homepage-slider">
+      <div class="slider-track"></div>
+
+      <button class="slider-arrow left" type="button" aria-label="Previous slide"></button>
+      <button class="slider-arrow right" type="button" aria-label="Next slide"></button>
+
+      <!-- DOTS MUST LIVE INSIDE THE FRAME -->
+      <div class="slider-dots"></div>
+    </section>
+
+  </div>
 </section>
+<!-- ✅ END MASTER BLACK FRAME -->
 
-<!-- HOMEPAGE SLIDER -->
-<section class="homepage-slider">
-  <div class="slider-track"></div>
-
-  <button class="slider-arrow left" type="button" aria-label="Previous slide"></button>
-  <button class="slider-arrow right" type="button" aria-label="Next slide"></button>
-
-  <div class="slider-dots"></div>
-</section>
-
-<!-- HERO 2.0 -->
+<!-- HERO 2.0 (LEFT UNTOUCHED ON PURPOSE) -->
 <section class="homepage-hero hero-secondary full-bleed">
   <picture>
     <source srcset="/static/img/hero-2.0-mobile.jpg" media="(max-width: 767px)">
