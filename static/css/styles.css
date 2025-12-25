@@ -322,3 +322,36 @@ footer.site-footer {
   align-items: center;
   text-align: center;
 }
+
+/* ================================
+   Ring Collection Cards – Text Fix
+   ================================ */
+
+.collection-card {
+  text-decoration: none;
+  color: #000; /* force black */
+}
+
+.collection-card:visited {
+  color: #000; /* prevent purple visited links */
+}
+
+.collection-plate {
+  text-align: center;
+}
+
+.collection-plate h2 {
+  color: #000;
+  margin-bottom: 0.4rem;
+}
+
+.collection-plate p {
+  color: #111;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Optional: subtle hover polish */
+.collection-card:hover h2 {
+  text-decoration: underline;
+}
