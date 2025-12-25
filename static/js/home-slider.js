@@ -1,18 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ==========================================================
-     ✅ ONLY RUN SLIDER ON HOMEPAGE
-  ========================================================== */
+  // ✅ Only run slider on homepage
   if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") {
-    document.querySelectorAll(".homepage-slider").forEach(el => {
-      el.style.display = "none";
-    });
     return;
   }
 
-  /* ==========================================================
-     SLIDER IMAGE LIST
-  ========================================================== */
   const primaryImages = [
     "slider_01.jpg","slider_02.jpg","slider_03.jpg","slider_04.jpg",
     "slider_05.jpg","slider_06.jpg","slider_07.jpg","slider_08.jpg",
@@ -24,16 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "slider_29.jpg","slider_30.jpg","slider_31.jpg","slider_32.jpg"
   ];
 
-  const customizationImages = [
-    "custom_01.jpg",
-    "custom_02.jpg",
-    "custom_03.jpg",
-    "custom_04.jpg"
-  ];
-
-  /* ==========================================================
-     SLIDER FACTORY
-  ========================================================== */
   function initSlider(selector, images, folder) {
     const slider = document.querySelector(selector);
     if (!slider) return;
@@ -46,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentIndex = 0;
 
-    images explained = images.forEach((file, idx) => {
+    images.forEach((file, idx) => {
       const slide = document.createElement("div");
       slide.style.flex = "0 0 100%";
 
@@ -82,9 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* ==========================================================
-     🚀 INIT SLIDERS (THIS MUST BE LAST)
-  ========================================================== */
-  initSlider(".homepage-slider", primaryImages, "hero-slider");
+  // 🚀 INIT (CORRECT FOLDER)
+  initSlider(".homepage-slider", primaryImages, "homepage-slider");
 
 });
