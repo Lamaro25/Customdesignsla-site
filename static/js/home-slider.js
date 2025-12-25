@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "slider_17.jpg","slider_18.jpg","slider_19.jpg","slider_20.jpg",
     "slider_21.jpg","slider_22.jpg","slider_23.jpg","slider_24.jpg",
     "slider_25.jpg","slider_26.jpg","slider_27.jpg","slider_28.jpg",
-    "slider_29.jpg","slider_30.jpg","slider_31.jpg"
+    "slider_29.jpg","slider_30.jpg","slider_31.jpg"'"slider_32.jpg"'
   ];
 
   const customizationImages = [
