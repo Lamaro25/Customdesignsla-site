@@ -373,3 +373,50 @@ footer.site-footer {
     padding-top: 0 !important;
   }
 }
+
+/* ==========================================================
+   SLIDER UI (ARROWS + DOTS)
+========================================================== */
+
+.homepage-slider {
+  height: 320px;
+  background: #000;
+  position: relative;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.85);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.slider-arrow.prev { left: 16px; }
+.slider-arrow.next { right: 16px; }
+
+.slider-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: #bbb;
+}
+
+.slider-dot.active {
+  background: #111;
+}
