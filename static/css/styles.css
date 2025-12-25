@@ -271,3 +271,18 @@ footer img,
 .homepage-hero {
   margin-top: 0 !important;
 }
+
+/* ===============================
+   FIX: Center footer brand block
+=============================== */
+
+footer.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-brand {
+  align-items: center;
+  text-align: center;
+}
