@@ -84,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ["prev", "next"].forEach(dir => {
       const btn = document.createElement("button");
       btn.className = `slider-arrow ${dir}`;
-      btn.innerHTML = dir === "prev" ? "‹" : "›";
       btn.addEventListener("click", () => {
         goToSlide(dir === "prev" ? currentIndex - 1 : currentIndex + 1);
       });
