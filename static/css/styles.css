@@ -205,12 +205,17 @@ object-position: center;
   pointer-events: auto;
 }
 
-/* ✅ DOT size stays sane on mobile + desktop */
 .homepage-slider .slider-dot {
-  width: clamp(6px, 1.6vw, 10px);
-  height: clamp(6px, 1.6vw, 10px);
-  border-radius: 999px;
-  opacity: 0.55;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+@media (min-width: 768px) {
+  .homepage-slider .slider-dot {
+    width: 10px;
+    height: 10px;
+  }
 }
 
 .homepage-slider .slider-dot.is-active {
