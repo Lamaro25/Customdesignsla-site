@@ -167,12 +167,11 @@ main img:not(.brand-logo):not(.footer-logo) {
   justify-content: center;
 }
 
-/* SLIDES — SCALE CONTROL (FINAL) */
+/* SLIDES — SCALE CONTROL (FINAL, MOBILE SAFE) */
 .homepage-slider img {
-  max-width: 92%;
-  max-height: 88%;
-  width: auto;
+  width: 100%;
   height: auto;
+  max-height: 100%;
   display: block;
   margin: 0 auto;
   object-fit: contain;
