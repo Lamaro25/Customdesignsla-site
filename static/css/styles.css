@@ -161,7 +161,7 @@ main img:not(.brand-logo):not(.footer-logo) {
   position: relative;
 
   /* ✅ ONE consistent “stage” height everywhere */
-  height: clamp(240px, 42vw, 420px);
+  height: clamp(320px, 55vw, 680px);
 
   /* ✅ reserve space for dots WITHOUT changing stage height */
   padding-bottom: 44px;
@@ -181,7 +181,8 @@ main img:not(.brand-logo):not(.footer-logo) {
   height: 100%;
   display: block;
   margin: 0 auto;
-  object-fit: contain;
+  object-fit: cover;
+object-position: center;
 }
 
 /* 🔒 LOCK: Prevent flex collapse on tablet + desktop */
