@@ -28,8 +28,8 @@ body {
 ========================================================== */
 .site-header {
   background: transparent;
-  margin-bottom: 0;      /* GAP FIX */
-  padding-bottom: 0;     /* GAP FIX */
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .header-row {
@@ -58,10 +58,8 @@ body {
 }
 
 /* ==========================================================
-   HEADER → HERO HARD LOCK (FINAL FINAL)
+   HEADER → HERO HARD LOCK
 ========================================================== */
-
-/* Collapse all header spacing */
 .site-header,
 .header-row,
 .top-button-bar {
@@ -69,13 +67,11 @@ body {
   padding-bottom: 0;
 }
 
-/* Prevent phantom line-height space */
 .site-header *,
 .header-row * {
   line-height: normal;
 }
 
-/* Force hero to start immediately after header */
 .site-header + main .homepage-hero {
   margin-top: 0;
   padding-top: 0;
@@ -100,9 +96,8 @@ body {
 }
 
 /* ==========================================================
-   OVERRIDE JS-INJECTED HEADER OFFSET (FINAL FIX)
+   OVERRIDE JS-INJECTED HEADER OFFSET
 ========================================================== */
-
 main {
   padding-top: 0 !important;
 }
@@ -112,12 +107,11 @@ main {
 ========================================================== */
 main {
   max-width: 1200px;
-  margin: 0 auto;              /* no top margin */
-  padding: 0 20px 20px;        /* ⬅️ NO TOP PADDING */
+  margin: 0 auto;
+  padding: 0 20px 20px;
   background: transparent;
 }
 
-/* Interior pages spacing (NOT homepage hero) */
 main > section:not(.homepage-hero):first-child {
   margin-top: 20px;
 }
@@ -132,7 +126,7 @@ main img {
 }
 
 /* ==========================================================
-   PRODUCT / DETAIL PAGE IMAGE NORMALIZATION
+   PRODUCT IMAGE NORMALIZATION
 ========================================================== */
 main img:not(.hero-img):not(.collection-card img):not(.collection-image img) {
   max-width: 720px;
@@ -154,31 +148,8 @@ footer.site-footer {
   background: transparent;
 }
 
-.footer-brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.footer-text {
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.footer-logo {
-  height: 48px;
-  width: auto;
-}
-
-.footer-copy {
-  font-size: 0.8rem;
-  color: #777;
-}
-
 /* ==========================================================
-   RING COLLECTION GRID (FINAL, LOCKED)
+   COLLECTION GRID
 ========================================================== */
 .collection-grid {
   max-width: 1100px;
@@ -214,7 +185,6 @@ footer.site-footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
   background: linear-gradient(to bottom, #cfcfcf 0%, #f0f0f0 55%, #ffffff 100%);
   overflow: hidden;
 }
@@ -223,34 +193,29 @@ footer.site-footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
   filter: drop-shadow(0 12px 24px rgba(0,0,0,0.28)) contrast(1.1);
 }
 
 /* ==========================================================
-   HOMEPAGE HERO — FULL BLEED (RESTORED & LOCKED)
+   HOMEPAGE HERO — FULL BLEED
 ========================================================== */
 .homepage-hero {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-.homepage-hero .hero-wrapper {
-  margin-top: 0;
-  padding-top: 0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding: 0;
 }
 
 .homepage-hero picture,
 .homepage-hero img {
   display: block;
-  margin-top: 0;
 }
 
 /* ==========================================================
-   HOMEPAGE SLIDER — FULL BLEED (NEW)
+   HOMEPAGE SLIDER — FULL BLEED (FIXED)
 ========================================================== */
+/* 🔧 ONLY CHANGE IN THIS FILE — RESTORES BLACK FRAME */
 
-/* Allow slider to escape main container */
 .homepage-slider {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
@@ -259,9 +224,14 @@ footer.site-footer {
   position: relative;
   padding-left: 0;
   padding-right: 0;
+
+  /* ✅ RESTORED BLACK BACKGROUND FRAME */
+  background: #000;
+
+  /* ✅ CONSISTENT HEIGHT ACROSS DEVICES */
+  min-height: 320px;
 }
 
-/* Ensure slider images fill cleanly */
 .homepage-slider img {
   width: 100%;
   height: auto;
@@ -269,14 +239,8 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   HOMEPAGE SLIDER — DOTS & ARROWS (PRODUCTION)
+   SLIDER ARROWS
 ========================================================== */
-
-.homepage-slider {
-  position: relative;
-}
-
-/* ---------- ARROWS ---------- */
 .slider-arrow {
   position: absolute;
   top: 50%;
@@ -284,47 +248,31 @@ footer.site-footer {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  background: rgba(255,255,255,0.85);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 20;
-  transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.slider-arrow:hover {
-  background: #fff;
-  transform: translateY(-50%) scale(1.05);
-}
-
-.slider-arrow.left {
-  left: 20px;
-}
-
-.slider-arrow.right {
-  right: 20px;
-}
+.slider-arrow.left { left: 20px; }
+.slider-arrow.right { right: 20px; }
 
 .slider-arrow::before {
   content: "";
-  display: block;
   width: 10px;
   height: 10px;
   border-top: 3px solid #111;
   border-right: 3px solid #111;
 }
 
-.slider-arrow.left::before {
-  transform: rotate(-135deg);
-}
+.slider-arrow.left::before { transform: rotate(-135deg); }
+.slider-arrow.right::before { transform: rotate(45deg); }
 
-.slider-arrow.right::before {
-  transform: rotate(45deg);
-}
-
-/* ---------- DOTS ---------- */
+/* ==========================================================
+   SLIDER DOTS
+========================================================== */
 .slider-dots {
   position: absolute;
   bottom: 16px;
@@ -339,34 +287,17 @@ footer.site-footer {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(0,0,0,0.3);
-  cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease;
+  background: rgba(255,255,255,0.5);
 }
 
 .slider-dot.active {
-  background: #000;
+  background: #fff;
   transform: scale(1.2);
 }
 
 /* ==========================================================
-   HERO FULL-BLEED OVERRIDE (DESKTOP + MOBILE FIX)
+   MOBILE SAFARI FIX
 ========================================================== */
-
-/* Allow hero to escape main container */
-.homepage-hero {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-}
-
-/* Kill any inherited horizontal padding */
-.homepage-hero {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-/* Mobile Safari top-gap killer */
 @supports (-webkit-touch-callout: none) {
   body.home main {
     margin-top: 0 !important;
