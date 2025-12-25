@@ -1,10 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ✅ Only run slider on homepage
+  /* ==========================================================
+     ✅ ONLY RUN SLIDER ON HOMEPAGE
+  ========================================================== */
   if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") {
     return;
   }
 
+  /* ==========================================================
+     SLIDER IMAGE LIST
+  ========================================================== */
   const primaryImages = [
     "slider_01.jpg","slider_02.jpg","slider_03.jpg","slider_04.jpg",
     "slider_05.jpg","slider_06.jpg","slider_07.jpg","slider_08.jpg",
@@ -16,6 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "slider_29.jpg","slider_30.jpg","slider_31.jpg","slider_32.jpg"
   ];
 
+  /* ==========================================================
+     SLIDER FACTORY
+  ========================================================== */
   function initSlider(selector, images, folder) {
     const slider = document.querySelector(selector);
     if (!slider) return;
@@ -25,24 +33,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     track.style.display = "flex";
     track.style.transition = "transform 0.45s ease";
+    track.style.willChange = "transform";
 
     let currentIndex = 0;
+    let startX = 0;
+    let isDragging = false;
 
+    /* ==========================
+       BUILD SLIDES
+    ========================== */
     images.forEach((file, idx) => {
       const slide = document.createElement("div");
+      slide.className = "slide";
       slide.style.flex = "0 0 100%";
+      slide.style.display = "flex";
+      slide.style.alignItems = "center";
+      slide.style.justifyContent = "center";
 
       const img = document.createElement("img");
       img.src = `/static/img/${folder}/${file}`;
       img.alt = `Slide ${idx + 1}`;
+      img.draggable = false;
       img.style.width = "100%";
       img.style.height = "100%";
-      img.style.objectFit = "contain";
+      img.style.objectFit = "cover";
 
       slide.appendChild(img);
       track.appendChild(slide);
     });
 
+    /* ==========================
+       DOTS
+    ========================== */
     const dots = document.createElement("div");
     dots.className = "slider-dots";
     slider.appendChild(dots);
@@ -51,20 +73,72 @@ document.addEventListener("DOMContentLoaded", () => {
       const dot = document.createElement("button");
       dot.className = "slider-dot";
       if (i === 0) dot.classList.add("is-active");
-      dot.onclick = () => goToSlide(i);
+      dot.addEventListener("click", () => goToSlide(i));
       dots.appendChild(dot);
     });
+
+    function updateDots() {
+      dots.querySelectorAll(".slider-dot").forEach((d, i) => {
+        d.classList.toggle("is-active", i === currentIndex);
+      });
+    }
 
     function goToSlide(index) {
       currentIndex = Math.max(0, Math.min(index, images.length - 1));
       track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      dots.querySelectorAll(".slider-dot").forEach((d, i) =>
-        d.classList.toggle("is-active", i === currentIndex)
-      );
+      updateDots();
     }
+
+    /* ==========================
+       ARROWS (ACTIVE)
+    ========================== */
+    const prev = document.createElement("button");
+    prev.className = "slider-arrow left";
+    prev.type = "button";
+    prev.addEventListener("click", () => {
+      goToSlide(currentIndex - 1);
+    });
+
+    const next = document.createElement("button");
+    next.className = "slider-arrow right";
+    next.type = "button";
+    next.addEventListener("click", () => {
+      goToSlide(currentIndex + 1);
+    });
+
+    slider.appendChild(prev);
+    slider.appendChild(next);
+
+    /* ==========================
+       DRAG / SWIPE SUPPORT
+    ========================== */
+    slider.addEventListener("mousedown", e => {
+      isDragging = true;
+      startX = e.clientX;
+    });
+
+    window.addEventListener("mouseup", e => {
+      if (!isDragging) return;
+      const diff = startX - e.clientX;
+      if (diff > 60) goToSlide(currentIndex + 1);
+      if (diff < -60) goToSlide(currentIndex - 1);
+      isDragging = false;
+    });
+
+    slider.addEventListener("touchstart", e => {
+      startX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener("touchend", e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (diff > 60) goToSlide(currentIndex + 1);
+      if (diff < -60) goToSlide(currentIndex - 1);
+    });
   }
 
-  // 🚀 INIT (CORRECT FOLDER)
+  /* ==========================================================
+     🚀 INIT SLIDER (CORRECT FOLDER)
+  ========================================================== */
   initSlider(".homepage-slider", primaryImages, "homepage-slider");
 
 });
