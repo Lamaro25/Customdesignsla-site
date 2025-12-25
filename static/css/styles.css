@@ -148,11 +148,11 @@ main img:not(.brand-logo):not(.footer-logo) {
 }
 
 /* ==========================================================
-   🔥 HOMEPAGE SLIDER — BLACK STAGE (FIXED)
+   🔥 HOMEPAGE SLIDER — BLACK STAGE (HOME ONLY)
 ========================================================== */
 
-/* FULL-BLEED BLACK CONTAINER */
-.homepage-slider {
+/* FULL-BLEED BLACK CONTAINER (HOMEPAGE ONLY) */
+.page-home .homepage-slider {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
@@ -160,13 +160,13 @@ main img:not(.brand-logo):not(.footer-logo) {
   overflow: hidden;
   position: relative;
 
-  /* 👇 CRITICAL FIX */
+  /* Space reserved for dots */
   min-height: 340px;
-  padding-bottom: 44px; /* reserves space for dots */
+  padding-bottom: 44px;
 }
 
 /* SLIDES — SCALE CONTROL (NO WARPING) */
-.homepage-slider img {
+.page-home .homepage-slider img {
   max-width: 100%;
   max-height: 100%;
   width: auto;
@@ -176,15 +176,15 @@ main img:not(.brand-logo):not(.footer-logo) {
   object-fit: contain;
 }
 
-/* MOBILE & TABLET HEIGHT FIX */
+/* MOBILE & TABLET HEIGHT FIX (HOME ONLY) */
 @media (max-width: 1024px) {
-  .homepage-slider {
+  .page-home .homepage-slider {
     min-height: 260px;
   }
 }
 
 @media (max-width: 600px) {
-  .homepage-slider {
+  .page-home .homepage-slider {
     min-height: 220px;
   }
 }
