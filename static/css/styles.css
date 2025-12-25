@@ -241,3 +241,33 @@ main img:not(.brand-logo):not(.footer-logo) {
     min-height: 300px;
   }
 }
+
+/* ===============================
+   FIX: Footer logo scaling bug
+=============================== */
+
+footer img,
+.footer-logo {
+  max-width: 48px;
+  height: auto;
+}
+
+/* ===============================
+   FIX: Restore slider black frame
+=============================== */
+
+.homepage-slider {
+  background-color: #000;
+}
+
+/* ===============================
+   FIX: Hero flush under header
+=============================== */
+
+.site-header + main {
+  padding-top: 0 !important;
+}
+
+.homepage-hero {
+  margin-top: 0 !important;
+}
