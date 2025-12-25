@@ -325,3 +325,19 @@ footer.site-footer {
 .collection-card:hover h2 {
   text-decoration: underline;
 }
+
+/* ==========================================================
+   FIX: Create hard separation between HERO and SLIDER
+   (prevents overlap without collapsing full-bleed)
+========================================================== */
+
+.homepage-hero {
+  position: relative;
+  z-index: 2;
+}
+
+.homepage-slider {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(24px, 6vw, 64px);
+}
