@@ -162,12 +162,10 @@ main img:not(.brand-logo):not(.footer-logo) {
 
   /* 👇 CRITICAL FIX */
   min-height: 340px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding-bottom: 44px; /* reserves space for dots */
 }
 
-/* SLIDES — SCALE CONTROL (TRUE ASPECT SAFE) */
+/* SLIDES — SCALE CONTROL (NO WARPING) */
 .homepage-slider img {
   max-width: 100%;
   max-height: 100%;
