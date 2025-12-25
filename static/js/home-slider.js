@@ -142,13 +142,3 @@ document.addEventListener("DOMContentLoaded", () => {
   initSlider(".homepage-slider", primaryImages, "homepage-slider");
 
 });
-
-/* ==========================================================
-   SAFE FIX: Space BETWEEN hero and slider (non-destructive)
-========================================================== */
-
-.homepage-hero::after {
-  content: "";
-  display: block;
-  height: clamp(16px, 4vw, 40px);
-}
