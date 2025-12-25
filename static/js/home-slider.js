@@ -44,27 +44,32 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================== */
    const slides = [];
 
+/* ==========================
+   BUILD SLIDES (ORDER SAFE)
+========================== */
 images.forEach((file, idx) => {
+  const slide = document.createElement("div");
+  slide.className = "slide";
+  slide.style.flex = "0 0 100%";
+  slide.style.display = "flex";
+  slide.style.alignItems = "center";
+  slide.style.justifyContent = "center";
+
   const img = new Image();
   img.src = `/static/img/${folder}/${file}`;
   img.alt = `Slide ${idx + 1}`;
   img.draggable = false;
 
   img.onload = () => {
-    const slide = document.createElement("div");
-    slide.className = "slide";
-    slide.style.flex = "0 0 100%";
-    slide.style.display = "flex";
-    slide.style.alignItems = "center";
-    slide.style.justifyContent = "center";
-
     slide.appendChild(img);
-    track.appendChild(slide);
-    slides.push(slide);
-
-    rebuildDots();
-    goToSlide(0);
   };
+
+  img.onerror = () => {
+    slide.remove();
+  };
+
+  slides.push(slide);
+  track.appendChild(slide);
 });
 
     /* ==========================
@@ -74,31 +79,33 @@ images.forEach((file, idx) => {
 dots.className = "slider-dots";
 slider.appendChild(dots);
 
-function rebuildDots() {
-  dots.innerHTML = "";
+slides.forEach((_, i) => {
+  const dot = document.createElement("button");
+  dot.className = "slider-dot";
+  if (i === 0) dot.classList.add("is-active");
+  dot.addEventListener("click", () => goToSlide(i));
+  dots.appendChild(dot);
+});
 
-  slides.forEach((_, i) => {
-    const dot = document.createElement("button");
-    dot.className = "slider-dot";
-    if (i === currentIndex) dot.classList.add("is-active");
-    dot.addEventListener("click", () => goToSlide(i));
-    dots.appendChild(dot);
-  });
-}
-
-    function updateDots() {
-      dots.querySelectorAll(".slider-dot").forEach((d, i) => {
-        d.classList.toggle("is-active", i === currentIndex);
-      });
-    }
-
-    function goToSlide(index) {
-  if (!slides.length) return;
-  currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+/* ==========================
+   SLIDE NAVIGATION (CORE)
+========================== */
+function goToSlide(index) {
+  const maxIndex = slides.length - 1;
+  currentIndex = Math.max(0, Math.min(index, maxIndex));
   track.style.transform = `translateX(-${currentIndex * 100}%)`;
   updateDots();
 }
 
+/* ==========================
+   DOT STATE
+========================== */
+function updateDots() {
+  dots.querySelectorAll(".slider-dot").forEach((dot, i) => {
+    dot.classList.toggle("is-active", i === currentIndex);
+  });
+}
+    
     /* ==========================
        ARROWS (ACTIVE)
     ========================== */
