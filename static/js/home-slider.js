@@ -142,3 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initSlider(".homepage-slider", primaryImages, "homepage-slider");
 
 });
+
+/* ==========================================================
+   SAFE FIX: Separate HERO from SLIDER (NO COLLAPSE)
+========================================================== */
+
+.homepage-hero {
+  margin-bottom: clamp(16px, 4vw, 40px);
+}
