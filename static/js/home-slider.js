@@ -142,3 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initSlider(".homepage-slider", primaryImages, "homepage-slider");
 
 });
+
+/* ==========================================================
+   FIX: Push homepage slider down (mobile + tablet safe)
+========================================================== */
+
+.homepage-slider {
+  margin-top: clamp(12px, 3vw, 32px);
+}
