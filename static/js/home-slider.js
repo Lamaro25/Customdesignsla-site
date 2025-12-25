@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 🔒 SAFETY: Only run slider on homepage
-  if (!document.body.classList.contains("page-home")) return;
-
+  
   /* ==========================================================
      SLIDER IMAGE SETS
   ========================================================== */
@@ -78,7 +76,6 @@ const customizationImages = [
       img.draggable = false;
       img.style.height = "100%";
       img.style.maxWidth = "100%";
-      img.style.objectFit = "contain";
 
       slide.appendChild(img);
       track.appendChild(slide);
@@ -150,7 +147,7 @@ const customizationImages = [
      INIT SLIDERS (CORRECT SELECTORS)
   ========================================================== */
 
-  initSlider(".homepage-slider:not(.slider-secondary)", primaryImages, "homepage-slider");
+  initSlider(".homepage-slider:not(.slider-secondary)", primaryImages, "slider");
   initSlider(".slider-secondary", customizationImages, "customization-slider");
 
 });
