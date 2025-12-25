@@ -67,3 +67,8 @@ description: ""
     </picture>
   </div>
 </section>
+
+<!-- SECONDARY SLIDER — CUSTOMIZATION EXAMPLES -->
+<section class="homepage-slider slider-secondary full-bleed">
+  <div class="slider-track"></div>
+</section>
