@@ -142,3 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initSlider(".homepage-slider", primaryImages, "homepage-slider");
 
 });
+
+/* ==========================================================
+   SAFE FIX: Add breathing room AFTER first hero
+========================================================== */
+
+.homepage-hero + .homepage-slider {
+  padding-top: clamp(12px, 3vw, 32px);
+}
