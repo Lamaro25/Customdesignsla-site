@@ -110,9 +110,9 @@ main > section:not(.homepage-hero):first-child {
 }
 
 /* ==========================================================
-   GLOBAL IMAGE SAFETY NET
+   GLOBAL IMAGE SAFETY NET (EXCLUDES LOGOS)
 ========================================================== */
-main img {
+main img:not(.brand-logo):not(.footer-logo) {
   max-width: 100%;
   height: auto;
   display: block;
