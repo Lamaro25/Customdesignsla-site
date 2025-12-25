@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "slider_17.jpg","slider_18.jpg","slider_19.jpg","slider_20.jpg",
     "slider_21.jpg","slider_22.jpg","slider_23.jpg","slider_24.jpg",
     "slider_25.jpg","slider_26.jpg","slider_27.jpg","slider_28.jpg",
-    "slider_29.jpg","slider_30.jpg","slider_31.jpg",
-    
+    "slider_29.jpg","slider_30.jpg","slider_31.jpg"
   ];
 
   const customizationImages = [
@@ -24,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   /* ==========================================================
-     SLIDER FACTORY FUNCTION
+     SLIDER FACTORY
   ========================================================== */
 
   function initSlider(selector, images, folder) {
@@ -44,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     track.style.willChange = "transform";
 
     let currentIndex = 0;
+    let isDragging = false;
+    let startX = 0;
 
     /* Build slides */
     images.forEach((file, idx) => {
@@ -80,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* Arrows */
-    ["prev","next"].forEach(dir => {
+    ["prev", "next"].forEach(dir => {
       const btn = document.createElement("button");
       btn.className = `slider-arrow ${dir}`;
       btn.innerHTML = dir === "prev" ? "‹" : "›";
@@ -102,18 +103,19 @@ document.addEventListener("DOMContentLoaded", () => {
       updateDots();
     }
 
-    /* Swipe */
-    let startX = 0;
-
+    /* Drag / Swipe */
     slider.addEventListener("mousedown", e => {
+      isDragging = true;
       startX = e.clientX;
       slider.style.cursor = "grabbing";
     });
 
     window.addEventListener("mouseup", e => {
+      if (!isDragging) return;
       const diff = startX - e.clientX;
       if (diff > 60) goToSlide(currentIndex + 1);
       if (diff < -60) goToSlide(currentIndex - 1);
+      isDragging = false;
       slider.style.cursor = "grab";
     });
 
@@ -129,10 +131,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================================
-     INIT BOTH SLIDERS
+     INIT SLIDERS (CORRECT SELECTORS)
   ========================================================== */
 
-  initSlider(".slider-primary", primaryImages, "homepage-slider");
+  initSlider(".homepage-slider:not(.slider-secondary)", primaryImages, "homepage-slider");
   initSlider(".slider-secondary", customizationImages, "customization-slider");
 
 });
