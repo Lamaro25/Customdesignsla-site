@@ -144,9 +144,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ==========================================================
-   SAFE FIX: Separate HERO from SLIDER (NO COLLAPSE)
+   SAFE FIX: Space BETWEEN hero and slider (non-destructive)
 ========================================================== */
 
-.homepage-hero {
-  margin-bottom: clamp(16px, 4vw, 40px);
+.homepage-hero::after {
+  content: "";
+  display: block;
+  height: clamp(16px, 4vw, 40px);
 }
