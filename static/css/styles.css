@@ -96,13 +96,6 @@ body {
 }
 
 /* ==========================================================
-   OVERRIDE JS-INJECTED HEADER OFFSET
-========================================================== */
-main {
-  padding-top: 0 !important;
-}
-
-/* ==========================================================
    MAIN CONTENT
 ========================================================== */
 main {
@@ -126,29 +119,6 @@ main img {
 }
 
 /* ==========================================================
-   PRODUCT IMAGE NORMALIZATION
-========================================================== */
-main img:not(.hero-img):not(.collection-card img):not(.collection-image img) {
-  max-width: 720px;
-  max-height: 480px;
-  width: auto;
-  height: auto;
-  margin: 1.5rem 0;
-}
-
-/* ==========================================================
-   FOOTER
-========================================================== */
-footer.site-footer {
-  text-align: center;
-  font-size: 0.85rem;
-  color: #777;
-  padding: 30px 0;
-  border-top: 1px solid #ddd;
-  background: transparent;
-}
-
-/* ==========================================================
    COLLECTION GRID
 ========================================================== */
 .collection-grid {
@@ -161,39 +131,10 @@ footer.site-footer {
 }
 
 .collection-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
   background: #fff;
   border-radius: 22px;
   overflow: hidden;
   box-shadow: 0 18px 45px rgba(0,0,0,0.18);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.collection-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 28px 70px rgba(0,0,0,0.28);
-}
-
-/* ==========================================================
-   COLLECTION IMAGE AREA
-========================================================== */
-.collection-image {
-  width: 100%;
-  height: 320px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(to bottom, #cfcfcf 0%, #f0f0f0 55%, #ffffff 100%);
-  overflow: hidden;
-}
-
-.collection-card .collection-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.28)) contrast(1.1);
 }
 
 /* ==========================================================
@@ -206,36 +147,33 @@ footer.site-footer {
   padding: 0;
 }
 
-.homepage-hero picture,
-.homepage-hero img {
-  display: block;
-}
-
 /* ==========================================================
-   HOMEPAGE SLIDER — FULL BLEED (FIXED)
+   🔥 HOMEPAGE SLIDER — BLACK STAGE (FIXED)
 ========================================================== */
-/* 🔧 ONLY CHANGE IN THIS FILE — RESTORES BLACK FRAME */
 
+/* FULL-BLEED BLACK CONTAINER */
 .homepage-slider {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
+  background: #000;
   overflow: hidden;
   position: relative;
-  padding-left: 0;
-  padding-right: 0;
 
-  /* ✅ RESTORED BLACK BACKGROUND FRAME */
-  background: #000;
-
-  /* ✅ CONSISTENT HEIGHT ACROSS DEVICES */
-  min-height: 320px;
+  /* 👇 CRITICAL FIX */
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* SLIDES */
 .homepage-slider img {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
   height: auto;
   display: block;
+  margin: 0 auto;
 }
 
 /* ==========================================================
@@ -248,16 +186,17 @@ footer.site-footer {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 20;
+  z-index: 30;
 }
 
-.slider-arrow.left { left: 20px; }
-.slider-arrow.right { right: 20px; }
+.slider-arrow.left { left: 16px; }
+.slider-arrow.right { right: 16px; }
 
 .slider-arrow::before {
   content: "";
@@ -275,12 +214,12 @@ footer.site-footer {
 ========================================================== */
 .slider-dots {
   position: absolute;
-  bottom: 16px;
+  bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px;
-  z-index: 20;
+  gap: 8px;
+  z-index: 30;
 }
 
 .slider-dot {
@@ -292,15 +231,13 @@ footer.site-footer {
 
 .slider-dot.active {
   background: #fff;
-  transform: scale(1.2);
 }
 
 /* ==========================================================
-   MOBILE SAFARI FIX
+   MOBILE SAFARI STABILITY FIX
 ========================================================== */
 @supports (-webkit-touch-callout: none) {
-  body.home main {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+  .homepage-slider {
+    min-height: 300px;
   }
 }
