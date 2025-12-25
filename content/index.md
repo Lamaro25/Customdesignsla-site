@@ -1,4 +1,7 @@
 ---
+permalink: false
+---
+---
 layout: layouts/base.njk
 title: "Home — Custom Design's LA"
 description: ""
