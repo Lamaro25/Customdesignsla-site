@@ -6,23 +6,38 @@ document.addEventListener("DOMContentLoaded", () => {
      SLIDER IMAGE SETS
   ========================================================== */
 
-  const primaryImages = [
-    "slider_01.jpg","slider_02.jpg","slider_03.jpg","slider_04.jpg",
-    "slider_05.jpg","slider_06.jpg","slider_07.jpg","slider_08.jpg",
-    "slider_09.jpg","slider_10.jpg","slider_11.jpg","slider_12.jpg",
-    "slider_13.jpg","slider_14.jpg","slider_15.jpg","slider_16.jpg",
-    "slider_17.jpg","slider_18.jpg","slider_19.jpg","slider_20.jpg",
-    "slider_21.jpg","slider_22.jpg","slider_23.jpg","slider_24.jpg",
-    "slider_25.jpg","slider_26.jpg","slider_27.jpg","slider_28.jpg",
-    "slider_29.jpg","slider_30.jpg","slider_31.jpg","slider_32.jpg",
-  ];
+ // ==========================================================
+// ✅ ONLY RUN SLIDER ON HOMEPAGE
+// ==========================================================
+if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") {
+  document.querySelectorAll(".homepage-slider").forEach(el => {
+    el.style.display = "none";
+  });
 
-  const customizationImages = [
-    "custom_01.jpg",
-    "custom_02.jpg",
-    "custom_03.jpg",
-    "custom_04.jpg"
-  ];
+  // Stop the slider script completely on other pages
+  return;
+}
+
+// ==========================================================
+// SLIDER IMAGE LIST
+// ==========================================================
+const primaryImages = [
+  "slider_01.jpg","slider_02.jpg","slider_03.jpg","slider_04.jpg",
+  "slider_05.jpg","slider_06.jpg","slider_07.jpg","slider_08.jpg",
+  "slider_09.jpg","slider_10.jpg","slider_11.jpg","slider_12.jpg",
+  "slider_13.jpg","slider_14.jpg","slider_15.jpg","slider_16.jpg",
+  "slider_17.jpg","slider_18.jpg","slider_19.jpg","slider_20.jpg",
+  "slider_21.jpg","slider_22.jpg","slider_23.jpg","slider_24.jpg",
+  "slider_25.jpg","slider_26.jpg","slider_27.jpg","slider_28.jpg",
+  "slider_29.jpg","slider_30.jpg","slider_31.jpg","slider_32.jpg"
+];
+
+const customizationImages = [
+  "custom_01.jpg",
+  "custom_02.jpg",
+  "custom_03.jpg",
+  "custom_04.jpg"
+];
 
   /* ==========================================================
      SLIDER FACTORY
