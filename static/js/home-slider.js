@@ -142,3 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initSlider(".homepage-slider", primaryImages, "homepage-slider");
 
 });
+
+/* ==========================================================
+   SAFE FIX: Push slider down WITHOUT touching full-bleed math
+========================================================== */
+
+main > .homepage-hero {
+  padding-bottom: clamp(16px, 4vw, 40px);
+}
