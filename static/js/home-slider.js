@@ -66,7 +66,7 @@ const customizationImages = [
     /* Build slides */
     images.forEach((file, idx) => {
       const slide = document.createElement("div");
-      slide.className = "slider-slide";
+      slide.className = "slide";
       slide.style.flex = "0 0 100%";
       slide.style.display = "flex";
       slide.style.alignItems = "center";
@@ -92,7 +92,7 @@ const customizationImages = [
     images.forEach((_, i) => {
       const dot = document.createElement("button");
       dot.className = "slider-dot";
-      if (i === 0) dot.classList.add("active");
+      if (i === 0) dot.classList.add("is-active");
       dot.addEventListener("click", () => goToSlide(i));
       dots.appendChild(dot);
     });
@@ -109,7 +109,7 @@ const customizationImages = [
 
     function updateDots() {
       dots.querySelectorAll(".slider-dot").forEach((d, i) => {
-        d.classList.toggle("active", i === currentIndex);
+        d.classList.toggle("is-active", i === currentIndex);
       });
     }
 
