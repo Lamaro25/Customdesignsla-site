@@ -42,40 +42,49 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ==========================
        BUILD SLIDES
     ========================== */
-    images.forEach((file, idx) => {
-      const slide = document.createElement("div");
-      slide.className = "slide";
-      slide.style.flex = "0 0 100%";
-      slide.style.display = "flex";
-      slide.style.alignItems = "center";
-      slide.style.justifyContent = "center";
+   const slides = [];
 
-      const img = document.createElement("img");
-      img.src = `/static/img/${folder}/${file}`;
-      img.alt = `Slide ${idx + 1}`;
-      img.draggable = false;
-      img.style.width = "100%";
-      img.style.height = "100%";
-      img.style.objectFit = "cover";
+images.forEach((file, idx) => {
+  const img = new Image();
+  img.src = `/static/img/${folder}/${file}`;
+  img.alt = `Slide ${idx + 1}`;
+  img.draggable = false;
 
-      slide.appendChild(img);
-      track.appendChild(slide);
-    });
+  img.onload = () => {
+    const slide = document.createElement("div");
+    slide.className = "slide";
+    slide.style.flex = "0 0 100%";
+    slide.style.display = "flex";
+    slide.style.alignItems = "center";
+    slide.style.justifyContent = "center";
+
+    slide.appendChild(img);
+    track.appendChild(slide);
+    slides.push(slide);
+
+    rebuildDots();
+    goToSlide(0);
+  };
+});
 
     /* ==========================
        DOTS
     ========================== */
     const dots = document.createElement("div");
-    dots.className = "slider-dots";
-    slider.appendChild(dots);
+dots.className = "slider-dots";
+slider.appendChild(dots);
 
-    images.forEach((_, i) => {
-      const dot = document.createElement("button");
-      dot.className = "slider-dot";
-      if (i === 0) dot.classList.add("is-active");
-      dot.addEventListener("click", () => goToSlide(i));
-      dots.appendChild(dot);
-    });
+function rebuildDots() {
+  dots.innerHTML = "";
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.className = "slider-dot";
+    if (i === currentIndex) dot.classList.add("is-active");
+    dot.addEventListener("click", () => goToSlide(i));
+    dots.appendChild(dot);
+  });
+}
 
     function updateDots() {
       dots.querySelectorAll(".slider-dot").forEach((d, i) => {
@@ -84,10 +93,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function goToSlide(index) {
-      currentIndex = Math.max(0, Math.min(index, images.length - 1));
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      updateDots();
-    }
+  if (!slides.length) return;
+  currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+  track.style.transform = `translateX(-${currentIndex * 100}%)`;
+  updateDots();
+}
 
     /* ==========================
        ARROWS (ACTIVE)
