@@ -177,6 +177,19 @@ main img:not(.brand-logo):not(.footer-logo) {
   object-fit: contain;
 }
 
+/* MOBILE & TABLET HEIGHT FIX */
+@media (max-width: 1024px) {
+  .homepage-slider {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .homepage-slider {
+    min-height: 220px;
+  }
+}
+
 /* ==========================================================
    SLIDER ARROWS
 ========================================================== */
