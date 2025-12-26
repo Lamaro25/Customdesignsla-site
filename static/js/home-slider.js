@@ -39,9 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let startX = 0;
     let isDragging = false;
 
-    /* ==========================
-       BUILD SLIDES
-    ========================== */
    const slides = [];
 
 /* ==========================
@@ -71,7 +68,7 @@ images.forEach((file, idx) => {
   slides.push(slide);
   track.appendChild(slide);
 });
-
+    
     /* ==========================
        DOTS
     ========================== */
