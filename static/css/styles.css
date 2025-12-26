@@ -105,6 +105,10 @@ main > :first-child {
   margin-top: 0;
 }
 
+main > :first-child h1 {
+  margin-top: 0;
+}
+
 /* ==========================================================
    GLOBAL IMAGE SAFETY NET (EXCLUDES LOGOS)
 ========================================================== */
