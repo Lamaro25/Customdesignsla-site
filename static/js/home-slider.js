@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       slide.appendChild(img);
 slides.push(slide);
 track.appendChild(slide);
+});
 
     /* ==========================
        DOTS
