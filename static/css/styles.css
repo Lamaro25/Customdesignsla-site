@@ -101,7 +101,7 @@ main {
   background: #fff;
 }
 
-main > section:not(.homepage-hero):first-child {
+main > :first-child {
   margin-top: 0;
 }
 
