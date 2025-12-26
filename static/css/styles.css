@@ -186,7 +186,7 @@ main img:not(.brand-logo):not(.footer-logo) {
 .homepage-slider .slider-track {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 /* ==========================================
