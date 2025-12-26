@@ -54,17 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
       img.alt = `Slide ${idx + 1}`;
       img.draggable = false;
 
-      img.onload = () => {
-        slide.appendChild(img);
-      };
-
-      img.onerror = () => {
-        slide.remove();
-      };
-
-      slides.push(slide);
-      track.appendChild(slide);
-    });
+      slide.appendChild(img);
+slides.push(slide);
+track.appendChild(slide);
 
     /* ==========================
        DOTS
