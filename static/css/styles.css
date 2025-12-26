@@ -401,3 +401,22 @@ footer.site-footer {
 .collections-toggle {
   margin-top: 0 !important;
 }
+
+/* ==========================================================
+   PHASE 1.1 — FORCE HERO → COLLECTIONS CONTACT
+   ========================================================== */
+
+section,
+.hero,
+.slider,
+.home-slider,
+.homepage-slider {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.collections-toggle,
+.collections-bar,
+.collections-wrapper {
+  margin-top: 0 !important;
+}
