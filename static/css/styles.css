@@ -420,3 +420,23 @@ section,
 .collections-wrapper {
   margin-top: 0 !important;
 }
+
+/* ==========================================================
+   PHASE 1 — HERO VERTICAL ALIGNMENT FIX
+   Purpose: Pull hero slider up under header correctly
+   ========================================================== */
+
+/* Remove any top offset on hero */
+.homepage-hero,
+.hero,
+.hero-wrapper,
+.homepage-slider,
+.slider {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Ensure header does not push hero down */
+.site-header {
+  margin-bottom: 0 !important;
+}
