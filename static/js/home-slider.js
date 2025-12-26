@@ -9,9 +9,3 @@
 
   object-fit: contain;
 }
-
-.homepage-slider .slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
