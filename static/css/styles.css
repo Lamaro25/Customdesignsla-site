@@ -204,15 +204,6 @@ main img:not(.brand-logo):not(.footer-logo) {
   object-fit: contain;
 }
 
-  width: auto;
-  height: auto;
-
-  display: block;
-  margin: auto;
-
-  object-fit: contain;
-}
-
 /* 🔒 LOCK: Prevent flex collapse on tablet + desktop */
 .homepage-slider .slider-track > * {
   flex: 0 0 100%;
