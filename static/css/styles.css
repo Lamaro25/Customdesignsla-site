@@ -384,3 +384,20 @@ footer.site-footer {
   z-index: 1;
   margin-top: 0; /* 🔥 REMOVE GAP */
 }
+
+/* ==========================================================
+   PHASE 1 — HERO → COLLECTIONS GAP FIX (SAFE)
+   Purpose: Remove black gap between hero slider and collections bar
+   ========================================================== */
+
+/* Ensure hero section ends cleanly */
+.homepage-hero,
+.hero-wrapper {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Pull collections toggle up to touch hero */
+.collections-toggle {
+  margin-top: 0 !important;
+}
