@@ -102,7 +102,7 @@ main {
 }
 
 main > section:not(.homepage-hero):first-child {
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 /* ==========================================================
