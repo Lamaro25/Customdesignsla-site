@@ -370,53 +370,21 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   FIX: Create hard separation between HERO and SLIDER
-   (prevents overlap without collapsing full-bleed)
-========================================================== */
-
-.homepage-hero {
-  position: relative;
-  z-index: 2;
-}
-
-.homepage-slider {
-  position: relative;
-  z-index: 1;
-  margin-top: 0; /* 🔥 REMOVE GAP */
-}
-
-/* ==========================================================
-   PHASE 1 — HERO → COLLECTIONS GAP FIX (SAFE)
-   Purpose: Remove black gap between hero slider and collections bar
+   PHASE 1 — REMOVE HEADER → HERO GAP (NO SLIDER CHANGES)
+   Purpose: Pull hero section flush under header
    ========================================================== */
 
-/* Ensure hero section ends cleanly */
+/* Remove artificial space above hero/slider */
 .homepage-hero,
-.hero-wrapper {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-/* Pull collections toggle up to touch hero */
-.collections-toggle {
-  margin-top: 0 !important;
-}
-
-/* ==========================================================
-   PHASE 1.1 — FORCE HERO → COLLECTIONS CONTACT
-   ========================================================== */
-
-section,
+.homepage-slider,
 .hero,
-.slider,
-.home-slider,
-.homepage-slider {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
+.slider {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
-.collections-toggle,
-.collections-bar,
-.collections-wrapper {
-  margin-top: 0 !important;
+/* Ensure header does not reserve extra space below */
+.site-header {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
