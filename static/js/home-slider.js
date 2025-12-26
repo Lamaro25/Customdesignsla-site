@@ -1,15 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ==========================================================
-     ✅ ONLY RUN SLIDER ON HOMEPAGE
-  ========================================================== */
+  // ✅ Only run on homepage
   if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") {
     return;
   }
 
-  /* ==========================================================
-     SLIDER IMAGE LIST
-  ========================================================== */
   const primaryImages = [
     "slider_01.jpg","slider_02.jpg","slider_03.jpg","slider_04.jpg",
     "slider_05.jpg","slider_06.jpg","slider_07.jpg","slider_08.jpg",
@@ -21,9 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "slider_29.jpg","slider_30.jpg","slider_31.jpg","slider_32.jpg"
   ];
 
-  /* ==========================================================
-     SLIDER FACTORY
-  ========================================================== */
   function initSlider(selector, images, folder) {
     const slider = document.querySelector(selector);
     if (!slider) return;
@@ -41,30 +33,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const slides = [];
 
-    /* ==========================
-       BUILD SLIDES (ORDER SAFE)
-    ========================== */
+    // ✅ BUILD SLIDES (ONLY THIS IS IN THE LOOP)
     images.forEach((file, idx) => {
       const slide = document.createElement("div");
       slide.className = "slide";
       slide.style.flex = "0 0 100%";
 
-      const img = new Image();
+      const img = document.createElement("img");
       img.src = `/static/img/${folder}/${file}`;
       img.alt = `Slide ${idx + 1}`;
       img.draggable = false;
 
       slide.appendChild(img);
-slides.push(slide);
-track.appendChild(slide);
-});
+      track.appendChild(slide);
+      slides.push(slide);
+    });
 
-// 🔒 LOCK TRACK WIDTH TO NUMBER OF SLIDES (CRITICAL FIX)
-track.style.width = `${slides.length * 100}%`;
-    
-    /* ==========================
-       DOTS
-    ========================== */
+    // ✅ DOTS (ONCE)
     const dots = document.createElement("div");
     dots.className = "slider-dots";
     slider.appendChild(dots);
@@ -77,41 +62,31 @@ track.style.width = `${slides.length * 100}%`;
       dots.appendChild(dot);
     });
 
-    /* ==========================
-       SLIDE NAVIGATION
-    ========================== */
-    function goToSlide(index) {
-      const maxIndex = slides.length - 1;
-      currentIndex = Math.max(0, Math.min(index, maxIndex));
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      updateDots();
-    }
-
     function updateDots() {
       dots.querySelectorAll(".slider-dot").forEach((dot, i) => {
         dot.classList.toggle("is-active", i === currentIndex);
       });
     }
 
-    /* ==========================
-       ARROWS
-    ========================== */
+    function goToSlide(index) {
+      currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      updateDots();
+    }
+
+    // ✅ ARROWS (ONCE)
     const prev = document.createElement("button");
     prev.className = "slider-arrow left";
-    prev.type = "button";
     prev.addEventListener("click", () => goToSlide(currentIndex - 1));
 
     const next = document.createElement("button");
     next.className = "slider-arrow right";
-    next.type = "button";
     next.addEventListener("click", () => goToSlide(currentIndex + 1));
 
     slider.appendChild(prev);
     slider.appendChild(next);
 
-    /* ==========================
-       DRAG / SWIPE
-    ========================== */
+    // ✅ DRAG / SWIPE (ONCE)
     slider.addEventListener("mousedown", e => {
       isDragging = true;
       startX = e.clientX;
@@ -136,9 +111,5 @@ track.style.width = `${slides.length * 100}%`;
     });
   }
 
-  /* ==========================================================
-     🚀 INIT
-  ========================================================== */
   initSlider(".homepage-slider", primaryImages, "homepage-slider");
-
 });
