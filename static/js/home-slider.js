@@ -59,6 +59,9 @@ slides.push(slide);
 track.appendChild(slide);
 });
 
+// 🔒 LOCK TRACK WIDTH TO NUMBER OF SLIDES (CRITICAL FIX)
+track.style.width = `${slides.length * 100}%`;
+    
     /* ==========================
        DOTS
     ========================== */
