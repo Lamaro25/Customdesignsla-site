@@ -57,14 +57,24 @@ images.forEach((file, idx) => {
   img.alt = `Slide ${idx + 1}`;
   img.draggable = false;
 
-  img.onload = () => {
-    slide.appendChild(img);
-  };
+images.forEach((file, idx) => {
+  const slide = document.createElement("div");
+  slide.className = "slide";
+  slide.style.flex = "0 0 100%";
+  slide.style.display = "flex";
+  slide.style.alignItems = "center";
+  slide.style.justifyContent = "center";
 
-  img.onerror = () => {
-    slide.remove();
-  };
+  const img = document.createElement("img");
+  img.src = `/static/img/${folder}/${file}`;
+  img.alt = `Slide ${idx + 1}`;
+  img.draggable = false;
 
+  slide.appendChild(img);
+  slides.push(slide);
+  track.appendChild(slide);
+});
+  
   slides.push(slide);
   track.appendChild(slide);
 });
