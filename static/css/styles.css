@@ -170,7 +170,7 @@ main img:not(.brand-logo):not(.footer-logo) {
 
   height: clamp(320px, 55vw, 680px);
 
-  padding-top: 28px;     /* ✅ ADD THIS */
+  padding-top: 0;
   padding-bottom: 44px;
   box-sizing: border-box;
 }
@@ -367,24 +367,4 @@ footer.site-footer {
 /* Optional: subtle hover polish */
 .collection-card:hover h2 {
   text-decoration: underline;
-}
-
-/* ==========================================================
-   PHASE 1 — REMOVE HEADER → HERO GAP (NO SLIDER CHANGES)
-   Purpose: Pull hero section flush under header
-   ========================================================== */
-
-/* Remove artificial space above hero/slider */
-.homepage-hero,
-.homepage-slider,
-.hero,
-.slider {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* Ensure header does not reserve extra space below */
-.site-header {
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
 }
