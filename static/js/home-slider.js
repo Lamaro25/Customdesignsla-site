@@ -33,7 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const slides = [];
 
-    // ✅ BUILD SLIDES (ONLY THIS IS IN THE LOOP)
+    /* ==========================
+       BUILD SLIDES
+    ========================== */
     images.forEach((file, idx) => {
       const slide = document.createElement("div");
       slide.className = "slide";
@@ -49,10 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
       slides.push(slide);
     });
 
-    // ✅ DOTS (ONCE)
-    const dots = document.createElement("div");
-    dots.className = "slider-dots";
-    slider.appendChild(dots);
+    /* ==========================
+       DOTS (USE EXISTING)
+    ========================== */
+    const dots = slider.querySelector(".slider-dots");
+    dots.innerHTML = "";
 
     slides.forEach((_, i) => {
       const dot = document.createElement("button");
@@ -74,19 +77,18 @@ document.addEventListener("DOMContentLoaded", () => {
       updateDots();
     }
 
-    // ✅ ARROWS (ONCE)
-    const prev = document.createElement("button");
-    prev.className = "slider-arrow left";
-    prev.addEventListener("click", () => goToSlide(currentIndex - 1));
+    /* ==========================
+       ARROWS (USE EXISTING)
+    ========================== */
+    const prev = slider.querySelector(".slider-arrow.left");
+    const next = slider.querySelector(".slider-arrow.right");
 
-    const next = document.createElement("button");
-    next.className = "slider-arrow right";
+    prev.addEventListener("click", () => goToSlide(currentIndex - 1));
     next.addEventListener("click", () => goToSlide(currentIndex + 1));
 
-    slider.appendChild(prev);
-    slider.appendChild(next);
-
-    // ✅ DRAG / SWIPE (ONCE)
+    /* ==========================
+       DRAG / SWIPE
+    ========================== */
     slider.addEventListener("mousedown", e => {
       isDragging = true;
       startX = e.clientX;
