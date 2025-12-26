@@ -184,8 +184,8 @@ main img:not(.brand-logo):not(.footer-logo) {
 
 .homepage-slider .slider-track {
   display: flex;
-  align-items: center;
-  justify-content: center; /* ✅ FIX */
+  align-items: stretch;
+  justify-content: flex-start; /* 🔒 REQUIRED for transform math */
 }
 
 /* ==========================================
