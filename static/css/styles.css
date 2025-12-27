@@ -100,7 +100,14 @@ main {
   padding: 0 20px 20px;
   background: #fff;
 }
+/* ================================
+   FIX: Remove top padding on collection pages
+================================ */
 
+body[class*="rings"] main,
+body[class*="collections"] main {
+  padding-top: 0;
+}
 main > :first-child {
   margin-top: 0;
 }
