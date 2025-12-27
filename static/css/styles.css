@@ -177,8 +177,9 @@ main img:not(.brand-logo):not(.footer-logo) {
 
   height: clamp(320px, 55vw, 680px);
 
-  padding-top: 0;
-  padding-bottom: 44px;
+  /* 🔥 FIX: NO INTERNAL PADDING */
+  padding: 0;
+
   box-sizing: border-box;
 }
 
