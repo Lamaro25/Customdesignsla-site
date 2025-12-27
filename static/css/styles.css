@@ -190,6 +190,13 @@ main img:not(.brand-logo):not(.footer-logo) {
   height: 100%;
 }
 
+/* 🔥 FIX: Vertically center slide contents */
+.homepage-slider .slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .homepage-slider .slider-track {
   display: flex;
   align-items: stretch;
