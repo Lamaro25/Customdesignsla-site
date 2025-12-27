@@ -298,6 +298,16 @@ main img:not(.brand-logo):not(.footer-logo) {
   border-color: #fff;
 }
 
+/* ==========================================
+   SLIDER DOTS — FINAL MOBILE DENSITY POLISH
+========================================== */
+@media (max-width: 767px) {
+  .homepage-slider .slider-dots {
+    transform: translateX(-50%) scale(0.85);
+    transform-origin: center;
+  }
+}
+
 /* ==========================================================
    SLIDER ARROWS
 ========================================================== */
