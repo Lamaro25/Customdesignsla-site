@@ -225,6 +225,7 @@ main img:not(.brand-logo):not(.footer-logo) {
 
 /* ==========================================
    SLIDER DOTS — TIGHT, CENTERED, FRAMED
+   (BASE — DESKTOP + TABLET)
 ========================================== */
 .homepage-slider .slider-dots {
   position: absolute;
@@ -241,6 +242,23 @@ main img:not(.brand-logo):not(.footer-logo) {
 
   z-index: 10;
   pointer-events: auto;
+}
+
+/* ==========================================
+   SLIDER DOTS — MOBILE POLISH ONLY
+========================================== */
+@media (max-width: 767px) {
+
+  .homepage-slider .slider-dots {
+    gap: 5px;
+    padding: 4px 7px;
+  }
+
+  .homepage-slider .slider-dots button {
+    width: 7px;
+    height: 7px;
+  }
+
 }
 
 /* ==========================================================
