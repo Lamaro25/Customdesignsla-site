@@ -368,3 +368,12 @@ footer.site-footer {
 .collection-card:hover h2 {
   text-decoration: underline;
 }
+
+/* ===============================
+   FIX: Remove gap between button bar and collections intro
+   (Non-home pages only)
+=============================== */
+
+body:not(.home) .top-button-bar {
+  margin-bottom: 0;
+}
