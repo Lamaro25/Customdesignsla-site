@@ -1,10 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ✅ Only run on homepage
-  if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") {
-    return;
-  }
-  
   const primaryImages = [
     "slider_01.jpg","slider_02.jpg","slider_03.jpg","slider_04.jpg",
     "slider_05.jpg","slider_06.jpg","slider_07.jpg","slider_08.jpg",
