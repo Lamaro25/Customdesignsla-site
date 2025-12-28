@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") {
     return;
   }
-
+  
   const primaryImages = [
     "slider_01.jpg","slider_02.jpg","slider_03.jpg","slider_04.jpg",
     "slider_05.jpg","slider_06.jpg","slider_07.jpg","slider_08.jpg",
@@ -16,13 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
     "slider_29.jpg","slider_30.jpg","slider_31.jpg","slider_32.jpg"
   ];
 
-  function initSlider(selector, images, folder) {
+  function initSlider(selector, images) {
     const slider = document.querySelector(selector);
     if (!slider) return;
 
     const track = slider.querySelector(".slider-track");
     if (!track) return;
 
+    track.innerHTML = "";
     track.style.display = "flex";
     track.style.transition = "transform 0.45s ease";
     track.style.willChange = "transform";
@@ -42,7 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
       slide.style.flex = "0 0 100%";
 
       const img = document.createElement("img");
-      img.src = `/static/img/${folder}/${file}`;
+
+      // 🔑 RESTORED WORKING IMAGE PATH
+      img.src = `/static/img/hero-slider/${file}`;
+
       img.alt = `Slide ${idx + 1}`;
       img.draggable = false;
 
@@ -112,11 +116,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (diff < -60) goToSlide(currentIndex - 1);
     });
 
-    // 🔑 INITIAL POSITION
     goToSlide(0);
   }
 
-  // 🔑 THIS WAS MISSING — RESTORES EVERYTHING
-  initSlider(".homepage-slider", primaryImages, "slider");
+  // 🔑 RESTORED INIT
+  initSlider(".homepage-slider", primaryImages);
 
 });
