@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "secondary_17.jpg","secondary_18.jpg","secondary_19.jpg","secondary_20.jpg",
     "secondary_21.jpg","secondary_22.jpg","secondary_23.jpg","secondary_24.jpg",
     "secondary_25.jpg","secondary_26.jpg","secondary_27.jpg","secondary_28.jpg",
-    "secondary_29.jpg","secondary_30.jpg"
+    "secondary_29.jpg","secondary_30.jpg","secondary_31.jpg"
   ];
 
   function initSlider(selector, images) {
