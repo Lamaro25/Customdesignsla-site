@@ -5,9 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  /* ==========================
-     PRIMARY SLIDER IMAGES
-  ========================== */
   const primaryImages = [
     "slider_01.jpg","slider_02.jpg","slider_03.jpg","slider_04.jpg",
     "slider_05.jpg","slider_06.jpg","slider_07.jpg","slider_08.jpg",
@@ -17,20 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "slider_21.jpg","slider_22.jpg","slider_23.jpg","slider_24.jpg",
     "slider_25.jpg","slider_26.jpg","slider_27.jpg","slider_28.jpg",
     "slider_29.jpg","slider_30.jpg","slider_31.jpg","slider_32.jpg"
-  ];
-
-  /* ==========================
-     SECONDARY SLIDER IMAGES
-  ========================== */
-  const secondaryImages = [
-    "feature_01.jpg","feature_02.jpg","feature_03.jpg","feature_04.jpg",
-    "feature_05.jpg","feature_06.jpg","feature_07.jpg","feature_08.jpg",
-    "feature_09.jpg","feature_10.jpg","feature_11.jpg","feature_12.jpg",
-    "feature_13.jpg","feature_14.jpg","feature_15.jpg","feature_16.jpg",
-    "feature_17.jpg","feature_18.jpg","feature_19.jpg","feature_20.jpg",
-    "feature_21.jpg","feature_22.jpg","feature_23.jpg","feature_24.jpg",
-    "feature_25.jpg","feature_26.jpg","feature_27.jpg","feature_28.jpg",
-    "feature_29.jpg","feature_30.jpg"
   ];
 
   function initSlider(selector, images, folder) {
@@ -69,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ==========================
-       DOTS
+       DOTS (USE EXISTING)
     ========================== */
     const dots = slider.querySelector(".slider-dots");
     dots.innerHTML = "";
@@ -95,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ==========================
-       ARROWS
+       ARROWS (USE EXISTING)
     ========================== */
     const prev = slider.querySelector(".slider-arrow.left");
     const next = slider.querySelector(".slider-arrow.right");
@@ -130,10 +113,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ==========================
-     INITIALIZE BOTH SLIDERS
-  ========================== */
   initSlider(".homepage-slider", primaryImages, "slider");
-  initSlider(".secondary-slider", secondaryImages, "features");
+initSlider(".secondary-slider", secondaryImages, "features");
 
-});
+<section class="homepage-slider secondary-slider">
+  <div class="slider-track"></div>
+
+  <button class="slider-arrow left" type="button" aria-label="Previous slide"></button>
+  <button class="slider-arrow right" type="button" aria-label="Next slide"></button>
+
+  <div class="slider-dots"></div>
+</section>
