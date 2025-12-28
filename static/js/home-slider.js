@@ -112,15 +112,3 @@ document.addEventListener("DOMContentLoaded", () => {
       if (diff < -60) goToSlide(currentIndex - 1);
     });
   }
-
-  initSlider(".homepage-slider", primaryImages, "slider");
-initSlider(".secondary-slider", secondaryImages, "features");
-
-<section class="homepage-slider secondary-slider">
-  <div class="slider-track"></div>
-
-  <button class="slider-arrow left" type="button" aria-label="Previous slide"></button>
-  <button class="slider-arrow right" type="button" aria-label="Next slide"></button>
-
-  <div class="slider-dots"></div>
-</section>
