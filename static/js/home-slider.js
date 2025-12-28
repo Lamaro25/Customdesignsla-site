@@ -113,9 +113,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     goToSlide(0);
   }
-
   // 🔑 RESTORED INIT
-  requestAnimationFrame(() => {
+  function waitForSlider() {
+  const slider = document.querySelector(".homepage-slider");
+  if (!slider) {
+    requestAnimationFrame(waitForSlider);
+    return;
+  }
+
   initSlider(".homepage-slider", primaryImages);
-});
+}
+
+waitForSlider();
 
