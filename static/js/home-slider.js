@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 🔑 RESTORED INIT
+  requestAnimationFrame(() => {
   initSlider(".homepage-slider", primaryImages);
-
 });
+
