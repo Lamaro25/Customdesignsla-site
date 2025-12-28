@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ==========================
-       DOTS (USE EXISTING)
+       DOTS
     ========================== */
     const dots = slider.querySelector(".slider-dots");
     dots.innerHTML = "";
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ==========================
-       ARROWS (USE EXISTING)
+       ARROWS
     ========================== */
     const prev = slider.querySelector(".slider-arrow.left");
     const next = slider.querySelector(".slider-arrow.right");
@@ -111,4 +111,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (diff > 60) goToSlide(currentIndex + 1);
       if (diff < -60) goToSlide(currentIndex - 1);
     });
+
+    // 🔑 INITIAL POSITION
+    goToSlide(0);
   }
+
+  // 🔑 THIS WAS MISSING — RESTORES EVERYTHING
+  initSlider(".homepage-slider", primaryImages, "slider");
+
+});
