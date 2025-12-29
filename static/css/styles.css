@@ -413,10 +413,32 @@ footer.site-footer {
 }
 
 /* ===============================
-   HOMEPAGE COLLECTION CARD OVERLAY
+   HOMEPAGE COLLECTION CARD (SCOPED)
 ================================ */
 
-.homepage-collection-overlay {
+.homepage-collection-card {
+  position: relative;
+  display: block;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 26px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 0 22px 50px rgba(0,0,0,0.35);
+}
+
+/* Image stays clean */
+.homepage-collection-card .homepage-collection-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* Overlay ONLY applies to collection card */
+.homepage-collection-card .homepage-collection-overlay {
   position: absolute;
   inset: 0;
 
@@ -431,30 +453,25 @@ footer.site-footer {
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;   /* keeps premium bottom anchor */
-  align-items: center;         /* centers horizontally */
+  justify-content: flex-end;
+  align-items: center;
   text-align: center;
 
-  z-index: 2;                  /* 🔒 ensures text is ABOVE image */
+  z-index: 2;
 }
 
-.homepage-collection-image {
-  position: relative;
-  z-index: 1;                  /* 🔒 keeps image BELOW overlay */
-}
-
-.homepage-collection-overlay h2 {
+.homepage-collection-card .homepage-collection-overlay h2 {
   font-size: 1.9rem;
   margin: 0 0 0.5rem;
 }
 
-.homepage-collection-overlay p {
+.homepage-collection-card .homepage-collection-overlay p {
   max-width: 520px;
   margin: 0 0 1rem;
   line-height: 1.4;
 }
 
-.homepage-collection-cta {
+.homepage-collection-card .homepage-collection-cta {
   font-weight: 700;
   text-decoration: underline;
 }
