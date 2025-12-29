@@ -412,30 +412,35 @@ footer.site-footer {
   text-decoration: underline;
 }
 
-/* ==================================================
-   HOMEPAGE — COLLECTION CARD (FAITH)
-================================================== */
-
-.homepage-collection {
-  padding: 3rem 1rem 4rem;
-}
+/* ===============================
+   HOMEPAGE COLLECTION CARD OVERLAY
+================================ */
 
 .homepage-collection-overlay {
   position: absolute;
   inset: 0;
+
   background: linear-gradient(
     to top,
     rgba(0,0,0,0.7),
     rgba(0,0,0,0.15),
     rgba(0,0,0,0)
   );
+
   padding: 2rem;
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;          /* 👈 CENTER HORIZONTALLY */
-  text-align: center;           /* 👈 CENTER TEXT */
+  justify-content: flex-end;   /* keeps premium bottom anchor */
+  align-items: center;         /* centers horizontally */
+  text-align: center;
+
+  z-index: 2;                  /* 🔒 ensures text is ABOVE image */
+}
+
+.homepage-collection-image {
+  position: relative;
+  z-index: 1;                  /* 🔒 keeps image BELOW overlay */
 }
 
 .homepage-collection-overlay h2 {
