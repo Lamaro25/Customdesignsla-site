@@ -62,3 +62,32 @@ permalink: /
   <div class="slider-dots"></div>
 </section>
 
+<!-- ==================================================
+     HOMEPAGE — FAITH RING COLLECTION
+================================================== -->
+
+<section class="homepage-collection">
+  <div class="homepage-collection-header">
+    <h2>Faith Ring Collection</h2>
+    <p>
+      Scripture engravings, symbolic crosses, and meaningful designs —
+      handcrafted in .925 Sterling Silver.
+    </p>
+
+    <a href="/rings/faith/" class="homepage-collection-link">
+      View Full Faith Collection
+    </a>
+  </div>
+
+  <div class="collection-grid">
+    {% for ring in collections["faith"] %}
+      <a href="{{ ring.url }}" class="collection-card">
+        <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
+        <div class="collection-card-text">
+          <h3>{{ ring.data.title }}</h3>
+          <p class="price">${{ ring.data.price }} USD</p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
