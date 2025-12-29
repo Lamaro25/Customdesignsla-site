@@ -48,7 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
       slide.style.flex = "0 0 100%";
 
       const img = document.createElement("img");
-      img.src = `/static/img/homepage-slider/${file}`;
+      const isSecondary = slider.classList.contains("homepage-slider-secondary");
+
+img.src = isSecondary
+  ? `/static/img/homepage-slider-secondary/${file}`
+  : `/static/img/homepage-slider/${file}`;
       img.alt = `Slide ${idx + 1}`;
       img.draggable = false;
 
