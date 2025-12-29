@@ -411,3 +411,60 @@ footer.site-footer {
 .collection-card:hover h2 {
   text-decoration: underline;
 }
+
+/* ==================================================
+   HOMEPAGE — COLLECTION CARD (FAITH)
+================================================== */
+
+.homepage-collection {
+  padding: 3rem 1rem 4rem;
+}
+
+.homepage-collection-card {
+  position: relative;
+  display: block;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 26px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 0 22px 50px rgba(0,0,0,0.35);
+}
+
+.homepage-collection-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.homepage-collection-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0)
+  );
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.homepage-collection-overlay h2 {
+  font-size: 1.9rem;
+  margin: 0 0 0.5rem;
+}
+
+.homepage-collection-overlay p {
+  max-width: 520px;
+  margin: 0 0 1rem;
+  line-height: 1.4;
+}
+
+.homepage-collection-cta {
+  font-weight: 700;
+  text-decoration: underline;
+}
