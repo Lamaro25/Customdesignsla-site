@@ -110,8 +110,9 @@ slider.addEventListener("touchmove", e => {
 
   if (Math.abs(dx) > Math.abs(dy)) {
     isHorizontalSwipe = true;
+    e.preventDefault(); // 🔥 LOCK SCROLL WHEN SWIPING SLIDER
   }
-}, { passive: true });
+}, { passive: false }); // 🔥 REQUIRED
 
 slider.addEventListener("touchend", e => {
   if (!isHorizontalSwipe) return;
@@ -121,6 +122,7 @@ slider.addEventListener("touchend", e => {
   if (diff > 50) goToSlide(currentIndex + 1);
   if (diff < -50) goToSlide(currentIndex - 1);
 });
+
 
     goToSlide(0);
   }
