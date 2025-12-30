@@ -338,10 +338,15 @@ main img:not(.brand-logo):not(.footer-logo) {
 
 .slider-arrow::before {
   content: "";
+  position: absolute;
+
   width: 10px;
   height: 10px;
+
   border-top: 3px solid #111;
   border-right: 3px solid #111;
+
+  z-index: 1; /* 👈 sits above the white circle */
 }
 
 .slider-arrow.left::before { transform: rotate(-135deg); }
