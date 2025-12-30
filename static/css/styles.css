@@ -183,6 +183,29 @@ main img:not(.brand-logo):not(.footer-logo) {
   box-sizing: border-box;
 }
 
+/* ==========================================================
+   DESKTOP SLIDER — GRAB CURSOR + SELECTION LOCK
+========================================================== */
+
+.homepage-slider {
+  cursor: grab;
+}
+
+.homepage-slider:active {
+  cursor: grabbing;
+}
+
+.homepage-slider,
+.homepage-slider * {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.homepage-slider img {
+  pointer-events: none;
+}
+
 /* If you have a track/wrapper, make it fill the stage */
 .homepage-slider .slider-track,
 .homepage-slider .slides,
