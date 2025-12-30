@@ -316,12 +316,12 @@ main img:not(.brand-logo):not(.footer-logo) {
   top: 50%;
   transform: translateY(-50%);
 
-  width: 64px;              /* 👈 BIGGER TOUCH AREA */
+  width: 64px;              /* 👈 BIG invisible touch area */
   height: 64px;
 
-  border-radius: 50%;
-  background: rgba(255,255,255,0.9);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  background: transparent;  /* 👈 NO visible circle here */
+  border: none;
+  padding: 0;
 
   display: flex;
   align-items: center;
@@ -330,12 +330,28 @@ main img:not(.brand-logo):not(.footer-logo) {
   cursor: pointer;
   z-index: 30;
 
-  touch-action: manipulation; /* 👈 mobile tap reliability */
+  touch-action: manipulation;
+}
+
+/* Visible button (smaller) */
+.slider-arrow::after {
+  content: "";
+  width: 44px;              /* 👈 VISUAL SIZE (original look) */
+  height: 44px;
+
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+
+  display: block;
+
+  pointer-events: none;     /* 👈 taps go to .slider-arrow hitbox */
 }
 
 .slider-arrow.left { left: 16px; }
 .slider-arrow.right { right: 16px; }
 
+/* Arrow icon */
 .slider-arrow::before {
   content: "";
   position: absolute;
@@ -346,11 +362,13 @@ main img:not(.brand-logo):not(.footer-logo) {
   border-top: 3px solid #111;
   border-right: 3px solid #111;
 
-  z-index: 1; /* 👈 sits above the white circle */
+  z-index: 1;               /* 👈 sits above the white circle */
+  pointer-events: none;     /* 👈 taps go to .slider-arrow hitbox */
 }
 
 .slider-arrow.left::before { transform: rotate(-135deg); }
 .slider-arrow.right::before { transform: rotate(45deg); }
+
 
 
 /* ===============================
