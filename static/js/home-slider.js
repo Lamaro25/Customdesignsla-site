@@ -95,15 +95,32 @@ img.src = isSecondary
       isDragging = false;
     });
 
-    slider.addEventListener("touchstart", e => {
-      startX = e.touches[0].clientX;
-    });
+   let startY = 0;
+let isHorizontalSwipe = false;
 
-    slider.addEventListener("touchend", e => {
-      const diff = startX - e.changedTouches[0].clientX;
-      if (diff > 60) goToSlide(currentIndex + 1);
-      if (diff < -60) goToSlide(currentIndex - 1);
-    });
+slider.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+  isHorizontalSwipe = false;
+}, { passive: true });
+
+slider.addEventListener("touchmove", e => {
+  const dx = e.touches[0].clientX - startX;
+  const dy = e.touches[0].clientY - startY;
+
+  if (Math.abs(dx) > Math.abs(dy)) {
+    isHorizontalSwipe = true;
+  }
+}, { passive: true });
+
+slider.addEventListener("touchend", e => {
+  if (!isHorizontalSwipe) return;
+
+  const diff = startX - e.changedTouches[0].clientX;
+
+  if (diff > 50) goToSlide(currentIndex + 1);
+  if (diff < -50) goToSlide(currentIndex - 1);
+});
 
     goToSlide(0);
   }
