@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   const primaryImages = [
-    "slider_01.jpg","slider_02.jpg","slider_03.jpg","slider_04.jpg",
+    "slider_00.jpg","slider_01.jpg","slider_02.jpg","slider_03.jpg","slider_04.jpg",
     "slider_05.jpg","slider_06.jpg","slider_07.jpg","slider_08.jpg",
     "slider_09.jpg","slider_10.jpg","slider_11.jpg","slider_12.jpg",
     "slider_13.jpg","slider_14.jpg","slider_15.jpg","slider_16.jpg",
