@@ -315,16 +315,22 @@ main img:not(.brand-logo):not(.footer-logo) {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
+
+  width: 64px;              /* 👈 BIGGER TOUCH AREA */
+  height: 64px;
+
   border-radius: 50%;
   background: rgba(255,255,255,0.9);
   box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   cursor: pointer;
   z-index: 30;
+
+  touch-action: manipulation; /* 👈 mobile tap reliability */
 }
 
 .slider-arrow.left { left: 16px; }
