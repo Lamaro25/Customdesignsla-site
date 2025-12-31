@@ -48,48 +48,63 @@ module.exports = function (eleventyConfig) {
     return collectionApi.getFilteredByGlob("content/LTR/cowboy-hat-picks/*.md");
   });
 
-  // ------------------------------
+// ------------------------------
 // GLOBAL COMPUTED DATA
 // ------------------------------
 eleventyConfig.addGlobalData("eleventyComputed", {
 
   permalink: (data) => {
-    const path = (data.page.filePathStem || "").replace(/^\/+/, "");
+    const path = data.page.filePathStem || "";
 
-    if (path.startsWith("rings/")) return `/${path}/index.html`;
-    if (path.startsWith("bracelets/")) return `/${path}/index.html`;
-    if (path.startsWith("charms/")) return `/${path}/index.html`;
-    if (path.startsWith("bronze/")) return `/${path}/index.html`;
+    // Rings
+    if (path.startsWith("rings/")) {
+      return `/${path}/index.html`;
+    }
 
+    // Bracelets
+    if (path.startsWith("bracelets/")) {
+      return `/${path}/index.html`;
+    }
+
+    // Charms
+    if (path.startsWith("charms/")) {
+      return `/${path}/index.html`;
+    }
+
+    // Bronze
+    if (path.startsWith("bronze/")) {
+      return `/${path}/index.html`;
+    }
+
+    // Fallback
     return data.permalink;
   },
 
   layout: (data) => {
-  const path = data.page.filePathStem || "";
+    const path = data.page.filePathStem || "";
 
-  const isProductFamily =
-    path.startsWith("rings/") ||
-    path.startsWith("bracelets/") ||
-    path.startsWith("charms/") ||
-    path.startsWith("bronze/");
+    const isProductFamily =
+      path.startsWith("rings/") ||
+      path.startsWith("bracelets/") ||
+      path.startsWith("charms/") ||
+      path.startsWith("bronze/");
 
-  // ✅ Correct collection index detection
-  const isCollectionIndex = path.endsWith("/index");
+    // Collection landing pages (OLD behavior)
+    const isCollectionIndex = path.endsWith("/index");
 
-  // Collection landing pages → category
-  if (isProductFamily && isCollectionIndex) {
-    return "category.njk";
+    if (isProductFamily && isCollectionIndex) {
+      return "category.njk";
+    }
+
+    if (isProductFamily) {
+      return "product.njk";
+    }
+
+    return data.layout || "base.njk";
   }
 
-  // Product pages → product
-  if (isProductFamily) {
-    return "product.njk";
-  }
-
-  // Default fallback
-  return data.layout || "base.njk";
-}
-
+});
+  
   // ------------------------------
   // ELEVENTY DIRECTORY SETTINGS
   // ------------------------------
