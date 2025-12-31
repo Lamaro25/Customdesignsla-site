@@ -65,32 +65,30 @@ eleventyConfig.addGlobalData("eleventyComputed", {
   },
 
   layout: (data) => {
-    const path = (data.page.filePathStem || "").replace(/^\/+/, "");
+  const path = data.page.filePathStem || "";
 
-    const isProductFamily =
-      path.startsWith("rings/") ||
-      path.startsWith("bracelets/") ||
-      path.startsWith("charms/") ||
-      path.startsWith("bronze/");
+  const isProductFamily =
+    path.startsWith("rings/") ||
+    path.startsWith("bracelets/") ||
+    path.startsWith("charms/") ||
+    path.startsWith("bronze/");
 
-    // Detect ONLY true collection landing pages
-    // Example: rings/cuban-link/index
-    const parts = path.split("/");
-    const isCollectionIndex =
-      parts.length === 3 && parts[2] === "index";
+  // ✅ Correct collection index detection
+  const isCollectionIndex = path.endsWith("/index");
 
-    if (isProductFamily && isCollectionIndex) {
-      return "category.njk";
-    }
-
-    if (isProductFamily) {
-      return "product.njk";
-    }
-
-    return data.layout || "base.njk";
+  // Collection landing pages → category
+  if (isProductFamily && isCollectionIndex) {
+    return "category.njk";
   }
 
-});
+  // Product pages → product
+  if (isProductFamily) {
+    return "product.njk";
+  }
+
+  // Default fallback
+  return data.layout || "base.njk";
+}
 
   // ------------------------------
   // ELEVENTY DIRECTORY SETTINGS
