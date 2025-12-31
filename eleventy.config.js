@@ -54,7 +54,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addGlobalData("eleventyComputed", {
 
     permalink: (data) => {
-      const path = data.page.filePathStem || "";
+      const path = (data.page.filePathStem || "").replace(/^\/+/, "");
 
       // Rings
       if (path.startsWith("rings/")) {
@@ -81,32 +81,33 @@ module.exports = function (eleventyConfig) {
     },
 
     layout: (data) => {
-      const path = data.page.filePathStem || "";
+  const path = (data.page.filePathStem || "").replace(/^\/+/, "");
 
-      const isProductFamily =
-        path.startsWith("rings/") ||
-        path.startsWith("bracelets/") ||
-        path.startsWith("charms/") ||
-        path.startsWith("bronze/");
+  const isProductFamily =
+    path.startsWith("rings/") ||
+    path.startsWith("bracelets/") ||
+    path.startsWith("charms/") ||
+    path.startsWith("bronze/");
 
-      // ✅ Correct collection index detection
-      const isCollectionIndex = path.endsWith("/index");
+  // Detect ONLY true collection landing pages
+  // Example: rings/cuban-link/index
+  const parts = path.split("/");
+  const isCollectionIndex =
+    parts.length === 3 && parts[2] === "index";
 
-      // Collection landing pages → category
-      if (isProductFamily && isCollectionIndex) {
-        return "category.njk";
-      }
+  // Collection landing pages → category
+  if (isProductFamily && isCollectionIndex) {
+    return "category.njk";
+  }
 
-      // Product pages → product
-      if (isProductFamily) {
-        return "product.njk";
-      }
+  // Product detail pages → product
+  if (isProductFamily) {
+    return "product.njk";
+  }
 
-      // Default fallback
-      return data.layout || "base.njk";
-    }
-
-  });
+  // Default fallback
+  return data.layout || "base.njk";
+}
 
   // ------------------------------
   // ELEVENTY DIRECTORY SETTINGS
