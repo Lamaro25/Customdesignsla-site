@@ -5,17 +5,17 @@
   <div class="container">
 
     {# === 3-IMAGE GALLERY (IMAGES 2–4, ABOVE OVERVIEW) === #}
-{% if images %}
-  <div class="product-gallery">
-    {% for image in images | slice(1, 4) %}
-      <img
-        src="{{ image }}"
-        alt="{{ title }} gallery image {{ loop.index }}"
-        loading="lazy"
-      >
-    {% endfor %}
-  </div>
-{% endif %}
+    {% if images and images.length > 1 %}
+      <div class="product-gallery">
+        {% for image in images | slice(1, 4) %}
+          <img
+            src="{{ image }}"
+            alt="{{ title }} gallery image {{ loop.index }}"
+            loading="lazy"
+          >
+        {% endfor %}
+      </div>
+    {% endif %}
 
     {# === MARKDOWN CONTENT (Overview, Breakdown, etc.) === #}
     <div class="prose max-w-none">
