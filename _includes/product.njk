@@ -1,6 +1,7 @@
-{% extends "base.njk" %}
+{# ============================
+   PRODUCT LAYOUT
+   ============================ #}
 
-{% block content %}
 <section class="product-page">
   <div class="container mx-auto px-4 py-10">
 
@@ -19,38 +20,31 @@
       </div>
     {% endif %}
 
-    {# === PRODUCT CONTENT (Overview, Breakdown, Specs, Notes) === #}
-    <div class="prose max-w-none mb-6">
+    {# === MARKDOWN CONTENT (Overview, Breakdown, etc.) === #}
+    <div class="prose max-w-none">
       {{ content | safe }}
     </div>
-
-    <button class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
-      Buy Now (Coming Soon)
-    </button>
 
   </div>
 </section>
 
 <style>
-  .product-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
+  .product-gallery{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1rem;
+    margin-bottom:2rem;
   }
-
-  .product-gallery img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    display: block;
+  .product-gallery img{
+    width:100%;
+    height:auto;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    display:block;
   }
-
-  @media (max-width: 900px) {
-    .product-gallery {
-      grid-template-columns: 1fr;
+  @media (max-width: 900px){
+    .product-gallery{
+      grid-template-columns:1fr;
     }
   }
 </style>
-{% endblock %}
