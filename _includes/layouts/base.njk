@@ -71,6 +71,8 @@
     </a>
   </div>
 
+{% if page.filePathStem and page.filePathStem.startsWith("rings/") %}
+
   <!-- ✅ COLLECTIONS TOGGLE -->
   <button
     class="collections-toggle"
@@ -94,7 +96,8 @@
     <a href="/customize.html"><img src="/static/img/buttons/customize.png" alt="Customize"></a>
     <a href="/cart.html"><img src="/static/img/buttons/cart.png" alt="Cart"></a>
   </div>
-</header>
+
+{% endif %}
 
 <main>
   {{ content | safe }}
