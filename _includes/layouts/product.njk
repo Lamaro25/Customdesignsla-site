@@ -4,14 +4,17 @@
 <section class="product-page">
   <div class="container mx-auto px-4 py-10">
 
-    {# === 3-IMAGE GALLERY (IMAGES 2–4 ABOVE OVERVIEW) === #}
-    {% if page.data.images and page.data.images.length > 1 %}
+    {# ============================
+       PRODUCT IMAGE GALLERY
+       Uses images from front matter
+       ============================ #}
+    {% if images and images.length > 0 %}
       <div class="product-gallery">
-        {% for image in page.data.images %}
-          {% if loop.index0 > 0 and loop.index0 < 4 %}
+        {% for image in images %}
+          {% if loop.index0 < 3 %}
             <img
               src="{{ image | url }}"
-              alt="{{ page.data.title }} gallery image"
+              alt="{{ title }} product image"
               loading="lazy"
             >
           {% endif %}
@@ -19,7 +22,9 @@
       </div>
     {% endif %}
 
-    {# === MARKDOWN CONTENT === #}
+    {# ============================
+       PRODUCT CONTENT (MARKDOWN)
+       ============================ #}
     <div class="prose max-w-none">
       {{ content | safe }}
     </div>
