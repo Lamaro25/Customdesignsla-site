@@ -558,3 +558,22 @@ footer.site-footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================
+   Product Page Image Gallery
+   ========================= */
+
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.product-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
+}
