@@ -4,10 +4,7 @@
 <section class="product-page">
   <div class="container mx-auto px-4 py-10">
 
-    {# ============================
-       3-IMAGE GALLERY (ABOVE OVERVIEW)
-       Uses images 2–4
-       ============================ #}
+    {# === 3-IMAGE GALLERY (IMAGES 2–4 ABOVE OVERVIEW) === #}
     {% if page.data.images and page.data.images.length > 1 %}
       <div class="product-gallery">
         {% for image in page.data.images %}
@@ -22,9 +19,7 @@
       </div>
     {% endif %}
 
-    {# ============================
-       PRODUCT CONTENT (Markdown)
-       ============================ #}
+    {# === MARKDOWN CONTENT === #}
     <div class="prose max-w-none">
       {{ content | safe }}
     </div>
