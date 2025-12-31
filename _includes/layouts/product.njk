@@ -1,20 +1,17 @@
-{% extends "base.njk" %}
+{% extends "layouts/base.njk" %}
 
 {% block content %}
 <section class="product-page">
-  <div class="container mx-auto px-4 py-10">
+  <div class="container">
 
-    {# ============================
-       PRODUCT IMAGE GALLERY
-       Uses images from front matter
-       ============================ #}
-    {% if images and images.length > 0 %}
+    {# === 3-IMAGE GALLERY (IMAGES 2–4, ABOVE OVERVIEW) === #}
+    {% if images and images.length > 1 %}
       <div class="product-gallery">
         {% for image in images %}
-          {% if loop.index0 < 3 %}
+          {% if loop.index0 > 0 and loop.index0 < 4 %}
             <img
               src="{{ image | url }}"
-              alt="{{ title }} product image"
+              alt="{{ title }} gallery image"
               loading="lazy"
             >
           {% endif %}
@@ -22,9 +19,7 @@
       </div>
     {% endif %}
 
-    {# ============================
-       PRODUCT CONTENT (MARKDOWN)
-       ============================ #}
+    {# === MARKDOWN CONTENT (Overview, Breakdown, etc.) === #}
     <div class="prose max-w-none">
       {{ content | safe }}
     </div>
