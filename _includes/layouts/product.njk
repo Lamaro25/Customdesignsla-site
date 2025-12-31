@@ -9,7 +9,7 @@
       <div>
         {% if images %}
           {% for image in images %}
-            <img src="{{ image.image | url }}" alt="{{ title }}" class="w-full mb-4 rounded-lg shadow">
+          <img src="{{ image | url }}" alt="{{ title }}" class="w-full mb-4 rounded-lg shadow">
           {% endfor %}
         {% else %}
           <p>No images uploaded yet.</p>
