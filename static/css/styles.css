@@ -541,3 +541,22 @@ footer.site-footer {
     margin-bottom: 2.25rem;
   }
 }
+
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.product-gallery img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 900px) {
+  .product-gallery {
+    grid-template-columns: 1fr;
+  }
+}
