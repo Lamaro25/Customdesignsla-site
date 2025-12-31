@@ -41,9 +41,21 @@
           <p class="text-sm text-gray-500 mb-4">SKU: {{ sku }}</p>
         {% endif %}
 
-        <div class="prose max-w-none mb-6">
-          {{ content | safe }}
-        </div>
+       {% if images %}
+  <div class="product-gallery">
+    {% for image in images | slice(1, 3) %}
+      <img
+        src="{{ image | url }}"
+        alt="{{ title }} gallery image"
+        loading="lazy"
+      >
+    {% endfor %}
+  </div>
+{% endif %}
+
+<div class="prose max-w-none mb-6">
+  {{ content | safe }}
+</div>
 
         <button class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
           Buy Now (Coming Soon)
