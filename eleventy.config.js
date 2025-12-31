@@ -49,65 +49,48 @@ module.exports = function (eleventyConfig) {
   });
 
   // ------------------------------
-  // GLOBAL COMPUTED DATA
-  // ------------------------------
-  eleventyConfig.addGlobalData("eleventyComputed", {
+// GLOBAL COMPUTED DATA
+// ------------------------------
+eleventyConfig.addGlobalData("eleventyComputed", {
 
-    permalink: (data) => {
-      const path = (data.page.filePathStem || "").replace(/^\/+/, "");
+  permalink: (data) => {
+    const path = (data.page.filePathStem || "").replace(/^\/+/, "");
 
-      // Rings
-      if (path.startsWith("rings/")) {
-        return `/${path}/index.html`;
-      }
+    if (path.startsWith("rings/")) return `/${path}/index.html`;
+    if (path.startsWith("bracelets/")) return `/${path}/index.html`;
+    if (path.startsWith("charms/")) return `/${path}/index.html`;
+    if (path.startsWith("bronze/")) return `/${path}/index.html`;
 
-      // Bracelets
-      if (path.startsWith("bracelets/")) {
-        return `/${path}/index.html`;
-      }
+    return data.permalink;
+  },
 
-      // Charms
-      if (path.startsWith("charms/")) {
-        return `/${path}/index.html`;
-      }
+  layout: (data) => {
+    const path = (data.page.filePathStem || "").replace(/^\/+/, "");
 
-      // Bronze
-      if (path.startsWith("bronze/")) {
-        return `/${path}/index.html`;
-      }
+    const isProductFamily =
+      path.startsWith("rings/") ||
+      path.startsWith("bracelets/") ||
+      path.startsWith("charms/") ||
+      path.startsWith("bronze/");
 
-      // All other files use their own permalink
-      return data.permalink;
-    },
+    // Detect ONLY true collection landing pages
+    // Example: rings/cuban-link/index
+    const parts = path.split("/");
+    const isCollectionIndex =
+      parts.length === 3 && parts[2] === "index";
 
-    layout: (data) => {
-  const path = (data.page.filePathStem || "").replace(/^\/+/, "");
+    if (isProductFamily && isCollectionIndex) {
+      return "category.njk";
+    }
 
-  const isProductFamily =
-    path.startsWith("rings/") ||
-    path.startsWith("bracelets/") ||
-    path.startsWith("charms/") ||
-    path.startsWith("bronze/");
+    if (isProductFamily) {
+      return "product.njk";
+    }
 
-  // Detect ONLY true collection landing pages
-  // Example: rings/cuban-link/index
-  const parts = path.split("/");
-  const isCollectionIndex =
-    parts.length === 3 && parts[2] === "index";
-
-  // Collection landing pages → category
-  if (isProductFamily && isCollectionIndex) {
-    return "category.njk";
+    return data.layout || "base.njk";
   }
 
-  // Product detail pages → product
-  if (isProductFamily) {
-    return "product.njk";
-  }
-
-  // Default fallback
-  return data.layout || "base.njk";
-}
+});
 
   // ------------------------------
   // ELEVENTY DIRECTORY SETTINGS
