@@ -3,57 +3,54 @@
 {% block content %}
 <section class="product-page">
   <div class="container mx-auto px-4 py-10">
-    <div class="grid md:grid-cols-2 gap-10">
 
-{# ============================
-   PRODUCT IMAGE GALLERY
-   Shows images 2–4
-   ============================ #}
+    {# === 3-IMAGE GALLERY (ABOVE OVERVIEW) === #}
+    {% if images and images.length > 1 %}
+      <div class="product-gallery">
+        {% for image in images %}
+          {% if loop.index0 > 0 and loop.index0 < 4 %}
+            <img
+              src="{{ image | url }}"
+              alt="{{ title }} gallery image"
+              loading="lazy"
+            >
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
 
-{% if images and images.length > 1 %}
-  <div class="product-gallery">
-    {% for image in images %}
-      {% if loop.index0 > 0 and loop.index0 < 4 %}
-        <img
-          src="{{ image | url }}"
-          alt="{{ title }} gallery image"
-          loading="lazy"
-        >
-      {% endif %}
-    {% endfor %}
+    {# === PRODUCT CONTENT (Overview, Breakdown, Specs, Notes) === #}
+    <div class="prose max-w-none mb-6">
+      {{ content | safe }}
+    </div>
+
+    <button class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
+      Buy Now (Coming Soon)
+    </button>
+
   </div>
-{% endif %}
+</section>
 
 <style>
-  .product-gallery{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:1rem;
-    margin:0 0 2rem 0;
+  .product-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
-  .product-gallery img{
-    width:100%;
-    height:auto;
-    border-radius:12px;
-    box-shadow:0 6px 18px rgba(0,0,0,0.08);
-    display:block;
+
+  .product-gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    display: block;
   }
-  @media (max-width: 900px){
-    .product-gallery{
-      grid-template-columns:1fr;
+
+  @media (max-width: 900px) {
+    .product-gallery {
+      grid-template-columns: 1fr;
     }
   }
 </style>
-
-<div class="prose max-w-none mb-6">
-  {{ content | safe }}
-</div>
-
-        <button class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
-          Buy Now (Coming Soon)
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
 {% endblock %}
