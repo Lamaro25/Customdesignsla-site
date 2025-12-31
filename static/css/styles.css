@@ -22,10 +22,8 @@ body {
 /* ==========================================================
    HEADER / BRANDING
 ========================================================== */
-.site-header {
-  background: transparent;
-  margin-bottom: 0;
-  padding-bottom: 0;
+.site-header + main {
+  padding-top: 6.5rem;
 }
 
 .header-row {
