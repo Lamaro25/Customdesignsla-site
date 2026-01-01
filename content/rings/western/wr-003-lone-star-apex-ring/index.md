@@ -9,7 +9,7 @@ price: 164
 updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "10 mm Apex"
-layout: "product"
+layout: "layouts/product.njk"
 images:
   - "/static/img/rings/western/lone-star-apex-ring.jpg"
 description: >
