@@ -9,7 +9,7 @@ price: 118
 updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (high-polish + oxidized recess, hallmarked “LA”)"
 band_width: "7 mm"
-layout: "product"
+layout: "layouts/product.njk"
 images:
   - "/static/img/rings/cuban/cuban-link-signature-ring.jpg"
 description: >
