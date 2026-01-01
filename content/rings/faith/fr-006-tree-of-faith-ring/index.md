@@ -8,7 +8,7 @@ permalink: "/rings/faith/fr-006-tree-of-faith-ring/"
 price: 137
 material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)"
 band_width: "3 mm (rising to 7 mm cross peak)"
-layout: "product"
+layout: "layouts/product.njk"
 images:
   - "/static/img/rings/faith/tree-of-faith-ring.jpg"
 description: >
