@@ -8,7 +8,7 @@ permalink: "/rings/faith/fr-001-trust-in-the-lord-ring/"
 price: 152
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
-layout: "product"
+layout: "layouts/product.njk"
 images:
   - "/static/img/rings/faith/trust-in-the-lord-ring.jpg"
 description: >
