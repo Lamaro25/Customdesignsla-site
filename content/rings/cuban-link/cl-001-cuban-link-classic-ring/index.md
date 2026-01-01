@@ -9,7 +9,7 @@ price: 114
 updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
-layout: product.njk
+layout: "layouts/product.njk"
 
 images:
   - "/static/img/rings/cuban/cuban-link-classic-ring.jpg"
