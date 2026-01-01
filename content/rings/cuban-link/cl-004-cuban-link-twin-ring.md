@@ -9,7 +9,7 @@ price: 102
 updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized depth with polished edges, hallmarked “LA”)"
 band_width: "7 mm"
-layout: "product"
+layout: "layouts/product.njk"
 images:
   - "/static/img/rings/cuban/cuban-link-twin-ring.jpg"
 description: >
