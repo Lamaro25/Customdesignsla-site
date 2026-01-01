@@ -8,7 +8,7 @@ permalink: "/rings/faith/fr-002-cross-of-tomorrow-ring/"
 price: 168
 material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)"
 band_width: "7 mm"
-layout: "product"
+layout: "layouts/product.njk"
 images:
   - "/static/img/rings/faith/cross-of-tomorrow-ring.jpg"
 description: >
