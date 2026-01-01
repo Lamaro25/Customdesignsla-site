@@ -9,7 +9,7 @@ price: 178
 updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)"
 band_width: "10 mm"
-layout: "product"
+layout: "layouts/product.njk"
 images:
   - "/static/img/rings/western/a-day-in-texas-ring.jpg"
 description: >
