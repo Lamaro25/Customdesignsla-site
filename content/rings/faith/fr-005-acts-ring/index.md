@@ -8,7 +8,7 @@ permalink: "/rings/faith/fr-005-acts-ring/"
 price: 140
 material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)"
 band_width: "7 mm"
-layout: "product"
+layout: "layouts/product.njk"
 images:
   - "/static/img/rings/faith/acts-ring.jpg"
 description: >
