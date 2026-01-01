@@ -8,7 +8,7 @@ permalink: "/rings/faith/fr-003-path-of-faith-ring/"
 price: 192
 material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)"
 band_width: "10 mm"
-layout: "product"
+layout: "layouts/product.njk"
 images:
   - "/static/img/rings/faith/path-of-faith-ring.jpg"
 description: >
