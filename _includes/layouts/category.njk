@@ -11,7 +11,6 @@
 
         {% set cardImage =
           item.data.cover_image
-          or (item.data.images and item.data.images[0])
           or "/static/img/placeholders/product-coming-soon.jpg"
         %}
 
