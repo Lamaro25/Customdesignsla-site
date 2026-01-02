@@ -4,16 +4,7 @@
 <section class="product-page">
   <div class="container">
 
-    {# ===============================
-       PRODUCT IMAGE GALLERY (TOP)
-       =============================== #}
-  {% extends "layouts/base.njk" %}
-
-{% block content %}
-<section class="product-page">
-  <div class="container">
-
-    {# 🔹 PRODUCT IMAGE GALLERY (shows after clicking product) #}
+    {# 🔹 PRODUCT IMAGE GALLERY (ONLY on product page) #}
     {% if images and images.length %}
       <div class="product-gallery">
         {% for image in images %}
@@ -27,6 +18,15 @@
         {% endfor %}
       </div>
     {% endif %}
+
+    {# 🔹 PRODUCT TEXT CONTENT #}
+    <div class="product-content">
+      {{ content | safe }}
+    </div>
+
+  </div>
+</section>
+{% endblock %}
 
     {# 🔹 PRODUCT CONTENT (Overview, Breakdown, etc.) #}
     <div class="prose max-w-none">
