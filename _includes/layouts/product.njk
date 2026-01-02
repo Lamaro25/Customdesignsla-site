@@ -7,23 +7,35 @@
     {# ===============================
        PRODUCT IMAGE GALLERY (TOP)
        =============================== #}
-   {% if images %}
-<section class="product-gallery-wrapper">
+  {% extends "layouts/base.njk" %}
 
-  <div class="product-gallery-track">
-    {% for image in images %}
-      <div class="product-gallery-slide">
-        <img
-          src="{{ image }}"
-          alt="{{ title }} – image {{ loop.index }}"
-          loading="lazy"
-        >
+{% block content %}
+<section class="product-page">
+  <div class="container">
+
+    {# 🔹 PRODUCT IMAGE GALLERY (shows after clicking product) #}
+    {% if images and images.length %}
+      <div class="product-gallery">
+        {% for image in images %}
+          <div class="product-gallery-item">
+            <img
+              src="{{ image }}"
+              alt="{{ title }} image {{ loop.index }}"
+              loading="lazy"
+            >
+          </div>
+        {% endfor %}
       </div>
-    {% endfor %}
-  </div>
+    {% endif %}
 
+    {# 🔹 PRODUCT CONTENT (Overview, Breakdown, etc.) #}
+    <div class="prose max-w-none">
+      {{ content | safe }}
+    </div>
+
+  </div>
 </section>
-{% endif %}
+{% endblock %}
 
     {# ===============================
        PRODUCT CONTENT
