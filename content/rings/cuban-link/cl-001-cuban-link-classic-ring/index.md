@@ -11,11 +11,7 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked â€
 band_width: "7 mm"
 layout: "layouts/product.njk"
 
-images:
-  - "/static/img/rings/cuban/cuban-link-classic-ring.jpg"
-  - "/static/img/rings/cl-001/product-images-coming-soon.jpg"
-  - "/static/img/rings/cl-001/customer-ring-feature-placeholder.jpg"
-  - "/static/img/rings/cl-001/images-update-with-orders.jpg"
+images:  - "/static/img/rings/cuban/cuban-link-classic-ring.jpg"
 
 description: >
   Refined domed band with a recessed Cuban braid channel, polished exterior edges,
