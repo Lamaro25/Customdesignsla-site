@@ -4,7 +4,7 @@
 <section class="product-page">
   <div class="container">
 
-    {# 🔹 PRODUCT IMAGE GALLERY (ONLY on product page) #}
+    {# 🔹 PRODUCT IMAGE GALLERY (product page only) #}
     {% if images and images.length %}
       <div class="product-gallery">
         {% for image in images %}
@@ -19,145 +19,11 @@
       </div>
     {% endif %}
 
-    {# 🔹 PRODUCT TEXT CONTENT #}
-    <div class="product-content">
+    {# 🔹 PRODUCT TEXT CONTENT (Overview, Breakdown, etc.) #}
+    <div class="prose max-w-none product-content">
       {{ content | safe }}
     </div>
 
   </div>
 </section>
-{% endblock %}
-
-    {# 🔹 PRODUCT CONTENT (Overview, Breakdown, etc.) #}
-    <div class="prose max-w-none">
-      {{ content | safe }}
-    </div>
-
-  </div>
-</section>
-{% endblock %}
-
-    {# ===============================
-       PRODUCT CONTENT
-       =============================== #}
-    <div class="prose max-w-none">
-      {{ content | safe }}
-    </div>
-
-  </div>
-</section>
-
-{# ===============================
-   PRODUCT GALLERY SCRIPT
-   (Isolated – does NOT touch homepage)
-   =============================== #}
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const wrapper = document.querySelector(".product-gallery-wrapper");
-  if (!wrapper) return;
-
-  const track = wrapper.querySelector(".product-gallery-track");
-  const slides = wrapper.querySelectorAll(".product-gallery-slide");
-  const prevBtn = wrapper.querySelector(".gallery-arrow.left");
-  const nextBtn = wrapper.querySelector(".gallery-arrow.right");
-
-  let index = 0;
-  const slideCount = slides.length;
-
-  function updateGallery() {
-    track.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  nextBtn?.addEventListener("click", () => {
-    index = (index + 1) % slideCount;
-    updateGallery();
-  });
-
-  prevBtn?.addEventListener("click", () => {
-    index = (index - 1 + slideCount) % slideCount;
-    updateGallery();
-  });
-
-  // Swipe support
-  let startX = 0;
-  track.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-  });
-
-  track.addEventListener("touchend", e => {
-    const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
-
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        index = (index + 1) % slideCount;
-      } else {
-        index = (index - 1 + slideCount) % slideCount;
-      }
-      updateGallery();
-    }
-  });
-});
-</script>
-
-{# ===============================
-   PRODUCT GALLERY STYLES
-   Scoped to product pages only
-   =============================== #}
-<style>
-.product-gallery-wrapper {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 2rem;
-  border-radius: 18px;
-}
-
-.product-gallery-track {
-  display: flex;
-  transition: transform 0.35s ease;
-}
-
-.product-gallery-slide {
-  min-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.product-gallery-slide img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 18px;
-}
-
-.gallery-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255,255,255,0.85);
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 5;
-}
-
-.gallery-arrow.left {
-  left: 10px;
-}
-
-.gallery-arrow.right {
-  right: 10px;
-}
-
-@media (hover: hover) {
-  .gallery-arrow:hover {
-    background: rgba(255,255,255,1);
-  }
-}
-</style>
-
 {% endblock %}
