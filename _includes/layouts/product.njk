@@ -7,25 +7,20 @@
     {# ===============================
        PRODUCT IMAGE GALLERY (TOP)
        =============================== #}
-   {% if page.data.images and page.data.images.length %}
+   {% if images %}
 <section class="product-gallery-wrapper">
 
   <div class="product-gallery-track">
-    {% for image in page.data.images | slice(0, 3) %}
+    {% for image in images %}
       <div class="product-gallery-slide">
         <img
           src="{{ image }}"
-          alt="{{ page.data.title }} – image {{ loop.index }}"
+          alt="{{ title }} – image {{ loop.index }}"
           loading="lazy"
         >
       </div>
     {% endfor %}
   </div>
-
-  {% if page.data.images.length > 1 %}
-    <button class="gallery-arrow left" aria-label="Previous image">‹</button>
-    <button class="gallery-arrow right" aria-label="Next image">›</button>
-  {% endif %}
 
 </section>
 {% endif %}
