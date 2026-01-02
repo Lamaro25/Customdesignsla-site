@@ -1,59 +1,39 @@
-module.exports = function (eleventyConfig) {
-  // ✅ Add date filter for Nunjucks
-  eleventyConfig.addNunjucksFilter("date", function (value, format = "%Y") {
-    const date = value === "now" ? new Date() : new Date(value);
-    return date.getFullYear();
-  });
+{% extends "layouts/base.njk" %}
 
-  // Copy static assets and admin folder
-  eleventyConfig.addPassthroughCopy("admin");
-  eleventyConfig.addPassthroughCopy("assets");
-  eleventyConfig.addPassthroughCopy("static");
-  eleventyConfig.addPassthroughCopy("styles.css");
+{% block content %}
+<section class="collection-page">
+  <div class="container">
 
-  // Automatic permalink + default layout for product collections
-  eleventyConfig.addGlobalData("eleventyComputed", {
-    permalink: (data) => {
-      const path = data.page.filePathStem || "";
+    <h1>{{ title }}</h1>
 
-      if (path.startsWith("bracelets/"))
-        return `/bracelets/${data.page.fileSlug}/index.html`;
-      if (path.startsWith("rings/"))
-        return `/rings/${data.page.fileSlug}/index.html`;
-      if (path.startsWith("charms/"))
-        return `/charms/${data.page.fileSlug}/index.html`;
-      if (path.startsWith("bronze/"))
-        return `/bronze/${data.page.fileSlug}/index.html`;
+    <div class="collection-grid">
+      {% for item in collections[tag] %}
 
-      return data.permalink;
-    },
+        {% set cardImage =
+          item.data.cover_image
+          or (item.data.images and item.data.images[0])
+          or "/static/img/placeholders/product-coming-soon.jpg"
+        %}
 
-    layout: (data) => {
-      const path = data.page.filePathStem || "";
+        <a href="{{ item.url }}" class="product-card">
+          <img
+            src="{{ cardImage }}"
+            alt="{{ item.data.title }}"
+            loading="lazy"
+          />
 
-      const isProductFamily =
-        path.startsWith("bracelets/") ||
-        path.startsWith("rings/") ||
-        path.startsWith("charms/") ||
-        path.startsWith("bronze/");
+          <div class="product-card-body">
+            <h3>{{ item.data.title }}</h3>
 
-      const isCollectionIndex = !path.includes("/");
+            {% if item.data.price %}
+              <p class="price">${{ item.data.price }} USD</p>
+            {% endif %}
+          </div>
+        </a>
 
-      // ✅ Only collection landing pages use category layout
-      if (isProductFamily && isCollectionIndex) {
-        return "category.njk";
-      }
+      {% endfor %}
+    </div>
 
-      // Otherwise, respect existing layout
-      return data.layout;
-    },
-  });
-
-  return {
-    dir: {
-      input: ".",
-      includes: "_includes",
-      output: "_site",
-    },
-  };
-};
+  </div>
+</section>
+{% endblock %}
