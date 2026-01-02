@@ -7,28 +7,28 @@
     {# ===============================
        PRODUCT IMAGE GALLERY (TOP)
        =============================== #}
-    {% if images and images.length %}
-    <section class="product-gallery-wrapper">
+   {% if page.data.images and page.data.images.length %}
+<section class="product-gallery-wrapper">
 
-      <div class="product-gallery-track">
-      {% for image in images | slice(0, 3) %}
-          <div class="product-gallery-slide">
-            <img
-              src="{{ image }}"
-              alt="{{ title }} – image {{ loop.index }}"
-              loading="lazy"
-            >
-          </div>
-        {% endfor %}
+  <div class="product-gallery-track">
+    {% for image in page.data.images | slice(0, 3) %}
+      <div class="product-gallery-slide">
+        <img
+          src="{{ image }}"
+          alt="{{ page.data.title }} – image {{ loop.index }}"
+          loading="lazy"
+        >
       </div>
+    {% endfor %}
+  </div>
 
-      {% if page.data.images.length > 1 %}
-      <button class="gallery-arrow left" aria-label="Previous image">‹</button>
-      <button class="gallery-arrow right" aria-label="Next image">›</button>
-      {% endif %}
+  {% if page.data.images.length > 1 %}
+    <button class="gallery-arrow left" aria-label="Previous image">‹</button>
+    <button class="gallery-arrow right" aria-label="Next image">›</button>
+  {% endif %}
 
-    </section>
-    {% endif %}
+</section>
+{% endif %}
 
     {# ===============================
        PRODUCT CONTENT
