@@ -11,11 +11,8 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 band_width: "7 mm"
 layout: "layouts/product.njk"
 
-# 🔹 COLLECTION / GRID IMAGE (used on /rings/cuban-link/)
-cover_image: "/static/img/rings/cuban/cuban-link-classic-ring.jpg"
-
-# 🔹 PRODUCT PAGE GALLERY (only shown AFTER clicking product)
 images:
+  - "/static/img/rings/cuban/cuban-link-classic-ring.jpg"
   - "/static/img/rings/cl-001/product-images-coming-soon.jpg"
   - "/static/img/rings/cl-001/customer-ring-feature-placeholder.jpg"
   - "/static/img/rings/cl-001/images-update-with-orders.jpg"
