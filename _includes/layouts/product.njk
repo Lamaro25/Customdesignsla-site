@@ -7,15 +7,15 @@
     {# ===============================
        PRODUCT IMAGE GALLERY (TOP)
        =============================== #}
-    {% if page.data.images and page.data.images.length %}
+    {% if images and images.length %}
     <section class="product-gallery-wrapper">
 
       <div class="product-gallery-track">
-        {% for image in page.data.images | slice(0, 3) %}
+      {% for image in images | slice(0, 3) %}
           <div class="product-gallery-slide">
             <img
               src="{{ image }}"
-              alt="{{ page.data.title }} – image {{ loop.index }}"
+              alt="{{ title }} – image {{ loop.index }}"
               loading="lazy"
             >
           </div>
