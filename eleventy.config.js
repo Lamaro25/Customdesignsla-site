@@ -6,13 +6,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget(".");
 
   // ------------------------------
-  // LAYOUT ALIASES (FIXED)
-  // ------------------------------
-  eleventyConfig.addLayoutAlias("base", "base.njk");
-  eleventyConfig.addLayoutAlias("category", "category.njk");
-  eleventyConfig.addLayoutAlias("product", "product.njk");
-
-  // ------------------------------
   // PASSTHROUGH FILES
   // ------------------------------
   eleventyConfig.addPassthroughCopy("admin");
