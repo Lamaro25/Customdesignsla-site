@@ -4,22 +4,18 @@
 <section class="product-page">
   <div class="container">
 
-    {# 🔹 PRODUCT IMAGE GALLERY (product page only) #}
     {% if images and images.length %}
       <div class="product-gallery">
         {% for image in images %}
-          <div class="product-gallery-item">
-            <img
-              src="{{ image }}"
-              alt="{{ title }} image {{ loop.index }}"
-              loading="lazy"
-            >
-          </div>
+          <img
+            src="{{ image }}"
+            alt="{{ title }} image {{ loop.index }}"
+            loading="lazy"
+          >
         {% endfor %}
       </div>
     {% endif %}
 
-    {# 🔹 PRODUCT TEXT CONTENT (Overview, Breakdown, etc.) #}
     <div class="prose max-w-none product-content">
       {{ content | safe }}
     </div>
