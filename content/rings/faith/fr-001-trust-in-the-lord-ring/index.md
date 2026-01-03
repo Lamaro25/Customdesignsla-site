@@ -9,19 +9,32 @@ price: 152
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "layouts/product.njk"
+
 images:
   - "/static/img/rings/faith/trust-in-the-lord-ring.jpg"
+
+gallery:
+  - "/static/img/rings/fr-001/product-images-coming-soon-fr-001.jpg"
+  - "/static/img/rings/fr-001/customer-ring-feature-placeholder-fr-001.jpg"
+  - "/static/img/rings/fr-001/images-update-with-orders-fr-001.jpg"
+
 description: >
   A testament of quiet devotion, the Trust in the Lord Ring symbolizes unwavering faith
-  in moments of uncertainty. A polished 7 mm domed band carries a recessed cross on the outside,
-  while the inner inscription holds Proverbs 3:5 in full:
-  “Trust in the Lord with all your heart; on your own intelligence do not rely.”
+  in moments of uncertainty. A polished 7 mm domed band carries a recessed cross on the
+  exterior, while the interior holds Proverbs 3:5 in full.
 ---
 
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item"><img src="{{ gallery[0] }}" loading="lazy"></div>
+    <div class="product-gallery-item"><img src="{{ gallery[1] }}" loading="lazy"></div>
+    <div class="product-gallery-item"><img src="{{ gallery[2] }}" loading="lazy"></div>
+  </div>
+</div>
+
 ## Overview
-Forged as a reminder of faith over fear, this ring features a recessed exterior cross
-paired with a fully engraved scripture interior. Hand-finished with CDLA’s oxidized patina,
-each highlight and shadow symbolizes the spiritual tension between trust and understanding.
+Forged as a reminder of faith over fear, this ring pairs a recessed exterior cross
+with a fully engraved scripture interior — a personal expression of trust and devotion.
 
 ## Breakdown
 - **Domed Band 7 mm:** $80  
