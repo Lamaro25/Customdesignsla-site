@@ -26,24 +26,20 @@ description: >
   and oxidized depth for timeless contrast. Hand-cast and finished in Del Rio, Texas.
 ---
 
-{# ===============================
-   PRODUCT GALLERY (from frontmatter.gallery)
-   =============================== #}
-{% if page.data.gallery and page.data.gallery.length %}
-<section class="product-gallery-section">
+<!-- PRODUCT GALLERY (from frontmatter.gallery) -->
+<div class="product-gallery-section">
   <div class="product-gallery-grid">
-    {% for image in page.data.gallery %}
-      <div class="product-gallery-item">
-        <img
-          src="{{ image }}"
-          alt="{{ title }} gallery image {{ loop.index }}"
-          loading="lazy"
-        >
-      </div>
-    {% endfor %}
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Cuban Link Classic Ring – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Cuban Link Classic Ring – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Cuban Link Classic Ring – Image 3" loading="lazy">
+    </div>
   </div>
-</section>
-{% endif %}
+</div>
 
 ## Overview
 The Cuban Link Classic Ring represents the foundational aesthetic of the collection.
