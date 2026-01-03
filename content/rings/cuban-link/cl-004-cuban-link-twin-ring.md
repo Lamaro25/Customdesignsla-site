@@ -10,18 +10,45 @@ updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized depth with polished edges, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "layouts/product.njk"
+
+# ✅ FRONT-FACING CARD IMAGE (collection grid)
 images:
   - "/static/img/rings/cuban/cuban-link-twin-ring.jpg"
+
+# ✅ PRODUCT PAGE GALLERY (Phase 2)
+gallery:
+  - "/static/img/rings/cl-004/product-images-coming-soon-cl-004.jpg"
+  - "/static/img/rings/cl-004/customer-ring-feature-placeholder-cl-004.jpg"
+  - "/static/img/rings/cl-004/images-update-with-orders-cl-004.jpg"
+
 description: >
-  The Twin Ring delivers symmetry and detail — a 7 mm domed band divided into two
-  small Cuban braids, separated by a clean center ridge. The outer walls feature
-  diamond-pattern etching, adding elegant complexity. A refined, symmetrical
-  Cuban Link piece crafted in Del Rio, Texas.
+  The Twin Ring delivers symmetry and refined detail through a 7 mm domed band
+  divided into two sculpted Cuban braids, separated by a clean central ridge.
+  Diamond-pattern etched outer walls add depth and texture, while polished edges
+  and oxidized recesses create crisp contrast. A balanced Cuban Link design,
+  hand-cast and finished in Del Rio, Texas.
 ---
 
+<!-- PRODUCT GALLERY (from frontmatter.gallery) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="{{ title }} – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="{{ title }} – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="{{ title }} – Image 3" loading="lazy">
+    </div>
+  </div>
+</div>
+
 ## Overview
-A balanced, structural Cuban Link design with dual braids, polished edges, and 
-diamond-pattern detailing. Lightweight comfort with high visual impact.
+The Cuban Link Twin Ring emphasizes balance and structure, pairing dual Cuban
+braids with a sharp center ridge for a clean, architectural profile. Lightweight
+yet visually intricate, it’s designed for everyday wear while maintaining strong
+Cuban Link identity and craftsmanship.
 
 ## Breakdown
 - **Band 7 mm:** $80  
