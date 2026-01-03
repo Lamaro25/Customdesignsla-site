@@ -30,19 +30,19 @@ description: >
    PRODUCT GALLERY (from frontmatter.gallery)
    =============================== #}
 {% if page.data.gallery and page.data.gallery.length %}
-  <section class="product-gallery-section">
-    <div class="product-gallery-grid">
-      {% for image in page.data.gallery %}
-        <div class="product-gallery-item">
-          <img
-            src="{{ image }}"
-            alt="{{ title }} gallery image {{ loop.index }}"
-            loading="lazy"
-          >
-        </div>
-      {% endfor %}
-    </div>
-  </section>
+<section class="product-gallery-section">
+  <div class="product-gallery-grid">
+    {% for image in page.data.gallery %}
+      <div class="product-gallery-item">
+        <img
+          src="{{ image }}"
+          alt="{{ title }} gallery image {{ loop.index }}"
+          loading="lazy"
+        >
+      </div>
+    {% endfor %}
+  </div>
+</section>
 {% endif %}
 
 ## Overview
