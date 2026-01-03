@@ -10,8 +10,17 @@ updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized recess + polished raised edges, hallmarked “LA”)"
 band_width: "10 mm"
 layout: "layouts/product.njk"
+
+# ✅ FRONT-FACING CARD IMAGE (collection grid)
 images:
   - "/static/img/rings/cuban/cuban-link-statement-ring-thick.jpg"
+
+# ✅ PRODUCT PAGE GALLERY (Phase 2)
+gallery:
+  - "/static/img/rings/cl-002/product-images-coming-soon-cl-002.jpg"
+  - "/static/img/rings/cl-002/customer-ring-feature-placeholder-cl-002.jpg"
+  - "/static/img/rings/cl-002/images-update-with-orders-cl-002.jpg"
+
 description: >
   The Thick Statement Ring is the bold centerpiece of the Cuban Link Collection.
   A full 10 mm domed band with a personalized name-plate engraving panel, framed
@@ -21,9 +30,25 @@ description: >
   Del Rio, Texas.
 ---
 
+<!-- PRODUCT GALLERY (from frontmatter.gallery) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="{{ title }} – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="{{ title }} – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="{{ title }} – Image 3" loading="lazy">
+    </div>
+  </div>
+</div>
+
 ## Overview
-The boldest Cuban Link design—heavy, sculptural, and built with layered braid
-architecture and a personalized engraving panel.
+The Thick Statement Ring is the bold centerpiece of the Cuban Link Collection.
+Its 10 mm profile, multi-channel construction, and deep Cuban braids deliver
+maximum visual impact with refined craftsmanship.
 
 ## Breakdown
 - **Band 10 mm:** $120  
