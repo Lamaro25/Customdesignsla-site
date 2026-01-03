@@ -8,15 +8,23 @@
        FEATURED PRODUCT IMAGE
        (uses images[0])
        =============================== #}
-    {% if images and images.length %}
-      <div class="product-featured-image">
-        <img
-          src="{{ images[0] }}"
-          alt="{{ title }}"
-          loading="eager"
-        >
-      </div>
-    {% endif %}
+    {% if images and images.length > 1 %}
+  <section class="product-gallery-section">
+    <div class="product-gallery-grid">
+      {% for image in images %}
+        {% if loop.index0 > 0 %}
+          <div class="product-gallery-item">
+            <img
+              src="{{ image }}"
+              alt="{{ title }} gallery image {{ loop.index }}"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
 
     {# ===============================
    PRODUCT GALLERY (Phase 2 – FIXED)
