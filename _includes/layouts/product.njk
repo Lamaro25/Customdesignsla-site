@@ -6,45 +6,37 @@
 
     {# ===============================
        FEATURED PRODUCT IMAGE
-       (uses images[0])
        =============================== #}
-    {% if images and images.length > 1 %}
-  <section class="product-gallery-section">
-    <div class="product-gallery-grid">
-      {% for image in images %}
-        {% if loop.index0 > 0 %}
-          <div class="product-gallery-item">
-            <img
-              src="{{ image }}"
-              alt="{{ title }} gallery image {{ loop.index }}"
-              loading="lazy"
-            >
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-  </section>
-{% endif %}
+    {% if page.data.images and page.data.images.length %}
+      <div class="product-featured-image">
+        <img
+          src="{{ page.data.images[0] }}"
+          alt="{{ title }}"
+          loading="eager"
+        >
+      </div>
+    {% endif %}
 
     {# ===============================
-   PRODUCT GALLERY (Phase 2 – FIXED)
-   =============================== #}
-
-{% if page.data.gallery and page.data.gallery.length %}
-  <section class="product-gallery-section">
-    <div class="product-gallery-grid">
-      {% for image in page.data.gallery %}
-        <div class="product-gallery-item">
-          <img
-            src="{{ image }}"
-            alt="{{ title }} gallery image {{ loop.index }}"
-            loading="lazy"
-          >
+       PRODUCT GALLERY (Images 2–4)
+       =============================== #}
+    {% if page.data.images and page.data.images.length > 1 %}
+      <section class="product-gallery-section">
+        <div class="product-gallery-grid">
+          {% for image in page.data.images %}
+            {% if loop.index0 > 0 %}
+              <div class="product-gallery-item">
+                <img
+                  src="{{ image }}"
+                  alt="{{ title }} gallery image {{ loop.index }}"
+                  loading="lazy"
+                >
+              </div>
+            {% endif %}
+          {% endfor %}
         </div>
-      {% endfor %}
-    </div>
-  </section>
-{% endif %}
+      </section>
+    {% endif %}
 
     {# ===============================
        PRODUCT CONTENT
@@ -56,39 +48,3 @@
   </div>
 </section>
 {% endblock %}
-
-<style>
-/* ===============================
-   PRODUCT FEATURED IMAGE
-   =============================== */
-.product-featured-image {
-  margin-bottom: 2.5rem;
-}
-
-.product-featured-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 18px;
-}
-
-/* ===============================
-   PRODUCT GALLERY GRID
-   =============================== */
-.product-gallery-section {
-  margin-bottom: 3rem;
-}
-
-.product-gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.25rem;
-}
-
-.product-gallery-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 14px;
-}
-</style>
