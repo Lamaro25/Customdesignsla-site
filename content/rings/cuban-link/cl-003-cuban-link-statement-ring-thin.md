@@ -10,17 +10,45 @@ updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized recess & polished highlights, hallmarked “LA”)"
 band_width: "10 mm"
 layout: "layouts/product.njk"
+
+# ✅ FRONT-FACING CARD IMAGE (collection grid)
 images:
   - "/static/img/rings/cuban/cuban-link-statement-ring-thin.jpg"
+
+# ✅ PRODUCT PAGE GALLERY (Phase 2)
+gallery:
+  - "/static/img/rings/cl-003/product-images-coming-soon-cl-003.jpg"
+  - "/static/img/rings/cl-003/customer-ring-feature-placeholder-cl-003.jpg"
+  - "/static/img/rings/cl-003/images-update-with-orders-cl-003.jpg"
+
 description: >
-  The Statement Ring (Thin) carries the same bold design language as the Thick
-  version, but with a lighter, more comfortable weight. A 10 mm domed band 
-  features a centered engraving panel framed by three channels: a large Cuban 
-  braid and two smaller braids. Ideal for daily wear with full Statement energy.
+  The Statement Ring (Thin) carries the same bold Cuban Link design language as
+  its Thick counterpart, refined into a lighter, more wearable form. A 10 mm
+  domed profile features a centered engraving panel framed by three sculpted
+  channels—one large Cuban braid flanked by two smaller braids—delivering full
+  statement presence with improved everyday comfort.
 ---
+
+<!-- PRODUCT GALLERY (from frontmatter.gallery) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="{{ title }} – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="{{ title }} – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="{{ title }} – Image 3" loading="lazy">
+    </div>
+  </div>
+</div>
+
 ## Overview
-A lighter, more wearable alternative to the Thick Statement Ring—still bold,
-still sculptural, but easier for everyday comfort.
+The Cuban Link Statement Ring (Thin) is engineered for those who want bold visual
+impact without the added weight. Retaining the full sculptural depth of the
+Statement design, this version offers a balanced feel ideal for daily wear while
+preserving the unmistakable Cuban Link presence.
 
 ## Breakdown
 - **Band 10 mm (Thin):** $80  
