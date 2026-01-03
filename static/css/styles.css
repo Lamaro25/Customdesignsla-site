@@ -577,3 +577,29 @@ footer.site-footer {
   border-radius: 12px;
   object-fit: cover;
 }
+
+/* ===============================
+   PRODUCT IMAGE GALLERY
+   =============================== */
+
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0 3rem;
+}
+
+.product-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .product-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
