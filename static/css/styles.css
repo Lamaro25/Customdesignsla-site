@@ -603,3 +603,41 @@ footer.site-footer {
   }
 }
 
+
+/* ===============================
+   PRODUCT GALLERY – CL001
+   Mobile-first (vertical)
+   =============================== */
+
+.product-gallery-section {
+  margin: 2.5rem 0;
+}
+
+.product-gallery-grid {
+  display: flex;
+  flex-direction: column;   /* Mobile & tablet: vertical */
+  gap: 2rem;                /* Spacing between images */
+}
+
+.product-gallery-item img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;       /* Optional polish */
+}
+
+/* ===============================
+   Desktop layout (horizontal)
+   =============================== */
+@media (min-width: 1024px) {
+  .product-gallery-grid {
+    flex-direction: row;    /* Desktop: horizontal */
+    gap: 2rem;
+  }
+
+  .product-gallery-item {
+    flex: 1;                /* Equal-width columns */
+  }
+}
+
