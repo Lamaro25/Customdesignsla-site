@@ -18,25 +18,23 @@
     {% endif %}
 
     {# ===============================
-       PRODUCT GALLERY (Images 2–4)
-       =============================== #}
-    {% if page.data.images and page.data.images.length > 1 %}
-      <section class="product-gallery-section">
-        <div class="product-gallery-grid">
-          {% for image in page.data.images %}
-            {% if loop.index0 > 0 %}
-              <div class="product-gallery-item">
-                <img
-                  src="{{ image }}"
-                  alt="{{ title }} gallery image {{ loop.index }}"
-                  loading="lazy"
-                >
-              </div>
-            {% endif %}
-          {% endfor %}
+   PRODUCT GALLERY (from frontmatter.gallery)
+   =============================== #}
+{% if page.data.gallery and page.data.gallery.length %}
+  <section class="product-gallery-section">
+    <div class="product-gallery-grid">
+      {% for image in page.data.gallery %}
+        <div class="product-gallery-item">
+          <img
+            src="{{ image }}"
+            alt="{{ title }} gallery image {{ loop.index }}"
+            loading="lazy"
+          >
         </div>
-      </section>
-    {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
 
     {# ===============================
        PRODUCT CONTENT
