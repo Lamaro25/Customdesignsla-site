@@ -6,8 +6,10 @@
 
     <h1>{{ title }}</h1>
 
+    {% set items = collections.all | filter(attribute="data.collection", value=collection) %}
+
     <div class="collection-grid">
-      {% for item in collections[tag] %}
+      {% for item in items %}
 
         {% set cardImage =
           item.data.cover_image
