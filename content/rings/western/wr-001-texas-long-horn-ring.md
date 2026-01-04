@@ -29,7 +29,7 @@ description: >
 ---
 
 {% if gallery %}
-{% raw %}
+markdown="0"
 <section class="product-gallery-section">
   <div class="product-gallery-grid">
     {% for image in gallery %}
