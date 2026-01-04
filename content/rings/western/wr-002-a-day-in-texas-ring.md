@@ -25,22 +25,20 @@ description: >
   A raised name panel and rope edging complete this storytelling Western piece.
 ---
 
-<!-- PRODUCT GALLERY (from frontmatter.gallery) -->
-{% if gallery and gallery.length %}
+<!-- PRODUCT GALLERY (MATCHES CL001 STRUCTURE EXACTLY) -->
 <div class="product-gallery-section">
   <div class="product-gallery-grid">
-    {% for image in gallery %}
-      <div class="product-gallery-item">
-        <img
-          src="{{ image }}"
-          alt="{{ title }} – Gallery Image {{ loop.index }}"
-          loading="lazy"
-        >
-      </div>
-    {% endfor %}
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="A Day in Texas Ring – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="A Day in Texas Ring – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="A Day in Texas Ring – Image 3" loading="lazy">
+    </div>
   </div>
 </div>
-{% endif %}
 
 ## Overview
 A narrative ring that captures the rhythm of Texas life through detailed relief,
