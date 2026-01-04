@@ -9,7 +9,7 @@ published: true
 collection: "Charm Bracelets"
 
 tags:
-  - bracelets
+  - bracelet
   - charm
 ---
 
