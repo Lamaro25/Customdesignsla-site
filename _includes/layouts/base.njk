@@ -118,7 +118,9 @@ main {
     </div>
   {% endif %}
 
-  {{ content | safe }}
+  {% block content %}
+    {{ content | safe }}
+  {% endblock %}
 
 </main>
 
