@@ -6,28 +6,42 @@ tags: ["western"]
 slug: "running-wild-ring"
 permalink: "/rings/western/wr-005-running-wild-ring/"
 price: 125
-updated: "2025-11-25-01"   # NEW timestamp to force rebuild
+updated: "2025-11-25"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "layouts/product.njk"
+
+# COLLECTION CARD IMAGE ONLY
 images:
   - "/static/img/rings/western/running-wild-ring.jpg"
-# 🔥 HARD CACHE BUST — Eleventy MUST rebuild
-eleventyComputed:
-  bust: "WR005-FORCE-{{ updated }}"
+
+# PRODUCT PAGE GALLERY
+gallery:
+  - "/static/img/rings/wr-005/product-images-coming-soon-wr-005.jpg"
+  - "/static/img/rings/wr-005/customer-ring-feature-placeholder-wr-005.jpg"
+  - "/static/img/rings/wr-005/images-update-with-orders-wr-005.jpg"
 
 description: >
-  A tribute to untamed freedom and the spirit of the open plains. The Running
-  Wild Ring features nine embossed horses racing in continuous motion across
-  a 7 mm band, sculpted in raised relief for depth and dynamic energy.
-  Framed by a recessed channel and a bold rope braid, the design blends
-  movement with traditional Western craftsmanship.
+  A tribute to untamed freedom and the open plains. Nine embossed horses race
+  in continuous motion across a 7 mm band, sculpted in raised relief and framed
+  by a recessed channel and bold rope braid.
 ---
 
+{% if gallery and gallery.length %}
+<section class="product-gallery-section">
+  <div class="product-gallery-grid">
+    {% for image in gallery %}
+      <div class="product-gallery-item">
+        <img src="{{ image }}" alt="{{ title }} – Gallery Image {{ loop.index }}" loading="lazy">
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
 ## Overview
-The Running Wild Ring captures the essence of freedom with nine running horses
-that wrap fully around the band. A single channel and rope braid frame the
-motion, adding structure and elevated detailing to the design.
+The Running Wild Ring captures freedom in motion, with nine galloping horses
+wrapping fully around the band in a continuous Western narrative.
 
 ## Breakdown
 - **Ring 7 mm:** $80  
