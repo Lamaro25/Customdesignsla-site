@@ -28,7 +28,7 @@ description: >
   channel. A continuous Texas flag wrap symbolizes unity, grit, and pride.
 ---
 
-{% raw %}
+{% if gallery %}
 <section class="product-gallery-section">
   <div class="product-gallery-grid">
     {% for image in gallery %}
@@ -42,7 +42,7 @@ description: >
     {% endfor %}
   </div>
 </section>
-{% endraw %}
+{% endif %}
 
 ## Overview
 The Texas Long Horn Ring honors Western heritage through bold relief work, traditional
