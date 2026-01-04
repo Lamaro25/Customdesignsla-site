@@ -6,11 +6,11 @@ price: 56
 sku: BR-002
 published: true
 
-tags:
-  - bracelet
-  - charm
-
 collection: "Charm Bracelets"
+
+tags:
+  - charm
+  - bracelet
 
 sizes:
   - Petite (6 5/8 in) "S"
