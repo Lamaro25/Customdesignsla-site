@@ -27,17 +27,20 @@ description: >
   for strength and tradition.
 ---
 
-{% if gallery and gallery.length %}
-<section class="product-gallery-section">
+<!-- PRODUCT GALLERY (MATCHES CL001 STRUCTURE EXACTLY) -->
+<div class="product-gallery-section">
   <div class="product-gallery-grid">
-    {% for image in gallery %}
-      <div class="product-gallery-item">
-        <img src="{{ image }}" alt="{{ title }} – Gallery Image {{ loop.index }}" loading="lazy">
-      </div>
-    {% endfor %}
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Luck of the West Ring – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Luck of the West Ring – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Luck of the West Ring – Image 3" loading="lazy">
+    </div>
   </div>
-</section>
-{% endif %}
+</div>
 
 ## Overview
 The Luck of the West Ring transforms the horseshoe — a timeless symbol of luck —
