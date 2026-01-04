@@ -11,9 +11,11 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked â€
 band_width: "7 mm"
 layout: "layouts/product.njk"
 
+# FRONT-FACING COLLECTION IMAGE
 images:
   - "/static/img/rings/western/texas-long-horn-ring.jpg"
 
+# PRODUCT PAGE GALLERY (SHOW ALL IMAGES)
 gallery:
   - "/static/img/rings/wr-001/product-images-coming-soon-wr-001.jpg"
   - "/static/img/rings/wr-001/customer-ring-feature-placeholder-wr-001.jpg"
@@ -26,9 +28,9 @@ description: >
   channel. A continuous Texas flag wrap symbolizes unity, grit, and pride.
 ---
 
-<!-- PRODUCT GALLERY (from frontmatter.gallery) -->
+<!-- PRODUCT GALLERY (FORCE SHOW ALL IMAGES) -->
 {% if gallery and gallery.length %}
-<div class="product-gallery-section">
+<div class="product-gallery-section product-gallery--show-all">
   <div class="product-gallery-grid">
     {% for image in gallery %}
       <div class="product-gallery-item">
