@@ -91,7 +91,7 @@ eleventyConfig.addCollection("charm", function (collectionApi) {
         path.startsWith("charms/") ||
         path.startsWith("bronze/");
 
-      const isCollectionIndex = path.endsWith("/index");
+       const isCollectionIndex = path.endsWith("index");
 
       if (isProductFamily && isCollectionIndex) {
         return "category.njk";
