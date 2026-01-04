@@ -30,13 +30,13 @@ description: >
 <div class="product-gallery-section">
   <div class="product-gallery-grid">
     <div class="product-gallery-item">
-      <img src="{{ gallery[0] }}" alt="Cuban Link Classic Ring – Image 1" loading="lazy">
+      <img src="{{ gallery[0] }}" alt="Image 1" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[1] }}" alt="Cuban Link Classic Ring – Image 2" loading="lazy">
+      <img src="{{ gallery[1] }}" alt="Image 2" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[2] }}" alt="Cuban Link Classic Ring – Image 3" loading="lazy">
+      <img src="{{ gallery[2] }}" alt="Image 3" loading="lazy">
     </div>
   </div>
 </div>
