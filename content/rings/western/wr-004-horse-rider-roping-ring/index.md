@@ -10,21 +10,38 @@ updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "layouts/product.njk"
+
+# COLLECTION CARD IMAGE ONLY
 images:
   - "/static/img/rings/western/horse-rider-roping-ring.jpg"
+
+# PRODUCT PAGE GALLERY
+gallery:
+  - "/static/img/rings/wr-004/product-images-coming-soon-wr-004.jpg"
+  - "/static/img/rings/wr-004/customer-ring-feature-placeholder-wr-004.jpg"
+  - "/static/img/rings/wr-004/images-update-with-orders-wr-004.jpg"
+
 description: >
-  A tribute to the working cowboy and the legacy he leaves behind. The Horse
-  Rider Roping Ring captures the heart of Western tradition — grit, motion,
-  and craftsmanship — sculpted in raised relief on a 7 mm domed band.
-  A cowboy roping a steer stretches across the center, framed by recessed
-  channels and textured rope braids. Finished in oxidized .925 silver for
-  contrast and depth.
+  A tribute to the working cowboy and the legacy he leaves behind. Sculpted in
+  raised relief on a 7 mm band, a cowboy roping a steer stretches across the
+  center, framed by recessed channels and textured rope braids.
 ---
 
+{% if gallery and gallery.length %}
+<section class="product-gallery-section">
+  <div class="product-gallery-grid">
+    {% for image in gallery %}
+      <div class="product-gallery-item">
+        <img src="{{ image }}" alt="{{ title }} – Gallery Image {{ loop.index }}" loading="lazy">
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
 ## Overview
-The Horse Rider Roping Ring honors the movement, discipline, and heritage of
-the Western cowboy. The raised roping scene brings the band to life, while
-four channels and rope braids frame the design with structure and symmetry.
+The Horse Rider Roping Ring honors the movement, discipline, and heritage of the
+Western cowboy. The raised roping scene brings motion and depth to the band.
 
 ## Breakdown
 - **Flat Band 7 mm:** $80  
