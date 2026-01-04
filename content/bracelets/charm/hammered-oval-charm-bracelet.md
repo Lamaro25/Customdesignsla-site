@@ -1,25 +1,25 @@
 ---
 title: "Hammered Oval Charm Bracelet"
-layout: layouts/product.njk
-permalink: /bracelets/charm/hammered-oval-charm-bracelet/
-price: 56
-sku: BR-002
-published: true
-
+sku: "BR-002"
 collection: "Charm Bracelets"
+tags: ["charm"]
+slug: "hammered-oval-charm-bracelet"
+permalink: "/bracelets/charm/hammered-oval-charm-bracelet/"
+price: 56
+published: true
+layout: "layouts/product.njk"
 
-tags:
-  - bracelet
-  - charm
----
-
-sizes:
-  - Petite (6 5/8 in) "S"
-  - Standard (7 1/4 in) "M"
-  - Generous (8 in) "L"
-  - Extra (8 3/8 in) "XL"
+# ✅ FRONT-FACING CARD IMAGE (required for collection grid)
+images:
+  - "/static/img/bracelets/charm/hammered-oval-charm-bracelet.jpg"
 
 material: "Sterling Silver (.925)"
+
+sizes:
+  - 'Petite (6 5/8 in) "S"'
+  - 'Standard (7 1/4 in) "M"'
+  - 'Generous (8 in) "L"'
+  - 'Extra (8 3/8 in) "XL"'
 ---
 
 **Hammered Oval Charm Bracelet**
