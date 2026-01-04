@@ -10,19 +10,25 @@ updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "layouts/product.njk"
+
 images:
   - "/static/img/rings/western/texas-long-horn-ring.jpg"
+
+gallery:
+  - "/static/img/rings/wr-001/product-images-coming-soon-wr-001.jpg"
+  - "/static/img/rings/wr-001/customer-ring-feature-placeholder-wr-001.jpg"
+  - "/static/img/rings/wr-001/images-update-with-orders-wr-001.jpg"
+
 description: >
-  Forged in tribute to the Lone Star State, the Texas Long Horn Ring captures the unmistakable 
-  strength and identity of Texas culture. Sculpted on a 7 mm flat band, the ring features a central 
-  longhorn emblem framed by two raised rope braids and a single recessed channel. The Texas flag 
-  wraps continuously around the band in raised relief—symbolizing unity, grit, and pride. Finished 
-  with CDLA’s oxidized patina and polished by hand.
+  Forged in tribute to the Lone Star State, the Texas Long Horn Ring captures the
+  unmistakable strength and identity of Texas culture. Sculpted on a 7 mm flat band,
+  it features a central longhorn emblem framed by raised rope braids and a recessed
+  channel. A continuous Texas flag wrap symbolizes unity, grit, and pride.
 ---
 
 ## Overview
-The Texas Long Horn Ring honors the bold spirit of Texas through sculpted relief work, timeless motifs, 
-and handcrafted silverwork. Each curve and braid shines against its darkened recessed finish.
+The Texas Long Horn Ring honors Western heritage through bold relief work, traditional
+rope detailing, and hand-finished silver craftsmanship rooted in Texas identity.
 
 ## Breakdown
 - **Flat Band 7 mm:** $80  
