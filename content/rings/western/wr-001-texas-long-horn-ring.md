@@ -29,7 +29,7 @@ description: >
 ---
 
 {% if gallery %}
-<div class="product-gallery-section">
+<section class="product-gallery-section" markdown="0">
   <div class="product-gallery-grid">
     {% for image in gallery %}
       <div class="product-gallery-item">
@@ -37,11 +37,11 @@ description: >
           src="{{ image }}"
           alt="{{ title }} – Image {{ loop.index }}"
           loading="lazy"
-        />
+        >
       </div>
     {% endfor %}
   </div>
-</div>
+</section>
 {% endif %}
 
 ## Overview
