@@ -10,21 +10,24 @@ updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)"
 band_width: "10 mm"
 layout: "layouts/product.njk"
+
 images:
   - "/static/img/rings/western/a-day-in-texas-ring.jpg"
+
+gallery:
+  - "/static/img/rings/wr-002/product-images-coming-soon-wr-002.jpg"
+  - "/static/img/rings/wr-002/customer-ring-feature-placeholder-wr-002.jpg"
+  - "/static/img/rings/wr-002/images-update-with-orders-wr-002.jpg"
+
 description: >
-  Every side tells a story of Texas. Sculpted fully in raised relief, the 
-  **A Day in Texas Ring** brings two iconic scenes to life — the hunt and the 
-  rodeo — divided by a central Lone Star. A custom embossed name panel rises 
-  from the metal, making the ring uniquely yours. Cast in .925 sterling silver 
-  with CDLA’s signature oxidized patina, every detail stands proud: rope edge, 
-  star, hoof, and motion.
+  Every side tells a story of Texas. Sculpted fully in raised relief, this ring
+  features two iconic scenes — the hunt and the rodeo — divided by a Lone Star.
+  A raised name panel and rope edging complete this storytelling Western piece.
 ---
 
 ## Overview
-A storytelling ring with dual Texas scenes: a hunter & dog tracking a deer, 
-divided by a Lone Star, leading into a dynamic rodeo scene. Sculpted in full 
-relief with deep oxidized contrast.
+A narrative ring that captures the rhythm of Texas life through detailed relief,
+motion, and handcrafted Western symbolism.
 
 ## Breakdown
 - **Flat Band 10 mm:** $120  
