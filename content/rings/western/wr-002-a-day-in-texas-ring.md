@@ -26,19 +26,21 @@ description: >
 ---
 
 <!-- PRODUCT GALLERY (from frontmatter.gallery) -->
+{% if gallery and gallery.length %}
 <div class="product-gallery-section">
   <div class="product-gallery-grid">
-    <div class="product-gallery-item">
-      <img src="{{ gallery[0] }}" alt="Image 1" loading="lazy">
-    </div>
-    <div class="product-gallery-item">
-      <img src="{{ gallery[1] }}" alt="Image 2" loading="lazy">
-    </div>
-    <div class="product-gallery-item">
-      <img src="{{ gallery[2] }}" alt="Image 3" loading="lazy">
-    </div>
+    {% for image in gallery %}
+      <div class="product-gallery-item">
+        <img
+          src="{{ image }}"
+          alt="{{ title }} – Gallery Image {{ loop.index }}"
+          loading="lazy"
+        >
+      </div>
+    {% endfor %}
   </div>
 </div>
+{% endif %}
 
 ## Overview
 A narrative ring that captures the rhythm of Texas life through detailed relief,
