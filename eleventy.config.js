@@ -35,15 +35,19 @@ module.exports = function (eleventyConfig) {
   });
 
   // ------------------------------
-  // ✅ BRACELET COLLECTIONS (ADDED)
-  // ------------------------------
-  eleventyConfig.addCollection("charm", function (collectionApi) {
-    return collectionApi.getFilteredByTag("charm");
-  });
+// BRACELET / CHARM COLLECTIONS
+// ------------------------------
+eleventyConfig.addCollection("charm", function (collectionApi) {
+  return collectionApi
+    .getFilteredByTag("charm")
+    .filter(item => item.data.sku);
+});
 
-  eleventyConfig.addCollection("cuff", function (collectionApi) {
-    return collectionApi.getFilteredByTag("cuff");
-  });
+eleventyConfig.addCollection("cuff", function (collectionApi) {
+  return collectionApi
+    .getFilteredByTag("cuff")
+    .filter(item => item.data.sku);
+});
 
   // ------------------------------
   // LTR — Cowboy Hat Pick Collection
