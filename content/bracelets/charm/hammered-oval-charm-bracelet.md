@@ -9,8 +9,9 @@ published: true
 collection: "Charm Bracelets"
 
 tags:
-  - bracelet
+  - bracelets
   - charm
+---
 
 sizes:
   - Petite (6 5/8 in) "S"
