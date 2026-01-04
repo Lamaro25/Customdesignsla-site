@@ -35,17 +35,11 @@ module.exports = function (eleventyConfig) {
   });
 
   // ------------------------------
-// BRACELET / CHARM COLLECTIONS
+// ✅ BRACELET / CHARM COLLECTIONS (FINAL)
 // ------------------------------
 eleventyConfig.addCollection("charm", function (collectionApi) {
   return collectionApi
     .getFilteredByTag("charm")
-    .filter(item => item.data.sku);
-});
-
-eleventyConfig.addCollection("cuff", function (collectionApi) {
-  return collectionApi
-    .getFilteredByTag("cuff")
     .filter(item => item.data.sku);
 });
 
