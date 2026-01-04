@@ -1,7 +1,7 @@
 ---
 title: "Hammered Oval Charm Bracelet"
 layout: layouts/product.njk
-permalink: bracelets/hammered-oval-charm-bracelet/index.html
+permalink: /bracelets/charm/hammered-oval-charm-bracelet/
 price: 56
 sku: BR-002
 published: true
@@ -9,8 +9,8 @@ published: true
 collection: "Charm Bracelets"
 
 tags:
-  - charm
   - bracelet
+  - charm
 
 sizes:
   - Petite (6 5/8 in) "S"
