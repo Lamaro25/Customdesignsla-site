@@ -27,17 +27,20 @@ description: >
   by a recessed channel and bold rope braid.
 ---
 
-{% if gallery and gallery.length %}
-<section class="product-gallery-section">
+<!-- PRODUCT GALLERY (MATCHES CL001 STRUCTURE EXACTLY) -->
+<div class="product-gallery-section">
   <div class="product-gallery-grid">
-    {% for image in gallery %}
-      <div class="product-gallery-item">
-        <img src="{{ image }}" alt="{{ title }} – Gallery Image {{ loop.index }}" loading="lazy">
-      </div>
-    {% endfor %}
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Running Wild Ring – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Running Wild Ring – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Running Wild Ring – Image 3" loading="lazy">
+    </div>
   </div>
-</section>
-{% endif %}
+</div>
 
 ## Overview
 The Running Wild Ring captures freedom in motion, with nine galloping horses
