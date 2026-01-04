@@ -1,48 +1,37 @@
-{% extends "layouts/base.njk" %}
-
-{% block content %}
 <section class="collection-page">
   <div class="container">
 
     <h1>{{ title }}</h1>
 
-    {% if description %}
-      <p class="collection-description">{{ description }}</p>
-    {% endif %}
-
     <div class="collection-grid">
 
-      {# Loop ALL content, then filter by tag #}
-      {% for item in collections.all %}
-        {% if item.data.tags and item.data.tags.includes(tag) %}
+      {% for item in collections[tag] %}
 
-          {% set cardImage =
-            item.data.cover_image
-            or item.data.images and item.data.images[0]
-            or "/static/img/placeholders/product-coming-soon.jpg"
-          %}
+        {% set cardImage =
+          item.data.cover_image
+          or item.data.images | first
+          or "/static/img/placeholders/product-coming-soon.jpg"
+        %}
 
-          <a href="{{ item.url }}" class="product-card">
-            <img
-              src="{{ cardImage }}"
-              alt="{{ item.data.title }}"
-              loading="lazy"
-            />
+        <a href="{{ item.url }}" class="product-card">
+          <img
+            src="{{ cardImage }}"
+            alt="{{ item.data.title }}"
+            loading="lazy"
+          />
 
-            <div class="product-card-body">
-              <h3>{{ item.data.title }}</h3>
+          <div class="product-card-body">
+            <h3>{{ item.data.title }}</h3>
 
-              {% if item.data.price %}
-                <p class="price">${{ item.data.price }} USD</p>
-              {% endif %}
-            </div>
-          </a>
+            {% if item.data.price %}
+              <p class="price">${{ item.data.price }} USD</p>
+            {% endif %}
+          </div>
+        </a>
 
-        {% endif %}
       {% endfor %}
 
     </div>
 
   </div>
 </section>
-{% endblock %}
