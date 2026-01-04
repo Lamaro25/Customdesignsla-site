@@ -1,12 +1,13 @@
 ---
 title: "Aztec Cuff (10 mm)"
 layout: layouts/product.njk
-permalink: bracelets/aztec-cuff-10mm/index.html
+permalink: "/bracelets/aztec-cuff-10mm/"
 price: 315
 sku: CB-008
 published: true
 material: "Sterling Silver (.925)"
 width_mm: 10
+tags: ["cuff"]
 ---
 
 **Aztec Cuff — 10 mm**
