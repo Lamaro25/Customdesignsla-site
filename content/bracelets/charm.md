@@ -14,7 +14,7 @@ Handcrafted sterling silver charm bracelets, finished and assembled by hand.
 {% for bracelet in collections["charm"] %}
   <a href="{{ bracelet.url }}" class="collection-card">
     <img
-      src="{{ bracelet.data.images | first | default('/static/img/placeholders/product-coming-soon.jpg') }}"
+      src="{{ bracelet.data.images[0] | default: '/static/img/placeholders/product-coming-soon.jpg' }}"
       alt="{{ bracelet.data.title }}"
       loading="lazy"
     >
