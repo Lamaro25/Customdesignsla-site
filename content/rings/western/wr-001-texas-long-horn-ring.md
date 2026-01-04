@@ -29,7 +29,8 @@ description: >
 ---
 
 {% if gallery %}
-<div class="product-gallery-section">
+{% raw %}
+<section class="product-gallery-section">
   <div class="product-gallery-grid">
     {% for image in gallery %}
       <div class="product-gallery-item">
@@ -41,7 +42,8 @@ description: >
       </div>
     {% endfor %}
   </div>
-</div>
+</section>
+{% endraw %}
 {% endif %}
 
 ## Overview
