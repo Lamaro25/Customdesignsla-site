@@ -9,20 +9,31 @@ price: 137
 material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)"
 band_width: "3 mm (rising to 7 mm cross peak)"
 layout: "layouts/product.njk"
+
 images:
   - "/static/img/rings/faith/tree-of-faith-ring.jpg"
+
+gallery:
+  - "/static/img/rings/fr-006/product-images-coming-soon-fr-006.jpg"
+  - "/static/img/rings/fr-006/customer-ring-feature-placeholder-fr-006.jpg"
+  - "/static/img/rings/fr-006/images-update-with-orders-fr-006.jpg"
+
 description: >
-  The Tree of Faith Ring draws its symbolism from endurance, growth, and the living
-  nature of the cross. Carved on a slender custom 3 mm band that rises to a 7 mm
-  cross peak, the band features a recessed wood-grain texture representing the 
-  spirit of perseverance and spiritual rootedness. Inside is engraved Romans 12:12:
-  “Rejoice in hope, be patient in tribulation, be constant in prayer.”
+  A slender band with wood-grain texture rises into a cross peak, symbolizing
+  growth, endurance, and spiritual rootedness. Romans 12:12 is engraved inside.
 ---
 
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item"><img src="{{ gallery[0] }}"></div>
+    <div class="product-gallery-item"><img src="{{ gallery[1] }}"></div>
+    <div class="product-gallery-item"><img src="{{ gallery[2] }}"></div>
+  </div>
+</div>
+
 ## Overview
-Elegant, symbolic, and meaningful — this ring captures the essence of steadfast 
-faith. The oxidized wood-grain texture reveals deep shadows and highlights, while
-the rising cross peak serves as a visual anchor of spiritual strength and devotion.
+Elegant and symbolic, this ring reflects perseverance and devotion through texture,
+form, and scripture.
 
 ## Breakdown
 - **Custom Band 3 mm:** $40  
