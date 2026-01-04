@@ -9,19 +9,31 @@ price: 192
 material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)"
 band_width: "10 mm"
 layout: "layouts/product.njk"
+
 images:
   - "/static/img/rings/faith/path-of-faith-ring.jpg"
+
+gallery:
+  - "/static/img/rings/fr-003/product-images-coming-soon-fr-003.jpg"
+  - "/static/img/rings/fr-003/customer-ring-feature-placeholder-fr-003.jpg"
+  - "/static/img/rings/fr-003/images-update-with-orders-fr-003.jpg"
+
 description: >
-  Commanding and purposeful, the Path of Faith Ring rises on a broad 10 mm apex band.
-  Its defining feature — a centered cut-out cross — symbolizes surrender, direction, 
-  and alignment. Inside, Proverbs 3:6 is engraved in full:
-  “In all your ways be mindful of him and he will make straight your paths.”
+  A bold apex silhouette with a centered cut-out cross symbolizing surrender,
+  alignment, and direction. Proverbs 3:6 is engraved inside.
 ---
 
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item"><img src="{{ gallery[0] }}"></div>
+    <div class="product-gallery-item"><img src="{{ gallery[1] }}"></div>
+    <div class="product-gallery-item"><img src="{{ gallery[2] }}"></div>
+  </div>
+</div>
+
 ## Overview
-Built on a sculpted apex silhouette, this ring captures the spiritual journey through
-light, shadow, and elevation. The cut-out cross serves as a spiritual compass, while
-the full interior scripture grounds the wearer in trust and direction.
+Built as a spiritual compass, this ring captures elevation, guidance, and trust
+through light, shadow, and form.
 
 ## Breakdown
 - **Apex Band 10 mm:** $120  
