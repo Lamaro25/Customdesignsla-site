@@ -28,76 +28,86 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addCollection("western", function (collectionApi) {
-  return collectionApi
-    .getFilteredByGlob("content/rings/western/**/*.md")
-    .filter(item => item.data.sku)
-    .sort((a, b) => a.data.sku.localeCompare(b.data.sku));
-});
+    return collectionApi
+      .getFilteredByGlob("content/rings/western/**/*.md")
+      .filter(item => item.data.sku)
+      .sort((a, b) => a.data.sku.localeCompare(b.data.sku));
+  });
 
   // ------------------------------
-  // LTR — Cowboy Hat Pick Collection (FIXED)
+  // ✅ BRACELET COLLECTIONS (ADDED)
+  // ------------------------------
+  eleventyConfig.addCollection("charm", function (collectionApi) {
+    return collectionApi.getFilteredByTag("charm");
+  });
+
+  eleventyConfig.addCollection("cuff", function (collectionApi) {
+    return collectionApi.getFilteredByTag("cuff");
+  });
+
+  // ------------------------------
+  // LTR — Cowboy Hat Pick Collection
   // ------------------------------
   eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
     return collectionApi.getFilteredByGlob("content/LTR/cowboy-hat-picks/*.md");
   });
 
-// ------------------------------
-// GLOBAL COMPUTED DATA
-// ------------------------------
-eleventyConfig.addGlobalData("eleventyComputed", {
+  // ------------------------------
+  // GLOBAL COMPUTED DATA
+  // ------------------------------
+  eleventyConfig.addGlobalData("eleventyComputed", {
 
-  permalink: (data) => {
-    const path = data.page.filePathStem || "";
+    permalink: (data) => {
+      const path = data.page.filePathStem || "";
 
-    // Rings
-    if (path.startsWith("rings/")) {
-      return `/${path}/index.html`;
+      // Rings
+      if (path.startsWith("rings/")) {
+        return `/${path}/index.html`;
+      }
+
+      // Bracelets
+      if (path.startsWith("bracelets/")) {
+        return `/${path}/index.html`;
+      }
+
+      // Charms
+      if (path.startsWith("charms/")) {
+        return `/${path}/index.html`;
+      }
+
+      // Bronze
+      if (path.startsWith("bronze/")) {
+        return `/${path}/index.html`;
+      }
+
+      // Fallback
+      return data.permalink;
+    },
+
+    layout: (data) => {
+      const path = data.page.filePathStem || "";
+
+      const isProductFamily =
+        path.startsWith("rings/") ||
+        path.startsWith("bracelets/") ||
+        path.startsWith("charms/") ||
+        path.startsWith("bronze/");
+
+      const isCollectionIndex = path.endsWith("/index");
+
+      if (isProductFamily && isCollectionIndex) {
+        return "category.njk";
+      }
+
+      if (isProductFamily) {
+        return "product.njk";
+      }
+
+      return data.layout || "base.njk";
     }
 
-    // Bracelets
-    if (path.startsWith("bracelets/")) {
-      return `/${path}/index.html`;
-    }
+  });
 
-    // Charms
-    if (path.startsWith("charms/")) {
-      return `/${path}/index.html`;
-    }
-
-    // Bronze
-    if (path.startsWith("bronze/")) {
-      return `/${path}/index.html`;
-    }
-
-    // Fallback
-    return data.permalink;
-  },
-
-  layout: (data) => {
-    const path = data.page.filePathStem || "";
-
-    const isProductFamily =
-      path.startsWith("rings/") ||
-      path.startsWith("bracelets/") ||
-      path.startsWith("charms/") ||
-      path.startsWith("bronze/");
-
-    // Collection landing pages (OLD behavior)
-    const isCollectionIndex = path.endsWith("/index");
-
-    if (isProductFamily && isCollectionIndex) {
-      return "category.njk";
-    }
-
-    if (isProductFamily) {
-      return "product.njk";
-    }
-
-    return data.layout || "base.njk";
-  }
-
-});
-  
   // ------------------------------
   // ELEVENTY DIRECTORY SETTINGS
   // ------------------------------
