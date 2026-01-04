@@ -9,19 +9,31 @@ price: 108
 material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "layouts/product.njk"
+
 images:
   - "/static/img/rings/faith/anchored-in-faith-ring.jpg"
+
+gallery:
+  - "/static/img/rings/fr-004/product-images-coming-soon-fr-004.jpg"
+  - "/static/img/rings/fr-004/customer-ring-feature-placeholder-fr-004.jpg"
+  - "/static/img/rings/fr-004/images-update-with-orders-fr-004.jpg"
+
 description: >
-  Simple yet powerful, the Anchored in Faith Ring is built upon a 7 mm domed band
-  displaying four evenly spaced cut-out crosses. These crosses represent anchor
-  points — symbols of being grounded by faith in every direction of life. Inside,
-  the engraving “Trust In God” offers a quiet spiritual reminder.
+  Four cut-out crosses act as anchor points around the band, grounding the wearer
+  in faith. Inside, the inscription “Trust In God” completes the piece.
 ---
 
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item"><img src="{{ gallery[0] }}"></div>
+    <div class="product-gallery-item"><img src="{{ gallery[1] }}"></div>
+    <div class="product-gallery-item"><img src="{{ gallery[2] }}"></div>
+  </div>
+</div>
+
 ## Overview
-Designed for daily wear, this ring blends clean domed surfaces with meaningful symbolism.
-The oxidized patina deepens the recessed areas around each cross, while the polished band
-top captures soft highlights — reflecting clarity, resilience, and commitment to faith.
+Designed for daily wear, this ring blends minimal form with powerful symbolism —
+steady, grounded, and faithful.
 
 ## Breakdown
 - **Domed Band 7 mm:** $80  
