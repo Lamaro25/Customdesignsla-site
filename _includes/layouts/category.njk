@@ -6,33 +6,35 @@
 
     <h1>{{ title }}</h1>
 
-    {% set items = collections.all | filter(attribute="data.collection", value=collection) %}
-
     <div class="collection-grid">
-      {% for item in items %}
 
-        {% set cardImage =
-          item.data.cover_image
-          or "/static/img/placeholders/product-coming-soon.jpg"
-        %}
+      {% for item in collections.all %}
+        {% if item.data.tags and item.data.tags contains tag %}
 
-        <a href="{{ item.url }}" class="product-card">
-          <img
-            src="{{ cardImage }}"
-            alt="{{ item.data.title }}"
-            loading="lazy"
-          />
+          {% set cardImage =
+            item.data.cover_image
+            or "/static/img/placeholders/product-coming-soon.jpg"
+          %}
 
-          <div class="product-card-body">
-            <h3>{{ item.data.title }}</h3>
+          <a href="{{ item.url }}" class="product-card">
+            <img
+              src="{{ cardImage }}"
+              alt="{{ item.data.title }}"
+              loading="lazy"
+            />
 
-            {% if item.data.price %}
-              <p class="price">${{ item.data.price }} USD</p>
-            {% endif %}
-          </div>
-        </a>
+            <div class="product-card-body">
+              <h3>{{ item.data.title }}</h3>
 
+              {% if item.data.price %}
+                <p class="price">${{ item.data.price }} USD</p>
+              {% endif %}
+            </div>
+          </a>
+
+        {% endif %}
       {% endfor %}
+
     </div>
 
   </div>
