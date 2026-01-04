@@ -21,7 +21,7 @@ module.exports = function (eleventyConfig) {
   });
 
   // ------------------------------
-  // PRODUCT COLLECTIONS (EXISTING)
+  // PRODUCT COLLECTIONS
   // ------------------------------
   eleventyConfig.addCollection("cuban-link", function (collectionApi) {
     return collectionApi.getFilteredByTag("cuban-link");
@@ -35,13 +35,13 @@ module.exports = function (eleventyConfig) {
   });
 
   // ------------------------------
-// ✅ BRACELET / CHARM COLLECTIONS (FINAL)
-// ------------------------------
-eleventyConfig.addCollection("charm", function (collectionApi) {
-  return collectionApi
-    .getFilteredByTag("charm")
-    .filter(item => item.data.sku);
-});
+  // BRACELET / CHARM COLLECTIONS
+  // ------------------------------
+  eleventyConfig.addCollection("charm", function (collectionApi) {
+    return collectionApi
+      .getFilteredByTag("charm")
+      .filter(item => item.data.sku);
+  });
 
   // ------------------------------
   // LTR — Cowboy Hat Pick Collection
@@ -51,57 +51,19 @@ eleventyConfig.addCollection("charm", function (collectionApi) {
   });
 
   // ------------------------------
-  // GLOBAL COMPUTED DATA
+  // GLOBAL COMPUTED DATA (PERMALINKS ONLY)
   // ------------------------------
   eleventyConfig.addGlobalData("eleventyComputed", {
 
     permalink: (data) => {
       const path = data.page.filePathStem || "";
 
-      // Rings
-      if (path.startsWith("rings/")) {
-        return `/${path}/index.html`;
-      }
+      if (path.startsWith("rings/")) return `/${path}/index.html`;
+      if (path.startsWith("bracelets/")) return `/${path}/index.html`;
+      if (path.startsWith("charms/")) return `/${path}/index.html`;
+      if (path.startsWith("bronze/")) return `/${path}/index.html`;
 
-      // Bracelets
-      if (path.startsWith("bracelets/")) {
-        return `/${path}/index.html`;
-      }
-
-      // Charms
-      if (path.startsWith("charms/")) {
-        return `/${path}/index.html`;
-      }
-
-      // Bronze
-      if (path.startsWith("bronze/")) {
-        return `/${path}/index.html`;
-      }
-
-      // Fallback
       return data.permalink;
-    },
-
-    layout: (data) => {
-      const path = data.page.filePathStem || "";
-
-      const isProductFamily =
-        path.startsWith("rings/") ||
-        path.startsWith("bracelets/") ||
-        path.startsWith("charms/") ||
-        path.startsWith("bronze/");
-
-       const isCollectionIndex = path.endsWith("index");
-
-      if (isProductFamily && isCollectionIndex) {
-        return "category.njk";
-      }
-
-      if (isProductFamily) {
-        return "product.njk";
-      }
-
-      return data.layout || "base.njk";
     }
 
   });
