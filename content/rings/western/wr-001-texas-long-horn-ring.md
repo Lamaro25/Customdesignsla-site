@@ -29,7 +29,7 @@ description: >
 ---
 
 {% if gallery %}
-<section class="product-gallery-section" markdown="0">
+<div class="product-gallery-section">
   <div class="product-gallery-grid">
     {% for image in gallery %}
       <div class="product-gallery-item">
@@ -41,7 +41,7 @@ description: >
       </div>
     {% endfor %}
   </div>
-</section>
+</div>
 {% endif %}
 
 ## Overview
