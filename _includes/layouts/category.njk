@@ -6,13 +6,19 @@
 
     <h1>{{ title }}</h1>
 
+    {% if description %}
+      <p class="collection-description">{{ description }}</p>
+    {% endif %}
+
     <div class="collection-grid">
 
+      {# Loop ALL content, then filter by tag #}
       {% for item in collections.all %}
-        {% if item.data.tags and item.data.tags contains tag %}
+        {% if item.data.tags and item.data.tags.includes(tag) %}
 
           {% set cardImage =
             item.data.cover_image
+            or item.data.images and item.data.images[0]
             or "/static/img/placeholders/product-coming-soon.jpg"
           %}
 
