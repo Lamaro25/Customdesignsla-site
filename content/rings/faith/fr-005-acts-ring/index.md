@@ -9,21 +9,31 @@ price: 140
 material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "layouts/product.njk"
+
 images:
   - "/static/img/rings/faith/acts-ring.jpg"
+
+gallery:
+  - "/static/img/rings/fr-005/product-images-coming-soon-fr-005.jpg"
+  - "/static/img/rings/fr-005/customer-ring-feature-placeholder-fr-005.jpg"
+  - "/static/img/rings/fr-005/images-update-with-orders-fr-005.jpg"
+
 description: >
-  Rooted in community, courage, and devotion, the ACTS Ring was originally created for
-  the Teen ACTS Retreat of 2023 at St. Joseph’s Church in Del Rio, Texas. Inside, the
-  scripture Matthew 14:27 is engraved in full:
-  “Take courage, it is I; do not be afraid.”
-  The exterior features the ACTS emblem and the Fisher of Men symbol, honoring the
-  retreat pillars: Adoration, Community, Theology, and Service.
+  Originally created for the 2023 ACTS Retreat, this ring honors Adoration,
+  Community, Theology, and Service. Inside, Matthew 14:27 is engraved in full.
 ---
 
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item"><img src="{{ gallery[0] }}"></div>
+    <div class="product-gallery-item"><img src="{{ gallery[1] }}"></div>
+    <div class="product-gallery-item"><img src="{{ gallery[2] }}"></div>
+  </div>
+</div>
+
 ## Overview
-Crafted as a spiritual keepsake, this ring blends deep personal meaning with sculpted
-detail. The oxidized recesses enhance every engraved symbol, while the domed polished
-surface reflects CDLA’s signature craftsmanship.
+A spiritual keepsake rooted in courage and community, sculpted with intentional
+symbolism and CDLA craftsmanship.
 
 ## Breakdown
 - **Domed Band 7 mm:** $80  
