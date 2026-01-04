@@ -11,11 +11,11 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 band_width: "7 mm"
 layout: "layouts/product.njk"
 
-# FRONT-FACING COLLECTION IMAGE
+# FRONT-FACING HERO IMAGE
 images:
   - "/static/img/rings/western/texas-long-horn-ring.jpg"
 
-# PRODUCT PAGE GALLERY (SHOW ALL IMAGES)
+# PRODUCT PAGE GALLERY
 gallery:
   - "/static/img/rings/wr-001/product-images-coming-soon-wr-001.jpg"
   - "/static/img/rings/wr-001/customer-ring-feature-placeholder-wr-001.jpg"
@@ -28,20 +28,33 @@ description: >
   channel. A continuous Texas flag wrap symbolizes unity, grit, and pride.
 ---
 
-<!-- PRODUCT GALLERY (FORCE SHOW ALL IMAGES) -->
-<div class="product-gallery-section">
+<!-- ✅ HERO IMAGE (this was missing) -->
+{% if images and images.length %}
+<div class="product-featured-image">
+  <img
+    src="{{ images[0] }}"
+    alt="{{ title }} – Featured Image"
+    loading="eager"
+  >
+</div>
+{% endif %}
+
+<!-- ✅ PRODUCT GALLERY -->
+{% if gallery and gallery.length %}
+<div class="product-gallery-section product-gallery--show-all">
   <div class="product-gallery-grid">
-    <div class="product-gallery-item">
-      <img src="{{ gallery[0] }}" alt="{{ title }} – Image 1" loading="lazy">
-    </div>
-    <div class="product-gallery-item">
-      <img src="{{ gallery[1] }}" alt="{{ title }} – Image 2" loading="lazy">
-    </div>
-    <div class="product-gallery-item">
-      <img src="{{ gallery[2] }}" alt="{{ title }} – Image 3" loading="lazy">
-    </div>
+    {% for image in gallery %}
+      <div class="product-gallery-item">
+        <img
+          src="{{ image }}"
+          alt="{{ title }} – Gallery Image {{ loop.index }}"
+          loading="lazy"
+        >
+      </div>
+    {% endfor %}
   </div>
 </div>
+{% endif %}
 
 ## Overview
 The Texas Long Horn Ring honors Western heritage through bold relief work, traditional
