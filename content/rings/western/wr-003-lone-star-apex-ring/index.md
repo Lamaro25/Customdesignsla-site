@@ -1,30 +1,32 @@
 ---
-title: "Lone Star Apex Ring"
-sku: "WR-003"
+title: "Luck of the West Ring"
+sku: "WR-006"
 collection: "Western Ring Collection"
 tags: ["western"]
-slug: "lone-star-apex-ring"
-permalink: "/rings/western/wr-003-lone-star-apex-ring/"
-price: 164
+slug: "luck-of-the-west-ring"
+permalink: "/rings/western/wr-006-luck-of-the-west-ring/"
+price: 125
 updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
-band_width: "10 mm Apex"
+band_width: "7 mm"
 layout: "layouts/product.njk"
 images:
-  - "/static/img/rings/western/lone-star-apex-ring.jpg"
+  - "/static/img/rings/western/luck-of-the-west-ring.jpg"
+# 🔥 Forces Eleventy to rebuild this item even if cached
+eleventyComputed:
+  bust: "WR-006-{{ updated }}"
+
 description: >
-  A fusion of apex architecture and Texas tradition. Sculpted on a 10 mm
-  peak-contoured band, the Lone Star Apex Ring showcases a precision Texas
-  cutout paired with a raised Lone Star emblem. Four recessed channels and
-  embossed rope braids wrap the band in full symmetry. Finished in
-  oxidized .925 sterling silver for bold contrast.
+  A symbol of Western heritage, unity, and good fortune. The Luck of the West
+  Ring features ten interlocking embossed horseshoes wrapped around a 7 mm band,
+  bound together by a raised rope braid for strength and continuity. Each
+  horseshoe is sculpted in full relief for depth, shine, and definition.
 ---
 
 ## Overview
-The Lone Star Apex Ring blends modern structure with timeless Western
-heritage. Its sculpted apex rise, Texas silhouette cutout, and bold Lone
-Star centerpiece create a powerful and refined tribute to the Lone Star State.
-
+The Luck of the West Ring transforms the classic horseshoe — long regarded as
+a symbol of luck — into a continuous band of ten interlinked symbols. A polished
+rope braid crowns the design, adding structure and traditional Western detailing.
 ## Breakdown
 - **Apex Band 10 mm:** $120  
 - **Texas Shape Cutout:** $4  
