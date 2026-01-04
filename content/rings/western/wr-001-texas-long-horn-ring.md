@@ -29,21 +29,19 @@ description: >
 ---
 
 <!-- PRODUCT GALLERY (FORCE SHOW ALL IMAGES) -->
-{% if gallery and gallery.length %}
-<div class="product-gallery-section product-gallery--show-all">
+<div class="product-gallery-section">
   <div class="product-gallery-grid">
-    {% for image in gallery %}
-      <div class="product-gallery-item">
-        <img
-          src="{{ image }}"
-          alt="{{ title }} – Gallery Image {{ loop.index }}"
-          loading="lazy"
-        >
-      </div>
-    {% endfor %}
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="{{ title }} – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="{{ title }} – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="{{ title }} – Image 3" loading="lazy">
+    </div>
   </div>
 </div>
-{% endif %}
 
 ## Overview
 The Texas Long Horn Ring honors Western heritage through bold relief work, traditional
