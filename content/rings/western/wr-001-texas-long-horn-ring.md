@@ -28,20 +28,20 @@ description: >
   channel. A continuous Texas flag wrap symbolizes unity, grit, and pride.
 ---
 
-{% if gallery and gallery.length %}
-<section class="product-gallery-section">
+{% if gallery %}
+<div class="product-gallery-section">
   <div class="product-gallery-grid">
     {% for image in gallery %}
       <div class="product-gallery-item">
         <img
           src="{{ image }}"
-          alt="{{ title }} – Gallery Image {{ loop.index }}"
+          alt="{{ title }} – Image {{ loop.index }}"
           loading="lazy"
-        >
+        />
       </div>
     {% endfor %}
   </div>
-</section>
+</div>
 {% endif %}
 
 ## Overview
