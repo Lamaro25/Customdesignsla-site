@@ -34,9 +34,6 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => a.data.sku.localeCompare(b.data.sku));
   });
 
-  // ------------------------------
-  // BRACELET / CHARM COLLECTIONS
-  // ------------------------------
   eleventyConfig.addCollection("charm", function (collectionApi) {
     return collectionApi
       .getFilteredByTag("charm")
@@ -44,26 +41,52 @@ module.exports = function (eleventyConfig) {
   });
 
   // ------------------------------
-  // LTR — Cowboy Hat Pick Collection
-  // ------------------------------
-  eleventyConfig.addCollection("cowboy_hat_picks", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("content/LTR/cowboy-hat-picks/*.md");
-  });
-
-  // ------------------------------
-  // GLOBAL COMPUTED DATA (PERMALINKS ONLY)
+  // GLOBAL COMPUTED DATA
   // ------------------------------
   eleventyConfig.addGlobalData("eleventyComputed", {
 
     permalink: (data) => {
       const path = data.page.filePathStem || "";
 
-      if (path.startsWith("rings/")) return `/${path}/index.html`;
-      if (path.startsWith("bracelets/")) return `/${path}/index.html`;
-      if (path.startsWith("charms/")) return `/${path}/index.html`;
-      if (path.startsWith("bronze/")) return `/${path}/index.html`;
+      if (path.startsWith("rings/")) {
+        return `/${path}/`;
+      }
+
+      if (path.startsWith("bracelets/")) {
+        return `/${path}/`;
+      }
+
+      if (path.startsWith("charms/")) {
+        return `/${path}/`;
+      }
+
+      if (path.startsWith("bronze/")) {
+        return `/${path}/`;
+      }
 
       return data.permalink;
+    },
+
+    layout: (data) => {
+      const path = data.page.filePathStem || "";
+
+      const isProductFamily =
+        path.startsWith("rings/") ||
+        path.startsWith("bracelets/") ||
+        path.startsWith("charms/") ||
+        path.startsWith("bronze/");
+
+      const isCollectionIndex = path.endsWith("/index") || path.endsWith("index");
+
+      if (isProductFamily && isCollectionIndex) {
+        return "category.njk";
+      }
+
+      if (isProductFamily) {
+        return "product.njk";
+      }
+
+      return data.layout || "base.njk";
     }
 
   });
