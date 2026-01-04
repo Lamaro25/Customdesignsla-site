@@ -11,11 +11,9 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 band_width: "7 mm"
 layout: "layouts/product.njk"
 
-# ✅ COLLECTION CARD IMAGE ONLY
 images:
   - "/static/img/rings/western/texas-long-horn-ring.jpg"
 
-# ✅ PRODUCT PAGE GALLERY (PLACEHOLDERS)
 gallery:
   - "/static/img/rings/wr-001/product-images-coming-soon-wr-001.jpg"
   - "/static/img/rings/wr-001/customer-ring-feature-placeholder-wr-001.jpg"
@@ -28,21 +26,20 @@ description: >
   channel. A continuous Texas flag wrap symbolizes unity, grit, and pride.
 ---
 
-{% if gallery %}
-<section class="product-gallery-section">
+<!-- PRODUCT GALLERY (MATCHES CL001 STRUCTURE EXACTLY) -->
+<div class="product-gallery-section">
   <div class="product-gallery-grid">
-    {% for image in gallery %}
-      <div class="product-gallery-item">
-        <img
-          src="{{ image }}"
-          alt="{{ title }} – Image {{ loop.index }}"
-          loading="lazy"
-        />
-      </div>
-    {% endfor %}
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Texas Long Horn Ring – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Texas Long Horn Ring – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Texas Long Horn Ring – Image 3" loading="lazy">
+    </div>
   </div>
-</section>
-{% endif %}
+</div>
 
 ## Overview
 The Texas Long Horn Ring honors Western heritage through bold relief work, traditional
