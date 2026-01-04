@@ -9,19 +9,31 @@ price: 168
 material: "Solid .925 Sterling Silver (oxidized + polished, hallmarked “LA”)"
 band_width: "7 mm"
 layout: "layouts/product.njk"
+
 images:
   - "/static/img/rings/faith/cross-of-tomorrow-ring.jpg"
+
+gallery:
+  - "/static/img/rings/fr-002/product-images-coming-soon-fr-002.jpg"
+  - "/static/img/rings/fr-002/customer-ring-feature-placeholder-fr-002.jpg"
+  - "/static/img/rings/fr-002/images-update-with-orders-fr-002.jpg"
+
 description: >
-  The Cross of Tomorrow Ring carries the message of peace beyond worry. A raised 
-  continuous cross wraps around the exterior of the 7 mm domed band, symbolizing 
-  protection encircling the wearer. Inside, Matthew 6:34 is engraved in full:
-  “Do not worry about tomorrow; tomorrow will take care of itself. Sufficient for a day is its own evil.”
+  A raised continuous cross wraps the exterior of the band, symbolizing peace and
+  protection. Inside, Matthew 6:34 is engraved in full.
 ---
 
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item"><img src="{{ gallery[0] }}"></div>
+    <div class="product-gallery-item"><img src="{{ gallery[1] }}"></div>
+    <div class="product-gallery-item"><img src="{{ gallery[2] }}"></div>
+  </div>
+</div>
+
 ## Overview
-Crafted as a reminder to release fear of the future, this ring blends raised exterior relief
-with a full scripture interior engraving. The oxidized patina deepens each carved line,
-while polished domed surfaces catch the light — echoing calm, clarity, and trust.
+A reminder to release worry and trust beyond the present moment — this ring blends
+raised relief with deeply engraved scripture and calm, balanced form.
 
 ## Breakdown
 - **Domed Band 7 mm:** $80  
