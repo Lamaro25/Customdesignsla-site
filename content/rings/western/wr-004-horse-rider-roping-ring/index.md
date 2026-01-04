@@ -43,6 +43,11 @@ description: >
 The Horse Rider Roping Ring honors the movement, discipline, and heritage of the
 Western cowboy. The raised roping scene brings motion and depth to the band.
 
+
+## Overview
+The Horse Rider Roping Ring honors the movement, discipline, and heritage of the
+Western cowboy. The raised roping scene brings motion and depth to the band.
+
 ## Breakdown
 - **Flat Band 7 mm:** $80  
 - **Engraved Name Panel:** $4  
