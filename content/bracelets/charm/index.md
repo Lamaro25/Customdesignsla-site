@@ -1,7 +1,6 @@
 ---
-layout: layouts/category.njk
 title: "Charm Bracelets"
-description: "Personalized bracelets featuring CDLA charms and signature design elements."
+layout: layouts/category.njk
 permalink: /bracelets/charm/
 tag: charm
 ---
