@@ -14,7 +14,7 @@ images:
 
 gallery:
   - "/static/img/bracelets/charm/heart-link-charm-bracelet-full.jpg"
-  - "/static/img/bracelets/charm/heart-link-charm-bracelet-detail.jpg"
+  - "/static/img/bracelets/charm/heart-link-charm-bracelet-chain.jpg"
 ---
 
 <!-- PRODUCT GALLERY -->
