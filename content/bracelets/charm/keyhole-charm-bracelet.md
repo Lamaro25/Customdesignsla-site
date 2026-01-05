@@ -1,24 +1,58 @@
 ---
 title: "Keyhole Charm Bracelet"
-layout: layouts/product.njk
-permalink: bracelets/keyhole-charm-bracelet/index.html
+sku: "BR-006"
+collection: "Charm Bracelets"
+tags: ["charm"]
+slug: "keyhole-charm-bracelet"
+permalink: "/bracelets/charm/keyhole-charm-bracelet/"
 price: 62
-sku: BR-006
 published: true
-sizes:
-  - Petite (6 5/8 in) "S"
-  - Standard (7 1/4 in) "M"
-  - Generous (8 in) "L"
-  - Extra (8 3/8 in) "XL"
-material: "Sterling Silver (.925)"
+layout: "layouts/product.njk"
+
+images:
+  - "/static/img/bracelets/charm/keyhole-charm-bracelet-full.jpg"
+
+gallery:
+  - "/static/img/bracelets/charm/keyhole-charm-bracelet-full.jpg"
+  - "/static/img/bracelets/charm/keyhole-charm-bracelet-detail.jpg"
 ---
 
-**Keyhole Charm Bracelet**
+<!-- PRODUCT GALLERY -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    {% for image in gallery %}
+      <div class="product-gallery-item">
+        <img src="{{ image }}" alt="{{ title }} image {{ loop.index }}" loading="lazy">
+      </div>
+    {% endfor %}
+  </div>
+</div>
 
-**English**  
-Solid sterling‑silver chain built for daily wear and charms. Long‑and‑short pattern with signature keyhole links. Includes our **CDLA bronze hallmark tag** with honeycomb texture (≈ 10.5×11×2.44 mm).
+## Overview
+The Keyhole Charm Bracelet features a distinctive long-and-short link pattern anchored by
+signature keyhole-shaped links, creating subtle contrast and visual rhythm along the wrist.
 
----
+Finished with the **CDLA bronze hallmark charm**, embossed with the honeycomb texture,
+this bracelet blends refined structure with everyday wearability.
 
-**Español**  
-Cadena de plata esterlina sólida, ideal para uso diario y para dijes. Patrón largo‑corto con eslabones tipo cerradura (‘keyhole’). Incluye nuestra **placa de autor CDLA en bronce** con textura de panal (≈ 10.5×11×2.44 mm).
+**Total: $62 USD**
+
+## Specifications
+- **Material:** Solid .925 Sterling Silver  
+- **Accent:** CDLA Bronze Hallmark Charm  
+- **Link Style:** Long-and-short chain with keyhole links  
+- **Finish:** Polished  
+- **Closure:** Lobster clasp  
+- **Sizes Available:**  
+  - Petite — 6 5/8 in (S)  
+  - Standard — 7 1/4 in (M)  
+  - Generous — 8 in (L)  
+  - Extra — 8 3/8 in (XL)  
+- **Crafted:** Hand-assembled in Del Rio, Texas  
+
+## Notes
+- Long-and-short pattern adds structure without bulk  
+- Keyhole links provide a subtle signature detail  
+- Designed to be worn alone or paired with additional charms  
+- Bronze hallmark charm will naturally develop character over time  
+- Each bracelet is individually assembled; minor variations are part of the process
