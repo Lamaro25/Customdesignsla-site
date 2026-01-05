@@ -428,38 +428,25 @@ footer.site-footer {
   align-items: center;
   text-align: center;
 }
-
-/* ================================
-   Ring Collection Cards – Text Fix
-   ================================ */
+/* ===============================
+   COLLECTION CARD — TEXT NORMALIZATION
+   =============================== */
 
 .collection-card {
   text-decoration: none;
-  color: #000; /* force black */
+  color: #111;
 }
 
 .collection-card:visited {
-  color: #000; /* prevent purple visited links */
-}
-
-.collection-plate {
-  text-align: center;
-}
-
-.collection-plate h2 {
-  color: #000;
-  margin-bottom: 0.4rem;
-}
-
-.collection-plate p {
   color: #111;
-  margin: 0;
-  line-height: 1.4;
 }
 
-/* Optional: subtle hover polish */
-.collection-card:hover h2 {
-  text-decoration: underline;
+.collection-card-text h3 {
+  color: #111;
+}
+
+.collection-card-text .price {
+  color: #111;
 }
 
 /* ===============================
@@ -657,5 +644,54 @@ footer.site-footer {
   .product-gallery-item {
     flex: 1;                /* Equal-width columns */
   }
+}
+
+/* ===============================
+   PRODUCT COLLECTION CARD — CLEAN BASE
+   =============================== */
+
+.collection-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #111;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.collection-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+}
+
+/* Image */
+.collection-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+/* Text container */
+.collection-card-text {
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Title */
+.collection-card-text h3 {
+  margin: 0.25rem 0 0.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Price */
+.collection-card-text .price {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
