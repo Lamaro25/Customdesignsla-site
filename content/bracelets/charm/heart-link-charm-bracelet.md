@@ -49,7 +49,7 @@ this piece carries both sentiment and craftsmanship without feeling overly decor
   - Standard — 7 1/4 in (M)  
   - Generous — 8 in (L)  
   - Extra — 8 3/8 in (XL)
-    Custom sizes available upon request. 
+  - Custom sizes available upon request. 
 - **Crafted:** Hand-assembled in Del Rio, Texas  
 
 ## Notes
