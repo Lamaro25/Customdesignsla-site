@@ -14,7 +14,7 @@ images:
 
 gallery:
   - "/static/img/bracelets/charm/keyhole-charm-bracelet-full.jpg"
-  - "/static/img/bracelets/charm/keyhole-charm-bracelet-detail.jpg"
+  - "/static/img/bracelets/charm/keyhole-charm-bracelet-chain.jpg"
 ---
 
 <!-- PRODUCT GALLERY -->
