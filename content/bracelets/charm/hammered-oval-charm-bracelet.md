@@ -48,7 +48,8 @@ serves as a quiet marker of craftsmanship and brand identity without overpowerin
   Petite — 6 5/8 in (S)  
   Standard — 7 1/4 in (M)  
   Generous — 8 in (L)  
-  Extra — 8 3/8 in (XL)  
+  Extra — 8 3/8 in (XL)
+  Custom sizes available upon request.  
 - **Crafted:** Hand-assembled in Del Rio, Texas  
 
 ## Notes
