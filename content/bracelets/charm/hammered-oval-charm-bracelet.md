@@ -29,37 +29,30 @@ gallery:
 </div>
 
 ## Overview
-The Hammered Oval Charm Bracelet is designed for everyday wear with a refined, handcrafted aesthetic.
-Its oval cable links feature subtle hammered facets that catch light naturally, creating depth and movement
-without overpowering the piece.
+The Hammered Oval Charm Bracelet is designed for everyday wear with a clean, understated presence.
+Its oval cable chain features subtle hammered facets that reflect light naturally while maintaining
+a lightweight, comfortable feel on the wrist.
 
-Finished with a **CDLA bronze hallmark charm** featuring the signature honeycomb texture, this bracelet
-quietly represents the brand’s craftsmanship and identity.
-
- ## Breakdown
-- **Solid .925 Sterling Silver Chain** — built for daily wear and long-term durability  
-- **Hammered Oval Cable Links** — subtle hand-finished texture for natural light reflection  
-- **CDLA Bronze Hallmark Charm** — signature honeycomb design representing craftsmanship  
-- **Secure Lobster Clasp** — easy on/off with a reliable, comfortable fit  
-- **Made-to-Order Sizing** — crafted to your selected wrist size for proper proportion
+Finished with the **CDLA bronze hallmark charm**, featuring the signature honeycomb texture, this piece
+serves as a quiet marker of craftsmanship and brand identity without overpowering the design.
 
 **Total: $56 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
 - **Accent:** CDLA Bronze Hallmark Charm  
-- **Link Style:** Oval cable chain  
-- **Finish:** Polished with hand-hammered facets  
+- **Chain Style:** Oval cable link  
+- **Finish:** Polished with hand-applied hammered texture  
 - **Closure:** Lobster clasp  
 - **Sizes Available:**  
-- Petite — 6 5/8 in (S)  
-- Standard — 7 1/4 in (M)  
-- Generous — 8 in (L)  
-- Extra — 8 3/8 in (XL)  
+  Petite — 6 5/8 in (S)  
+  Standard — 7 1/4 in (M)  
+  Generous — 8 in (L)  
+  Extra — 8 3/8 in (XL)  
 - **Crafted:** Hand-assembled in Del Rio, Texas  
 
 ## Notes
-- Designed for daily wear and charm compatibility  
-- Lightweight and comfortable fit  
-- Signature CDLA bronze honeycomb hallmark  
-- Each bracelet is hand-finished; minor variations are natural
+- Designed to be worn on its own or paired with additional charms  
+- Balanced weight for all-day comfort without bulk  
+- Bronze hallmark charm will naturally develop character over time  
+- Each bracelet is individually assembled; subtle variations are part of the process
