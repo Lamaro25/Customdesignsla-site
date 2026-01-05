@@ -428,6 +428,13 @@ footer.site-footer {
   align-items: center;
   text-align: center;
 }
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
 /* ===============================
    COLLECTION CARD — FINAL LOCKED STYLE
    =============================== */
@@ -474,9 +481,10 @@ footer.site-footer {
 }
 
 .collection-card-text h3 {
-  margin: 0.25rem 0 0.35rem;
+  margin: 0.4rem 0 0.25rem;
   font-size: 0.95rem;
   font-weight: 600;
+  line-height: 1.25;
   color: #111;
 }
 
