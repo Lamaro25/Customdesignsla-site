@@ -28,12 +28,36 @@ gallery:
   </div>
 </div>
 
-## Hammered Oval Charm Bracelet
+## Overview
+The Hammered Oval Charm Bracelet is designed for everyday wear with a refined, handcrafted aesthetic.
+Its oval cable links feature subtle hammered facets that catch light naturally, creating depth and movement
+without overpowering the piece.
 
-### English
-Solid sterling-silver chain built for daily wear and charms…
+Finished with a **CDLA bronze hallmark charm** featuring the signature honeycomb texture, this bracelet
+quietly represents the brand’s craftsmanship and identity.
 
----
+## Breakdown
+- **Sterling Silver Oval Cable Chain:** $38  
+- **Hand-finished Hammered Texture:** $8  
+- **CDLA Bronze Hallmark Charm:** $10  
 
-### Español
-Cadena de plata esterlina sólida…
+**Total: $56 USD**
+
+## Specifications
+- **Material:** Solid .925 Sterling Silver  
+- **Accent:** CDLA Bronze Hallmark Charm  
+- **Link Style:** Oval cable chain  
+- **Finish:** Polished with hand-hammered facets  
+- **Closure:** Lobster clasp  
+- **Sizes Available:**  
+  - Petite — 6 5/8 in (S)  
+  - Standard — 7 1/4 in (M)  
+  - Generous — 8 in (L)  
+  - Extra — 8 3/8 in (XL)  
+- **Crafted:** Hand-assembled in Del Rio, Texas  
+
+## Notes
+- Designed for daily wear and charm compatibility  
+- Lightweight and comfortable fit  
+- Signature CDLA bronze honeycomb hallmark  
+- Each bracelet is hand-finished; minor variations are natural
