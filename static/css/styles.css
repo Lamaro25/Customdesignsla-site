@@ -641,51 +641,20 @@ footer.site-footer {
    =============================== */
 
 .product-gallery-section {
-  margin: 1.5rem 0;   /* tighter vertical spacing */
+  margin: 2rem 0;
 }
 
 .product-gallery-grid {
   display: flex;
-  flex-direction: column;   /* Mobile: vertical */
-  gap: 0.4rem;             /* 🔧 FIX: tighter spacing */
-}
-
-.product-gallery-item {
-  margin: 0;                /* ensure no inherited margins */
-  padding: 0;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .product-gallery-item img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 6px;
-  margin: 0;                /* 🔧 critical: removes phantom gaps */
-}
-
-/* Desktop gallery layout — match Cuban Link */
-@media (min-width: 1024px) {
-  .product-gallery-grid {
-    flex-direction: row;
-    gap: 1rem;              /* controlled, even spacing */
-  }
-
-  .product-gallery-item {
-    flex: 1;                /* equal-width images */
-  }
-}
-
-/* 🔒 OVERRIDE prose spacing for product galleries */
-.product-gallery-section.prose,
-.product-content.prose {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.product-gallery-section.prose > *,
-.product-content.prose > * {
-  margin-top: 0;
-  margin-bottom: 0;
+  border-radius: 8px;
 }
 
 /* ===============================
