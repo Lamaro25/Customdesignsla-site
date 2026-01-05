@@ -11,12 +11,12 @@ layout: "layouts/product.njk"
 
 material: "Solid .925 Sterling Silver"
 width_mm: 10
-finish: "Polished with oxidized recessed pattern"
-origin: "Handcrafted in Del Rio, Texas"
 
+# COLLECTION CARD IMAGE
 images:
   - "/static/img/bracelets/cuff/aztec-pattern-10mm-full.jpg"
 
+# PRODUCT PAGE GALLERY
 gallery:
   - "/static/img/bracelets/cuff/aztec-pattern-10mm-full.jpg"
   - "/static/img/bracelets/cuff/aztec-pattern-10mm-detail.jpg"
@@ -45,11 +45,11 @@ Each cuff is individually finished, allowing subtle variations that highlight th
 
 ## Craftsmanship
 
-- Hand-cast and finished  
+- Hand-cast and hand-finished  
 - Assembled and polished in Del Rio, Texas  
 
 ## Notes
 
 - Designed to be worn alone or stacked with other cuffs  
 - Natural patina will develop over time  
-- Each piece is unique due to hand finishing
+- Each piece is unique due to hand-finishing
