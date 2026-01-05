@@ -14,7 +14,7 @@ images:
 
 gallery:
   - "/static/img/bracelets/charm/silver-ripple-charm-bracelet-full.jpg"
-  - "/static/img/bracelets/charm/silver-ripple-charm-bracelet-detail.jpg"
+  - "/static/img/bracelets/charm/silver-ripple-charm-bracelet-chain.jpg"
 ---
 
 <!-- PRODUCT GALLERY -->
