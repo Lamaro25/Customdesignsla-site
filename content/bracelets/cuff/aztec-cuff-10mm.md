@@ -14,12 +14,11 @@ width_mm: 10
 
 # COLLECTION CARD IMAGE
 images:
-  - "/static/img/bracelets/cuff/aztec-cuff-10mm.jpg
+  - "/static/img/bracelets/cuff/aztec-cuff-10mm.jpg"
 
 # PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/bracelets/cuff/aztec-pattern-10mm.jpg"
-  - "/static/img/bracelets/cuff/aztec-pattern-10mm-detail.jpg"
+  - "/static/img/bracelets/cuff/aztec-cuff-10mm.jpg"
 ---
 
 ## Overview
