@@ -565,80 +565,17 @@ footer.site-footer {
   margin-bottom: 3rem;
 }
 
-/* Optional: slightly tighter on mobile */
+/* Slightly tighter on mobile */
 @media (max-width: 768px) {
   .homepage-slider-secondary {
     margin-bottom: 2.25rem;
   }
 }
 
-.product-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.product-gallery img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-
-@media (max-width: 900px) {
-  .product-gallery {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =========================
-   Product Page Image Gallery
-   ========================= */
-
-.product-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
-}
-
-.product-gallery img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  object-fit: cover;
-}
-
-/* ===============================
-   PRODUCT IMAGE GALLERY
-   =============================== */
-
-.product-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin: 2rem 0 3rem;
-}
-
-.product-gallery img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 14px;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .product-gallery {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ===============================
-   PRODUCT IMAGE GALLERY (GLOBAL)
-   Used by Cuban, Faith, Western
-   =============================== */
+/* ==========================================================
+   PRODUCT IMAGE GALLERY — SINGLE SOURCE OF TRUTH
+   Used by Rings, Bracelets, Faith, Garden of Silver
+========================================================== */
 
 .product-gallery-section {
   margin: 2rem 0;
@@ -646,8 +583,12 @@ footer.site-footer {
 
 .product-gallery-grid {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Mobile */
   gap: 1rem;
+}
+
+.product-gallery-item {
+  flex: 1;
 }
 
 .product-gallery-item img {
@@ -657,37 +598,17 @@ footer.site-footer {
   border-radius: 8px;
 }
 
-/* ===============================
-   Desktop layout
-   =============================== */
+/* Desktop layout — auto-adjusts to number of images */
 @media (min-width: 1024px) {
   .product-gallery-grid {
-    flex-direction: row;    /* Desktop: horizontal */
-    gap: 1rem;              /* matches Cuban/Faith spacing */
-  }
-
-  .product-gallery-item {
-    flex: 1;
+    flex-direction: row;
+    gap: 1rem; /* Matches Cuban / Faith spacing */
   }
 }
 
-/* ===============================
-   Desktop layout (horizontal)
-   =============================== */
-@media (min-width: 1024px) {
-  .product-gallery-grid {
-    flex-direction: row;    /* Desktop: horizontal */
-    gap: 2rem;
-  }
-
-  .product-gallery-item {
-    flex: 1;                /* Equal-width columns */
-  }
-}
-
-/* ===============================
+/* ==========================================================
    PRODUCT COLLECTION CARD — CLEAN BASE
-   =============================== */
+========================================================== */
 
 .collection-card {
   display: flex;
@@ -733,4 +654,3 @@ footer.site-footer {
   font-size: 0.95rem;
   font-weight: 700;
 }
-
