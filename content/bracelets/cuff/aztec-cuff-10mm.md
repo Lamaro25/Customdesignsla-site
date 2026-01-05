@@ -11,12 +11,15 @@ layout: "layouts/product.njk"
 
 material: "Solid .925 Sterling Silver"
 width_mm: 10
+finish: "Polished with oxidized recessed pattern"
+origin: "Handcrafted in Del Rio, Texas"
 
 images:
-  - "/static/img/bracelets/cuff/aztec-cuff-10mm.jpg"
+  - "/static/img/bracelets/cuff/aztec-pattern-10mm-full.jpg"
 
 gallery:
-  - "/static/img/bracelets/cuff/aztec-cuff-10mm.jpg"
+  - "/static/img/bracelets/cuff/aztec-pattern-10mm-full.jpg"
+  - "/static/img/bracelets/cuff/aztec-pattern-10mm-detail.jpg"
 ---
 
 ## Overview
