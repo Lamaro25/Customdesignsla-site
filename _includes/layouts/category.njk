@@ -6,7 +6,7 @@
 
     <h1>{{ title }}</h1>
 
-    {% set items = collections["charm"] %}
+    {% set items = collections.products | selectattr("data.collection", "equalto", title) | list %}
 
     {% if items and items.length %}
       <div class="collection-grid">
