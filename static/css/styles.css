@@ -663,6 +663,18 @@ footer.site-footer {
   margin: 0;                /* 🔧 critical: removes phantom gaps */
 }
 
+/* Desktop gallery layout — match Cuban Link */
+@media (min-width: 1024px) {
+  .product-gallery-grid {
+    flex-direction: row;
+    gap: 1rem;              /* controlled, even spacing */
+  }
+
+  .product-gallery-item {
+    flex: 1;                /* equal-width images */
+  }
+}
+
 /* ===============================
    Desktop layout
    =============================== */
