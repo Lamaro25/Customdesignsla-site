@@ -6,11 +6,11 @@
 
     <h1>{{ title }}</h1>
 
-   {% set items = collections.all
-  | selectattr("data.collection", "equalto", title)
-  | list %}
+    {% set items = collections.all
+      | selectattr("data.collection", "equalto", collectionKey)
+      | list %}
 
-    {% if items and items.length %}
+    {% if items.length %}
       <div class="collection-grid">
         {% for item in items %}
           <a href="{{ item.url }}" class="collection-card">
