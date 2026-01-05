@@ -22,7 +22,7 @@ gallery:
   <div class="product-gallery-grid">
     {% for image in gallery %}
       <div class="product-gallery-item">
-        <img src="{{ image }}" alt="{{ title }} image {{ loop.index }}" loading="lazy">
+        <img src="{{ image }}">
       </div>
     {% endfor %}
   </div>
