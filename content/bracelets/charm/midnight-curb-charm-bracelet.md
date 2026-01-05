@@ -14,7 +14,7 @@ images:
 
 gallery:
   - "/static/img/bracelets/charm/midnight-curb-charm-bracelet-full.jpg"
-  - "/static/img/bracelets/charm/midnight-curb-charm-bracelet-detail.jpg"
+  - "/static/img/bracelets/charm/midnight-curb-charm-bracelet-chain.jpg"
 ---
 
 <!-- PRODUCT GALLERY -->
