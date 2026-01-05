@@ -615,6 +615,25 @@ footer.site-footer {
 }
 
 /* ==========================================================
+   PROSE OVERRIDE — PRODUCT IMAGE GALLERY (CRITICAL)
+   Fixes mobile gaps caused by typography styles
+========================================================== */
+
+.product-gallery-section,
+.product-gallery-section * {
+  margin: 0;
+}
+
+.product-gallery-section img {
+  margin: 0 !important;
+}
+
+.product-content .product-gallery-section {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ==========================================================
    PRODUCT COLLECTION CARD — CLEAN BASE
 ========================================================== */
 
