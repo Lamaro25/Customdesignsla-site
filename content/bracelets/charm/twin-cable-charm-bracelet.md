@@ -14,7 +14,7 @@ images:
 
 gallery:
   - "/static/img/bracelets/charm/twin-cable-charm-bracelet-full.jpg"
-  - "/static/img/bracelets/charm/twin-cable-charm-bracelet-detail.jpg"
+  - "/static/img/bracelets/charm/twin-cable-charm-bracelet-chain.jpg"
 ---
 
 <!-- PRODUCT GALLERY -->
