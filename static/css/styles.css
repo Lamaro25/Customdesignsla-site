@@ -647,7 +647,7 @@ footer.site-footer {
 .product-gallery-grid {
   display: flex;
   flex-direction: column;   /* Mobile: vertical */
-  gap: 0.75rem;             /* 🔧 FIX: tighter spacing */
+  gap: 0.4rem;             /* 🔧 FIX: tighter spacing */
 }
 
 .product-gallery-item {
@@ -673,6 +673,19 @@ footer.site-footer {
   .product-gallery-item {
     flex: 1;                /* equal-width images */
   }
+}
+
+/* 🔒 OVERRIDE prose spacing for product galleries */
+.product-gallery-section.prose,
+.product-content.prose {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.product-gallery-section.prose > *,
+.product-content.prose > * {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /* ===============================
