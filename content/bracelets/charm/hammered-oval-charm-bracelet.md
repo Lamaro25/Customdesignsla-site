@@ -36,10 +36,12 @@ without overpowering the piece.
 Finished with a **CDLA bronze hallmark charm** featuring the signature honeycomb texture, this bracelet
 quietly represents the brand’s craftsmanship and identity.
 
-## Breakdown
-- **Sterling Silver Oval Cable Chain:** $38  
-- **Hand-finished Hammered Texture:** $8  
-- **CDLA Bronze Hallmark Charm:** $10  
+ ## Breakdown
+- **Solid .925 Sterling Silver Chain** — built for daily wear and long-term durability  
+- **Hammered Oval Cable Links** — subtle hand-finished texture for natural light reflection  
+- **CDLA Bronze Hallmark Charm** — signature honeycomb design representing craftsmanship  
+- **Secure Lobster Clasp** — easy on/off with a reliable, comfortable fit  
+- **Made-to-Order Sizing** — crafted to your selected wrist size for proper proportion
 
 **Total: $56 USD**
 
@@ -50,10 +52,10 @@ quietly represents the brand’s craftsmanship and identity.
 - **Finish:** Polished with hand-hammered facets  
 - **Closure:** Lobster clasp  
 - **Sizes Available:**  
-  - Petite — 6 5/8 in (S)  
-  - Standard — 7 1/4 in (M)  
-  - Generous — 8 in (L)  
-  - Extra — 8 3/8 in (XL)  
+- Petite — 6 5/8 in (S)  
+- Standard — 7 1/4 in (M)  
+- Generous — 8 in (L)  
+- Extra — 8 3/8 in (XL)  
 - **Crafted:** Hand-assembled in Del Rio, Texas  
 
 ## Notes
