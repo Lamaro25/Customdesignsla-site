@@ -5,34 +5,12 @@
   <div class="container">
 
     {# ===============================
-       NORMALIZE IMAGE SOURCES
+       FEATURED PRODUCT IMAGE
        =============================== #}
-
-    {% set images = [] %}
-    {% set rawGallery = [] %}
-
     {% if page.data.images and page.data.images.length %}
-      {% set images = page.data.images %}
-    {% elif page.data.data and page.data.data.images %}
-      {% set images = page.data.data.images %}
-    {% endif %}
-
-    {% if page.data.gallery and page.data.gallery.length %}
-      {% set rawGallery = page.data.gallery %}
-    {% elif page.data.data and page.data.data.gallery %}
-      {% set rawGallery = page.data.data.gallery %}
-    {% endif %}
-
-    {# ===============================
-       FEATURED IMAGE (FIRST IMAGE)
-       =============================== #}
-
-    {% set featuredSrc = null %}
-    {% if images and images.length %}
-      {% set featuredSrc = images[0] %}
       <div class="product-featured-image">
         <img
-          src="{{ featuredSrc }}"
+          src="{{ page.data.images[0] }}"
           alt="{{ title }}"
           loading="eager"
         >
@@ -40,30 +18,25 @@
     {% endif %}
 
     {# ===============================
-       FALLBACK: if no gallery exists,
-       use images[1..] as gallery
+       NORMALIZED PRODUCT GALLERY
        =============================== #}
 
-    {% if (not rawGallery or not rawGallery.length) and images.length > 1 %}
-      {% set rawGallery = images | slice(1) %}
+    {# If gallery exists, use it (rings, bracelets) #}
+    {% if page.data.gallery and page.data.gallery.length %}
+      {% set galleryImages = page.data.gallery %}
+
+    {# Else fallback to images[1:] (charms) #}
+    {% elseif page.data.images and page.data.images.length > 1 %}
+      {% set galleryImages = page.data.images | slice(1) %}
+
+    {% else %}
+      {% set galleryImages = [] %}
     {% endif %}
 
-    {# ===============================
-       CLEAN + DEDUPED GALLERY
-       =============================== #}
-
-    {% set gallery = [] %}
-
-    {% for img in rawGallery %}
-      {% if img and img != featuredSrc and (img not in gallery) %}
-        {% set gallery = gallery.concat([img]) %}
-      {% endif %}
-    {% endfor %}
-
-    {% if gallery and gallery.length %}
+    {% if galleryImages.length %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
-          {% for image in gallery %}
+          {% for image in galleryImages %}
             <div class="product-gallery-item">
               <img
                 src="{{ image }}"
@@ -79,7 +52,6 @@
     {# ===============================
        PRODUCT CONTENT
        =============================== #}
-
     <div class="prose max-w-none product-content">
       {{ content | safe }}
     </div>
