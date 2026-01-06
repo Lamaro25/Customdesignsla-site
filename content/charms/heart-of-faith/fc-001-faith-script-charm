@@ -1,28 +1,36 @@
 ---
 title: "Faith Script Charm"
 sku: "FC-001"
-collections: ["charms", "heart-of-faith"]
-collection: "Heart of Faith"
-tags: ["charm", "heart-of-faith"]
+
+tags:
+  - charms
+  - heart-of-faith
+
 slug: "fc-001-faith-script-charm"
 permalink: "/charms/heart-of-faith/fc-001-faith-script-charm/"
+
 price: 61
 updated: "2026-01-05"
+
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
 size_mm: "24.3 mm (Quarter)"
+
 layout: "layouts/product.njk"
 
+# COLLECTION / CARD IMAGE
 images:
   - "/static/img/heart-of-faith-charm-collection.jpg"
 
+# PRODUCT PAGE GALLERY (LOCKED — SINGLE IMAGE)
 gallery:
   - "/static/img/heart-of-faith-charm-collection.jpg"
 
 description: >
-  A bold expression of belief rendered in flowing script.
-  The Faith Script Charm features raised lettering, reinforced contours,
-  and a polished surface contrasted by oxidized depth.
-  Hand-cast in solid sterling silver and finished in Del Rio, Texas.
+  A bold declaration of belief rendered in flowing script.
+  The Faith Script Charm embodies conviction, devotion, and strength through
+  hand-sculpted lettering, reinforced contours, and a polished sterling surface
+  contrasted by oxidized depth. Designed to be worn daily as a personal symbol
+  of faith, it balances elegance with durability.
 ---
 
 ## Overview
