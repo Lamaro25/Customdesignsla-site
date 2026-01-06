@@ -6,20 +6,21 @@
 
     {# ===============================
        FEATURED PRODUCT IMAGE
+       Uses frontmatter: images[0]
        =============================== #}
     {% if page.data.images and page.data.images.length %}
-      <section class="product-featured-image">
+      <div class="product-featured-image">
         <img
           src="{{ page.data.images[0] }}"
           alt="{{ title }}"
           loading="eager"
         >
-      </section>
+      </div>
     {% endif %}
 
     {# ===============================
        PRODUCT GALLERY
-       (single source of truth)
+       Uses frontmatter: gallery[]
        =============================== #}
     {% if page.data.gallery and page.data.gallery.length %}
       <section class="product-gallery-section">
