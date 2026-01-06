@@ -8,15 +8,15 @@ permalink: /charms/heart-of-faith/
 <h1>Heart Of Faith</h1>
 
 <p>
-Faith-inspired charms designed as personal expressions of belief and devotion,  
-hand-cast in solid .925 sterling silver.
+  Faith-inspired charms designed as personal expressions of belief and devotion,
+  hand-cast in solid .925 sterling silver.
 </p>
 
 <div class="collection-grid">
   {% for item in collections["heart-of-faith"] %}
     <a href="{{ item.url }}" class="collection-card">
       <img
-        src="{{ item.data.images | first }}"
+        src="{{ item.data.gallery[0] }}"
         alt="{{ item.data.title }}"
         loading="lazy"
       >
