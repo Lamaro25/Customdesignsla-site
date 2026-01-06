@@ -5,7 +5,8 @@
   <div class="container">
 
     {# ===============================
-       FEATURED PRODUCT IMAGE (CARD IMAGE)
+       FEATURED PRODUCT IMAGE
+       (Front-facing card image)
        =============================== #}
     {% if page.data.images and page.data.images.length %}
       <div class="product-featured-image">
@@ -18,7 +19,8 @@
     {% endif %}
 
     {# ===============================
-       PRODUCT GALLERY (DETAIL PAGE)
+       PRODUCT GALLERY
+       (Back-of-card images)
        =============================== #}
     {% if page.data.gallery and page.data.gallery.length %}
       <section class="product-gallery-section">
