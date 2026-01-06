@@ -1,28 +1,32 @@
 ---
-title: "Faith Script Charm"
-sku: "FC-001"
-
-tags: ["heart-of-faith"]
-
-permalink: "/charms/heart-of-faith/fc-001-faith-script-charm/"
-price: 61
-updated: "2026-01-05"
-material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
-size_mm: "24.3 mm (Quarter)"
-layout: "layouts/product.njk"
-
-images:
-  - "/static/img/heart-of-faith-charm-collection.jpg"
-
-gallery:
-  - "/static/img/heart-of-faith-charm-collection.jpg"
-
-description: >
-  A bold expression of belief rendered in flowing script.
-  The Faith Script Charm features raised lettering, reinforced contours,
-  and a polished surface contrasted by oxidized depth.
-  Hand-cast in solid sterling silver and finished in Del Rio, Texas.
+layout: base.njk
+title: "Heart Of Faith — Custom Designs LA"
+description: "Faith-inspired sterling silver charms featuring scripture, devotion, and sacred symbolism."
+permalink: /charms/heart-of-faith/
 ---
+
+# Heart Of Faith
+
+Faith-inspired charms designed as personal expressions of belief and devotion,  
+hand-cast in solid .925 sterling silver.
+
+<div class="collection-grid">
+
+{% for item in collections["heart-of-faith"] %}
+  <a href="{{ item.url }}" class="collection-card">
+    <img
+      src="{{ item.data.images | first }}"
+      alt="{{ item.data.title }}"
+      loading="lazy"
+    >
+    <div class="collection-card-text">
+      <h3>{{ item.data.title }}</h3>
+      <p class="price">${{ item.data.price }} USD</p>
+    </div>
+  </a>
+{% endfor %}
+
+</div>
 
 ## Overview
 The Faith Script Charm represents conviction and devotion through
