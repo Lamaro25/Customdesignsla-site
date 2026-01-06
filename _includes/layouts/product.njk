@@ -5,31 +5,23 @@
   <div class="container">
 
     {# ===============================
-       FEATURED PRODUCT IMAGE
-       Uses images[0] ONLY
+       RESOLVED PRODUCT IMAGES
+       Rings, Bracelets, Charms
        =============================== #}
-    {% if page.data.images and page.data.images.length %}
-      <div class="product-featured-image">
-        <img
-          src="{{ page.data.images[0] }}"
-          alt="{{ title }}"
-          loading="eager"
-        >
-      </div>
-    {% endif %}
 
-    {# ===============================
-       PRODUCT GALLERY
-       Uses gallery[] ONLY
-       =============================== #}
-    {% if page.data.gallery and page.data.gallery.length %}
+    {% set productImages =
+      page.data.gallery
+      or page.data.images
+    %}
+
+    {% if productImages and productImages.length %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
-          {% for image in page.data.gallery %}
+          {% for image in productImages %}
             <div class="product-gallery-item">
               <img
-                src="{{ image }}"
-                alt="{{ title }} gallery image {{ loop.index }}"
+                src="{{ image | url }}"
+                alt="{{ title }} image {{ loop.index }}"
                 loading="lazy"
               >
             </div>
