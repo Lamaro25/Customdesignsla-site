@@ -40,6 +40,12 @@ module.exports = function (eleventyConfig) {
       .filter(item => item.data.sku);
   });
 
+eleventyConfig.addCollection("heart-of-faith", function (collectionApi) {
+  return collectionApi
+    .getFilteredByTag("heart-of-faith")
+    .filter(item => item.data.sku);
+});
+
   // ------------------------------
   // GLOBAL COMPUTED DATA
   // ------------------------------
