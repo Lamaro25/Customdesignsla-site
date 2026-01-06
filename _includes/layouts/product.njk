@@ -6,7 +6,7 @@
 
     {# ===============================
        FEATURED PRODUCT IMAGE
-       (collection / hero image)
+       Uses frontmatter: images[0]
        =============================== #}
     {% if page.data.images and page.data.images.length %}
       <div class="product-featured-image">
@@ -19,13 +19,21 @@
     {% endif %}
 
     {# ===============================
-       PRODUCT GALLERY
-       (ALL products use frontmatter.gallery)
+       NORMALIZED PRODUCT GALLERY
+       Works for:
+       - Rings
+       - Bracelets
+       - Charms
        =============================== #}
-    {% if page.data.gallery and page.data.gallery.length %}
+    {% set gallery = page.data.gallery %}
+    {% if not gallery and page.data.data and page.data.data.gallery %}
+      {% set gallery = page.data.data.gallery %}
+    {% endif %}
+
+    {% if gallery and gallery.length %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
-          {% for image in page.data.gallery %}
+          {% for image in gallery %}
             <div class="product-gallery-item">
               <img
                 src="{{ image }}"
