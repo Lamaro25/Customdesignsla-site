@@ -6,6 +6,7 @@
 
     {# ===============================
        FEATURED PRODUCT IMAGE
+       Uses images[0] ONLY
        =============================== #}
     {% if page.data.images and page.data.images.length %}
       <div class="product-featured-image">
@@ -18,29 +19,13 @@
     {% endif %}
 
     {# ===============================
-       MASTER PRODUCT GALLERY LOGIC
+       PRODUCT GALLERY
+       Uses gallery[] ONLY
        =============================== #}
-
-    {# 1️⃣ Primary gallery (rings, bracelets) #}
     {% if page.data.gallery and page.data.gallery.length %}
-      {% set galleryImages = page.data.gallery %}
-
-    {# 2️⃣ Charm fallback (collection context) #}
-    {% elseif page.data.data and page.data.data.gallery and page.data.data.gallery.length %}
-      {% set galleryImages = page.data.data.gallery %}
-
-    {# 3️⃣ Last-resort fallback (images[1:]) #}
-    {% elseif page.data.images and page.data.images.length > 1 %}
-      {% set galleryImages = page.data.images | slice(1) %}
-
-    {% else %}
-      {% set galleryImages = [] %}
-    {% endif %}
-
-    {% if galleryImages.length %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
-          {% for image in galleryImages %}
+          {% for image in page.data.gallery %}
             <div class="product-gallery-item">
               <img
                 src="{{ image }}"
