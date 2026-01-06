@@ -12,7 +12,7 @@ hand-cast in solid .925 sterling silver.
 
 <div class="collection-grid">
 
-{% for item in collections["charms"] %}
+{% for item in collections | getFilteredByTag("heart-of-faith") %}
   <a href="{{ item.url }}" class="collection-card">
     <img
       src="{{ item.data.images | first }}"
