@@ -1,6 +1,6 @@
 ---
 title: "Heart Of Faith"
-layout: layouts/collection.njk
+layout: layouts/category.njk
 permalink: /charms/heart-of-faith/
-collectionKey: "Heart Of Faith"
+collectionKey: "Heart of Faith"
 ---
