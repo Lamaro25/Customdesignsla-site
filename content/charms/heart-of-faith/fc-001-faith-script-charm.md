@@ -14,16 +14,16 @@ layout: "layouts/product.njk"
 # ✅ COLLECTION CARD IMAGE
 # Used ONLY on the main Charms collections page
 images:
-  - "/static/img/charms/heart-of-faith/heart-of-faith-collection.jpg"
+  - "/static/img/charms/faith-script-charm-image-1.jpg"
 
 # ✅ PRODUCT PAGE GALLERY
 # Used on:
 # 1) Heart Of Faith product card (image 1 only)
 # 2) Individual product page (all images)
 gallery:
-  - "/static/img/charms/heart-of-faith/faith-script-charm-image-1.jpg"
-  - "/static/img/charms/heart-of-faith/faith-script-charm-image-2.jpg"
-  - "/static/img/charms/heart-of-faith/faith-script-charm-image-3.jpg"
+  - "/static/img/charms/faith-script-charm-image-1.jpg"
+  - "/static/img/charms/faith-script-charm-image-2.jpg"
+  - "/static/img/charms/faith-script-charm-image-3.jpg"
 
 description: >
   A bold expression of belief rendered in flowing script.
@@ -31,19 +31,6 @@ description: >
   and durability, finished with polished highlights and oxidized depth.
   Hand-cast and finished in Del Rio, Texas.
 ---
-
-<!-- PRODUCT GALLERY (from frontmatter.gallery) -->
-<div class="product-gallery-section">
-  <div class="product-gallery-grid">
-    <div class="product-gallery-item">
-      <img
-        src="{{ gallery[0] }}"
-        alt="Faith Script Charm – Image 1"
-        loading="lazy"
-      >
-    </div>
-  </div>
-</div>
 
 ## Overview
 The Faith Script Charm represents conviction and devotion through
