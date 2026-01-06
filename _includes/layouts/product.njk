@@ -6,7 +6,7 @@
 
     {# ===============================
        FEATURED PRODUCT IMAGE
-       Uses images[0] ONLY
+       Uses images[0]
        =============================== #}
     {% if page.data.images and page.data.images.length %}
       <div class="product-featured-image">
@@ -20,7 +20,7 @@
 
     {# ===============================
        PRODUCT GALLERY
-       Uses gallery[] ONLY — NO FALLBACKS
+       Uses gallery[]
        =============================== #}
     {% if page.data.gallery and page.data.gallery.length %}
       <section class="product-gallery-section">
@@ -29,7 +29,7 @@
             <div class="product-gallery-item">
               <img
                 src="{{ image }}"
-                alt="{{ title }} gallery image {{ loop.index }}"
+                alt="{{ title }} image {{ loop.index }}"
                 loading="lazy"
               >
             </div>
