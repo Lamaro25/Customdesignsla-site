@@ -7,7 +7,8 @@ permalink: /charms/heart-of-faith/
 
 # Heart Of Faith
 
-Faith-inspired charms designed as personal expressions of belief and devotion, hand-cast in solid .925 sterling silver.
+Faith-inspired charms designed as personal expressions of belief and devotion,  
+hand-cast in solid .925 sterling silver.
 
 <div class="collection-grid">
 
