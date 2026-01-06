@@ -45,7 +45,7 @@ module.exports = function (eleventyConfig) {
 // ------------------------------
 eleventyConfig.addCollection("heart-of-faith", function (collectionApi) {
   return collectionApi
-    .getFilteredByGlob("content/charms/heart-of-faith/**/index.md")
+    .getFilteredByTag("heart-of-faith")
     .filter(item => item.data.sku);
 });
 
