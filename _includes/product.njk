@@ -1,21 +1,42 @@
 <section class="product-page">
-  <div class="container mx-auto px-4 py-10">
+  <div class="container">
 
-    {# === PRODUCT GALLERY (ABOVE OVERVIEW) === #}
-    {% if page.data.gallery and page.data.gallery.length %}
-      <div class="product-gallery">
-        {% for image in page.data.gallery %}
-          <img
-            src="{{ image | url }}"
-            alt="{{ page.data.title }} image {{ loop.index }}"
-            loading="lazy"
-          >
-        {% endfor %}
+    {# ===============================
+       FEATURED IMAGE (collection card image)
+       =============================== #}
+    {% if images and images.length %}
+      <div class="product-featured-image">
+        <img
+          src="{{ images[0] }}"
+          alt="{{ title }}"
+          loading="eager"
+        >
       </div>
     {% endif %}
 
-    {# === PRODUCT CONTENT (Overview, Breakdown, etc.) === #}
-    <div class="prose max-w-none">
+    {# ===============================
+       PRODUCT GALLERY (product images)
+       =============================== #}
+    {% if gallery and gallery.length %}
+      <section class="product-gallery-section">
+        <div class="product-gallery-grid">
+          {% for image in gallery %}
+            <div class="product-gallery-item">
+              <img
+                src="{{ image }}"
+                alt="{{ title }} gallery image {{ loop.index }}"
+                loading="lazy"
+              >
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {# ===============================
+       PRODUCT CONTENT
+       =============================== #}
+    <div class="prose max-w-none product-content">
       {{ content | safe }}
     </div>
 
