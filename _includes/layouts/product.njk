@@ -18,14 +18,18 @@
     {% endif %}
 
     {# ===============================
-       NORMALIZED PRODUCT GALLERY
+       MASTER PRODUCT GALLERY LOGIC
        =============================== #}
 
-    {# If gallery exists, use it (rings, bracelets) #}
+    {# 1️⃣ Primary gallery (rings, bracelets) #}
     {% if page.data.gallery and page.data.gallery.length %}
       {% set galleryImages = page.data.gallery %}
 
-    {# Else fallback to images[1:] (charms) #}
+    {# 2️⃣ Charm fallback (collection context) #}
+    {% elseif page.data.data and page.data.data.gallery and page.data.data.gallery.length %}
+      {% set galleryImages = page.data.data.gallery %}
+
+    {# 3️⃣ Last-resort fallback (images[1:]) #}
     {% elseif page.data.images and page.data.images.length > 1 %}
       {% set galleryImages = page.data.images | slice(1) %}
 
