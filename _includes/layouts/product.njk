@@ -6,7 +6,6 @@
 
     {# ===============================
        FEATURED PRODUCT IMAGE
-       Uses frontmatter: images[0]
        =============================== #}
     {% if page.data.images and page.data.images.length %}
       <div class="product-featured-image">
@@ -19,13 +18,13 @@
     {% endif %}
 
     {# ===============================
-       PRODUCT GALLERY
-       Uses frontmatter: gallery[]
+       PRODUCT GALLERY (from frontmatter.gallery)
        =============================== #}
-    {% if page.data.gallery and page.data.gallery.length %}
+    {% set gallery = page.data.gallery or page.data.data.gallery %}
+    {% if gallery and gallery.length %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
-          {% for image in page.data.gallery %}
+          {% for image in gallery %}
             <div class="product-gallery-item">
               <img
                 src="{{ image }}"
@@ -48,3 +47,4 @@
   </div>
 </section>
 {% endblock %}
+
