@@ -6,36 +6,39 @@
 
     {# ===============================
        FEATURED PRODUCT IMAGE
-       (Front-facing card image)
+       (ALWAYS shows if images[] exists)
        =============================== #}
     {% if page.data.images and page.data.images.length %}
-      <div class="product-featured-image">
+      <section class="product-featured-image">
         <img
           src="{{ page.data.images[0] }}"
           alt="{{ title }}"
           loading="eager"
         >
-      </div>
+      </section>
     {% endif %}
 
     {# ===============================
        PRODUCT GALLERY
-       (Back-of-card images)
+       (ONLY gallery images, NEVER images[])
        =============================== #}
-    {% if page.data.gallery and page.data.gallery.length %}
-      <section class="product-gallery-section">
-        <div class="product-gallery-grid">
-          {% for image in page.data.gallery %}
-            <div class="product-gallery-item">
-              <img
-                src="{{ image }}"
-                alt="{{ title }} – image {{ loop.index }}"
-                loading="lazy"
-              >
-            </div>
-          {% endfor %}
-        </div>
-      </section>
+    {% if page.data.gallery %}
+      {% set galleryImages = page.data.gallery | slice(1) %}
+      {% if galleryImages.length %}
+        <section class="product-gallery-section">
+          <div class="product-gallery-grid">
+            {% for image in galleryImages %}
+              <div class="product-gallery-item">
+                <img
+                  src="{{ image }}"
+                  alt="{{ title }} – gallery image {{ loop.index }}"
+                  loading="lazy"
+                >
+              </div>
+            {% endfor %}
+          </div>
+        </section>
+      {% endif %}
     {% endif %}
 
     {# ===============================
