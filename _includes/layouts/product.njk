@@ -19,21 +19,13 @@
     {% endif %}
 
     {# ===============================
-       NORMALIZED PRODUCT GALLERY
-       Works for:
-       - Rings
-       - Bracelets
-       - Charms
+       PRODUCT GALLERY
+       Uses frontmatter: gallery[]
        =============================== #}
-    {% set gallery = page.data.gallery %}
-    {% if not gallery and page.data.data and page.data.data.gallery %}
-      {% set gallery = page.data.data.gallery %}
-    {% endif %}
-
-    {% if gallery and gallery.length %}
+    {% if page.data.gallery and page.data.gallery.length %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
-          {% for image in gallery %}
+          {% for image in page.data.gallery %}
             <div class="product-gallery-item">
               <img
                 src="{{ image }}"
