@@ -6,11 +6,12 @@
 
     {# ===============================
        FEATURED PRODUCT IMAGE
+       Uses images[0] ONLY
        =============================== #}
-    {% if page.data.images and page.data.images.length %}
+    {% if images and images.length %}
       <div class="product-featured-image">
         <img
-          src="{{ page.data.images[0] }}"
+          src="{{ images[0] }}"
           alt="{{ title }}"
           loading="eager"
         >
@@ -18,21 +19,20 @@
     {% endif %}
 
     {# ===============================
-       PRODUCT GALLERY
+       NORMALIZED PRODUCT GALLERY
        =============================== #}
 
-    {# Base gallery source #}
-    {% set gallery = page.data.gallery %}
+    {% set galleryImages = [] %}
 
-    {# 🔒 Charm-only fallback (prevents duplication elsewhere) #}
-    {% if not gallery and page.url.startsWith("/charms/") %}
-      {% set gallery = page.data.gallery or page.data.data.gallery %}
+    {# Preferred: explicit gallery (ALL products should use this) #}
+    {% if gallery and gallery.length %}
+      {% set galleryImages = gallery %}
     {% endif %}
 
-    {% if gallery and gallery.length %}
+    {% if galleryImages.length %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
-          {% for image in gallery %}
+          {% for image in galleryImages %}
             <div class="product-gallery-item">
               <img
                 src="{{ image }}"
