@@ -5,27 +5,31 @@
   <div class="container">
 
     {# ===============================
-       NORMALIZE DATA SOURCES
-       Some pages expose frontmatter at page.data.*
-       Others expose it at page.data.data.*
+       NORMALIZE IMAGE SOURCES
        =============================== #}
 
-    {% set images = (page.data.images and page.data.images.length) ? page.data.images : page.data.data.images %}
-    {% set rawGallery = (page.data.gallery and page.data.gallery.length) ? page.data.gallery : page.data.data.gallery %}
+    {% set images = [] %}
+    {% set rawGallery = [] %}
 
-    {# Featured image is always the first "images" entry (if present) #}
-    {% set featuredSrc = (images and images.length) ? images[0] : null %}
+    {% if page.data.images and page.data.images.length %}
+      {% set images = page.data.images %}
+    {% elif page.data.data and page.data.data.images %}
+      {% set images = page.data.data.images %}
+    {% endif %}
 
-    {# If gallery is missing but images has more than 1 image,
-       use images[1..] as gallery fallback. #}
-    {% if (not rawGallery or not rawGallery.length) and images and images.length > 1 %}
-      {% set rawGallery = images | slice(1) %}
+    {% if page.data.gallery and page.data.gallery.length %}
+      {% set rawGallery = page.data.gallery %}
+    {% elif page.data.data and page.data.data.gallery %}
+      {% set rawGallery = page.data.data.gallery %}
     {% endif %}
 
     {# ===============================
-       FEATURED PRODUCT IMAGE
+       FEATURED IMAGE (FIRST IMAGE)
        =============================== #}
-    {% if featuredSrc %}
+
+    {% set featuredSrc = null %}
+    {% if images and images.length %}
+      {% set featuredSrc = images[0] %}
       <div class="product-featured-image">
         <img
           src="{{ featuredSrc }}"
@@ -36,20 +40,25 @@
     {% endif %}
 
     {# ===============================
-       PRODUCT GALLERY (DEDUPED)
-       - removes duplicates
-       - removes featured image if it appears again in gallery
+       FALLBACK: if no gallery exists,
+       use images[1..] as gallery
+       =============================== #}
+
+    {% if (not rawGallery or not rawGallery.length) and images.length > 1 %}
+      {% set rawGallery = images | slice(1) %}
+    {% endif %}
+
+    {# ===============================
+       CLEAN + DEDUPED GALLERY
        =============================== #}
 
     {% set gallery = [] %}
 
-    {% if rawGallery and rawGallery.length %}
-      {% for img in rawGallery %}
-        {% if img and img != featuredSrc and (img not in gallery) %}
-          {% set gallery = gallery.concat([img]) %}
-        {% endif %}
-      {% endfor %}
-    {% endif %}
+    {% for img in rawGallery %}
+      {% if img and img != featuredSrc and (img not in gallery) %}
+        {% set gallery = gallery.concat([img]) %}
+      {% endif %}
+    {% endfor %}
 
     {% if gallery and gallery.length %}
       <section class="product-gallery-section">
@@ -70,6 +79,7 @@
     {# ===============================
        PRODUCT CONTENT
        =============================== #}
+
     <div class="prose max-w-none product-content">
       {{ content | safe }}
     </div>
