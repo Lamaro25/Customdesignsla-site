@@ -1,7 +1,6 @@
 ---
 title: "Charms"
-layout: "base.njk"
-category: "Charms"
+permalink: false
 ---
 
 # Charms / Dijes
