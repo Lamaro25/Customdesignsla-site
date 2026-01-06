@@ -6,12 +6,12 @@
 
     {# ===============================
        FEATURED PRODUCT IMAGE
-       Uses images[0] ONLY
+       Collection card image ONLY
        =============================== #}
-    {% if images and images.length %}
+    {% if page.data.images and page.data.images.length %}
       <div class="product-featured-image">
         <img
-          src="{{ images[0] }}"
+          src="{{ page.data.images[0] }}"
           alt="{{ title }}"
           loading="eager"
         >
@@ -19,20 +19,13 @@
     {% endif %}
 
     {# ===============================
-       NORMALIZED PRODUCT GALLERY
+       PRODUCT GALLERY
+       Product page images ONLY
        =============================== #}
-
-    {% set galleryImages = [] %}
-
-    {# Preferred: explicit gallery (ALL products should use this) #}
-    {% if gallery and gallery.length %}
-      {% set galleryImages = gallery %}
-    {% endif %}
-
-    {% if galleryImages.length %}
+    {% if page.data.gallery and page.data.gallery.length %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
-          {% for image in galleryImages %}
+          {% for image in page.data.gallery %}
             <div class="product-gallery-item">
               <img
                 src="{{ image }}"
