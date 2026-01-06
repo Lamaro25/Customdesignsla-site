@@ -1,6 +1,7 @@
 ---
 title: "Faith Script Charm"
 sku: "FC-001"
+collections: ["charms", "heart-of-faith"]
 collection: "Heart of Faith"
 tags: ["faith", "charm"]
 slug: "fc-001-faith-script-charm"
@@ -11,11 +12,9 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 size_mm: "24.3 mm (Quarter)"
 layout: "layouts/product.njk"
 
-# ✅ COLLECTION CARD IMAGE
 images:
   - "/static/img/heart-of-faith-charm-collection.jpg"
 
-# ✅ PRODUCT PAGE GALLERY (LOCKED – SINGLE IMAGE)
 gallery:
   - "/static/img/heart-of-faith-charm-collection.jpg"
 
