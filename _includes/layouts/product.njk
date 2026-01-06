@@ -5,9 +5,15 @@
   <div class="container">
 
     {# ===============================
-       FEATURED PRODUCT IMAGE
+       NORMALIZE GALLERY SOURCE
        =============================== #}
-    {% if page.data.images and page.data.images.length %}
+    {% set gallery = page.data.gallery or page.data.data.gallery %}
+
+    {# ===============================
+       FEATURED PRODUCT IMAGE
+       (ONLY if no gallery exists)
+       =============================== #}
+    {% if (not gallery or not gallery.length) and page.data.images and page.data.images.length %}
       <div class="product-featured-image">
         <img
           src="{{ page.data.images[0] }}"
@@ -18,9 +24,8 @@
     {% endif %}
 
     {# ===============================
-       PRODUCT GALLERY (from frontmatter.gallery)
+       PRODUCT GALLERY
        =============================== #}
-    {% set gallery = page.data.gallery or page.data.data.gallery %}
     {% if gallery and gallery.length %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
