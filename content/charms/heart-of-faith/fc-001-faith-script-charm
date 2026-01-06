@@ -3,7 +3,7 @@ title: "Faith Script Charm"
 sku: "FC-001"
 collections: ["charms", "heart-of-faith"]
 collection: "Heart of Faith"
-tags: ["faith", "charm"]
+tags: ["charm", "heart-of-faith"]
 slug: "fc-001-faith-script-charm"
 permalink: "/charms/heart-of-faith/fc-001-faith-script-charm/"
 price: 61
