@@ -6,7 +6,7 @@
 
     {# ===============================
        FEATURED PRODUCT IMAGE
-       Collection card image ONLY
+       Uses images[0] ONLY
        =============================== #}
     {% if page.data.images and page.data.images.length %}
       <div class="product-featured-image">
@@ -20,7 +20,7 @@
 
     {# ===============================
        PRODUCT GALLERY
-       Product page images ONLY
+       Uses gallery[] ONLY — NO FALLBACKS
        =============================== #}
     {% if page.data.gallery and page.data.gallery.length %}
       <section class="product-gallery-section">
