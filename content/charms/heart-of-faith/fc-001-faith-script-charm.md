@@ -18,10 +18,12 @@ images:
 
 # ✅ PRODUCT PAGE GALLERY
 # Used on:
-# 1) Heart Of Faith product card
-# 2) Individual product page
+# 1) Heart Of Faith product card (image 1 only)
+# 2) Individual product page (all images)
 gallery:
   - "/static/img/charms/heart-of-faith/faith-script-charm-image-1.jpg"
+  - "/static/img/charms/heart-of-faith/faith-script-charm-image-2.jpg"
+  - "/static/img/charms/heart-of-faith/faith-script-charm-image-3.jpg"
 
 description: >
   A bold expression of belief rendered in flowing script.
