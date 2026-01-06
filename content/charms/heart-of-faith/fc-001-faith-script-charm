@@ -1,7 +1,7 @@
 ---
 title: "Faith Script Charm"
 sku: "FC-001"
-collection: "Heart of Faith Charm Collection"
+collection: "Heart of Faith"
 tags: ["faith", "charm"]
 slug: "fc-001-faith-script-charm"
 permalink: "/charms/heart-of-faith/fc-001-faith-script-charm/"
@@ -25,21 +25,6 @@ description: >
   and a polished surface contrasted by oxidized depth.
   Hand-cast in solid sterling silver and finished in Del Rio, Texas.
 ---
-
-<!-- PRODUCT GALLERY -->
-<div class="product-gallery-section">
-  <div class="product-gallery-grid">
-    <div class="product-gallery-item">
-      <img src="{{ gallery[0] }}" alt="Faith Script Charm – Front View" loading="lazy">
-    </div>
-    <div class="product-gallery-item">
-      <img src="{{ gallery[1] }}" alt="Faith Script Charm – Angled View" loading="lazy">
-    </div>
-    <div class="product-gallery-item">
-      <img src="{{ gallery[2] }}" alt="Faith Script Charm – Detail View" loading="lazy">
-    </div>
-  </div>
-</div>
 
 ## Overview
 The Faith Script Charm represents conviction and devotion through
