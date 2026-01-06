@@ -1,11 +1,5 @@
 ---
 title: "Heart Of Faith"
-layout: layouts/category.njk
-permalink: charms/heart-of-faith/index.html
-category: "Charms"
+layout: layouts/collection.njk
+permalink: /charms/heart-of-faith/
 ---
-
-# Heart Of Faith
-
-**English** — Collection page placeholder.  
-**Español** — Página de colección (temporal).
