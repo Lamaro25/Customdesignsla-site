@@ -5,14 +5,10 @@
   <div class="container">
 
     {# ===============================
-       RESOLVED PRODUCT IMAGES
-       Rings, Bracelets, Charms
+       PRODUCT IMAGES (SAFE RESOLUTION)
        =============================== #}
 
-    {% set productImages =
-      page.data.gallery
-      or page.data.images
-    %}
+    {% set productImages = page.data.gallery or page.data.images %}
 
     {% if productImages and productImages.length %}
       <section class="product-gallery-section">
