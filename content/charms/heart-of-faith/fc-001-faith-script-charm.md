@@ -11,15 +11,11 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 size_mm: "24.3 mm (Quarter)"
 layout: "layouts/product.njk"
 
-# ✅ COLLECTION CARD IMAGE
-# Used ONLY on the main Charms collections page
+# ✅ COLLECTION CARD IMAGE ONLY
 images:
   - "/static/img/charms/faith-script-charm-image-1.jpg"
 
-# ✅ PRODUCT PAGE GALLERY
-# Used on:
-# 1) Heart Of Faith product card (image 1 only)
-# 2) Individual product page (all images)
+# ✅ PRODUCT PAGE GALLERY (single source of truth)
 gallery:
   - "/static/img/charms/faith-script-charm-image-1.jpg"
   - "/static/img/charms/faith-script-charm-image-2.jpg"
