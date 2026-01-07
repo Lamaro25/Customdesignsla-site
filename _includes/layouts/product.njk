@@ -5,20 +5,9 @@
   <div class="container">
 
     {# ===============================
-       FEATURED PRODUCT IMAGE (optional)
-       =============================== #}
-    {% if page.data.images and page.data.images.length %}
-      <div class="product-featured-image">
-        <img
-          src="{{ page.data.images[0] | url }}"
-          alt="{{ title }}"
-          loading="eager"
-        >
-      </div>
-    {% endif %}
-
-    {# ===============================
-       PRODUCT GALLERY (single source)
+       PRODUCT GALLERY (SINGLE SOURCE)
+       Uses ONLY frontmatter.gallery
+       Rings, Bracelets, Charms
        =============================== #}
     {% if page.data.gallery and page.data.gallery.length %}
       <section class="product-gallery-section">
