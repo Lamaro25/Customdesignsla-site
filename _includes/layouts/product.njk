@@ -18,24 +18,33 @@
     {% endif %}
 
     {# ===============================
-       PRODUCT GALLERY (from frontmatter.gallery)
-       =============================== #}
-    {% set gallery = page.data.gallery or page.data.data.gallery %}
-    {% if gallery and gallery.length %}
-      <section class="product-gallery-section">
-        <div class="product-gallery-grid">
-          {% for image in gallery %}
-            <div class="product-gallery-item">
-              <img
-                src="{{ image }}"
-                alt="{{ title }} gallery image {{ loop.index }}"
-                loading="lazy"
-              >
-            </div>
-          {% endfor %}
+   PRODUCT GALLERY (NON-DUPLICATED)
+   Priority:
+   1. gallery[] (rings, bracelets)
+   2. images[]  (charms)
+   =============================== #}
+
+{% if page.data.gallery and page.data.gallery.length %}
+  {% set displayImages = page.data.gallery %}
+{% elseif page.data.images and page.data.images.length %}
+  {% set displayImages = page.data.images %}
+{% endif %}
+
+{% if displayImages %}
+  <section class="product-gallery-section">
+    <div class="product-gallery-grid">
+      {% for image in displayImages %}
+        <div class="product-gallery-item">
+          <img
+            src="{{ image | url }}"
+            alt="{{ title }} image {{ loop.index }}"
+            loading="lazy"
+          >
         </div>
-      </section>
-    {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
 
     {# ===============================
        PRODUCT CONTENT
