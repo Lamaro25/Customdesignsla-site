@@ -5,7 +5,7 @@
   <div class="container">
 
     {# ===============================
-       FEATURED PRODUCT IMAGE
+       FEATURED PRODUCT IMAGE (optional)
        =============================== #}
     {% if page.data.images and page.data.images.length %}
       <div class="product-featured-image">
@@ -18,21 +18,12 @@
     {% endif %}
 
     {# ===============================
-       PRODUCT GALLERY (SAFE LOGIC)
+       PRODUCT GALLERY (single source)
        =============================== #}
-
     {% if page.data.gallery and page.data.gallery.length %}
-      {# Rings & Bracelets #}
-      {% set displayImages = page.data.gallery %}
-    {% elseif page.data.images and page.data.images.length > 1 %}
-      {# Charms with multiple images #}
-      {% set displayImages = page.data.images | slice(1) %}
-    {% endif %}
-
-    {% if displayImages %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
-          {% for image in displayImages %}
+          {% for image in page.data.gallery %}
             <div class="product-gallery-item">
               <img
                 src="{{ image | url }}"
