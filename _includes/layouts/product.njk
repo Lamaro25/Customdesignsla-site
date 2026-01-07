@@ -6,11 +6,12 @@
 
     {# ===============================
        FEATURED PRODUCT IMAGE
+       Uses images[0] ONLY (safe)
        =============================== #}
     {% if page.data.images and page.data.images.length %}
       <div class="product-featured-image">
         <img
-          src="{{ page.data.images[0] }}"
+          src="{{ page.data.images[0] | url }}"
           alt="{{ title }}"
           loading="eager"
         >
@@ -18,41 +19,15 @@
     {% endif %}
 
     {# ===============================
-   PRODUCT GALLERY (NON-DUPLICATED)
-   Priority:
-   1. gallery[] (rings, bracelets)
-   2. images[]  (charms)
-   =============================== #}
-
-{% if page.data.gallery and page.data.gallery.length %}
-  {% set displayImages = page.data.gallery %}
-{% elseif page.data.images and page.data.images.length %}
-  {% set displayImages = page.data.images %}
-{% endif %}
-
-{% if displayImages %}
-  <section class="product-gallery-section">
-    <div class="product-gallery-grid">
-      {% for image in displayImages %}
-        <div class="product-gallery-item">
-          <img
-            src="{{ image | url }}"
-            alt="{{ title }} image {{ loop.index }}"
-            loading="lazy"
-          >
-        </div>
-      {% endfor %}
-    </div>
-  </section>
-{% endif %}
-
-    {# ===============================
-       PRODUCT CONTENT
+       PRODUCT GALLERY (NON-DUPLICATED)
+       Priority:
+       1. gallery[] → Rings & Bracelets
+       2. images[]  → Charms
        =============================== #}
-    <div class="prose max-w-none product-content">
-      {{ content | safe }}
-    </div>
 
-  </div>
-</section>
-{% endblock %}
+    {% set displayImages = null %}
+
+    {% if page.data.gallery and page.data.gallery.length %}
+      {% set displayImages = page.data.gallery %}
+    {% elseif page.data.images and page.data.images.length %}
+      {% set displayImages = page.data
