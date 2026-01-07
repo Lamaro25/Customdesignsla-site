@@ -1,33 +1,23 @@
-{# ===============================
-   PRODUCT GALLERY (NON-DUPLICATED)
-   Priority:
-   1. gallery[] (rings, bracelets)
-   2. images[]  (charms)
-   =============================== #}
+{% extends "layouts/base.njk" %}
 
-{% if page.data.gallery and page.data.gallery.length %}
-  {% set displayImages = page.data.gallery %}
-{% elseif page.data.images and page.data.images.length %}
-  {% set displayImages = page.data.images %}
-{% endif %}
+{% block content %}
+<section class="product-page">
+  <div class="container">
 
-{% if displayImages %}
-  <section class="product-gallery-section">
-    <div class="product-gallery-grid">
-      {% for image in displayImages %}
-        <div class="product-gallery-item">
-          <img
-            src="{{ image | url }}"
-            alt="{{ title }} image {{ loop.index }}"
-            loading="lazy"
-          >
-        </div>
-      {% endfor %}
-    </div>
-  </section>
-{% endif %}
+    {# ===============================
+       FEATURED PRODUCT IMAGE
+       =============================== #}
+    {% if page.data.images and page.data.images.length %}
+      <div class="product-featured-image">
+        <img
+          src="{{ page.data.images[0] }}"
+          alt="{{ title }}"
+          loading="eager"
+        >
+      </div>
+    {% endif %}
 
- {# ===============================
+    {# ===============================
        PRODUCT GALLERY (from frontmatter.gallery)
        =============================== #}
     {% set gallery = page.data.gallery or page.data.data.gallery %}
