@@ -11,13 +11,11 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 size_mm: "24.3 mm (Quarter)"
 layout: "layouts/product.njk"
 
-# ✅ COLLECTION CARD IMAGE
-# Used on Heart of Faith collection page
+# ✅ COLLECTION CARD IMAGE (collection grid ONLY)
 images:
   - "/static/img/charms/faith-believe-script-charm-image-1.jpg"
 
-# ✅ PRODUCT PAGE GALLERY
-# Image 1 repeats inside product page + images 2 & 3
+# ✅ PRODUCT PAGE GALLERY (used by manual gallery block below)
 gallery:
   - "/static/img/charms/faith-believe-script-charm-image-1.jpg"
   - "/static/img/charms/faith-believe-script-charm-image-2.jpg"
@@ -29,6 +27,21 @@ description: >
   and elegance, finished with polished highlights and oxidized depth.
   Hand-cast and finished in Del Rio, Texas.
 ---
+
+<!-- PRODUCT GALLERY (matches ring behavior exactly) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Believe Script Charm – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Believe Script Charm – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Believe Script Charm – Image 3" loading="lazy">
+    </div>
+  </div>
+</div>
 
 ## Overview
 The Believe Script Charm represents confidence, faith, and inner strength
