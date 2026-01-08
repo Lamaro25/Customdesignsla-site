@@ -40,7 +40,7 @@ visual depth and meaningful presence, designed for everyday wear.
 - **Floral Pattern Sculpting:** $25  
 
 **Base Total:** $107  
-**Final Price (31% buffer):** **$140 USD**
+**Final Price:**$140 USD**
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
