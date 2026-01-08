@@ -5,12 +5,21 @@
   <div class="container">
 
     {# ===============================
-       PRODUCT GALLERY (SINGLE SOURCE)
+       PRODUCT GALLERY (SINGLE SOURCE, SAFE)
+       Priority:
+       1) gallery[]
+       2) images[] fallback
        =============================== #}
-    {% if page.data.gallery and page.data.gallery.length %}
+
+    {% set productImages = page.data.gallery
+      if page.data.gallery and page.data.gallery.length
+      else page.data.images
+    %}
+
+    {% if productImages and productImages.length %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
-          {% for image in page.data.gallery %}
+          {% for image in productImages %}
             <div class="product-gallery-item">
               <img
                 src="{{ image | url }}"
