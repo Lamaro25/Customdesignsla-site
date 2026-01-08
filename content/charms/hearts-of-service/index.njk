@@ -1,0 +1,32 @@
+---
+layout: base.njk
+title: "Hearts Of Service — Custom Designs LA"
+description: "Sterling silver charms honoring medical professionals, service, and dedication."
+permalink: /charms/hearts-of-service/
+---
+
+<h1>Hearts Of Service</h1>
+
+<p>
+Sterling silver charms created to honor those who serve in healthcare and medical professions.
+Each piece is hand-cast in solid .925 sterling silver and designed to be customizable,
+allowing you to make it personal.
+</p>
+
+<div class="collection-grid">
+  {% for item in collections["hearts-of-service"] %}
+    <a href="{{ item.url }}" class="collection-card">
+      {% if item.data.images and item.data.images.length %}
+        <img
+          src="{{ item.data.images[0] }}"
+          alt="{{ item.data.title }}"
+          loading="lazy"
+        >
+      {% endif %}
+      <div class="collection-card-text">
+        <h3>{{ item.data.title }}</h3>
+        <p class="price">${{ item.data.price }} USD</p>
+      </div>
+    </a>
+  {% endfor %}
+</div>
