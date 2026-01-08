@@ -5,7 +5,7 @@
   <div class="container">
 
     {# ===============================
-       COLLECTION HEADER
+       COLLECTION HEADER (CENTERED)
        =============================== #}
     <header class="collection-header">
       <h1 class="collection-title">{{ title }}</h1>
@@ -18,7 +18,7 @@
     </header>
 
     {# ===============================
-       COLLECTION SOURCE LOGIC
+       COLLECTION SOURCE LOGIC (DO NOT TOUCH)
        =============================== #}
     {% if collectionKey %}
       {% set items = collections.all
@@ -47,7 +47,9 @@
         {% endfor %}
       </div>
     {% else %}
-      <p style="opacity:.6; text-align:center;">No products found for this collection.</p>
+      <p style="opacity:.6; text-align:center;">
+        No products found for this collection.
+      </p>
     {% endif %}
 
   </div>
