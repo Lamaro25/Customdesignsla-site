@@ -5,25 +5,16 @@
   <div class="container">
 
     {# ===============================
-       PRODUCT GALLERY (SINGLE SOURCE, SAFE)
-       Priority:
-       1) gallery[]
-       2) images[] fallback
+       PRODUCT GALLERY (AUTHORITATIVE)
        =============================== #}
-
-    {% set productImages = page.data.gallery
-      if page.data.gallery and page.data.gallery.length
-      else page.data.images
-    %}
-
-    {% if productImages and productImages.length %}
+    {% if page.data.gallery and page.data.gallery.length %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
-          {% for image in productImages %}
+          {% for image in page.data.gallery %}
             <div class="product-gallery-item">
               <img
-                src="{{ image | url }}"
-                alt="{{ title }} image {{ loop.index }}"
+                src="{{ image }}"
+                alt="{{ page.data.title }} image {{ loop.index }}"
                 loading="lazy"
               >
             </div>
@@ -32,9 +23,6 @@
       </section>
     {% endif %}
 
-    {# ===============================
-       PRODUCT CONTENT
-       =============================== #}
     <div class="prose max-w-none product-content">
       {{ content | safe }}
     </div>
