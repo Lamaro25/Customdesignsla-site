@@ -11,22 +11,31 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 size_mm: "21.2 mm (Nickel)"
 layout: "layouts/product.njk"
 
-# ✅ COLLECTION CARD IMAGE
+# COLLECTION CARD IMAGE
 images:
   - "/static/img/charms/virgin-mary-charm-image-1.jpg"
 
-# ✅ PRODUCT PAGE GALLERY
+# PRODUCT PAGE GALLERY
 gallery:
   - "/static/img/charms/virgin-mary-charm-image-1.jpg"
   - "/static/img/charms/virgin-mary-charm-image-2.jpg"
   - "/static/img/charms/virgin-mary-charm-image-3.jpg"
-
-description: >
-  A symbol of purity, compassion, and unwavering faith.
-  The Virgin Mary Charm is sculpted with gentle detail and reverence,
-  finished with polished highlights and oxidized depth.
-  Hand-cast and finished in Del Rio, Texas.
 ---
+
+<!-- PRODUCT GALLERY (INLINE — RING MIRROR) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Virgin Mary Charm – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Virgin Mary Charm – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Virgin Mary Charm – Image 3" loading="lazy">
+    </div>
+  </div>
+</div>
 
 ## Overview
 The Virgin Mary Charm represents guidance, protection,
@@ -38,8 +47,7 @@ of faith and grace.
 - **Base Size (21.2 mm – Nickel):** $18  
 - **Sculpted Model:** $27  
 
-**Base Total:** $45  
-**Final Price (31% buffer):** **$59 USD**
+**Total:** $59 USD
 
 ## Specifications
 - **Material:** Solid .925 Sterling Silver  
@@ -51,7 +59,6 @@ of faith and grace.
 - **Crafted:** Hand-cast in Del Rio, Texas  
 
 ## Notes
-- Pricing includes buffer for commissions, discounts, and fees  
 - Designed for daily wear  
 - Chain sold separately  
 - Custom sizing and personalization available upon request
