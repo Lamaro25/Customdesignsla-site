@@ -4,12 +4,22 @@
 <section class="collection-page">
   <div class="container">
 
-    <h1>{{ title }}</h1>
+    {# ===============================
+       COLLECTION HEADER
+       =============================== #}
+    <header class="collection-header">
+      <h1 class="collection-title">{{ title }}</h1>
+
+      {% if description %}
+        <p class="collection-description">
+          {{ description }}
+        </p>
+      {% endif %}
+    </header>
 
     {# ===============================
        COLLECTION SOURCE LOGIC
        =============================== #}
-
     {% if collectionKey %}
       {% set items = collections.all
         | selectattr("data.collection", "equalto", collectionKey)
@@ -37,7 +47,7 @@
         {% endfor %}
       </div>
     {% else %}
-      <p style="opacity:.6">No products found for this collection.</p>
+      <p style="opacity:.6; text-align:center;">No products found for this collection.</p>
     {% endif %}
 
   </div>
