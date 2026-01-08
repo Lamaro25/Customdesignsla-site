@@ -1,0 +1,30 @@
+---
+layout: base.njk
+title: "Hearts of the Frontier — Custom Designs LA"
+description: "Western-inspired sterling silver charms celebrating heritage, resilience, and frontier spirit."
+permalink: /charms/hearts-of-the-frontier/
+---
+
+<h1>Hearts of the Frontier</h1>
+
+<p>
+Western-inspired charms honoring heritage, resilience, and the enduring spirit
+of the frontier. Hand-cast in solid .925 sterling silver with oxidized depth
+and polished highlights.
+</p>
+
+<div class="collection-grid">
+  {% for item in collections["hearts-of-the-frontier"] %}
+    <a href="{{ item.url }}" class="collection-card">
+      <img
+        src="{{ item.data.gallery[0] }}"
+        alt="{{ item.data.title }}"
+        loading="lazy"
+      >
+      <div class="collection-card-text">
+        <h3>{{ item.data.title }}</h3>
+        <p class="price">${{ item.data.price }} USD</p>
+      </div>
+    </a>
+  {% endfor %}
+</div>
