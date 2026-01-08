@@ -11,11 +11,11 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 size_mm: "24.3 mm (Quarter)"
 layout: "layouts/product.njk"
 
-# ✅ COLLECTION CARD IMAGE ONLY
+# COLLECTION CARD IMAGE ONLY
 images:
   - "/static/img/charms/faith-script-charm-image-1.jpg"
 
-# ✅ PRODUCT PAGE GALLERY (single source of truth)
+# PRODUCT PAGE GALLERY (single source of truth)
 gallery:
   - "/static/img/charms/faith-script-charm-image-1.jpg"
   - "/static/img/charms/faith-script-charm-image-2.jpg"
@@ -27,6 +27,21 @@ description: >
   and durability, finished with polished highlights and oxidized depth.
   Hand-cast and finished in Del Rio, Texas.
 ---
+
+<!-- PRODUCT GALLERY (INLINE, RING-STYLE — DO NOT REMOVE) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Faith Script Charm – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Faith Script Charm – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Faith Script Charm – Image 3" loading="lazy">
+    </div>
+  </div>
+</div>
 
 ## Overview
 The Faith Script Charm represents conviction and devotion through
