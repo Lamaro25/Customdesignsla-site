@@ -11,18 +11,36 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 size_mm: "21.2 mm (Nickel)"
 layout: "layouts/product.njk"
 
+# FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hearts-of-service/steady-hand-charm-image-1.jpg"
+  - "/static/img/charms/steady-hand-charm-image-1.jpg"
 
+# PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hearts-of-service/steady-hand-charm-image-1.jpg"
-  - "/static/img/charms/hearts-of-service/steady-hand-charm-image-2.jpg"
+  - "/static/img/charms/steady-hand-charm-image-1.jpg"
+  - "/static/img/charms/steady-hand-charm-image-2.jpg"
+  - "/static/img/charms/steady-hand-charm-image-3.jpg"
 
 description: >
   A symbol of precision, care, and unwavering focus.
   The Steady Hand Charm honors those whose work requires confidence,
   patience, and skill.
 ---
+
+<!-- PRODUCT GALLERY (INLINE — REQUIRED) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Steady Hand Charm – Front" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Steady Hand Charm – Back" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Steady Hand Charm – Detail" loading="lazy">
+    </div>
+  </div>
+</div>
 
 ## Overview
 Designed for medical professionals who work with precision and calm under pressure.
