@@ -13,12 +13,12 @@ layout: "layouts/product.njk"
 
 # FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hs-002-radiant-shield-charm-1.jpg"
+  - "/static/img/charms/radiant-shield-charm-image-1.jpg"
 
 # PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hs-002-radiant-shield-charm-1.jpg"
-  - "/static/img/charms/hs-002-radiant-shield-charm-2.jpg"
+  - "/static/img/charms/radiant-shield-charm-image-1.jpg"
+  - "/static/img/charms/radiant-shield-charm-image-2.jpg"
 
 description: >
   A symbol of protection and resilience.
@@ -29,18 +29,10 @@ description: >
 <div class="product-gallery-section">
   <div class="product-gallery-grid">
     <div class="product-gallery-item">
-      <img
-        src="{{ gallery[0] }}"
-        alt="Radiant Shield Charm – Front"
-        loading="lazy"
-      >
+      <img src="{{ gallery[0] }}" alt="Radiant Shield Charm – Front" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img
-        src="{{ gallery[1] }}"
-        alt="Radiant Shield Charm – Back"
-        loading="lazy"
-      >
+      <img src="{{ gallery[1] }}" alt="Radiant Shield Charm – Back" loading="lazy">
     </div>
   </div>
 </div>
