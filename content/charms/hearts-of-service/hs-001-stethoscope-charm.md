@@ -11,21 +11,36 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 size_mm: "21.2 mm (Nickel)"
 layout: "layouts/product.njk"
 
-# COLLECTION CARD + FEATURED IMAGE
+# FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hs-001-stethoscope-charm-1.jpg"
+  - "/static/img/charms/hearts-of-service/hs-001-stethoscope-charm-1.jpg"
 
 # PRODUCT PAGE GALLERY (single source of truth)
 gallery:
-  - "/static/img/charms/hs-001-stethoscope-charm-1.jpg"
-  - "/static/img/charms/hs-001-stethoscope-charm-2.jpg"
-  - "/static/img/charms/hs-001-stethoscope-charm-3.jpg"
+  - "/static/img/charms/hearts-of-service/hs-001-stethoscope-charm-1.jpg"
+  - "/static/img/charms/hearts-of-service/hs-001-stethoscope-charm-2.jpg"
+  - "/static/img/charms/hearts-of-service/hs-001-stethoscope-charm-3.jpg"
 
 description: >
   A tribute to compassion, care, and dedication.
   This stethoscope charm features a medical symbol on the front and optional
   engraved text on the back. Designed to honor those who serve others every day.
 ---
+
+<!-- PRODUCT GALLERY (INLINE — REQUIRED) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Stethoscope Charm – Front" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Stethoscope Charm – Back" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Stethoscope Charm – Detail" loading="lazy">
+    </div>
+  </div>
+</div>
 
 ## Overview
 The Stethoscope Charm honors medical professionals and caregivers.
