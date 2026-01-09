@@ -11,21 +11,36 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 size_mm: "21.2 mm (Nickel)"
 layout: "layouts/product.njk"
 
-# ✅ COLLECTION CARD IMAGE
+# FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hearts-of-the-frontier/hc-002-front.jpg"
+  - "/static/img/charms/hc-002-front.jpg"
 
-# ✅ PRODUCT PAGE GALLERY
+# PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hearts-of-the-frontier/hc-002-front.jpg"
-  - "/static/img/charms/hearts-of-the-frontier/hc-002-detail.jpg"
-  - "/static/img/charms/hearts-of-the-frontier/hc-002-alt.jpg"
+  - "/static/img/charms/hc-002-front.jpg"
+  - "/static/img/charms/hc-002-detail.jpg"
+  - "/static/img/charms/hc-002-alt.jpg"
 
 description: >
   A symbol of strength, independence, and Texas heritage.
   The Spirit of the Longhorn Charm features bold embossed detailing
   that captures the power and pride of the frontier.
 ---
+
+<!-- PRODUCT GALLERY (INLINE — REQUIRED) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Spirit of the Longhorn Charm – Front" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Spirit of the Longhorn Charm – Detail" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Spirit of the Longhorn Charm – Alternate" loading="lazy">
+    </div>
+  </div>
+</div>
 
 ## Overview
 The Spirit of the Longhorn Charm represents resilience and tradition.
