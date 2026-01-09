@@ -13,12 +13,12 @@ layout: "layouts/product.njk"
 
 # FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hearts-of-service/radiant-shield-charm-image-1.jpg"
+  - "/static/img/charms/hs-002-radiant-shield-charm-1.jpg"
 
 # PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hearts-of-service/radiant-shield-charm-image-1.jpg"
-  - "/static/img/charms/hearts-of-service/radiant-shield-charm-image-2.jpg"
+  - "/static/img/charms/hs-002-radiant-shield-charm-1.jpg"
+  - "/static/img/charms/hs-002-radiant-shield-charm-2.jpg"
 
 description: >
   A symbol of protection and resilience.
