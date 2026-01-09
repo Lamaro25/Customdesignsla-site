@@ -35,6 +35,9 @@ description: >
     <div class="product-gallery-item">
       <img src="{{ gallery[1] }}" alt="Radiant Shield Charm – Back" loading="lazy">
     </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Radiant Shield Charm – Detail" loading="lazy">
+    </div>
   </div>
 </div>
 
