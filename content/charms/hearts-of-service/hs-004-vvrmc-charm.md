@@ -11,17 +11,35 @@ material: "Solid .925 Sterling Silver"
 size_mm: "21.2 mm (Nickel)"
 layout: "layouts/product.njk"
 
+# FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hearts-of-service/vvrmc-charm-image-1.jpg"
+  - "/static/img/charms/vvrmc-charm-image-1.jpg"
 
+# PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hearts-of-service/vvrmc-charm-image-1.jpg"
-  - "/static/img/charms/hearts-of-service/vvrmc-charm-image-2.jpg"
+  - "/static/img/charms/vvrmc-charm-image-1.jpg"
+  - "/static/img/charms/vvrmc-charm-image-2.jpg"
+  - "/static/img/charms/vvrmc-charm-image-3.jpg"
 
 description: >
   Created for professionals at Val Verde Regional Medical Center.
   Fully customizable with department titles, initials, or commemorative text.
 ---
+
+<!-- PRODUCT GALLERY (INLINE — REQUIRED) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="VVRMC Charm – Front" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="VVRMC Charm – Back" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="VVRMC Charm – Detail" loading="lazy">
+    </div>
+  </div>
+</div>
 
 ## Overview
 A local tribute charm honoring service at VVRMC.
