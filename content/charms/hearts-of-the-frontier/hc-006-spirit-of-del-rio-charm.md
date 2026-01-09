@@ -10,12 +10,36 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 size_mm: "21.2 mm (Nickel)"
 layout: "layouts/product.njk"
 
+# FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hearts-of-the-frontier/hc-006-spirit-of-del-rio-charm-1.jpg"
+  - "/static/img/charms/hc-006-spirit-of-del-rio-charm-1.jpg"
 
+# PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hearts-of-the-frontier/hc-006-spirit-of-del-rio-charm-1.jpg"
+  - "/static/img/charms/hc-006-spirit-of-del-rio-charm-1.jpg"
+  - "/static/img/charms/hc-006-spirit-of-del-rio-charm-2.jpg"
+  - "/static/img/charms/hc-006-spirit-of-del-rio-charm-3.jpg"
+
+description: >
+  A tribute to heritage, pride, and the spirit of Del Rio.
+  The Spirit of Del Rio Charm reflects community, resilience,
+  and the values that shape life along the frontier.
 ---
+
+<!-- PRODUCT GALLERY (INLINE — REQUIRED) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Spirit of Del Rio Charm – Front" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Spirit of Del Rio Charm – Back" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Spirit of Del Rio Charm – Detail" loading="lazy">
+    </div>
+  </div>
+</div>
 
 ## Overview
 The Spirit of Del Rio Charm honors local pride, resilience, and community.
