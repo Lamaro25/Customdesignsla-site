@@ -11,17 +11,36 @@ material: "Solid .925 Sterling Silver"
 size_mm: "21.2 mm (Nickel)"
 layout: "layouts/product.njk"
 
+# FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hearts-of-service/scrub-top-cna-charm-image-1.jpg"
+  - "/static/img/charms/scrub-top-cna-charm-image-1.jpg"
 
+# PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hearts-of-service/scrub-top-cna-charm-image-1.jpg"
-  - "/static/img/charms/hearts-of-service/scrub-top-cna-charm-image-2.jpg"
+  - "/static/img/charms/scrub-top-cna-charm-image-1.jpg"
+  - "/static/img/charms/scrub-top-cna-charm-image-2.jpg"
+  - "/static/img/charms/scrub-top-cna-charm-image-3.jpg"
 
 description: >
   A customizable scrub-top charm designed to represent medical roles.
-  CNA text shown as example.
+  CNA text shown as an example.
 ---
+
+<!-- PRODUCT GALLERY (INLINE — REQUIRED) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Scrub Top CNA Charm – Front" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Scrub Top CNA Charm – Back" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Scrub Top CNA Charm – Detail" loading="lazy">
+    </div>
+  </div>
+</div>
+
 
 ## Overview
 Perfect for healthcare workers wanting personalized representation.
