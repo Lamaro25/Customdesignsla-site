@@ -19,6 +19,7 @@ images:
 gallery:
   - "/static/img/charms/radiant-shield-charm-image-1.jpg"
   - "/static/img/charms/radiant-shield-charm-image-2.jpg"
+  - "/static/img/charms/radiant-shield-charm-image-3.jpg"
 
 description: >
   A symbol of protection and resilience.
