@@ -31,13 +31,13 @@ description: >
 <div class="product-gallery-section">
   <div class="product-gallery-grid">
     <div class="product-gallery-item">
-      <img src="{{ gallery[0] }}" alt="Hearts of the Frontier Charm – Front" loading="lazy">
+      <img src="{{ gallery[0] }}" alt="HC-001 – Front" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[1] }}" alt="Hearts of the Frontier Charm – Back" loading="lazy">
+      <img src="{{ gallery[1] }}" alt="HC-001 – Back" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[2] }}" alt="Hearts of the Frontier Charm – Detail" loading="lazy">
+      <img src="{{ gallery[2] }}" alt="HC-001 – Detail" loading="lazy">
     </div>
   </div>
 </div>
