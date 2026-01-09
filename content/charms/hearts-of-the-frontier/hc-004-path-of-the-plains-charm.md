@@ -10,14 +10,36 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 size_mm: "21.2 mm (Nickel)"
 layout: "layouts/product.njk"
 
-# COLLECTION CARD IMAGE
+# FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hearts-of-the-frontier/hc-004-path-of-the-plains-charm-1.jpg"
+  - "/static/img/charms/hc-004-path-of-the-plains-charm-1.jpg"
 
 # PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hearts-of-the-frontier/hc-004-path-of-the-plains-charm-1.jpg"
+  - "/static/img/charms/hc-004-path-of-the-plains-charm-1.jpg"
+  - "/static/img/charms/hc-004-path-of-the-plains-charm-2.jpg"
+  - "/static/img/charms/hc-004-path-of-the-plains-charm-3.jpg"
+
+description: >
+  A tribute to the journey, resilience, and quiet strength of the frontier.
+  The Path of the Plains Charm reflects movement, purpose, and the enduring
+  spirit carried across open land and generations.
 ---
+
+<!-- PRODUCT GALLERY (INLINE — REQUIRED) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Path of the Plains Charm – Front" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Path of the Plains Charm – Back" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Path of the Plains Charm – Detail" loading="lazy">
+    </div>
+  </div>
+</div>
 
 ## Overview
 The Path of the Plains Charm symbolizes the journey across open land,
