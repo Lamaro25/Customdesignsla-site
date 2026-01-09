@@ -10,14 +10,36 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 size_mm: "19 mm (Dime)"
 layout: "layouts/product.njk"
 
-# COLLECTION CARD IMAGE
+# FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hearts-of-the-frontier/hc-003-riders-honor-charm-1.jpg"
+  - "/static/img/charms/hc-003-riders-honor-charm-1.jpg"
 
 # PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hearts-of-the-frontier/hc-003-riders-honor-charm-1.jpg"
+  - "/static/img/charms/hc-003-riders-honor-charm-1.jpg"
+  - "/static/img/charms/hc-003-riders-honor-charm-2.jpg"
+  - "/static/img/charms/hc-003-riders-honor-charm-3.jpg"
+
+description: >
+  A tribute to honor, discipline, and the enduring spirit of the rider.
+  The Rider’s Honor Charm reflects pride in tradition, craftsmanship,
+  and the values carried forward on the frontier.
 ---
+
+<!-- PRODUCT GALLERY (INLINE — REQUIRED) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="Rider’s Honor Charm – Front" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="Rider’s Honor Charm – Back" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="Rider’s Honor Charm – Detail" loading="lazy">
+    </div>
+  </div>
+</div>
 
 ## Overview
 The Rider’s Honor Charm represents discipline, tradition, and pride earned
