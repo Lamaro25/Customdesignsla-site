@@ -13,13 +13,13 @@ layout: "layouts/product.njk"
 
 # COLLECTION CARD + FEATURED IMAGE
 images:
-  - "/static/img/charms/hearts-of-service/hs-001-stethoscope-charm-1.jpg"
+  - "/static/img/charms/hs-001-stethoscope-charm-1.jpg"
 
 # PRODUCT PAGE GALLERY (single source of truth)
 gallery:
-  - "/static/img/charms/hearts-of-service/hs-001-stethoscope-charm-1.jpg"
-  - "/static/img/charms/hearts-of-service/hs-001-stethoscope-charm-2.jpg"
-  - "/static/img/charms/hearts-of-service/hs-001-stethoscope-charm-3.jpg"
+  - "/static/img/charms/hs-001-stethoscope-charm-1.jpg"
+  - "/static/img/charms/hs-001-stethoscope-charm-2.jpg"
+  - "/static/img/charms/hs-001-stethoscope-charm-3.jpg"
 
 description: >
   A tribute to compassion, care, and dedication.
