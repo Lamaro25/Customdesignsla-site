@@ -12,13 +12,13 @@ layout: "layouts/product.njk"
 
 # FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hc-004-path-of-the-plains-charm-1.jpg"
+  - "/static/img/charms/hc-004-path-of-the-plains-image 1.jpg"
 
 # PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hc-004-path-of-the-plains-charm-1.jpg"
-  - "/static/img/charms/hc-004-path-of-the-plains-charm-2.jpg"
-  - "/static/img/charms/hc-004-path-of-the-plains-charm-3.jpg"
+  - "/static/img/charms/hc-004-path-of-the-plains-image 1.jpg"
+  - "/static/img/charms/hc-004-path-of-the-plains-image 2.jpg"
+  - "/static/img/charms/hc-004-path-of-the-plains-image 3.jpg"
 
 description: >
   A tribute to the journey, resilience, and quiet strength of the frontier.
@@ -30,13 +30,13 @@ description: >
 <div class="product-gallery-section">
   <div class="product-gallery-grid">
     <div class="product-gallery-item">
-      <img src="{{ gallery[0] }}" alt="Path of the Plains Charm – Front" loading="lazy">
+      <img src="{{ gallery[0] }}" alt="Path of the Plains Charm – image 1" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[1] }}" alt="Path of the Plains Charm – Back" loading="lazy">
+      <img src="{{ gallery[1] }}" alt="Path of the Plains Charm – image 2" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[2] }}" alt="Path of the Plains Charm – Detail" loading="lazy">
+      <img src="{{ gallery[2] }}" alt="Path of the Plains Charm – image 3" loading="lazy">
     </div>
   </div>
 </div>
