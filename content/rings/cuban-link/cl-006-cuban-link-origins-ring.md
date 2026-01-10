@@ -17,9 +17,9 @@ images:
 
 # ✅ PRODUCT PAGE GALLERY (Phase 2)
 gallery:
+  - "/static/img/rings/cl-006/cuban-link-origins-ring.jpg"
   - "/static/img/rings/cl-006/product-images-coming-soon-cl-006.jpg"
   - "/static/img/rings/cl-006/customer-ring-feature-placeholder-cl-006.jpg"
-  - "/static/img/rings/cl-006/images-update-with-orders-cl-006.jpg"
 
 description: >
   The Origin’s Ring is the very first Cuban Link design ever sculpted — the
