@@ -629,6 +629,58 @@ footer.site-footer {
 }
 
 /* ==========================================================
+   COLLECTION GRID TYPOGRAPHY + CENTERING (RINGS / CHARMS / BRACELETS)
+========================================================== */
+
+.collection-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.collection-card {
+  text-align: center; /* ✅ centers all text inside cards */
+}
+
+/* Title (script font) */
+.collection-card h3 {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.05;
+  margin: 0.85rem 0 0.6rem;
+  letter-spacing: 0.3px;
+}
+
+/* Description */
+.collection-card p {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.45;
+  margin: 0 0 1rem;
+  padding: 0 1.25rem; /* ✅ keeps text from hugging edges */
+}
+
+/* Desktop boost */
+@media (min-width: 1024px) {
+  .collection-card h3 {
+    font-size: 2.4rem;
+  }
+  .collection-card p {
+    font-size: 1.12rem;
+  }
+}
+
+/* Center collection page headings + intro blocks */
+.collection-page h1,
+.collection-page h2,
+.collection-page p {
+  text-align: center;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================
    Homepage – Space after secondary hero slider
 ========================================================== */
 .homepage-slider-secondary {
