@@ -31,13 +31,13 @@ description: >
 <div class="product-gallery-section">
   <div class="product-gallery-grid">
     <div class="product-gallery-item">
-      <img src="{{ gallery[0] }}" alt="Spirit of the Longhorn Charm – Front" loading="lazy">
+      <img src="{{ gallery[0] }}" alt="Spirit of the Longhorn Charm – image 1" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[1] }}" alt="Spirit of the Longhorn Charm – Detail" loading="lazy">
+      <img src="{{ gallery[1] }}" alt="Spirit of the Longhorn Charm – image 2" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[2] }}" alt="Spirit of the Longhorn Charm – Alternate" loading="lazy">
+      <img src="{{ gallery[2] }}" alt="Spirit of the Longhorn Charm – image 3" loading="lazy">
     </div>
   </div>
 </div>
