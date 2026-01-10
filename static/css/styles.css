@@ -522,6 +522,18 @@ footer.site-footer {
    HOMEPAGE COLLECTION CARD (SCOPED)
 ================================ */
 
+/* ✅ Space BETWEEN homepage collection cards */
+.homepage-collection {
+  margin: 2.25rem 0;
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+  .homepage-collection {
+    margin: 1.5rem 0;
+  }
+}
+
 .homepage-collection-card {
   position: relative;
   display: block;
