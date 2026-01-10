@@ -17,9 +17,9 @@ images:
 
 # ✅ PRODUCT PAGE GALLERY (Phase 2)
 gallery:
+  - "/static/img/rings/cl-005/cuban-link-signature-ring.jpg"
   - "/static/img/rings/cl-005/product-images-coming-soon-cl-005.jpg"
   - "/static/img/rings/cl-005/customer-ring-feature-placeholder-cl-005.jpg"
-  - "/static/img/rings/cl-005/images-update-with-orders-cl-005.jpg"
 
 description: >
   The Signature Ring places personalization at the center — a raised name-plate
