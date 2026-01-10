@@ -19,7 +19,7 @@ images:
 gallery:
   - "/static/img/rings/cl-002/cuban-link-statement-ring-thick.jpg"
   - "/static/img/rings/cl-002/product-images-coming-soon-cl-002.jpg"
-  - "/static/img/rings/cl-002/customer-ring-feature-placeholder-cl-002.mov"
+  - "/static/img/rings/cl-002/customer-ring-feature-placeholder-cl-002.mp4"
 
 description: >
   The Thick Statement Ring is the bold centerpiece of the Cuban Link Collection.
