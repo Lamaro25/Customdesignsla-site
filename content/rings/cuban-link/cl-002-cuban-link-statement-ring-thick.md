@@ -30,18 +30,32 @@ description: >
   Del Rio, Texas.
 ---
 
-<!-- PRODUCT GALLERY (from frontmatter.gallery) -->
+<!-- PRODUCT GALLERY (AUTO: image + video support) -->
 <div class="product-gallery-section">
   <div class="product-gallery-grid">
-    <div class="product-gallery-item">
-      <img src="{{ gallery[0] }}" alt="{{ title }} – Image 1" loading="lazy">
-    </div>
-    <div class="product-gallery-item">
-      <img src="{{ gallery[1] }}" alt="{{ title }} – Image 2" loading="lazy">
-    </div>
-    <div class="product-gallery-item">
-      <img src="{{ gallery[2] }}" alt="{{ title }} – Image 3" loading="lazy">
-    </div>
+
+    {% for media in gallery %}
+      {% set ext = media.split('.').pop().toLowerCase() %}
+
+      <div class="product-gallery-item">
+
+        {% if ext == "mp4" or ext == "webm" or ext == "mov" %}
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            style="width:100%; height:auto; border-radius:14px;"
+          >
+            <source src="{{ media }}" type="video/{{ ext == 'mov' ? 'quicktime' : ext }}">
+            Your browser does not support the video tag.
+          </video>
+        {% else %}
+          <img src="{{ media }}" alt="{{ title }} – Media {{ loop.index }}" loading="lazy">
+        {% endif %}
+
+      </div>
+    {% endfor %}
+
   </div>
 </div>
 
