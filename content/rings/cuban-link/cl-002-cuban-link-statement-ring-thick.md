@@ -17,7 +17,7 @@ images:
 
 # ✅ PRODUCT PAGE GALLERY (Phase 2)
 gallery:
-  - "/static/img/rings/cl-002/cuban-link-statement-ring-thick.jpg
+  - "/static/img/rings/cl-002/cuban-link-statement-ring-thick.jpg"
   - "/static/img/rings/cl-002/product-images-coming-soon-cl-002.jpg"
   - "/static/img/rings/cl-002/customer-ring-feature-placeholder-cl-002.jpg"
 
