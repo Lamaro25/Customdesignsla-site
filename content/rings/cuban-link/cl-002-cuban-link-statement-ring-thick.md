@@ -35,10 +35,9 @@ description: >
   <div class="product-gallery-grid">
 
     {% for media in gallery %}
-      {% set ext = media.split('.').pop().toLowerCase() %}
+      {% assign ext = media | split: "." | last | downcase %}
 
       <div class="product-gallery-item">
-
         {% if ext == "mp4" or ext == "webm" or ext == "mov" %}
           <video
             controls
@@ -46,14 +45,18 @@ description: >
             preload="metadata"
             style="width:100%; height:auto; border-radius:14px;"
           >
-            <source src="{{ media }}" type="video/{{ ext == 'mov' ? 'quicktime' : ext }}">
+            {% if ext == "mov" %}
+              <source src="{{ media }}" type="video/quicktime">
+            {% else %}
+              <source src="{{ media }}" type="video/{{ ext }}">
+            {% endif %}
             Your browser does not support the video tag.
           </video>
         {% else %}
-          <img src="{{ media }}" alt="{{ title }} – Media {{ loop.index }}" loading="lazy">
+          <img src="{{ media }}" alt="{{ title }} – Media {{ forloop.index }}" loading="lazy">
         {% endif %}
-
       </div>
+
     {% endfor %}
 
   </div>
