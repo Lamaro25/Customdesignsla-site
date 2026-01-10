@@ -1,3 +1,7 @@
+/* ==========================================================
+   CDLA Fonts — Script Titles (Great Vibes)
+   ========================================================== */
+
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&display=swap');
 
 :root {
@@ -7,68 +11,104 @@
 }
 
 /* ==========================================================
-   SCRIPT TITLES (GLOBAL)
-   - Collection grids
-   - Product grids
-   - Collection headings
-========================================================== */
+   1) HOMEPAGE / LANDING PAGE OVERLAY TITLES
+   (Faith Ring Collection / Hearts of Service, etc.)
+   Needs: BLACK + THICK + READABLE
+   ========================================================== */
 
-/* ✅ Script font for collection grid titles */
-.collection-card h3,
-.product-card h3,
-.product-grid h3,
-.product-card-title {
+.homepage-collection-card .homepage-collection-overlay h2 {
   font-family: var(--font-script);
-  font-weight: 400; /* Great Vibes only has 400 */
+  font-weight: 400;
   letter-spacing: 0.5px;
   text-rendering: optimizeLegibility;
-  line-height: 1.05;
+
+  /* ✅ Make it BLACK on landing page */
+  color: #000 !important;
+
+  /* ✅ Fake thickness */
+  text-shadow:
+    0 0 0 rgba(0,0,0,0.40),
+    0 1px 0 rgba(0,0,0,0.35),
+    0 2px 8px rgba(0,0,0,0.18);
 }
 
-/* ✅ Make script appear thicker (works best on iOS/Safari/Chrome) */
-@supports (-webkit-text-stroke: 0.35px rgba(0,0,0,0.45)) {
-  .collection-card h3,
-  .product-card h3,
-  .product-grid h3,
-  .product-card-title,
-  .collection-page h1 {
-    -webkit-text-stroke: 0.35px rgba(0,0,0,0.45);
+/* ✅ Even thicker on Safari/iOS/Chrome */
+@supports (-webkit-text-stroke: 0.35px rgba(0,0,0,0.55)) {
+  .homepage-collection-card .homepage-collection-overlay h2 {
+    -webkit-text-stroke: 0.35px rgba(0,0,0,0.55);
   }
 }
 
-/* ✅ Fallback thickness everywhere */
-.collection-card h3,
-.product-card h3,
-.product-grid h3,
-.product-card-title,
-.collection-page h1 {
-  text-shadow:
-    0 0.6px 0 rgba(0,0,0,0.28),
-    0 1.2px 0 rgba(0,0,0,0.18),
-    0 2px 10px rgba(0,0,0,0.12);
+/* ✅ Optional: slightly bigger overlay title on desktop */
+@media (min-width: 1024px) {
+  .homepage-collection-card .homepage-collection-overlay h2 {
+    font-size: 3.2rem;
+    line-height: 1.05;
+  }
 }
 
-/* ✅ Collection card titles sizing */
+/* ==========================================================
+   2) COLLECTION GRID CARD TITLES
+   (product cards + collection grids)
+   ========================================================== */
+
 .collection-card h3 {
+  font-family: var(--font-script);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-rendering: optimizeLegibility;
+
   font-size: 2.0rem;
+  line-height: 1.05;
+
+  /* ✅ Thickness feel */
+  text-shadow:
+    0 0 0 rgba(0,0,0,0.22),
+    0 1px 0 rgba(0,0,0,0.20),
+    0 2px 6px rgba(0,0,0,0.12);
 }
 
+@supports (-webkit-text-stroke: 0.25px rgba(0,0,0,0.30)) {
+  .collection-card h3 {
+    -webkit-text-stroke: 0.25px rgba(0,0,0,0.30);
+  }
+}
+
+/* ✅ Bigger on desktop */
 @media (min-width: 1024px) {
   .collection-card h3 {
     font-size: 2.35rem;
   }
 }
 
-/* ✅ Script font for collection page main titles */
+/* ==========================================================
+   3) COLLECTION PAGE MAIN TITLES (H1 headings)
+   (Rings page: Cuban/Western/Faith pages, Charms pages, etc.)
+   Needs: SAME SCRIPT but THICK
+   ========================================================== */
+
 .collection-page h1 {
   font-family: var(--font-script);
   font-weight: 400;
   letter-spacing: 0.5px;
+  text-rendering: optimizeLegibility;
+
   font-size: 3.25rem;
   line-height: 1.05;
   text-align: center;
+
+  /* ✅ Thickness */
+  text-shadow:
+    0 0 0 rgba(0,0,0,0.22),
+    0 1px 0 rgba(0,0,0,0.20),
+    0 3px 10px rgba(0,0,0,0.12);
 }
 
+@supports (-webkit-text-stroke: 0.30px rgba(0,0,0,0.28)) {
+  .collection-page h1 {
+    -webkit-text-stroke: 0.30px rgba(0,0,0,0.28);
+  }
+}
 
 /* ==========================================================
    HOMEPAGE / LANDER — HERO COLLECTION OVERLAY TEXT
