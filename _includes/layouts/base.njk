@@ -43,6 +43,19 @@
   padding: 0.45rem 0.7rem;
 }
 
+/* Desktop: make nav buttons feel stronger */
+@media (min-width: 769px) {
+  .top-button-bar.is-open {
+    padding-top: 0.35rem;
+    padding-bottom: 0.6rem;
+    gap: 0.9rem;
+  }
+
+  .top-button-bar a img {
+    height: 44px; /* was ~38px */
+  }
+}
+
 /* Button images: keep consistent */
 .top-button-bar a img {
   height: 38px;
@@ -84,6 +97,13 @@
     main {
       padding-top: 1.5rem;
     }
+
+/* Desktop spacing tweak */
+@media (min-width: 769px) {
+  .collections-toggle {
+    margin-bottom: 0.25rem;
+  }
+}
 
     @media (max-width: 768px) {
       main {
