@@ -6,30 +6,60 @@
   --font-body: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* ✅ Script font for collection titles (homepage overlays + collection grids) */
-.homepage-collection-card .homepage-collection-overlay h2,
-.collection-card h3 {
+/* ==========================================================
+   SCRIPT TITLES (GLOBAL)
+   - Collection grids
+   - Product grids
+   - Collection headings
+========================================================== */
+
+/* ✅ Script font for collection grid titles */
+.collection-card h3,
+.product-card h3,
+.product-grid h3,
+.product-card-title {
   font-family: var(--font-script);
   font-weight: 400; /* Great Vibes only has 400 */
   letter-spacing: 0.5px;
   text-rendering: optimizeLegibility;
+  line-height: 1.05;
 }
 
-/* ✅ Collection grid card titles */
+/* ✅ Make script appear thicker (works best on iOS/Safari/Chrome) */
+@supports (-webkit-text-stroke: 0.35px rgba(0,0,0,0.45)) {
+  .collection-card h3,
+  .product-card h3,
+  .product-grid h3,
+  .product-card-title,
+  .collection-page h1 {
+    -webkit-text-stroke: 0.35px rgba(0,0,0,0.45);
+  }
+}
+
+/* ✅ Fallback thickness everywhere */
+.collection-card h3,
+.product-card h3,
+.product-grid h3,
+.product-card-title,
+.collection-page h1 {
+  text-shadow:
+    0 0.6px 0 rgba(0,0,0,0.28),
+    0 1.2px 0 rgba(0,0,0,0.18),
+    0 2px 10px rgba(0,0,0,0.12);
+}
+
+/* ✅ Collection card titles sizing */
 .collection-card h3 {
   font-size: 2.0rem;
-  line-height: 1.05;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.10);
 }
 
-/* ✅ Make script titles stronger on desktop */
 @media (min-width: 1024px) {
   .collection-card h3 {
     font-size: 2.35rem;
   }
 }
 
-/* ✅ Script font for collection page main titles (H1 headings) */
+/* ✅ Script font for collection page main titles */
 .collection-page h1 {
   font-family: var(--font-script);
   font-weight: 400;
@@ -39,30 +69,62 @@
   text-align: center;
 }
 
-/* ✅ Script font for product card titles */
-.product-card h3,
-.product-card-title,
-.product-grid h3,
-.product-grid .product-card h3 {
-  font-family: var(--font-script);
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  text-rendering: optimizeLegibility;
 
-  /* makes it look “thicker” */
-  text-shadow:
-    0 0 0 rgba(0,0,0,0.18),
-    0 0.8px 0 rgba(0,0,0,0.18),
-    0 1.6px 4px rgba(0,0,0,0.10);
+/* ==========================================================
+   HOMEPAGE / LANDER — HERO COLLECTION OVERLAY TEXT
+   (Faith Ring Collection + Hearts of Service)
+   ✅ Make BLACK + thicker + readable
+========================================================== */
+
+.homepage-collection-overlay {
+  /* gives readable overlay without changing your image */
+  background: rgba(255,255,255,0.70);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: 1.1rem 1.25rem;
+  display: inline-block;
+  max-width: 820px;
 }
 
-/* ✅ Optional: makes script look inked/thicker (Safari/Chrome/iOS) */
-@supports (-webkit-text-stroke: 0.25px rgba(0,0,0,0.22)) {
-  .product-card h3,
-  .product-card-title,
-  .product-grid h3,
-  .product-grid .product-card h3 {
-    -webkit-text-stroke: 0.25px rgba(0,0,0,0.22);
+/* ✅ Black overlay title */
+.homepage-collection-card .homepage-collection-overlay h2 {
+  font-family: var(--font-script);
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  letter-spacing: 0.5px;
+  line-height: 1.05;
+
+  /* thickness */
+  text-shadow:
+    0 0.75px 0 rgba(0,0,0,0.20),
+    0 1.5px 10px rgba(0,0,0,0.10);
+}
+
+@supports (-webkit-text-stroke: 0.35px rgba(0,0,0,0.45)) {
+  .homepage-collection-card .homepage-collection-overlay h2 {
+    -webkit-text-stroke: 0.35px rgba(0,0,0,0.45);
+  }
+}
+
+/* ✅ Make overlay description black too */
+.homepage-collection-card .homepage-collection-overlay p {
+  color: #000;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ✅ CTA: force black */
+.homepage-collection-card .homepage-collection-cta {
+  color: #000;
+  font-weight: 700;
+}
+
+/* Desktop sizing */
+@media (min-width: 1024px) {
+  .homepage-collection-card .homepage-collection-overlay h2 {
+    font-size: 3.2rem;
   }
 }
 
