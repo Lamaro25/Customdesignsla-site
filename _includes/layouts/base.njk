@@ -35,53 +35,56 @@
     }
 
     .top-button-bar.is-open {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: nowrap;         /* ✅ Desktop: single row */
-  padding: 0.45rem 0.7rem;
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: nowrap; /* Desktop: single row */
+      padding: 0.45rem 0.7rem;
+    }
 
-/* Desktop: make nav buttons feel stronger */
-@media (min-width: 769px) {
-  .top-button-bar.is-open {
-    padding-top: 0.35rem;
-    padding-bottom: 0.6rem;
-    gap: 0.9rem;
-  }
+    /* Button images: base size */
+    .top-button-bar a img {
+      height: 38px;
+      width: auto;
+      display: block;
+    }
 
-  .top-button-bar a img {
-    height: 44px; /* was ~38px */
-  }
-}
+    /* Hide future buttons (keep in code) */
+    .nav-hidden {
+      display: none !important;
+    }
 
-/* Button images: keep consistent */
-.top-button-bar a img {
-  height: 38px;
-  width: auto;
-  display: block;
-}
+    /* Mobile: 3 on top, 2 centered */
+    @media (max-width: 768px) {
+      .top-button-bar.is-open {
+        flex-wrap: wrap;
+        max-width: 360px;
+        margin: 0 auto;
+        justify-content: center;
+      }
 
-/* ✅ Hide future buttons */
-.nav-hidden {
-  display: none !important;
-}
+      .top-button-bar a img {
+        height: 36px;
+      }
+    }
 
-/* ✅ Mobile: 3 on top, 2 centered bottom */
-@media (max-width: 768px) {
-  .top-button-bar.is-open {
-    flex-wrap: wrap;
-    max-width: 360px;       /* forces 3 then 2 nicely */
-    margin: 0 auto;
-    justify-content: center;
-  }
+    /* Desktop: make nav buttons bigger */
+    @media (min-width: 769px) {
+      .top-button-bar.is-open {
+        padding-top: 0.35rem;
+        padding-bottom: 0.6rem;
+        gap: 0.9rem;
+      }
 
-  .top-button-bar a img {
-    height: 36px;
-  }
-}
+      .top-button-bar a img {
+        height: 44px;
+      }
 
+      /* Slightly tighten spacing under the Collections toggle */
+      .collections-toggle {
+        margin-bottom: 0.25rem;
+      }
     }
 
     .site-header {
@@ -97,13 +100,6 @@
     main {
       padding-top: 1.5rem;
     }
-
-/* Desktop spacing tweak */
-@media (min-width: 769px) {
-  .collections-toggle {
-    margin-bottom: 0.25rem;
-  }
-}
 
     @media (max-width: 768px) {
       main {
@@ -138,49 +134,50 @@
 
   <div class="top-button-bar" id="collections-bar">
 
-  <!-- ✅ LIVE BUTTONS (ONLY 5) -->
-  <a class="nav-btn nav-rings" href="/rings/">
-    <img src="/static/img/buttons/rings.png" alt="Rings">
-  </a>
+    <!-- ✅ LIVE BUTTONS (ONLY 5) -->
+    <a class="nav-btn nav-rings" href="/rings/">
+      <img src="/static/img/buttons/rings.png" alt="Rings">
+    </a>
 
-  <a class="nav-btn nav-charms" href="/charms/">
-    <img src="/static/img/buttons/charms.png" alt="Charms">
-  </a>
+    <a class="nav-btn nav-charms" href="/charms/">
+      <img src="/static/img/buttons/charms.png" alt="Charms">
+    </a>
 
-  <a class="nav-btn nav-bracelets" href="/bracelets/">
-    <img src="/static/img/buttons/bracelets.png" alt="Bracelets">
-  </a>
+    <a class="nav-btn nav-bracelets" href="/bracelets/">
+      <img src="/static/img/buttons/bracelets.png" alt="Bracelets">
+    </a>
 
-  <a class="nav-btn nav-shopall" href="/shop_all.html">
-    <img src="/static/img/buttons/shop-all.png" alt="Shop All">
-  </a>
+    <a class="nav-btn nav-shopall" href="/shop_all.html">
+      <img src="/static/img/buttons/shop-all.png" alt="Shop All">
+    </a>
 
-  <a class="nav-btn nav-cart" href="/cart.html">
-    <img src="/static/img/buttons/cart.png" alt="Cart">
-  </a>
+    <a class="nav-btn nav-cart" href="/cart.html">
+      <img src="/static/img/buttons/cart.png" alt="Cart">
+    </a>
 
-  <!-- 💤 HIDDEN FOR LATER (DO NOT DELETE) -->
-  <a class="nav-btn nav-hidden" href="/necklaces/">
-    <img src="/static/img/buttons/necklaces.png" alt="Necklaces">
-  </a>
+    <!-- 💤 HIDDEN FOR LATER (DO NOT DELETE) -->
+    <a class="nav-btn nav-hidden" href="/necklaces/">
+      <img src="/static/img/buttons/necklaces.png" alt="Necklaces">
+    </a>
 
-  <a class="nav-btn nav-hidden" href="/bronze/">
-    <img src="/static/img/buttons/bronze.png" alt="Bronze">
-  </a>
+    <a class="nav-btn nav-hidden" href="/bronze/">
+      <img src="/static/img/buttons/bronze.png" alt="Bronze">
+    </a>
 
-  <a class="nav-btn nav-hidden" href="/earrings/">
-    <img src="/static/img/buttons/earrings.png" alt="Earrings">
-  </a>
+    <a class="nav-btn nav-hidden" href="/earrings/">
+      <img src="/static/img/buttons/earrings.png" alt="Earrings">
+    </a>
 
-  <a class="nav-btn nav-hidden" href="/pendants/">
-    <img src="/static/img/buttons/pendants.png" alt="Pendants">
-  </a>
+    <a class="nav-btn nav-hidden" href="/pendants/">
+      <img src="/static/img/buttons/pendants.png" alt="Pendants">
+    </a>
 
-  <a class="nav-btn nav-hidden" href="/customize.html">
-    <img src="/static/img/buttons/customize.png" alt="Customize">
-  </a>
+    <a class="nav-btn nav-hidden" href="/customize.html">
+      <img src="/static/img/buttons/customize.png" alt="Customize">
+    </a>
 
-</div>
+  </div>
+</header>
 
 <main>
   {% block content %}
