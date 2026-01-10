@@ -17,9 +17,9 @@ images:
 
 # ✅ PRODUCT PAGE GALLERY (Phase 2)
 gallery:
+  - "/static/img/rings/cl-003/cuban-link-statement-ring-thin.jpg"
   - "/static/img/rings/cl-003/product-images-coming-soon-cl-003.jpg"
   - "/static/img/rings/cl-003/customer-ring-feature-placeholder-cl-003.jpg"
-  - "/static/img/rings/cl-003/images-update-with-orders-cl-003.jpg"
 
 description: >
   The Statement Ring (Thin) carries the same bold Cuban Link design language as
