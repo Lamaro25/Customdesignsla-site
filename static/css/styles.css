@@ -1,7 +1,3 @@
-/* ==========================================================
-   CDLA Fonts — Script Titles (Great Vibes)
-   ========================================================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&display=swap');
 
 :root {
@@ -11,102 +7,111 @@
 }
 
 /* ==========================================================
-   1) HOMEPAGE / LANDING PAGE OVERLAY TITLES
-   (Faith Ring Collection / Hearts of Service, etc.)
-   Needs: BLACK + THICK + READABLE
+   SCRIPT FONT — GLOBAL (Cards + Titles)
    ========================================================== */
 
-.homepage-collection-card .homepage-collection-overlay h2 {
-  font-family: var(--font-script);
-  font-weight: 400;
+/* ✅ Collection cards (grids) + product cards */
+.collection-card h3,
+.product-card h3,
+.product-card-title,
+.product-grid h3 {
+  font-family: var(--font-script) !important;
+  font-weight: 400; /* Great Vibes only supports 400 */
   letter-spacing: 0.5px;
   text-rendering: optimizeLegibility;
 
-  /* ✅ Make it BLACK on landing page */
-  color: #000 !important;
-
-  /* ✅ Fake thickness */
+  /* ✅ "Thicker ink" effect */
   text-shadow:
-    0 0 0 rgba(0,0,0,0.40),
-    0 1px 0 rgba(0,0,0,0.35),
-    0 2px 8px rgba(0,0,0,0.18);
+    0 0 0 rgba(0,0,0,0.28),
+    0 1px 0 rgba(0,0,0,0.20),
+    0 2px 10px rgba(0,0,0,0.12);
 }
 
-/* ✅ Even thicker on Safari/iOS/Chrome */
-@supports (-webkit-text-stroke: 0.35px rgba(0,0,0,0.55)) {
-  .homepage-collection-card .homepage-collection-overlay h2 {
-    -webkit-text-stroke: 0.35px rgba(0,0,0,0.55);
+@supports (-webkit-text-stroke: 0.25px rgba(0,0,0,0.25)) {
+  .collection-card h3,
+  .product-card h3,
+  .product-card-title,
+  .product-grid h3 {
+    -webkit-text-stroke: 0.25px rgba(0,0,0,0.25);
   }
 }
 
-/* ✅ Optional: slightly bigger overlay title on desktop */
-@media (min-width: 1024px) {
-  .homepage-collection-card .homepage-collection-overlay h2 {
-    font-size: 3.2rem;
-    line-height: 1.05;
-  }
-}
-
-/* ==========================================================
-   2) COLLECTION GRID CARD TITLES
-   (product cards + collection grids)
-   ========================================================== */
-
+/* ✅ Collection card sizing */
 .collection-card h3 {
-  font-family: var(--font-script);
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  text-rendering: optimizeLegibility;
-
   font-size: 2.0rem;
   line-height: 1.05;
-
-  /* ✅ Thickness feel */
-  text-shadow:
-    0 0 0 rgba(0,0,0,0.22),
-    0 1px 0 rgba(0,0,0,0.20),
-    0 2px 6px rgba(0,0,0,0.12);
 }
 
-@supports (-webkit-text-stroke: 0.25px rgba(0,0,0,0.30)) {
-  .collection-card h3 {
-    -webkit-text-stroke: 0.25px rgba(0,0,0,0.30);
-  }
-}
-
-/* ✅ Bigger on desktop */
 @media (min-width: 1024px) {
   .collection-card h3 {
     font-size: 2.35rem;
   }
 }
 
-/* ==========================================================
-   3) COLLECTION PAGE MAIN TITLES (H1 headings)
-   (Rings page: Cuban/Western/Faith pages, Charms pages, etc.)
-   Needs: SAME SCRIPT but THICK
-   ========================================================== */
-
+/* ✅ Collection page main titles (H1 headings) */
 .collection-page h1 {
   font-family: var(--font-script);
   font-weight: 400;
   letter-spacing: 0.5px;
-  text-rendering: optimizeLegibility;
-
   font-size: 3.25rem;
   line-height: 1.05;
   text-align: center;
 
-  /* ✅ Thickness */
   text-shadow:
-    0 0 0 rgba(0,0,0,0.22),
+    0 0 0 rgba(0,0,0,0.28),
     0 1px 0 rgba(0,0,0,0.20),
-    0 3px 10px rgba(0,0,0,0.12);
+    0 2px 10px rgba(0,0,0,0.12);
 }
 
-@supports (-webkit-text-stroke: 0.30px rgba(0,0,0,0.28)) {
-  .collection-page h1 {
-    -webkit-text-stroke: 0.30px rgba(0,0,0,0.28);
+/* ==========================================================
+   HOMEPAGE HERO OVERLAYS
+   ========================================================== */
+
+/* 🚫 IMPORTANT: remove ANY overlay darkening */
+.homepage-collection-overlay,
+.homepage-collection-card::before,
+.homepage-collection-card::after {
+  background: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* ✅ Default hero overlay titles remain WHITE */
+.homepage-collection-card .homepage-collection-overlay h2 {
+  font-family: var(--font-script) !important;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: #fff !important;
+
+  text-shadow:
+    0 0 0 rgba(0,0,0,0.55),
+    0 2px 18px rgba(0,0,0,0.55);
+}
+
+/* ✅ Only these TWO homepage hero panels should be BLACK text */
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay h2,
+.homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2 {
+  color: #000 !important;
+
+  /* Thicker black readable */
+  text-shadow:
+    0 0 0 rgba(0,0,0,0.35),
+    0 1px 0 rgba(0,0,0,0.25),
+    0 2px 10px rgba(0,0,0,0.12);
+}
+
+@supports (-webkit-text-stroke: 0.35px rgba(0,0,0,0.45)) {
+  .homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay h2,
+  .homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2 {
+    -webkit-text-stroke: 0.35px rgba(0,0,0,0.45);
+  }
+}
+
+/* Optional: bigger hero overlay titles on desktop */
+@media (min-width: 1024px) {
+  .homepage-collection-card .homepage-collection-overlay h2 {
+    font-size: 3.2rem;
+    line-height: 1.05;
   }
 }
 
