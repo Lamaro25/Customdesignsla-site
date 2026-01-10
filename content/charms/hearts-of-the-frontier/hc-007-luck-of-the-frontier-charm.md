@@ -12,13 +12,13 @@ layout: "layouts/product.njk"
 
 # FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hc-007-luck-of-the-frontier-charm-1.jpg"
+  - "/static/img/charms/hc-007-luck-of-the-frontier-image 1.jpg"
 
 # PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hc-007-luck-of-the-frontier-charm-1.jpg"
-  - "/static/img/charms/hc-007-luck-of-the-frontier-charm-2.jpg"
-  - "/static/img/charms/hc-007-luck-of-the-frontier-charm-3.jpg"
+  - "/static/img/charms/hc-007-luck-of-the-frontier-image 1.jpg"
+  - "/static/img/charms/hc-007-luck-of-the-frontier-image 2.jpg"
+  - "/static/img/charms/hc-007-luck-of-the-frontier-image 3.jpg"
 
 description: >
   A symbol of fortune, perseverance, and frontier tradition.
@@ -30,13 +30,13 @@ description: >
 <div class="product-gallery-section">
   <div class="product-gallery-grid">
     <div class="product-gallery-item">
-      <img src="{{ gallery[0] }}" alt="Luck of the Frontier Charm – Front" loading="lazy">
+      <img src="{{ gallery[0] }}" alt="Luck of the Frontier Charm – image 1" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[1] }}" alt="Luck of the Frontier Charm – Back" loading="lazy">
+      <img src="{{ gallery[1] }}" alt="Luck of the Frontier Charm – image 2" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[2] }}" alt="Luck of the Frontier Charm – Detail" loading="lazy">
+      <img src="{{ gallery[2] }}" alt="Luck of the Frontier Charm – image 3" loading="lazy">
     </div>
   </div>
 </div>
