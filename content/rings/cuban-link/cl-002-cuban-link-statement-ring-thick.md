@@ -42,6 +42,8 @@ description: >
           <video
             controls
             playsinline
+            muted
+            loop
             preload="metadata"
             style="width:100%; height:auto; border-radius:14px;"
           >
