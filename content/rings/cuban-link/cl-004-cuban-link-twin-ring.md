@@ -17,9 +17,9 @@ images:
 
 # ✅ PRODUCT PAGE GALLERY (Phase 2)
 gallery:
+  - "/static/img/rings/cl-004/cuban-link-twin-ring.jpg"
   - "/static/img/rings/cl-004/product-images-coming-soon-cl-004.jpg"
-  - "/static/img/rings/cl-004/customer-ring-feature-placeholder-cl-004.jpg"
-  - "/static/img/rings/cl-004/images-update-with-orders-cl-004.jpg"
+  - "/static/img/rings/cl-004/customer-ring-feature-placeholder-cl-004.jpg" 
 
 description: >
   The Twin Ring delivers symmetry and refined detail through a 7 mm domed band
