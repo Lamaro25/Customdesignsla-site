@@ -13,13 +13,13 @@ layout: "layouts/product.njk"
 
 # FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hc-002-front.jpg"
+  - "/static/img/charms/hc-002-image 1.jpg"
 
 # PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hc-002-front.jpg"
-  - "/static/img/charms/hc-002-detail.jpg"
-  - "/static/img/charms/hc-002-alt.jpg"
+  - "/static/img/charms/hc-002-image 1.jpg"
+  - "/static/img/charms/hc-002-image 2.jpg"
+  - "/static/img/charms/hc-002-image 3.jpg"
 
 description: >
   A symbol of strength, independence, and Texas heritage.
