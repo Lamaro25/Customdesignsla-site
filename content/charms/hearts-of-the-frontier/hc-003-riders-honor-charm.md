@@ -12,13 +12,13 @@ layout: "layouts/product.njk"
 
 # FEATURED / COLLECTION CARD IMAGE
 images:
-  - "/static/img/charms/hc-003-riders-honor-charm-1.jpg"
+  - "/static/img/charms/hc-003-riders-honor-image 1.jpg"
 
 # PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/charms/hc-003-riders-honor-charm-1.jpg"
-  - "/static/img/charms/hc-003-riders-honor-charm-2.jpg"
-  - "/static/img/charms/hc-003-riders-honor-charm-3.jpg"
+  - "/static/img/charms/hc-003-riders-honor-image 1.jpg"
+  - "/static/img/charms/hc-003-riders-honor-image 2.jpg"
+  - "/static/img/charms/hc-003-riders-honor-image 3.jpg"
 
 description: >
   A tribute to honor, discipline, and the enduring spirit of the rider.
@@ -30,13 +30,13 @@ description: >
 <div class="product-gallery-section">
   <div class="product-gallery-grid">
     <div class="product-gallery-item">
-      <img src="{{ gallery[0] }}" alt="Rider’s Honor Charm – Front" loading="lazy">
+      <img src="{{ gallery[0] }}" alt="Rider’s Honor Charm – image 1" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[1] }}" alt="Rider’s Honor Charm – Back" loading="lazy">
+      <img src="{{ gallery[1] }}" alt="Rider’s Honor Charm – image 2" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[2] }}" alt="Rider’s Honor Charm – Detail" loading="lazy">
+      <img src="{{ gallery[2] }}" alt="Rider’s Honor Charm – image 3" loading="lazy">
     </div>
   </div>
 </div>
