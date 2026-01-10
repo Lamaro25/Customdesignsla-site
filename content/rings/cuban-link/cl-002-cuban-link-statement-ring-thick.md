@@ -19,7 +19,7 @@ images:
 gallery:
   - "/static/img/rings/cl-002/cuban-link-statement-ring-thick.jpg"
   - "/static/img/rings/cl-002/product-images-coming-soon-cl-002.jpg"
-  - "/static/img/rings/cl-002/customer-ring-feature-placeholder-cl-002.mp4"
+  - "/static/img/rings/cl-002/customer-ring-feature-placeholder-cl-002.jpg"
 
 description: >
   The Thick Statement Ring is the bold centerpiece of the Cuban Link Collection.
@@ -30,37 +30,18 @@ description: >
   Del Rio, Texas.
 ---
 
-<!-- PRODUCT GALLERY (AUTO: image + video support) -->
+<!-- PRODUCT GALLERY (from frontmatter.gallery) -->
 <div class="product-gallery-section">
   <div class="product-gallery-grid">
-
-    {% for media in gallery %}
-      {% assign ext = media | split: "." | last | downcase %}
-
-      <div class="product-gallery-item">
-        {% if ext == "mp4" or ext == "webm" or ext == "mov" %}
-          <video
-            controls
-            playsinline
-            muted
-            loop
-            preload="metadata"
-            style="width:100%; height:auto; border-radius:14px;"
-          >
-            {% if ext == "mov" %}
-              <source src="{{ media }}" type="video/quicktime">
-            {% else %}
-              <source src="{{ media }}" type="video/{{ ext }}">
-            {% endif %}
-            Your browser does not support the video tag.
-          </video>
-        {% else %}
-          <img src="{{ media }}" alt="{{ title }} – Media {{ forloop.index }}" loading="lazy">
-        {% endif %}
-      </div>
-
-    {% endfor %}
-
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="{{ title }} – Image 1" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="{{ title }} – Image 2" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="{{ title }} – Image 3" loading="lazy">
+    </div>
   </div>
 </div>
 
