@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&display=swap');
+
+:root {
+  --font-title: "Cinzel", serif;
+  --font-script: "Great Vibes", cursive;
+  --font-body: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
 /* ==========================================================
    Custom Design’s LA — Unified Production Stylesheet
    Updated: Dec 2025
@@ -562,8 +570,8 @@ footer.site-footer {
 
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.7),
-    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.25),
     rgba(0,0,0,0)
   );
 
@@ -571,27 +579,53 @@ footer.site-footer {
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;            /* ✅ centers text vertically */
   align-items: center;
   text-align: center;
 
   z-index: 2;
 }
 
-.homepage-collection-card .homepage-collection-overlay h2 {
-  font-size: 1.9rem;
-  margin: 0 0 0.5rem;
-}
-
-.homepage-collection-card .homepage-collection-overlay p {
-  max-width: 520px;
-  margin: 0 0 1rem;
-  line-height: 1.4;
-}
-
+/* ✅ Keep overlay content centered and not too wide */
+.homepage-collection-card .homepage-collection-overlay h2,
+.homepage-collection-card .homepage-collection-overlay p,
 .homepage-collection-card .homepage-collection-cta {
-  font-weight: 700;
-  text-decoration: underline;
+  max-width: 900px;
+}
+
+/* ✅ Script font for collection titles (homepage + collection grids) */
+.homepage-collection-card .homepage-collection-overlay h2,
+.collection-card h3 {
+  font-family: var(--font-script);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* ✅ Make script titles stronger on desktop */
+@media (min-width: 1024px) {
+  .collection-card h3 {
+    font-size: 2.1rem;
+  }
+}
+
+
+/* ✅ Desktop: make homepage overlay text BIG like mobile */
+@media (min-width: 1024px) {
+  .homepage-collection-card .homepage-collection-overlay h2 {
+    font-size: 3.0rem;
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
+  }
+
+  .homepage-collection-card .homepage-collection-overlay p {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .homepage-collection-card .homepage-collection-cta {
+    font-size: 1.15rem;
+  }
 }
 
 /* ==========================================================
