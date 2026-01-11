@@ -63,14 +63,16 @@
     0 1px 0 rgba(0,0,0,0.20),
     0 2px 10px rgba(0,0,0,0.12);
 }
+
 /* ==========================================================
-   HOMEPAGE / LANDER — HERO COLLECTION OVERLAY TEXT
-   (Faith Ring Collection + Hearts of Service)
-   ✅ Make BLACK + thicker + readable
+   HOMEPAGE / LANDER — BLACK OVERLAY TEXT (ONLY)
+   Faith Ring Collection + Hearts of Service
+   ✅ Black + thicker + readable
 ========================================================== */
 
-/* ✅ Black overlay title */
-.homepage-collection-card .homepage-collection-overlay h2 {
+/* ✅ Black overlay title — ONLY these 2 cards */
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay h2,
+.homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2 {
   font-family: var(--font-script);
   font-weight: 400;
   color: #000;
@@ -78,34 +80,24 @@
   letter-spacing: 0.5px;
   line-height: 1.05;
 
-  /* thickness */
+  /* ✅ thickness */
   text-shadow:
     0 0.75px 0 rgba(0,0,0,0.20),
     0 1.5px 10px rgba(0,0,0,0.10);
 }
 
+/* ✅ Add stroke thickness (iOS support) */
 @supports (-webkit-text-stroke: 0.35px rgba(0,0,0,0.45)) {
-  .homepage-collection-card .homepage-collection-overlay h2 {
+  .homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay h2,
+  .homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2 {
     -webkit-text-stroke: 0.35px rgba(0,0,0,0.45);
   }
 }
 
-/* ✅ Make overlay description black too */
-.homepage-collection-card .homepage-collection-overlay p {
-  color: #000;
-  text-align: center;
-  font-weight: 500;
-}
-
-/* ✅ CTA: force black */
-.homepage-collection-card .homepage-collection-cta {
-  color: #000;
-  font-weight: 700;
-}
-
-/* Desktop sizing */
+/* ✅ Desktop sizing boost */
 @media (min-width: 1024px) {
-  .homepage-collection-card .homepage-collection-overlay h2 {
+  .homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay h2,
+  .homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2 {
     font-size: 3.2rem;
   }
 }
@@ -1092,3 +1084,21 @@ footer.site-footer {
     font-size: 0.93rem;
   }
 }
+
+/* ==========================================================
+   LANDER OVERLAY — REMOVE ALL GRAY/BLUR PILL BACKDROPS
+   Make all cards match Faith (clean text on image)
+   Paste at VERY BOTTOM of styles.css
+========================================================== */
+
+/* Remove any “pill” / blur / panel behind overlay titles */
+.homepage-collection-card .homepage-collection-overlay h2,
+.homepage-collection-card .homepage-collection-overlay h2 span {
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
