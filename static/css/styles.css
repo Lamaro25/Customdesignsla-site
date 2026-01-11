@@ -1102,3 +1102,51 @@ footer.site-footer {
   border-radius: 0 !important;
 }
 
+/* ==========================================================
+   ✅ LANDER HERO OVERLAY — TRUE CENTER LOCK
+   Paste at VERY BOTTOM of styles.css
+========================================================== */
+
+/* Make overlay symmetric so it doesn't "pull" right/left */
+.homepage-collection-card .homepage-collection-overlay{
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* ✅ Hard center the title (fixes drifting/uneven padding illusion) */
+.homepage-collection-card .homepage-collection-overlay h2{
+  width: 100% !important;
+
+  /* TRUE center */
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  text-align: center !important;
+}
+
+/* If your title uses a pill/span glow */
+.homepage-collection-card .homepage-collection-overlay h2 span{
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+/* ✅ Hard center the CTA */
+.homepage-collection-card .homepage-collection-overlay .homepage-collection-cta,
+.homepage-collection-card .homepage-collection-overlay a.homepage-collection-cta{
+  align-self: center !important;
+
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  /* prevents weird width bias */
+  transform: translateX(0) !important;
+}
+
+/* ✅ Move title UP/DOWN (tune this value only) */
+.homepage-collection-card .homepage-collection-overlay h2{
+  margin-top: 0.15rem !important; /* smaller = higher | bigger = lower */
+}
