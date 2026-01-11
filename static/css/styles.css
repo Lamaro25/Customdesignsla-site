@@ -1058,6 +1058,15 @@ footer.site-footer {
   text-shadow: none !important;
 }
 
+/* ✅ Faith Ring Collection: CTA text should be BLACK */
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay a,
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay .btn,
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay .homepage-collection-btn {
+  color: #000 !important;
+  border-color: rgba(0,0,0,0.45) !important;
+  background: rgba(255,255,255,0.25) !important;
+}
+
 /* ✅ Hearts of Service: EXTRA readability (stronger pill + thicker stroke) */
 .homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2 {
   background: rgba(0,0,0,0.55);
@@ -1122,44 +1131,6 @@ footer.site-footer {
    - On desktop: cards tighter, not blown-up
    - Overlay text stays proportional
 ========================================================== */
-
-@media (min-width: 1024px) {
-
-  /* Make each hero section feel more premium (less huge spacing) */
-  .homepage-collection {
-    margin: 1.75rem 0;
-  }
-
-  /* 🔥 This is the main fix — reduce “giant image” feel */
-  .homepage-collection-card {
-    max-width: 980px;      /* was ~1100+ */
-    margin: 0 auto;
-  }
-
-  /* Keep image from feeling too tall */
-  .homepage-collection-card .homepage-collection-image {
-    max-height: 420px;
-    object-fit: cover;
-  }
-
-  /* Overlay padding tighter */
-  .homepage-collection-card .homepage-collection-overlay {
-    padding: 0.9rem 1rem;
-  }
-
-  /* Slightly increase overlay title so it matches new scale */
-  .homepage-collection-card .homepage-collection-overlay h2 {
-    font-size: 3rem;
-  }
-
-  /* CTA stays clean */
-  .homepage-collection-card .homepage-collection-overlay a,
-  .homepage-collection-card .homepage-collection-overlay .btn,
-  .homepage-collection-card .homepage-collection-overlay .homepage-collection-btn {
-    font-size: 0.95rem;
-    padding: 0.65rem 1.35rem;
-  }
-}
 
 /* ==========================================================
    LANDER OVERLAY — REMOVE ALL GRAY/BLUR PILL BACKDROPS
@@ -1226,30 +1197,3 @@ footer.site-footer {
 .homepage-collection-card .homepage-collection-overlay h2{
   margin-top: 0.15rem !important; /* smaller = higher | bigger = lower */
 }
-
-/* ==========================================================
-   ✅ TRUE CENTER LOCK — LANDER OVERLAY TEXT
-========================================================== */
-.homepage-collection-card .homepage-collection-overlay{
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-}
-
-.homepage-collection-card .homepage-collection-overlay h2,
-.homepage-collection-card .homepage-collection-overlay a,
-.homepage-collection-card .homepage-collection-overlay .btn,
-.homepage-collection-card .homepage-collection-overlay .homepage-collection-btn,
-.homepage-collection-card .homepage-collection-overlay .homepage-collection-cta{
-  position: relative !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  text-align: center !important;
-}
-
-/* Title should not stretch full width */
-.homepage-collection-card .homepage-collection-overlay h2{
-  width: max-content !important;
-  max-width: 92% !important;
-}
-
