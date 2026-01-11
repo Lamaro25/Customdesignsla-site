@@ -1261,7 +1261,7 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (FINAL)
+   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (FINAL LOCK)
 ========================================================== */
 
 .product-add-to-cart-wrap{
@@ -1274,19 +1274,21 @@ footer.site-footer {
   display: inline-block;
 }
 
+/* ✅ HARD OVERRIDE: prevents global img { width:100% } rules */
 .product-add-to-cart-btn{
-  width: 235px;      /* ✅ mobile / iPhone size */
-  max-width: 72vw;   /* ✅ never overflow small screens */
-  height: auto;
-  display: block;
+  width: 235px !important;      /* ✅ mobile size */
+  max-width: 235px !important;  /* ✅ hard cap */
+  height: auto !important;
+  display: block !important;
+  flex: 0 0 auto;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
 
 /* ✅ Desktop cap (prevents blown-out huge button) */
 @media (min-width: 900px){
   .product-add-to-cart-btn{
-    width: 320px;     /* ✅ premium desktop size */
-    max-width: 320px; /* ✅ hard stop */
+    width: 320px !important;
+    max-width: 320px !important;
   }
 }
 
@@ -1298,4 +1300,3 @@ footer.site-footer {
 .product-add-to-cart-link:active .product-add-to-cart-btn{
   transform: translateY(1px);
 }
-
