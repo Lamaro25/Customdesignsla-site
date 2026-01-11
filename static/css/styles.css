@@ -1260,41 +1260,52 @@ footer.site-footer {
   justify-content: center;
 }
 
+
 /* ==========================================================
-   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (ULTIMATE OVERRIDE)
-   Fixes giant button caused by global main img rule
+   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (FINAL FIX)
+   - Forces correct size on desktop + mobile
+   - Prevents global "main img { max-width:100% }" from blowing it up
+   - Adds spacing above + below
 ========================================================== */
 
 .product-add-to-cart-wrap{
-  margin: 1.25rem 0 2.25rem 0;
+  margin: 1.75rem 0 2.75rem 0;   /* ✅ more space above + footer */
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 }
 
-/* ✅ Beat main img global rule */
-.product-add-to-cart-wrap img.product-add-to-cart-btn{
-  width: 235px !important;        /* ✅ mobile */
-  max-width: 235px !important;    /* ✅ hard lock */
+.product-add-to-cart-link{
+  display: inline-block;
+}
+
+/* ✅ THIS is the important part */
+.product-add-to-cart-btn{
+  width: 260px !important;       /* ✅ desktop default size */
+  max-width: 78vw !important;    /* ✅ mobile never overflows */
   height: auto !important;
-  display: inline-block !important;
+  display: block;
 }
 
-/* ✅ Desktop sizing */
-@media (min-width: 900px){
-  .product-add-to-cart-wrap img.product-add-to-cart-btn{
-    width: 320px !important;
-    max-width: 320px !important;
+/* Mobile tuning */
+@media (max-width: 768px){
+  .product-add-to-cart-wrap{
+    margin: 1.35rem 0 2.25rem 0; /* ✅ more breathing room from Notes */
+  }
+
+  .product-add-to-cart-btn{
+    width: 240px !important;     /* ✅ perfect iPhone size */
+    max-width: 82vw !important;
   }
 }
 
-/* Hover / click effects */
-.product-add-to-cart-link:hover img.product-add-to-cart-btn{
+/* Hover + press effects */
+.product-add-to-cart-link:hover .product-add-to-cart-btn{
   transform: translateY(-1px);
   filter: brightness(1.05);
   transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-.product-add-to-cart-link:active img.product-add-to-cart-btn{
+.product-add-to-cart-link:active .product-add-to-cart-btn{
   transform: translateY(1px);
 }
-
