@@ -1261,42 +1261,40 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (FINAL LOCK)
+   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (ULTIMATE OVERRIDE)
+   Fixes giant button caused by global main img rule
 ========================================================== */
 
 .product-add-to-cart-wrap{
-  margin: 1.25rem 0 2.25rem 0; /* ✅ space between Notes + footer */
+  margin: 1.25rem 0 2.25rem 0;
   display: flex;
   justify-content: flex-start;
 }
 
-.product-add-to-cart-link{
-  display: inline-block;
-}
-
-/* ✅ HARD OVERRIDE: prevents global img { width:100% } rules */
-.product-add-to-cart-btn{
-  width: 235px !important;      /* ✅ mobile size */
-  max-width: 235px !important;  /* ✅ hard cap */
+/* ✅ Beat main img global rule */
+.product-add-to-cart-wrap img.product-add-to-cart-btn{
+  width: 235px !important;        /* ✅ mobile */
+  max-width: 235px !important;    /* ✅ hard lock */
   height: auto !important;
-  display: block !important;
-  flex: 0 0 auto;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  display: inline-block !important;
 }
 
-/* ✅ Desktop cap (prevents blown-out huge button) */
+/* ✅ Desktop sizing */
 @media (min-width: 900px){
-  .product-add-to-cart-btn{
+  .product-add-to-cart-wrap img.product-add-to-cart-btn{
     width: 320px !important;
     max-width: 320px !important;
   }
 }
 
-.product-add-to-cart-link:hover .product-add-to-cart-btn{
+/* Hover / click effects */
+.product-add-to-cart-link:hover img.product-add-to-cart-btn{
   transform: translateY(-1px);
   filter: brightness(1.05);
+  transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-.product-add-to-cart-link:active .product-add-to-cart-btn{
+.product-add-to-cart-link:active img.product-add-to-cart-btn{
   transform: translateY(1px);
 }
+
