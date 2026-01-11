@@ -1262,50 +1262,59 @@ footer.site-footer {
 
 
 /* ==========================================================
-   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (FINAL FIX)
-   - Forces correct size on desktop + mobile
-   - Prevents global "main img { max-width:100% }" from blowing it up
-   - Adds spacing above + below
+   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (FINAL)
+   - Desktop + Mobile sizing
+   - Clean spacing from Notes + Footer
+   - Centered on mobile
 ========================================================== */
 
 .product-add-to-cart-wrap{
-  margin: 1.75rem 0 2.75rem 0;   /* ✅ more space above + footer */
+  margin: 2.25rem 0 3rem 0;      /* ✅ more space above + below */
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: flex-start;   /* ✅ desktop: align left */
 }
 
 .product-add-to-cart-link{
   display: inline-block;
+  line-height: 0;
 }
 
-/* ✅ THIS is the important part */
 .product-add-to-cart-btn{
-  width: 260px !important;       /* ✅ desktop default size */
-  max-width: 78vw !important;    /* ✅ mobile never overflows */
-  height: auto !important;
+  width: 320px;                  /* ✅ DESKTOP size (not huge) */
+  max-width: 100%;
+  height: auto;
   display: block;
+  transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-/* Mobile tuning */
-@media (max-width: 768px){
-  .product-add-to-cart-wrap{
-    margin: 1.35rem 0 2.25rem 0; /* ✅ more breathing room from Notes */
-  }
-
-  .product-add-to-cart-btn{
-    width: 240px !important;     /* ✅ perfect iPhone size */
-    max-width: 82vw !important;
-  }
-}
-
-/* Hover + press effects */
+/* Hover / Press effects */
 .product-add-to-cart-link:hover .product-add-to-cart-btn{
   transform: translateY(-1px);
   filter: brightness(1.05);
-  transition: transform 0.15s ease, filter 0.15s ease;
 }
 
 .product-add-to-cart-link:active .product-add-to-cart-btn{
   transform: translateY(1px);
 }
+
+/* ✅ TABLET + MOBILE FIX */
+@media (max-width: 768px){
+  .product-add-to-cart-wrap{
+    margin: 1.75rem 0 2.5rem 0;  /* ✅ fixes "too close to notes" */
+    justify-content: center;     /* ✅ centered on mobile */
+  }
+
+  .product-add-to-cart-btn{
+    width: min(220px, 66vw) !important;  /* ✅ smaller premium size */
+    max-width: 220px !important;
+  }
+}
+
+/* ✅ EXTRA SMALL PHONES (iPhone SE etc.) */
+@media (max-width: 380px){
+  .product-add-to-cart-btn{
+    width: min(200px, 70vw) !important;
+    max-width: 200px !important;
+  }
+}
+
