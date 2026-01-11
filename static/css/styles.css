@@ -1259,3 +1259,35 @@ footer.site-footer {
   display: inline-flex;
   justify-content: center;
 }
+
+/* ==========================================================
+   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON
+========================================================== */
+
+.product-add-to-cart-wrap{
+  margin: 1.25rem 0 2.25rem 0; /* ✅ space between Notes + footer */
+  display: flex;
+  justify-content: flex-start;
+}
+
+.product-add-to-cart-link{
+  display: inline-block;
+}
+
+.product-add-to-cart-btn{
+  width: 235px;      /* ✅ premium iPhone size */
+  max-width: 72vw;   /* ✅ no overflow */
+  height: auto;
+  display: block;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.product-add-to-cart-link:hover .product-add-to-cart-btn{
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.product-add-to-cart-link:active .product-add-to-cart-btn{
+  transform: translateY(1px);
+}
+
