@@ -854,73 +854,23 @@ footer.site-footer {
   font-weight: 700;
 }
 
-/* ==========================================================
-   ✅ MASTER FIX — FONTS + HERO OVERLAYS (LANDER CARDS)
-   - Restores script font on collection/product cards
-   - Fixes hero overlays: centered, top title + bottom button
-   - Removes any gray/film overlay (NO dimming)
-   - Adds glow pill behind text (except Faith Ring Collection)
-   - Hearts of Service gets extra bold glow for readability
-   ========================================================== */
+/* ==========================================
+   ✅ HOMEPAGE HERO CARDS — MASTER FIX (MOBILE SAFE)
+   - True centered overlay (Safari/iPhone fix)
+   - Title higher
+   - Explore fixed height near bottom + underline
+   - Hue pill behind text (ALL except Faith Ring)
+   - Faith Ring uses BLACK text (no hue)
+   - Hearts of Service gets extra bold readability
+   ========================================== */
 
-/* ✅ Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&display=swap');
-
-:root {
-  --font-title: "Cinzel", serif;
-  --font-script: "Great Vibes", cursive;
-  --font-body: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+/* Card safety */
+.homepage-collection-card {
+  position: relative;
+  overflow: hidden;
 }
 
-/* ==========================================================
-   ✅ SCRIPT FONT — GLOBAL (Cards + Titles)
-   ========================================================== */
-.collection-card h3,
-.product-card h3,
-.product-card-title,
-.product-grid h3,
-.collection-page h1 {
-  font-family: var(--font-script) !important;
-  font-weight: 400; /* Great Vibes is 400 only */
-  letter-spacing: 0.5px;
-  text-rendering: optimizeLegibility;
-
-  /* “Thicker ink” effect */
-  text-shadow:
-    0 0 0 rgba(0,0,0,0.28),
-    0 1px 0 rgba(0,0,0,0.20),
-    0 2px 10px rgba(0,0,0,0.12);
-}
-
-@supports (-webkit-text-stroke: 0.25px rgba(0,0,0,0.25)) {
-  .collection-card h3,
-  .product-card h3,
-  .product-card-title,
-  .product-grid h3,
-  .collection-page h1 {
-    -webkit-text-stroke: 0.25px rgba(0,0,0,0.25);
-  }
-}
-
-/* Sizing */
-.collection-card h3 { font-size: 2rem; line-height: 1.05; }
-@media (min-width: 1024px) {
-  .collection-card h3 { font-size: 2.35rem; }
-}
-.collection-page h1 {
-  font-size: 3.25rem;
-  line-height: 1.05;
-  text-align: center;
-}
-
-/* ==========================================================
-   ✅ HERO CARDS (LANDER OVERLAYS)
-   - Title near top
-   - Explore button near bottom
-   - NO gray film
-   ========================================================== */
-
-/* ✅ HARD KILL: ANY film/gray overlay */
+/* Kill any old film overlays that might exist */
 .homepage-collection-card::before,
 .homepage-collection-card::after,
 .homepage-collection-overlay::before,
@@ -929,177 +879,212 @@ footer.site-footer {
   display: none !important;
 }
 
+/* Overlay container (true centering fix) */
 .homepage-collection-overlay {
-  background: transparent !important;
-  filter: none !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-/* ✅ Make overlay layout top/bottom + PERFECT centering */
-.homepage-collection-card {
-  position: relative;
-}
-
-.homepage-collection-card .homepage-collection-overlay {
   position: absolute;
   inset: 0;
+  z-index: 5;
+
+  /* ✅ force true center on iPhone */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  /* Center */
-  align-items: center;
+  /* Top + bottom padding controls title height + button height */
+  padding: 0.85rem 1.25rem 1.15rem;
+
   text-align: center;
-
-  /* make sure not drifting */
-  left: 0;
-  right: 0;
-  width: 100%;
-
-  padding: 1rem 1.1rem;
-  z-index: 5;
+  background: transparent !important;
 }
 
-/* ✅ Remove description text completely */
-.homepage-collection-card .homepage-collection-overlay p {
+/* Remove the paragraph text from lander hero overlays */
+.homepage-collection-overlay p {
   display: none !important;
 }
 
-/* ==========================================================
-   ✅ TITLE (TOP)
-   ========================================================== */
-.homepage-collection-card .homepage-collection-overlay h2 {
+/* ==========================================
+   TITLE (TOP)
+   ========================================== */
+.homepage-collection-overlay h2 {
   margin: 0 !important;
+  padding: 0 !important;
 
-  /* sits near top */
-  margin-top: 0.3rem !important;
+  /* ✅ push higher */
+  margin-top: 0.15rem !important;
 
   width: 100%;
   text-align: center;
 
   font-family: var(--font-script) !important;
-  font-weight: 400;
-  letter-spacing: 0.6px;
+  font-weight: 400 !important;
+  letter-spacing: 0.55px;
 
-  /* default: white */
+  /* default white */
   color: #fff !important;
 
-  /* crisp readable */
+  /* readability */
   text-shadow:
-    0 2px 18px rgba(0,0,0,0.70),
-    0 1px 0 rgba(0,0,0,0.45);
+    0 2px 16px rgba(0,0,0,0.55),
+    0 1px 0 rgba(0,0,0,0.35);
 }
 
-/* ==========================================================
-   ✅ EXPLORE BUTTON (BOTTOM)
-   ========================================================== */
-.homepage-collection-card .homepage-collection-overlay a,
-.homepage-collection-card .homepage-collection-overlay .btn,
-.homepage-collection-card .homepage-collection-overlay .homepage-collection-btn {
-  margin: 0 !important;
+/* ==========================================
+   EXPLORE BUTTON (BOTTOM)
+   - locks the "good height" near bottom
+   - adds underline line
+   ========================================== */
 
-  /* sits near bottom */
-  margin-bottom: 0.65rem !important;
+/* Targets the Explore link/button */
+.homepage-collection-overlay .homepage-collection-btn,
+.homepage-collection-overlay .btn,
+.homepage-collection-overlay a {
+  /* ✅ lock near-bottom height */
+  margin: 0 auto 0.55rem !important;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  /* looks clickable */
-  padding: 0.65rem 1.25rem;
+  padding: 0.55rem 1.25rem;
   border-radius: 999px;
 
   font-family: var(--font-title) !important;
   font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.55px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
 
   color: #fff !important;
-
-  background: rgba(0,0,0,0.35);
-  border: 1px solid rgba(255,255,255,0.60);
-
   text-decoration: none !important;
-  cursor: pointer;
 
-  transition: transform 0.15s ease, background 0.15s ease, border 0.15s ease;
+  /* clickable look */
+  border: 1px solid rgba(255,255,255,0.55);
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  text-shadow: 0 2px 10px rgba(0,0,0,0.65);
 }
 
-.homepage-collection-card .homepage-collection-overlay a:hover,
-.homepage-collection-card .homepage-collection-overlay .btn:hover,
-.homepage-collection-card .homepage-collection-overlay .homepage-collection-btn:hover {
-  transform: translateY(-2px);
+/* underline line under Explore */
+.homepage-collection-overlay .homepage-collection-btn::after,
+.homepage-collection-overlay .btn::after,
+.homepage-collection-overlay a::after {
+  content: "";
+  display: block;
+  width: 72%;
+  height: 2px;
+  margin: 0.35rem auto 0;
+
+  background: rgba(255,255,255,0.9);
+  border-radius: 99px;
+}
+
+/* Hover */
+.homepage-collection-overlay a:hover,
+.homepage-collection-overlay .btn:hover,
+.homepage-collection-overlay .homepage-collection-btn:hover {
   background: rgba(0,0,0,0.55);
   border-color: rgba(255,255,255,0.85);
 }
 
-/* ==========================================================
-   ✅ GLOW “PILL” BACKDROP FOR READABILITY
-   Applies to ALL hero cards…
-   EXCEPT Faith Ring Collection (white background)
-   ========================================================== */
+/* ==========================================
+   ✅ HUE PILL (TEXT BACKPLATE)
+   - makes it readable like the version you loved
+   - applied to ALL except Faith Ring Collection
+   ========================================== */
 
-/* default glow pill behind title */
-.homepage-collection-card .homepage-collection-overlay h2 {
-  display: inline-block;
-  padding: 0.45rem 1.1rem;
+/* shared pill style */
+.homepage-collection-overlay h2,
+.homepage-collection-overlay .homepage-collection-btn,
+.homepage-collection-overlay .btn,
+.homepage-collection-overlay a {
   border-radius: 999px;
-
-  background: rgba(0,0,0,0.35);
-  border: 1px solid rgba(255,255,255,0.35);
-
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
 }
 
-/* ✅ Faith Ring Collection: NO pill + BLACK text */
-.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay h2 {
+/* Add pill behind TOP title (default all cards) */
+.homepage-collection-overlay h2 {
+  display: inline-block;
+  padding: 0.45rem 0.9rem !important;
+
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.22);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ==========================================
+   ❌ FAITH RING COLLECTION = NO HUE + BLACK TEXT
+   ========================================== */
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay h2,
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay a,
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay .btn,
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay .homepage-collection-btn {
   color: #000 !important;
+  text-shadow: none !important;
+}
+
+/* Remove hue pill ONLY on Faith Ring */
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay h2 {
   background: transparent !important;
   border: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-
-  text-shadow:
-    0 1px 0 rgba(255,255,255,0.30),
-    0 2px 10px rgba(0,0,0,0.10);
+  padding: 0 !important;
 }
 
-/* ✅ Hearts of Service: EXTRA readability (stronger pill + thicker stroke) */
+/* Faith Ring Explore button becomes “clean” black */
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay a,
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay .btn,
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay .homepage-collection-btn {
+  background: rgba(255,255,255,0.55) !important;
+  border: 1px solid rgba(0,0,0,0.35) !important;
+  font-weight: 900 !important;
+}
+
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay a::after,
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay .btn::after,
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay .homepage-collection-btn::after {
+  background: rgba(0,0,0,0.85) !important;
+}
+
+/* ==========================================
+   ✅ FORCE WHITE EXPLORE ON THESE (fix black bug)
+   ========================================== */
+.homepage-collection-card[href="/rings/western/"] .homepage-collection-overlay a,
+.homepage-collection-card[href="/rings/cuban/"] .homepage-collection-overlay a,
+.homepage-collection-card[href="/charms/heart-of-faith/"] .homepage-collection-overlay a,
+.homepage-collection-card[href="/charms/hearts-of-the-frontier/"] .homepage-collection-overlay a {
+  color: #fff !important;
+}
+
+/* ==========================================
+   ✅ HEARTS OF SERVICE = EXTRA THICK / READABLE
+   ========================================== */
 .homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2 {
-  background: rgba(0,0,0,0.55);
-  border: 1px solid rgba(255,255,255,0.55);
+  font-weight: 700 !important; /* make it pop more */
   text-shadow:
-    0 2px 22px rgba(0,0,0,0.85),
-    0 1px 0 rgba(0,0,0,0.60);
+    0 2px 18px rgba(0,0,0,0.80),
+    0 0 1px rgba(0,0,0,0.55);
 }
 
-@supports (-webkit-text-stroke: 0.40px rgba(0,0,0,0.75)) {
-  .homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2 {
-    -webkit-text-stroke: 0.40px rgba(0,0,0,0.75);
-  }
+.homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay a {
+  font-weight: 900 !important;
 }
 
-/* ==========================================================
-   ✅ Mobile tuning (closer to top/bottom + nice sizing)
-   ========================================================== */
+/* ==========================================
+   MOBILE tuning
+   ========================================== */
 @media (max-width: 768px) {
-  .homepage-collection-card .homepage-collection-overlay {
-    padding: 0.85rem 1rem;
+  .homepage-collection-overlay {
+    padding: 0.75rem 1rem 1.05rem;
   }
 
-  .homepage-collection-card .homepage-collection-overlay h2 {
-    font-size: 2.1rem;
-    line-height: 1.05;
-    margin-top: 0.15rem !important;
-  }
-
-  .homepage-collection-card .homepage-collection-overlay a,
-  .homepage-collection-card .homepage-collection-overlay .btn,
-  .homepage-collection-card .homepage-collection-overlay .homepage-collection-btn {
-    margin-bottom: 0.55rem !important;
-    font-size: 0.93rem;
+  .homepage-collection-overlay h2 {
+    font-size: 2.25rem;
+    line-height: 1.06;
   }
 }
