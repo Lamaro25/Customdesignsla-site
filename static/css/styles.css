@@ -779,24 +779,37 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   ✅ HOMEPAGE COLLECTION HERO CARDS — FINAL MASTER FIX
-   Goals:
-   - Perfect centering (no right-shift)
-   - Title near TOP (higher)
-   - "Explore Collection" near BOTTOM (locked height)
-   - Underline under Explore
-   - Halo/hue behind TEXT only (NOT a random film panel)
-   - Halo on ALL except Faith Ring (white background)
-   - Hearts of Service gets extra readability
-   ========================================================== */
+   HOTFIX OVERRIDE — HOMEPAGE HERO COLLECTION CARDS
+   Paste at VERY BOTTOM of styles.css
+========================================================== */
 
-/* Card must anchor overlay */
-.homepage-collection-card{
-  position: relative;
-  overflow: hidden;
+/* 1) Overlay should be FULL-COVER and TRANSPARENT (no big film) */
+.homepage-collection-card .homepage-collection-overlay{
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 5 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+
+  padding: 1.1rem 1rem !important;
+  text-align: center !important;
+
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  border-radius: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+  height: 100% !important;
+
+  pointer-events: none !important; /* card stays clickable */
 }
 
-/* Kill any old film layers/pseudo layers */
+/* kill any pseudo “film” layers from earlier attempts */
 .homepage-collection-card::before,
 .homepage-collection-card::after,
 .homepage-collection-card .homepage-collection-overlay::before,
@@ -805,172 +818,126 @@ footer.site-footer {
   display: none !important;
 }
 
-/* Overlay: full cover, but transparent */
-.homepage-collection-card .homepage-collection-overlay{
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
+/* 2) TITLE — script, centered, pushed up */
+.homepage-collection-card .homepage-collection-overlay h2{
+  pointer-events: none !important;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  margin: 0 !important;
+  width: 100% !important;
 
-  padding: 0.85rem 1rem; /* slightly tighter = title moves up */
-  text-align: center;
+  font-family: var(--font-script) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1.05 !important;
 
-  background: transparent !important;
-  filter: none !important;
+  font-size: clamp(2.25rem, 6.2vw, 3.15rem) !important;
 
-  /* let the whole card stay clickable */
-  pointer-events: none;
+  color: #fff !important;
+  text-shadow: 0 2px 18px rgba(0,0,0,0.55) !important;
+
+  /* move title up */
+  padding-top: 0.15rem !important;
+
+  /* IMPORTANT: prevent the “big bubble” look */
+  background: none !important;
+  border-radius: 0 !important;
 }
 
-/* Remove description text on hero cards */
+/* 3) SMALL HALO ONLY behind title text (NOT a full-width panel) */
+.homepage-collection-card .homepage-collection-overlay h2 span{
+  display: inline-block !important;
+  padding: 0.35rem 0.85rem !important;
+  border-radius: 999px !important;
+
+  background: rgba(0,0,0,0.28) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* If your h2 has NO <span>, still give it a subtle halo */
+.homepage-collection-card .homepage-collection-overlay h2:not(:has(span)){
+  display: inline-block !important;
+  padding: 0.35rem 0.85rem !important;
+  border-radius: 999px !important;
+  background: rgba(0,0,0,0.28) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* 4) DESCRIPTION — hide it (you only want title + Explore) */
 .homepage-collection-card .homepage-collection-overlay p{
   display: none !important;
 }
 
-/* ===== TITLE (TOP) ===== */
-.homepage-collection-card .homepage-collection-overlay h2{
-  /* perfect horizontal centering */
-  width: 100%;
-  margin: 0 !important;
+/* 5) EXPLORE CTA — bring it back, lock height near bottom, underline */
+.homepage-collection-card .homepage-collection-overlay .homepage-collection-cta,
+.homepage-collection-card .homepage-collection-overlay a.homepage-collection-cta{
+  pointer-events: auto !important;
 
-  display: flex;
-  justify-content: center;
+  margin: 0 0 0.65rem 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 
-  /* push higher */
-  padding-top: 0.15rem;
+  padding: 0.55rem 1.05rem !important;
+  border-radius: 999px !important;
 
-  font-family: var(--font-script) !important;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-
-  color: #fff !important;
-  text-align: center;
-}
-
-/* The “halo pill” is on the text only (NOT the overlay container) */
-.homepage-collection-card .homepage-collection-overlay h2 > span,
-.homepage-collection-card .homepage-collection-overlay h2{
-  /* if your h2 has no span, this still applies */
-  display: inline-block;
-  padding: 0.45rem 0.95rem;
-  border-radius: 999px;
-
-  /* halo/hue behind text only */
-  background: rgba(0,0,0,0.28);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-
-  text-shadow:
-    0 2px 18px rgba(0,0,0,0.55),
-    0 1px 0 rgba(0,0,0,0.35);
-}
-
-/* ===== EXPLORE (BOTTOM) ===== */
-.homepage-collection-card .homepage-collection-overlay .btn,
-.homepage-collection-card .homepage-collection-overlay a.btn,
-.homepage-collection-card .homepage-collection-overlay .homepage-collection-btn,
-.homepage-collection-card .homepage-collection-overlay a{
-  /* keep clickable */
-  pointer-events: auto;
-
-  /* lock “Explore” height near bottom */
-  margin: 0 !important;
-  margin-bottom: 0.55rem !important;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0.55rem 1.05rem;
-  border-radius: 999px;
-
-  font-family: var(--font-title);
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: 0.6px;
+  font-family: var(--font-title) !important;
+  font-size: 0.95rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.6px !important;
 
   color: #fff !important;
-  background: rgba(0,0,0,0.28);
-  border: 1px solid rgba(255,255,255,0.55);
+  background: rgba(0,0,0,0.28) !important;
+  border: 1px solid rgba(255,255,255,0.55) !important;
 
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
 
   text-decoration: none !important;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.55);
-  position: relative;
+  position: relative !important;
 }
 
-/* underline under Explore (matches text color) */
-.homepage-collection-card .homepage-collection-overlay .btn::after,
-.homepage-collection-card .homepage-collection-overlay a.btn::after,
-.homepage-collection-card .homepage-collection-overlay .homepage-collection-btn::after,
-.homepage-collection-card .homepage-collection-overlay a::after{
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0.28rem;
-
-  width: 62%;
-  height: 2px;
-  border-radius: 2px;
-  background: currentColor;
-  opacity: 0.9;
+.homepage-collection-card .homepage-collection-overlay .homepage-collection-cta::after{
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  bottom: 0.28rem !important;
+  width: 62% !important;
+  height: 2px !important;
+  border-radius: 2px !important;
+  background: currentColor !important;
+  opacity: 0.9 !important;
 }
 
-/* ===== SPECIAL CASE: Faith Ring (white background) — NO halo, black text ===== */
-.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay h2,
-.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay h2 > span{
+/* 6) SPECIAL CASE — Faith Ring (white background): black text, NO halo */
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay h2{
+  color: #000 !important;
+  text-shadow: 0 2px 12px rgba(255,255,255,0.55) !important;
+  background: none !important;
+}
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay h2 span{
   background: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-
+}
+.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay .homepage-collection-cta{
   color: #000 !important;
-
-  text-shadow:
-    0 2px 12px rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.70) !important;
+  border: 1px solid rgba(0,0,0,0.25) !important;
 }
 
-.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay .btn,
-.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay a.btn,
-.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay .homepage-collection-btn,
-.homepage-collection-card[href="/rings/faith/"] .homepage-collection-overlay a{
+/* 7) SPECIAL CASE — Hearts of Service: lighter halo + black text */
+.homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2{
   color: #000 !important;
-  background: rgba(255,255,255,0.65);
-  border: 1px solid rgba(0,0,0,0.25);
-  text-shadow: none !important;
+  text-shadow: 0 2px 14px rgba(255,255,255,0.55) !important;
 }
-
-/* ===== SPECIAL CASE: Hearts of Service — stronger readability (thicker look) ===== */
-.homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2,
-.homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2 > span{
-  background: rgba(0,0,0,0.35);
-  text-shadow:
-    0 2px 22px rgba(0,0,0,0.75),
-    0 1px 0 rgba(0,0,0,0.55);
+.homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2 span{
+  background: rgba(255,255,255,0.70) !important;
 }
-
-@supports (-webkit-text-stroke: 0.45px rgba(0,0,0,0.55)){
-  .homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay h2{
-    -webkit-text-stroke: 0.45px rgba(0,0,0,0.55);
-  }
-}
-
-/* Mobile tuning */
-@media (max-width: 768px){
-  .homepage-collection-card .homepage-collection-overlay{
-    padding: 0.75rem 0.9rem;
-  }
-
-  .homepage-collection-card .homepage-collection-overlay h2{
-    font-size: 2.05rem;
-    line-height: 1.02;
-  }
+.homepage-collection-card[href="/charms/hearts-of-service/"] .homepage-collection-overlay .homepage-collection-cta{
+  color: #000 !important;
+  background: rgba(255,255,255,0.70) !important;
+  border: 1px solid rgba(0,0,0,0.25) !important;
 }
