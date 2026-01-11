@@ -1261,7 +1261,7 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON
+   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (FINAL)
 ========================================================== */
 
 .product-add-to-cart-wrap{
@@ -1275,11 +1275,19 @@ footer.site-footer {
 }
 
 .product-add-to-cart-btn{
-  width: 235px;      /* ✅ premium iPhone size */
-  max-width: 72vw;   /* ✅ no overflow */
+  width: 235px;      /* ✅ mobile / iPhone size */
+  max-width: 72vw;   /* ✅ never overflow small screens */
   height: auto;
   display: block;
   transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+/* ✅ Desktop cap (prevents blown-out huge button) */
+@media (min-width: 900px){
+  .product-add-to-cart-btn{
+    width: 320px;     /* ✅ premium desktop size */
+    max-width: 320px; /* ✅ hard stop */
+  }
 }
 
 .product-add-to-cart-link:hover .product-add-to-cart-btn{
