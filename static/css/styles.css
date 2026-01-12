@@ -1328,3 +1328,30 @@ footer.site-footer {
   .add-to-cart-desktop { display: block !important; }
   .add-to-cart-mobile  { display: none !important; }
 }
+
+/* ==========================================================
+   ✅ FINAL FIX — ONLY SHOW ONE ADD-TO-CART IMAGE PER SCREEN
+   - Uses your files:
+     add-to-cart-small.png  (small)
+     add-to-cart.png        (big)
+========================================================== */
+
+/* Default: MOBILE shows small image only */
+.product-add-to-cart-wrap img.add-to-cart-mobile{
+  display: block !important;
+}
+
+.product-add-to-cart-wrap img.add-to-cart-desktop{
+  display: none !important;
+}
+
+/* Desktop: hide small, show big */
+@media (min-width: 900px){
+  .product-add-to-cart-wrap img.add-to-cart-mobile{
+    display: none !important;
+  }
+
+  .product-add-to-cart-wrap img.add-to-cart-desktop{
+    display: block !important;
+  }
+}
