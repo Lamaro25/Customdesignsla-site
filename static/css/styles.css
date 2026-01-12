@@ -1283,12 +1283,16 @@ footer.site-footer {
   max-width: 165px !important;
 }
 
-/* Force BOTH images to obey cage size */
-.product-page .product-add-to-cart-link > img{
+/* ✅ HARD OVERRIDE: ONLY target add-to-cart imgs */
+.product-page .product-add-to-cart-link > img.product-add-to-cart-btn{
   display: block !important;
   width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
+
+  /* ✅ kills global stretching rules */
+  min-width: 0 !important;
+  flex: 0 0 auto !important;
 }
 
 /* ✅ Default: show SMALL only */
