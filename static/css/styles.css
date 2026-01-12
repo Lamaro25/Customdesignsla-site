@@ -1316,3 +1316,25 @@ footer.site-footer {
     width: 240px; /* ✅ locks it clean on big screens */
   }
 }
+
+/* ==========================================================
+   ✅ FIX — ADD TO CART BUTTON (MOBILE FIRST)
+   Goal:
+   - Smaller button on mobile
+   - More space above + below
+========================================================== */
+
+@media (max-width: 768px){
+  .product-add-to-cart-wrap{
+    justify-content: center;
+    margin-top: 2.75rem;     /* ✅ more gap from Notes */
+    margin-bottom: 4.25rem;  /* ✅ more gap from footer */
+  }
+
+  .product-add-to-cart-btn{
+    width: 190px !important; /* ✅ FORCE smaller mobile size */
+    max-width: 70vw;
+    height: auto;
+  }
+}
+
