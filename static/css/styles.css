@@ -1261,102 +1261,113 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   ✅ FINAL FIX — PRODUCT PAGE ADD TO CART IMAGE BUTTON
-   - Mobile centered + small
-   - Tablet perfect
-   - Desktop left aligned + SAME size as mobile (starts earlier)
-   - Uses a hard container cage + hard override
-   - Beats global rules like: main img { width:100% }
+   ✅ FINAL LOCKED FIX — PRODUCT PAGE ADD TO CART IMAGE BUTTON
+   - Mobile: centered + small
+   - Tablet: perfect
+   - Desktop: left aligned + SAME size as mobile
+   - HARD OVERRIDE vs global img rules (width:100%, max-width:100%)
 ========================================================== */
 
-/* ✅ WRAP */
-.product-add-to-cart-wrap{
+/* WRAP */
+.product-page .product-add-to-cart-wrap{
   width: 100%;
   margin: 2.4rem auto 3.0rem auto;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* ✅ mobile/tablet center */
   align-items: center;
 }
 
-/* ✅ LINK = HARD CONTAINER ("CAGE") */
-.product-add-to-cart-link{
+/* LINK = HARD SIZE CONTAINER ("CAGE") */
+.product-page .product-add-to-cart-link{
   display: inline-block !important;
-  width: 165px !important;      /* ✅ locks button size */
+  width: 165px !important;
   max-width: 165px !important;
+  min-width: 165px !important;
+
+  /* ✅ prevents flex / responsive stretching */
+  flex: 0 0 165px !important;
 }
 
-/* ✅ IMAGE (fills the cage) */
-.product-add-to-cart-btn{
+/* IMAGE = ALWAYS FILL CAGE, NEVER FILL PAGE */
+.product-page .product-add-to-cart-btn{
   display: block !important;
-  width: 100% !important;       /* ✅ fill the cage */
-  max-width: 100% !important;
+
+  /* ✅ THIS is what defeats global rules */
+  width: 165px !important;
+  max-width: 165px !important;
+  min-width: 165px !important;
+
   height: auto !important;
   margin: 0 auto !important;
-  transition: transform 0.15s ease, filter 0.15s ease;
+
+  /* ✅ prevents browser from treating it like a full-width responsive image */
+  object-fit: contain;
 }
 
 /* Hover / Press */
-.product-add-to-cart-link:hover .product-add-to-cart-btn{
+.product-page .product-add-to-cart-link:hover .product-add-to-cart-btn{
   transform: translateY(-1px);
   filter: brightness(1.05);
 }
-.product-add-to-cart-link:active .product-add-to-cart-btn{
+.product-page .product-add-to-cart-link:active .product-add-to-cart-btn{
   transform: translateY(1px);
 }
 
 /* ✅ Extra small iPhones */
 @media (max-width: 420px){
-  .product-add-to-cart-wrap{
+  .product-page .product-add-to-cart-wrap{
     margin: 2.2rem auto 2.8rem auto;
   }
-  .product-add-to-cart-link{
+
+  .product-page .product-add-to-cart-link{
     width: 145px !important;
     max-width: 145px !important;
+    min-width: 145px !important;
+    flex: 0 0 145px !important;
+  }
+
+  .product-page .product-add-to-cart-btn{
+    width: 145px !important;
+    max-width: 145px !important;
+    min-width: 145px !important;
   }
 }
 
-/* ✅ Tablets */
+/* ✅ Tablet */
 @media (min-width: 768px){
-  .product-add-to-cart-wrap{
-    margin: 2.8rem auto 3.4rem auto;
-  }
-  .product-add-to-cart-link{
+  .product-page .product-add-to-cart-link{
     width: 175px !important;
     max-width: 175px !important;
+    min-width: 175px !important;
+    flex: 0 0 175px !important;
+  }
+
+  .product-page .product-add-to-cart-btn{
+    width: 175px !important;
+    max-width: 175px !important;
+    min-width: 175px !important;
   }
 }
 
-/* ✅ DESKTOP FIX (STARTS EARLIER THAN 1024) */
-@media (min-width: 900px){
-
-  /* left aligned desktop */
+/* ✅ Desktop: left aligned BUT STILL SMALL */
+@media (min-width: 1024px){
   .product-page .product-add-to-cart-wrap{
     justify-content: flex-start !important;
     margin: 2.5rem 0 3.25rem 0 !important;
   }
 
-  /* cage locks size */
+  /* lock desktop to mobile size for now */
   .product-page .product-add-to-cart-link{
-    display: inline-block !important;
-    width: 165px !important;
-    max-width: 165px !important;
-  }
-
-  /* ✅ HARD OVERRIDE that beats global img stretch rules */
-  .product-page .product-add-to-cart-wrap a.product-add-to-cart-link > img.product-add-to-cart-btn{
     width: 165px !important;
     max-width: 165px !important;
     min-width: 165px !important;
-    height: auto !important;
-    display: block !important;
-    margin: 0 !important;
+    flex: 0 0 165px !important;
   }
-}
 
-/* ✅ Large desktop screens lock */
-@media (min-width: 1400px){
-  .product-page .product-add-to-cart-link{
+  .product-page .product-add-to-cart-btn{
     width: 165px !important;
     max-width: 165px !important;
+    min-width: 165px !important;
+    margin: 0 !important;
   }
 }
