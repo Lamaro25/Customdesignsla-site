@@ -1347,3 +1347,32 @@ footer.site-footer {
     max-width: 165px !important;   /* ✅ locked size */
   }
 }
+
+/* ==========================================================
+   ✅ HARD OVERRIDE — ADD TO CART BUTTON SIZE FIX (DESKTOP)
+   Fixes global "img { width:100% }" rules blowing up the button
+========================================================== */
+
+@media (min-width: 1024px){
+
+  /* left align button area */
+  .product-page .product-add-to-cart-wrap{
+    justify-content: flex-start !important;
+    margin: 2.5rem 0 3.25rem 0 !important;
+  }
+
+  .product-page .product-add-to-cart-link{
+    width: auto !important;
+  }
+
+  /* ✅ THIS IS THE REAL FIX:
+     force a real desktop pixel width */
+  .product-page .product-add-to-cart-wrap img.product-add-to-cart-btn{
+    width: 170px !important;        /* <<< SMALL DESKTOP SIZE */
+    max-width: 170px !important;
+    min-width: 170px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+}
