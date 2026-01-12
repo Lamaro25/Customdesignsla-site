@@ -1261,36 +1261,37 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   ✅ FINAL FIX — PRODUCT PAGE ADD TO CART BUTTON (SMALLER)
+   ✅ FINAL FINAL FIX — PRODUCT PAGE ADD TO CART IMAGE BUTTON
    - Mobile centered + small
    - Tablet perfect
-   - Desktop left aligned + SAME size as mobile (for now)
-   - Overrides global "main img { max-width:100% }" rule
+   - Desktop left aligned + NOT blown up
+   - Uses a hard container to prevent global img rules stretching it
 ========================================================== */
 
+/* ✅ WRAP */
 .product-add-to-cart-wrap{
   width: 100%;
-  margin: 2.4rem auto 3.0rem auto; /* ✅ slightly tighter */
+  margin: 2.4rem auto 3.0rem auto;
   display: flex;
-  justify-content: center;          /* ✅ mobile/tablet center */
+  justify-content: center;          /* mobile/tablet center */
   align-items: center;
 }
 
+/* ✅ LINK = HARD CONTAINER ("CAGE") */
 .product-add-to-cart-link{
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  display: inline-block !important;
+  width: 165px !important;          /* ✅ locks button size */
+  max-width: 165px !important;
 }
 
+/* ✅ IMAGE */
 .product-add-to-cart-btn{
-  /* ✅ IMPORTANT: override global image styles */
-  width: auto !important;
-  max-width: 165px !important;   /* ✅ slightly smaller mobile default */
-  height: auto !important;
   display: block !important;
+  width: 100% !important;           /* ✅ fill the cage */
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 auto !important;
   flex: 0 0 auto;
-  margin: 0 auto;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
 
@@ -1308,7 +1309,8 @@ footer.site-footer {
   .product-add-to-cart-wrap{
     margin: 2.2rem auto 2.8rem auto;
   }
-  .product-add-to-cart-btn{
+  .product-add-to-cart-link{
+    width: 145px !important;
     max-width: 145px !important;
   }
 }
@@ -1318,61 +1320,30 @@ footer.site-footer {
   .product-add-to-cart-wrap{
     margin: 2.8rem auto 3.4rem auto;
   }
-  .product-add-to-cart-btn{
-    max-width: 175px !important;  /* ✅ tablet close to mobile */
+  .product-add-to-cart-link{
+    width: 175px !important;
+    max-width: 175px !important;
   }
 }
 
-/* ✅ Desktop FIX — match mobile sizing */
+/* ✅ Desktop FIX — left aligned but stays SMALL */
 @media (min-width: 1024px){
   .product-add-to-cart-wrap{
-    justify-content: flex-start;    /* ✅ left aligned desktop */
-    margin: 2.8rem 0 3.5rem 0;      /* ✅ balanced spacing */
-  }
-
-  .product-add-to-cart-link{
-    width: auto;
-  }
-
-  .product-add-to-cart-btn{
-    width: auto !important;
-    max-width: 165px !important;   /* ✅ EXACTLY like mobile default */
-    margin: 0 !important;          /* ✅ left aligned */
-  }
-}
-
-/* ✅ Large desktop screens */
-@media (min-width: 1400px){
-  .product-add-to-cart-btn{
-    max-width: 165px !important;   /* ✅ locked size */
-  }
-}
-
-/* ==========================================================
-   ✅ HARD OVERRIDE — ADD TO CART BUTTON SIZE FIX (DESKTOP)
-   Fixes global "img { width:100% }" rules blowing up the button
-========================================================== */
-
-@media (min-width: 1024px){
-
-  /* left align button area */
-  .product-page .product-add-to-cart-wrap{
     justify-content: flex-start !important;
     margin: 2.5rem 0 3.25rem 0 !important;
   }
 
-  .product-page .product-add-to-cart-link{
-    width: auto !important;
+  /* ✅ desktop uses SAME size as mobile for now */
+  .product-add-to-cart-link{
+    width: 165px !important;
+    max-width: 165px !important;
   }
+}
 
-  /* ✅ THIS IS THE REAL FIX:
-     force a real desktop pixel width */
-  .product-page .product-add-to-cart-wrap img.product-add-to-cart-btn{
-    width: 170px !important;        /* <<< SMALL DESKTOP SIZE */
-    max-width: 170px !important;
-    min-width: 170px !important;
-    height: auto !important;
-    display: block !important;
-    margin: 0 !important;
+/* ✅ Large desktop screens (optional lock) */
+@media (min-width: 1400px){
+  .product-add-to-cart-link{
+    width: 165px !important;
+    max-width: 165px !important;
   }
 }
