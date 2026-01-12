@@ -1261,12 +1261,13 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   ✅ ADD TO CART — IMAGE SWITCH FIX
-   Mobile uses small image
-   Desktop uses regular image
+   ✅ FINAL FINAL — ADD TO CART (ONE RULESET ONLY)
+   - Mobile shows SMALL image
+   - Desktop shows BIG image
+   - Prevents double-rendering forever
 ========================================================== */
 
-/* wrap */
+/* Layout */
 .product-page .product-add-to-cart-wrap{
   width: 100%;
   margin: 2.4rem auto 3.0rem auto;
@@ -1275,83 +1276,48 @@ footer.site-footer {
   align-items: center;
 }
 
-/* cage */
+/* Cage (controls size) */
 .product-page .product-add-to-cart-link{
   display: inline-block !important;
   width: 165px !important;
   max-width: 165px !important;
 }
 
-/* image sizing */
-.product-page .product-add-to-cart-btn{
+/* Force BOTH images to obey cage size */
+.product-page .product-add-to-cart-link > img{
   display: block !important;
   width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
 }
 
-/* ✅ DEFAULT = MOBILE IMAGE ON */
-.product-page .add-to-cart-mobile{ display: block !important; }
-.product-page .add-to-cart-desktop{ display: none !important; }
+/* ✅ Default: show SMALL only */
+.product-page .product-add-to-cart-link > img.add-to-cart-mobile{
+  display: block !important;
+}
+.product-page .product-add-to-cart-link > img.add-to-cart-desktop{
+  display: none !important;
+}
 
-/* ✅ DESKTOP SWITCH */
+/* ✅ Desktop: show BIG only */
 @media (min-width: 900px){
-
   .product-page .product-add-to-cart-wrap{
     justify-content: flex-start !important;
     margin: 2.6rem 0 3.4rem 0;
   }
 
-  /* ✅ show desktop image */
-  .product-page .add-to-cart-mobile{ display: none !important; }
-  .product-page .add-to-cart-desktop{ display: block !important; }
+  .product-page .product-add-to-cart-link > img.add-to-cart-mobile{
+    display: none !important;
+  }
+  .product-page .product-add-to-cart-link > img.add-to-cart-desktop{
+    display: block !important;
+  }
 }
 
-/* ✅ extra small phones */
+/* ✅ Extra small phones */
 @media (max-width: 420px){
   .product-page .product-add-to-cart-link{
     width: 145px !important;
     max-width: 145px !important;
-  }
-}
-
-/* ==========================================================
-   ✅ ADD TO CART — MOBILE IMAGE vs DESKTOP IMAGE SWITCH
-========================================================== */
-
-/* Default = mobile */
-.add-to-cart-desktop { display: none !important; }
-.add-to-cart-mobile  { display: block !important; }
-
-/* Desktop */
-@media (min-width: 900px){
-  .add-to-cart-desktop { display: block !important; }
-  .add-to-cart-mobile  { display: none !important; }
-}
-
-/* ==========================================================
-   ✅ FINAL FIX — ONLY SHOW ONE ADD-TO-CART IMAGE PER SCREEN
-   - Uses your files:
-     add-to-cart-small.png  (small)
-     add-to-cart.png        (big)
-========================================================== */
-
-/* Default: MOBILE shows small image only */
-.product-add-to-cart-wrap img.add-to-cart-mobile{
-  display: block !important;
-}
-
-.product-add-to-cart-wrap img.add-to-cart-desktop{
-  display: none !important;
-}
-
-/* Desktop: hide small, show big */
-@media (min-width: 900px){
-  .product-add-to-cart-wrap img.add-to-cart-mobile{
-    display: none !important;
-  }
-
-  .product-add-to-cart-wrap img.add-to-cart-desktop{
-    display: block !important;
   }
 }
