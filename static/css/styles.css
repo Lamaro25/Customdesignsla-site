@@ -1327,3 +1327,27 @@ footer.site-footer {
     margin: 2.6rem 0 3.4rem 0;
   }
 }
+
+/* ==========================================================
+   ✅ NUCLEAR DESKTOP OVERRIDE — ADD TO CART BUTTON
+   Put this at the VERY BOTTOM of styles.css (last rule wins)
+   Forces a fixed pixel size no matter what global img rules exist
+========================================================== */
+
+@media (min-width: 768px){
+
+  /* cage */
+  body main section.product-page div.product-add-to-cart-wrap a.product-add-to-cart-link{
+    display: inline-block !important;
+    width: 165px !important;
+    max-width: 165px !important;
+  }
+
+  /* image inside cage */
+  body main section.product-page div.product-add-to-cart-wrap a.product-add-to-cart-link > img.product-add-to-cart-btn{
+    width: 165px !important;
+    max-width: 165px !important;
+    height: auto !important;
+    display: block !important;
+  }
+}
