@@ -1260,18 +1260,17 @@ footer.site-footer {
   justify-content: center;
 }
 
-
 /* ==========================================================
-   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (FINAL)
-   - Desktop + Mobile sizing
-   - Clean spacing from Notes + Footer
-   - Centered on mobile
+   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (FINAL RESPONSIVE)
+   - Desktop: left aligned + smaller
+   - Mobile: centered + smaller
+   - Prevents blow-up / oversized look
 ========================================================== */
 
 .product-add-to-cart-wrap{
-  margin: 2.25rem 0 3rem 0;      /* ✅ more space above + below */
+  margin: 2.25rem 0 3rem 0; /* ✅ more breathing room from Notes + footer */
   display: flex;
-  justify-content: flex-start;   /* ✅ desktop: align left */
+  justify-content: flex-start; /* ✅ desktop default = left aligned */
 }
 
 .product-add-to-cart-link{
@@ -1280,41 +1279,40 @@ footer.site-footer {
 }
 
 .product-add-to-cart-btn{
-  width: 320px;                  /* ✅ DESKTOP size (not huge) */
-  max-width: 100%;
+  /* ✅ The REAL fix: responsive sizing */
+  width: clamp(190px, 22vw, 260px);
   height: auto;
   display: block;
-  transition: transform 0.15s ease, filter 0.15s ease;
+
+  /* ✅ prevents any weird scaling */
+  max-width: 100%;
 }
 
-/* Hover / Press effects */
 .product-add-to-cart-link:hover .product-add-to-cart-btn{
   transform: translateY(-1px);
   filter: brightness(1.05);
+  transition: transform 0.15s ease, filter 0.15s ease;
 }
 
 .product-add-to-cart-link:active .product-add-to-cart-btn{
   transform: translateY(1px);
 }
 
-/* ✅ TABLET + MOBILE FIX */
+/* ✅ MOBILE / TABLET: center + smaller */
 @media (max-width: 768px){
   .product-add-to-cart-wrap{
-    margin: 1.75rem 0 2.5rem 0;  /* ✅ fixes "too close to notes" */
-    justify-content: center;     /* ✅ centered on mobile */
+    justify-content: center;
+    margin: 2rem 0 2.75rem 0;
   }
 
   .product-add-to-cart-btn{
-    width: min(220px, 66vw) !important;  /* ✅ smaller premium size */
-    max-width: 220px !important;
+    width: clamp(160px, 62vw, 240px); /* ✅ smaller on phones */
   }
 }
 
-/* ✅ EXTRA SMALL PHONES (iPhone SE etc.) */
-@media (max-width: 380px){
+/* ✅ LARGE DESKTOP: extra control so it NEVER looks huge */
+@media (min-width: 1200px){
   .product-add-to-cart-btn{
-    width: min(200px, 70vw) !important;
-    max-width: 200px !important;
+    width: 240px; /* ✅ locks it clean on big screens */
   }
 }
-
