@@ -1261,17 +1261,18 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (SMALL + EVEN SPACING)
-   - Mobile: perfectly centered, much smaller
-   - Even spacing from Notes → Button → Footer
-   - Desktop still clean + controlled
+   ✅ FINAL FIX — PRODUCT PAGE ADD TO CART BUTTON
+   - Mobile centered + small
+   - Tablet perfect
+   - Desktop left aligned + MUCH smaller
+   - Overrides global "main img { max-width:100% }" rule
 ========================================================== */
 
 .product-add-to-cart-wrap{
   width: 100%;
-  margin: 2.8rem auto 3.4rem auto;  /* ✅ even breathing room above + below */
+  margin: 2.8rem auto 3.6rem auto; /* ✅ space above + below */
   display: flex;
-  justify-content: center;          /* ✅ hard center */
+  justify-content: center;          /* ✅ mobile/tablet center */
   align-items: center;
 }
 
@@ -1283,11 +1284,13 @@ footer.site-footer {
 }
 
 .product-add-to-cart-btn{
-  width: 175px;          /* ✅ MUCH smaller default */
-  max-width: 55vw;       /* ✅ prevents oversized rendering */
-  height: auto;
-  display: block;
-  margin: 0 auto;        /* ✅ extra insurance centering */
+  /* ✅ IMPORTANT: override global image styles */
+  width: auto !important;
+  max-width: 175px !important;   /* ✅ mobile default size */
+  height: auto !important;
+  display: block !important;
+  flex: 0 0 auto;
+  margin: 0 auto;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
 
@@ -1296,7 +1299,6 @@ footer.site-footer {
   transform: translateY(-1px);
   filter: brightness(1.05);
 }
-
 .product-add-to-cart-link:active .product-add-to-cart-btn{
   transform: translateY(1px);
 }
@@ -1304,59 +1306,43 @@ footer.site-footer {
 /* ✅ Extra small iPhones */
 @media (max-width: 420px){
   .product-add-to-cart-wrap{
-    margin: 2.6rem auto 3.2rem auto; /* ✅ still balanced */
+    margin: 2.6rem auto 3.4rem auto;
   }
-
   .product-add-to-cart-btn{
-    width: 160px;         /* ✅ tiny + clean */
-    max-width: 58vw;
+    max-width: 155px !important;
   }
 }
 
 /* ✅ Tablets */
 @media (min-width: 768px){
   .product-add-to-cart-wrap{
-    margin: 3.1rem auto 3.8rem auto;
+    margin: 3.2rem auto 4.0rem auto;
   }
-
   .product-add-to-cart-btn{
-    width: 185px;
-    max-width: 320px;
+    max-width: 185px !important;
   }
 }
 
-/* ✅ Desktop (still centered for clean look) */
+/* ✅ Desktop FIX (THIS IS THE MONEY PART) */
 @media (min-width: 1024px){
   .product-add-to-cart-wrap{
-    margin: 3.2rem auto 4.2rem auto;  /* ✅ nicer separation */
+    justify-content: flex-start;    /* ✅ left aligned desktop */
+    margin: 3.2rem 0 4.25rem 0;     /* ✅ spacing from Notes → Footer */
+  }
+
+  .product-add-to-cart-link{
+    width: auto;
   }
 
   .product-add-to-cart-btn{
-    width: 240px;     /* ✅ controlled desktop size */
-    max-width: 280px;
+    width: auto !important;
+    max-width: 260px !important;   /* ✅ desktop = MUCH smaller */
   }
 }
 
-/* ==========================================================
-   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (DESKTOP FIX)
-   - Mobile + Tablet stays EXACTLY the same
-   - Desktop becomes proportional + NOT blown up
-========================================================== */
-
-@media (min-width: 1024px) {
-
-  /* keep it left aligned on desktop */
-  .product-add-to-cart-wrap{
-    justify-content: flex-start;
-    margin-top: 2.25rem;     /* extra space above button */
-    margin-bottom: 3.25rem;  /* extra space before footer */
-  }
-
-  /* ✅ force the image button smaller on desktop */
+/* ✅ Large desktop screens */
+@media (min-width: 1400px){
   .product-add-to-cart-btn{
-    width: 260px !important;     /* <<< desktop size (smaller + proportional) */
-    max-width: 260px !important; /* prevents it from stretching huge */
-    height: auto !important;
+    max-width: 240px !important;   /* ✅ even smaller on big monitors */
   }
 }
-
