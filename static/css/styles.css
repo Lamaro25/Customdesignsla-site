@@ -1314,3 +1314,17 @@ footer.site-footer {
     max-width: 145px !important;
   }
 }
+
+/* ==========================================================
+   ✅ ADD TO CART — MOBILE IMAGE vs DESKTOP IMAGE SWITCH
+========================================================== */
+
+/* Default = mobile */
+.add-to-cart-desktop { display: none !important; }
+.add-to-cart-mobile  { display: block !important; }
+
+/* Desktop */
+@media (min-width: 900px){
+  .add-to-cart-desktop { display: block !important; }
+  .add-to-cart-mobile  { display: none !important; }
+}
