@@ -65,3 +65,5 @@ Its domed 7 mm profile and deep-set Cuban braid deliver a clean, bold, and timel
 - Comfort-fit interior  
 - Large link Cuban braid pattern  
 - Signature CDLA craftsmanship
+
+- “Customization Available” (Inner band engraving / scripture / name's/ etc.)
