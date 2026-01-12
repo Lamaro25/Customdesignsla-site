@@ -1260,40 +1260,43 @@ footer.site-footer {
   justify-content: center;
 }
 
+
 /* ==========================================================
-   ✅ FINAL PERMA FIX — ADD TO CART IMAGE BUTTON (ALL DEVICES)
-   - Locks the size (prevents global img width:100% stretching)
-   - Mobile centered (perfect)
-   - Desktop left aligned (small + clean)
-   - HARD overrides any "main img { width:100% }" type rule
+   ✅ FINAL — ADD TO CART IMAGE BUTTON (LOCKED SIZE ALL DEVICES)
+   - Mobile: centered + small
+   - Tablet: centered + small
+   - Desktop: left aligned + SAME size as mobile
+   - HARD cage prevents global img rules from stretching it
 ========================================================== */
 
 .product-page .product-add-to-cart-wrap{
   width: 100%;
-  margin: 2.4rem auto 3.0rem auto;
+  margin: 2.4rem auto 3.2rem auto;
   display: flex;
-  justify-content: center;   /* ✅ mobile/tablet center */
+  justify-content: center;
   align-items: center;
 }
 
-/* ✅ “CAGE” — this is what prevents stretching */
-.product-page .product-add-to-cart-link{
+/* ✅ THE CAGE (THIS is what fixes desktop) */
+.product-page .product-add-to-cart-wrap .product-add-to-cart-link{
   display: inline-block !important;
-  width: 165px !important;
+  width: 165px !important;       /* ✅ LOCK SIZE */
   max-width: 165px !important;
-  min-width: 165px !important;
+  flex: 0 0 auto !important;
 }
 
-/* ✅ image forced to fit the cage (cannot stretch bigger) */
-.product-page .product-add-to-cart-link img.product-add-to-cart-btn{
+/* ✅ IMAGE MUST FILL THE CAGE ONLY */
+.product-page .product-add-to-cart-wrap img.product-add-to-cart-btn{
   display: block !important;
-  width: 100% !important;
+  width: 100% !important;        /* ✅ fill cage */
   max-width: 100% !important;
   height: auto !important;
 
-  /* ✅ nuclear overrides against global img styling */
-  object-fit: contain !important;
-  margin: 0 auto !important;
+  /* ✅ DESTROYS GLOBAL STRETCH RULES */
+  min-width: 0 !important;
+  flex: 0 0 auto !important;
+
+  transition: transform 0.15s ease, filter 0.15s ease;
 }
 
 /* Hover / Press */
@@ -1305,52 +1308,22 @@ footer.site-footer {
   transform: translateY(1px);
 }
 
-/* ✅ Extra small iPhones */
+/* ✅ extra small phones */
 @media (max-width: 420px){
   .product-page .product-add-to-cart-wrap{
     margin: 2.2rem auto 2.8rem auto;
   }
 
-  .product-page .product-add-to-cart-link{
+  .product-page .product-add-to-cart-wrap .product-add-to-cart-link{
     width: 145px !important;
     max-width: 145px !important;
-    min-width: 145px !important;
   }
 }
 
-/* ✅ Tablet */
-@media (min-width: 768px){
-  .product-page .product-add-to-cart-link{
-    width: 175px !important;
-    max-width: 175px !important;
-    min-width: 175px !important;
-  }
-}
-
-/* ✅ Desktop FIX (starts earlier than 1024 like you wanted) */
+/* ✅ desktop alignment only (SIZE stays locked) */
 @media (min-width: 900px){
   .product-page .product-add-to-cart-wrap{
-    justify-content: flex-start !important;  /* ✅ desktop = left aligned */
-    margin: 2.5rem 0 3.25rem 0 !important;
+    justify-content: flex-start !important;
+    margin: 2.6rem 0 3.4rem 0;
   }
-
-  /* ✅ Desktop uses MOBILE size for now */
-  .product-page .product-add-to-cart-link{
-    width: 165px !important;
-    max-width: 165px !important;
-    min-width: 165px !important;
-  }
-}   
-
-html::before{
-  content:"CSS UPDATED";
-  position:fixed;
-  bottom:10px;
-  right:10px;
-  padding:4px 8px;
-  background:#000;
-  color:#fff;
-  z-index:999999;
-  font-size:12px;
 }
-
