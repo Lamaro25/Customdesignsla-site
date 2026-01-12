@@ -1261,16 +1261,16 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   ✅ FINAL FIX — PRODUCT PAGE ADD TO CART BUTTON
+   ✅ FINAL FIX — PRODUCT PAGE ADD TO CART BUTTON (SMALLER)
    - Mobile centered + small
    - Tablet perfect
-   - Desktop left aligned + MUCH smaller
+   - Desktop left aligned + SAME size as mobile (for now)
    - Overrides global "main img { max-width:100% }" rule
 ========================================================== */
 
 .product-add-to-cart-wrap{
   width: 100%;
-  margin: 2.8rem auto 3.6rem auto; /* ✅ space above + below */
+  margin: 2.4rem auto 3.0rem auto; /* ✅ slightly tighter */
   display: flex;
   justify-content: center;          /* ✅ mobile/tablet center */
   align-items: center;
@@ -1286,7 +1286,7 @@ footer.site-footer {
 .product-add-to-cart-btn{
   /* ✅ IMPORTANT: override global image styles */
   width: auto !important;
-  max-width: 175px !important;   /* ✅ mobile default size */
+  max-width: 165px !important;   /* ✅ slightly smaller mobile default */
   height: auto !important;
   display: block !important;
   flex: 0 0 auto;
@@ -1306,28 +1306,28 @@ footer.site-footer {
 /* ✅ Extra small iPhones */
 @media (max-width: 420px){
   .product-add-to-cart-wrap{
-    margin: 2.6rem auto 3.4rem auto;
+    margin: 2.2rem auto 2.8rem auto;
   }
   .product-add-to-cart-btn{
-    max-width: 155px !important;
+    max-width: 145px !important;
   }
 }
 
 /* ✅ Tablets */
 @media (min-width: 768px){
   .product-add-to-cart-wrap{
-    margin: 3.2rem auto 4.0rem auto;
+    margin: 2.8rem auto 3.4rem auto;
   }
   .product-add-to-cart-btn{
-    max-width: 185px !important;
+    max-width: 175px !important;  /* ✅ tablet close to mobile */
   }
 }
 
-/* ✅ Desktop FIX (THIS IS THE MONEY PART) */
+/* ✅ Desktop FIX — match mobile sizing */
 @media (min-width: 1024px){
   .product-add-to-cart-wrap{
     justify-content: flex-start;    /* ✅ left aligned desktop */
-    margin: 3.2rem 0 4.25rem 0;     /* ✅ spacing from Notes → Footer */
+    margin: 2.8rem 0 3.5rem 0;      /* ✅ balanced spacing */
   }
 
   .product-add-to-cart-link{
@@ -1336,13 +1336,14 @@ footer.site-footer {
 
   .product-add-to-cart-btn{
     width: auto !important;
-    max-width: 260px !important;   /* ✅ desktop = MUCH smaller */
+    max-width: 165px !important;   /* ✅ EXACTLY like mobile default */
+    margin: 0 !important;          /* ✅ left aligned */
   }
 }
 
 /* ✅ Large desktop screens */
 @media (min-width: 1400px){
   .product-add-to-cart-btn{
-    max-width: 240px !important;   /* ✅ even smaller on big monitors */
+    max-width: 165px !important;   /* ✅ locked size */
   }
 }
