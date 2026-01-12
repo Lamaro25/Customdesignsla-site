@@ -1260,94 +1260,57 @@ footer.site-footer {
   justify-content: center;
 }
 
-
 /* ==========================================================
-   ✅ FINAL — ADD TO CART IMAGE BUTTON (LOCKED SIZE ALL DEVICES)
-   - Mobile: centered + small
-   - Tablet: centered + small
-   - Desktop: left aligned + SAME size as mobile
-   - HARD cage prevents global img rules from stretching it
+   ✅ ADD TO CART — IMAGE SWITCH FIX
+   Mobile uses small image
+   Desktop uses regular image
 ========================================================== */
 
+/* wrap */
 .product-page .product-add-to-cart-wrap{
   width: 100%;
-  margin: 2.4rem auto 3.2rem auto;
+  margin: 2.4rem auto 3.0rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* ✅ THE CAGE (THIS is what fixes desktop) */
-.product-page .product-add-to-cart-wrap .product-add-to-cart-link{
+/* cage */
+.product-page .product-add-to-cart-link{
   display: inline-block !important;
-  width: 165px !important;       /* ✅ LOCK SIZE */
+  width: 165px !important;
   max-width: 165px !important;
-  flex: 0 0 auto !important;
 }
 
-/* ✅ IMAGE MUST FILL THE CAGE ONLY */
-.product-page .product-add-to-cart-wrap img.product-add-to-cart-btn{
+/* image sizing */
+.product-page .product-add-to-cart-btn{
   display: block !important;
-  width: 100% !important;        /* ✅ fill cage */
+  width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
-
-  /* ✅ DESTROYS GLOBAL STRETCH RULES */
-  min-width: 0 !important;
-  flex: 0 0 auto !important;
-
-  transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-/* Hover / Press */
-.product-page .product-add-to-cart-link:hover img.product-add-to-cart-btn{
-  transform: translateY(-1px);
-  filter: brightness(1.05);
-}
-.product-page .product-add-to-cart-link:active img.product-add-to-cart-btn{
-  transform: translateY(1px);
-}
+/* ✅ DEFAULT = MOBILE IMAGE ON */
+.product-page .add-to-cart-mobile{ display: block !important; }
+.product-page .add-to-cart-desktop{ display: none !important; }
 
-/* ✅ extra small phones */
-@media (max-width: 420px){
-  .product-page .product-add-to-cart-wrap{
-    margin: 2.2rem auto 2.8rem auto;
-  }
-
-  .product-page .product-add-to-cart-wrap .product-add-to-cart-link{
-    width: 145px !important;
-    max-width: 145px !important;
-  }
-}
-
-/* ✅ desktop alignment only (SIZE stays locked) */
+/* ✅ DESKTOP SWITCH */
 @media (min-width: 900px){
+
   .product-page .product-add-to-cart-wrap{
     justify-content: flex-start !important;
     margin: 2.6rem 0 3.4rem 0;
   }
+
+  /* ✅ show desktop image */
+  .product-page .add-to-cart-mobile{ display: none !important; }
+  .product-page .add-to-cart-desktop{ display: block !important; }
 }
 
-/* ==========================================================
-   ✅ NUCLEAR DESKTOP OVERRIDE — ADD TO CART BUTTON
-   Put this at the VERY BOTTOM of styles.css (last rule wins)
-   Forces a fixed pixel size no matter what global img rules exist
-========================================================== */
-
-@media (min-width: 768px){
-
-  /* cage */
-  body main section.product-page div.product-add-to-cart-wrap a.product-add-to-cart-link{
-    display: inline-block !important;
-    width: 165px !important;
-    max-width: 165px !important;
-  }
-
-  /* image inside cage */
-  body main section.product-page div.product-add-to-cart-wrap a.product-add-to-cart-link > img.product-add-to-cart-btn{
-    width: 165px !important;
-    max-width: 165px !important;
-    height: auto !important;
-    display: block !important;
+/* ✅ extra small phones */
+@media (max-width: 420px){
+  .product-page .product-add-to-cart-link{
+    width: 145px !important;
+    max-width: 145px !important;
   }
 }
