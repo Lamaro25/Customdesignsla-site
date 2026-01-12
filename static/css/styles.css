@@ -1336,3 +1336,27 @@ footer.site-footer {
     max-width: 280px;
   }
 }
+
+/* ==========================================================
+   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (DESKTOP FIX)
+   - Mobile + Tablet stays EXACTLY the same
+   - Desktop becomes proportional + NOT blown up
+========================================================== */
+
+@media (min-width: 1024px) {
+
+  /* keep it left aligned on desktop */
+  .product-add-to-cart-wrap{
+    justify-content: flex-start;
+    margin-top: 2.25rem;     /* extra space above button */
+    margin-bottom: 3.25rem;  /* extra space before footer */
+  }
+
+  /* ✅ force the image button smaller on desktop */
+  .product-add-to-cart-btn{
+    width: 260px !important;     /* <<< desktop size (smaller + proportional) */
+    max-width: 260px !important; /* prevents it from stretching huge */
+    height: auto !important;
+  }
+}
+
