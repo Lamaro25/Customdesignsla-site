@@ -1347,3 +1347,36 @@ footer.site-footer {
     max-width: 165px !important;
   }
 }
+
+/* ==========================================================
+   ✅ HARD DESKTOP OVERRIDE — ADD TO CART BUTTON SIZE (FINAL)
+   - Mobile & tablet stay exactly the same
+   - Desktop becomes SMALL and cannot blow up
+   - Beats global rules like: main img { width:100% }
+========================================================== */
+
+@media (min-width: 1024px){
+
+  /* keep desktop left aligned */
+  .product-page .product-add-to-cart-wrap{
+    justify-content: flex-start !important;
+    margin: 2.5rem 0 3.25rem 0 !important;
+  }
+
+  /* this prevents the <a> from stretching full width */
+  .product-page .product-add-to-cart-link{
+    display: inline-block !important;
+    width: 165px !important;       /* ✅ SAME AS MOBILE */
+    max-width: 165px !important;
+  }
+
+  /* ✅ THIS is what beats the global img stretch rule */
+  .product-page .product-add-to-cart-wrap a.product-add-to-cart-link > img.product-add-to-cart-btn{
+    width: 165px !important;       /* ✅ HARD LOCK */
+    max-width: 165px !important;
+    min-width: 165px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+}
