@@ -1261,31 +1261,37 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (FINAL SIZING)
-   - Mobile: centered + smaller
-   - Desktop: left aligned + smaller
-   - Adds proper gap above + below
+   ✅ PRODUCT PAGE — ADD TO CART IMAGE BUTTON (SMALL + EVEN SPACING)
+   - Mobile: perfectly centered, much smaller
+   - Even spacing from Notes → Button → Footer
+   - Desktop still clean + controlled
 ========================================================== */
 
 .product-add-to-cart-wrap{
-  margin: 2.2rem 0 3.2rem 0;   /* ✅ bigger gap from Notes + more breathing room before footer */
+  width: 100%;
+  margin: 2.8rem auto 3.4rem auto;  /* ✅ even breathing room above + below */
   display: flex;
-  justify-content: center;     /* ✅ mobile default = centered */
+  justify-content: center;          /* ✅ hard center */
+  align-items: center;
 }
 
 .product-add-to-cart-link{
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .product-add-to-cart-btn{
-  width: 220px;               /* ✅ DEFAULT size (mobile/tablet) */
-  max-width: 70vw;            /* ✅ never overflow */
+  width: 175px;          /* ✅ MUCH smaller default */
+  max-width: 55vw;       /* ✅ prevents oversized rendering */
   height: auto;
   display: block;
+  margin: 0 auto;        /* ✅ extra insurance centering */
   transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-/* Hover / Press effects */
+/* Hover / Press */
 .product-add-to-cart-link:hover .product-add-to-cart-btn{
   transform: translateY(-1px);
   filter: brightness(1.05);
@@ -1295,42 +1301,38 @@ footer.site-footer {
   transform: translateY(1px);
 }
 
-/* ✅ EXTRA SMALL PHONES (iPhone SE etc) */
+/* ✅ Extra small iPhones */
 @media (max-width: 420px){
   .product-add-to-cart-wrap{
-    margin: 2.4rem 0 3.6rem 0; /* ✅ more gap on small screens */
+    margin: 2.6rem auto 3.2rem auto; /* ✅ still balanced */
   }
 
   .product-add-to-cart-btn{
-    width: 200px;              /* ✅ smaller than current */
-    max-width: 68vw;
+    width: 160px;         /* ✅ tiny + clean */
+    max-width: 58vw;
   }
 }
 
-/* ✅ TABLET+ (keeps centered) */
+/* ✅ Tablets */
 @media (min-width: 768px){
+  .product-add-to-cart-wrap{
+    margin: 3.1rem auto 3.8rem auto;
+  }
+
   .product-add-to-cart-btn{
-    width: 210px;
+    width: 185px;
+    max-width: 320px;
   }
 }
 
-/* ✅ DESKTOP (left aligned + MUCH smaller) */
+/* ✅ Desktop (still centered for clean look) */
 @media (min-width: 1024px){
   .product-add-to-cart-wrap{
-    justify-content: flex-start;  /* ✅ desktop aligned left */
-    margin: 2.5rem 0 3.8rem 0;    /* ✅ big gap from Notes + footer */
+    margin: 3.2rem auto 4.2rem auto;  /* ✅ nicer separation */
   }
 
   .product-add-to-cart-btn{
-    width: 280px;                 /* ✅ smaller desktop size */
-    max-width: 360px;             /* ✅ hard cap */
-  }
-}
-
-/* ✅ LARGE DESKTOP / WIDE MONITORS (stay controlled) */
-@media (min-width: 1400px){
-  .product-add-to-cart-btn{
-    width: 300px;                 /* ✅ still not huge */
-    max-width: 380px;
+    width: 240px;     /* ✅ controlled desktop size */
+    max-width: 280px;
   }
 }
