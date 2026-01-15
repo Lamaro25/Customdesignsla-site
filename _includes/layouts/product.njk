@@ -27,18 +27,25 @@
       {{ content | safe }}
     </div>
 
-    <!-- ✅ ADD TO CART CTA BUTTON (GLOBAL) -->
-    <div class="product-add-to-cart-wrap">
-      <a href="/cart/" class="product-add-to-cart-link" aria-label="Add to cart">
-        <img
-          src="/static/img/ui/add-to-cart.png"
-          alt="Add to Cart"
-          class="product-add-to-cart-btn"
-          loading="lazy"
-        >
-      </a>
-    </div>
+   <!-- ✅ ADD TO CART CTA BUTTON (ROUTES TO BUILDER) -->
+{% set sku = page.data.sku or page.fileSlug %}
+{% set urlPath = page.url or "" %}
 
-  </div>
-</section>
-{% endblock %}
+{# Detect builder type by URL path #}
+{% set isRing = (urlPath.includes("/rings/")) %}
+{% set builderPath = isRing ? "/builder/ring/" : "/builder/charm/" %}
+
+<div class="product-add-to-cart-wrap">
+  <a
+    href="{{ builderPath }}?sku={{ sku | url_encode }}"
+    class="product-add-to-cart-link"
+    aria-label="Customize and checkout"
+  >
+    <img
+      src="/static/img/ui/add-to-cart.png"
+      alt="Customize"
+      class="product-add-to-cart-btn"
+      loading="lazy"
+    >
+  </a>
+</div>
