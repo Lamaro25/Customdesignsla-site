@@ -27,13 +27,16 @@
       {{ content | safe }}
     </div>
 
-   <!-- ✅ ADD TO CART CTA BUTTON (ROUTES TO BUILDER) -->
+  <!-- ✅ ADD TO CART CTA BUTTON (ROUTES TO BUILDER) -->
 {% set sku = page.data.sku or page.fileSlug %}
 {% set urlPath = page.url or "" %}
 
-{# Detect builder type by URL path #}
-{% set isRing = (urlPath.includes("/rings/")) %}
-{% set builderPath = isRing ? "/builder/ring/" : "/builder/charm/" %}
+{# Detect builder type by URL path (Nunjucks-safe) #}
+{% set isRing = ("/rings/" in urlPath) %}
+{% set builderPath = "/builder/charm/" %}
+{% if isRing %}
+  {% set builderPath = "/builder/ring/" %}
+{% endif %}
 
 <div class="product-add-to-cart-wrap">
   <a
