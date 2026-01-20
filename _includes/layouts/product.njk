@@ -28,29 +28,33 @@
     </div>
 
     <!-- ✅ ADD TO CART CTA BUTTON (ROUTES TO BUILDER) -->
-   {% set sku = page.data.sku or page.fileSlug %}
-   {% set urlPath = page.url or "" %}
+    {% set sku = page.data.sku or page.fileSlug %}
+    {% set urlPath = page.url or "" %}
 
-   {# Detect builder type by URL path (Nunjucks-safe) #}
-   {% set isRing = "/rings/" in urlPath %}
+    {# Detect builder type by URL path (Nunjucks-safe) #}
+    {% set isRing = "/rings/" in urlPath %}
 
-   {% if isRing %}
-     {% set builderPath = "/builder/ring/" %}
-   {% else %}
-     {% set builderPath = "/builder/charm/" %}
-   {% endif %}
+    {% if isRing %}
+      {% set builderPath = "/builder/ring/" %}
+    {% else %}
+      {% set builderPath = "/builder/charm/" %}
+    {% endif %}
 
-   <div class="product-add-to-cart-wrap">
-     <a
-       href="{{ builderPath }}?sku={{ sku | urlencode }}"
-       class="product-add-to-cart-link"
-       aria-label="Customize and checkout"
-     >
-       <img
-         src="/static/img/ui/add-to-cart.png"
-         alt="Customize"
-         class="product-add-to-cart-btn"
-         loading="lazy"
-       >
-     </a>
-   </div>
+    <div class="product-add-to-cart-wrap">
+      <a
+        href="{{ builderPath }}?sku={{ sku | urlencode }}"
+        class="product-add-to-cart-link"
+        aria-label="Customize and checkout"
+      >
+        <img
+          src="/static/img/ui/add-to-cart.png"
+          alt="Customize"
+          class="product-add-to-cart-btn"
+          loading="lazy"
+        >
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
