@@ -31,16 +31,13 @@
 {% set sku = page.data.sku or page.fileSlug %}
 {% set urlPath = page.url or "" %}
 
-{# Detect builder type by URL path (Nunjucks-safe) #}
+{# Detect builder type by URL path #}
 {% set isRing = ("/rings/" in urlPath) %}
-{% set builderPath = "/builder/charm/" %}
-{% if isRing %}
-  {% set builderPath = "/builder/ring/" %}
-{% endif %}
+{% set builderType = isRing ? "ring" : "charm" %}
 
 <div class="product-add-to-cart-wrap">
   <a
-    href="{{ builderPath }}?sku={{ sku | url_encode }}"
+    href="/ring-builder/?type={{ builderType }}&sku={{ sku | url_encode }}"
     class="product-add-to-cart-link"
     aria-label="Customize and checkout"
   >
