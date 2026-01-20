@@ -6,6 +6,13 @@
 [functions]
   directory = "netlify/functions"
 
+# ✅ Allow /builder routes to load their real HTML/JS/CSS files
+[[redirects]]
+  from = "/builder/*"
+  to = "/builder/:splat"
+  status = 200
+
+# ✅ SPA catch-all (keep for everything else)
 [[redirects]]
   from = "/*"
   to = "/index.html"
