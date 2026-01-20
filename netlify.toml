@@ -6,7 +6,7 @@
 [functions]
   directory = "netlify/functions"
 
-# ✅ Route builder URLS to the real ring-builder app
+# ✅ Route builder URLs to the real builder folder files
 [[redirects]]
   from = "/builder/ring/*"
   to = "/ring-builder/:splat"
@@ -17,7 +17,7 @@
   to = "/ring-builder/:splat"
   status = 200
 
-# ✅ Also handle /builder/ring/ and /builder/charm/ without extra path
+# ✅ Handle /builder/ring (no trailing slash / no extra path)
 [[redirects]]
   from = "/builder/ring"
   to = "/ring-builder/"
@@ -28,6 +28,13 @@
   to = "/ring-builder/"
   status = 200
 
-# ✅ SPA catch-all (keep for everything else)
+# ✅ Keep SPA fallback for everything else
 [[redirects]]
-  fr
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/admin/config.yml"
+  [headers.values]
+    Content-Type = "text/yaml"
