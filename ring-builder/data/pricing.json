@@ -1,8 +1,39 @@
 {
-  "designFee": 25,
-  "engravingPerWord": 5,
-  "ringHeights": { "3-6mm": 50, "6-9mm": 75, "10-13mm": 100 },
-  "charmSizes": { "Dime (17.9mm)": 30, "Quarter (24.3mm)": 45 },
-  "addOns": { "Engraved Pattern": 45, "Beading": 5 },
-  "metals": { "Silver": 0, "Gold": 100 }
+  "engravingPerWord": 4,
+
+  "ringHeights": {
+    "3-6mm": 50,
+    "6-9mm": 80,
+    "10-13mm": 120
+  },
+
+  "complexityLevels": {
+    "Level 1 (Simple)": 10,
+    "Level 2 (Moderate)": 18,
+    "Level 3 (Detailed)": 25,
+    "Level 4 (Complex)": 35,
+    "Level 5 (Ultra / Masterpiece)": 50
+  },
+
+  "charmSizes": {
+    "Dime (17.9mm)": 26,
+    "Penny (19.05mm)": 32,
+    "Nickel (21.2mm)": 38,
+    "Quarter (24.3mm)": 47,
+    "1 inch (25.4mm)": 52,
+    "Half Dollar (30.6mm)": 58,
+    "Silver Dollar (38.1mm)": 72,
+    "2 inch (50.8mm)": 118,
+    "2.5 inch (63.5mm)": 175
+  },
+
+  "addOns": {
+    "Engraved Pattern": 45,
+    "Beading": 5
+  },
+
+  "metals": {
+    "Silver": 0,
+    "Gold": 100
+  }
 }
