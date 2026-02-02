@@ -13,13 +13,13 @@ layout: "layouts/product.njk"
 
 # ✅ FRONT-FACING CARD IMAGE (collection grid)
 images:
-  - "/static/img/rings/garden-of-silver/silver-wildflower-tiara.jpg"
+  - "/static/img/rings/garden-of-silver/silver-wild-flower.jpg"
 
 # ✅ PRODUCT PAGE GALLERY (Phase 2)
 gallery:
-  - "/static/img/rings/gs-001/silver-wild-flower-ring-1.jpg"
-  - "/static/img/rings/gs-001/silver-wild-flower-ring-2.jpg"
-  - "/static/img/rings/gs-001/silver-wild-flower-ring-3.jpg"
+  - "/static/img/rings/gs-001/silver-wild-flower-1.jpg"
+  - "/static/img/rings/gs-001/silver-wild-flower-2.jpg"
+  - "/static/img/rings/gs-001/silver-wild-flower-3.jpg"
 
 description: >
   A flowing floral design inspired by wild blossoms found in open fields. Sculpted petals,
