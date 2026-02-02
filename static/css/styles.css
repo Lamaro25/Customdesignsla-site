@@ -1325,3 +1325,31 @@ footer.site-footer {
     max-width: 145px !important;
   }
 }
+
+/* ==========================================================
+   COLLECTION PRODUCT GRID SPACING
+   Adds breathing room between product cards
+========================================================== */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.75rem; /* space between cards */
+  margin-top: 2.5rem; /* space above grid */
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.25rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
