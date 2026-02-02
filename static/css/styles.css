@@ -1353,3 +1353,27 @@ footer.site-footer {
     gap: 2rem;
   }
 }
+
+/* ==========================================================
+   RINGS PAGE — COLLECTION CARD SPACING
+========================================================== */
+
+.collection-grid {
+  gap: 3.5rem;        /* space between cards */
+  margin-top: 3rem;   /* space above the grid */
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .collection-grid {
+    gap: 2.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .collection-grid {
+    gap: 2rem;
+  }
+}
+
