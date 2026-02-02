@@ -13,7 +13,7 @@ layout: "layouts/product.njk"
 
 # ✅ FRONT-FACING CARD IMAGE (collection grid)
 images:
-  - "/static/img/rings/garden-of-silver/silver-wild-flower-ring.jpg"
+  - "/static/img/rings/garden-of-silver/silver-wildflower-tiara.jpg"
 
 # ✅ PRODUCT PAGE GALLERY (Phase 2)
 gallery:
