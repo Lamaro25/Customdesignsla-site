@@ -17,7 +17,7 @@ images:
 
 # ✅ PRODUCT PAGE GALLERY (Phase 2)
 gallery:
-  - "/static/img/rings/gs-001/silver-wild-flower-1.jpg"
+  - "/static/img/rings/gs-001/silver-wild-flower.jpg"
   - "/static/img/rings/gs-001/silver-wild-flower-2.jpg"
   - "/static/img/rings/gs-001/silver-wild-flower-3.jpg"
 
