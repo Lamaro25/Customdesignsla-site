@@ -13,19 +13,19 @@ layout: "layouts/product.njk"
 
 # ✅ FRONT-FACING CARD IMAGE (collection grid)
 images:
-  - "/static/img/rings/garden-of-silver/silver-wildflower-band.jpg"
+  - "/static/img/rings/garden of silver/gs-003/silver-wildflower-band.jpg"
 
-# ✅ PRODUCT PAGE GALLERY (Phase 2)
+# ✅ PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/rings/gs-003/silver-wildflower-band-1.jpg"
-  - "/static/img/rings/gs-003/silver-wildflower-band-2.jpg"
-  - "/static/img/rings/gs-003/silver-wildflower-band-3.jpg"
+  - "/static/img/rings/garden of silver/gs-003/silver-wildflower-band.jpg"
+  - "/static/img/rings/garden of silver/gs-003/silver-wildflower-band-1.jpg"
+  - "/static/img/rings/garden of silver/gs-003/silver-wildflower-band-2.jpg"
 
 description: >
   A continuous band of sculpted wildflowers flows around this 7 mm sterling silver ring,
   creating a natural rhythm of petals and organic texture. Designed to feel both elegant
-  and grounded, this piece captures the quiet beauty of flowers in bloom. Hand-cast and
-  finished in Del Rio, Texas.
+  and grounded, this piece captures the quiet beauty of flowers in bloom.
+  Hand-cast and finished in Del Rio, Texas.
 ---
 
 <!-- PRODUCT GALLERY (from frontmatter.gallery) -->
@@ -44,15 +44,18 @@ description: >
 </div>
 
 ## Overview
-The Silver Wildflower Band offers a balanced floral design that wraps seamlessly around the ring. Its flowing botanical pattern brings natural texture and softness to a classic 7 mm sterling silver profile.
+
+The **Silver Wildflower Band** offers a balanced floral design that wraps seamlessly around the ring. Its flowing botanical pattern brings natural texture and softness to a classic **7 mm** sterling silver profile.
 
 ## Breakdown
+
 - **Band 7 mm:** $80  
 - **Level 2 (Complex) Floral Detailing:** $18  
 
-**Total: $98 USD**
+**Total:** **$98 USD**
 
 ## Specifications
+
 - **Material:** Solid .925 Sterling Silver  
 - **Finish:** Oxidized & polished  
 - **Band Width:** 7 mm  
@@ -62,8 +65,8 @@ The Silver Wildflower Band offers a balanced floral design that wraps seamlessly
 - **Crafted:** Hand-cast in Del Rio, Texas  
 
 ## Notes
+
 - Floral pattern flows around the entire band  
 - Balanced texture with moderate relief depth  
 - Signature CDLA craftsmanship  
-
-- “Customization Available” (Inner band engraving / scripture / name's/ etc.)
+- “Customization Available” (Inner band engraving / scripture / name's / etc.)
