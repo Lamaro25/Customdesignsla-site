@@ -13,13 +13,13 @@ layout: "layouts/product.njk"
 
 # ✅ FRONT-FACING CARD IMAGE (collection grid)
 images:
-  - "/static/img/rings/garden-of-silver/wildflower-tiara-ring.jpg"
+  - "/static/img/rings/garden of silver/gs-002/wildflower-tiara.jpg"
 
-# ✅ PRODUCT PAGE GALLERY (Phase 2)
+# ✅ PRODUCT PAGE GALLERY (top)
 gallery:
-  - "/static/img/rings/gs-002/wildflower-tiara-ring-1.jpg"
-  - "/static/img/rings/gs-002/wildflower-tiara-ring-2.jpg"
-  - "/static/img/rings/gs-002/wildflower-tiara-ring-3.jpg"
+  - "/static/img/rings/garden of silver/gs-002/wildflower-tiara.jpg"
+  - "/static/img/rings/garden of silver/gs-002/wildflower-tiara-1.jpg"
+  - "/static/img/rings/garden of silver/gs-002/wildflower-tiara-2.jpg"
 
 description: >
   A delicate crown of sculpted wildflowers wraps around this 7 mm band, creating a
@@ -44,15 +44,18 @@ description: >
 </div>
 
 ## Overview
-The Wildflower Tiara Ring brings the elegance of a floral crown into solid sterling silver. Its sculpted blossoms and gentle contours create a graceful, nature-inspired design across a classic 7 mm band.
+
+The **Wildflower Tiara Ring** brings the elegance of a floral crown into solid sterling silver. Sculpted blossoms and gentle contours create a graceful, nature-inspired design across a classic **7 mm** band.
 
 ## Breakdown
+
 - **Band 7 mm:** $80  
 - **Level 3 (Complex) Floral Sculpting:** $25  
 
-**Total: $105 USD**
+**Total:** **$105 USD**
 
 ## Specifications
+
 - **Material:** Solid .925 Sterling Silver  
 - **Finish:** Oxidized & polished  
 - **Band Width:** 7 mm  
@@ -62,9 +65,8 @@ The Wildflower Tiara Ring brings the elegance of a floral crown into solid sterl
 - **Crafted:** Hand-cast in Del Rio, Texas  
 
 ## Notes
+
 - Floral tiara-style silhouette  
 - Soft organic curvature around the band  
 - Signature CDLA craftsmanship  
-
-- “Customization Available” (Inner band engraving / scripture / name's/ etc.)
-
+- “Customization Available” (Inner band engraving / scripture / name's / etc.)
