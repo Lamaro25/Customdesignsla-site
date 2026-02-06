@@ -18,8 +18,8 @@ images:
 # ✅ PRODUCT PAGE GALLERY (Phase 2)
 gallery:
   - "/static/img/rings/gs-004/wildflower-crown.jpg"
+  - "/static/img/rings/gs-004/wildflower-crown-1.jpg"
   - "/static/img/rings/gs-004/wildflower-crown-2.jpg"
-  - "/static/img/rings/gs-004/wildflower-crown-3.jpg"
 
 description: >
   A bold 10 mm band crowned with sculpted wildflowers that rise in soft, organic form.
