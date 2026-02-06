@@ -13,13 +13,14 @@ layout: "layouts/product.njk"
 
 # ✅ FRONT-FACING CARD IMAGE (collection grid)
 images:
-  - "/static/img/rings/garden-of-silver/silver-wild-flower.jpg"
+  - "/static/img/rings/garden%20of%20silver/silver-wild-flower.jpg"
 
 # ✅ PRODUCT PAGE GALLERY (top)
+# (Matches what you actually have in /gs-001/ right now)
 gallery:
-  - "/static/img/rings/garden-of-silver/gs-001/silver-wild-flower.jpg"
-  - "/static/img/rings/garden-of-silver/gs-001/silver-wild-flower-2.jpg"
-  - "/static/img/rings/garden-of-silver/gs-001/silver-wild-flower-3.jpg"
+  - "/static/img/rings/garden%20of%20silver/gs-001/silver-wild-flower.jpg"
+  - "/static/img/rings/garden%20of%20silver/gs-001/silver-wild-flower-1.jpg"
+  - "/static/img/rings/garden%20of%20silver/gs-001/silver-wild-flower-2.jpg"
 
 description: >
   A flowing floral design inspired by wild blossoms found in open fields.
