@@ -13,18 +13,18 @@ layout: "layouts/product.njk"
 
 # ✅ FRONT-FACING CARD IMAGE (collection grid)
 images:
-  - "/static/img/rings/garden-of-silver/gs-001/silver-wild-flower.jpg"
+  - "/static/img/rings/garden of silver/gs-001/silver-wild-flower.jpg"
 
-# ✅ PRODUCT PAGE GALLERY
+# ✅ PRODUCT PAGE GALLERY (top)
 gallery:
-  - "/static/img/rings/garden-of-silver/gs-001/silver-wild-flower.jpg"
-  - "/static/img/rings/garden-of-silver/gs-001/silver-wild-flower-1.jpg"
-  - "/static/img/rings/garden-of-silver/gs-001/silver-wild-flower-2.jpg"
+  - "/static/img/rings/garden of silver/gs-001/silver-wild-flower.jpg"
+  - "/static/img/rings/garden of silver/gs-001/silver-wild-flower-1.jpg"
+  - "/static/img/rings/garden of silver/gs-001/silver-wild-flower-2.jpg"
 
 description: >
   A flowing floral design inspired by wild blossoms found in open fields.
-  Sculpted petals, soft curves, and organic textures give this 10 mm band
-  a natural movement that feels alive in silver. Hand-cast and finished in Del Rio, Texas.
+  Sculpted petals, soft curves, and organic textures give this 10 mm band a natural movement
+  that feels alive in silver. Hand-cast and finished in Del Rio, Texas.
 ---
 
 <!-- PRODUCT GALLERY (from frontmatter.gallery) -->
@@ -44,14 +44,14 @@ description: >
 
 ## Overview
 
-The Silver Wild Flower Ring captures the natural elegance of blooming florals shaped by wind and growth. Its sculpted design brings softness and movement into a bold 10 mm sterling silver band.
+The **Silver Wild Flower Ring** captures the natural elegance of blooming florals shaped by wind and growth. Its sculpted design brings softness and movement into a bold **10 mm** sterling silver band.
 
 ## Breakdown
 
 - **Band 10 mm:** $120  
 - **Level 3 (Complex) Floral Sculpting:** $25  
 
-**Total: $145 USD**
+**Total:** **$145 USD**
 
 ## Specifications
 
@@ -68,4 +68,4 @@ The Silver Wild Flower Ring captures the natural elegance of blooming florals sh
 - Sculpted wildflower design wraps naturally around the band  
 - Organic, flowing surface texture  
 - Signature CDLA craftsmanship  
-- **Customization Available** (Inner band engraving / scripture / name / etc.)
+- **Customization Available** (inner band engraving / scripture / name’s / etc.)
