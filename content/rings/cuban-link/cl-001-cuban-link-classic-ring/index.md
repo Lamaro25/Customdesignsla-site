@@ -1,71 +1,73 @@
 ---
-title: "Silver Wild Flower Ring"
-sku: "GS-001"
-collection: "Garden of Silver Ring Collection"
-tags: ["garden-of-silver"]
-slug: "silver-wild-flower-ring"
-permalink: "/rings/garden-of-silver/gs-001-silver-wild-flower-ring/"
-price: 145
-updated: "2026-02-02"
+title: "Cuban Link Classic Ring"
+sku: "CL-001"
+collection: "Cuban Link Ring Collection"
+tags: ["cuban-link"]
+slug: "cuban-link-classic-ring"
+permalink: "/rings/cuban-link/cl-001-cuban-link-classic-ring/"
+price: 114
+updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked “LA”)"
-band_width: "10 mm"
+band_width: "7 mm"
 layout: "layouts/product.njk"
 
 # ✅ FRONT-FACING CARD IMAGE (collection grid)
 images:
-  - "/static/img/rings/garden of silver/gs-001/silver-wild-flower.jpg"
+  - "/static/img/rings/cl-001/cuban-link-classic-ring.jpg"
 
-# ✅ PRODUCT PAGE GALLERY (top)
+# ✅ PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/rings/garden of silver/gs-001/silver-wild-flower.jpg"
-  - "/static/img/rings/garden of silver/gs-001/silver-wild-flower-1.jpg"
-  - "/static/img/rings/garden of silver/gs-001/silver-wild-flower-2.jpg"
+  - "/static/img/rings/cl-001/cuban-link-classic-ring.jpg"
+  - "/static/img/rings/cl-001/product-images-coming-soon.jpg"
+  - "/static/img/rings/cl-001/customer-ring-feature-placeholder.jpg"
 
 description: >
-  A flowing floral design inspired by wild blossoms found in open fields.
-  Sculpted petals, soft curves, and organic textures give this 10 mm band a natural movement
-  that feels alive in silver. Hand-cast and finished in Del Rio, Texas.
+  Refined domed band with a recessed Cuban braid channel, polished exterior edges,
+  and oxidized depth for timeless contrast. Hand-cast and finished in Del Rio, Texas.
 ---
 
 <!-- PRODUCT GALLERY (from frontmatter.gallery) -->
 <div class="product-gallery-section">
   <div class="product-gallery-grid">
     <div class="product-gallery-item">
-      <img src="{{ gallery[0] }}" alt="Silver Wild Flower Ring – Image 1" loading="lazy">
+      <img src="{{ gallery[0] }}" alt="cuban-link-classic-ring.jpg" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[1] }}" alt="Silver Wild Flower Ring – Image 2" loading="lazy">
+      <img src="{{ gallery[1] }}" alt="product-images-coming-soon.jpg" loading="lazy">
     </div>
     <div class="product-gallery-item">
-      <img src="{{ gallery[2] }}" alt="Silver Wild Flower Ring – Image 3" loading="lazy">
+      <img src="{{ gallery[2] }}" alt="customer-ring-feature-placeholder.jpg" loading="lazy">
     </div>
   </div>
 </div>
 
 ## Overview
 
-The **Silver Wild Flower Ring** captures the natural elegance of blooming florals shaped by wind and growth. Its sculpted design brings softness and movement into a bold **10 mm** sterling silver band.
+The Cuban Link Classic Ring represents the foundational aesthetic of the collection.  
+Its domed 7 mm profile and deep-set Cuban braid deliver a clean, bold, and timeless silhouette.
 
 ## Breakdown
 
-- **Band 10 mm:** $120  
-- **Level 3 (Complex) Floral Sculpting:** $25  
+- **Band 7 mm:** $80  
+- **Channel:** $4  
+- **Cuban Link Braid (Large):** $30  
 
-**Total:** **$145 USD**
+**Total:** **$114 USD**
 
 ## Specifications
 
 - **Material:** Solid .925 Sterling Silver  
 - **Finish:** Oxidized & polished  
-- **Band Width:** 10 mm  
-- **Pattern:** Wild floral relief with organic vine flow  
+- **Band Width:** 7 mm  
+- **Pattern:** Large Cuban Link braid  
 - **Interior:** Comfort-fit  
 - **Hallmark:** “LA”  
 - **Crafted:** Hand-cast in Del Rio, Texas  
 
 ## Notes
 
-- Sculpted wildflower design wraps naturally around the band  
-- Organic, flowing surface texture  
+- Comfort-fit interior  
+- Large link Cuban braid pattern  
 - Signature CDLA craftsmanship  
 - **Customization Available** (inner band engraving / scripture / name’s / etc.)
+
