@@ -11,19 +11,36 @@ material: "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked �
 band_width: "10 mm"
 layout: "layouts/product.njk"
 
+# ✅ FRONT-FACING CARD IMAGE (collection grid)
 images:
-  - "/static/img/rings/garden-of-silver/gs-001/silver-wild-flower.jpg"
+  - "/static/img/rings/garden of silver/gs-001/silver-wild-flower.jpg"
 
+# ✅ PRODUCT PAGE GALLERY (top)
 gallery:
-  - "/static/img/rings/garden-of-silver/gs-001/silver-wild-flower.jpg"
-  - "/static/img/rings/garden-of-silver/gs-001/silver-wild-flower-1.jpg"
-  - "/static/img/rings/garden-of-silver/gs-001/silver-wild-flower-2.jpg"
+  - "/static/img/rings/garden of silver/gs-001/silver-wild-flower.jpg"
+  - "/static/img/rings/garden of silver/gs-001/silver-wild-flower-1.jpg"
+  - "/static/img/rings/garden of silver/gs-001/silver-wild-flower-2.jpg"
 
 description: >
   A flowing floral design inspired by wild blossoms found in open fields.
   Sculpted petals, soft curves, and organic textures give this 10 mm band a natural movement
   that feels alive in silver. Hand-cast and finished in Del Rio, Texas.
 ---
+
+<!-- PRODUCT GALLERY (from frontmatter.gallery) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="silver-wild-flower.jpg" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="silver-wild-flower-1.jpg" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="silver-wild-flower-2.jpg" loading="lazy">
+    </div>
+  </div>
+</div>
 
 ## Overview
 
