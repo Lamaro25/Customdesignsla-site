@@ -1,40 +1,60 @@
 [
- {
+  {
     "title": "Cuban Link Classic Ring",
     "sku": "CL-001",
     "slug": "cuban-link-classic-ring",
     "collection": "Cuban Link Ring Collection",
     "price": 114,
+    "material": "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked LA)",
     "band_width": "7 mm",
-    "images": [
-      "/static/img/rings/cl-001/cuban-link-classic-ring.jpg"
-    ],
+    "images": ["/static/img/rings/cl-001/cuban-link-classic-ring.jpg"],
     "gallery": [
       "/static/img/rings/cl-001/cuban-link-classic-ring.jpg",
-      "/static/img/rings/cl-001/product-images-coming-soon.jpg",
-      "/static/img/rings/cl-001/customer-ring-feature-placeholder.jpg"
+      "/static/img/rings/shared/product-images-coming-soon.jpg",
+      "/static/img/rings/shared/customer-ring-feature-placeholder.jpg"
     ],
+    "description": "Refined domed band with a recessed Cuban braid channel, polished exterior edges, and oxidized depth for timeless contrast.",
+    "overview": "The foundational Cuban Link design with a clean 7 mm domed profile and deep-set braid.",
+    "breakdown": [
+      { "label": "Band 7 mm", "amount": 80 },
+      { "label": "Channel", "amount": 4 },
+      { "label": "Cuban Link Braid (Large)", "amount": 30 }
+    ],
+    "specifications": [
+      { "label": "Material", "value": "Solid .925 Sterling Silver" },
+      { "label": "Finish", "value": "Oxidized & polished" },
+      { "label": "Band Width", "value": "7 mm" }
+    ],
+    "notes": ["Comfort-fit interior", "Classic Cuban braid design"],
     "availableMetals": ["Silver"],
     "availableAddOns": ["Engraved Pattern", "Beading"],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": false,
     "lockBandWidth": true
   },
+
   {
     "title": "Cuban Link Statement Ring (Thick)",
     "sku": "CL-002",
     "slug": "cuban-link-statement-ring-thick",
     "collection": "Cuban Link Ring Collection",
     "price": 176,
-    "material": "Solid .925 Sterling Silver (oxidized recess + polished raised edges, hallmarked LA)",
+    "material": "Solid .925 Sterling Silver",
     "band_width": "10 mm",
-    "images": [
-      "/static/img/rings/cl-002/cuban-link-statement-ring-thick.jpg"
-    ],
+    "images": ["/static/img/rings/cl-002/cuban-link-statement-ring-thick.jpg"],
     "gallery": [
       "/static/img/rings/cl-002/cuban-link-statement-ring-thick.jpg",
-      "/static/img/rings/cl-002/product-images-coming-soon.jpg",
-      "/static/img/rings/cl-002/customer-ring-feature-placeholder.jpg"
+      "/static/img/rings/shared/product-images-coming-soon.jpg",
+      "/static/img/rings/shared/customer-ring-feature-placeholder.jpg"
+    ],
+    "description": "Bold 10 mm statement ring with engraved name panel and triple-channel Cuban braid.",
+    "overview": "The most dominant piece in the collection with full visual weight.",
+    "breakdown": [
+      { "label": "Band 10 mm", "amount": 120 },
+      { "label": "Engraving (Name)", "amount": 4 },
+      { "label": "Channels (×3)", "amount": 12 },
+      { "label": "Large Braid", "amount": 30 },
+      { "label": "Small Braids", "amount": 10 }
     ],
     "availableMetals": ["Silver"],
     "availableAddOns": ["Engraved Pattern", "Beading"],
@@ -42,90 +62,106 @@
     "allowOutsideEngraving": true,
     "lockBandWidth": true
   },
+
   {
     "title": "Cuban Link Statement Ring (Thin)",
     "sku": "CL-003",
     "slug": "cuban-link-statement-ring-thin",
     "collection": "Cuban Link Ring Collection",
     "price": 136,
-    "material": "Solid .925 Sterling Silver (oxidized recess & polished highlights, hallmarked LA)",
+    "material": "Solid .925 Sterling Silver",
     "band_width": "10 mm",
-    "images": [
-      "/static/img/rings/cl-003/cuban-link-statement-ring-thin.jpg"
-    ],
+    "images": ["/static/img/rings/cl-003/cuban-link-statement-ring-thin.jpg"],
     "gallery": [
       "/static/img/rings/cl-003/cuban-link-statement-ring-thin.jpg",
-      "/static/img/rings/cl-003/product-images-coming-soon.jpg",
-      "/static/img/rings/cl-003/customer-ring-feature-placeholder.jpg"
+      "/static/img/rings/shared/product-images-coming-soon.jpg",
+      "/static/img/rings/shared/customer-ring-feature-placeholder.jpg"
+    ],
+    "description": "Lighter 10 mm statement ring with full Cuban structure.",
+    "overview": "Balanced version of the thick statement ring for everyday wear.",
+    "breakdown": [
+      { "label": "Band 10 mm (Thin)", "amount": 80 },
+      { "label": "Engraving", "amount": 4 },
+      { "label": "Channels", "amount": 12 },
+      { "label": "Large Braid", "amount": 30 },
+      { "label": "Small Braids", "amount": 10 }
     ],
     "availableMetals": ["Silver"],
-    "availableAddOns": ["Engraved Pattern", "Beading"],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": false,
     "lockBandWidth": true
   },
+
   {
     "title": "Cuban Link Twin Ring",
     "sku": "CL-004",
     "slug": "cuban-link-twin-ring",
     "collection": "Cuban Link Ring Collection",
     "price": 102,
-    "material": "Solid .925 Sterling Silver (oxidized depth with polished edges, hallmarked LA)",
     "band_width": "7 mm",
-    "images": [
-      "/static/img/rings/cl-004/cuban-link-twin-ring.jpg"
-    ],
+    "images": ["/static/img/rings/cl-004/cuban-link-twin-ring.jpg"],
     "gallery": [
       "/static/img/rings/cl-004/cuban-link-twin-ring.jpg",
-      "/static/img/rings/cl-004/product-images-coming-soon.jpg",
-      "/static/img/rings/cl-004/customer-ring-feature-placeholder.jpg"
+      "/static/img/rings/shared/product-images-coming-soon.jpg",
+      "/static/img/rings/shared/customer-ring-feature-placeholder.jpg"
     ],
-    "availableMetals": ["Silver"],
-    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "description": "Dual braid structure with center ridge.",
+    "overview": "Balanced and symmetrical Cuban link design.",
+    "breakdown": [
+      { "label": "Band", "amount": 80 },
+      { "label": "Channels", "amount": 12 },
+      { "label": "Small Braids", "amount": 10 }
+    ],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": false,
     "lockBandWidth": true
   },
+
   {
     "title": "Cuban Link Signature Ring",
     "sku": "CL-005",
     "slug": "cuban-link-signature-ring",
     "collection": "Cuban Link Ring Collection",
     "price": 118,
-    "material": "Solid .925 Sterling Silver (high-polish + oxidized recess, hallmarked LA)",
     "band_width": "7 mm",
-    "images": [
-      "/static/img/rings/cl-005/cuban-link-signature-ring.jpg"
-    ],
+    "images": ["/static/img/rings/cl-005/cuban-link-signature-ring.jpg"],
     "gallery": [
       "/static/img/rings/cl-005/cuban-link-signature-ring.jpg",
-      "/static/img/rings/cl-005/product-images-coming-soon.jpg",
-      "/static/img/rings/cl-005/customer-ring-feature-placeholder.jpg"
+      "/static/img/rings/shared/product-images-coming-soon.jpg",
+      "/static/img/rings/shared/customer-ring-feature-placeholder.jpg"
     ],
-    "availableMetals": ["Silver"],
-    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "description": "Signature nameplate ring with Cuban braid.",
+    "overview": "Personal identity meets Cuban craftsmanship.",
+    "breakdown": [
+      { "label": "Band", "amount": 80 },
+      { "label": "Engraving", "amount": 4 },
+      { "label": "Channel", "amount": 4 },
+      { "label": "Large Braid", "amount": 30 }
+    ],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": true,
     "lockBandWidth": true
   },
+
   {
     "title": "Cuban Link Origin’s Ring",
     "sku": "CL-006",
     "slug": "cuban-link-origins-ring",
     "collection": "Cuban Link Ring Collection",
     "price": 110,
-    "material": "Solid .925 Sterling Silver (oxidized recess + polished peaks, hallmarked LA)",
     "band_width": "7 mm",
-    "images": [
-      "/static/img/rings/cl-006/cuban-link-origins-ring.jpg"
-    ],
+    "images": ["/static/img/rings/cl-006/cuban-link-origins-ring.jpg"],
     "gallery": [
       "/static/img/rings/cl-006/cuban-link-origins-ring.jpg",
-      "/static/img/rings/cl-006/product-images-coming-soon.jpg",
-      "/static/img/rings/cl-006/customer-ring-feature-placeholder.jpg"
+      "/static/img/rings/shared/product-images-coming-soon.jpg",
+      "/static/img/rings/shared/customer-ring-feature-placeholder.jpg"
     ],
-    "availableMetals": ["Silver"],
-    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "description": "Original Cuban link ring design.",
+    "overview": "The first design that built the entire collection.",
+    "breakdown": [
+      { "label": "Band", "amount": 80 },
+      { "label": "Original Braid", "amount": 30 }
+    ],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": false,
     "lockBandWidth": true
