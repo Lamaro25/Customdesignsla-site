@@ -1,26 +1,48 @@
 [
-  {
-    "title": "Cuban Link Classic Ring",
-    "sku": "CL-001",
-    "slug": "cuban-link-classic-ring",
-    "collection": "Cuban Link Ring Collection",
-    "price": 114,
-    "material": "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked LA)",
-    "band_width": "7 mm",
-    "images": [
-      "/static/img/rings/cl-001/cuban-link-classic-ring.jpg"
-    ],
-    "gallery": [
-      "/static/img/rings/cl-001/cuban-link-classic-ring.jpg",
-      "/static/img/rings/cl-001/product-images-coming-soon.jpg",
-      "/static/img/rings/cl-001/customer-ring-feature-placeholder.jpg"
-    ],
-    "availableMetals": ["Silver"],
-    "availableAddOns": ["Engraved Pattern", "Beading"],
-    "allowInsideEngraving": true,
-    "allowOutsideEngraving": false,
-    "lockBandWidth": true
-  },
+ {
+  "title": "Cuban Link Classic Ring",
+  "sku": "CL-001",
+  "slug": "cuban-link-classic-ring",
+  "collection": "Cuban Link Ring Collection",
+  "price": 114,
+  "material": "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked LA)",
+  "band_width": "7 mm",
+  "images": [
+    "/static/img/rings/cl-001/cuban-link-classic-ring.jpg"
+  ],
+  "gallery": [
+    "/static/img/rings/cl-001/cuban-link-classic-ring.jpg",
+    "/static/img/rings/cl-001/product-images-coming-soon.jpg",
+    "/static/img/rings/cl-001/customer-ring-feature-placeholder.jpg"
+  ],
+  "description": "Refined domed band with a recessed Cuban braid channel, polished exterior edges, and oxidized depth for timeless contrast. Hand-cast and finished in Del Rio, Texas.",
+  "overview": "The Cuban Link Classic Ring represents the foundational aesthetic of the collection. Its domed 7 mm profile and deep-set Cuban braid deliver a clean, bold, and timeless silhouette.",
+  "breakdown": [
+    { "label": "Band 7 mm", "amount": 80 },
+    { "label": "Channel", "amount": 4 },
+    { "label": "Cuban Link Braid (Large)", "amount": 30 }
+  ],
+  "specifications": [
+    { "label": "Material", "value": "Solid .925 Sterling Silver" },
+    { "label": "Finish", "value": "Oxidized & polished" },
+    { "label": "Band Width", "value": "7 mm" },
+    { "label": "Pattern", "value": "Large Cuban Link braid" },
+    { "label": "Interior", "value": "Comfort-fit" },
+    { "label": "Hallmark", "value": "LA" },
+    { "label": "Crafted", "value": "Hand-cast in Del Rio, Texas" }
+  ],
+  "notes": [
+    "Comfort-fit interior",
+    "Large link Cuban braid pattern",
+    "Signature CDLA craftsmanship",
+    "Customization Available (inner band engraving / scripture / names / etc.)"
+  ],
+  "availableMetals": ["Silver"],
+  "availableAddOns": ["Engraved Pattern", "Beading"],
+  "allowInsideEngraving": true,
+  "allowOutsideEngraving": false,
+  "lockBandWidth": true
+}
   {
     "title": "Cuban Link Statement Ring (Thick)",
     "sku": "CL-002",
