@@ -42,3 +42,32 @@ button:hover { background:#555; }
     object-fit: cover;
   }
 }
+
+.builder-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 2rem;
+}
+
+.builder-gallery-item {
+  background: transparent;
+}
+
+.builder-product-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.builder-product-meta {
+  max-width: 900px;
+}
+
+@media (max-width: 768px) {
+  .builder-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
