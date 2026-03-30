@@ -1,20 +1,134 @@
-{
-  "title": "Cuban Link Classic Ring",
-  "sku": "CL-001",
-  "slug": "cuban-link-classic-ring",
-  "collection": "Cuban Link Ring Collection",
-  "price": 114,
-  "material": "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked LA)",
-  "band_width": "7 mm",
-  "images": ["/static/img/rings/cl-001/cuban-link-classic-ring.jpg"],
-  "gallery": [
-    "/static/img/rings/cl-001/cuban-link-classic-ring.jpg",
-    "/static/img/rings/cl-001/product-images-coming-soon.jpg",
-    "/static/img/rings/cl-001/customer-ring-feature-placeholder.jpg"
-  ],
-  "availableMetals": ["Silver"],
-  "availableAddOns": ["Engraved Pattern", "Beading"],
-  "allowInsideEngraving": true,
-  "allowOutsideEngraving": false,
-  "lockBandWidth": true
-}
+[
+  {
+    "title": "Cuban Link Classic Ring",
+    "sku": "CL-001",
+    "slug": "cuban-link-classic-ring",
+    "collection": "Cuban Link Ring Collection",
+    "price": 114,
+    "material": "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked LA)",
+    "band_width": "7 mm",
+    "images": [
+      "/static/img/rings/cl-001/cuban-link-classic-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/cl-001/cuban-link-classic-ring.jpg",
+      "/static/img/rings/cl-001/product-images-coming-soon.jpg",
+      "/static/img/rings/cl-001/customer-ring-feature-placeholder.jpg"
+    ],
+    "availableMetals": ["Silver"],
+    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "allowInsideEngraving": true,
+    "allowOutsideEngraving": false,
+    "lockBandWidth": true
+  },
+  {
+    "title": "Cuban Link Statement Ring (Thick)",
+    "sku": "CL-002",
+    "slug": "cuban-link-statement-ring-thick",
+    "collection": "Cuban Link Ring Collection",
+    "price": 176,
+    "material": "Solid .925 Sterling Silver (oxidized recess + polished raised edges, hallmarked LA)",
+    "band_width": "10 mm",
+    "images": [
+      "/static/img/rings/cl-002/cuban-link-statement-ring-thick.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/cl-002/cuban-link-statement-ring-thick.jpg",
+      "/static/img/rings/cl-002/product-images-coming-soon.jpg",
+      "/static/img/rings/cl-002/customer-ring-feature-placeholder.jpg"
+    ],
+    "availableMetals": ["Silver"],
+    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "allowInsideEngraving": true,
+    "allowOutsideEngraving": true,
+    "lockBandWidth": true
+  },
+  {
+    "title": "Cuban Link Statement Ring (Thin)",
+    "sku": "CL-003",
+    "slug": "cuban-link-statement-ring-thin",
+    "collection": "Cuban Link Ring Collection",
+    "price": 136,
+    "material": "Solid .925 Sterling Silver (oxidized recess & polished highlights, hallmarked LA)",
+    "band_width": "10 mm",
+    "images": [
+      "/static/img/rings/cl-003/cuban-link-statement-ring-thin.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/cl-003/cuban-link-statement-ring-thin.jpg",
+      "/static/img/rings/cl-003/product-images-coming-soon.jpg",
+      "/static/img/rings/cl-003/customer-ring-feature-placeholder.jpg"
+    ],
+    "availableMetals": ["Silver"],
+    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "allowInsideEngraving": true,
+    "allowOutsideEngraving": false,
+    "lockBandWidth": true
+  },
+  {
+    "title": "Cuban Link Twin Ring",
+    "sku": "CL-004",
+    "slug": "cuban-link-twin-ring",
+    "collection": "Cuban Link Ring Collection",
+    "price": 102,
+    "material": "Solid .925 Sterling Silver (oxidized depth with polished edges, hallmarked LA)",
+    "band_width": "7 mm",
+    "images": [
+      "/static/img/rings/cl-004/cuban-link-twin-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/cl-004/cuban-link-twin-ring.jpg",
+      "/static/img/rings/cl-004/product-images-coming-soon.jpg",
+      "/static/img/rings/cl-004/customer-ring-feature-placeholder.jpg"
+    ],
+    "availableMetals": ["Silver"],
+    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "allowInsideEngraving": true,
+    "allowOutsideEngraving": false,
+    "lockBandWidth": true
+  },
+  {
+    "title": "Cuban Link Signature Ring",
+    "sku": "CL-005",
+    "slug": "cuban-link-signature-ring",
+    "collection": "Cuban Link Ring Collection",
+    "price": 118,
+    "material": "Solid .925 Sterling Silver (high-polish + oxidized recess, hallmarked LA)",
+    "band_width": "7 mm",
+    "images": [
+      "/static/img/rings/cl-005/cuban-link-signature-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/cl-005/cuban-link-signature-ring.jpg",
+      "/static/img/rings/cl-005/product-images-coming-soon.jpg",
+      "/static/img/rings/cl-005/customer-ring-feature-placeholder.jpg"
+    ],
+    "availableMetals": ["Silver"],
+    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "allowInsideEngraving": true,
+    "allowOutsideEngraving": true,
+    "lockBandWidth": true
+  },
+  {
+    "title": "Cuban Link Origin’s Ring",
+    "sku": "CL-006",
+    "slug": "cuban-link-origins-ring",
+    "collection": "Cuban Link Ring Collection",
+    "price": 110,
+    "material": "Solid .925 Sterling Silver (oxidized recess + polished peaks, hallmarked LA)",
+    "band_width": "7 mm",
+    "images": [
+      "/static/img/rings/cl-006/cuban-link-origins-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/cl-006/cuban-link-origins-ring.jpg",
+      "/static/img/rings/cl-006/product-images-coming-soon.jpg",
+      "/static/img/rings/cl-006/customer-ring-feature-placeholder.jpg"
+    ],
+    "availableMetals": ["Silver"],
+    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "allowInsideEngraving": true,
+    "allowOutsideEngraving": false,
+    "lockBandWidth": true
+  }
+]
