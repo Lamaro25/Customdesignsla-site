@@ -50,7 +50,19 @@ function normalizeProduct(product) {
 }
 
 function findRingByBuilderKey(products, builderKey) {
-  return products.find(product => product.builderKey === builderKey) || null;
+  const normalizedKey = String(builderKey || "").trim().toLowerCase();
+
+  return products.find(product => {
+    const sku = String(product.sku || "").trim().toLowerCase();
+    const slug = String(product.slug || "").trim().toLowerCase();
+    const combined = `${sku}-${slug}`;
+
+    return (
+      normalizedKey === combined ||
+      normalizedKey === sku ||
+      normalizedKey === slug
+    );
+  }) || null;
 }
 
 function getAvailableMetals(product) {
@@ -101,6 +113,22 @@ function supportsOutsideEngraving(product) {
     return product.allowOutsideEngraving;
   }
   return false;
+}
+
+function getProductGallery(product) {
+  if (Array.isArray(product.gallery) && product.gallery.length) {
+    return product.gallery;
+  }
+
+  if (Array.isArray(product.images) && product.images.length) {
+    return product.images;
+  }
+
+  return [];
+}
+
+function isBandWidthLocked(product) {
+  return product.lockBandWidth === true;
 }
 
 function initializeSelections() {
@@ -190,6 +218,18 @@ function render() {
     </option>
   `).join("");
 
+  const bandWidthMarkup = isBandWidthLocked(currentProduct)
+    ? `
+      <h3>Band Width:</h3>
+      <p><strong>${currentProduct.band_width}</strong></p>
+    `
+    : `
+      <h3>Select Band Width:</h3>
+      <select onchange="setBandWidth(this.value)">
+        ${bandWidthOptions}
+      </select>
+    `;
+
   const addOnMarkup = addOns.length
     ? addOns.map(addon => `
         <label>
@@ -203,8 +243,24 @@ function render() {
       `).join("")
     : "<p>No add-ons available for this ring.</p>";
 
-  const imageMarkup = currentProduct.image
-    ? `<img src="${currentProduct.image}" alt="${currentProduct.title}" class="builder-product-image" onerror="this.style.display='none'" />`
+  const galleryImages = getProductGallery(currentProduct);
+
+  const galleryMarkup = galleryImages.length
+    ? `
+      <div class="builder-gallery-grid">
+        ${galleryImages.map((src, index) => `
+          <div class="builder-gallery-item">
+            <img
+              src="${src}"
+              alt="${currentProduct.title} image ${index + 1}"
+              class="builder-product-image"
+              loading="lazy"
+              onerror="this.closest('.builder-gallery-item').style.display='none'"
+            />
+          </div>
+        `).join("")}
+      </div>
+    `
     : "";
 
   app.innerHTML = `
@@ -212,7 +268,7 @@ function render() {
       <h2>Ring Builder</h2>
 
       <div class="builder-product-header">
-        ${imageMarkup}
+        ${galleryMarkup}
         <div class="builder-product-meta">
           <h3>${currentProduct.title}</h3>
           <p><strong>Product Key:</strong> ${currentProduct.builderKey}</p>
@@ -222,10 +278,7 @@ function render() {
         </div>
       </div>
 
-      <h3>Select Band Width:</h3>
-      <select onchange="setBandWidth(this.value)">
-        ${bandWidthOptions}
-      </select>
+      ${bandWidthMarkup}
 
       <h3>Select Metal:</h3>
       <select onchange="setMetal(this.value)">
@@ -328,7 +381,7 @@ window.addCurrentRingToCart = () => {
     collection: currentProduct.collection,
     mode: "rings",
     metal: currentMetal,
-    bandWidth: currentBandWidth,
+    bandWidth: currentBandWidth || currentProduct.band_width,
     engravingInside: supportsInsideEngraving(currentProduct) ? engravingTextInside : "",
     engravingOutside: supportsOutsideEngraving(currentProduct) ? engravingTextOutside : "",
     addOns: [...selectedAddOns],
@@ -336,6 +389,7 @@ window.addCurrentRingToCart = () => {
     quantity: 1,
     shippingProfile: "ring",
     image: currentProduct.image,
+    gallery: getProductGallery(currentProduct),
     sourceUrl: window.location.pathname + window.location.search
   };
 
