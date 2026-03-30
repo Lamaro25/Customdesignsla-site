@@ -13,7 +13,7 @@ let currentMetal = "Silver";
 let selectedAddOns = [];
 let engravingTextInside = "";
 let engravingTextOutside = "";
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('cdla_cart')) || [];
 let wishlist = [];
 
 function calculatePrice() {
@@ -39,7 +39,7 @@ function calculatePrice() {
 }
 
 /**
- * ✅ Updates only the price UI without rerendering the entire page.
+ * Updates only the price UI without rerendering the entire page.
  * Prevents input fields from resetting while typing.
  */
 function updatePriceUI() {
@@ -68,7 +68,6 @@ function render() {
     </div>
   `).join("");
 
-  // ✅ FIX: Checkboxes stay checked
   const addOnCheckboxes = Object.keys(pricingData.addOns || {}).map(a => {
     const isChecked = selectedAddOns.includes(a);
     return `
@@ -102,14 +101,6 @@ function render() {
         <option value="${col}" ${col === currentCollection ? "selected" : ""}>${col}</option>
       `).join("")}
     </select>
-
-    <h3>Select Color:</h3>
-    <div>
-      <span class="color-option" style="background:silver" onclick="setColor('silver')"></span>
-      <span class="color-option" style="background:gold" onclick="setColor('gold')"></span>
-      <span class="color-option" style="background:pink" onclick="setColor('pink')"></span>
-      <span class="color-option" style="background:black" onclick="setColor('black')"></span>
-    </div>
 
     ${mode === 'rings' ? `
       <h3>Select Band Height:</h3>
@@ -162,7 +153,7 @@ function render() {
 
     <div class="cart-box">
       <h3>🛒 Cart (${cart.length})</h3>
-      <ul>${cart.map(c => `<li>${c}</li>`).join("")}</ul>
+      <ul>${cart.map(c => `<li>${c.productName} — $${c.unitPrice}</li>`).join("")}</ul>
 
       <h3>♡ Wishlist (${wishlist.length})</h3>
       <ul>${wishlist.map(w => `<li>${w}</li>`).join("")}</ul>
@@ -170,7 +161,7 @@ function render() {
   `;
 }
 
-// ✅ Core setters
+// Core setters
 window.setColor = c => { currentColor = c; render(); };
 window.setCollection = col => { currentCollection = col; render(); };
 window.toggleMode = () => { mode = mode === 'rings' ? 'charms' : 'rings'; currentCollection = 'Cuban'; render(); };
@@ -178,7 +169,6 @@ window.setHeight = h => { currentHeight = h; render(); };
 window.setSize = s => { currentSize = s; render(); };
 window.setMetal = m => { currentMetal = m; render(); };
 
-// ✅ Addons update price + rerender (safe)
 window.toggleAddOn = (a, checked) => {
   if (checked) {
     if (!selectedAddOns.includes(a)) selectedAddOns.push(a);
@@ -188,14 +178,35 @@ window.toggleAddOn = (a, checked) => {
   render();
 };
 
-// ✅ FIX: typing does NOT rerender entire page
 window.setEngraving = (t, v) => {
   if (t === 'inside') engravingTextInside = v;
   if (t === 'outside') engravingTextOutside = v;
   updatePriceUI();
 };
 
-window.addToCart = name => { cart.push(name); render(); };
+window.addToCart = name => {
+  const item = {
+    id: Date.now(),
+    mode,
+    collection: currentCollection,
+    productName: name,
+    color: currentColor,
+    bandHeight: mode === 'rings' ? currentHeight : null,
+    charmSize: mode === 'charms' ? currentSize : null,
+    metal: currentMetal,
+    engravingInside: engravingTextInside,
+    engravingOutside: engravingTextOutside,
+    addOns: [...selectedAddOns],
+    unitPrice: calculatePrice(),
+    quantity: 1,
+    shippingProfile: mode === 'rings' ? 'ring' : 'charm'
+  };
+
+  cart.push(item);
+  localStorage.setItem('cdla_cart', JSON.stringify(cart));
+  render();
+};
+
 window.addToWishlist = name => { wishlist.push(name); render(); };
 
 async function loadData() {
