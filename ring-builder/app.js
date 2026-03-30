@@ -1,14 +1,10 @@
 const app = document.getElementById('app');
 
-let ringsData = {};
-let charmsData = {};
+let ringsData = [];
 let pricingData = {};
-
-let currentMode = 'rings';
 let currentProduct = null;
 
-let currentHeight = "3-6mm";
-let currentSize = "Dime (17.9mm)";
+let currentHeight = "";
 let currentMetal = "Silver";
 let selectedAddOns = [];
 let engravingTextInside = "";
@@ -17,251 +13,165 @@ let engravingTextOutside = "";
 let cart = JSON.parse(localStorage.getItem('cdla_cart')) || [];
 let wishlist = JSON.parse(localStorage.getItem('cdla_wishlist')) || [];
 
-function getUrlParams() {
+function getUrlParam(name) {
   const params = new URLSearchParams(window.location.search);
-  return {
-    sku: params.get('sku') || '',
-    mode: params.get('mode') || ''
-  };
+  return (params.get(name) || "").trim();
 }
 
-function detectModeFromPage() {
-  const { mode, sku } = getUrlParams();
-
-  if (mode === 'rings' || mode === 'charms') {
-    return mode;
-  }
-
-  if (sku) {
-    const normalizedSku = sku.toLowerCase();
-    if (
-      normalizedSku.startsWith('cl-') ||
-      normalizedSku.startsWith('gs-') ||
-      normalizedSku.startsWith('wr-') ||
-      normalizedSku.startsWith('r-')
-    ) {
-      return 'rings';
-    }
-    if (
-      normalizedSku.startsWith('hf-') ||
-      normalizedSku.startsWith('hs-') ||
-      normalizedSku.startsWith('hfr-') ||
-      normalizedSku.startsWith('c-')
-    ) {
-      return 'charms';
-    }
-  }
-
-  const path = window.location.pathname.toLowerCase();
-  if (path.includes('/builder/ring')) return 'rings';
-  if (path.includes('/builder/charm')) return 'charms';
-
-  return 'rings';
+function normalize(value) {
+  return String(value || "").trim().toLowerCase();
 }
 
-function normalizeValue(value) {
-  return String(value || '').trim().toLowerCase();
+function slugify(value) {
+  return normalize(value)
+    .replace(/['’"]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function getProductTitle(product) {
+  return product.title || product.name || "Custom Ring";
 }
 
 function getProductSku(product) {
-  return (
-    product?.sku ||
-    product?.SKU ||
-    product?.id ||
-    product?.slug ||
-    ''
-  );
+  return (product.sku || "").trim();
 }
 
-function getProductName(product) {
-  return (
-    product?.name ||
-    product?.title ||
-    product?.productName ||
-    'Custom Piece'
-  );
+function getProductSlug(product) {
+  return (product.slug || slugify(getProductTitle(product))).trim();
 }
 
 function getProductImage(product) {
-  return (
-    product?.img ||
-    product?.image ||
-    product?.featured_image ||
-    product?.featuredImage ||
-    ''
-  );
+  if (Array.isArray(product.images) && product.images.length) return product.images[0];
+  if (Array.isArray(product.gallery) && product.gallery.length) return product.gallery[0];
+  return product.img || "";
 }
 
-function flattenProducts(collectionsObj) {
-  const products = [];
-
-  Object.entries(collectionsObj || {}).forEach(([collectionName, items]) => {
-    if (!Array.isArray(items)) return;
-
-    items.forEach(item => {
-      products.push({
-        ...item,
-        collectionName
-      });
-    });
-  });
-
-  return products;
+function getProductCollection(product) {
+  return product.collection || "Ring Collection";
 }
 
-function findProductBySku(collectionsObj, sku) {
-  const allProducts = flattenProducts(collectionsObj);
-  const normalizedSku = normalizeValue(sku);
+function getAvailableRingHeights(product) {
+  if (Array.isArray(product.availableRingHeights) && product.availableRingHeights.length) {
+    return product.availableRingHeights;
+  }
 
-  return allProducts.find(product => {
-    const productSku = normalizeValue(getProductSku(product));
-    return productSku === normalizedSku;
-  }) || null;
-}
+  if (product.band_width) {
+    return [product.band_width];
+  }
 
-function getAllowedMetals() {
-  if (Array.isArray(currentProduct?.availableMetals) && currentProduct.availableMetals.length) {
-    return currentProduct.availableMetals;
-  }
-  if (Array.isArray(currentProduct?.metals) && currentProduct.metals.length) {
-    return currentProduct.metals;
-  }
-  return Object.keys(pricingData.metals || {});
-}
-
-function getAllowedAddOns() {
-  if (Array.isArray(currentProduct?.availableAddOns) && currentProduct.availableAddOns.length) {
-    return currentProduct.availableAddOns;
-  }
-  if (Array.isArray(currentProduct?.addOnsAvailable) && currentProduct.addOnsAvailable.length) {
-    return currentProduct.addOnsAvailable;
-  }
-  return Object.keys(pricingData.addOns || {});
-}
-
-function getAllowedRingHeights() {
-  if (Array.isArray(currentProduct?.availableRingHeights) && currentProduct.availableRingHeights.length) {
-    return currentProduct.availableRingHeights;
-  }
-  if (Array.isArray(currentProduct?.ringHeights) && currentProduct.ringHeights.length) {
-    return currentProduct.ringHeights;
-  }
   return Object.keys(pricingData.ringHeights || {});
 }
 
-function getAllowedCharmSizes() {
-  if (Array.isArray(currentProduct?.availableCharmSizes) && currentProduct.availableCharmSizes.length) {
-    return currentProduct.availableCharmSizes;
+function getAvailableMetals(product) {
+  if (Array.isArray(product.availableMetals) && product.availableMetals.length) {
+    return product.availableMetals;
   }
-  if (Array.isArray(currentProduct?.charmSizes) && currentProduct.charmSizes.length) {
-    return currentProduct.charmSizes;
+
+  if (product.material && /sterling|silver/i.test(product.material)) {
+    return ["Silver"];
   }
-  return Object.keys(pricingData.charmSizes || {});
+
+  return Object.keys(pricingData.metals || {});
 }
 
-function supportsInsideEngraving() {
-  if (typeof currentProduct?.engravingInside === 'boolean') return currentProduct.engravingInside;
-  if (typeof currentProduct?.allowInsideEngraving === 'boolean') return currentProduct.allowInsideEngraving;
+function getAvailableAddOns(product) {
+  if (Array.isArray(product.availableAddOns) && product.availableAddOns.length) {
+    return product.availableAddOns;
+  }
+
+  const notes = `${product.description || ""} ${product.notes || ""} ${product.content || ""}`.toLowerCase();
+
+  if (notes.includes("customization available") || notes.includes("engraving")) {
+    return Object.keys(pricingData.addOns || {});
+  }
+
+  return Object.keys(pricingData.addOns || {});
+}
+
+function supportsInsideEngraving(product) {
+  if (typeof product.allowInsideEngraving === "boolean") return product.allowInsideEngraving;
   return true;
 }
 
-function supportsOutsideEngraving() {
-  if (typeof currentProduct?.engravingOutside === 'boolean') return currentProduct.engravingOutside;
-  if (typeof currentProduct?.allowOutsideEngraving === 'boolean') return currentProduct.allowOutsideEngraving;
-  return true;
+function supportsOutsideEngraving(product) {
+  if (typeof product.allowOutsideEngraving === "boolean") return product.allowOutsideEngraving;
+  return false;
+}
+
+function getBaseProductPrice(product) {
+  return Number(product.price || 0);
+}
+
+function findRingBySkuOrSlug(products, rawValue) {
+  const query = normalize(rawValue);
+
+  return products.find(product => {
+    const sku = normalize(getProductSku(product));
+    const slug = normalize(getProductSlug(product));
+    const skuSlug = normalize(`${sku}-${slug}`);
+
+    return query === sku || query === slug || query === skuSlug;
+  }) || null;
+}
+
+function initializeSelections() {
+  if (!currentProduct) return;
+
+  const heights = getAvailableRingHeights(currentProduct);
+  const metals = getAvailableMetals(currentProduct);
+
+  currentHeight = heights[0] || "";
+  currentMetal = metals[0] || "Silver";
+  selectedAddOns = [];
+  engravingTextInside = "";
+  engravingTextOutside = "";
 }
 
 function calculatePrice() {
-  let base = pricingData.designFee || 0;
+  if (!currentProduct) return 0;
 
-  if (currentMode === 'rings') {
-    base += pricingData.ringHeights?.[currentHeight] || 0;
-  } else {
-    base += pricingData.charmSizes?.[currentSize] || 0;
-  }
-
-  base += pricingData.metals?.[currentMetal] || 0;
+  let total = getBaseProductPrice(currentProduct);
 
   selectedAddOns.forEach(addon => {
-    base += pricingData.addOns?.[addon] || 0;
+    total += pricingData.addOns?.[addon] || 0;
   });
 
   let engravingWords = 0;
 
-  if (supportsInsideEngraving()) {
-    engravingWords += engravingTextInside
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean).length;
+  if (supportsInsideEngraving(currentProduct)) {
+    engravingWords += engravingTextInside.trim().split(/\s+/).filter(Boolean).length;
   }
 
-  if (supportsOutsideEngraving()) {
-    engravingWords += engravingTextOutside
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean).length;
+  if (supportsOutsideEngraving(currentProduct)) {
+    engravingWords += engravingTextOutside.trim().split(/\s+/).filter(Boolean).length;
   }
 
-  base += engravingWords * (pricingData.engravingPerWord || 0);
+  total += engravingWords * (pricingData.engravingPerWord || 0);
 
-  return base;
+  return total;
 }
 
 function updatePriceUI() {
-  const price = calculatePrice();
-  const priceBox = document.querySelector('.price-box h2');
+  const priceBox = document.querySelector(".price-box h2");
   if (priceBox) {
-    priceBox.textContent = `Total Price: $${price}`;
-  }
-}
-
-function syncSelectionsToProduct() {
-  if (!currentProduct) return;
-
-  const allowedMetals = getAllowedMetals();
-  if (!allowedMetals.includes(currentMetal)) {
-    currentMetal = allowedMetals[0] || 'Silver';
-  }
-
-  if (currentMode === 'rings') {
-    const allowedHeights = getAllowedRingHeights();
-    if (!allowedHeights.includes(currentHeight)) {
-      currentHeight = allowedHeights[0] || Object.keys(pricingData.ringHeights || {})[0] || "3-6mm";
-    }
-    currentSize = "";
-  } else {
-    const allowedSizes = getAllowedCharmSizes();
-    if (!allowedSizes.includes(currentSize)) {
-      currentSize = allowedSizes[0] || Object.keys(pricingData.charmSizes || {})[0] || "Dime (17.9mm)";
-    }
-    currentHeight = "";
-  }
-
-  const allowedAddOns = getAllowedAddOns();
-  selectedAddOns = selectedAddOns.filter(addon => allowedAddOns.includes(addon));
-
-  if (!supportsInsideEngraving()) {
-    engravingTextInside = "";
-  }
-
-  if (!supportsOutsideEngraving()) {
-    engravingTextOutside = "";
+    priceBox.textContent = `Total Price: $${calculatePrice()}`;
   }
 }
 
 function persistCart() {
-  localStorage.setItem('cdla_cart', JSON.stringify(cart));
+  localStorage.setItem("cdla_cart", JSON.stringify(cart));
 }
 
 function persistWishlist() {
-  localStorage.setItem('cdla_wishlist', JSON.stringify(wishlist));
+  localStorage.setItem("cdla_wishlist", JSON.stringify(wishlist));
 }
 
-function renderBuilderNotFound() {
+function renderNotFound() {
   app.innerHTML = `
     <section class="builder-shell">
-      <h2>${currentMode === 'rings' ? 'Ring' : 'Charm'} Builder</h2>
-      <p>We couldn’t find a ${currentMode === 'rings' ? 'ring' : 'charm'} for this SKU.</p>
+      <h2>Ring Builder</h2>
+      <p>We couldn’t find a ring for this SKU.</p>
       <p>Please check the product link and try again.</p>
     </section>
   `;
@@ -269,128 +179,113 @@ function renderBuilderNotFound() {
 
 function render() {
   if (!currentProduct) {
-    renderBuilderNotFound();
+    renderNotFound();
     return;
   }
 
-  syncSelectionsToProduct();
-
-  const productName = getProductName(currentProduct);
+  const productName = getProductTitle(currentProduct);
   const productSku = getProductSku(currentProduct);
+  const productSlug = getProductSlug(currentProduct);
+  const productCollection = getProductCollection(currentProduct);
   const productImage = getProductImage(currentProduct);
-  const allowedMetals = getAllowedMetals();
-  const allowedAddOns = getAllowedAddOns();
+
+  const availableHeights = getAvailableRingHeights(currentProduct);
+  const availableMetals = getAvailableMetals(currentProduct);
+  const availableAddOns = getAvailableAddOns(currentProduct);
+
   const price = calculatePrice();
-
-  const metalOptions = allowedMetals.map(metal => `
-    <option value="${metal}" ${metal === currentMetal ? 'selected' : ''}>
-      ${metal} (+$${pricingData.metals?.[metal] || 0})
-    </option>
-  `).join('');
-
-  const addOnCheckboxes = allowedAddOns.length
-    ? allowedAddOns.map(addon => {
-        const checked = selectedAddOns.includes(addon);
-        return `
-          <label>
-            <input
-              type="checkbox"
-              ${checked ? 'checked' : ''}
-              onchange="toggleAddOn('${addon}', this.checked)"
-            />
-            ${addon} (+$${pricingData.addOns?.[addon] || 0})
-          </label><br/>
-        `;
-      }).join('')
-    : '<p>No add-ons available for this piece.</p>';
-
-  const ringHeightSection = currentMode === 'rings'
-    ? `
-      <h3>Select Band Height:</h3>
-      <select onchange="setHeight(this.value)">
-        ${getAllowedRingHeights().map(height => `
-          <option value="${height}" ${height === currentHeight ? 'selected' : ''}>
-            ${height} (+$${pricingData.ringHeights?.[height] || 0})
-          </option>
-        `).join('')}
-      </select>
-    `
-    : '';
-
-  const charmSizeSection = currentMode === 'charms'
-    ? `
-      <h3>Select Charm Size:</h3>
-      <select onchange="setSize(this.value)">
-        ${getAllowedCharmSizes().map(size => `
-          <option value="${size}" ${size === currentSize ? 'selected' : ''}>
-            ${size} (+$${pricingData.charmSizes?.[size] || 0})
-          </option>
-        `).join('')}
-      </select>
-    `
-    : '';
-
-  const engravingSection = (!supportsInsideEngraving() && !supportsOutsideEngraving())
-    ? `
-      <h3>Engraving Options:</h3>
-      <p>Engraving is not available for this piece.</p>
-    `
-    : `
-      <h3>Engraving Options:</h3>
-
-      ${supportsInsideEngraving() ? `
-        <label>Inside Text:
-          <input
-            type="text"
-            value="${engravingTextInside}"
-            oninput="setEngraving('inside', this.value)"
-          />
-        </label><br/>
-      ` : ''}
-
-      ${supportsOutsideEngraving() ? `
-        <label>Outside Text:
-          <input
-            type="text"
-            value="${engravingTextOutside}"
-            oninput="setEngraving('outside', this.value)"
-          />
-        </label><br/>
-      ` : ''}
-
-      <small>$${pricingData.engravingPerWord || 0} per word</small>
-    `;
 
   const imageMarkup = productImage
     ? `<img src="${productImage}" alt="${productName}" class="builder-product-image" onerror="this.style.display='none'" />`
-    : '';
+    : "";
+
+  const ringHeightOptions = availableHeights.map(height => `
+    <option value="${height}" ${height === currentHeight ? "selected" : ""}>
+      ${height}
+    </option>
+  `).join("");
+
+  const metalOptions = availableMetals.map(metal => `
+    <option value="${metal}" ${metal === currentMetal ? "selected" : ""}>
+      ${metal} (+$${pricingData.metals?.[metal] || 0})
+    </option>
+  `).join("");
+
+  const addOnMarkup = availableAddOns.length
+    ? availableAddOns.map(addon => `
+        <label>
+          <input
+            type="checkbox"
+            ${selectedAddOns.includes(addon) ? "checked" : ""}
+            onchange="toggleAddOn('${addon}', this.checked)"
+          />
+          ${addon} (+$${pricingData.addOns?.[addon] || 0})
+        </label><br/>
+      `).join("")
+    : "<p>No add-ons available for this ring.</p>";
+
+  const engravingMarkup = `
+    <h3>Engraving Options:</h3>
+
+    ${supportsInsideEngraving(currentProduct) ? `
+      <label>Inside Text:
+        <input
+          type="text"
+          value="${engravingTextInside}"
+          oninput="setEngraving('inside', this.value)"
+        />
+      </label><br/>
+    ` : ""}
+
+    ${supportsOutsideEngraving(currentProduct) ? `
+      <label>Outside Text:
+        <input
+          type="text"
+          value="${engravingTextOutside}"
+          oninput="setEngraving('outside', this.value)"
+        />
+      </label><br/>
+    ` : ""}
+
+    <small>$${pricingData.engravingPerWord || 0} per word</small>
+  `;
 
   app.innerHTML = `
     <section class="builder-shell">
-      <h2>${currentMode === 'rings' ? 'Ring' : 'Charm'} Builder</h2>
+      <h2>Ring Builder</h2>
 
       <div class="builder-product-header">
         ${imageMarkup}
         <div class="builder-product-meta">
           <h3>${productName}</h3>
-          <p><strong>SKU:</strong> ${productSku || 'N/A'}</p>
-          <p><strong>Collection:</strong> ${currentProduct.collectionName || 'N/A'}</p>
+          <p><strong>SKU:</strong> ${productSku}</p>
+          <p><strong>Slug:</strong> ${productSlug}</p>
+          <p><strong>Collection:</strong> ${productCollection}</p>
+          <p><strong>Base Price:</strong> $${getBaseProductPrice(currentProduct)}</p>
         </div>
       </div>
 
-      ${ringHeightSection}
-      ${charmSizeSection}
+      <h3>Select Band Width:</h3>
+      <select onchange="setHeight(this.value)">
+        ${ringHeightOptions}
+      </select>
 
       <h3>Select Metal:</h3>
-      <select onchange="setMetal(this.value)">${metalOptions}</select>
+      <select onchange="setMetal(this.value)">
+        ${metalOptions}
+      </select>
 
-      ${engravingSection}
+      ${engravingMarkup}
 
       <h3>Customization Add-ons:</h3>
-      ${addOnCheckboxes}
+      ${addOnMarkup}
 
-      <button class="add-to-cart-main" onclick="addCurrentProductToCart()">
+      <button class="add-to-cart-main" onclick="addCurrentRingToCart()">
         Add to Cart
+      </button>
+
+      <button class="add-to-cart-main" onclick="addCurrentRingToWishlist()" type="button">
+        Add to Wishlist
       </button>
 
       <div class="price-box">
@@ -401,19 +296,15 @@ function render() {
         <h3>🛒 Cart (${cart.length})</h3>
         <ul>
           ${cart.map(item => `
-            <li>
-              ${item.productName} (${item.sku || 'no-sku'}) — $${item.unitPrice}
-            </li>
-          `).join('')}
+            <li>${item.productName} (${item.sku}) — $${item.unitPrice}</li>
+          `).join("")}
         </ul>
 
         <h3>♡ Wishlist (${wishlist.length})</h3>
         <ul>
           ${wishlist.map(item => `
-            <li>
-              ${item.productName} (${item.sku || 'no-sku'})
-            </li>
-          `).join('')}
+            <li>${item.productName} (${item.sku})</li>
+          `).join("")}
         </ul>
       </div>
     </section>
@@ -422,11 +313,6 @@ function render() {
 
 window.setHeight = value => {
   currentHeight = value;
-  render();
-};
-
-window.setSize = value => {
-  currentSize = value;
   render();
 };
 
@@ -447,30 +333,31 @@ window.toggleAddOn = (addon, checked) => {
 };
 
 window.setEngraving = (type, value) => {
-  if (type === 'inside') engravingTextInside = value;
-  if (type === 'outside') engravingTextOutside = value;
+  if (type === "inside") engravingTextInside = value;
+  if (type === "outside") engravingTextOutside = value;
   updatePriceUI();
 };
 
-window.addCurrentProductToCart = () => {
+window.addCurrentRingToCart = () => {
   if (!currentProduct) return;
 
   const item = {
     id: Date.now(),
     sku: getProductSku(currentProduct),
-    productName: getProductName(currentProduct),
-    collection: currentProduct.collectionName || '',
-    mode: currentMode,
+    slug: getProductSlug(currentProduct),
+    productName: getProductTitle(currentProduct),
+    collection: getProductCollection(currentProduct),
+    mode: "rings",
     metal: currentMetal,
-    bandHeight: currentMode === 'rings' ? currentHeight : null,
-    charmSize: currentMode === 'charms' ? currentSize : null,
-    engravingInside: supportsInsideEngraving() ? engravingTextInside : '',
-    engravingOutside: supportsOutsideEngraving() ? engravingTextOutside : '',
+    bandHeight: currentHeight,
+    engravingInside: supportsInsideEngraving(currentProduct) ? engravingTextInside : "",
+    engravingOutside: supportsOutsideEngraving(currentProduct) ? engravingTextOutside : "",
     addOns: [...selectedAddOns],
     unitPrice: calculatePrice(),
     quantity: 1,
-    shippingProfile: currentMode === 'rings' ? 'ring' : 'charm',
-    image: getProductImage(currentProduct)
+    shippingProfile: "ring",
+    image: getProductImage(currentProduct),
+    sourceUrl: window.location.pathname
   };
 
   cart.push(item);
@@ -478,46 +365,47 @@ window.addCurrentProductToCart = () => {
   render();
 };
 
-window.addCurrentProductToWishlist = () => {
+window.addCurrentRingToWishlist = () => {
   if (!currentProduct) return;
 
-  const item = {
+  wishlist.push({
     sku: getProductSku(currentProduct),
-    productName: getProductName(currentProduct),
-    mode: currentMode,
+    slug: getProductSlug(currentProduct),
+    productName: getProductTitle(currentProduct),
+    mode: "rings",
     image: getProductImage(currentProduct)
-  };
+  });
 
-  wishlist.push(item);
   persistWishlist();
   render();
 };
 
-function initializeProduct() {
-  const { sku } = getUrlParams();
-  currentMode = detectModeFromPage();
-
-  if (currentMode === 'rings') {
-    currentProduct = findProductBySku(ringsData, sku);
-  } else {
-    currentProduct = findProductBySku(charmsData, sku);
-  }
-
-  syncSelectionsToProduct();
-}
-
 async function loadData() {
-  const [ringsResp, charmsResp, pricingResp] = await Promise.all([
-    fetch('data/rings.json'),
-    fetch('data/charms.json'),
-    fetch('data/pricing.json')
+  const [ringsResp, pricingResp] = await Promise.all([
+    fetch("data/rings.json"),
+    fetch("data/pricing.json")
   ]);
 
-  ringsData = await ringsResp.json();
-  charmsData = await charmsResp.json();
+  const ringsJson = await ringsResp.json();
   pricingData = await pricingResp.json();
 
-  initializeProduct();
+  if (Array.isArray(ringsJson)) {
+    ringsData = ringsJson;
+  } else if (Array.isArray(ringsJson.items)) {
+    ringsData = ringsJson.items;
+  } else if (typeof ringsJson === "object" && ringsJson !== null) {
+    ringsData = Object.values(ringsJson).flat().filter(Boolean);
+  } else {
+    ringsData = [];
+  }
+
+  const rawSku = getUrlParam("sku");
+  currentProduct = findRingBySkuOrSlug(ringsData, rawSku);
+
+  if (currentProduct) {
+    initializeSelections();
+  }
+
   render();
 }
 
