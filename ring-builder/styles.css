@@ -1,11 +1,13 @@
 body.builder-page {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  color: #2f2f34;
-  background:
-    linear-gradient(120deg, rgba(153, 153, 168, 0.06) 1px, transparent 1px) 0 0 / 42px 24px,
-    linear-gradient(60deg, rgba(153, 153, 168, 0.06) 1px, transparent 1px) 0 0 / 42px 24px,
-    linear-gradient(180deg, #fcfcfd, #f3f4f6 55%, #f8f8f9);
+  color: #202329;
+  background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('../img/customization-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: rgba(0,0,0,0.65);
+  background-blend-mode: multiply;
 }
 
 main {
@@ -27,10 +29,13 @@ footer {
 }
 
 .builder-plaque {
-  background: linear-gradient(150deg, #ffffff, #f3f4f6 48%, #eceef2);
-  border: 1px solid #d8dbe1;
+  background: linear-gradient(145deg, #e8e8e8 0%, #c9c9c9 40%, #a8a8a8 100%);
+  border: 1px solid rgba(255,255,255,0.25);
   border-radius: 18px;
-  box-shadow: 0 8px 22px rgba(53, 58, 73, 0.08);
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.4),
+    inset 0 -3px 6px rgba(0,0,0,0.25),
+    0 6px 18px rgba(0,0,0,0.4);
   padding: 1rem;
 }
 
@@ -114,9 +119,13 @@ footer {
 
 .builder-mini-card {
   margin-top: 0.8rem;
-  border: 1px solid #d9dde5;
+  border: 1px solid rgba(255,255,255,0.25);
   border-radius: 14px;
-  background: rgba(255,255,255,0.8);
+  background: linear-gradient(145deg, #e8e8e8 0%, #c9c9c9 40%, #a8a8a8 100%);
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.4),
+    inset 0 -3px 6px rgba(0,0,0,0.2),
+    0 5px 14px rgba(0,0,0,0.2);
   padding: 0.85rem;
 }
 
@@ -318,10 +327,19 @@ button {
 }
 
 .add-to-cart-main {
-  background: linear-gradient(145deg, #f7f8fb, #dfe3ea);
-  color: #222934;
-  border: 1px solid #bcc4d1;
+  background: linear-gradient(145deg, #cfcfcf, #9f9f9f);
+  color: #1a1e26;
+  border: 1px solid rgba(255,255,255,0.4);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,0.6),
+    inset 0 -2px 4px rgba(0,0,0,0.25),
+    0 4px 12px rgba(0,0,0,0.35);
   font-weight: 600;
+  transition: filter 0.2s ease;
+}
+
+.add-to-cart-main:hover {
+  filter: brightness(1.05);
 }
 
 .material-note {
@@ -349,6 +367,12 @@ button {
   main { padding-top: 30px; }
   .builder-shell { gap: 16px; }
   .builder-actions { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  body.builder-page {
+    background-attachment: scroll;
+  }
 }
 
 @media (max-width: 640px) {
