@@ -12,7 +12,7 @@ let engravingTextInside = "";
 let engravingTextOutside = "";
 let selectedSymbols = [];
 let symbolSectionExpanded = false;
-let symbolPlacementNotes = "";
+let orderNotes = "";
 
 let cart = JSON.parse(localStorage.getItem('cdla_cart')) || [];
 let wishlist = JSON.parse(localStorage.getItem('cdla_wishlist')) || [];
@@ -182,7 +182,7 @@ function initializeSelections() {
   engravingTextOutside = "";
   selectedSymbols = [];
   symbolSectionExpanded = false;
-  symbolPlacementNotes = "";
+  orderNotes = "";
 }
 
 function calculatePrice() {
@@ -395,15 +395,12 @@ function render() {
                 <p>Upload or describe your custom symbol. You can send a logo, brand, or image after checkout.</p>
                 <ul>
                   <li>Add details in Order Notes</li>
-                  <li>Include placement and size</li>
+                  <li>Include placement</li>
                   <li>We will contact you if needed</li>
                 </ul>
               </div>
             ` : ""}
             <p class="symbol-summary">${selectedSymbolDetails.length} symbols selected — $${symbolsTotal}</p>
-            <label>Symbol Placement Notes:
-              <textarea rows="2" oninput="setSymbolPlacementNotes(this.value)">${symbolPlacementNotes}</textarea>
-            </label>
           </div>
         ` : ""}
       </section>
@@ -438,23 +435,23 @@ function render() {
       <section class="builder-section engraving-section">
         <h3>Engraving Options:</h3>
         ${supportsInsideEngraving(currentProduct) ? `
-          <label>Inside Text:
+          <label class="engraving-field">Inside Text:
             <input
               type="text"
               value="${engravingTextInside}"
               oninput="setEngraving('inside', this.value)"
             />
-          </label><br/>
+          </label>
         ` : ""}
 
         ${supportsOutsideEngraving(currentProduct) ? `
-          <label>Outside Text:
+          <label class="engraving-field">Outside Text:
             <input
               type="text"
               value="${engravingTextOutside}"
               oninput="setEngraving('outside', this.value)"
             />
-          </label><br/>
+          </label>
         ` : ""}
 
         <small>$${pricingData.engravingPerWord || 0} per word</small>
@@ -465,6 +462,15 @@ function render() {
       <section class="builder-section customization-section">
         <h3>Customization Add-ons:</h3>
         ${addOnMarkup}
+      </section>
+
+      <section class="builder-section order-notes-section">
+        <h3>Order Notes</h3>
+        <textarea
+          rows="6"
+          oninput="setOrderNotes(this.value)"
+          placeholder="Example:&#10;&quot;Inside text: I love you. Add 1 heart symbol between the words.&quot;&#10;You can also use this box to explain symbol placement, order, or custom requests."
+        >${orderNotes}</textarea>
       </section>
 
       <div class="builder-actions">
@@ -541,8 +547,8 @@ window.toggleSymbol = symbolId => {
   render();
 };
 
-window.setSymbolPlacementNotes = value => {
-  symbolPlacementNotes = value;
+window.setOrderNotes = value => {
+  orderNotes = value;
 };
 
 window.addCurrentRingToCart = () => {
@@ -565,7 +571,8 @@ window.addCurrentRingToCart = () => {
     engravingOutside: supportsOutsideEngraving(currentProduct) ? engravingTextOutside : "",
     addOns: [...selectedAddOns],
     symbols: [...selectedSymbolDetails],
-    symbolPlacementNotes,
+    orderNotes,
+    symbolPlacementNotes: orderNotes,
     unitPrice: calculatePrice(),
     quantity: 1,
     shippingProfile: "ring",
