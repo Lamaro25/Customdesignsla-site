@@ -436,6 +436,9 @@ function render() {
                   <span class="custom-symbol-trigger-text">Need something custom? Upload a brand, logo, or request a new design.</span>
                 </div>
                 <span class="custom-symbol-trigger-price">+$${customSymbol.price}</span>
+                <span class="symbol-select-indicator" aria-hidden="true">
+                  <span class="symbol-select-checkbox">${isCustomSymbolSelected ? "✓" : ""}</span>
+                </span>
               </button>
             ` : ""}
             ${isCustomSymbolSelected ? `
@@ -451,12 +454,12 @@ function render() {
                   <p><strong>✔ Good:</strong> clean black silhouette or clean black-and-white brand</p>
                   <p><strong>✖ Not ideal:</strong> real photos, blurry images, color images, shaded artwork</p>
                   <div class="custom-symbol-examples">
-                    <div class="custom-symbol-example-card">
-                      <div class="custom-symbol-example-placeholder">No Image</div>
+                    <div class="custom-symbol-example-card" data-example-key="good-example-image">
+                      <div class="custom-symbol-example-placeholder" data-example-key="good-example-image" aria-label="good-example-image placeholder">No Image</div>
                       <span class="custom-symbol-example-label">Good Example</span>
                     </div>
-                    <div class="custom-symbol-example-card">
-                      <div class="custom-symbol-example-placeholder">No Image</div>
+                    <div class="custom-symbol-example-card" data-example-key="not-ideal-example-image">
+                      <div class="custom-symbol-example-placeholder" data-example-key="not-ideal-example-image" aria-label="not-ideal-example-image placeholder">No Image</div>
                       <span class="custom-symbol-example-label">Not Ideal Example</span>
                     </div>
                   </div>
@@ -637,16 +640,18 @@ window.toggleSymbolSection = () => {
 };
 
 window.toggleSymbol = symbolId => {
-  if (selectedSymbols.includes(symbolId)) {
-    selectedSymbols = selectedSymbols.filter(item => item !== symbolId);
-    if (symbolId === "custom-symbol") {
-      customSymbolDesignRequestOptIn = false;
-      customSymbolDesignDescription = "";
-      customSymbolUploadFileName = "";
-    }
-  } else {
-    selectedSymbols.push(symbolId);
+  const isSelected = selectedSymbols.includes(symbolId);
+
+  selectedSymbols = isSelected
+    ? selectedSymbols.filter(item => item !== symbolId)
+    : [...selectedSymbols, symbolId];
+
+  if (symbolId === "custom-symbol" && isSelected) {
+    customSymbolDesignRequestOptIn = false;
+    customSymbolDesignDescription = "";
+    customSymbolUploadFileName = "";
   }
+
   render();
 };
 

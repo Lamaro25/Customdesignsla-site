@@ -324,7 +324,7 @@ button:hover {
   padding: 0.75rem 0.85rem;
   border-radius: 12px;
   border: 1px solid #d7d7d7;
-  background: #fcfcfc;
+  background: #fff;
   color: #333;
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -333,9 +333,31 @@ button:hover {
   text-align: left;
 }
 
+.custom-symbol-trigger:hover,
+.custom-symbol-trigger:active,
+.custom-symbol-trigger:focus-visible {
+  background: #fff;
+  color: #333;
+}
+
+.custom-symbol-trigger .symbol-select-indicator {
+  grid-column: 1 / -1;
+  justify-self: center;
+  padding-top: 0.2rem;
+}
+
 .custom-symbol-trigger.is-selected {
+  background: #fff;
+  color: #333;
   border-color: #222;
-  box-shadow: 0 0 0 1px #222 inset;
+  border-width: 2px;
+  box-shadow: none;
+}
+
+.custom-symbol-trigger.is-selected .symbol-select-checkbox {
+  border-color: #222;
+  color: #111;
+  background: #fff;
 }
 
 .custom-symbol-trigger-copy {
@@ -645,6 +667,10 @@ button:hover {
     justify-items: center;
     text-align: center;
     gap: 0.45rem;
+  }
+
+  .custom-symbol-trigger .symbol-select-indicator {
+    padding-top: 0.1rem;
   }
 
   .custom-symbol-trigger-copy {
