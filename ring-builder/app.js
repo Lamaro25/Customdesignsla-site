@@ -13,7 +13,11 @@ let engravingTextOutside = "";
 let selectedSymbols = [];
 let symbolSectionExpanded = false;
 let customSymbolCleanupOptIn = false;
+let customSymbolDesignRequestOptIn = false;
+let customSymbolDesignDescription = "";
+let customSymbolUploadFileName = "";
 let orderNotes = "";
+const CUSTOM_SYMBOL_SERVICE_FEE = 10;
 
 let cart = JSON.parse(localStorage.getItem('cdla_cart')) || [];
 let wishlist = JSON.parse(localStorage.getItem('cdla_wishlist')) || [];
@@ -30,6 +34,15 @@ function slugify(value) {
     .replace(/['’"]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function normalizeProduct(product) {
@@ -184,6 +197,9 @@ function initializeSelections() {
   selectedSymbols = [];
   symbolSectionExpanded = false;
   customSymbolCleanupOptIn = false;
+  customSymbolDesignRequestOptIn = false;
+  customSymbolDesignDescription = "";
+  customSymbolUploadFileName = "";
   orderNotes = "";
 }
 
@@ -211,6 +227,9 @@ function calculatePrice() {
     const symbol = symbolsData.find(item => item.id === symbolId);
     return sum + Number(symbol?.price || 0);
   }, 0);
+  if (customSymbolCleanupOptIn || customSymbolDesignRequestOptIn) {
+    total += CUSTOM_SYMBOL_SERVICE_FEE;
+  }
 
   return total;
 }
@@ -394,13 +413,17 @@ function render() {
             ${isCustomSymbolSelected ? `
               <div class="custom-symbol-panel">
                 <h4>Custom Symbol / Brand</h4>
-                <p>Upload or describe your custom symbol, brand, or logo. Clean black-and-white reference images work best.</p>
+                <p>Upload or describe your custom symbol, brand, or logo.</p>
                 <ul>
-                  <li>Add placement details in Order Notes</li>
-                  <li>We will review your image after submission</li>
-                  <li>If your image needs cleanup or redrawing for production, an additional $10 design fee may apply</li>
-                  <li>If you already know your image needs cleanup, you can opt in below to speed up the process</li>
+                  <li>Black and white only</li>
+                  <li>Clean, high contrast</li>
+                  <li>Simple shapes with no shading or background clutter</li>
                 </ul>
+                <p><strong>✔ Good:</strong> clean black silhouette or clean black-and-white brand</p>
+                <p><strong>✖ Not ideal:</strong> real photos, blurry images, color images, shaded artwork</p>
+                <p>If your image is not production-ready or needs to be recreated, a $10 cleanup/redraw fee may apply.</p>
+                <p>If you do not have a usable image and want CDLA to create one for you, you can request that below for a $10 design fee.</p>
+                <p class="custom-symbol-note"><strong>Add placement details in Order Notes.</strong></p>
                 <label class="custom-symbol-checkbox">
                   <input
                     type="checkbox"
@@ -409,9 +432,28 @@ function render() {
                   />
                   Add $10 image cleanup / redraw fee
                 </label>
+                <label class="custom-symbol-checkbox">
+                  <input
+                    type="checkbox"
+                    ${customSymbolDesignRequestOptIn ? "checked" : ""}
+                    onchange="setCustomSymbolDesignRequest(this.checked)"
+                  />
+                  Have CDLA design my symbol / brand (+$10)
+                </label>
+                ${customSymbolDesignRequestOptIn ? `
+                  <label class="custom-symbol-description">
+                    Describe Your Symbol / Brand
+                    <textarea
+                      rows="5"
+                      oninput="setCustomSymbolDesignDescription(this.value)"
+                      placeholder="Example:&#10;Simple cattle brand with the letters R and B connected in a western style.&#10;Or:&#10;Create a clean black-and-white elephant silhouette for engraving."
+                    >${escapeHtml(customSymbolDesignDescription)}</textarea>
+                  </label>
+                ` : ""}
                 <div class="upload-placeholder">
                   <p class="upload-label">Upload Reference Image (optional)</p>
-                  <input type="file" aria-label="Upload Reference Image (optional)" />
+                  <input type="file" aria-label="Upload Reference Image (optional)" onchange="setCustomSymbolUploadFileName(this.files)" />
+                  ${customSymbolUploadFileName ? `<p class="upload-file-name">Selected file: ${escapeHtml(customSymbolUploadFileName)}</p>` : ""}
                 </div>
               </div>
             ` : ""}
@@ -561,6 +603,12 @@ window.toggleSymbolSection = () => {
 window.toggleSymbol = symbolId => {
   if (selectedSymbols.includes(symbolId)) {
     selectedSymbols = selectedSymbols.filter(item => item !== symbolId);
+    if (symbolId === "custom-symbol") {
+      customSymbolCleanupOptIn = false;
+      customSymbolDesignRequestOptIn = false;
+      customSymbolDesignDescription = "";
+      customSymbolUploadFileName = "";
+    }
   } else {
     selectedSymbols.push(symbolId);
   }
@@ -573,6 +621,28 @@ window.setOrderNotes = value => {
 
 window.setCustomSymbolCleanup = checked => {
   customSymbolCleanupOptIn = checked;
+  if (checked) {
+    customSymbolDesignRequestOptIn = false;
+  }
+  render();
+};
+
+window.setCustomSymbolDesignRequest = checked => {
+  customSymbolDesignRequestOptIn = checked;
+  if (checked) {
+    customSymbolCleanupOptIn = false;
+  } else {
+    customSymbolDesignDescription = "";
+  }
+  render();
+};
+
+window.setCustomSymbolDesignDescription = value => {
+  customSymbolDesignDescription = value;
+};
+
+window.setCustomSymbolUploadFileName = files => {
+  customSymbolUploadFileName = files?.[0]?.name || "";
 };
 
 window.addCurrentRingToCart = () => {
@@ -595,6 +665,10 @@ window.addCurrentRingToCart = () => {
     engravingOutside: supportsOutsideEngraving(currentProduct) ? engravingTextOutside : "",
     addOns: [...selectedAddOns],
     symbols: [...selectedSymbolDetails],
+    customSymbolCleanupFeeSelected: customSymbolCleanupOptIn,
+    customSymbolDesignRequestSelected: customSymbolDesignRequestOptIn,
+    customSymbolDesignDescription: customSymbolDesignDescription.trim(),
+    customSymbolUploadFileName,
     orderNotes,
     symbolPlacementNotes: orderNotes,
     unitPrice: calculatePrice(),
