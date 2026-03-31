@@ -12,6 +12,7 @@ let engravingTextInside = "";
 let engravingTextOutside = "";
 let selectedSymbols = [];
 let symbolSectionExpanded = false;
+let customSymbolCleanupOptIn = false;
 let orderNotes = "";
 
 let cart = JSON.parse(localStorage.getItem('cdla_cart')) || [];
@@ -182,6 +183,7 @@ function initializeSelections() {
   engravingTextOutside = "";
   selectedSymbols = [];
   symbolSectionExpanded = false;
+  customSymbolCleanupOptIn = false;
   orderNotes = "";
 }
 
@@ -392,12 +394,25 @@ function render() {
             ${isCustomSymbolSelected ? `
               <div class="custom-symbol-panel">
                 <h4>Custom Symbol / Brand</h4>
-                <p>Upload or describe your custom symbol. You can send a logo, brand, or image after checkout.</p>
+                <p>Upload or describe your custom symbol, brand, or logo. Clean black-and-white reference images work best.</p>
                 <ul>
-                  <li>Add details in Order Notes</li>
-                  <li>Include placement</li>
-                  <li>We will contact you if needed</li>
+                  <li>Add placement details in Order Notes</li>
+                  <li>We will review your image after submission</li>
+                  <li>If your image needs cleanup or redrawing for production, an additional $10 design fee may apply</li>
+                  <li>If you already know your image needs cleanup, you can opt in below to speed up the process</li>
                 </ul>
+                <label class="custom-symbol-checkbox">
+                  <input
+                    type="checkbox"
+                    ${customSymbolCleanupOptIn ? "checked" : ""}
+                    onchange="setCustomSymbolCleanup(this.checked)"
+                  />
+                  Add $10 image cleanup / redraw fee
+                </label>
+                <div class="upload-placeholder">
+                  <p class="upload-label">Upload Reference Image (optional)</p>
+                  <input type="file" aria-label="Upload Reference Image (optional)" />
+                </div>
               </div>
             ` : ""}
             <p class="symbol-summary">${selectedSymbolDetails.length} symbols selected — $${symbolsTotal}</p>
@@ -436,21 +451,19 @@ function render() {
         <h3>Engraving Options:</h3>
         ${supportsInsideEngraving(currentProduct) ? `
           <label class="engraving-field">Inside Text:
-            <input
-              type="text"
-              value="${engravingTextInside}"
+            <textarea
+              rows="2"
               oninput="setEngraving('inside', this.value)"
-            />
+            >${engravingTextInside}</textarea>
           </label>
         ` : ""}
 
         ${supportsOutsideEngraving(currentProduct) ? `
           <label class="engraving-field">Outside Text:
-            <input
-              type="text"
-              value="${engravingTextOutside}"
+            <textarea
+              rows="2"
               oninput="setEngraving('outside', this.value)"
-            />
+            >${engravingTextOutside}</textarea>
           </label>
         ` : ""}
 
@@ -469,7 +482,7 @@ function render() {
         <textarea
           rows="6"
           oninput="setOrderNotes(this.value)"
-          placeholder="Example:&#10;&quot;Inside text: I love you. Add 1 heart symbol between the words.&quot;&#10;You can also use this box to explain symbol placement, order, or custom requests."
+          placeholder="Example:&#10;Inside text: I ❤️ love you&#10;Place the heart after the letter I.&#10;You can also use this box to explain symbol placement, order, or custom requests."
         >${orderNotes}</textarea>
       </section>
 
@@ -482,6 +495,13 @@ function render() {
           Add to Wishlist
         </button>
       </div>
+
+      <section class="builder-section how-it-works">
+        <h3>How This Works</h3>
+        <p><strong>Add to Wishlist</strong> — Save your design and receive a free preview before ordering</p>
+        <p><strong>Preview turnaround:</strong> 3D design previews are typically delivered within 2–3 business days. Timing may vary depending on design complexity and workload</p>
+        <p><strong>Add to Cart</strong> — Move forward with your custom order at the current total price</p>
+      </section>
 
       <div class="price-box">
         <h2>Total Price: $${price}</h2>
@@ -549,6 +569,10 @@ window.toggleSymbol = symbolId => {
 
 window.setOrderNotes = value => {
   orderNotes = value;
+};
+
+window.setCustomSymbolCleanup = checked => {
+  customSymbolCleanupOptIn = checked;
 };
 
 window.addCurrentRingToCart = () => {
