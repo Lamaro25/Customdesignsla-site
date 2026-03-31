@@ -45,7 +45,11 @@ function normalizeProduct(product) {
       (Array.isArray(product.gallery) && product.gallery[0]) ||
       product.img ||
       "",
-    price: Number(product.price || 0)
+    price: Number(product.price || 0),
+    description: typeof product.description === "string" ? product.description.trim() : "",
+    overview: typeof product.overview === "string" ? product.overview.trim() : "",
+    specifications: Array.isArray(product.specifications) ? product.specifications : [],
+    notes: Array.isArray(product.notes) ? product.notes : []
   };
 }
 
@@ -208,6 +212,36 @@ function renderPriceBreakdownSection(product) {
   `;
 }
 
+function renderProductDetailsSection(product) {
+  const hasDescription = Boolean(product.description);
+  const hasOverview = Boolean(product.overview);
+  const specifications = Array.isArray(product.specifications) ? product.specifications : [];
+  const notes = Array.isArray(product.notes) ? product.notes : [];
+
+  if (!hasDescription && !hasOverview && !specifications.length && !notes.length) {
+    return "";
+  }
+
+  return `
+    <div class="product-details">
+      ${hasDescription ? `<p><strong>Description:</strong> ${product.description}</p>` : ""}
+      ${hasOverview ? `<p><strong>Overview:</strong> ${product.overview}</p>` : ""}
+      ${specifications.length ? `
+        <h3>Specifications</h3>
+        <ul>
+          ${specifications.map(item => `<li>${item}</li>`).join("")}
+        </ul>
+      ` : ""}
+      ${notes.length ? `
+        <h3>Notes</h3>
+        <ul>
+          ${notes.map(item => `<li>${item}</li>`).join("")}
+        </ul>
+      ` : ""}
+    </div>
+  `;
+}
+
 function persistCart() {
   localStorage.setItem("cdla_cart", JSON.stringify(cart));
 }
@@ -239,6 +273,7 @@ function render() {
   const addOns = getAvailableAddOns(currentProduct);
   const price = calculatePrice();
   const priceBreakdownMarkup = renderPriceBreakdownSection(currentProduct);
+  const productDetailsMarkup = renderProductDetailsSection(currentProduct);
 
   const metalOptions = metals.map(metal => `
     <option value="${metal}" ${metal === currentMetal ? "selected" : ""}>
@@ -323,6 +358,8 @@ function render() {
           <p><strong>Base Price:</strong> $${currentProduct.price}</p>
         </div>
       </div>
+
+      ${productDetailsMarkup}
 
       ${priceBreakdownMarkup}
 
