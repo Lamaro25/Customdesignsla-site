@@ -373,7 +373,10 @@ function render() {
     `
     : "";
 
-  const symbolCardsMarkup = symbols.map(symbol => `
+  const standardSymbols = symbols.filter(symbol => symbol.id !== "custom-symbol");
+  const customSymbol = symbols.find(symbol => symbol.id === "custom-symbol");
+
+  const symbolCardsMarkup = standardSymbols.map(symbol => `
     <button
       type="button"
       class="symbol-card ${selectedSymbols.includes(symbol.id) ? "is-selected" : ""}"
@@ -410,50 +413,88 @@ function render() {
             <div class="symbol-grid">
               ${symbolCardsMarkup}
             </div>
+            ${customSymbol ? `
+              <button
+                type="button"
+                class="custom-symbol-trigger ${isCustomSymbolSelected ? "is-selected" : ""}"
+                onclick="toggleSymbol('custom-symbol')"
+                aria-pressed="${isCustomSymbolSelected ? "true" : "false"}"
+              >
+                <div class="symbol-image-wrap">
+                  <img
+                    src="${customSymbol.image || ""}"
+                    alt="${customSymbol.name}"
+                    loading="lazy"
+                    style="${customSymbol.image ? "" : "display:none;"}"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+                  />
+                  <div class="symbol-image-placeholder" style="${customSymbol.image ? "" : "display:grid;"}">No Image</div>
+                </div>
+                <div class="custom-symbol-trigger-copy">
+                  <span class="custom-symbol-trigger-title">Custom Symbol / Brand</span>
+                  <span class="custom-symbol-trigger-text">Need something custom? Upload a brand, logo, or request a new design.</span>
+                </div>
+                <span class="custom-symbol-trigger-price">+$${customSymbol.price}</span>
+              </button>
+            ` : ""}
             ${isCustomSymbolSelected ? `
               <div class="custom-symbol-panel">
-                <h4>Custom Symbol / Brand</h4>
-                <p>Upload or describe your custom symbol, brand, or logo.</p>
-                <ul>
-                  <li>Black and white only</li>
-                  <li>Clean, high contrast</li>
-                  <li>Simple shapes with no shading or background clutter</li>
-                </ul>
-                <p><strong>✔ Good:</strong> clean black silhouette or clean black-and-white brand</p>
-                <p><strong>✖ Not ideal:</strong> real photos, blurry images, color images, shaded artwork</p>
-                <p>If your image is not production-ready or needs to be recreated, a $10 cleanup/redraw fee may apply.</p>
-                <p>If you do not have a usable image and want CDLA to create one for you, you can request that below for a $10 design fee.</p>
-                <p class="custom-symbol-note"><strong>Add placement details in Order Notes.</strong></p>
-                <label class="custom-symbol-checkbox">
-                  <input
-                    type="checkbox"
-                    ${customSymbolCleanupOptIn ? "checked" : ""}
-                    onchange="setCustomSymbolCleanup(this.checked)"
-                  />
-                  Add $10 image cleanup / redraw fee
-                </label>
-                <label class="custom-symbol-checkbox">
-                  <input
-                    type="checkbox"
-                    ${customSymbolDesignRequestOptIn ? "checked" : ""}
-                    onchange="setCustomSymbolDesignRequest(this.checked)"
-                  />
-                  Have CDLA design my symbol / brand (+$10)
-                </label>
-                ${customSymbolDesignRequestOptIn ? `
-                  <label class="custom-symbol-description">
-                    Describe Your Symbol / Brand
-                    <textarea
-                      rows="5"
-                      oninput="setCustomSymbolDesignDescription(this.value)"
-                      placeholder="Example:&#10;Simple cattle brand with the letters R and B connected in a western style.&#10;Or:&#10;Create a clean black-and-white elephant silhouette for engraving."
-                    >${escapeHtml(customSymbolDesignDescription)}</textarea>
+                <div class="custom-symbol-panel-inner">
+                  <h4>Custom Symbol / Brand</h4>
+                  <p>Upload or describe your custom symbol, brand, or logo.</p>
+                  <ul>
+                    <li>Black and white only</li>
+                    <li>Clean, high contrast</li>
+                    <li>Simple shapes with no shading or background clutter</li>
+                  </ul>
+                  <p><strong>✔ Good:</strong> clean black silhouette or clean black-and-white brand</p>
+                  <p><strong>✖ Not ideal:</strong> real photos, blurry images, color images, shaded artwork</p>
+                  <div class="custom-symbol-examples">
+                    <div class="custom-symbol-example-card">
+                      <div class="custom-symbol-example-placeholder">No Image</div>
+                      <span class="custom-symbol-example-label">Good Example</span>
+                    </div>
+                    <div class="custom-symbol-example-card">
+                      <div class="custom-symbol-example-placeholder">No Image</div>
+                      <span class="custom-symbol-example-label">Not Ideal Example</span>
+                    </div>
+                  </div>
+                  <p>If your image is not production-ready or needs to be recreated, a $10 cleanup/redraw fee may apply.</p>
+                  <p>If you do not have a usable image and want CDLA to create one for you, you can request that below for a $10 design fee.</p>
+                  <p class="custom-symbol-note"><strong>Add placement details in Order Notes.</strong></p>
+                  <label class="custom-symbol-checkbox">
+                    <input
+                      type="checkbox"
+                      ${customSymbolCleanupOptIn ? "checked" : ""}
+                      onchange="setCustomSymbolCleanup(this.checked)"
+                    />
+                    Add $10 image cleanup / redraw fee
                   </label>
-                ` : ""}
-                <div class="upload-placeholder">
-                  <p class="upload-label">Upload Reference Image (optional)</p>
-                  <input type="file" aria-label="Upload Reference Image (optional)" onchange="setCustomSymbolUploadFileName(this.files)" />
-                  ${customSymbolUploadFileName ? `<p class="upload-file-name">Selected file: ${escapeHtml(customSymbolUploadFileName)}</p>` : ""}
+                  <label class="custom-symbol-checkbox">
+                    <input
+                      type="checkbox"
+                      ${customSymbolDesignRequestOptIn ? "checked" : ""}
+                      onchange="setCustomSymbolDesignRequest(this.checked)"
+                    />
+                    Have CDLA design my symbol / brand (+$10)
+                  </label>
+                  ${customSymbolDesignRequestOptIn ? `
+                    <label class="custom-symbol-description">
+                      Describe Your Symbol / Brand
+                      <textarea
+                        rows="5"
+                        oninput="setCustomSymbolDesignDescription(this.value)"
+                        placeholder="Example:&#10;Simple cattle brand with the letters R and B connected in a western style.&#10;Or:&#10;Create a clean black-and-white elephant silhouette for engraving."
+                      >${escapeHtml(customSymbolDesignDescription)}</textarea>
+                    </label>
+                  ` : ""}
+                  <div class="upload-placeholder">
+                    <p class="upload-label">Upload Reference Image (optional)</p>
+                    <div class="upload-input-wrap">
+                      <input type="file" aria-label="Upload Reference Image (optional)" onchange="setCustomSymbolUploadFileName(this.files)" />
+                    </div>
+                    ${customSymbolUploadFileName ? `<p class="upload-file-name">Selected file: ${escapeHtml(customSymbolUploadFileName)}</p>` : ""}
+                  </div>
                 </div>
               </div>
             ` : ""}
