@@ -298,6 +298,10 @@ button:hover {
   margin: 0 0 0.5rem;
 }
 
+.custom-symbol-note {
+  margin-top: 0.75rem;
+}
+
 .custom-symbol-panel ul {
   margin: 0 0 0.85rem;
   padding-left: 1.1rem;
@@ -328,6 +332,33 @@ button:hover {
 
 .upload-placeholder input[type="file"] {
   width: auto;
+}
+
+.custom-symbol-description {
+  display: block;
+  margin: 0.5rem 0 0.85rem;
+  font-weight: 600;
+}
+
+.custom-symbol-description textarea {
+  margin-top: 0.45rem;
+  width: 100%;
+  min-height: 120px;
+  padding: 0.75rem;
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.45;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.upload-file-name {
+  margin-top: 0.55rem;
+  margin-bottom: 0;
+  font-size: 13px;
+  color: #555;
 }
 
 .builder-shell > h2,
