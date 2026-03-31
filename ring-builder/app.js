@@ -98,11 +98,16 @@ function getAvailableBandWidths(product) {
 }
 
 function getAvailableAddOns(product) {
-  if (Array.isArray(product.availableAddOns) && product.availableAddOns.length) {
-    return product.availableAddOns;
+  let addOns = Array.isArray(product.availableAddOns)
+    ? [...product.availableAddOns]
+    : [];
+
+  const isCubanLink = /cuban link/i.test(product.collection || "");
+  if (isCubanLink) {
+    addOns = addOns.filter(addon => !["Engraved Pattern", "Beading"].includes(addon));
   }
 
-  return Object.keys(pricingData.addOns || {});
+  return addOns;
 }
 
 function supportsInsideEngraving(product) {
@@ -194,7 +199,7 @@ function renderPriceBreakdownSection(product) {
 
   const rowsMarkup = product.breakdown.map(item => `
     <li class="price-breakdown-item">
-      <span>${item.label || "Item"}</span>
+      <span class="price-breakdown-label">${item.label || "Item"}</span>
       <strong>${formatCurrency(item.amount)}</strong>
     </li>
   `).join("");
@@ -205,39 +210,7 @@ function renderPriceBreakdownSection(product) {
       <ul class="price-breakdown-list">
         ${rowsMarkup}
       </ul>
-      <p class="price-breakdown-total">
-        <strong>Base Ring Total:</strong> ${formatCurrency(product.price)}
-      </p>
-    </div>
-  `;
-}
-
-function renderProductDetailsSection(product) {
-  const hasDescription = Boolean(product.description);
-  const hasOverview = Boolean(product.overview);
-  const specifications = Array.isArray(product.specifications) ? product.specifications : [];
-  const notes = Array.isArray(product.notes) ? product.notes : [];
-
-  if (!hasDescription && !hasOverview && !specifications.length && !notes.length) {
-    return "";
-  }
-
-  return `
-    <div class="product-details">
-      ${hasDescription ? `<p><strong>Description:</strong> ${product.description}</p>` : ""}
-      ${hasOverview ? `<p><strong>Overview:</strong> ${product.overview}</p>` : ""}
-      ${specifications.length ? `
-        <h3>Specifications</h3>
-        <ul>
-          ${specifications.map(item => `<li>${item}</li>`).join("")}
-        </ul>
-      ` : ""}
-      ${notes.length ? `
-        <h3>Notes</h3>
-        <ul>
-          ${notes.map(item => `<li>${item}</li>`).join("")}
-        </ul>
-      ` : ""}
+      <p class="price-breakdown-total"><strong>Base Ring Total — ${formatCurrency(product.price)}</strong></p>
     </div>
   `;
 }
@@ -255,7 +228,7 @@ function renderNotFound() {
 
   app.innerHTML = `
     <section class="builder-shell">
-      <h2>Ring Builder</h2>
+      <h2>Customize Your Ring</h2>
       <p>We couldn’t find a ring for this product key.</p>
       <p><strong>Requested:</strong> ${requestedKey || "none"}</p>
     </section>
@@ -273,7 +246,6 @@ function render() {
   const addOns = getAvailableAddOns(currentProduct);
   const price = calculatePrice();
   const priceBreakdownMarkup = renderPriceBreakdownSection(currentProduct);
-  const productDetailsMarkup = renderProductDetailsSection(currentProduct);
 
   const metalOptions = metals.map(metal => `
     <option value="${metal}" ${metal === currentMetal ? "selected" : ""}>
@@ -346,7 +318,7 @@ function render() {
 
   app.innerHTML = `
     <section class="builder-shell">
-      <h2>Ring Builder</h2>
+      <h2>Customize Your Ring</h2>
 
       <div class="builder-product-header">
         ${galleryMarkup}
@@ -358,8 +330,6 @@ function render() {
           <p><strong>Base Price:</strong> $${currentProduct.price}</p>
         </div>
       </div>
-
-      ${productDetailsMarkup}
 
       ${priceBreakdownMarkup}
 

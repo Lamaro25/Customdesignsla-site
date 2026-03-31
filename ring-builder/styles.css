@@ -128,11 +128,19 @@ button:hover {
 
 .builder-product-meta {
   max-width: 900px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1rem;
 }
 
 .price-breakdown {
   margin: 0 0 1.5rem;
   max-width: 900px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1rem;
 }
 
 .price-breakdown-list {
@@ -144,8 +152,18 @@ button:hover {
 .price-breakdown-item {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   gap: 1rem;
-  padding: 0.2rem 0;
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed #ececec;
+}
+
+.price-breakdown-item:last-child {
+  border-bottom: 0;
+}
+
+.price-breakdown-label {
+  word-break: break-word;
 }
 
 .price-breakdown-total {
@@ -180,5 +198,11 @@ button:hover {
 
   .builder-product-image {
     max-width: 100%;
+  }
+
+  .price-breakdown-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.15rem;
   }
 }
