@@ -3,12 +3,16 @@ const app = document.getElementById('app');
 let ringsData = [];
 let pricingData = {};
 let currentProduct = null;
+let symbolsData = [];
 
 let currentMetal = "Silver";
 let currentBandWidth = "";
 let selectedAddOns = [];
 let engravingTextInside = "";
 let engravingTextOutside = "";
+let selectedSymbols = [];
+let symbolSectionExpanded = false;
+let symbolPlacementNotes = "";
 
 let cart = JSON.parse(localStorage.getItem('cdla_cart')) || [];
 let wishlist = JSON.parse(localStorage.getItem('cdla_wishlist')) || [];
@@ -110,6 +114,27 @@ function getAvailableAddOns(product) {
   return addOns;
 }
 
+function isCubanLinkProduct(product) {
+  return /cuban link/i.test(product?.collection || "");
+}
+
+function supportsInnerSymbolSelection(product) {
+  return isCubanLinkProduct(product);
+}
+
+function getAvailableSymbols(product) {
+  if (!supportsInnerSymbolSelection(product)) {
+    return [];
+  }
+
+  return symbolsData.filter(symbol => {
+    if (symbol.active === false) return false;
+    if (symbol.usageType !== "inner-engraved-symbol") return false;
+    if (!Array.isArray(symbol.collections) || !symbol.collections.length) return true;
+    return symbol.collections.includes("cuban-link-ring-collection");
+  });
+}
+
 function supportsInsideEngraving(product) {
   if (typeof product.allowInsideEngraving === "boolean") {
     return product.allowInsideEngraving;
@@ -155,6 +180,9 @@ function initializeSelections() {
   selectedAddOns = [];
   engravingTextInside = "";
   engravingTextOutside = "";
+  selectedSymbols = [];
+  symbolSectionExpanded = false;
+  symbolPlacementNotes = "";
 }
 
 function calculatePrice() {
@@ -177,6 +205,10 @@ function calculatePrice() {
   }
 
   total += engravingWords * (pricingData.engravingPerWord || 0);
+  total += selectedSymbols.reduce((sum, symbolId) => {
+    const symbol = symbolsData.find(item => item.id === symbolId);
+    return sum + Number(symbol?.price || 0);
+  }, 0);
 
   return total;
 }
@@ -199,8 +231,7 @@ function renderPriceBreakdownSection(product) {
 
   const rowsMarkup = product.breakdown.map(item => `
     <li class="price-breakdown-item">
-      <span class="price-breakdown-label">${item.label || "Item"}</span>
-      <strong>${formatCurrency(item.amount)}</strong>
+      <span class="price-breakdown-line">${item.label || "Item"} — <strong>${formatCurrency(item.amount)}</strong></span>
     </li>
   `).join("");
 
@@ -244,6 +275,11 @@ function render() {
   const metals = getAvailableMetals(currentProduct);
   const bandWidths = getAvailableBandWidths(currentProduct);
   const addOns = getAvailableAddOns(currentProduct);
+  const symbols = getAvailableSymbols(currentProduct);
+  const selectedSymbolDetails = selectedSymbols
+    .map(symbolId => symbolsData.find(item => item.id === symbolId))
+    .filter(Boolean);
+  const symbolsTotal = selectedSymbolDetails.reduce((sum, symbol) => sum + Number(symbol.price || 0), 0);
   const price = calculatePrice();
   const priceBreakdownMarkup = renderPriceBreakdownSection(currentProduct);
 
@@ -316,6 +352,50 @@ function render() {
     `
     : "";
 
+  const symbolCardsMarkup = symbols.map(symbol => `
+    <button
+      type="button"
+      class="symbol-card ${selectedSymbols.includes(symbol.id) ? "is-selected" : ""}"
+      onclick="toggleSymbol('${symbol.id}')"
+      aria-pressed="${selectedSymbols.includes(symbol.id) ? "true" : "false"}"
+    >
+      <div class="symbol-image-wrap">
+        <img
+          src="${symbol.image || ""}"
+          alt="${symbol.name}"
+          loading="lazy"
+          style="${symbol.image ? "" : "display:none;"}"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+        />
+        <div class="symbol-image-placeholder" style="${symbol.image ? "" : "display:grid;"}">No Image</div>
+      </div>
+      <span class="symbol-name">${symbol.name}</span>
+      <span class="symbol-price">+$${symbol.price}</span>
+    </button>
+  `).join("");
+
+  const symbolMarkup = symbols.length
+    ? `
+      <section class="symbol-section">
+        <button type="button" class="symbol-toggle" onclick="toggleSymbolSection()">
+          ${symbolSectionExpanded ? "Hide Symbol Options" : "View Symbol Options"}
+        </button>
+        ${symbolSectionExpanded ? `
+          <div class="symbol-grid-wrap">
+            <p class="symbol-help">Inner Engraved Symbol only for this Cuban Link ring.</p>
+            <div class="symbol-grid">
+              ${symbolCardsMarkup}
+            </div>
+            <p class="symbol-summary">${selectedSymbolDetails.length} symbols selected — $${symbolsTotal}</p>
+            <label>Symbol Placement Notes:
+              <textarea rows="2" oninput="setSymbolPlacementNotes(this.value)">${symbolPlacementNotes}</textarea>
+            </label>
+          </div>
+        ` : ""}
+      </section>
+    `
+    : "";
+
   app.innerHTML = `
     <section class="builder-shell">
       <h2>Customize Your Ring</h2>
@@ -359,6 +439,8 @@ function render() {
       ` : ""}
 
       <small>$${pricingData.engravingPerWord || 0} per word</small>
+
+      ${symbolMarkup}
 
       <h3>Customization Add-ons:</h3>
       ${addOnMarkup}
@@ -421,8 +503,29 @@ window.setEngraving = (type, value) => {
   updatePriceUI();
 };
 
+window.toggleSymbolSection = () => {
+  symbolSectionExpanded = !symbolSectionExpanded;
+  render();
+};
+
+window.toggleSymbol = symbolId => {
+  if (selectedSymbols.includes(symbolId)) {
+    selectedSymbols = selectedSymbols.filter(item => item !== symbolId);
+  } else {
+    selectedSymbols.push(symbolId);
+  }
+  render();
+};
+
+window.setSymbolPlacementNotes = value => {
+  symbolPlacementNotes = value;
+};
+
 window.addCurrentRingToCart = () => {
   if (!currentProduct) return;
+  const selectedSymbolDetails = selectedSymbols
+    .map(symbolId => symbolsData.find(item => item.id === symbolId))
+    .filter(Boolean);
 
   const item = {
     id: Date.now(),
@@ -437,6 +540,8 @@ window.addCurrentRingToCart = () => {
     engravingInside: supportsInsideEngraving(currentProduct) ? engravingTextInside : "",
     engravingOutside: supportsOutsideEngraving(currentProduct) ? engravingTextOutside : "",
     addOns: [...selectedAddOns],
+    symbols: [...selectedSymbolDetails],
+    symbolPlacementNotes,
     unitPrice: calculatePrice(),
     quantity: 1,
     shippingProfile: "ring",
@@ -467,13 +572,15 @@ window.addCurrentRingToWishlist = () => {
 };
 
 async function loadData() {
-  const [ringsResp, pricingResp] = await Promise.all([
+  const [ringsResp, pricingResp, symbolsResp] = await Promise.all([
     fetch("data/rings.json"),
-    fetch("data/pricing.json")
+    fetch("data/pricing.json"),
+    fetch("data/symbols.json")
   ]);
 
   const ringsJson = await ringsResp.json();
   pricingData = await pricingResp.json();
+  symbolsData = await symbolsResp.json();
 
   let rawProducts = [];
 
