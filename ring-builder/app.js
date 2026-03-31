@@ -131,6 +131,10 @@ function isBandWidthLocked(product) {
   return product.lockBandWidth === true;
 }
 
+function isMetalLocked(product) {
+  return getAvailableMetals(product).length === 1;
+}
+
 function initializeSelections() {
   if (!currentProduct) return;
 
@@ -230,6 +234,18 @@ function render() {
       </select>
     `;
 
+  const metalMarkup = isMetalLocked(currentProduct)
+    ? `
+      <h3>Metal:</h3>
+      <p><strong>${currentMetal}</strong></p>
+    `
+    : `
+      <h3>Select Metal:</h3>
+      <select onchange="setMetal(this.value)">
+        ${metalOptions}
+      </select>
+    `;
+
   const addOnMarkup = addOns.length
     ? addOns.map(addon => `
         <label>
@@ -280,10 +296,7 @@ function render() {
 
       ${bandWidthMarkup}
 
-      <h3>Select Metal:</h3>
-      <select onchange="setMetal(this.value)">
-        ${metalOptions}
-      </select>
+      ${metalMarkup}
 
       <h3>Engraving Options:</h3>
       ${supportsInsideEngraving(currentProduct) ? `
