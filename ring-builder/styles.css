@@ -221,8 +221,9 @@ button:hover {
 }
 
 .symbol-card {
+  appearance: none;
   width: 88px;
-  min-height: 118px;
+  min-height: 130px;
   background: #fff;
   color: #333;
   border: 1px solid #d8d8d8;
@@ -236,7 +237,8 @@ button:hover {
 
 .symbol-card.is-selected {
   border-color: #222;
-  box-shadow: 0 0 0 1px #222 inset;
+  border-width: 2px;
+  box-shadow: none;
 }
 
 .symbol-image-wrap {
@@ -278,6 +280,27 @@ button:hover {
 .symbol-price {
   font-size: 11px;
   color: #555;
+}
+
+.symbol-select-indicator {
+  margin-top: auto;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding-top: 0.1rem;
+}
+
+.symbol-select-checkbox {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #8f8f8f;
+  border-radius: 3px;
+  font-size: 10px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  color: #111;
+  background: #fff;
 }
 
 .custom-symbol-trigger {
@@ -365,14 +388,14 @@ button:hover {
 .custom-symbol-example-card {
   border: 1px solid #dddddd;
   border-radius: 10px;
-  padding: 0.55rem;
+  padding: 0.45rem;
   background: #fff;
   text-align: center;
 }
 
 .custom-symbol-example-placeholder {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 5 / 4;
   border: 1px solid #e4e4e4;
   border-radius: 8px;
   background: #f6f6f6;
@@ -583,7 +606,7 @@ button:hover {
 
   .symbol-card {
     width: 72px;
-    min-height: 106px;
+    min-height: 116px;
     padding: 0.3rem;
   }
 
@@ -595,6 +618,11 @@ button:hover {
   .symbol-name,
   .symbol-price {
     font-size: 10px;
+  }
+
+  .symbol-select-checkbox {
+    width: 13px;
+    height: 13px;
   }
 
   .custom-symbol-trigger {
@@ -614,5 +642,15 @@ button:hover {
 
   .custom-symbol-examples {
     grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .custom-symbol-example-card {
+    padding: 0.4rem;
+  }
+
+  .custom-symbol-example-placeholder {
+    aspect-ratio: 16 / 9;
+    font-size: 11px;
   }
 }

@@ -12,7 +12,6 @@ let engravingTextInside = "";
 let engravingTextOutside = "";
 let selectedSymbols = [];
 let symbolSectionExpanded = false;
-let customSymbolCleanupOptIn = false;
 let customSymbolDesignRequestOptIn = false;
 let customSymbolDesignDescription = "";
 let customSymbolUploadFileName = "";
@@ -196,7 +195,6 @@ function initializeSelections() {
   engravingTextOutside = "";
   selectedSymbols = [];
   symbolSectionExpanded = false;
-  customSymbolCleanupOptIn = false;
   customSymbolDesignRequestOptIn = false;
   customSymbolDesignDescription = "";
   customSymbolUploadFileName = "";
@@ -227,7 +225,7 @@ function calculatePrice() {
     const symbol = symbolsData.find(item => item.id === symbolId);
     return sum + Number(symbol?.price || 0);
   }, 0);
-  if (customSymbolCleanupOptIn || customSymbolDesignRequestOptIn) {
+  if (customSymbolDesignRequestOptIn) {
     total += CUSTOM_SYMBOL_SERVICE_FEE;
   }
 
@@ -395,6 +393,9 @@ function render() {
       </div>
       <span class="symbol-name">${symbol.name}</span>
       <span class="symbol-price">+$${symbol.price}</span>
+      <span class="symbol-select-indicator" aria-hidden="true">
+        <span class="symbol-select-checkbox">${selectedSymbols.includes(symbol.id) ? "✓" : ""}</span>
+      </span>
     </button>
   `).join("");
 
@@ -459,17 +460,10 @@ function render() {
                       <span class="custom-symbol-example-label">Not Ideal Example</span>
                     </div>
                   </div>
-                  <p>If your image is not production-ready or needs to be recreated, a $10 cleanup/redraw fee may apply.</p>
+                  <p>If your uploaded image is clean and production-ready, no extra design fee applies.</p>
+                  <p>If your uploaded image is not production-ready and needs cleanup or redrawing, a $10 cleanup fee may apply. We will review the image and contact you before moving forward.</p>
                   <p>If you do not have a usable image and want CDLA to create one for you, you can request that below for a $10 design fee.</p>
                   <p class="custom-symbol-note"><strong>Add placement details in Order Notes.</strong></p>
-                  <label class="custom-symbol-checkbox">
-                    <input
-                      type="checkbox"
-                      ${customSymbolCleanupOptIn ? "checked" : ""}
-                      onchange="setCustomSymbolCleanup(this.checked)"
-                    />
-                    Add $10 image cleanup / redraw fee
-                  </label>
                   <label class="custom-symbol-checkbox">
                     <input
                       type="checkbox"
@@ -645,7 +639,6 @@ window.toggleSymbol = symbolId => {
   if (selectedSymbols.includes(symbolId)) {
     selectedSymbols = selectedSymbols.filter(item => item !== symbolId);
     if (symbolId === "custom-symbol") {
-      customSymbolCleanupOptIn = false;
       customSymbolDesignRequestOptIn = false;
       customSymbolDesignDescription = "";
       customSymbolUploadFileName = "";
@@ -660,19 +653,9 @@ window.setOrderNotes = value => {
   orderNotes = value;
 };
 
-window.setCustomSymbolCleanup = checked => {
-  customSymbolCleanupOptIn = checked;
-  if (checked) {
-    customSymbolDesignRequestOptIn = false;
-  }
-  render();
-};
-
 window.setCustomSymbolDesignRequest = checked => {
   customSymbolDesignRequestOptIn = checked;
-  if (checked) {
-    customSymbolCleanupOptIn = false;
-  } else {
+  if (!checked) {
     customSymbolDesignDescription = "";
   }
   render();
@@ -706,7 +689,7 @@ window.addCurrentRingToCart = () => {
     engravingOutside: supportsOutsideEngraving(currentProduct) ? engravingTextOutside : "",
     addOns: [...selectedAddOns],
     symbols: [...selectedSymbolDetails],
-    customSymbolCleanupFeeSelected: customSymbolCleanupOptIn,
+    customSymbolCleanupFeeSelected: false,
     customSymbolDesignRequestSelected: customSymbolDesignRequestOptIn,
     customSymbolDesignDescription: customSymbolDesignDescription.trim(),
     customSymbolUploadFileName,
