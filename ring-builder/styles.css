@@ -130,6 +130,28 @@ button:hover {
   max-width: 900px;
 }
 
+.price-breakdown {
+  margin: 0 0 1.5rem;
+  max-width: 900px;
+}
+
+.price-breakdown-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0;
+}
+
+.price-breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.2rem 0;
+}
+
+.price-breakdown-total {
+  margin: 0.75rem 0 0;
+}
+
 /* Builder gallery */
 .builder-gallery-grid {
   display: grid;
