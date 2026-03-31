@@ -280,18 +280,66 @@ button:hover {
   color: #555;
 }
 
+.custom-symbol-trigger {
+  width: 100%;
+  margin: 0.85rem auto 0;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid #d7d7d7;
+  background: #fcfcfc;
+  color: #333;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.custom-symbol-trigger.is-selected {
+  border-color: #222;
+  box-shadow: 0 0 0 1px #222 inset;
+}
+
+.custom-symbol-trigger-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.custom-symbol-trigger-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.custom-symbol-trigger-text,
+.custom-symbol-trigger-price {
+  font-size: 12px;
+  color: #555;
+}
+
+.custom-symbol-trigger-price {
+  white-space: nowrap;
+}
+
 .custom-symbol-panel {
   margin: 1rem auto 0.75rem;
-  max-width: 520px;
+  max-width: 560px;
   padding: 1rem;
   border: 1px solid #e2e2e2;
   border-radius: 10px;
   background: #fcfcfc;
+  text-align: center;
+}
+
+.custom-symbol-panel-inner {
+  max-width: 460px;
+  margin: 0 auto;
   text-align: left;
 }
 
 .custom-symbol-panel h4 {
   margin: 0 0 0.5rem;
+  text-align: center;
 }
 
 .custom-symbol-panel p {
@@ -307,16 +355,50 @@ button:hover {
   padding-left: 1.1rem;
 }
 
+.custom-symbol-examples {
+  margin: 0.65rem 0 0.95rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.custom-symbol-example-card {
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  padding: 0.55rem;
+  background: #fff;
+  text-align: center;
+}
+
+.custom-symbol-example-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  background: #f6f6f6;
+  color: #7a7a7a;
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+}
+
+.custom-symbol-example-label {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 12px;
+  color: #555;
+}
+
 .custom-symbol-checkbox {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   margin: 0.5rem 0 0.85rem;
 }
 
 .custom-symbol-checkbox input {
   width: auto;
-  margin: 0;
+  margin: 0.15rem 0 0;
 }
 
 .upload-placeholder {
@@ -324,14 +406,23 @@ button:hover {
   border-radius: 10px;
   padding: 0.75rem;
   background: #fff;
+  text-align: center;
 }
 
 .upload-label {
   margin: 0 0 0.45rem;
 }
 
+.upload-input-wrap {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
 .upload-placeholder input[type="file"] {
-  width: auto;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .custom-symbol-description {
@@ -504,5 +595,24 @@ button:hover {
   .symbol-name,
   .symbol-price {
     font-size: 10px;
+  }
+
+  .custom-symbol-trigger {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 0.45rem;
+  }
+
+  .custom-symbol-trigger-copy {
+    align-items: center;
+  }
+
+  .custom-symbol-trigger-price {
+    margin-top: 0.15rem;
+  }
+
+  .custom-symbol-examples {
+    grid-template-columns: 1fr;
   }
 }
