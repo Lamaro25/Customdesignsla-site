@@ -14,11 +14,47 @@
       "/static/img/rings/cl-001/product-images-coming-soon.jpg",
       "/static/img/rings/cl-001/customer-ring-feature-placeholder.jpg"
     ],
-    "availableMetals": ["Silver"],
-    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "availableMetals": [
+      "Silver"
+    ],
+    "availableAddOns": [
+      "Engraved Pattern",
+      "Beading"
+    ],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": false,
-    "lockBandWidth": true
+    "lockBandWidth": true,
+    "description": "Refined domed band with a recessed Cuban braid channel, polished exterior edges, and oxidized depth for timeless contrast. Hand-cast and finished in Del Rio, Texas.",
+    "overview": "The Cuban Link Classic Ring represents the foundational aesthetic of the collection. Its domed 7 mm profile and deep-set Cuban braid deliver a clean, bold, and timeless silhouette.",
+    "breakdown": [
+      {
+        "label": "Band 7 mm",
+        "amount": 80
+      },
+      {
+        "label": "Channel",
+        "amount": 4
+      },
+      {
+        "label": "Cuban Link Braid (Large)",
+        "amount": 30
+      }
+    ],
+    "specifications": [
+      "Material: Solid .925 Sterling Silver",
+      "Finish: Oxidized & polished",
+      "Band Width: 7 mm",
+      "Pattern: Large Cuban Link braid",
+      "Interior: Comfort-fit",
+      "Hallmark: \u201cLA\u201d",
+      "Crafted: Hand-cast in Del Rio, Texas"
+    ],
+    "notes": [
+      "Comfort-fit interior",
+      "Large link Cuban braid pattern",
+      "Signature CDLA craftsmanship",
+      "Customization Available (inner band engraving / scripture / name\u2019s / etc.)"
+    ]
   },
   {
     "title": "Cuban Link Statement Ring (Thick)",
@@ -35,11 +71,56 @@
       "/static/img/rings/cl-002/product-images-coming-soon-cl-002.jpg",
       "/static/img/rings/cl-002/customer-ring-feature-placeholder-cl-002.jpg"
     ],
-    "availableMetals": ["Silver"],
-    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "availableMetals": [
+      "Silver"
+    ],
+    "availableAddOns": [
+      "Engraved Pattern",
+      "Beading"
+    ],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": true,
-    "lockBandWidth": true
+    "lockBandWidth": true,
+    "description": "The Thick Statement Ring is the bold centerpiece of the Cuban Link Collection. A full 10 mm domed band with a personalized name-plate engraving panel, framed by three total channels\u2014a large Cuban braid in the center and two smaller Cuban braids on each side. Its sculptural weight, polished edges, and deep oxidized recesses give it a high-end, standout presence. Cast & finished in Del Rio, Texas.",
+    "overview": "The Thick Statement Ring is the bold centerpiece of the Cuban Link Collection. Its 10 mm profile, multi-channel construction, and deep Cuban braids deliver maximum visual impact with refined craftsmanship.",
+    "breakdown": [
+      {
+        "label": "Band 10 mm",
+        "amount": 120
+      },
+      {
+        "label": "Engraving (Name)",
+        "amount": 4
+      },
+      {
+        "label": "Channels (\u00d73)",
+        "amount": 12
+      },
+      {
+        "label": "Cuban Link Braid (Large)",
+        "amount": 30
+      },
+      {
+        "label": "Cuban Link Braid (Small \u00d72)",
+        "amount": 10
+      }
+    ],
+    "specifications": [
+      "Material: Solid .925 Sterling Silver",
+      "Finish: Oxidized recess + polished raised edges",
+      "Band Width: 10 mm",
+      "Design: Triple-channel (one large & two small braids)",
+      "Engraving Panel: Raised name-plate",
+      "Interior: Comfort-fit",
+      "Hallmark: \u201cLA\u201d",
+      "Crafted: Cast & finished in Del Rio, Texas"
+    ],
+    "notes": [
+      "Heavyweight 10 mm silhouette",
+      "Personalized name-plate centerpiece",
+      "Deep sculpted braid channels",
+      "Signature CDLA craftsmanship"
+    ]
   },
   {
     "title": "Cuban Link Statement Ring (Thin)",
@@ -56,11 +137,56 @@
       "/static/img/rings/cl-003/product-images-coming-soon-cl-003.jpg",
       "/static/img/rings/cl-003/customer-ring-feature-placeholder-cl-003.jpg"
     ],
-    "availableMetals": ["Silver"],
-    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "availableMetals": [
+      "Silver"
+    ],
+    "availableAddOns": [
+      "Engraved Pattern",
+      "Beading"
+    ],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": false,
-    "lockBandWidth": true
+    "lockBandWidth": true,
+    "description": "The Statement Ring (Thin) carries the same bold Cuban Link design language as its Thick counterpart, refined into a lighter, more wearable form. A 10 mm domed profile features a centered engraving panel framed by three sculpted channels\u2014one large Cuban braid flanked by two smaller braids\u2014delivering full statement presence with improved everyday comfort.",
+    "overview": "The Cuban Link Statement Ring (Thin) is engineered for those who want bold visual impact without the added weight. Retaining the full sculptural depth of the Statement design, this version offers a balanced feel ideal for daily wear while preserving the unmistakable Cuban Link presence.",
+    "breakdown": [
+      {
+        "label": "Band 10 mm (Thin)",
+        "amount": 80
+      },
+      {
+        "label": "Engraving (Name)",
+        "amount": 4
+      },
+      {
+        "label": "Channels (\u00d73)",
+        "amount": 12
+      },
+      {
+        "label": "Cuban Link Braid (Large)",
+        "amount": 30
+      },
+      {
+        "label": "Cuban Link Braid (Small \u00d72)",
+        "amount": 10
+      }
+    ],
+    "specifications": [
+      "Material: Solid .925 Sterling Silver",
+      "Finish: Oxidized recess & polished highlights",
+      "Band Width: 10 mm",
+      "Design: Triple-channel layout (1 large + 2 small braids)",
+      "Engraving Panel: Centered name-plate",
+      "Interior: Comfort-fit",
+      "Hallmark: \u201cLA\u201d",
+      "Crafted: Cast & finished in Del Rio, Texas"
+    ],
+    "notes": [
+      "Slimmer 10 mm profile",
+      "Same bold structure as the Thick version",
+      "Lightweight but visually strong",
+      "Signature CDLA craftsmanship"
+    ]
   },
   {
     "title": "Cuban Link Twin Ring",
@@ -77,11 +203,48 @@
       "/static/img/rings/cl-004/product-images-coming-soon-cl-004.jpg",
       "/static/img/rings/cl-004/customer-ring-feature-placeholder-cl-004.jpg"
     ],
-    "availableMetals": ["Silver"],
-    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "availableMetals": [
+      "Silver"
+    ],
+    "availableAddOns": [
+      "Engraved Pattern",
+      "Beading"
+    ],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": false,
-    "lockBandWidth": true
+    "lockBandWidth": true,
+    "description": "The Twin Ring delivers symmetry and refined detail through a 7 mm domed band divided into two sculpted Cuban braids, separated by a clean central ridge. Diamond-pattern etched outer walls add depth and texture, while polished edges and oxidized recesses create crisp contrast. A balanced Cuban Link design, hand-cast and finished in Del Rio, Texas.",
+    "overview": "The Cuban Link Twin Ring emphasizes balance and structure, pairing dual Cuban braids with a sharp center ridge for a clean, architectural profile. Lightweight yet visually intricate, it\u2019s designed for everyday wear while maintaining strong Cuban Link identity and craftsmanship.",
+    "breakdown": [
+      {
+        "label": "Band 7 mm",
+        "amount": 80
+      },
+      {
+        "label": "Channels (\u00d73)",
+        "amount": 12
+      },
+      {
+        "label": "Cuban Link Braid (Small \u00d72)",
+        "amount": 10
+      }
+    ],
+    "specifications": [
+      "Material: Solid .925 Sterling Silver",
+      "Finish: Oxidized depth + polished edges",
+      "Band Width: 7 mm",
+      "Design: Dual small Cuban braids with center ridge",
+      "Detailing: Diamond-pattern edge etching",
+      "Interior: Comfort-fit",
+      "Hallmark: \u201cLA\u201d",
+      "Crafted: Cast & finished in Del Rio, Texas"
+    ],
+    "notes": [
+      "Symmetrical twin-braid architecture",
+      "Clean center ridge for contrast",
+      "Decorative diamond side etching",
+      "Signature CDLA craftsmanship"
+    ]
   },
   {
     "title": "Cuban Link Signature Ring",
@@ -98,14 +261,54 @@
       "/static/img/rings/cl-005/product-images-coming-soon-cl-005.jpg",
       "/static/img/rings/cl-005/customer-ring-feature-placeholder-cl-005.jpg"
     ],
-    "availableMetals": ["Silver"],
-    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "availableMetals": [
+      "Silver"
+    ],
+    "availableAddOns": [
+      "Engraved Pattern",
+      "Beading"
+    ],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": true,
-    "lockBandWidth": true
+    "lockBandWidth": true,
+    "description": "The Signature Ring places personalization at the center \u2014 a raised name-plate panel set into a 7 mm domed band, bordered by a clean structural channel and a bold large Cuban braid. Modern, refined, and unmistakably personal, this piece blends identity with Cuban Link craftsmanship.",
+    "overview": "A personalized Cuban Link design built around a raised signature name-plate, balanced by a bold large braid and clean architectural lines. Designed to carry identity, craftsmanship, and everyday wearability.",
+    "breakdown": [
+      {
+        "label": "Band 7 mm",
+        "amount": 80
+      },
+      {
+        "label": "Engraving (Name)",
+        "amount": 4
+      },
+      {
+        "label": "Channel",
+        "amount": 4
+      },
+      {
+        "label": "Cuban Link Braid (Large)",
+        "amount": 30
+      }
+    ],
+    "specifications": [
+      "Material: Solid .925 Sterling Silver",
+      "Finish: High-polish + oxidized recess",
+      "Band Width: 7 mm",
+      "Design: Name-plate centered with large Cuban braid",
+      "Interior: Comfort-fit",
+      "Hallmark: \u201cLA\u201d",
+      "Crafted: Cast & finished in Del Rio, Texas"
+    ],
+    "notes": [
+      "Personalized engraved name panel",
+      "Strong structural braid",
+      "Modern minimal layout",
+      "Signature CDLA craftsmanship"
+    ]
   },
   {
-    "title": "Cuban Link Origin’s Ring",
+    "title": "Cuban Link Origin\u2019s Ring",
     "sku": "CL-006",
     "slug": "cuban-link-origins-ring",
     "collection": "Cuban Link Ring Collection",
@@ -119,10 +322,42 @@
       "/static/img/rings/cl-006/product-images-coming-soon-cl-006.jpg",
       "/static/img/rings/cl-006/customer-ring-feature-placeholder-cl-006.jpg"
     ],
-    "availableMetals": ["Silver"],
-    "availableAddOns": ["Engraved Pattern", "Beading"],
+    "availableMetals": [
+      "Silver"
+    ],
+    "availableAddOns": [
+      "Engraved Pattern",
+      "Beading"
+    ],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": false,
-    "lockBandWidth": true
+    "lockBandWidth": true,
+    "description": "The Origin\u2019s Ring is the very first Cuban Link design ever sculpted \u2014 the foundation from which the entire collection was built. A continuous large Cuban braid wraps a 7 mm band, preserving the earliest design language and original CDLA craftsmanship.",
+    "overview": "A pure, uninterrupted Cuban Link braid representing the beginning of the CDLA design language. Minimalist, bold, and rooted in the original craftsmanship that started the entire collection.",
+    "breakdown": [
+      {
+        "label": "Band 7 mm",
+        "amount": 80
+      },
+      {
+        "label": "Original Cuban Link Braid",
+        "amount": 30
+      }
+    ],
+    "specifications": [
+      "Material: Solid .925 Sterling Silver",
+      "Finish: Oxidized recess + polished peaks",
+      "Band Width: 7 mm",
+      "Design: Full continuous Cuban braid",
+      "Interior: Smooth comfort-fit",
+      "Hallmark: \u201cLA\u201d",
+      "Crafted: Cast & finished in Del Rio, Texas"
+    ],
+    "notes": [
+      "Foundational CDLA Cuban pattern",
+      "Pure continuous sculpted braid",
+      "Clean, bold, and iconic",
+      "Signature CDLA craftsmanship"
+    ]
   }
 ]
