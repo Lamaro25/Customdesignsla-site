@@ -179,6 +179,35 @@ function updatePriceUI() {
   }
 }
 
+function formatCurrency(amount) {
+  return `$${Number(amount || 0)}`;
+}
+
+function renderPriceBreakdownSection(product) {
+  if (!Array.isArray(product?.breakdown) || !product.breakdown.length) {
+    return "";
+  }
+
+  const rowsMarkup = product.breakdown.map(item => `
+    <li class="price-breakdown-item">
+      <span>${item.label || "Item"}</span>
+      <strong>${formatCurrency(item.amount)}</strong>
+    </li>
+  `).join("");
+
+  return `
+    <div class="price-breakdown">
+      <h3>Price Breakdown</h3>
+      <ul class="price-breakdown-list">
+        ${rowsMarkup}
+      </ul>
+      <p class="price-breakdown-total">
+        <strong>Base Ring Total:</strong> ${formatCurrency(product.price)}
+      </p>
+    </div>
+  `;
+}
+
 function persistCart() {
   localStorage.setItem("cdla_cart", JSON.stringify(cart));
 }
@@ -209,6 +238,7 @@ function render() {
   const bandWidths = getAvailableBandWidths(currentProduct);
   const addOns = getAvailableAddOns(currentProduct);
   const price = calculatePrice();
+  const priceBreakdownMarkup = renderPriceBreakdownSection(currentProduct);
 
   const metalOptions = metals.map(metal => `
     <option value="${metal}" ${metal === currentMetal ? "selected" : ""}>
@@ -293,6 +323,8 @@ function render() {
           <p><strong>Base Price:</strong> $${currentProduct.price}</p>
         </div>
       </div>
+
+      ${priceBreakdownMarkup}
 
       ${bandWidthMarkup}
 
