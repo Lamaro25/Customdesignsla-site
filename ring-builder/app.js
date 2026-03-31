@@ -255,7 +255,7 @@ function renderPriceBreakdownSection(product) {
   `).join("");
 
   return `
-    <div class="price-breakdown">
+    <div class="price-breakdown builder-plaque">
       <h3>Price Breakdown</h3>
       <ul class="price-breakdown-list">
         ${rowsMarkup}
@@ -278,9 +278,14 @@ function renderNotFound() {
 
   app.innerHTML = `
     <section class="builder-shell">
-      <h2>Customize Your Ring</h2>
-      <p>We couldn’t find a ring for this product key.</p>
-      <p><strong>Requested:</strong> ${requestedKey || "none"}</p>
+      <div class="builder-plaque hero-plaque">
+        <h2>Your Vision, Crafted in Silver</h2>
+        <p>Designed by you. Hand-finished by Custom Designs LA.</p>
+      </div>
+      <div class="builder-plaque">
+        <p>We couldn’t find a ring for this product key.</p>
+        <p><strong>Requested:</strong> ${requestedKey || "none"}</p>
+      </div>
     </section>
   `;
 }
@@ -314,30 +319,6 @@ function render() {
     </option>
   `).join("");
 
-  const bandWidthMarkup = isBandWidthLocked(currentProduct)
-    ? `
-      <h3>Band Width:</h3>
-      <p><strong>${currentProduct.band_width}</strong></p>
-    `
-    : `
-      <h3>Select Band Width:</h3>
-      <select onchange="setBandWidth(this.value)">
-        ${bandWidthOptions}
-      </select>
-    `;
-
-  const metalMarkup = isMetalLocked(currentProduct)
-    ? `
-      <h3>Metal:</h3>
-      <p><strong>${currentMetal}</strong></p>
-    `
-    : `
-      <h3>Select Metal:</h3>
-      <select onchange="setMetal(this.value)">
-        ${metalOptions}
-      </select>
-    `;
-
   const addOnMarkup = addOns.length
     ? addOns.map(addon => `
         <label>
@@ -349,7 +330,7 @@ function render() {
           ${addon} (+$${pricingData.addOns?.[addon] || 0})
         </label><br/>
       `).join("")
-    : "<p>No add-ons available for this ring.</p>";
+    : "";
 
   const galleryImages = getProductGallery(currentProduct);
 
@@ -405,11 +386,11 @@ function render() {
     ? `
       <section class="symbol-section">
         <button type="button" class="symbol-toggle" onclick="toggleSymbolSection()">
-          ${symbolSectionExpanded ? "Hide Symbols" : "Add Symbols"}
+          ${symbolSectionExpanded ? "Hide Symbol Options" : "Add Symbols to Inside of Ring"}
         </button>
         ${symbolSectionExpanded ? `
           <div class="symbol-grid-wrap">
-            <p class="symbol-help">Inner Engraved Symbol only for this Cuban Link ring.</p>
+            <p class="symbol-help">Inner engraved symbols are available for this Cuban Link ring.</p>
             <p class="symbol-help">Symbols selected here are engraved on the inside of the ring.</p>
             <div class="symbol-grid">
               ${symbolCardsMarkup}
@@ -505,90 +486,110 @@ function render() {
 
   app.innerHTML = `
     <section class="builder-shell">
-      <h2>Customize Your Ring</h2>
+      <div class="builder-plaque hero-plaque">
+        <p class="plaque-eyebrow">Custom Designs LA Ring Builder</p>
+        <h2>Your Vision, Crafted in Silver</h2>
+        <p>Designed by you. Hand-finished by Custom Designs LA.</p>
+      </div>
 
-      <div class="builder-product-header">
-        ${galleryMarkup}
-        <div class="builder-product-meta">
-          <h3>${currentProduct.title}</h3>
-          <p><strong>Product Key:</strong> ${currentProduct.builderKey}</p>
-          <p><strong>SKU:</strong> ${currentProduct.sku}</p>
-          <p><strong>Collection:</strong> ${currentProduct.collection}</p>
-          <p><strong>Base Price:</strong> $${currentProduct.price}</p>
-        </div>
+      <div class="builder-gallery-strip builder-plaque">
+        ${galleryMarkup || '<p class="gallery-empty">Reference images coming soon.</p>'}
+      </div>
+
+      <div class="builder-plaque product-info-plaque">
+        <h3>${currentProduct.title}</h3>
+        <p><strong>SKU:</strong> ${currentProduct.sku}</p>
+        <p><strong>Collection:</strong> ${currentProduct.collection}</p>
+        <p><strong>Base Price:</strong> $${currentProduct.price}</p>
       </div>
 
       ${priceBreakdownMarkup}
 
-      <div class="builder-section builder-section-option">
-        ${bandWidthMarkup}
-      </div>
+      <section class="builder-plaque customization-options">
+        <h3>Customization Options</h3>
 
-      <div class="builder-section builder-section-option">
-        ${metalMarkup}
-      </div>
-
-      <section class="builder-section engraving-section">
-        <h3>Engraving Options:</h3>
-        ${supportsInsideEngraving(currentProduct) ? `
-          <label class="engraving-field">Inside Text:
-            <textarea
-              rows="2"
-              oninput="setEngraving('inside', this.value)"
-            >${engravingTextInside}</textarea>
-          </label>
+        ${(!isBandWidthLocked(currentProduct) || !isMetalLocked(currentProduct)) ? `
+          <div class="builder-mini-card ring-specs-card">
+            <h4>Ring Specifications</h4>
+            ${!isBandWidthLocked(currentProduct) ? `
+              <label>
+                Band Width
+                <select onchange="setBandWidth(this.value)">
+                  ${bandWidthOptions}
+                </select>
+              </label>
+            ` : ""}
+            ${!isMetalLocked(currentProduct) ? `
+              <label>
+                Metal
+                <select onchange="setMetal(this.value)">
+                  ${metalOptions}
+                </select>
+              </label>
+            ` : ""}
+          </div>
         ` : ""}
 
-        ${supportsOutsideEngraving(currentProduct) ? `
-          <label class="engraving-field">Outside Text:
-            <textarea
-              rows="2"
-              oninput="setEngraving('outside', this.value)"
-            >${engravingTextOutside}</textarea>
-          </label>
+        <div class="builder-mini-card engraving-section">
+          <h4>Engraving</h4>
+          ${supportsInsideEngraving(currentProduct) ? `
+            <label class="engraving-field">Inside Text
+              <textarea rows="2" oninput="setEngraving('inside', this.value)">${engravingTextInside}</textarea>
+            </label>
+          ` : ""}
+          ${supportsOutsideEngraving(currentProduct) ? `
+            <label class="engraving-field">Outside Text
+              <textarea rows="2" oninput="setEngraving('outside', this.value)">${engravingTextOutside}</textarea>
+            </label>
+          ` : ""}
+          <small>$${pricingData.engravingPerWord || 0} per word</small>
+        </div>
+
+        <div class="builder-mini-card symbols-card">
+          <h4>Symbols</h4>
+          ${symbolMarkup || '<p class="subtle-text">Symbol customization is not available for this ring style.</p>'}
+        </div>
+
+        ${addOns.length ? `
+          <div class="builder-mini-card add-ons-card">
+            <h4>Additional Add-ons</h4>
+            ${addOnMarkup}
+          </div>
         ` : ""}
 
-        <small>$${pricingData.engravingPerWord || 0} per word</small>
+        <div class="builder-mini-card order-notes-section">
+          <h4>Order Notes</h4>
+          <textarea
+            rows="6"
+            oninput="setOrderNotes(this.value)"
+            placeholder="Example:&#10;Inside text: I ❤️ love you&#10;Place the heart after the letter I.&#10;You can also use this box to explain symbol placement, order, or custom requests."
+          >${orderNotes}</textarea>
+        </div>
       </section>
 
-      ${symbolMarkup}
-
-      <section class="builder-section customization-section">
-        <h3>Customization Add-ons:</h3>
-        ${addOnMarkup}
-      </section>
-
-      <section class="builder-section order-notes-section">
-        <h3>Order Notes</h3>
-        <textarea
-          rows="6"
-          oninput="setOrderNotes(this.value)"
-          placeholder="Example:&#10;Inside text: I ❤️ love you&#10;Place the heart after the letter I.&#10;You can also use this box to explain symbol placement, order, or custom requests."
-        >${orderNotes}</textarea>
-      </section>
-
-      <div class="builder-actions">
+      <div class="builder-actions builder-plaque">
         <button class="add-to-cart-main" onclick="addCurrentRingToCart()">
-          Add to Cart
+          Order Now
         </button>
 
         <button class="add-to-cart-main" type="button" onclick="addCurrentRingToWishlist()">
-          Add to Wishlist
+          Save & Get Free Preview
         </button>
       </div>
 
-      <section class="builder-section how-it-works">
+      <section class="builder-plaque how-it-works">
         <h3>How This Works</h3>
-        <p><strong>Add to Wishlist</strong> — Save your design and receive a free preview before ordering</p>
-        <p><strong>Preview turnaround:</strong> 3D design previews are typically delivered within 2–3 business days. Timing may vary depending on design complexity and workload</p>
-        <p><strong>Add to Cart</strong> — Move forward with your custom order at the current total price</p>
+        <p><strong>Save & Get Free Preview</strong> — Receive a custom design preview within 2–3 business days before ordering.</p>
+        <p><strong>Order Now</strong> — Move forward with your custom piece at the current total price.</p>
       </section>
 
-      <div class="price-box">
+      <p class="material-note">All jewelry pieces are crafted in solid .925 sterling silver.</p>
+
+      <div class="price-box builder-plaque total-price-card">
         <h2>Total Price: $${price}</h2>
       </div>
 
-      <div class="cart-box">
+      <div class="cart-box builder-plaque">
         <h3>🛒 Cart (${cart.length})</h3>
         <ul>
           ${cart.map(item => `
