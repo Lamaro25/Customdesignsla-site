@@ -374,18 +374,32 @@ function render() {
     </button>
   `).join("");
 
+  const isCustomSymbolSelected = selectedSymbols.includes("custom-symbol");
+
   const symbolMarkup = symbols.length
     ? `
       <section class="symbol-section">
         <button type="button" class="symbol-toggle" onclick="toggleSymbolSection()">
-          ${symbolSectionExpanded ? "Hide Symbol Options" : "View Symbol Options"}
+          ${symbolSectionExpanded ? "Hide Symbols" : "Add Symbols"}
         </button>
         ${symbolSectionExpanded ? `
           <div class="symbol-grid-wrap">
             <p class="symbol-help">Inner Engraved Symbol only for this Cuban Link ring.</p>
+            <p class="symbol-help">Symbols selected here are engraved on the inside of the ring.</p>
             <div class="symbol-grid">
               ${symbolCardsMarkup}
             </div>
+            ${isCustomSymbolSelected ? `
+              <div class="custom-symbol-panel">
+                <h4>Custom Symbol / Brand</h4>
+                <p>Upload or describe your custom symbol. You can send a logo, brand, or image after checkout.</p>
+                <ul>
+                  <li>Add details in Order Notes</li>
+                  <li>Include placement and size</li>
+                  <li>We will contact you if needed</li>
+                </ul>
+              </div>
+            ` : ""}
             <p class="symbol-summary">${selectedSymbolDetails.length} symbols selected — $${symbolsTotal}</p>
             <label>Symbol Placement Notes:
               <textarea rows="2" oninput="setSymbolPlacementNotes(this.value)">${symbolPlacementNotes}</textarea>
@@ -413,45 +427,55 @@ function render() {
 
       ${priceBreakdownMarkup}
 
-      ${bandWidthMarkup}
+      <div class="builder-section builder-section-option">
+        ${bandWidthMarkup}
+      </div>
 
-      ${metalMarkup}
+      <div class="builder-section builder-section-option">
+        ${metalMarkup}
+      </div>
 
-      <h3>Engraving Options:</h3>
-      ${supportsInsideEngraving(currentProduct) ? `
-        <label>Inside Text:
-          <input
-            type="text"
-            value="${engravingTextInside}"
-            oninput="setEngraving('inside', this.value)"
-          />
-        </label><br/>
-      ` : ""}
+      <section class="builder-section engraving-section">
+        <h3>Engraving Options:</h3>
+        ${supportsInsideEngraving(currentProduct) ? `
+          <label>Inside Text:
+            <input
+              type="text"
+              value="${engravingTextInside}"
+              oninput="setEngraving('inside', this.value)"
+            />
+          </label><br/>
+        ` : ""}
 
-      ${supportsOutsideEngraving(currentProduct) ? `
-        <label>Outside Text:
-          <input
-            type="text"
-            value="${engravingTextOutside}"
-            oninput="setEngraving('outside', this.value)"
-          />
-        </label><br/>
-      ` : ""}
+        ${supportsOutsideEngraving(currentProduct) ? `
+          <label>Outside Text:
+            <input
+              type="text"
+              value="${engravingTextOutside}"
+              oninput="setEngraving('outside', this.value)"
+            />
+          </label><br/>
+        ` : ""}
 
-      <small>$${pricingData.engravingPerWord || 0} per word</small>
+        <small>$${pricingData.engravingPerWord || 0} per word</small>
+      </section>
 
       ${symbolMarkup}
 
-      <h3>Customization Add-ons:</h3>
-      ${addOnMarkup}
+      <section class="builder-section customization-section">
+        <h3>Customization Add-ons:</h3>
+        ${addOnMarkup}
+      </section>
 
-      <button class="add-to-cart-main" onclick="addCurrentRingToCart()">
-        Add to Cart
-      </button>
+      <div class="builder-actions">
+        <button class="add-to-cart-main" onclick="addCurrentRingToCart()">
+          Add to Cart
+        </button>
 
-      <button class="add-to-cart-main" type="button" onclick="addCurrentRingToWishlist()">
-        Add to Wishlist
-      </button>
+        <button class="add-to-cart-main" type="button" onclick="addCurrentRingToWishlist()">
+          Add to Wishlist
+        </button>
+      </div>
 
       <div class="price-box">
         <h2>Total Price: $${price}</h2>
