@@ -239,6 +239,31 @@ function updatePriceUI() {
   }
 }
 
+function updateSymbolSelectionCardUI(symbolId, isSelected) {
+  const symbolButtons = document.querySelectorAll(`.symbol-card[onclick="toggleSymbol('${symbolId}')"]`);
+
+  symbolButtons.forEach(card => {
+    card.classList.toggle("is-selected", isSelected);
+    card.setAttribute("aria-pressed", String(isSelected));
+    const checkBox = card.querySelector(".symbol-select-checkbox");
+    if (checkBox) {
+      checkBox.textContent = isSelected ? "✓" : "";
+    }
+  });
+}
+
+function updateSymbolSummaryUI() {
+  const symbolSummary = document.querySelector(".symbol-summary");
+  if (!symbolSummary) return;
+
+  const selectedSymbolDetails = selectedSymbols
+    .map(symbolId => symbolsData.find(item => item.id === symbolId))
+    .filter(Boolean);
+  const symbolsTotal = selectedSymbolDetails.reduce((sum, symbol) => sum + Number(symbol.price || 0), 0);
+
+  symbolSummary.textContent = `${selectedSymbolDetails.length} symbols selected — $${symbolsTotal}`;
+}
+
 function formatCurrency(amount) {
   return `$${Number(amount || 0)}`;
 }
@@ -280,7 +305,7 @@ function renderNotFound() {
     <section class="builder-shell">
       <div class="builder-plaque hero-plaque">
         <h2>Your Vision, Crafted in Silver</h2>
-        <p>Designed by you. Hand-finished by Custom Designs LA.</p>
+        <p>Designed by you. Hand-finished by Custom Design’s LA.</p>
       </div>
       <div class="builder-plaque">
         <p>We couldn’t find a ring for this product key.</p>
@@ -447,7 +472,7 @@ function render() {
                   <p>Use the example images above as a guide when uploading your reference image.</p>
                   <p>If your uploaded image is clean and production-ready, no extra design fee applies.</p>
                   <p>If your uploaded image is not production-ready and needs cleanup or redrawing, a $10 cleanup fee may apply. We will review the image and contact you before moving forward.</p>
-                  <p>If you do not have a usable image and want CDLA to create one for you, you can request that below for a $10 design fee.</p>
+                  <p>If you do not have a usable image and want Custom Design’s LA to create one for you, you can request that below for a $10 design fee.</p>
                   <p class="custom-symbol-note"><strong>Add placement details in Order Notes.</strong></p>
                   <label class="custom-symbol-checkbox">
                     <input
@@ -455,7 +480,7 @@ function render() {
                       ${customSymbolDesignRequestOptIn ? "checked" : ""}
                       onchange="setCustomSymbolDesignRequest(this.checked)"
                     />
-                    Have CDLA design my symbol / brand (+$10)
+                    Have Custom Design’s LA design my symbol / brand (+$10)
                   </label>
                   ${customSymbolDesignRequestOptIn ? `
                     <label class="custom-symbol-description">
@@ -487,9 +512,8 @@ function render() {
   app.innerHTML = `
     <section class="builder-shell">
       <div class="builder-plaque hero-plaque">
-        <p class="plaque-eyebrow">Custom Designs LA Ring Builder</p>
         <h2>Your Vision, Crafted in Silver</h2>
-        <p>Designed by you. Hand-finished by Custom Designs LA.</p>
+        <p>Designed by you. Hand-finished by Custom Design’s LA.</p>
       </div>
 
       <div class="builder-gallery-strip builder-plaque">
@@ -579,8 +603,14 @@ function render() {
 
       <section class="builder-plaque how-it-works">
         <h3>How This Works</h3>
-        <p><strong>Save & Get Free Preview</strong> — Receive a custom design preview within 2–3 business days before ordering.</p>
-        <p><strong>Order Now</strong> — Move forward with your custom piece at the current total price.</p>
+        <p><strong>Save &amp; Get Free Preview</strong> — Receive a custom design preview before placing your order.</p>
+        <p>Free previews are completed within 2–3 weeks depending on current workload.</p>
+        <p><strong>Order Now</strong> — Receive your custom design preview within 3–7 business days after payment.</p>
+        <p>Paid orders are prioritized.</p>
+        <p><strong>Payment Options:</strong></p>
+        <p>• Pay in full — highest priority</p>
+        <p>• 50% deposit — design completed within the same 3–7 day window</p>
+        <p>All orders receive a design preview before production begins.</p>
       </section>
 
       <p class="material-note">All jewelry pieces are crafted in solid .925 sterling silver.</p>
@@ -651,9 +681,18 @@ window.toggleSymbol = symbolId => {
     customSymbolDesignRequestOptIn = false;
     customSymbolDesignDescription = "";
     customSymbolUploadFileName = "";
+    render();
+    return;
   }
 
-  render();
+  if (symbolId === "custom-symbol") {
+    render();
+    return;
+  }
+
+  updateSymbolSelectionCardUI(symbolId, !isSelected);
+  updateSymbolSummaryUI();
+  updatePriceUI();
 };
 
 window.setOrderNotes = value => {
