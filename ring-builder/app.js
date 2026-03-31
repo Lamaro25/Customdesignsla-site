@@ -460,6 +460,7 @@ function render() {
                       <span class="custom-symbol-example-label">Not Ideal Example</span>
                     </div>
                   </div>
+                  <p>Use the example images above as a guide when uploading your reference image.</p>
                   <p>If your uploaded image is clean and production-ready, no extra design fee applies.</p>
                   <p>If your uploaded image is not production-ready and needs cleanup or redrawing, a $10 cleanup fee may apply. We will review the image and contact you before moving forward.</p>
                   <p>If you do not have a usable image and want CDLA to create one for you, you can request that below for a $10 design fee.</p>
