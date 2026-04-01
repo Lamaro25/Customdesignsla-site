@@ -2,11 +2,14 @@ body.builder-page {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   color: #202329;
-  background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('../img/customization-background.jpg');
+  background-image:
+    linear-gradient(rgba(0,0,0,0.58), rgba(0,0,0,0.58)),
+    url('/img/customization-background.jpg');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
-  background-color: rgba(0,0,0,0.65);
+  background-color: #111;
   background-blend-mode: multiply;
 }
 
