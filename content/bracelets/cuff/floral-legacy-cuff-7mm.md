@@ -14,13 +14,13 @@ width_mm: 7
 
 # COLLECTION CARD IMAGE
 images:
-  - "/static/img/bracelets/cuffs/floral-cuff-7mm.jpg"
+  - "/static/img/bracelets/cuff/floral-cuff-7mm.jpg"
 
 # PRODUCT PAGE GALLERY
 gallery:
-  - "/static/img/bracelets/cuffs/floral-cuff-7mm.jpg"
-  - "/static/img/bracelets/cuffs/floral-cuff-7mm-2.jpg"
-  - "/static/img/bracelets/cuffs/floral-cuff-7mm-3.jpg"
+  - "/static/img/bracelets/cuff/floral-cuff-7mm.jpg"
+  - "/static/img/bracelets/cuff/floral-cuff-7mm-2.jpg"
+  - "/static/img/bracelets/cuff/floral-cuff-7mm-3.jpg"
 ---
 
 ## Overview
