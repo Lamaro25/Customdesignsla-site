@@ -379,8 +379,16 @@ function render() {
 
   const standardSymbols = symbols.filter(symbol => symbol.id !== "custom-symbol");
   const customSymbol = symbols.find(symbol => symbol.id === "custom-symbol");
+  const symbolImageOverrides = {
+    acts: "/img/acts.png",
+    cross: "/img/cross.png"
+  };
+  const getSymbolImage = symbol => symbolImageOverrides[symbol.id] || symbol.image || "";
 
-  const symbolCardsMarkup = standardSymbols.map(symbol => `
+  const symbolCardsMarkup = standardSymbols.map(symbol => {
+    const symbolImage = getSymbolImage(symbol);
+
+    return `
     <button
       type="button"
       class="symbol-card ${selectedSymbols.includes(symbol.id) ? "is-selected" : ""}"
@@ -389,13 +397,13 @@ function render() {
     >
       <div class="symbol-image-wrap">
         <img
-          src="${symbol.image || ""}"
+          src="${symbolImage}"
           alt="${symbol.name}"
           loading="lazy"
-          style="${symbol.image ? "" : "display:none;"}"
+          style="${symbolImage ? "" : "display:none;"}"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
         />
-        <div class="symbol-image-placeholder" style="${symbol.image ? "" : "display:grid;"}">No Image</div>
+        <div class="symbol-image-placeholder" style="${symbolImage ? "" : "display:grid;"}">No Image</div>
       </div>
       <span class="symbol-name">${symbol.name}</span>
       <span class="symbol-price">+$${symbol.price}</span>
@@ -403,7 +411,8 @@ function render() {
         <span class="symbol-select-checkbox">${selectedSymbols.includes(symbol.id) ? "✓" : ""}</span>
       </span>
     </button>
-  `).join("");
+  `;
+  }).join("");
 
   const isCustomSymbolSelected = selectedSymbols.includes("custom-symbol");
 
