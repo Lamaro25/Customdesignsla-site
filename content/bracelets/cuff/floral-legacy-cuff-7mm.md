@@ -23,6 +23,21 @@ gallery:
   - "/static/img/bracelets/cuff/floral-cuff-7mm-3.jpg"
 ---
 
+<!-- PRODUCT GALLERY (from frontmatter.gallery) -->
+<div class="product-gallery-section">
+  <div class="product-gallery-grid">
+    <div class="product-gallery-item">
+      <img src="{{ gallery[0] }}" alt="floral-cuff-7mm.jpg" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[1] }}" alt="floral-cuff-7mm-2.jpg" loading="lazy">
+    </div>
+    <div class="product-gallery-item">
+      <img src="{{ gallery[2] }}" alt="floral-cuff-7mm-3.jpg" loading="lazy">
+    </div>
+  </div>
+</div>
+
 ## Overview
 
 The **Floral Legacy Cuff (7 mm)** is hand-cast in solid .925 sterling silver and showcases a continuous floral pattern inspired by classic heritage engraving. Oxidized channels enhance contrast and depth, while polished raised details bring clarity and refinement to the design.
