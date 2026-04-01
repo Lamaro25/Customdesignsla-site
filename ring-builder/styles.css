@@ -3,7 +3,7 @@ body.builder-page {
   margin: 0;
   color: #202329;
   background-image:
-    linear-gradient(rgba(0,0,0,0.58), rgba(0,0,0,0.58)),
+    linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.18)),
     url('/img/customization-background.jpg');
   background-size: cover;
   background-position: center;
