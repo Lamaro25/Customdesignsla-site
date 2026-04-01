@@ -1,6 +1,6 @@
 [
-  {"id":"cross","name":"Cross","imageKey":"cross-image","image":"/static/img/symbols/cross-image.png","price":4,"usageType":"inner-engraved-symbol","active":true,"selectionType":"multiple","collections":["cuban-link-ring-collection"]},
-  {"id":"acts","name":"Acts","imageKey":"acts-image","image":"/static/img/symbols/acts-image.png","price":4,"usageType":"inner-engraved-symbol","active":true,"selectionType":"multiple","collections":["cuban-link-ring-collection"]},
+  {"id":"cross","name":"Cross","imageKey":"cross-image","image":"/img/cross.png","price":4,"usageType":"inner-engraved-symbol","active":true,"selectionType":"multiple","collections":["cuban-link-ring-collection"]},
+  {"id":"acts","name":"Acts","imageKey":"acts-image","image":"/img/acts.png","price":4,"usageType":"inner-engraved-symbol","active":true,"selectionType":"multiple","collections":["cuban-link-ring-collection"]},
   {"id":"praying-hands","name":"Praying Hands","imageKey":"praying-hands-image","image":"/static/img/symbols/praying-hands-image.png","price":4,"usageType":"inner-engraved-symbol","active":true,"selectionType":"multiple","collections":["cuban-link-ring-collection"]},
   {"id":"horse","name":"Horse","imageKey":"horse-image","image":"/static/img/symbols/horse-image.png","price":4,"usageType":"inner-engraved-symbol","active":true,"selectionType":"multiple","collections":["cuban-link-ring-collection"]},
   {"id":"horseshoe","name":"Horseshoe","imageKey":"horseshoe-image","image":"/static/img/symbols/horseshoe-image.png","price":4,"usageType":"inner-engraved-symbol","active":true,"selectionType":"multiple","collections":["cuban-link-ring-collection"]},
