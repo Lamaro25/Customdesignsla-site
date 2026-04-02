@@ -379,14 +379,71 @@ function render() {
 
   const standardSymbols = symbols.filter(symbol => symbol.id !== "custom-symbol");
   const customSymbol = symbols.find(symbol => symbol.id === "custom-symbol");
-  const symbolImageOverrides = {
-    acts: "/img/acts.png",
-    cross: "/img/cross.png"
+  const symbolImageFileOverrides = {
+    acts: "ACTS.PNG",
+    cross: "Cross.PNG",
+    "praying-hands": "Praying hands.PNG",
+    horse: "Horse.PNG",
+    horseshoe: "Horseshoe.PNG",
+    "yin-and-yang": "Yin and yang.PNG",
+    "turtle-dove": "Turtle dove.PNG",
+    elephant: "Elephant.PNG",
+    cardinal: "Cardinal.PNG",
+    heart: "Heart.PNG",
+    star: "Star.PNG",
+    "crescent-moon": "Crecent moon.PNG"
   };
-  const getSymbolImage = symbol => symbolImageOverrides[symbol.id] || symbol.image || "";
+
+  const buildSymbolImageCandidates = symbol => {
+    const candidates = [];
+    const push = value => {
+      if (!value) return;
+      if (!candidates.includes(value)) candidates.push(value);
+    };
+
+    const overrideFile = symbolImageFileOverrides[symbol.id];
+    if (overrideFile) {
+      push(`/img/${overrideFile}`);
+      push(`/static/img/${overrideFile}`);
+    }
+
+    if (symbol.imageKey) {
+      push(`/img/${symbol.imageKey}.PNG`);
+      push(`/img/${symbol.imageKey}.png`);
+      push(`/static/img/symbols/${symbol.imageKey}.PNG`);
+      push(`/static/img/symbols/${symbol.imageKey}.png`);
+    }
+
+    if (symbol.image) {
+      push(symbol.image);
+    }
+
+    return candidates;
+  };
+
+  const toAttrSafe = value => String(value || "").replace(/"/g, "&quot;");
+  const renderSymbolImageMarkup = (symbol, imageClass = "") => {
+    const candidates = buildSymbolImageCandidates(symbol);
+    const initialSrc = candidates[0] || "";
+    const classes = ["symbol-image", imageClass].filter(Boolean).join(" ");
+    const candidateAttr = toAttrSafe(candidates.join("|"));
+
+    return `
+      <img
+        class="${classes}"
+        src="${initialSrc}"
+        alt="${symbol.name}"
+        loading="lazy"
+        data-image-candidates="${candidateAttr}"
+        data-image-index="0"
+        style="${initialSrc ? "" : "display:none;"}"
+        onerror="handleSymbolImageError(this)"
+      />
+      <div class="symbol-image-placeholder" style="${initialSrc ? "" : "display:grid;"}">No Image</div>
+    `;
+  };
 
   const symbolCardsMarkup = standardSymbols.map(symbol => {
-    const symbolImage = getSymbolImage(symbol);
 
     return `
     <button
@@ -396,14 +453,7 @@ function render() {
       aria-pressed="${selectedSymbols.includes(symbol.id) ? "true" : "false"}"
     >
       <div class="symbol-image-wrap">
-        <img
-          src="${symbolImage}"
-          alt="${symbol.name}"
-          loading="lazy"
-          style="${symbolImage ? "" : "display:none;"}"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-        />
-        <div class="symbol-image-placeholder" style="${symbolImage ? "" : "display:grid;"}">No Image</div>
+        ${renderSymbolImageMarkup(symbol)}
       </div>
       <span class="symbol-name">${symbol.name}</span>
       <span class="symbol-price">+$${symbol.price}</span>
@@ -437,14 +487,7 @@ function render() {
                 aria-pressed="${isCustomSymbolSelected ? "true" : "false"}"
               >
                 <div class="symbol-image-wrap">
-                  <img
-                    src="${customSymbol.image || ""}"
-                    alt="${customSymbol.name}"
-                    loading="lazy"
-                    style="${customSymbol.image ? "" : "display:none;"}"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-                  />
-                  <div class="symbol-image-placeholder" style="${customSymbol.image ? "" : "display:grid;"}">No Image</div>
+                  ${renderSymbolImageMarkup(customSymbol, "custom-symbol-image")}
                 </div>
                 <div class="custom-symbol-trigger-copy">
                   <span class="custom-symbol-trigger-title">Custom Symbol / Brand</span>
@@ -677,6 +720,26 @@ window.setEngraving = (type, value) => {
 window.toggleSymbolSection = () => {
   symbolSectionExpanded = !symbolSectionExpanded;
   render();
+};
+
+window.handleSymbolImageError = imageEl => {
+  const candidates = (imageEl.dataset.imageCandidates || "")
+    .split("|")
+    .map(item => item.trim())
+    .filter(Boolean);
+
+  const nextIndex = Number(imageEl.dataset.imageIndex || 0) + 1;
+
+  if (nextIndex < candidates.length) {
+    imageEl.dataset.imageIndex = String(nextIndex);
+    imageEl.src = candidates[nextIndex];
+    return;
+  }
+
+  imageEl.style.display = "none";
+  if (imageEl.nextElementSibling) {
+    imageEl.nextElementSibling.style.display = "grid";
+  }
 };
 
 window.toggleSymbol = symbolId => {
