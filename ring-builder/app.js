@@ -596,22 +596,20 @@ function render() {
                   <div class="custom-symbol-examples">
                     <div class="custom-symbol-example-card" data-example-key="good-example-image">
                       <img
-                        src="/static/img/symbols/goodexamples.jpg"
-                        alt="Good symbol examples"
                         class="custom-symbol-example-image"
-                        onerror="this.onerror=null; this.style.display='none'; if (this.nextElementSibling) this.nextElementSibling.style.display='grid';"
+                        src="/static/img/symbols/goodexamples.jpg"
+                        alt="Good Example"
+                        loading="lazy"
                       />
-                      <div class="custom-symbol-example-placeholder" style="display:none;" data-example-key="good-example-image" aria-label="good-example-image placeholder">No Image</div>
                       <span class="custom-symbol-example-label">Good Example</span>
                     </div>
                     <div class="custom-symbol-example-card" data-example-key="not-ideal-example-image">
                       <img
-                        src="/static/img/symbols/badexamples.jpg"
-                        alt="Bad symbol examples"
                         class="custom-symbol-example-image"
-                        onerror="this.onerror=null; this.style.display='none'; if (this.nextElementSibling) this.nextElementSibling.style.display='grid';"
+                        src="/static/img/symbols/badexamples.jpg"
+                        alt="Bad Example"
+                        loading="lazy"
                       />
-                      <div class="custom-symbol-example-placeholder" style="display:none;" data-example-key="not-ideal-example-image" aria-label="not-ideal-example-image placeholder">No Image</div>
                       <span class="custom-symbol-example-label">Not Ideal Example</span>
                     </div>
                   </div>
