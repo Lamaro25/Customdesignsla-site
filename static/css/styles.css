@@ -110,6 +110,12 @@
 /* ==========================================================
    GLOBAL RESET & BASE
 ========================================================== */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 html {
   min-height: 100%;
   background-color: #f5f5f5; /* light site canvas */
@@ -122,6 +128,7 @@ body {
   font-family: "Segoe UI", sans-serif;
   color: #222;
   background: transparent;
+  touch-action: manipulation;
 }
 /* ==========================================================
    HEADER / BRANDING
@@ -185,6 +192,7 @@ body {
   gap: 1.25rem;
   margin-bottom: 1rem;
   background: transparent;
+  touch-action: manipulation;
 }
 
 .top-button-bar img {
@@ -201,6 +209,7 @@ main {
   margin: 0 auto;
   padding: 0 20px 20px;
   background: transparent;
+  touch-action: manipulation;
 }
 /* ================================
    FIX: Remove top padding on collection pages
