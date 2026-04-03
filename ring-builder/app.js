@@ -131,8 +131,12 @@ function isCubanLinkProduct(product) {
   return /cuban link/i.test(product?.collection || "");
 }
 
+function isWesternRingProduct(product) {
+  return /western ring/i.test(product?.collection || "");
+}
+
 function supportsInnerSymbolSelection(product) {
-  return isCubanLinkProduct(product);
+  return isCubanLinkProduct(product) || isWesternRingProduct(product);
 }
 
 function getAvailableSymbols(product) {
@@ -140,11 +144,24 @@ function getAvailableSymbols(product) {
     return [];
   }
 
+  const symbolCollectionKey = isWesternRingProduct(product)
+    ? "western-ring-collection"
+    : "cuban-link-ring-collection";
+
   return symbolsData.filter(symbol => {
     if (symbol.active === false) return false;
     if (symbol.usageType !== "inner-engraved-symbol") return false;
     if (!Array.isArray(symbol.collections) || !symbol.collections.length) return true;
-    return symbol.collections.includes("cuban-link-ring-collection");
+
+    if (symbol.collections.includes(symbolCollectionKey)) return true;
+
+    // Keep existing symbol inventory available for Western rings without
+    // forcing a separate symbol catalog migration.
+    if (isWesternRingProduct(product)) {
+      return symbol.collections.includes("cuban-link-ring-collection");
+    }
+
+    return false;
   });
 }
 
@@ -526,15 +543,20 @@ function render() {
 
   const isCustomSymbolSelected = selectedSymbols.includes("custom-symbol");
 
+  const productSymbolNote = String(currentProduct.symbolCustomizationNote || "").trim();
+
   const symbolMarkup = symbols.length
     ? `
       <section class="symbol-section">
         <button type="button" class="symbol-toggle" onclick="toggleSymbolSection()">
           ${symbolSectionExpanded ? "Hide Symbol Options" : "Add Symbols to Inside of Ring"}
         </button>
+        ${productSymbolNote ? `
+          <p class="symbol-help"><strong>Note:</strong> ${escapeHtml(productSymbolNote)}</p>
+        ` : ""}
         ${symbolSectionExpanded ? `
           <div class="symbol-grid-wrap">
-            <p class="symbol-help">Inner engraved symbols are available for this Cuban Link ring.</p>
+            <p class="symbol-help">Inner engraved symbols are available for this ring.</p>
             <p class="symbol-help">Symbols selected here are engraved on the inside of the ring.</p>
             <div class="symbol-grid">
               ${symbolCardsMarkup}
