@@ -28,32 +28,34 @@
     </div>
 
     <!-- ✅ Customize CTA button (routes to builder) -->
-    {% set sku = page.data.sku or page.fileSlug %}
+    {% set productSku = sku or page.fileSlug %}
     {% set urlPath = page.url or "" %}
-
     {# Detect builder type by URL path (Nunjucks-safe) #}
     {% set isRing = "/rings/" in urlPath %}
+    {% set isRingBuilderEligible = ("/rings/cuban-link/" in urlPath) or ("/rings/western/" in urlPath) or ("/rings/faith/" in urlPath) %}
 
-    {% if isRing %}
-      {% set builderPath = "/builder/ring/" %}
-    {% else %}
-      {% set builderPath = "/builder/charm/" %}
-    {% endif %}
+    {% if isRingBuilderEligible or not isRing %}
+      {% if isRing %}
+        {% set builderPath = "/builder/ring/" %}
+      {% else %}
+        {% set builderPath = "/builder/charm/" %}
+      {% endif %}
 
-    <div class="product-add-to-cart-wrap product-customize-wrap">
-      <a
-        href="{{ builderPath }}?sku={{ sku | urlencode }}"
-        class="product-add-to-cart-link product-customize-link"
-        aria-label="Customize and checkout"
-      >
-        <img
-          src="/static/img/ui/add-to-cart.png"
-          alt="Customize"
-          class="product-add-to-cart-btn product-customize-btn"
-          loading="lazy"
+      <div class="product-add-to-cart-wrap product-customize-wrap">
+        <a
+          href="{{ builderPath }}?sku={{ productSku | urlencode }}"
+          class="product-add-to-cart-link product-customize-link"
+          aria-label="Customize and checkout"
         >
-      </a>
-    </div>
+          <img
+            src="/static/img/ui/add-to-cart.png"
+            alt="Customize"
+            class="product-add-to-cart-btn product-customize-btn"
+            loading="lazy"
+          >
+        </a>
+      </div>
+    {% endif %}
 
   </div>
 </section>
