@@ -380,19 +380,11 @@ function render() {
   const standardSymbols = symbols.filter(symbol => symbol.id !== "custom-symbol");
   const customSymbol = symbols.find(symbol => symbol.id === "custom-symbol");
   const symbolImageFileOverrides = {
-    acts: "ACTS.PNG",
-    cross: "Cross.PNG",
-    "praying-hands": "Praying hands.PNG",
-    horse: "Horse.PNG",
-    horseshoe: "Horseshoe.PNG",
-    "yin-and-yang": "Yin and yang.PNG",
-    "turtle-dove": "Turtle dove.PNG",
-    elephant: "Elephant.PNG",
-    cardinal: "Cardinal.PNG",
-    heart: "Heart.PNG",
-    star: "Star.PNG",
+    "custom-symbol": "custom-symbol-image.png",
     "crescent-moon": "Crecent moon.PNG"
   };
+
+  const normalizeSymbolImageName = name => String(name || "").trim();
 
   const buildSymbolImageCandidates = symbol => {
     const candidates = [];
@@ -401,21 +393,29 @@ function render() {
       if (!candidates.includes(value)) candidates.push(value);
     };
 
-    const overrideFile = symbolImageFileOverrides[symbol.id];
-    if (overrideFile) {
-      push(`/img/${overrideFile}`);
-      push(`/static/img/${overrideFile}`);
+    const normalizedName = normalizeSymbolImageName(symbol.name);
+    if (normalizedName) {
+      const nameBasedPath = `/static/img/symbols/${normalizedName}.PNG`;
+      push(nameBasedPath);
+      push(encodeURI(nameBasedPath));
     }
 
-    if (symbol.imageKey) {
-      push(`/img/${symbol.imageKey}.PNG`);
-      push(`/img/${symbol.imageKey}.png`);
-      push(`/static/img/symbols/${symbol.imageKey}.PNG`);
-      push(`/static/img/symbols/${symbol.imageKey}.png`);
+    const overrideFile = symbolImageFileOverrides[symbol.id];
+    if (overrideFile) {
+      push(`/static/img/symbols/${overrideFile}`);
+      push(`/static/img/${overrideFile}`);
+      push(`/img/${overrideFile}`);
     }
 
     if (symbol.image) {
       push(symbol.image);
+    }
+
+    if (symbol.imageKey) {
+      push(`/static/img/symbols/${symbol.imageKey}.PNG`);
+      push(`/static/img/symbols/${symbol.imageKey}.png`);
+      push(`/img/${symbol.imageKey}.PNG`);
+      push(`/img/${symbol.imageKey}.png`);
     }
 
     return candidates;
