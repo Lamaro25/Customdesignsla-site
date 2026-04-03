@@ -301,6 +301,13 @@ button {
   text-align: center;
 }
 
+.custom-symbol-example-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
 .custom-symbol-example-placeholder {
   width: 100%;
   aspect-ratio: 1/1;
