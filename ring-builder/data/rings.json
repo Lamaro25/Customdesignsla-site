@@ -359,5 +359,269 @@
       "Clean, bold, and iconic",
       "Signature CDLA craftsmanship"
     ]
+  },
+  {
+    "title": "Texas Long Horn Ring",
+    "sku": "WR-001",
+    "slug": "wr-001-texas-long-horn-ring",
+    "collection": "Western Ring Collection",
+    "price": 143,
+    "band_width": "7 mm",
+    "material": "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked \u201cLA\u201d)",
+    "images": [
+      "/static/img/rings/western/texas-long-horn-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/wr-001/product-images-coming-soon-wr-001.jpg",
+      "/static/img/rings/wr-001/customer-ring-feature-placeholder-wr-001.jpg",
+      "/static/img/rings/wr-001/images-update-with-orders-wr-001.jpg"
+    ],
+    "availableMetals": [
+      "Silver"
+    ],
+    "lockBandWidth": true,
+    "description": "Forged in tribute to the Lone Star State, the Texas Long Horn Ring captures the unmistakable strength and identity of Texas culture. Sculpted on a 7 mm flat band, it features a central longhorn emblem framed by raised rope braids and a recessed channel. A continuous Texas flag wrap symbolizes unity, grit, and pride."
+  },
+  {
+    "title": "A Day in Texas Ring",
+    "sku": "WR-002",
+    "slug": "a-day-in-texas-ring",
+    "collection": "Western Ring Collection",
+    "price": 178,
+    "band_width": "10 mm",
+    "material": "Solid .925 Sterling Silver (oxidized + polished, hallmarked \u201cLA\u201d)",
+    "images": [
+      "/static/img/rings/western/a-day-in-texas-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/wr-002/product-images-coming-soon-wr-002.jpg",
+      "/static/img/rings/wr-002/customer-ring-feature-placeholder-wr-002.jpg",
+      "/static/img/rings/wr-002/images-update-with-orders-wr-002.jpg"
+    ],
+    "availableMetals": [
+      "Silver"
+    ],
+    "lockBandWidth": true,
+    "description": "Every side tells a story of Texas. Sculpted fully in raised relief, this ring features two iconic scenes \u2014 the hunt and the rodeo \u2014 divided by a Lone Star. A raised name panel and rope edging complete this storytelling Western piece."
+  },
+  {
+    "title": "Lone Star Apex Ring",
+    "sku": "WR-003",
+    "slug": "lone-star-apex-ring",
+    "collection": "Western Ring Collection",
+    "price": 164,
+    "band_width": "10 mm Apex",
+    "material": "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked \u201cLA\u201d)",
+    "images": [
+      "/static/img/rings/western/lone-star-apex-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/wr-003/product-images-coming-soon-wr-003.jpg",
+      "/static/img/rings/wr-003/customer-ring-feature-placeholder-wr-003.jpg",
+      "/static/img/rings/wr-003/images-update-with-orders-wr-003.jpg"
+    ],
+    "availableMetals": [
+      "Silver"
+    ],
+    "lockBandWidth": true,
+    "description": "A fusion of apex architecture and Texas tradition. Sculpted on a 10 mm peak-contoured band, the Lone Star Apex Ring showcases a precision Texas cutout paired with a raised Lone Star emblem. Four recessed channels and embossed rope braids wrap the band in full symmetry."
+  },
+  {
+    "title": "Horse Rider Roping Ring",
+    "sku": "WR-004",
+    "slug": "horse-rider-roping-ring",
+    "collection": "Western Ring Collection",
+    "price": 124,
+    "band_width": "7 mm",
+    "material": "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked \u201cLA\u201d)",
+    "images": [
+      "/static/img/rings/western/horse-rider-roping-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/wr-004/product-images-coming-soon-wr-004.jpg",
+      "/static/img/rings/wr-004/customer-ring-feature-placeholder-wr-004.jpg",
+      "/static/img/rings/wr-004/images-update-with-orders-wr-004.jpg"
+    ],
+    "availableMetals": [
+      "Silver"
+    ],
+    "lockBandWidth": true,
+    "description": "A tribute to the working cowboy and the legacy he leaves behind. Sculpted in raised relief on a 7 mm band, a cowboy roping a steer stretches across the center, framed by recessed channels and textured rope braids."
+  },
+  {
+    "title": "Running Wild Ring",
+    "sku": "WR-005",
+    "slug": "running-wild-ring",
+    "collection": "Western Ring Collection",
+    "price": 125,
+    "band_width": "7 mm",
+    "material": "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked \u201cLA\u201d)",
+    "images": [
+      "/static/img/rings/western/running-wild-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/wr-005/product-images-coming-soon-wr-005.jpg",
+      "/static/img/rings/wr-005/customer-ring-feature-placeholder-wr-005.jpg",
+      "/static/img/rings/wr-005/images-update-with-orders-wr-005.jpg"
+    ],
+    "availableMetals": [
+      "Silver"
+    ],
+    "lockBandWidth": true,
+    "description": "A tribute to untamed freedom and the open plains. Nine embossed horses race in continuous motion across a 7 mm band, sculpted in raised relief and framed by a recessed channel and bold rope braid."
+  },
+  {
+    "title": "Luck of the West Ring",
+    "sku": "WR-006",
+    "slug": "luck-of-the-west-ring",
+    "collection": "Western Ring Collection",
+    "price": 125,
+    "band_width": "7 mm",
+    "material": "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked \u201cLA\u201d)",
+    "images": [
+      "/static/img/rings/western/luck-of-the-west-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/wr-006/product-images-coming-soon-wr-006.jpg",
+      "/static/img/rings/wr-006/customer-ring-feature-placeholder-wr-006.jpg",
+      "/static/img/rings/wr-006/images-update-with-orders-wr-006.jpg"
+    ],
+    "availableMetals": [
+      "Silver"
+    ],
+    "lockBandWidth": true,
+    "description": "A symbol of unity and good fortune. Ten interlocking embossed horseshoes wrap continuously around a 7 mm band, bound together by a raised rope braid for strength and tradition."
+  },
+  {
+    "title": "Trust in the Lord Ring",
+    "sku": "FR-001",
+    "slug": "trust-in-the-lord-ring",
+    "collection": "Faith Ring Collection",
+    "price": 152,
+    "band_width": "7 mm",
+    "material": "Solid .925 Sterling Silver (oxidized + polished finish, hallmarked \u201cLA\u201d)",
+    "images": [
+      "/static/img/rings/faith/trust-in-the-lord-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/fr-001/product-images-coming-soon-fr-001.jpg",
+      "/static/img/rings/fr-001/customer-ring-feature-placeholder-fr-001.jpg",
+      "/static/img/rings/fr-001/images-update-with-orders-fr-001.jpg"
+    ],
+    "availableMetals": [
+      "Silver"
+    ],
+    "lockBandWidth": true,
+    "description": "A testament of quiet devotion, the Trust in the Lord Ring symbolizes unwavering faith in moments of uncertainty. A polished 7 mm domed band carries a recessed cross on the exterior, while the interior holds Proverbs 3:5 in full."
+  },
+  {
+    "title": "Cross of Tomorrow Ring",
+    "sku": "FR-002",
+    "slug": "cross-of-tomorrow-ring",
+    "collection": "Faith Ring Collection",
+    "price": 168,
+    "band_width": "7 mm",
+    "material": "Solid .925 Sterling Silver (oxidized + polished, hallmarked \u201cLA\u201d)",
+    "images": [
+      "/static/img/rings/faith/cross-of-tomorrow-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/fr-002/product-images-coming-soon-fr-002.jpg",
+      "/static/img/rings/fr-002/customer-ring-feature-placeholder-fr-002.jpg",
+      "/static/img/rings/fr-002/images-update-with-orders-fr-002.jpg"
+    ],
+    "availableMetals": [
+      "Silver"
+    ],
+    "lockBandWidth": true,
+    "description": "A raised continuous cross wraps the exterior of the band, symbolizing peace and protection. Inside, Matthew 6:34 is engraved in full."
+  },
+  {
+    "title": "Path of Faith Ring",
+    "sku": "FR-003",
+    "slug": "path-of-faith-ring",
+    "collection": "Faith Ring Collection",
+    "price": 192,
+    "band_width": "10 mm",
+    "material": "Solid .925 Sterling Silver (oxidized + polished, hallmarked \u201cLA\u201d)",
+    "images": [
+      "/static/img/rings/faith/path-of-faith-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/fr-003/product-images-coming-soon-fr-003.jpg",
+      "/static/img/rings/fr-003/customer-ring-feature-placeholder-fr-003.jpg",
+      "/static/img/rings/fr-003/images-update-with-orders-fr-003.jpg"
+    ],
+    "availableMetals": [
+      "Silver"
+    ],
+    "lockBandWidth": true,
+    "description": "A bold apex silhouette with a centered cut-out cross symbolizing surrender, alignment, and direction. Proverbs 3:6 is engraved inside."
+  },
+  {
+    "title": "Anchored in Faith Ring",
+    "sku": "FR-004",
+    "slug": "anchored-in-faith-ring",
+    "collection": "Faith Ring Collection",
+    "price": 108,
+    "band_width": "7 mm",
+    "material": "Solid .925 Sterling Silver (oxidized + polished, hallmarked \u201cLA\u201d)",
+    "images": [
+      "/static/img/rings/faith/anchored-in-faith-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/fr-004/product-images-coming-soon-fr-004.jpg",
+      "/static/img/rings/fr-004/customer-ring-feature-placeholder-fr-004.jpg",
+      "/static/img/rings/fr-004/images-update-with-orders-fr-004.jpg"
+    ],
+    "availableMetals": [
+      "Silver"
+    ],
+    "lockBandWidth": true,
+    "description": "Four cut-out crosses act as anchor points around the band, grounding the wearer in faith. Inside, the inscription \u201cTrust In God\u201d completes the piece."
+  },
+  {
+    "title": "ACTS Ring",
+    "sku": "FR-005",
+    "slug": "acts-ring",
+    "collection": "Faith Ring Collection",
+    "price": 140,
+    "band_width": "7 mm",
+    "material": "Solid .925 Sterling Silver (oxidized + polished, hallmarked \u201cLA\u201d)",
+    "images": [
+      "/static/img/rings/faith/acts-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/fr-005/product-images-coming-soon-fr-005.jpg",
+      "/static/img/rings/fr-005/customer-ring-feature-placeholder-fr-005.jpg",
+      "/static/img/rings/fr-005/images-update-with-orders-fr-005.jpg"
+    ],
+    "availableMetals": [
+      "Silver"
+    ],
+    "lockBandWidth": true,
+    "description": "Originally created for the 2023 ACTS Retreat, this ring honors Adoration, Community, Theology, and Service. Inside, Matthew 14:27 is engraved in full."
+  },
+  {
+    "title": "Tree of Faith Ring",
+    "sku": "FR-006",
+    "slug": "tree-of-faith-ring",
+    "collection": "Faith Ring Collection",
+    "price": 137,
+    "band_width": "3 mm (rising to 7 mm cross peak)",
+    "material": "Solid .925 Sterling Silver (oxidized + polished, hallmarked \u201cLA\u201d)",
+    "images": [
+      "/static/img/rings/faith/tree-of-faith-ring.jpg"
+    ],
+    "gallery": [
+      "/static/img/rings/fr-006/product-images-coming-soon-fr-006.jpg",
+      "/static/img/rings/fr-006/customer-ring-feature-placeholder-fr-006.jpg",
+      "/static/img/rings/fr-006/images-update-with-orders-fr-006.jpg"
+    ],
+    "availableMetals": [
+      "Silver"
+    ],
+    "lockBandWidth": true,
+    "description": "A slender band with wood-grain texture rises into a cross peak, symbolizing growth, endurance, and spiritual rootedness. Romans 12:12 is engraved inside."
   }
 ]
