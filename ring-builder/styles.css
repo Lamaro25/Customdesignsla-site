@@ -8,6 +8,7 @@ html, body {
 body {
   touch-action: manipulation;
   overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
   position: relative;
 }
 
