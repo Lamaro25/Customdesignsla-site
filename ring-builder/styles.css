@@ -1,10 +1,12 @@
 html, body {
   overflow-x: hidden;
   width: 100%;
+  max-width: 100%;
 }
 
 body {
   touch-action: manipulation;
+  overscroll-behavior-x: none;
 }
 
 body.builder-page {
