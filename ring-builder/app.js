@@ -380,11 +380,36 @@ function render() {
   const standardSymbols = symbols.filter(symbol => symbol.id !== "custom-symbol");
   const customSymbol = symbols.find(symbol => symbol.id === "custom-symbol");
   const symbolImageFileOverrides = {
-    "custom-symbol": "custom-symbol-image.png",
-    "crescent-moon": "Crecent moon.PNG"
+    "acts": "ACTS.PNG",
+    "cross": "Cross.PNG",
+    "praying-hands": "Praying hands.PNG",
+    "horse": "Horse.PNG",
+    "horseshoe": "Horseshoe.PNG",
+    "yin-and-yang": "Yin and yang.PNG",
+    "turtle-dove": "Turtle dove.PNG",
+    "elephant": "Elephant.PNG",
+    "cardinal": "Cardinal.PNG",
+    "heart": "Heart.PNG",
+    "star": "Star.PNG",
+    "crescent-moon": "Crecent moon.PNG",
+    "custom-symbol": "custom-symbol-image.png"
   };
 
   const normalizeSymbolImageName = name => String(name || "").trim();
+  const toSentenceCaseSymbolName = name => {
+    const normalized = normalizeSymbolImageName(name);
+    if (!normalized) return "";
+    const words = normalized.split(/\s+/).filter(Boolean);
+    if (!words.length) return "";
+    return words
+      .map((word, index) => {
+        if (index === 0) {
+          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        }
+        return word.toLowerCase();
+      })
+      .join(" ");
+  };
 
   const buildSymbolImageCandidates = symbol => {
     const candidates = [];
@@ -393,13 +418,12 @@ function render() {
       if (!candidates.includes(value)) candidates.push(value);
     };
 
-    const normalizedName = normalizeSymbolImageName(symbol.name);
-    if (normalizedName) {
-      const nameBasedPath = `/static/img/symbols/${normalizedName}.PNG`;
-      push(nameBasedPath);
-      push(encodeURI(nameBasedPath));
-    }
+    const pushPngCandidateSet = basePath => {
+      push(`${basePath}.PNG`);
+      push(`${basePath}.png`);
+    };
 
+    // A. Explicit override files for known non-standard filenames.
     const overrideFile = symbolImageFileOverrides[symbol.id];
     if (overrideFile) {
       push(`/static/img/symbols/${overrideFile}`);
@@ -407,13 +431,47 @@ function render() {
       push(`/img/${overrideFile}`);
     }
 
+    const normalizedName = normalizeSymbolImageName(symbol.name);
+    if (normalizedName) {
+      // B. Exact symbol name in symbols directory.
+      const nameBasedPath = `/static/img/symbols/${normalizedName}.PNG`;
+      push(nameBasedPath);
+
+      // C. URI-encoded exact symbol name.
+      push(encodeURI(nameBasedPath));
+
+      // D. Sentence-case variants for files where only first word is capitalized.
+      const sentenceCaseName = toSentenceCaseSymbolName(normalizedName);
+      if (sentenceCaseName && sentenceCaseName !== normalizedName) {
+        const sentenceCasePath = `/static/img/symbols/${sentenceCaseName}.PNG`;
+        push(sentenceCasePath);
+        push(encodeURI(sentenceCasePath));
+      }
+
+      // Additional directory candidates to support legacy root /static/img paths.
+      pushPngCandidateSet(`/static/img/symbols/${normalizedName}`);
+      pushPngCandidateSet(`/static/img/${normalizedName}`);
+      pushPngCandidateSet(`/img/${normalizedName}`);
+
+      if (sentenceCaseName && sentenceCaseName !== normalizedName) {
+        pushPngCandidateSet(`/static/img/symbols/${sentenceCaseName}`);
+        pushPngCandidateSet(`/static/img/${sentenceCaseName}`);
+        pushPngCandidateSet(`/img/${sentenceCaseName}`);
+        push(encodeURI(`/static/img/${sentenceCaseName}.PNG`));
+      }
+    }
+
+    // E. Existing explicit symbol.image value.
     if (symbol.image) {
       push(symbol.image);
     }
 
+    // F. imageKey fallback paths.
     if (symbol.imageKey) {
       push(`/static/img/symbols/${symbol.imageKey}.PNG`);
       push(`/static/img/symbols/${symbol.imageKey}.png`);
+      push(`/static/img/${symbol.imageKey}.PNG`);
+      push(`/static/img/${symbol.imageKey}.png`);
       push(`/img/${symbol.imageKey}.PNG`);
       push(`/img/${symbol.imageKey}.png`);
     }
