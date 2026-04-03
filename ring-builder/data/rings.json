@@ -80,6 +80,7 @@
     ],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": true,
+    "includedOutsideWords": 1,
     "lockBandWidth": true,
     "description": "The Thick Statement Ring is the bold centerpiece of the Cuban Link Collection. A full 10 mm domed band with a personalized name-plate engraving panel, framed by three total channels\u2014a large Cuban braid in the center and two smaller Cuban braids on each side. Its sculptural weight, polished edges, and deep oxidized recesses give it a high-end, standout presence. Cast & finished in Del Rio, Texas.",
     "overview": "The Thick Statement Ring is the bold centerpiece of the Cuban Link Collection. Its 10 mm profile, multi-channel construction, and deep Cuban braids deliver maximum visual impact with refined craftsmanship.",
@@ -145,7 +146,8 @@
       "Beading"
     ],
     "allowInsideEngraving": true,
-    "allowOutsideEngraving": false,
+    "allowOutsideEngraving": true,
+    "includedOutsideWords": 1,
     "lockBandWidth": true,
     "description": "The Statement Ring (Thin) carries the same bold Cuban Link design language as its Thick counterpart, refined into a lighter, more wearable form. A 10 mm domed profile features a centered engraving panel framed by three sculpted channels\u2014one large Cuban braid flanked by two smaller braids\u2014delivering full statement presence with improved everyday comfort.",
     "overview": "The Cuban Link Statement Ring (Thin) is engineered for those who want bold visual impact without the added weight. Retaining the full sculptural depth of the Statement design, this version offers a balanced feel ideal for daily wear while preserving the unmistakable Cuban Link presence.",
@@ -270,6 +272,7 @@
     ],
     "allowInsideEngraving": true,
     "allowOutsideEngraving": true,
+    "includedOutsideWords": 1,
     "lockBandWidth": true,
     "description": "The Signature Ring places personalization at the center \u2014 a raised name-plate panel set into a 7 mm domed band, bordered by a clean structural channel and a bold large Cuban braid. Modern, refined, and unmistakably personal, this piece blends identity with Cuban Link craftsmanship.",
     "overview": "A personalized Cuban Link design built around a raised signature name-plate, balanced by a bold large braid and clean architectural lines. Designed to carry identity, craftsmanship, and everyday wearability.",
@@ -403,7 +406,9 @@
     ],
     "lockBandWidth": true,
     "symbolCustomizationNote": "Want to change the outside story of this ring? That requires a custom redesign request.",
-    "description": "Every side tells a story of Texas. Sculpted fully in raised relief, this ring features two iconic scenes \u2014 the hunt and the rodeo \u2014 divided by a Lone Star. A raised name panel and rope edging complete this storytelling Western piece."
+    "description": "Every side tells a story of Texas. Sculpted fully in raised relief, this ring features two iconic scenes \u2014 the hunt and the rodeo \u2014 divided by a Lone Star. A raised name panel and rope edging complete this storytelling Western piece.",
+    "includedOutsideWords": 1,
+    "allowOutsideEngraving": true
   },
   {
     "title": "Lone Star Apex Ring",
@@ -446,6 +451,8 @@
     "availableMetals": [
       "Silver"
     ],
+    "allowOutsideEngraving": true,
+    "includedOutsideWords": 1,
     "lockBandWidth": true,
     "description": "A tribute to the working cowboy and the legacy he leaves behind. Sculpted in raised relief on a 7 mm band, a cowboy roping a steer stretches across the center, framed by recessed channels and textured rope braids."
   },
