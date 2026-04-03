@@ -179,6 +179,32 @@ function supportsOutsideEngraving(product) {
   return false;
 }
 
+function countEngravingWords(value) {
+  return String(value || "").trim().split(/\s+/).filter(Boolean).length;
+}
+
+function getIncludedOutsideWords(product) {
+  const includedWords = Number(product?.includedOutsideWords || 0);
+  if (!supportsOutsideEngraving(product)) return 0;
+  if (!Number.isFinite(includedWords) || includedWords <= 0) return 0;
+  return Math.floor(includedWords);
+}
+
+function getChargeableEngravingWords(product) {
+  const insideWords = supportsInsideEngraving(product) ? countEngravingWords(engravingTextInside) : 0;
+  const outsideWords = supportsOutsideEngraving(product) ? countEngravingWords(engravingTextOutside) : 0;
+  const includedOutsideWords = getIncludedOutsideWords(product);
+  const chargeableOutsideWords = Math.max(outsideWords - includedOutsideWords, 0);
+
+  return {
+    insideWords,
+    outsideWords,
+    includedOutsideWords,
+    chargeableOutsideWords,
+    chargeableInsideWords: insideWords
+  };
+}
+
 function getProductGallery(product) {
   if (Array.isArray(product.gallery) && product.gallery.length) {
     return product.gallery;
@@ -227,16 +253,11 @@ function calculatePrice() {
     total += pricingData.addOns?.[addon] || 0;
   });
 
-  let engravingWords = 0;
-
-  if (supportsInsideEngraving(currentProduct)) {
-    engravingWords += engravingTextInside.trim().split(/\s+/).filter(Boolean).length;
-  }
-
-  if (supportsOutsideEngraving(currentProduct)) {
-    engravingWords += engravingTextOutside.trim().split(/\s+/).filter(Boolean).length;
-  }
-
+  const {
+    chargeableInsideWords,
+    chargeableOutsideWords
+  } = getChargeableEngravingWords(currentProduct);
+  const engravingWords = chargeableInsideWords + chargeableOutsideWords;
   total += engravingWords * (pricingData.engravingPerWord || 0);
   total += selectedSymbols.reduce((sum, symbolId) => {
     const symbol = symbolsData.find(item => item.id === symbolId);
@@ -296,11 +317,19 @@ function renderPriceBreakdownSection(product) {
     </li>
   `).join("");
 
+  const includedOutsideWords = getIncludedOutsideWords(product);
+  const includedOutsideMarkup = includedOutsideWords > 0 ? `
+    <li class="price-breakdown-item">
+      <span class="price-breakdown-line">Engraved Name ×${includedOutsideWords} — <strong>included</strong></span>
+    </li>
+  ` : "";
+
   return `
     <div class="price-breakdown builder-plaque">
       <h3>Price Breakdown</h3>
       <ul class="price-breakdown-list">
         ${rowsMarkup}
+        ${includedOutsideMarkup}
       </ul>
       <p class="price-breakdown-total"><strong>Base Ring Total — ${formatCurrency(product.price)}</strong></p>
     </div>
@@ -346,6 +375,9 @@ function render() {
     .map(symbolId => symbolsData.find(item => item.id === symbolId))
     .filter(Boolean);
   const symbolsTotal = selectedSymbolDetails.reduce((sum, symbol) => sum + Number(symbol.price || 0), 0);
+  const {
+    includedOutsideWords
+  } = getChargeableEngravingWords(currentProduct);
   const price = calculatePrice();
   const priceBreakdownMarkup = renderPriceBreakdownSection(currentProduct);
 
@@ -711,6 +743,9 @@ function render() {
             </label>
           ` : ""}
           <small>$${pricingData.engravingPerWord || 0} per word</small>
+          ${includedOutsideWords > 0 ? `
+            <small>One outside engraved word is included on this ring. Each additional outside word is +$${pricingData.engravingPerWord || 0}. Inside engraving is charged separately from the first word.</small>
+          ` : ""}
         </div>
 
         <div class="builder-mini-card symbols-card">
