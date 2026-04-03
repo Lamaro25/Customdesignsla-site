@@ -1,5 +1,6 @@
 html, body {
   overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   max-width: 100%;
 }
@@ -7,6 +8,7 @@ html, body {
 body {
   touch-action: manipulation;
   overscroll-behavior-x: none;
+  position: relative;
 }
 
 body.builder-page {
@@ -27,6 +29,13 @@ main {
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+img,
+video,
+canvas {
+  max-width: 100%;
 }
 
 footer {
