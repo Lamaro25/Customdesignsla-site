@@ -269,7 +269,7 @@ button {
 }
 
 .custom-symbol-trigger-copy { display: flex; flex-direction: column; gap: 0.2rem; }
-.custom-symbol-trigger-title { font-weight: 600; }
+.custom-symbol-trigger-title { font-weight: 600; color: #000; }
 .custom-symbol-trigger-text,
 .custom-symbol-trigger-price { font-size: 12px; color: #5b6370; }
 

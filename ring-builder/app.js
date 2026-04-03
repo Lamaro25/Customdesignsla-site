@@ -392,7 +392,7 @@ function render() {
     "heart": "Heart.PNG",
     "star": "Star.PNG",
     "crescent-moon": "Crecent moon.PNG",
-    "custom-symbol": "custom-symbol-image.png"
+    "custom-symbol": "Custom symbol:brand.PNG"
   };
 
   const normalizeSymbolImageName = name => String(name || "").trim();
@@ -426,7 +426,9 @@ function render() {
     // A. Explicit override files for known non-standard filenames.
     const overrideFile = symbolImageFileOverrides[symbol.id];
     if (overrideFile) {
-      push(`/static/img/symbols/${overrideFile}`);
+      const symbolsOverridePath = `/static/img/symbols/${overrideFile}`;
+      push(symbolsOverridePath);
+      push(encodeURI(symbolsOverridePath));
       push(`/static/img/${overrideFile}`);
       push(`/img/${overrideFile}`);
     }
