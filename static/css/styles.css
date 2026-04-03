@@ -132,6 +132,7 @@ body {
   background: transparent;
   touch-action: manipulation;
   overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
   position: relative;
 }
 
@@ -301,10 +302,12 @@ main img:not(.brand-logo):not(.footer-logo) {
 ========================================================== */
 .homepage-hero {
   width: 100vw;
+  max-width: 100dvw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   padding: 0;
   background: #000; /* 🔥 ADD THIS */
+  overflow-x: clip;
 }
 
 .homepage-hero picture,
@@ -321,6 +324,7 @@ main img:not(.brand-logo):not(.footer-logo) {
 /* FULL-BLEED BLACK CONTAINER */
 .homepage-slider {
   width: 100vw;
+  max-width: 100dvw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   background: #000;
