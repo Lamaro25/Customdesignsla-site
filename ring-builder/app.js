@@ -597,7 +597,7 @@ function render() {
                     <div class="custom-symbol-example-card" data-example-key="good-example-image">
                       <img
                         class="custom-symbol-example-image"
-                        src="/static/img/symbols/goodexamples.jpg"
+                        src="/static/img/goodexamples.jpg"
                         alt="Good Example"
                         loading="lazy"
                       />
@@ -606,7 +606,7 @@ function render() {
                     <div class="custom-symbol-example-card" data-example-key="not-ideal-example-image">
                       <img
                         class="custom-symbol-example-image"
-                        src="/static/img/symbols/badexamples.jpg"
+                        src="/static/img/badexamples.jpg"
                         alt="Bad Example"
                         loading="lazy"
                       />
