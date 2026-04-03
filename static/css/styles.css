@@ -113,6 +113,7 @@
 html,
 body {
   overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   max-width: 100%;
 }
@@ -131,6 +132,20 @@ body {
   background: transparent;
   touch-action: manipulation;
   overscroll-behavior-x: none;
+  position: relative;
+}
+
+main,
+.container,
+.site-header,
+.top-button-bar {
+  max-width: 100%;
+}
+
+img,
+video,
+canvas {
+  max-width: 100%;
 }
 /* ==========================================================
    HEADER / BRANDING
