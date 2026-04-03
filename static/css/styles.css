@@ -1302,12 +1302,12 @@ footer.site-footer {
 @media (min-width: 1024px) {
   .product-page .product-customize-wrap,
   .product-page .product-add-to-cart-wrap {
-    margin: 2rem auto 3.25rem;
+    margin: 1.75rem auto 3rem;
   }
 
   .product-page .product-customize-link,
   .product-page .product-add-to-cart-link {
-    width: clamp(320px, 32vw, 400px);
+    width: clamp(260px, 24vw, 320px);
   }
 }
 
