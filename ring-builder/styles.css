@@ -1,3 +1,11 @@
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  touch-action: manipulation;
+}
+
 body.builder-page {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
