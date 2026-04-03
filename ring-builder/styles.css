@@ -241,6 +241,9 @@ button {
 .symbol-name,
 .symbol-price { font-size: 11px; text-align: center; }
 
+/* Keep symbol labels consistent across breakpoints (mobile/desktop). */
+.symbol-card .symbol-name { color: #007aff; }
+
 .symbol-select-checkbox {
   width: 14px;
   height: 14px;
