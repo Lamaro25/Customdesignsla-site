@@ -1261,68 +1261,53 @@ footer.site-footer {
 }
 
 /* ==========================================================
-   ✅ FINAL FINAL — ADD TO CART (ONE RULESET ONLY)
-   - Mobile shows SMALL image
-   - Desktop shows BIG image
-   - Prevents double-rendering forever
+   PRODUCT PAGE CUSTOMIZE CTA
+   - Keeps existing customize image asset and click target
+   - Responsive sizing: larger on mobile, balanced on desktop
 ========================================================== */
 
-/* Layout */
-.product-page .product-add-to-cart-wrap{
+.product-page .product-customize-wrap,
+.product-page .product-add-to-cart-wrap {
   width: 100%;
-  margin: 2.4rem auto 3.0rem auto;
+  margin: 2.25rem auto 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Cage (controls size) */
-.product-page .product-add-to-cart-link{
-  display: inline-block !important;
-  width: 165px !important;
-  max-width: 165px !important;
+.product-page .product-customize-link,
+.product-page .product-add-to-cart-link {
+  display: inline-block;
+  width: clamp(220px, 68vw, 260px);
+  max-width: 100%;
 }
 
-/* ✅ HARD OVERRIDE: ONLY target add-to-cart imgs */
-.product-page .product-add-to-cart-link > img.product-add-to-cart-btn{
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-
-  /* ✅ kills global stretching rules */
-  min-width: 0 !important;
-  flex: 0 0 auto !important;
+.product-page .product-customize-link > img.product-customize-btn,
+.product-page .product-add-to-cart-link > img.product-add-to-cart-btn {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
-/* ✅ Default: show SMALL only */
-.product-page .product-add-to-cart-link > img.add-to-cart-mobile{
-  display: block !important;
-}
-.product-page .product-add-to-cart-link > img.add-to-cart-desktop{
-  display: none !important;
-}
-
-/* ✅ Desktop: show BIG only */
-@media (min-width: 900px){
-  .product-page .product-add-to-cart-wrap{
-    justify-content: flex-start !important;
-    margin: 2.6rem 0 3.4rem 0;
-  }
-
-  .product-page .product-add-to-cart-link > img.add-to-cart-mobile{
-    display: none !important;
-  }
-  .product-page .product-add-to-cart-link > img.add-to-cart-desktop{
-    display: block !important;
+/* Tablet */
+@media (min-width: 768px) {
+  .product-page .product-customize-link,
+  .product-page .product-add-to-cart-link {
+    width: clamp(280px, 42vw, 340px);
   }
 }
 
-/* ✅ Extra small phones */
-@media (max-width: 420px){
-  .product-page .product-add-to-cart-link{
-    width: 145px !important;
-    max-width: 145px !important;
+/* Desktop */
+@media (min-width: 1024px) {
+  .product-page .product-customize-wrap,
+  .product-page .product-add-to-cart-wrap {
+    margin: 2rem auto 3.25rem;
+  }
+
+  .product-page .product-customize-link,
+  .product-page .product-add-to-cart-link {
+    width: clamp(320px, 32vw, 400px);
   }
 }
 
@@ -1376,4 +1361,3 @@ footer.site-footer {
     gap: 2rem;
   }
 }
-
