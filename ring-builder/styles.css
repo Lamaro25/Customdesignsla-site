@@ -15,7 +15,7 @@ body {
 body.builder-page {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  color: #202329;
+  color: #f0f3f8;
   overscroll-behavior-x: none;
   background-image: url('/img/customization-background.jpg');
   background-size: cover;
@@ -59,13 +59,16 @@ footer {
 }
 
 .builder-plaque {
-  background: linear-gradient(145deg, #e8e8e8 0%, #c9c9c9 40%, #a8a8a8 100%);
-  border: 1px solid rgba(255,255,255,0.25);
+  background:
+    linear-gradient(155deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 24%, rgba(0,0,0,0.24) 100%),
+    linear-gradient(145deg, #2b3038 0%, #171c24 52%, #0f131a 100%);
+  border: 1px solid rgba(192, 201, 216, 0.38);
   border-radius: 18px;
   box-shadow:
-    inset 0 2px 4px rgba(255,255,255,0.4),
-    inset 0 -3px 6px rgba(0,0,0,0.25),
-    0 6px 18px rgba(0,0,0,0.4);
+    inset 0 1px 0 rgba(245,248,255,0.28),
+    inset 0 -1px 0 rgba(5,7,11,0.8),
+    inset 0 14px 24px rgba(255,255,255,0.02),
+    0 12px 24px rgba(4,7,14,0.45);
   padding: 1rem;
 }
 
@@ -78,7 +81,7 @@ footer {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #6f7480;
+  color: #aeb8c8;
   font-size: 0.72rem;
 }
 
@@ -88,7 +91,7 @@ footer {
   font-size: clamp(1.4rem, 3.3vw, 2rem);
 }
 
-.hero-plaque p { margin: 0; }
+.hero-plaque p { margin: 0; color: #d9dee8; }
 
 .builder-gallery-strip { padding: 0.8rem; }
 
@@ -113,7 +116,7 @@ footer {
   display: block;
 }
 
-.gallery-empty { margin: 0; text-align: center; color: #666; }
+.gallery-empty { margin: 0; text-align: center; color: #c7cfdd; }
 
 .product-info-plaque,
 .price-breakdown,
@@ -127,10 +130,12 @@ footer {
 .how-it-works h3 {
   margin: 0 0 0.65rem;
   font-family: "Playfair Display", Georgia, serif;
+  color: #f5f8ff;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.45);
 }
 
 .product-info-plaque p,
-.how-it-works p { margin: 0.35rem 0; }
+.how-it-works p { margin: 0.35rem 0; color: #d5dbe6; }
 
 .price-breakdown-list {
   list-style: none;
@@ -140,7 +145,8 @@ footer {
 
 .price-breakdown-item {
   padding: 0.38rem 0;
-  border-bottom: 1px dashed #d9dce2;
+  border-bottom: 1px dashed rgba(198, 208, 223, 0.3);
+  color: #e1e7f2;
 }
 
 .price-breakdown-item:last-child { border-bottom: none; }
@@ -149,13 +155,15 @@ footer {
 
 .builder-mini-card {
   margin-top: 0.8rem;
-  border: 1px solid rgba(255,255,255,0.25);
+  border: 1px solid rgba(193, 203, 218, 0.34);
   border-radius: 14px;
-  background: linear-gradient(145deg, #e8e8e8 0%, #c9c9c9 40%, #a8a8a8 100%);
+  background:
+    linear-gradient(160deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 34%, rgba(0,0,0,0.25) 100%),
+    linear-gradient(145deg, #252a32 0%, #151a22 58%, #0d1118 100%);
   box-shadow:
-    inset 0 2px 4px rgba(255,255,255,0.4),
-    inset 0 -3px 6px rgba(0,0,0,0.2),
-    0 5px 14px rgba(0,0,0,0.2);
+    inset 0 1px 0 rgba(244,248,255,0.22),
+    inset 0 -1px 0 rgba(5,7,11,0.78),
+    0 7px 16px rgba(4,8,16,0.35);
   padding: 0.85rem;
 }
 
@@ -163,6 +171,7 @@ footer {
   margin: 0 0 0.5rem;
   font-family: "Playfair Display", Georgia, serif;
   font-size: 1.05rem;
+  color: #f3f7ff;
 }
 
 label { display: block; }
@@ -172,8 +181,15 @@ button,
 input,
 textarea {
   border-radius: 10px;
-  border: 1px solid #c9ced7;
+  border: 1px solid #b7bfcc;
   font-size: 14px;
+}
+
+select,
+input,
+textarea {
+  background: linear-gradient(180deg, #f9fbff 0%, #edf1f8 100%);
+  color: #111722;
 }
 
 select,
@@ -215,8 +231,8 @@ button {
   height: 30px;
   border-radius: 999px;
   overflow: hidden;
-  border: 1px solid #d1d6df;
-  background: #f9fafc;
+  border: 1px solid rgba(201, 210, 224, 0.42);
+  background: linear-gradient(150deg, #2c323c 0%, #1a202a 100%);
 }
 
 .symbol-indicator-item .symbol-image-placeholder {
@@ -225,21 +241,21 @@ button {
 
 .symbol-toggle {
   width: 100%;
-  background: #f8f9fb;
-  color: #1f2430;
-  border: 1px solid #ccd2dd;
+  background: linear-gradient(145deg, #dce3ef, #bcc5d4);
+  color: #121824;
+  border: 1px solid #c4ccd9;
 }
 
 .symbol-grid-wrap {
   margin-top: 0.65rem;
   padding: 0.8rem;
-  border: 1px solid #d8dce5;
+  border: 1px solid rgba(201, 210, 224, 0.35);
   border-radius: 12px;
-  background: #fff;
+  background: linear-gradient(145deg, rgba(40,46,56,0.92), rgba(19,24,32,0.96));
 }
 
 .symbol-help,
-.symbol-summary { margin: 0.35rem 0 0.6rem; font-size: 0.92rem; color: #555d69; }
+.symbol-summary { margin: 0.35rem 0 0.6rem; font-size: 0.92rem; color: #d0d8e6; }
 
 .symbol-grid {
   display: flex;
@@ -310,9 +326,9 @@ button {
   width: 100%;
   margin-top: 0.8rem;
   padding: 0.65rem;
-  border: 1px solid #cfd4dd;
+  border: 1px solid rgba(196, 206, 220, 0.42);
   border-radius: 12px;
-  background: #fff;
+  background: linear-gradient(155deg, #303742 0%, #1c232d 100%);
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: 0.65rem;
@@ -320,15 +336,15 @@ button {
 }
 
 .custom-symbol-trigger-copy { display: flex; flex-direction: column; gap: 0.2rem; }
-.custom-symbol-trigger-title { font-weight: 600; color: #000; }
+.custom-symbol-trigger-title { font-weight: 600; color: #f4f8ff; }
 .custom-symbol-trigger-text,
-.custom-symbol-trigger-price { font-size: 12px; color: #5b6370; }
+.custom-symbol-trigger-price { font-size: 12px; color: #c7d0df; }
 
 .custom-symbol-panel {
   margin-top: 0.75rem;
-  border: 1px solid #d9dde5;
+  border: 1px solid rgba(193, 204, 220, 0.35);
   border-radius: 12px;
-  background: #fbfcfe;
+  background: linear-gradient(150deg, #2b323c 0%, #161d27 100%);
   padding: 0.85rem;
 }
 
@@ -354,10 +370,10 @@ button {
 }
 
 .custom-symbol-example-card {
-  border: 1px solid #dce0e7;
+  border: 1px solid rgba(200, 210, 223, 0.35);
   border-radius: 10px;
   padding: 0.4rem;
-  background: #fff;
+  background: linear-gradient(150deg, #2f3641 0%, #1c232e 100%);
   text-align: center;
 }
 
@@ -384,10 +400,11 @@ button {
 .custom-symbol-description textarea { min-height: 120px; margin-top: 0.35rem; }
 .upload-placeholder {
   margin-top: 0.7rem;
-  border: 1px solid #dce0e7;
+  border: 1px solid rgba(198, 209, 224, 0.35);
   border-radius: 10px;
   padding: 0.65rem;
-  background: #fff;
+  background: linear-gradient(145deg, #262d37 0%, #131a24 100%);
+  color: #d5ddeb;
 }
 
 .builder-actions {
@@ -397,13 +414,13 @@ button {
 }
 
 .add-to-cart-main {
-  background: linear-gradient(145deg, #cfcfcf, #9f9f9f);
-  color: #1a1e26;
-  border: 1px solid rgba(255,255,255,0.4);
+  background: linear-gradient(150deg, #eceff6 0%, #c8d0df 52%, #b1bacb 100%);
+  color: #111722;
+  border: 1px solid rgba(238, 243, 251, 0.82);
   box-shadow:
-    inset 0 1px 2px rgba(255,255,255,0.6),
-    inset 0 -2px 4px rgba(0,0,0,0.25),
-    0 4px 12px rgba(0,0,0,0.35);
+    inset 0 1px 0 rgba(255,255,255,0.86),
+    inset 0 -1px 0 rgba(112,122,140,0.35),
+    0 6px 14px rgba(0,0,0,0.35);
   font-weight: 600;
   transition: filter 0.2s ease;
 }
@@ -415,7 +432,7 @@ button {
 .material-note {
   margin: 0;
   text-align: center;
-  color: #5a616d;
+  color: #c6cfde;
   font-size: 0.9rem;
 }
 
@@ -423,6 +440,7 @@ button {
   margin: 0;
   font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  color: #f5f8ff;
 }
 
 .floating-total-bar {
@@ -471,7 +489,7 @@ button {
   overflow-wrap: anywhere;
 }
 
-.subtle-text { margin: 0; color: #666; }
+.subtle-text { margin: 0; color: #c2cbda; }
 
 .how-it-works-wrap {
   text-align: center;
@@ -479,9 +497,9 @@ button {
 
 .how-it-works-toggle {
   width: 100%;
-  background: #f8f9fb;
-  color: #1f2430;
-  border: 1px solid #ccd2dd;
+  background: linear-gradient(145deg, #dce3ef, #bcc5d4);
+  color: #121824;
+  border: 1px solid #c4ccd9;
   font-weight: 600;
 }
 
@@ -496,6 +514,37 @@ button {
   max-height: 520px;
   opacity: 1;
   margin-top: 0.7rem;
+}
+
+
+.hero-plaque h2,
+.product-info-plaque h3,
+.price-breakdown h3,
+.customization-options > h3,
+.total-price-card h2,
+.cart-box h3,
+.builder-actions h3,
+.how-it-works h3 {
+  color: #f5f8ff;
+}
+
+.builder-plaque p,
+.builder-plaque li,
+.builder-plaque label,
+.builder-mini-card p,
+.builder-mini-card label,
+.builder-mini-card li {
+  color: #d6dcea;
+}
+
+.price-breakdown-total strong {
+  color: #f4f7ff;
+}
+
+button:not(.add-to-cart-main) {
+  background: linear-gradient(145deg, #d6deea 0%, #b8c2d2 100%);
+  color: #121824;
+  border-color: #c1cad8;
 }
 
 @media (min-width: 840px) {
