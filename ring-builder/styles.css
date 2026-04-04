@@ -202,6 +202,26 @@ button {
   text-align: left;
 }
 
+.symbol-indicator-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: 0 0 0.65rem;
+}
+
+.symbol-indicator-item {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid #d1d6df;
+  background: #f9fafc;
+}
+
+.symbol-indicator-item .symbol-image-placeholder {
+  font-size: 8px;
+}
+
 .symbol-toggle {
   width: 100%;
   background: #f8f9fb;
@@ -406,6 +426,31 @@ button {
 }
 
 .subtle-text { margin: 0; color: #666; }
+
+.how-it-works-wrap {
+  text-align: center;
+}
+
+.how-it-works-toggle {
+  width: 100%;
+  background: #f8f9fb;
+  color: #1f2430;
+  border: 1px solid #ccd2dd;
+  font-weight: 600;
+}
+
+.how-it-works-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+}
+
+.how-it-works-content.is-open {
+  max-height: 520px;
+  opacity: 1;
+  margin-top: 0.7rem;
+}
 
 @media (min-width: 840px) {
   main { padding-top: 30px; }
