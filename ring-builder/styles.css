@@ -336,6 +336,15 @@ button {
 .custom-symbol-panel p { margin: 0.35rem 0; }
 .custom-symbol-panel ul { margin: 0.35rem 0 0.6rem; }
 
+.custom-symbol-fee-notes {
+  margin: 0.35rem 0 0.45rem;
+  padding-left: 1.1rem;
+}
+
+.custom-symbol-checkline {
+  font-weight: 600;
+}
+
 .custom-symbol-examples {
   margin: 0.65rem 0;
   display: grid;
