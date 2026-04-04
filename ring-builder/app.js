@@ -22,6 +22,8 @@ const CUSTOM_SYMBOL_SERVICE_FEE = 10;
 let cart = JSON.parse(localStorage.getItem('cdla_cart')) || [];
 let wishlist = JSON.parse(localStorage.getItem('cdla_wishlist')) || [];
 
+let totalPriceVisibilityObserver = null;
+
 function getUrlParam(name) {
   const params = new URLSearchParams(window.location.search);
   return (params.get(name) || "").trim().toLowerCase();
@@ -273,10 +275,12 @@ function calculatePrice() {
 }
 
 function updatePriceUI() {
-  const priceBox = document.querySelector(".price-box h2");
-  if (priceBox) {
-    priceBox.textContent = `Total Price: $${calculatePrice()}`;
-  }
+  const livePrice = `Total Price: $${calculatePrice()}`;
+  const priceElements = document.querySelectorAll('[data-live-total-price]');
+
+  priceElements.forEach(priceElement => {
+    priceElement.textContent = livePrice;
+  });
 }
 
 function updateSymbolSelectionCardUI(symbolId, isSelected) {
@@ -346,7 +350,53 @@ function persistWishlist() {
   localStorage.setItem("cdla_wishlist", JSON.stringify(wishlist));
 }
 
+
+function disconnectTotalPriceVisibilityObserver() {
+  if (totalPriceVisibilityObserver) {
+    totalPriceVisibilityObserver.disconnect();
+    totalPriceVisibilityObserver = null;
+  }
+}
+
+function setFloatingTotalVisibility(shouldShow) {
+  const floatingBar = document.getElementById("floating-total-bar");
+  if (!floatingBar) return;
+
+  floatingBar.classList.toggle("is-hidden", !shouldShow);
+  floatingBar.setAttribute("aria-hidden", shouldShow ? "false" : "true");
+}
+
+function setupFloatingTotalVisibility() {
+  disconnectTotalPriceVisibilityObserver();
+
+  const floatingBar = document.getElementById("floating-total-bar");
+  const originalTotalSection = document.getElementById("original-total-price");
+
+  if (!floatingBar || !originalTotalSection) return;
+
+  if (!("IntersectionObserver" in window)) {
+    setFloatingTotalVisibility(true);
+    return;
+  }
+
+  setFloatingTotalVisibility(true);
+
+  totalPriceVisibilityObserver = new IntersectionObserver(
+    ([entry]) => {
+      setFloatingTotalVisibility(!entry.isIntersecting);
+    },
+    {
+      root: null,
+      rootMargin: "0px 0px -18% 0px",
+      threshold: 0.05
+    }
+  );
+
+  totalPriceVisibilityObserver.observe(originalTotalSection);
+}
+
 function renderNotFound() {
+  disconnectTotalPriceVisibilityObserver();
   const requestedKey = getUrlParam("sku");
 
   app.innerHTML = `
@@ -820,8 +870,8 @@ function render() {
 
       <p class="material-note">All jewelry pieces are crafted in solid .925 sterling silver.</p>
 
-      <div class="price-box builder-plaque total-price-card">
-        <h2>Total Price: $${price}</h2>
+      <div id="original-total-price" class="price-box builder-plaque total-price-card">
+        <h2 data-live-total-price>Total Price: $${price}</h2>
       </div>
 
       <div class="cart-box builder-plaque">
@@ -839,8 +889,14 @@ function render() {
           `).join("")}
         </ul>
       </div>
+
+      <div id="floating-total-bar" class="floating-total-bar builder-plaque" aria-hidden="true">
+        <p data-live-total-price>Total Price: $${price}</p>
+      </div>
     </section>
   `;
+
+  setupFloatingTotalVisibility();
 }
 
 window.setBandWidth = value => {
