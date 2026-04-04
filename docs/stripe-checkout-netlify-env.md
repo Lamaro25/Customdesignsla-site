@@ -15,8 +15,8 @@ Configure these Netlify environment variables in **Site configuration → Enviro
 
 ## Current wiring
 
-- Frontend checkout handoff calls `/.netlify/functions/create-stripe-checkout-session`.
-- Serverless function reads `STRIPE_SECRET_KEY` and `STRIPE_MODE` from Netlify runtime environment.
+- Frontend first audits Stripe readiness via `/.netlify/functions/stripe-config`, then handoff posts to `/.netlify/functions/create-stripe-checkout-session`.
+- Serverless functions validate `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY`, and `STRIPE_MODE` from Netlify runtime environment (without exposing secret values client-side).
 - No Stripe keys are hardcoded in repository files.
 
 ## Optional local development
