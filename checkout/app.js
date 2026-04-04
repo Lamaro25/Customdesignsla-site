@@ -197,7 +197,7 @@ function renderCheckout() {
 
         <section class="plaque card">
           <h2>Shipping & Fulfillment</h2>
-          <p class="muted">Shipping rates will appear after address verification.</p>
+          <p class="muted">Shipping will be calculated at checkout.</p>
           <p class="placeholder-chip">Shippo integration placeholder</p>
         </section>
 
