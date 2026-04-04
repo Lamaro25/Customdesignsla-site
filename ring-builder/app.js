@@ -17,7 +17,12 @@ let customSymbolDesignRequestOptIn = false;
 let customSymbolDesignDescription = "";
 let customSymbolUploadFileName = "";
 let orderNotes = "";
+let selectedRingSize = "";
 const CUSTOM_SYMBOL_SERVICE_FEE = 10;
+const RING_SIZE_OPTIONS = [
+  "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9",
+  "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5"
+];
 
 let cart = JSON.parse(localStorage.getItem('cdla_cart')) || [];
 let wishlist = JSON.parse(localStorage.getItem('cdla_wishlist')) || [];
@@ -259,6 +264,7 @@ function initializeSelections() {
   customSymbolDesignDescription = "";
   customSymbolUploadFileName = "";
   orderNotes = "";
+  selectedRingSize = RING_SIZE_OPTIONS[0];
 }
 
 function calculatePrice() {
@@ -579,6 +585,17 @@ function render() {
       `).join("")
     : "";
 
+  const ringSizeOptionsMarkup = RING_SIZE_OPTIONS.map(size => `
+    <button
+      type="button"
+      class="ring-size-pill ${selectedRingSize === size ? "is-selected" : ""}"
+      onclick="setRingSize('${size}')"
+      aria-pressed="${selectedRingSize === size ? "true" : "false"}"
+    >
+      ${size}
+    </button>
+  `).join("");
+
   const galleryImages = getProductGallery(currentProduct);
 
   const galleryMarkup = galleryImages.length
@@ -892,9 +909,25 @@ function render() {
         <p><strong>SKU:</strong> ${currentProduct.sku}</p>
         <p><strong>Collection:</strong> ${currentProduct.collection}</p>
         <p><strong>Base Price:</strong> $${currentProduct.price}</p>
+        <p><strong>Starting Ring Size:</strong> ${selectedRingSize}</p>
       </div>
 
       ${priceBreakdownMarkup}
+
+      <section class="builder-plaque ring-size-section">
+        <h3>Ring Size</h3>
+        <div class="ring-size-grid" role="group" aria-label="Ring size options">
+          ${ringSizeOptionsMarkup}
+        </div>
+        <p class="ring-size-note">
+          <strong>Not sure of your ring size?</strong><br/>
+          Every order includes a ring sizer so you can confirm your final size before production.
+        </p>
+        <p class="ring-size-note ring-size-note-secondary">
+          Your selected size is your starting size.<br/>
+          Final ring size must be confirmed with the ring sizer we send before production begins.
+        </p>
+      </section>
 
       <section class="builder-plaque customization-options">
         <h3>Customization Options</h3>
@@ -1003,7 +1036,7 @@ function render() {
         <h3>🛒 Cart (${cart.length})</h3>
         <ul>
           ${cart.map(item => `
-            <li>${item.productName} (${item.builderKey}) — $${item.unitPrice}</li>
+            <li>${item.productName} (${item.builderKey}) — Size ${item.ringSize || "N/A"} — $${item.unitPrice}</li>
           `).join("")}
         </ul>
 
@@ -1111,6 +1144,11 @@ window.setOrderNotes = value => {
   orderNotes = value;
 };
 
+window.setRingSize = value => {
+  selectedRingSize = value;
+  render();
+};
+
 window.setCustomSymbolDesignRequest = checked => {
   customSymbolDesignRequestOptIn = checked;
   if (!checked) {
@@ -1141,6 +1179,7 @@ window.addCurrentRingToCart = () => {
     productName: currentProduct.title,
     collection: currentProduct.collection,
     mode: "rings",
+    ringSize: selectedRingSize,
     metal: currentMetal,
     bandWidth: currentBandWidth || currentProduct.band_width,
     engravingInside: supportsInsideEngraving(currentProduct) ? engravingTextInside : "",
