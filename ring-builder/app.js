@@ -23,6 +23,19 @@ let cart = JSON.parse(localStorage.getItem('cdla_cart')) || [];
 let wishlist = JSON.parse(localStorage.getItem('cdla_wishlist')) || [];
 
 let totalPriceVisibilityObserver = null;
+let activeTextEntryField = null;
+let keyboardViewportListenersBound = false;
+let inputFocusListenersBound = false;
+
+const TEXT_ENTRY_INPUT_TYPES = new Set([
+  "text",
+  "search",
+  "email",
+  "tel",
+  "url",
+  "password",
+  "number"
+]);
 
 function getUrlParam(name) {
   const params = new URLSearchParams(window.location.search);
@@ -364,6 +377,117 @@ function setFloatingTotalVisibility(shouldShow) {
 
   floatingBar.classList.toggle("is-hidden", !shouldShow);
   floatingBar.setAttribute("aria-hidden", shouldShow ? "false" : "true");
+}
+
+function isBuilderTextEntryField(element) {
+  if (!(element instanceof HTMLElement)) return false;
+  if (!element.closest(".builder-shell")) return false;
+
+  if (element.matches("textarea")) return true;
+
+  if (element.matches("input")) {
+    const inputType = String(element.getAttribute("type") || "text").toLowerCase();
+    return TEXT_ENTRY_INPUT_TYPES.has(inputType);
+  }
+
+  return element.isContentEditable;
+}
+
+function bindKeyboardViewportListeners() {
+  if (keyboardViewportListenersBound || !window.visualViewport) return;
+
+  window.visualViewport.addEventListener("resize", updateFloatingBarInputPosition);
+  window.visualViewport.addEventListener("scroll", updateFloatingBarInputPosition);
+  window.addEventListener("resize", updateFloatingBarInputPosition);
+
+  keyboardViewportListenersBound = true;
+}
+
+function unbindKeyboardViewportListeners() {
+  if (!keyboardViewportListenersBound || !window.visualViewport) return;
+
+  window.visualViewport.removeEventListener("resize", updateFloatingBarInputPosition);
+  window.visualViewport.removeEventListener("scroll", updateFloatingBarInputPosition);
+  window.removeEventListener("resize", updateFloatingBarInputPosition);
+
+  keyboardViewportListenersBound = false;
+}
+
+function updateFloatingBarInputPosition() {
+  const floatingBar = document.getElementById("floating-total-bar");
+  const body = document.body;
+  if (!floatingBar || !body) return;
+
+  const hasFocusedInput =
+    activeTextEntryField &&
+    activeTextEntryField.isConnected &&
+    document.activeElement === activeTextEntryField;
+
+  body.classList.toggle("input-focused", Boolean(hasFocusedInput));
+  floatingBar.classList.toggle("input-focused", Boolean(hasFocusedInput));
+
+  if (!hasFocusedInput) {
+    body.classList.remove("keyboard-open");
+    floatingBar.style.removeProperty("--floating-total-keyboard-offset");
+    return;
+  }
+
+  let keyboardOffset = 0;
+  const viewport = window.visualViewport;
+
+  if (viewport) {
+    const keyboardHeight = Math.max(
+      0,
+      window.innerHeight - viewport.height - viewport.offsetTop
+    );
+    if (keyboardHeight > 0) {
+      keyboardOffset = keyboardHeight + 12;
+    }
+  }
+
+  const floatingBarHeight = floatingBar.offsetHeight || 62;
+  const estimatedBarTop = window.innerHeight - keyboardOffset - floatingBarHeight - 12;
+  const activeRect = activeTextEntryField.getBoundingClientRect();
+  const overlapPadding = 10;
+  const overlapAmount = activeRect.bottom - (estimatedBarTop - overlapPadding);
+
+  if (overlapAmount > 0) {
+    keyboardOffset += overlapAmount;
+  }
+
+  const maxOffset = Math.max(0, window.innerHeight - floatingBarHeight - 16);
+  keyboardOffset = Math.min(Math.max(0, keyboardOffset), maxOffset);
+
+  body.classList.toggle("keyboard-open", keyboardOffset > 0);
+  floatingBar.style.setProperty("--floating-total-keyboard-offset", `${Math.round(keyboardOffset)}px`);
+}
+
+function setupFloatingInputFocusBehavior() {
+  if (inputFocusListenersBound) return;
+
+  document.addEventListener("focusin", event => {
+    const target = event.target;
+    if (!isBuilderTextEntryField(target)) return;
+
+    activeTextEntryField = target;
+    bindKeyboardViewportListeners();
+    updateFloatingBarInputPosition();
+  });
+
+  document.addEventListener("focusout", () => {
+    window.requestAnimationFrame(() => {
+      const nextActive = document.activeElement;
+      activeTextEntryField = isBuilderTextEntryField(nextActive) ? nextActive : null;
+
+      if (!activeTextEntryField) {
+        unbindKeyboardViewportListeners();
+      }
+
+      updateFloatingBarInputPosition();
+    });
+  });
+
+  inputFocusListenersBound = true;
 }
 
 function setupFloatingTotalVisibility() {
@@ -897,6 +1021,7 @@ function render() {
   `;
 
   setupFloatingTotalVisibility();
+  updateFloatingBarInputPosition();
 }
 
 window.setBandWidth = value => {
@@ -1057,6 +1182,8 @@ window.addCurrentRingToWishlist = () => {
 };
 
 async function loadData() {
+  setupFloatingInputFocusBehavior();
+
   const [ringsResp, pricingResp, symbolsResp] = await Promise.all([
     fetch("data/rings.json"),
     fetch("data/pricing.json"),

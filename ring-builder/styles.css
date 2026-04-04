@@ -465,7 +465,7 @@ button {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px) + var(--floating-total-keyboard-offset, 0px));
   width: min(92vw, 520px);
   padding: 0.6rem 0.95rem;
   z-index: 60;
@@ -482,7 +482,7 @@ button {
     0 14px 28px rgba(2,6,12,0.52);
   backdrop-filter: blur(10px) saturate(120%);
   -webkit-backdrop-filter: blur(10px) saturate(120%);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease, bottom 0.22s ease;
 }
 
 .floating-total-bar p {
@@ -498,6 +498,10 @@ button {
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, 14px);
+}
+
+body.input-focused .floating-total-bar.input-focused {
+  opacity: 0.98;
 }
 
 .cart-box ul {
