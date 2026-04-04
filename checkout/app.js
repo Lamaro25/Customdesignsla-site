@@ -345,7 +345,7 @@ function renderCheckout() {
           </label>
           <p id="form-error" class="form-error" aria-live="polite"></p>
           <button id="proceed-to-payment-btn" class="primary-btn" type="submit">Proceed to Payment</button>
-          <p class="muted integration-note">Stripe handoff will be connected in the next integration pass.</p>
+          <p class="muted integration-note">You will be securely redirected to Stripe to complete payment.</p>
         </section>
       </form>
     </section>
@@ -463,11 +463,46 @@ function bindCheckoutEvents() {
       paymentOptionLabel: getPaymentOptionLabel(),
       shippingQuoteStatus: "pending-shippo-address-verification",
       amountDueToday: getAmountDueToday(),
-      paymentStatus: "placeholder-pending-stripe"
+      paymentStatus: "initiating-stripe-checkout"
     };
 
     sessionStorage.setItem(CHECKOUT_SUBMISSION_KEY, JSON.stringify(checkoutSubmission));
-    alert("Checkout structure is ready. Stripe payment handoff will be connected in the next integration pass.");
+
+    const submitBtn = document.getElementById("proceed-to-payment-btn");
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Redirecting to Stripe...";
+    }
+
+    if (errorEl) {
+      errorEl.textContent = "";
+    }
+
+    fetch("/.netlify/functions/create-stripe-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(checkoutSubmission)
+    })
+      .then(async response => {
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.checkoutUrl) {
+          throw new Error(data.error || "Unable to start Stripe checkout.");
+        }
+
+        window.location.assign(data.checkoutUrl);
+      })
+      .catch(error => {
+        if (errorEl) {
+          errorEl.textContent = error.message || "We couldn't connect to Stripe. Please try again.";
+        }
+
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Proceed to Payment";
+        }
+      });
   });
 
   persistAndRefreshButtonState();
