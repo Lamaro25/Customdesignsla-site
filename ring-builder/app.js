@@ -1252,6 +1252,11 @@ window.setCustomSymbolUploadFileName = files => {
 
 window.addCurrentRingToCart = () => {
   if (!currentProduct) return;
+  if (!selectedRingSize) {
+    alert("Please select your ring size before continuing to checkout.");
+    return;
+  }
+
   const selectedSymbolDetails = selectedSymbols
     .map(symbolId => symbolsData.find(item => item.id === symbolId))
     .filter(Boolean);
@@ -1285,8 +1290,6 @@ window.addCurrentRingToCart = () => {
     sourceUrl: window.location.pathname + window.location.search
   };
 
-  cart.push(item);
-  persistCart();
   saveCheckoutDraft(item);
   window.location.href = "/checkout/";
 };
