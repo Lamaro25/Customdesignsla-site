@@ -15,6 +15,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("styles.css");
   eleventyConfig.addPassthroughCopy("ring-builder");
   eleventyConfig.addPassthroughCopy("checkout");
+  eleventyConfig.addPassthroughCopy("cart");
 
   // ------------------------------
   // PROCESS ALL MARKDOWN IN /content

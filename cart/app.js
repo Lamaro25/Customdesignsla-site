@@ -39,7 +39,10 @@ function renderCart() {
         <div class="plaque card">
           <h1>Your Cart</h1>
           <p class="muted">No configured items yet.</p>
-          <a class="btn" href="/ring-builder/">Start in Builder</a>
+          <div class="header-actions">
+            <a class="btn" href="/ring-builder/">Start in Builder</a>
+            <a class="btn subtle" href="/rings/">Browse Collections</a>
+          </div>
         </div>
       </section>
     `;
