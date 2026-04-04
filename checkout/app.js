@@ -1,7 +1,7 @@
 const checkoutApp = document.getElementById("checkout-app");
 const CHECKOUT_STORAGE_KEY = "cdla_checkout_draft";
 const CHECKOUT_SUBMISSION_KEY = "cdla_checkout_submission";
-const CHECKOUT_FORM_STORAGE_KEY = "cdla_checkout_forms_by_item";
+const LEGACY_CHECKOUT_FORM_STORAGE_KEY = "cdla_checkout_forms_by_item";
 
 const cartStore = window.CdlaCartStore;
 
@@ -53,9 +53,9 @@ function loadCheckoutDraftFromSession() {
   }
 }
 
-function loadPersistedCheckoutForms() {
+function loadLegacyCheckoutFormsByItem() {
   try {
-    const raw = localStorage.getItem(CHECKOUT_FORM_STORAGE_KEY);
+    const raw = localStorage.getItem(LEGACY_CHECKOUT_FORM_STORAGE_KEY);
     if (!raw) return {};
     const parsed = JSON.parse(raw);
     return parsed && typeof parsed === "object" ? parsed : {};
@@ -64,26 +64,53 @@ function loadPersistedCheckoutForms() {
   }
 }
 
-function savePersistedCheckoutForms(formsByItem) {
-  localStorage.setItem(CHECKOUT_FORM_STORAGE_KEY, JSON.stringify(formsByItem || {}));
-}
-
 function getActiveCheckoutItemKey() {
   return String(checkoutDraft?.cartItemId || getQueryParam("item") || "session-draft");
 }
 
 function getPersistedFormForActiveItem() {
-  const formsByItem = loadPersistedCheckoutForms();
-  return formsByItem[getActiveCheckoutItemKey()] || null;
+  const activeItemKey = getActiveCheckoutItemKey();
+
+  if (cartStore && typeof cartStore.getItemCheckoutState === "function") {
+    const checkoutState = cartStore.getItemCheckoutState(activeItemKey);
+    if (checkoutState) return checkoutState;
+  }
+
+  const legacyFormsByItem = loadLegacyCheckoutFormsByItem();
+  return legacyFormsByItem[activeItemKey] || null;
 }
 
 function persistActiveCheckoutForm(formState) {
-  const formsByItem = loadPersistedCheckoutForms();
-  formsByItem[getActiveCheckoutItemKey()] = {
+  const activeItemKey = getActiveCheckoutItemKey();
+  const nextState = {
     ...formState,
     updatedAt: new Date().toISOString()
   };
-  savePersistedCheckoutForms(formsByItem);
+
+  if (cartStore && typeof cartStore.setItemCheckoutState === "function") {
+    cartStore.setItemCheckoutState(activeItemKey, nextState);
+    return;
+  }
+
+  const legacyFormsByItem = loadLegacyCheckoutFormsByItem();
+  legacyFormsByItem[activeItemKey] = nextState;
+  localStorage.setItem(LEGACY_CHECKOUT_FORM_STORAGE_KEY, JSON.stringify(legacyFormsByItem));
+}
+
+function migrateLegacyCheckoutFormIntoCartItem(itemId) {
+  if (!itemId || !cartStore || typeof cartStore.getItemCheckoutState !== "function" || typeof cartStore.setItemCheckoutState !== "function") {
+    return;
+  }
+
+  if (cartStore.getItemCheckoutState(itemId)) return;
+
+  const formsByItem = loadLegacyCheckoutFormsByItem();
+  const legacyState = formsByItem[itemId];
+  if (!legacyState || typeof legacyState !== "object") return;
+
+  cartStore.setItemCheckoutState(itemId, legacyState);
+  delete formsByItem[itemId];
+  localStorage.setItem(LEGACY_CHECKOUT_FORM_STORAGE_KEY, JSON.stringify(formsByItem));
 }
 
 function hasValidCheckoutDraft(draft) {
@@ -126,6 +153,7 @@ function resolveCheckoutDraft() {
     const selectedItem = selectedId ? cartStore.getItemById(selectedId) : null;
 
     if (selectedItem) {
+      migrateLegacyCheckoutFormIntoCartItem(selectedItem.id);
       cartStore.selectItem(selectedItem.id);
       return buildCheckoutDraftFromCartItem(selectedItem);
     }
