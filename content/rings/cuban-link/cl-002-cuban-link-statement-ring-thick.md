@@ -9,6 +9,11 @@ price: 176
 updated: "2025-11-24"
 material: "Solid .925 Sterling Silver (oxidized recess + polished raised edges, hallmarked “LA”)"
 band_width: "10 mm"
+shipping_package_type: "bubble-mailer"
+shipping_package_length_in: 9
+shipping_package_width_in: 5
+shipping_package_height_in: 1
+shipping_weight_oz: 2
 layout: "layouts/product.njk"
 
 # ✅ FRONT-FACING CARD IMAGE (collection grid)
