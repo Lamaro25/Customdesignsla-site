@@ -590,7 +590,12 @@ function render() {
   const symbolMarkup = symbols.length
     ? `
       <section class="symbol-section">
-        <button type="button" class="symbol-toggle" onclick="toggleSymbolSection()">
+        <button
+          type="button"
+          class="symbol-toggle"
+          onclick="toggleSymbolSection()"
+          aria-expanded="${symbolSectionExpanded ? "true" : "false"}"
+        >
           ${symbolSectionExpanded ? "Hide Symbol Options" : "Click here to add engraved symbols"}
         </button>
         ${productSymbolNote ? `
@@ -655,11 +660,13 @@ function render() {
                       <span class="custom-symbol-example-label">Not Ideal Example</span>
                     </div>
                   </div>
-                  <p>Use the example images above as a guide when uploading your reference image.</p>
-                  <p>If your uploaded image is clean and production-ready, no extra design fee applies.</p>
-                  <p>If your uploaded image is not production-ready and needs cleanup or redrawing, a $10 cleanup fee may apply. We will review the image and contact you before moving forward.</p>
-                  <p>If you do not have a usable image and want Custom Design’s LA to create one for you, you can request that below for a $10 design fee.</p>
-                  <p class="custom-symbol-note"><strong>Add placement details in Order Notes.</strong></p>
+                  <p>Use the examples above as a guide when uploading your image.</p>
+                  <ul class="custom-symbol-fee-notes">
+                    <li>Clean, ready-to-use images → no extra fee</li>
+                    <li>If cleanup or redraw is needed → +$10 (we’ll confirm first)</li>
+                  </ul>
+                  <p>Don’t have an image?</p>
+                  <p class="custom-symbol-checkline">✔ Request a custom design below (+$10)</p>
                   <label class="custom-symbol-checkbox">
                     <input
                       type="checkbox"
@@ -788,7 +795,12 @@ function render() {
       </div>
 
       <section class="builder-plaque how-it-works-wrap">
-        <button type="button" class="how-it-works-toggle" onclick="toggleHowThisWorks()">
+        <button
+          type="button"
+          class="how-it-works-toggle"
+          onclick="toggleHowThisWorks()"
+          aria-expanded="${howThisWorksExpanded ? "true" : "false"}"
+        >
           How This Works
         </button>
         <div class="how-it-works-content ${howThisWorksExpanded ? "is-open" : ""}">
