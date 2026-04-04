@@ -1,11 +1,27 @@
 const checkoutApp = document.getElementById("checkout-app");
 const CHECKOUT_STORAGE_KEY = "cdla_checkout_draft";
+const CHECKOUT_SUBMISSION_KEY = "cdla_checkout_submission";
 
 let checkoutDraft = null;
 let selectedPaymentOption = "full";
 
-function money(value) {
-  return `$${Number(value || 0)}`;
+function formatMoney(value) {
+  const amount = Number(value || 0);
+  return amount.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function loadCheckoutDraft() {
@@ -18,11 +34,19 @@ function loadCheckoutDraft() {
   }
 }
 
+function hasValidCheckoutDraft(draft) {
+  return Boolean(
+    draft &&
+      (draft.productTitle || draft.sku) &&
+      Number.isFinite(Number(draft.totalPrice))
+  );
+}
+
 function getAmountDueToday() {
   if (!checkoutDraft) return 0;
-  return selectedPaymentOption === "deposit"
-    ? Number(checkoutDraft.totalPrice || 0) * 0.5
-    : Number(checkoutDraft.totalPrice || 0);
+
+  const total = Number(checkoutDraft.totalPrice || 0);
+  return selectedPaymentOption === "deposit" ? total * 0.5 : total;
 }
 
 function getPaymentOptionLabel() {
@@ -34,7 +58,10 @@ function buildSymbolsSummary() {
   if (!symbols.length) return "None selected";
 
   return symbols
-    .map(symbol => `${symbol.name || symbol.id || "Symbol"}${symbol.price ? ` (${money(symbol.price)})` : ""}`)
+    .map(symbol => {
+      const name = escapeHtml(symbol.name || symbol.id || "Symbol");
+      return symbol.price ? `${name} (${formatMoney(symbol.price)})` : name;
+    })
     .join(", ");
 }
 
@@ -52,7 +79,7 @@ function renderMissingState() {
 }
 
 function renderCheckout() {
-  if (!checkoutDraft) {
+  if (!hasValidCheckoutDraft(checkoutDraft)) {
     renderMissingState();
     return;
   }
@@ -60,17 +87,17 @@ function renderCheckout() {
   const insideText = checkoutDraft.insideText?.trim() || "Not provided";
   const outsideText = checkoutDraft.outsideText?.trim() || "Not provided";
   const orderNotes = checkoutDraft.orderNotes?.trim() || "Not provided";
-  const customSymbolStatus = checkoutDraft.customSymbolRequestSelected
-    ? "Requested"
-    : "Not requested";
+  const customSymbolStatus = checkoutDraft.customSymbolRequestSelected ? "Requested" : "Not requested";
 
   const breakdownLines = Array.isArray(checkoutDraft.priceBreakdown)
-    ? checkoutDraft.priceBreakdown.map(item => `
-      <li>
-        <span>${item.label || "Line Item"}</span>
-        <strong>${money(item.amount)}</strong>
-      </li>
-    `).join("")
+    ? checkoutDraft.priceBreakdown
+        .map(item => `
+          <li>
+            <span>${escapeHtml(item.label || "Line Item")}</span>
+            <strong>${formatMoney(item.amount)}</strong>
+          </li>
+        `)
+        .join("")
     : "";
 
   checkoutApp.innerHTML = `
@@ -83,16 +110,16 @@ function renderCheckout() {
       <section class="plaque card">
         <h2>Design Summary</h2>
         <dl class="summary-grid">
-          <div><dt>Product</dt><dd>${checkoutDraft.productTitle || "Custom Ring"}</dd></div>
-          <div><dt>SKU</dt><dd>${checkoutDraft.sku || "N/A"}</dd></div>
-          <div><dt>Collection</dt><dd>${checkoutDraft.collection || "N/A"}</dd></div>
-          <div><dt>Ring Size</dt><dd>${checkoutDraft.ringSize || "N/A"}</dd></div>
-          <div><dt>Inside Text</dt><dd>${insideText}</dd></div>
-          <div><dt>Outside Text</dt><dd>${outsideText}</dd></div>
+          <div><dt>Product</dt><dd>${escapeHtml(checkoutDraft.productTitle || "Custom Ring")}</dd></div>
+          <div><dt>SKU</dt><dd>${escapeHtml(checkoutDraft.sku || "N/A")}</dd></div>
+          <div><dt>Collection</dt><dd>${escapeHtml(checkoutDraft.collection || "N/A")}</dd></div>
+          <div><dt>Ring Size</dt><dd>${escapeHtml(checkoutDraft.ringSize || "N/A")}</dd></div>
+          <div><dt>Inside Text</dt><dd>${escapeHtml(insideText)}</dd></div>
+          <div><dt>Outside Text</dt><dd>${escapeHtml(outsideText)}</dd></div>
           <div><dt>Selected Symbols</dt><dd>${buildSymbolsSummary()}</dd></div>
           <div><dt>Custom Symbol Request</dt><dd>${customSymbolStatus}</dd></div>
-          <div><dt>Custom Request Details</dt><dd>${checkoutDraft.customSymbolRequestDescription || "Not provided"}</dd></div>
-          <div><dt>Order Notes</dt><dd>${orderNotes}</dd></div>
+          <div><dt>Custom Request Details</dt><dd>${escapeHtml(checkoutDraft.customSymbolRequestDescription || "Not provided")}</dd></div>
+          <div><dt>Order Notes</dt><dd>${escapeHtml(orderNotes)}</dd></div>
         </dl>
       </section>
 
@@ -101,12 +128,12 @@ function renderCheckout() {
         <ul class="breakdown-list">
           <li>
             <span>Base Ring Total</span>
-            <strong>${money(checkoutDraft.baseRingPrice)}</strong>
+            <strong>${formatMoney(checkoutDraft.baseRingPrice)}</strong>
           </li>
           ${breakdownLines}
           <li class="total-line">
             <span>Final Total (before shipping)</span>
-            <strong>${money(checkoutDraft.totalPrice)}</strong>
+            <strong>${formatMoney(checkoutDraft.totalPrice)}</strong>
           </li>
         </ul>
       </section>
@@ -116,13 +143,13 @@ function renderCheckout() {
           <h2>Customer Information</h2>
           <div class="form-grid">
             <label>Full Name*
-              <input type="text" name="customerName" required />
+              <input type="text" name="customerName" autocomplete="name" required />
             </label>
             <label>Email Address*
-              <input type="email" name="customerEmail" required />
+              <input type="email" name="customerEmail" autocomplete="email" required />
             </label>
             <label>Phone Number
-              <input type="tel" name="customerPhone" />
+              <input type="tel" name="customerPhone" autocomplete="tel" />
             </label>
           </div>
         </section>
@@ -131,25 +158,25 @@ function renderCheckout() {
           <h2>Shipping Information</h2>
           <div class="form-grid">
             <label>Shipping Full Name*
-              <input type="text" name="shippingName" required />
+              <input type="text" name="shippingName" autocomplete="shipping name" required />
             </label>
             <label>Address Line 1*
-              <input type="text" name="address1" required />
+              <input type="text" name="address1" autocomplete="shipping address-line1" required />
             </label>
             <label>Address Line 2
-              <input type="text" name="address2" />
+              <input type="text" name="address2" autocomplete="shipping address-line2" />
             </label>
             <label>City*
-              <input type="text" name="city" required />
+              <input type="text" name="city" autocomplete="shipping address-level2" required />
             </label>
             <label>State / Region*
-              <input type="text" name="state" required />
+              <input type="text" name="state" autocomplete="shipping address-level1" required />
             </label>
             <label>ZIP / Postal Code*
-              <input type="text" name="zip" required />
+              <input type="text" name="zip" autocomplete="shipping postal-code" required />
             </label>
             <label>Country*
-              <input type="text" name="country" required />
+              <input type="text" name="country" autocomplete="shipping country-name" required />
             </label>
           </div>
         </section>
@@ -170,16 +197,17 @@ function renderCheckout() {
 
         <section class="plaque card">
           <h2>Shipping & Fulfillment</h2>
-          <p class="muted">Shipping rates will appear after address verification (Shippo integration placeholder).</p>
+          <p class="muted">Shipping rates will appear after address verification.</p>
+          <p class="placeholder-chip">Shippo integration placeholder</p>
         </section>
 
         <section class="plaque card">
           <h2>Final Summary / Amount Due Today</h2>
           <ul class="breakdown-list final-summary-list">
-            <li><span>Ring Total</span><strong>${money(checkoutDraft.totalPrice)}</strong></li>
+            <li><span>Ring Total</span><strong>${formatMoney(checkoutDraft.totalPrice)}</strong></li>
             <li><span>Shipping</span><strong>Calculated at checkout</strong></li>
             <li><span>Payment Option</span><strong id="selected-payment-option">${getPaymentOptionLabel()}</strong></li>
-            <li class="total-line"><span>Amount Due Today</span><strong id="amount-due-today">${money(getAmountDueToday())}</strong></li>
+            <li class="total-line"><span>Amount Due Today</span><strong id="amount-due-today">${formatMoney(getAmountDueToday())}</strong></li>
           </ul>
         </section>
 
@@ -190,6 +218,7 @@ function renderCheckout() {
           </label>
           <p id="form-error" class="form-error" aria-live="polite"></p>
           <button class="primary-btn" type="submit">Proceed to Payment</button>
+          <p class="muted integration-note">Stripe handoff will be connected in the next integration pass.</p>
         </section>
       </form>
     </section>
@@ -203,13 +232,15 @@ function bindCheckoutEvents() {
   if (!form) return;
 
   const paymentOptions = form.querySelectorAll('input[name="paymentOption"]');
+
   paymentOptions.forEach(input => {
-    input.addEventListener("change", () => {
-      selectedPaymentOption = input.value;
+    input.addEventListener("change", event => {
+      selectedPaymentOption = event.target.value;
       const paymentOptionEl = document.getElementById("selected-payment-option");
       const amountDueEl = document.getElementById("amount-due-today");
+
       if (paymentOptionEl) paymentOptionEl.textContent = getPaymentOptionLabel();
-      if (amountDueEl) amountDueEl.textContent = money(getAmountDueToday());
+      if (amountDueEl) amountDueEl.textContent = formatMoney(getAmountDueToday());
     });
   });
 
@@ -229,14 +260,31 @@ function bindCheckoutEvents() {
 
     if (errorEl) errorEl.textContent = "";
 
+    const formData = new FormData(form);
     const checkoutSubmission = {
       draft: checkoutDraft,
+      customer: {
+        fullName: formData.get("customerName"),
+        email: formData.get("customerEmail"),
+        phone: formData.get("customerPhone") || ""
+      },
+      shipping: {
+        fullName: formData.get("shippingName"),
+        address1: formData.get("address1"),
+        address2: formData.get("address2") || "",
+        city: formData.get("city"),
+        state: formData.get("state"),
+        zip: formData.get("zip"),
+        country: formData.get("country")
+      },
       paymentOption: selectedPaymentOption,
+      paymentOptionLabel: getPaymentOptionLabel(),
+      shippingQuoteStatus: "pending-shippo-address-verification",
       amountDueToday: getAmountDueToday(),
-      status: "placeholder-pending-payment-provider"
+      paymentStatus: "placeholder-pending-stripe"
     };
 
-    sessionStorage.setItem("cdla_checkout_submission", JSON.stringify(checkoutSubmission));
+    sessionStorage.setItem(CHECKOUT_SUBMISSION_KEY, JSON.stringify(checkoutSubmission));
     alert("Checkout structure is ready. Stripe payment handoff will be connected in the next integration pass.");
   });
 }
