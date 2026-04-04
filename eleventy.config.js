@@ -14,6 +14,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "static/img": "img" });
   eleventyConfig.addPassthroughCopy("styles.css");
   eleventyConfig.addPassthroughCopy("ring-builder");
+  eleventyConfig.addPassthroughCopy("checkout");
 
   // ------------------------------
   // PROCESS ALL MARKDOWN IN /content
