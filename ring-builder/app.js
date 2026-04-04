@@ -331,6 +331,88 @@ function formatCurrency(amount) {
   return `$${Number(amount || 0)}`;
 }
 
+function getBuilderPriceBreakdown(product) {
+  const breakdown = [];
+
+  if (Array.isArray(product?.breakdown)) {
+    product.breakdown.forEach(item => {
+      breakdown.push({
+        label: item.label || "Item",
+        amount: Number(item.amount || 0),
+        source: "base"
+      });
+    });
+  }
+
+  const addOnLines = selectedAddOns.map(addon => ({
+    label: addon,
+    amount: Number(pricingData.addOns?.[addon] || 0),
+    source: "addon"
+  }));
+
+  const {
+    chargeableInsideWords,
+    chargeableOutsideWords
+  } = getChargeableEngravingWords(product);
+
+  const engravingWords = chargeableInsideWords + chargeableOutsideWords;
+
+  if (engravingWords > 0) {
+    breakdown.push({
+      label: `Engraving ×${engravingWords} words`,
+      amount: engravingWords * Number(pricingData.engravingPerWord || 0),
+      source: "engraving"
+    });
+  }
+
+  const selectedSymbolDetails = selectedSymbols
+    .map(symbolId => symbolsData.find(item => item.id === symbolId))
+    .filter(Boolean);
+
+  selectedSymbolDetails.forEach(symbol => {
+    breakdown.push({
+      label: `Symbol: ${symbol.name || symbol.id || "Custom Symbol"}`,
+      amount: Number(symbol.price || 0),
+      source: "symbol"
+    });
+  });
+
+  if (customSymbolDesignRequestOptIn) {
+    breakdown.push({
+      label: "Custom symbol design request",
+      amount: CUSTOM_SYMBOL_SERVICE_FEE,
+      source: "custom-symbol-design"
+    });
+  }
+
+  return [...breakdown, ...addOnLines];
+}
+
+function saveCheckoutDraft(item) {
+  if (!item) return;
+
+  const checkoutDraft = {
+    createdAt: new Date().toISOString(),
+    productTitle: item.productName,
+    sku: item.sku,
+    collection: item.collection,
+    ringSize: item.ringSize,
+    insideText: item.engravingInside,
+    outsideText: item.engravingOutside,
+    selectedSymbols: item.symbols || [],
+    customSymbolRequestSelected: item.customSymbolDesignRequestSelected,
+    customSymbolRequestDescription: item.customSymbolDesignDescription || "",
+    orderNotes: item.orderNotes || "",
+    baseRingPrice: Number(currentProduct?.price || 0),
+    priceBreakdown: getBuilderPriceBreakdown(currentProduct),
+    totalPrice: Number(item.unitPrice || 0),
+    productImage: item.image || "",
+    builderUrl: item.sourceUrl || window.location.pathname + window.location.search
+  };
+
+  sessionStorage.setItem("cdla_checkout_draft", JSON.stringify(checkoutDraft));
+}
+
 function renderPriceBreakdownSection(product) {
   if (!Array.isArray(product?.breakdown) || !product.breakdown.length) {
     return "";
@@ -1205,7 +1287,8 @@ window.addCurrentRingToCart = () => {
 
   cart.push(item);
   persistCart();
-  render();
+  saveCheckoutDraft(item);
+  window.location.href = "/checkout/";
 };
 
 window.addCurrentRingToWishlist = () => {
