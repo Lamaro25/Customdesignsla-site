@@ -50,6 +50,7 @@ footer {
   display: grid;
   gap: 14px;
   width: 100%;
+  padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
 }
 
 .builder-shell > * {
@@ -424,6 +425,31 @@ button {
   font-size: clamp(1.3rem, 2.6vw, 1.8rem);
 }
 
+.floating-total-bar {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  width: min(92vw, 520px);
+  padding: 0.75rem 1rem;
+  z-index: 60;
+  text-align: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.floating-total-bar p {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.05rem, 4vw, 1.3rem);
+  font-weight: 700;
+}
+
+.floating-total-bar.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 14px);
+}
+
 .cart-box ul {
   margin: 0.4rem 0 0.8rem;
   padding-left: 1rem;
@@ -465,6 +491,11 @@ button {
   main { padding-top: 30px; }
   .builder-shell { gap: 16px; }
   .builder-actions { grid-template-columns: 1fr 1fr; }
+  .floating-total-bar {
+    width: min(70vw, 420px);
+    bottom: 18px;
+    opacity: 0.92;
+  }
 }
 
 @media (max-width: 768px) {
