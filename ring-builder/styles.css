@@ -129,6 +129,7 @@ footer {
 
 .product-info-plaque h3,
 .price-breakdown h3,
+.ring-size-section h3,
 .customization-options > h3,
 .how-it-works h3 {
   margin: 0 0 0.65rem;
@@ -153,6 +154,56 @@ footer {
 }
 
 .price-breakdown-item:last-child { border-bottom: none; }
+
+.ring-size-section {
+  text-align: center;
+}
+
+.ring-size-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(54px, 1fr));
+  gap: 0.55rem;
+  margin: 0.2rem 0 0.8rem;
+}
+
+.ring-size-pill {
+  appearance: none;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 999px;
+  border: 1px solid rgba(177, 189, 206, 0.5);
+  background:
+    linear-gradient(176deg, rgba(244,248,255,0.12) 0%, rgba(244,248,255,0.03) 20%, rgba(255,255,255,0) 40%),
+    linear-gradient(145deg, #2a313c 0%, #171e29 100%);
+  color: #f4f8ff;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0;
+  box-shadow:
+    inset 0 1px 0 rgba(245,248,255,0.28),
+    inset 0 -1px 0 rgba(4,8,14,0.82),
+    0 5px 11px rgba(2,6,12,0.35);
+}
+
+.ring-size-pill.is-selected {
+  border-color: #d9e2f0;
+  box-shadow:
+    inset 0 0 0 1px rgba(241, 246, 255, 0.8),
+    0 0 0 2px rgba(164, 184, 213, 0.28),
+    0 8px 15px rgba(3, 8, 16, 0.45);
+  filter: brightness(1.1);
+}
+
+.ring-size-note {
+  margin: 0.42rem 0 0;
+  color: #d6deeb;
+  font-size: 0.93rem;
+  line-height: 1.4;
+}
+
+.ring-size-note-secondary {
+  color: #c9d2e2;
+}
 
 .customization-options { padding: 1rem; }
 
