@@ -18,6 +18,11 @@ const REQUIRED_FIELD_NAMES = [
 
 let checkoutDraft = null;
 let selectedPaymentOption = "full";
+let stripeConfigStatus = {
+  ready: false,
+  loading: true,
+  message: "Checking secure payment setup..."
+};
 
 function formatMoney(value) {
   const amount = Number(value || 0);
@@ -215,16 +220,33 @@ function renderCheckout() {
   const orderNotes = checkoutDraft.orderNotes?.trim() || "Not provided";
   const customSymbolStatus = checkoutDraft.customSymbolRequestSelected ? "Requested" : "Not requested";
 
-  const breakdownLines = Array.isArray(checkoutDraft.priceBreakdown)
-    ? checkoutDraft.priceBreakdown
-        .map(item => `
-          <li>
-            <span>${escapeHtml(item.label || "Line Item")}</span>
-            <strong>${formatMoney(item.amount)}</strong>
-          </li>
-        `)
-        .join("")
-    : "";
+  const priceBreakdownItems = Array.isArray(checkoutDraft.priceBreakdown) ? checkoutDraft.priceBreakdown : [];
+  const baseBreakdownLines = priceBreakdownItems
+    .filter(item => String(item?.source || "").toLowerCase() === "base")
+    .map(item => `
+      <li>
+        <span>${escapeHtml(item.label || "Included Component")}</span>
+        <strong>${formatMoney(item.amount)}</strong>
+      </li>
+    `)
+    .join("");
+
+  const customizationBreakdownLines = priceBreakdownItems
+    .filter(item => String(item?.source || "").toLowerCase() !== "base")
+    .map(item => `
+      <li>
+        <span>${escapeHtml(item.label || "Customization")}</span>
+        <strong>${formatMoney(item.amount)}</strong>
+      </li>
+    `)
+    .join("");
+
+  const customizationSectionMarkup = customizationBreakdownLines || `
+    <li>
+      <span>No additional customization charges</span>
+      <strong>${formatMoney(0)}</strong>
+    </li>
+  `;
 
   checkoutApp.innerHTML = `
     <section class="checkout-shell">
@@ -252,12 +274,26 @@ function renderCheckout() {
 
       <section class="plaque card">
         <h2>Price Breakdown</h2>
+
+        <div class="pricing-group">
+          <h3>Base Ring Price</h3>
+          <ul class="breakdown-list">
+            <li>
+              <span>Base Ring Total</span>
+              <strong>${formatMoney(checkoutDraft.baseRingPrice)}</strong>
+            </li>
+            ${baseBreakdownLines}
+          </ul>
+        </div>
+
+        <div class="pricing-group">
+          <h3>Customization Added</h3>
+          <ul class="breakdown-list">
+            ${customizationSectionMarkup}
+          </ul>
+        </div>
+
         <ul class="breakdown-list">
-          <li>
-            <span>Base Ring Total</span>
-            <strong>${formatMoney(checkoutDraft.baseRingPrice)}</strong>
-          </li>
-          ${breakdownLines}
           <li class="total-line">
             <span>Final Total (before shipping)</span>
             <strong>${formatMoney(checkoutDraft.totalPrice)}</strong>
@@ -344,14 +380,68 @@ function renderCheckout() {
             <span>I confirm my customization details and shipping information are correct.</span>
           </label>
           <p id="form-error" class="form-error" aria-live="polite"></p>
+          <p id="stripe-config-message" class="muted integration-note" aria-live="polite"></p>
           <button id="proceed-to-payment-btn" class="primary-btn" type="submit">Proceed to Payment</button>
-          <p class="muted integration-note">You will be securely redirected to Stripe to complete payment.</p>
         </section>
       </form>
     </section>
   `;
 
   bindCheckoutEvents();
+}
+
+function renderStripeConfigMessage() {
+  const messageEl = document.getElementById("stripe-config-message");
+  if (!messageEl) return;
+  messageEl.textContent = stripeConfigStatus.message || "";
+}
+
+function syncStripeButtonReadiness(form) {
+  const submitBtn = document.getElementById("proceed-to-payment-btn");
+  if (!submitBtn) return;
+
+  const hasRequiredFields = areRequiredFieldsComplete(form);
+  const confirmationAccepted = Boolean(document.getElementById("confirmation-checkbox")?.checked);
+  const canProceed = hasRequiredFields && confirmationAccepted && stripeConfigStatus.ready;
+
+  submitBtn.disabled = !canProceed;
+}
+
+async function loadStripeConfigStatus(form) {
+  try {
+    const response = await fetch("/.netlify/functions/stripe-config", {
+      method: "GET",
+      headers: {
+        Accept: "application/json"
+      }
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      stripeConfigStatus = {
+        ready: false,
+        loading: false,
+        message: data.error || "Stripe configuration could not be verified. Please try again shortly."
+      };
+      return;
+    }
+
+    stripeConfigStatus = {
+      ready: Boolean(data.ready),
+      loading: false,
+      message: data.message || "You will be securely redirected to Stripe to complete payment."
+    };
+  } catch (_error) {
+    stripeConfigStatus = {
+      ready: false,
+      loading: false,
+      message: "Stripe configuration could not be verified. Please refresh and try again."
+    };
+  } finally {
+    renderStripeConfigMessage();
+    syncStripeButtonReadiness(form);
+  }
 }
 
 function getTrimmedValue(form, fieldName) {
@@ -386,13 +476,7 @@ function areRequiredFieldsComplete(form) {
 }
 
 function updateProceedButtonState(form) {
-  const submitBtn = document.getElementById("proceed-to-payment-btn");
-  if (!submitBtn) return;
-
-  const hasRequiredFields = areRequiredFieldsComplete(form);
-  const confirmationAccepted = Boolean(document.getElementById("confirmation-checkbox")?.checked);
-
-  submitBtn.disabled = !(hasRequiredFields && confirmationAccepted);
+  syncStripeButtonReadiness(form);
 }
 
 function bindCheckoutEvents() {
@@ -402,6 +486,8 @@ function bindCheckoutEvents() {
   const confirmationCheckbox = document.getElementById("confirmation-checkbox");
   const paymentOptions = form.querySelectorAll('input[name="paymentOption"]');
   const observedFields = form.querySelectorAll("input[name]");
+
+  renderStripeConfigMessage();
 
   const persistAndRefreshButtonState = () => {
     persistActiveCheckoutForm(buildFormState(form));
@@ -437,6 +523,12 @@ function bindCheckoutEvents() {
     const confirm = document.getElementById("confirmation-checkbox");
 
     const hasRequiredFields = areRequiredFieldsComplete(form);
+
+    if (!stripeConfigStatus.ready) {
+      if (errorEl) errorEl.textContent = stripeConfigStatus.message || "Stripe server configuration is missing.";
+      updateProceedButtonState(form);
+      return;
+    }
     const emailField = form.elements.namedItem("customerEmail");
     const emailLooksValid = Boolean(emailField && emailField.checkValidity());
 
@@ -506,6 +598,7 @@ function bindCheckoutEvents() {
   });
 
   persistAndRefreshButtonState();
+  loadStripeConfigStatus(form);
 }
 
 function initCheckoutPage() {

@@ -20,6 +20,33 @@ function sanitizeString(value, maxLength = 500) {
   return String(value || "").trim().slice(0, maxLength);
 }
 
+
+function resolveStripeMode() {
+  const mode = sanitizeString(process.env.STRIPE_MODE || "", 12).toLowerCase();
+  if (mode === "test" || mode === "live") {
+    return mode;
+  }
+  return "";
+}
+
+function getMissingStripeServerKeys() {
+  const missing = [];
+
+  if (!sanitizeString(process.env.STRIPE_SECRET_KEY, 200)) {
+    missing.push("STRIPE_SECRET_KEY");
+  }
+
+  if (!sanitizeString(process.env.STRIPE_PUBLISHABLE_KEY, 200)) {
+    missing.push("STRIPE_PUBLISHABLE_KEY");
+  }
+
+  if (!resolveStripeMode()) {
+    missing.push("STRIPE_MODE");
+  }
+
+  return missing;
+}
+
 function buildStripeFormBody({ amountDueCents, productTitle, paymentOption, payload, customerEmail, successUrl, cancelUrl }) {
   const params = new URLSearchParams();
 
@@ -76,20 +103,16 @@ exports.handler = async (event) => {
     };
   }
 
-  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-  const stripeMode = sanitizeString(process.env.STRIPE_MODE || "test", 12).toLowerCase();
+  const stripeSecretKey = sanitizeString(process.env.STRIPE_SECRET_KEY, 200);
+  const stripeMode = resolveStripeMode();
+  const missingServerKeys = getMissingStripeServerKeys();
 
-  if (!stripeSecretKey) {
+  if (missingServerKeys.length) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Stripe server configuration is missing." })
-    };
-  }
-
-  if (stripeMode !== "test" && stripeMode !== "live") {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Stripe mode must be set to test or live." })
+      body: JSON.stringify({
+        error: `Stripe server configuration is missing. Add ${missingServerKeys.join(", ")} in Netlify environment variables.`
+      })
     };
   }
 
