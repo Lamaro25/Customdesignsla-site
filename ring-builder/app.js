@@ -958,6 +958,8 @@ function render() {
         </div>
       </section>
 
+      <p class="material-note">All jewelry pieces are crafted in solid .925 sterling silver.</p>
+
       <div class="builder-actions builder-plaque">
         <button class="add-to-cart-main" onclick="addCurrentRingToCart()">
           Order Now
@@ -992,7 +994,6 @@ function render() {
         </div>
       </section>
 
-      <p class="material-note">All jewelry pieces are crafted in solid .925 sterling silver.</p>
 
       <div id="original-total-price" class="price-box builder-plaque total-price-card">
         <h2 data-live-total-price>Total Price: $${price}</h2>
