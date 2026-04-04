@@ -318,7 +318,7 @@ button {
 
 /* Keep symbol labels consistent across breakpoints (mobile/desktop). */
 .symbol-card .symbol-name,
-.symbol-card .symbol-price { color: #000; }
+.symbol-card .symbol-price { color: #f5f8ff; }
 
 .symbol-select-checkbox {
   width: 14px;
@@ -450,7 +450,7 @@ button {
 .material-note {
   margin: 0;
   text-align: center;
-  color: #e4ebf7;
+  color: #111;
   font-size: 0.9rem;
 }
 
