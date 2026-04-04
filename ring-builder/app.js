@@ -20,7 +20,7 @@ let orderNotes = "";
 let selectedRingSize = "";
 const CUSTOM_SYMBOL_SERVICE_FEE = 10;
 const RING_SIZE_OPTIONS = [
-  "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9",
+  "4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9",
   "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5"
 ];
 
@@ -922,6 +922,9 @@ function render() {
         <p class="ring-size-note">
           <strong>Not sure of your ring size?</strong><br/>
           Every order includes a ring sizer so you can confirm your final size before production.
+        </p>
+        <p class="ring-size-note ring-size-note-secondary">
+          Need a size outside this range? Add it in Order Notes and we’ll review whether your selected design can be made in that size.
         </p>
         <p class="ring-size-note ring-size-note-secondary">
           Your selected size is your starting size.<br/>
