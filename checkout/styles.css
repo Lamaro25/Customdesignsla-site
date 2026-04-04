@@ -48,7 +48,8 @@ footer {
   padding: 1rem;
 }
 
-h1, h2 {
+h1,
+h2 {
   margin: 0 0 0.65rem;
   font-family: "Playfair Display", Georgia, serif;
 }
@@ -79,6 +80,7 @@ h1, h2 {
 .summary-grid dd {
   margin: 0.35rem 0 0;
   color: #f6f8fe;
+  word-break: break-word;
 }
 
 .breakdown-list {
@@ -93,6 +95,10 @@ h1, h2 {
   gap: 14px;
   border-bottom: 1px dashed rgba(198, 208, 223, 0.3);
   padding: 0.55rem 0;
+}
+
+.breakdown-list li span {
+  max-width: 70%;
 }
 
 .breakdown-list li.total-line {
@@ -144,6 +150,18 @@ input {
   margin-top: 0;
 }
 
+.placeholder-chip {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  color: #ced8e8;
+  border: 1px solid rgba(174, 184, 199, 0.5);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
 .action-card {
   display: grid;
   gap: 10px;
@@ -181,6 +199,10 @@ input {
   min-height: 1.2em;
   color: #ffcdd2;
   margin: 0;
+}
+
+.integration-note {
+  font-size: 0.82rem;
 }
 
 .center-card {
