@@ -2,6 +2,8 @@ const checkoutApp = document.getElementById("checkout-app");
 const CHECKOUT_STORAGE_KEY = "cdla_checkout_draft";
 const CHECKOUT_SUBMISSION_KEY = "cdla_checkout_submission";
 
+const cartStore = window.CdlaCartStore;
+
 let checkoutDraft = null;
 let selectedPaymentOption = "full";
 
@@ -24,7 +26,12 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
-function loadCheckoutDraft() {
+function getQueryParam(name) {
+  const params = new URLSearchParams(window.location.search);
+  return String(params.get(name) || "").trim();
+}
+
+function loadCheckoutDraftFromSession() {
   try {
     const raw = sessionStorage.getItem(CHECKOUT_STORAGE_KEY);
     if (!raw) return null;
@@ -40,6 +47,46 @@ function hasValidCheckoutDraft(draft) {
       (draft.productTitle || draft.sku) &&
       Number.isFinite(Number(draft.totalPrice))
   );
+}
+
+function buildCheckoutDraftFromCartItem(item) {
+  if (!item) return null;
+
+  return {
+    createdAt: item.createdAt || new Date().toISOString(),
+    cartItemId: item.id,
+    productTitle: item.productName,
+    sku: item.sku,
+    collection: item.collection,
+    ringSize: item.ringSize,
+    insideText: item.engravingInside,
+    outsideText: item.engravingOutside,
+    selectedSymbols: Array.isArray(item.symbols) ? item.symbols : [],
+    customSymbolRequestSelected: Boolean(item.customSymbolDesignRequestSelected),
+    customSymbolRequestDescription: item.customSymbolDesignDescription || "",
+    orderNotes: item.orderNotes || "",
+    baseRingPrice: Number(item.baseRingPrice || item.unitPrice || 0),
+    priceBreakdown: Array.isArray(item.priceBreakdown) ? item.priceBreakdown : [],
+    totalPrice: Number(item.unitPrice || 0),
+    productImage: item.image || "",
+    builderUrl: item.sourceUrl || "/ring-builder/"
+  };
+}
+
+function resolveCheckoutDraft() {
+  const requestedItemId = getQueryParam("item");
+
+  if (cartStore) {
+    const selectedId = requestedItemId || cartStore.getSelectedItemId();
+    const selectedItem = selectedId ? cartStore.getItemById(selectedId) : null;
+
+    if (selectedItem) {
+      cartStore.selectItem(selectedItem.id);
+      return buildCheckoutDraftFromCartItem(selectedItem);
+    }
+  }
+
+  return loadCheckoutDraftFromSession();
 }
 
 function getAmountDueToday() {
@@ -70,9 +117,12 @@ function renderMissingState() {
     <section class="checkout-shell">
       <div class="plaque card center-card">
         <h1>Review & Checkout</h1>
-        <p class="muted">We couldn't find your ring customization details.</p>
-        <p class="muted">Please return to the builder and click <strong>Order Now</strong> again.</p>
-        <a class="primary-btn" href="/ring-builder/">Return to Builder</a>
+        <p class="muted">We couldn't find a selected cart item to review.</p>
+        <p class="muted">Please choose an item from your cart or return to the builder.</p>
+        <div class="missing-actions">
+          <a class="primary-btn" href="/cart/">View Cart</a>
+          <a class="primary-btn secondary-btn" href="/ring-builder/">Return to Builder</a>
+        </div>
       </div>
     </section>
   `;
@@ -104,6 +154,7 @@ function renderCheckout() {
     <section class="checkout-shell">
       <div class="plaque card header-card">
         <h1>Review & Checkout</h1>
+        <p class="muted">Reviewing cart item <strong>#${escapeHtml(checkoutDraft.cartItemId || "N/A")}</strong></p>
         <p class="muted">Please confirm your customization details before continuing to payment.</p>
       </div>
 
@@ -290,7 +341,12 @@ function bindCheckoutEvents() {
 }
 
 function initCheckoutPage() {
-  checkoutDraft = loadCheckoutDraft();
+  checkoutDraft = resolveCheckoutDraft();
+
+  if (hasValidCheckoutDraft(checkoutDraft)) {
+    sessionStorage.setItem(CHECKOUT_STORAGE_KEY, JSON.stringify(checkoutDraft));
+  }
+
   renderCheckout();
 }
 

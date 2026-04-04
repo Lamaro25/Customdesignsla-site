@@ -24,7 +24,8 @@ const RING_SIZE_OPTIONS = [
   "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5"
 ];
 
-let cart = JSON.parse(localStorage.getItem('cdla_cart')) || [];
+const cartStore = window.CdlaCartStore;
+let cart = cartStore ? cartStore.loadCart() : [];
 let wishlist = JSON.parse(localStorage.getItem('cdla_wishlist')) || [];
 
 let totalPriceVisibilityObserver = null;
@@ -444,11 +445,19 @@ function renderPriceBreakdownSection(product) {
 }
 
 function persistCart() {
+  if (cartStore) {
+    cartStore.saveCart(cart);
+    return;
+  }
   localStorage.setItem("cdla_cart", JSON.stringify(cart));
 }
 
 function persistWishlist() {
   localStorage.setItem("cdla_wishlist", JSON.stringify(wishlist));
+}
+
+function syncCartState() {
+  cart = cartStore ? cartStore.loadCart() : (JSON.parse(localStorage.getItem("cdla_cart")) || []);
 }
 
 
@@ -626,6 +635,8 @@ function renderNotFound() {
 }
 
 function render() {
+  syncCartState();
+
   if (!currentProduct) {
     renderNotFound();
     return;
@@ -1118,16 +1129,18 @@ function render() {
       </div>
 
       <div class="cart-box builder-plaque">
-        <h3>🛒 Cart (${cart.length})</h3>
-        <ul>
-          ${cart.map(item => `
-            <li>${item.productName} (${item.builderKey}) — Size ${item.ringSize || "N/A"} — $${item.unitPrice}</li>
-          `).join("")}
-        </ul>
+        <h3>🛒 Cart Status</h3>
+        <p>${cart.length} configured ${cart.length === 1 ? "item" : "items"} saved for checkout.</p>
+        <div class="cart-box-actions">
+          <a class="builder-link-btn" href="/cart/">View Cart</a>
+          <button class="builder-link-btn muted" type="button" onclick="clearCartFromBuilder()" ${cart.length ? "" : "disabled"}>
+            Clear Cart
+          </button>
+        </div>
 
         <h3>♡ Wishlist (${wishlist.length})</h3>
         <ul>
-          ${wishlist.map(item => `
+          ${wishlist.slice(0, 3).map(item => `
             <li>${item.productName} (${item.builderKey})</li>
           `).join("")}
         </ul>
@@ -1262,7 +1275,7 @@ window.addCurrentRingToCart = () => {
     .filter(Boolean);
 
   const item = {
-    id: Date.now(),
+    id: cartStore ? cartStore.createItemId() : Date.now(),
     builderKey: currentProduct.builderKey,
     sku: currentProduct.sku,
     slug: currentProduct.slug,
@@ -1282,6 +1295,8 @@ window.addCurrentRingToCart = () => {
     customSymbolUploadFileName,
     orderNotes,
     symbolPlacementNotes: orderNotes,
+    baseRingPrice: Number(currentProduct.price || 0),
+    priceBreakdown: getBuilderPriceBreakdown(currentProduct),
     unitPrice: calculatePrice(),
     quantity: 1,
     shippingProfile: "ring",
@@ -1290,6 +1305,17 @@ window.addCurrentRingToCart = () => {
     sourceUrl: window.location.pathname + window.location.search
   };
 
+  if (cartStore) {
+    const savedItem = cartStore.addItem(item);
+    cart = cartStore.loadCart();
+    cartStore.selectItem(savedItem.id);
+    saveCheckoutDraft(savedItem);
+    window.location.href = `/checkout/?item=${encodeURIComponent(savedItem.id)}`;
+    return;
+  }
+
+  cart.push(item);
+  persistCart();
   saveCheckoutDraft(item);
   window.location.href = "/checkout/";
 };
@@ -1307,6 +1333,20 @@ window.addCurrentRingToWishlist = () => {
   });
 
   persistWishlist();
+  render();
+};
+
+window.clearCartFromBuilder = () => {
+  if (!cart.length) return;
+  if (!window.confirm("Clear all saved cart items?")) return;
+
+  if (cartStore) {
+    cartStore.clearCart();
+    cart = [];
+  } else {
+    cart = [];
+    persistCart();
+  }
   render();
 };
 

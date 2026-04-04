@@ -565,6 +565,33 @@ body.input-focused .floating-total-bar.input-focused {
   overflow-wrap: anywhere;
 }
 
+.cart-box-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0 16px;
+  flex-wrap: wrap;
+}
+
+.builder-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(191, 202, 219, 0.75);
+  border-radius: 999px;
+  padding: 0.5rem 0.85rem;
+  text-decoration: none;
+  background: linear-gradient(180deg, #f8fbff 0%, #dce4f1 100%);
+  color: #111722;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.builder-link-btn.muted {
+  background: transparent;
+  color: #f2f6ff;
+}
+
 .subtle-text { margin: 0; color: #c2cbda; }
 
 .how-it-works-wrap {
