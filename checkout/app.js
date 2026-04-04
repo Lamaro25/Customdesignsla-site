@@ -1,8 +1,20 @@
 const checkoutApp = document.getElementById("checkout-app");
 const CHECKOUT_STORAGE_KEY = "cdla_checkout_draft";
 const CHECKOUT_SUBMISSION_KEY = "cdla_checkout_submission";
+const CHECKOUT_FORM_STORAGE_KEY = "cdla_checkout_forms_by_item";
 
 const cartStore = window.CdlaCartStore;
+
+const REQUIRED_FIELD_NAMES = [
+  "customerName",
+  "customerEmail",
+  "shippingName",
+  "address1",
+  "city",
+  "state",
+  "zip",
+  "country"
+];
 
 let checkoutDraft = null;
 let selectedPaymentOption = "full";
@@ -39,6 +51,39 @@ function loadCheckoutDraftFromSession() {
   } catch (error) {
     return null;
   }
+}
+
+function loadPersistedCheckoutForms() {
+  try {
+    const raw = localStorage.getItem(CHECKOUT_FORM_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function savePersistedCheckoutForms(formsByItem) {
+  localStorage.setItem(CHECKOUT_FORM_STORAGE_KEY, JSON.stringify(formsByItem || {}));
+}
+
+function getActiveCheckoutItemKey() {
+  return String(checkoutDraft?.cartItemId || getQueryParam("item") || "session-draft");
+}
+
+function getPersistedFormForActiveItem() {
+  const formsByItem = loadPersistedCheckoutForms();
+  return formsByItem[getActiveCheckoutItemKey()] || null;
+}
+
+function persistActiveCheckoutForm(formState) {
+  const formsByItem = loadPersistedCheckoutForms();
+  formsByItem[getActiveCheckoutItemKey()] = {
+    ...formState,
+    updatedAt: new Date().toISOString()
+  };
+  savePersistedCheckoutForms(formsByItem);
 }
 
 function hasValidCheckoutDraft(draft) {
@@ -134,6 +179,9 @@ function renderCheckout() {
     return;
   }
 
+  const persisted = getPersistedFormForActiveItem();
+  selectedPaymentOption = persisted?.paymentOption === "deposit" ? "deposit" : "full";
+
   const insideText = checkoutDraft.insideText?.trim() || "Not provided";
   const outsideText = checkoutDraft.outsideText?.trim() || "Not provided";
   const orderNotes = checkoutDraft.orderNotes?.trim() || "Not provided";
@@ -194,13 +242,13 @@ function renderCheckout() {
           <h2>Customer Information</h2>
           <div class="form-grid">
             <label>Full Name*
-              <input type="text" name="customerName" autocomplete="name" required />
+              <input type="text" name="customerName" autocomplete="name" value="${escapeHtml(persisted?.customer?.fullName || "")}" required />
             </label>
             <label>Email Address*
-              <input type="email" name="customerEmail" autocomplete="email" required />
+              <input type="email" name="customerEmail" autocomplete="email" value="${escapeHtml(persisted?.customer?.email || "")}" required />
             </label>
             <label>Phone Number
-              <input type="tel" name="customerPhone" autocomplete="tel" />
+              <input type="tel" name="customerPhone" autocomplete="tel" value="${escapeHtml(persisted?.customer?.phone || "")}" />
             </label>
           </div>
         </section>
@@ -209,25 +257,25 @@ function renderCheckout() {
           <h2>Shipping Information</h2>
           <div class="form-grid">
             <label>Shipping Full Name*
-              <input type="text" name="shippingName" autocomplete="shipping name" required />
+              <input type="text" name="shippingName" autocomplete="shipping name" value="${escapeHtml(persisted?.shipping?.fullName || "")}" required />
             </label>
             <label>Address Line 1*
-              <input type="text" name="address1" autocomplete="shipping address-line1" required />
+              <input type="text" name="address1" autocomplete="shipping address-line1" value="${escapeHtml(persisted?.shipping?.address1 || "")}" required />
             </label>
             <label>Address Line 2
-              <input type="text" name="address2" autocomplete="shipping address-line2" />
+              <input type="text" name="address2" autocomplete="shipping address-line2" value="${escapeHtml(persisted?.shipping?.address2 || "")}" />
             </label>
             <label>City*
-              <input type="text" name="city" autocomplete="shipping address-level2" required />
+              <input type="text" name="city" autocomplete="shipping address-level2" value="${escapeHtml(persisted?.shipping?.city || "")}" required />
             </label>
             <label>State / Region*
-              <input type="text" name="state" autocomplete="shipping address-level1" required />
+              <input type="text" name="state" autocomplete="shipping address-level1" value="${escapeHtml(persisted?.shipping?.state || "")}" required />
             </label>
             <label>ZIP / Postal Code*
-              <input type="text" name="zip" autocomplete="shipping postal-code" required />
+              <input type="text" name="zip" autocomplete="shipping postal-code" value="${escapeHtml(persisted?.shipping?.zip || "")}" required />
             </label>
             <label>Country*
-              <input type="text" name="country" autocomplete="shipping country-name" required />
+              <input type="text" name="country" autocomplete="shipping country-name" value="${escapeHtml(persisted?.shipping?.country || "")}" required />
             </label>
           </div>
         </section>
@@ -236,11 +284,11 @@ function renderCheckout() {
           <h2>Payment Option</h2>
           <div class="payment-options" role="radiogroup" aria-label="Payment options">
             <label class="radio-row">
-              <input type="radio" name="paymentOption" value="full" checked />
+              <input type="radio" name="paymentOption" value="full" ${selectedPaymentOption === "full" ? "checked" : ""} />
               <span>Pay in Full</span>
             </label>
             <label class="radio-row">
-              <input type="radio" name="paymentOption" value="deposit" />
+              <input type="radio" name="paymentOption" value="deposit" ${selectedPaymentOption === "deposit" ? "checked" : ""} />
               <span>50% Deposit</span>
             </label>
           </div>
@@ -264,11 +312,11 @@ function renderCheckout() {
 
         <section class="plaque card action-card">
           <label class="confirm-row">
-            <input type="checkbox" id="confirmation-checkbox" required />
+            <input type="checkbox" id="confirmation-checkbox" ${persisted?.confirmationAccepted ? "checked" : ""} required />
             <span>I confirm my customization details and shipping information are correct.</span>
           </label>
           <p id="form-error" class="form-error" aria-live="polite"></p>
-          <button class="primary-btn" type="submit">Proceed to Payment</button>
+          <button id="proceed-to-payment-btn" class="primary-btn" type="submit">Proceed to Payment</button>
           <p class="muted integration-note">Stripe handoff will be connected in the next integration pass.</p>
         </section>
       </form>
@@ -278,11 +326,59 @@ function renderCheckout() {
   bindCheckoutEvents();
 }
 
+function getTrimmedValue(form, fieldName) {
+  const element = form.elements.namedItem(fieldName);
+  return element ? String(element.value || "").trim() : "";
+}
+
+function buildFormState(form) {
+  return {
+    checkoutItemKey: getActiveCheckoutItemKey(),
+    customer: {
+      fullName: getTrimmedValue(form, "customerName"),
+      email: getTrimmedValue(form, "customerEmail"),
+      phone: getTrimmedValue(form, "customerPhone")
+    },
+    shipping: {
+      fullName: getTrimmedValue(form, "shippingName"),
+      address1: getTrimmedValue(form, "address1"),
+      address2: getTrimmedValue(form, "address2"),
+      city: getTrimmedValue(form, "city"),
+      state: getTrimmedValue(form, "state"),
+      zip: getTrimmedValue(form, "zip"),
+      country: getTrimmedValue(form, "country")
+    },
+    paymentOption: selectedPaymentOption,
+    confirmationAccepted: Boolean(document.getElementById("confirmation-checkbox")?.checked)
+  };
+}
+
+function areRequiredFieldsComplete(form) {
+  return REQUIRED_FIELD_NAMES.every(fieldName => Boolean(getTrimmedValue(form, fieldName)));
+}
+
+function updateProceedButtonState(form) {
+  const submitBtn = document.getElementById("proceed-to-payment-btn");
+  if (!submitBtn) return;
+
+  const hasRequiredFields = areRequiredFieldsComplete(form);
+  const confirmationAccepted = Boolean(document.getElementById("confirmation-checkbox")?.checked);
+
+  submitBtn.disabled = !(hasRequiredFields && confirmationAccepted);
+}
+
 function bindCheckoutEvents() {
   const form = document.getElementById("checkout-form");
   if (!form) return;
 
+  const confirmationCheckbox = document.getElementById("confirmation-checkbox");
   const paymentOptions = form.querySelectorAll('input[name="paymentOption"]');
+  const observedFields = form.querySelectorAll("input[name]");
+
+  const persistAndRefreshButtonState = () => {
+    persistActiveCheckoutForm(buildFormState(form));
+    updateProceedButtonState(form);
+  };
 
   paymentOptions.forEach(input => {
     input.addEventListener("change", event => {
@@ -292,8 +388,19 @@ function bindCheckoutEvents() {
 
       if (paymentOptionEl) paymentOptionEl.textContent = getPaymentOptionLabel();
       if (amountDueEl) amountDueEl.textContent = formatMoney(getAmountDueToday());
+
+      persistAndRefreshButtonState();
     });
   });
+
+  observedFields.forEach(field => {
+    field.addEventListener("input", persistAndRefreshButtonState);
+    field.addEventListener("change", persistAndRefreshButtonState);
+  });
+
+  if (confirmationCheckbox) {
+    confirmationCheckbox.addEventListener("change", persistAndRefreshButtonState);
+  }
 
   form.addEventListener("submit", event => {
     event.preventDefault();
@@ -301,33 +408,29 @@ function bindCheckoutEvents() {
     const errorEl = document.getElementById("form-error");
     const confirm = document.getElementById("confirmation-checkbox");
 
-    if (!form.checkValidity() || !confirm?.checked) {
+    const hasRequiredFields = areRequiredFieldsComplete(form);
+    const emailField = form.elements.namedItem("customerEmail");
+    const emailLooksValid = Boolean(emailField && emailField.checkValidity());
+
+    if (!hasRequiredFields || !emailLooksValid || !confirm?.checked) {
       if (errorEl) {
         errorEl.textContent = "Please complete required fields and confirm your details before continuing.";
       }
       form.reportValidity();
+      updateProceedButtonState(form);
       return;
     }
 
     if (errorEl) errorEl.textContent = "";
 
-    const formData = new FormData(form);
+    const persistedFormState = buildFormState(form);
+    persistActiveCheckoutForm(persistedFormState);
+
     const checkoutSubmission = {
       draft: checkoutDraft,
-      customer: {
-        fullName: formData.get("customerName"),
-        email: formData.get("customerEmail"),
-        phone: formData.get("customerPhone") || ""
-      },
-      shipping: {
-        fullName: formData.get("shippingName"),
-        address1: formData.get("address1"),
-        address2: formData.get("address2") || "",
-        city: formData.get("city"),
-        state: formData.get("state"),
-        zip: formData.get("zip"),
-        country: formData.get("country")
-      },
+      checkoutItemKey: getActiveCheckoutItemKey(),
+      customer: persistedFormState.customer,
+      shipping: persistedFormState.shipping,
       paymentOption: selectedPaymentOption,
       paymentOptionLabel: getPaymentOptionLabel(),
       shippingQuoteStatus: "pending-shippo-address-verification",
@@ -338,6 +441,8 @@ function bindCheckoutEvents() {
     sessionStorage.setItem(CHECKOUT_SUBMISSION_KEY, JSON.stringify(checkoutSubmission));
     alert("Checkout structure is ready. Stripe payment handoff will be connected in the next integration pass.");
   });
+
+  persistAndRefreshButtonState();
 }
 
 function initCheckoutPage() {
