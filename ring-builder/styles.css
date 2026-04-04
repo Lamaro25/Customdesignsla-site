@@ -161,7 +161,7 @@ footer {
 
 .ring-size-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(54px, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.55rem;
   margin: 0.2rem 0 0.8rem;
 }
