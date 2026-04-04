@@ -12,6 +12,7 @@ let engravingTextInside = "";
 let engravingTextOutside = "";
 let selectedSymbols = [];
 let symbolSectionExpanded = false;
+let howThisWorksExpanded = false;
 let customSymbolDesignRequestOptIn = false;
 let customSymbolDesignDescription = "";
 let customSymbolUploadFileName = "";
@@ -238,6 +239,7 @@ function initializeSelections() {
   engravingTextOutside = "";
   selectedSymbols = [];
   symbolSectionExpanded = false;
+  howThisWorksExpanded = false;
   customSymbolDesignRequestOptIn = false;
   customSymbolDesignDescription = "";
   customSymbolUploadFileName = "";
@@ -375,9 +377,6 @@ function render() {
     .map(symbolId => symbolsData.find(item => item.id === symbolId))
     .filter(Boolean);
   const symbolsTotal = selectedSymbolDetails.reduce((sum, symbol) => sum + Number(symbol.price || 0), 0);
-  const {
-    includedOutsideWords
-  } = getChargeableEngravingWords(currentProduct);
   const price = calculatePrice();
   const priceBreakdownMarkup = renderPriceBreakdownSection(currentProduct);
 
@@ -574,6 +573,17 @@ function render() {
   }).join("");
 
   const isCustomSymbolSelected = selectedSymbols.includes("custom-symbol");
+  const symbolIndicatorsMarkup = standardSymbols.length
+    ? `
+      <div class="symbol-indicator-row" aria-hidden="true">
+        ${standardSymbols.slice(0, 5).map(symbol => `
+          <div class="symbol-indicator-item">
+            ${renderSymbolImageMarkup(symbol, "symbol-indicator-image")}
+          </div>
+        `).join("")}
+      </div>
+    `
+    : "";
 
   const productSymbolNote = String(currentProduct.symbolCustomizationNote || "").trim();
 
@@ -581,7 +591,7 @@ function render() {
     ? `
       <section class="symbol-section">
         <button type="button" class="symbol-toggle" onclick="toggleSymbolSection()">
-          ${symbolSectionExpanded ? "Hide Symbol Options" : "Add Symbols to Inside of Ring"}
+          ${symbolSectionExpanded ? "Hide Symbol Options" : "Click here to add engraved symbols"}
         </button>
         ${productSymbolNote ? `
           <p class="symbol-help"><strong>Note:</strong> ${escapeHtml(productSymbolNote)}</p>
@@ -742,14 +752,11 @@ function render() {
               <textarea rows="2" oninput="setEngraving('outside', this.value)">${engravingTextOutside}</textarea>
             </label>
           ` : ""}
-          <small>$${pricingData.engravingPerWord || 0} per word</small>
-          ${includedOutsideWords > 0 ? `
-            <small>One outside engraved word is included on this ring. Each additional outside word is +$${pricingData.engravingPerWord || 0}. Inside engraving is charged separately from the first word.</small>
-          ` : ""}
         </div>
 
         <div class="builder-mini-card symbols-card">
           <h4>Symbols</h4>
+          ${symbolIndicatorsMarkup}
           ${symbolMarkup || '<p class="subtle-text">Symbol customization is not available for this ring style.</p>'}
         </div>
 
@@ -780,16 +787,23 @@ function render() {
         </button>
       </div>
 
-      <section class="builder-plaque how-it-works">
-        <h3>How This Works</h3>
-        <p><strong>Save &amp; Get Free Preview</strong> — Receive a custom design preview before placing your order.</p>
-        <p>Free previews are completed within 2–3 weeks depending on current workload.</p>
-        <p><strong>Order Now</strong> — Receive your custom design preview within 3–7 business days after payment.</p>
-        <p>Paid orders are prioritized.</p>
-        <p><strong>Payment Options:</strong></p>
-        <p>• Pay in full — highest priority</p>
-        <p>• 50% deposit — design completed within the same 3–7 day window</p>
-        <p>All orders receive a design preview before production begins.</p>
+      <section class="builder-plaque how-it-works-wrap">
+        <button type="button" class="how-it-works-toggle" onclick="toggleHowThisWorks()">
+          How This Works
+        </button>
+        <div class="how-it-works-content ${howThisWorksExpanded ? "is-open" : ""}">
+          <div class="how-it-works">
+            <h3>How This Works</h3>
+            <p><strong>Save &amp; Get Free Preview</strong> — Receive a custom design preview before placing your order.</p>
+            <p>Free previews are completed within 2–3 weeks depending on current workload.</p>
+            <p><strong>Order Now</strong> — Receive your custom design preview within 3–7 business days after payment.</p>
+            <p>Paid orders are prioritized.</p>
+            <p><strong>Payment Options:</strong></p>
+            <p>• Pay in full — highest priority</p>
+            <p>• 50% deposit — design completed within the same 3–7 day window</p>
+            <p>All orders receive a design preview before production begins.</p>
+          </div>
+        </div>
       </section>
 
       <p class="material-note">All jewelry pieces are crafted in solid .925 sterling silver.</p>
@@ -846,6 +860,11 @@ window.setEngraving = (type, value) => {
 
 window.toggleSymbolSection = () => {
   symbolSectionExpanded = !symbolSectionExpanded;
+  render();
+};
+
+window.toggleHowThisWorks = () => {
+  howThisWorksExpanded = !howThisWorksExpanded;
   render();
 };
 
