@@ -42,6 +42,7 @@ function renderCart() {
           <div class="header-actions">
             <a class="btn" href="/ring-builder/">Start in Builder</a>
             <a class="btn subtle" href="/rings/">Browse Collections</a>
+            <a class="btn subtle" href="/order-code/">Returning Customer / Order Code</a>
           </div>
         </div>
       </section>
@@ -59,6 +60,7 @@ function renderCart() {
         <div class="header-actions">
           <a class="btn" href="/ring-builder/">Add Another Item</a>
           <button class="btn subtle" type="button" onclick="clearCart()">Clear Cart</button>
+          <a class="btn subtle" href="/order-code/">Returning Customer / Order Code</a>
         </div>
       </div>
 
