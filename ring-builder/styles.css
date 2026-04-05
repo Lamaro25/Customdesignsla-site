@@ -205,6 +205,25 @@ footer {
   color: #c9d2e2;
 }
 
+.ring-sizing-toggle {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.ring-sizing-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease, margin-top 0.2s ease;
+}
+
+.ring-sizing-content.is-open {
+  max-height: 320px;
+  opacity: 1;
+  margin-top: 0.65rem;
+}
+
 .customization-options { padding: 1rem; }
 
 .builder-mini-card {
@@ -265,6 +284,11 @@ button {
 .ring-specs-card label { text-align: left; margin-bottom: 0.55rem; }
 
 .engraving-field { text-align: left; margin-bottom: 0.6rem; }
+.engraving-subtext {
+  margin: -0.1rem 0 0.55rem;
+  color: #c6d0e0;
+  font-size: 0.85rem;
+}
 
 .order-notes-section textarea {
   min-height: 150px;
@@ -590,6 +614,24 @@ body.input-focused .floating-total-bar.input-focused {
 .builder-link-btn.muted {
   background: transparent;
   color: #f2f6ff;
+}
+
+.returning-customer-link {
+  width: 100%;
+}
+
+.preview-flow-note {
+  margin: 0;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #c8d2e2;
+}
+
+.inline-remove-btn {
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
 }
 
 .subtle-text { margin: 0; color: #c2cbda; }

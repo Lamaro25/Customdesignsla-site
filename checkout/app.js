@@ -254,6 +254,7 @@ function renderCheckout() {
         <h1>Review & Checkout</h1>
         <p class="muted">Reviewing cart item <strong>#${escapeHtml(checkoutDraft.cartItemId || "N/A")}</strong></p>
         <p class="muted">Please confirm your customization details before continuing to payment.</p>
+        <p class="muted"><a class="returning-link" href="/order-code/">Returning Customer / Order Code</a></p>
       </div>
 
       <section class="plaque card">

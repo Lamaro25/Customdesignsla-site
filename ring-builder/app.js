@@ -13,6 +13,7 @@ let engravingTextOutside = "";
 let selectedSymbols = [];
 let symbolSectionExpanded = false;
 let howThisWorksExpanded = false;
+let ringSizingInfoExpanded = false;
 let customSymbolDesignRequestOptIn = false;
 let customSymbolDesignDescription = "";
 let customSymbolUploadFileName = "";
@@ -25,8 +26,9 @@ const RING_SIZE_OPTIONS = [
 ];
 
 const cartStore = window.CdlaCartStore;
+const orderRecordStore = window.CdlaOrderRecordStore;
 let cart = cartStore ? cartStore.loadCart() : [];
-let wishlist = JSON.parse(localStorage.getItem('cdla_wishlist')) || [];
+let savedPreviews = orderRecordStore ? orderRecordStore.loadSavedPreviews() : [];
 
 let totalPriceVisibilityObserver = null;
 let activeTextEntryField = null;
@@ -261,6 +263,7 @@ function initializeSelections() {
   selectedSymbols = [];
   symbolSectionExpanded = false;
   howThisWorksExpanded = false;
+  ringSizingInfoExpanded = false;
   customSymbolDesignRequestOptIn = false;
   customSymbolDesignDescription = "";
   customSymbolUploadFileName = "";
@@ -452,12 +455,12 @@ function persistCart() {
   localStorage.setItem("cdla_cart", JSON.stringify(cart));
 }
 
-function persistWishlist() {
-  localStorage.setItem("cdla_wishlist", JSON.stringify(wishlist));
-}
-
 function syncCartState() {
   cart = cartStore ? cartStore.loadCart() : (JSON.parse(localStorage.getItem("cdla_cart")) || []);
+}
+
+function syncSavedPreviewState() {
+  savedPreviews = orderRecordStore ? orderRecordStore.loadSavedPreviews() : [];
 }
 
 
@@ -636,6 +639,7 @@ function renderNotFound() {
 
 function render() {
   syncCartState();
+  syncSavedPreviewState();
 
   if (!currentProduct) {
     renderNotFound();
@@ -1012,17 +1016,20 @@ function render() {
         <div class="ring-size-grid" role="group" aria-label="Ring size options">
           ${ringSizeOptionsMarkup}
         </div>
-        <p class="ring-size-note">
-          <strong>Not sure of your ring size?</strong><br/>
-          Every order includes a ring sizer so you can confirm your final size before production.
-        </p>
-        <p class="ring-size-note ring-size-note-secondary">
-          Need a size outside this range? Add it in Order Notes and we’ll review whether your selected design can be made in that size.
-        </p>
-        <p class="ring-size-note ring-size-note-secondary">
-          Your selected size is your starting size.<br/>
-          Final ring size must be confirmed with the ring sizer we send before production begins.
-        </p>
+        <button
+          type="button"
+          class="ring-sizing-toggle"
+          onclick="toggleRingSizingInfo()"
+          aria-expanded="${ringSizingInfoExpanded ? "true" : "false"}"
+        >
+          Ring Sizing Info
+        </button>
+        <div class="ring-sizing-content ${ringSizingInfoExpanded ? "is-open" : ""}">
+          <p class="ring-size-note"><strong>Not sure of your ring size?</strong></p>
+          <p class="ring-size-note">We’ll send a ring sizer within 2–3 days so you can confirm your final fit before production.</p>
+          <p class="ring-size-note">Select a starting size for now — final size will be confirmed before we begin.</p>
+          <p class="ring-size-note">Need a size outside this range?<br/>Add it in your order notes and we’ll do our best to accommodate.</p>
+        </div>
       </section>
 
       <section class="builder-plaque customization-options">
@@ -1052,14 +1059,15 @@ function render() {
 
         <div class="builder-mini-card engraving-section">
           <h4>Engraving</h4>
+          <p class="engraving-subtext">$4 per word</p>
           ${supportsInsideEngraving(currentProduct) ? `
-            <label class="engraving-field">Inside Text
-              <textarea rows="2" oninput="setEngraving('inside', this.value)">${engravingTextInside}</textarea>
+            <label class="engraving-field">Add Inner Band Text
+              <textarea rows="2" placeholder="e.g. Forever Yours" oninput="setEngraving('inside', this.value)">${engravingTextInside}</textarea>
             </label>
           ` : ""}
           ${supportsOutsideEngraving(currentProduct) ? `
-            <label class="engraving-field">Outside Text
-              <textarea rows="2" oninput="setEngraving('outside', this.value)">${engravingTextOutside}</textarea>
+            <label class="engraving-field">Add Outer Band Text
+              <textarea rows="2" placeholder="e.g. Add Name" oninput="setEngraving('outside', this.value)">${engravingTextOutside}</textarea>
             </label>
           ` : ""}
         </div>
@@ -1097,6 +1105,10 @@ function render() {
         <button class="add-to-cart-main" type="button" onclick="addCurrentRingToWishlist()">
           Save & Get Free Preview
         </button>
+        <a class="builder-link-btn muted returning-customer-link" href="/order-code/">
+          Returning Customer / Order Code
+        </a>
+        <p class="preview-flow-note">Free preview requests do not include a ring sizer.<br/>Sizing kits are sent after purchase to confirm your final fit before production.</p>
       </div>
 
       <section class="builder-plaque how-it-works-wrap">
@@ -1138,12 +1150,21 @@ function render() {
           </button>
         </div>
 
-        <h3>♡ Wishlist (${wishlist.length})</h3>
+        <h3>Saved Previews (${savedPreviews.length})</h3>
         <ul>
-          ${wishlist.slice(0, 3).map(item => `
-            <li>${item.productName} (${item.builderKey})</li>
+          ${savedPreviews.slice(0, 3).map(item => `
+            <li>
+              <strong>${item.productTitle}</strong> (${item.orderCode})
+              <button type="button" class="inline-remove-btn" onclick="removeSavedPreview('${item.id}')">Remove</button>
+            </li>
           `).join("")}
         </ul>
+        <div class="cart-box-actions">
+          <a class="builder-link-btn" href="/preview-request/">Start New Preview</a>
+          <button class="builder-link-btn muted" type="button" onclick="clearSavedPreviews()" ${savedPreviews.length ? "" : "disabled"}>
+            Clear Saved Previews
+          </button>
+        </div>
       </div>
 
       <div id="floating-total-bar" class="floating-total-bar builder-plaque" aria-hidden="true">
@@ -1190,6 +1211,11 @@ window.toggleSymbolSection = () => {
 
 window.toggleHowThisWorks = () => {
   howThisWorksExpanded = !howThisWorksExpanded;
+  render();
+};
+
+window.toggleRingSizingInfo = () => {
+  ringSizingInfoExpanded = !ringSizingInfoExpanded;
   render();
 };
 
@@ -1322,17 +1348,69 @@ window.addCurrentRingToCart = () => {
 
 window.addCurrentRingToWishlist = () => {
   if (!currentProduct) return;
+  if (!selectedRingSize) {
+    alert("Please select a starting ring size before saving your preview request.");
+    return;
+  }
 
-  wishlist.push({
+  const selectedSymbolDetails = selectedSymbols
+    .map(symbolId => symbolsData.find(item => item.id === symbolId))
+    .filter(Boolean);
+
+  if (orderRecordStore) {
+    orderRecordStore.setPreviewDraft({
+      builderKey: currentProduct.builderKey,
+      sku: currentProduct.sku,
+      slug: currentProduct.slug,
+      productTitle: currentProduct.title,
+      collection: currentProduct.collection,
+      ringSize: selectedRingSize,
+      engraving: {
+        inside: supportsInsideEngraving(currentProduct) ? engravingTextInside : "",
+        outside: supportsOutsideEngraving(currentProduct) ? engravingTextOutside : ""
+      },
+      symbols: selectedSymbolDetails,
+      customRequestFlags: {
+        customSymbolDesignRequestSelected: customSymbolDesignRequestOptIn,
+        customSymbolDesignDescription: customSymbolDesignDescription.trim(),
+        customSymbolUploadFileName
+      },
+      notes: orderNotes,
+      metadata: {
+        sourceUrl: window.location.pathname + window.location.search,
+        image: currentProduct.image,
+        baseRingPrice: Number(currentProduct.price || 0),
+        totalPrice: calculatePrice(),
+        priceBreakdown: getBuilderPriceBreakdown(currentProduct)
+      }
+    });
+    window.location.href = "/preview-request/";
+    return;
+  }
+
+  savedPreviews.push({
     builderKey: currentProduct.builderKey,
     sku: currentProduct.sku,
     slug: currentProduct.slug,
-    productName: currentProduct.title,
+    productTitle: currentProduct.title,
     mode: "rings",
-    image: currentProduct.image
+    image: currentProduct.image,
+    orderCode: ""
   });
+  localStorage.setItem("cdla_saved_previews_fallback", JSON.stringify(savedPreviews));
+  render();
+};
 
-  persistWishlist();
+window.removeSavedPreview = recordId => {
+  if (!orderRecordStore) return;
+  orderRecordStore.removeSavedPreview(recordId);
+  render();
+};
+
+window.clearSavedPreviews = () => {
+  if (!orderRecordStore || !savedPreviews.length) return;
+  if (!window.confirm("Clear all saved previews?")) return;
+  orderRecordStore.clearSavedPreviews();
   render();
 };
 
