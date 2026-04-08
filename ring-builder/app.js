@@ -1103,9 +1103,6 @@ function render() {
         <button class="add-to-cart-main" type="button" onclick="addCurrentRingToWishlist()">
           Save & Get Free Preview
         </button>
-        <a class="builder-link-btn muted returning-customer-link" href="/order-code/">
-          Returning Customer / Order Code
-        </a>
         <p class="preview-flow-note">Free preview requests do not include a ring sizer.<br/>Sizing kits are sent after purchase to confirm your final fit before production.</p>
       </div>
 
