@@ -918,7 +918,6 @@ function render() {
             ` : ""}
             ${isCustomSymbolSelected ? `
               <div class="custom-symbol-panel">
-                <div class="custom-symbol-panel-inner">
                   <h4>Custom Symbol / Brand</h4>
                   <p>Upload or describe your custom symbol, brand, or logo.</p>
                   <ul>
@@ -979,7 +978,6 @@ function render() {
                       <input type="file" aria-label="Upload Reference Image (optional)" onchange="setCustomSymbolUploadFileName(this.files)" />
                     </div>
                     ${customSymbolUploadFileName ? `<p class="upload-file-name">Selected file: ${escapeHtml(customSymbolUploadFileName)}</p>` : ""}
-                  </div>
                 </div>
               </div>
             ` : ""}
@@ -1144,7 +1142,7 @@ function render() {
         <h3>🛒 Cart Status</h3>
         <p>${cart.length} configured ${cart.length === 1 ? "item" : "items"} saved for checkout.</p>
         <div class="cart-box-actions">
-          <a class="builder-link-btn" href="/cart/">View Cart</a>
+          <a class="builder-link-btn" href="/cart/">Continue to Checkout</a>
           <button class="builder-link-btn muted" type="button" onclick="clearCartFromBuilder()" ${cart.length ? "" : "disabled"}>
             Clear Cart
           </button>
@@ -1159,12 +1157,7 @@ function render() {
             </li>
           `).join("")}
         </ul>
-        <div class="cart-box-actions">
-          <a class="builder-link-btn" href="/preview-request/">Start New Preview</a>
-          <button class="builder-link-btn muted" type="button" onclick="clearSavedPreviews()" ${savedPreviews.length ? "" : "disabled"}>
-            Clear Saved Previews
-          </button>
-        </div>
+        <p class="saved-preview-note">Manage saved previews individually using the Remove button above.</p>
       </div>
 
       <div id="floating-total-bar" class="floating-total-bar builder-plaque" aria-hidden="true">
