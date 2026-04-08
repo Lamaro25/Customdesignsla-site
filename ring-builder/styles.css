@@ -605,16 +605,9 @@ body.input-focused .floating-total-bar.input-focused {
   color: #f2f6ff;
 }
 
-.returning-customer-link {
-  width: 100%;
-  grid-column: 1 / -1;
-  white-space: normal;
-  text-align: center;
-  line-height: 1.25;
-}
-
 .preview-flow-note {
   margin: 0;
+  grid-column: 1 / -1;
   text-align: center;
   font-size: 0.88rem;
   color: #c8d2e2;
