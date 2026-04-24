@@ -3,6 +3,23 @@ const { google } = require('googleapis');
 exports.handler = async (event) => {
   try {
     const data = JSON.parse(event.body || '{}');
+    console.log("Incoming data:", data);
+
+    const row = [
+      new Date().toISOString(),
+      'NEW',
+      data.customerName || '',
+      data.customerEmail || '',
+      data.customerPhone || '',
+      data.productName || '',
+      data.sku || '',
+      data.ringSize || '',
+      data.insideText || '',
+      data.outsideText || '',
+      data.symbols || '',
+      data.summary || '',
+      data.notes || ''
+    ];
 
     const auth = new google.auth.JWT(
       process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -15,24 +32,10 @@ exports.handler = async (event) => {
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: 'Sheet1!A:N',
+      range: 'Sheet1!A:M',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
-        values: [[
-          new Date().toISOString(),
-          'NEW',
-          data.name,
-          data.email,
-          data.phone,
-          data.product,
-          data.sku,
-          data.size,
-          data.insideText,
-          data.outsideText,
-          data.symbols,
-          data.summary,
-          data.notes
-        ]]
+        values: [row]
       }
     });
 
