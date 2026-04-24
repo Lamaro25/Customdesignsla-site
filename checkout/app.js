@@ -154,6 +154,7 @@ function buildCheckoutDraftFromCartItem(item) {
     customSymbolRequestSelected: Boolean(item.customSymbolDesignRequestSelected),
     customSymbolRequestDescription: item.customSymbolDesignDescription || "",
     orderNotes: item.orderNotes || "",
+    customerNotes: item.customerNotes || "",
     baseRingPrice: Number(item.baseRingPrice || item.unitPrice || 0),
     priceBreakdown: Array.isArray(item.priceBreakdown) ? item.priceBreakdown : [],
     totalPrice: Number(item.unitPrice || 0),
@@ -621,7 +622,8 @@ function buildPreviewSubmissionPayload(form) {
   const insideText = String(checkoutDraft?.insideText || "").trim();
   const outsideText = String(checkoutDraft?.outsideText || "").trim();
   const symbols = buildSymbolsSummary();
-  const notes = String(checkoutDraft?.orderNotes || "").trim();
+  const notes = String(checkoutDraft?.customerNotes || "").trim();
+  const estimatedTotal = formatMoney(checkoutDraft?.totalPrice || 0);
   const summary = [
     `Product: ${productName || "Custom Ring"}`,
     `SKU: ${sku || "N/A"}`,
@@ -642,8 +644,24 @@ function buildPreviewSubmissionPayload(form) {
     outsideText,
     symbols,
     notes,
-    summary
+    summary,
+    estimatedTotal
   };
+}
+
+function renderPreviewRequestSuccessState() {
+  checkoutApp.innerHTML = `
+    <section class="checkout-shell">
+      <section class="plaque card center-card">
+        <h1>Preview Request Sent</h1>
+        <p>Your free preview request has been sent to CDLA.</p>
+        <p>Please allow 3–5 business days for your custom preview to be created. We’ll contact you by text message using the phone number provided with your rendering and next steps.</p>
+        <p>If your request includes custom artwork, logos, brands, or artwork cleanup, additional time or a small design fee may be required before the preview is created.</p>
+        <p>Once you approve your preview, we’ll send your invoice before production begins and ship out a ring sizer after payment is received to confirm your final size.</p>
+        <a class="primary-btn" href="/">Return Home</a>
+      </section>
+    </section>
+  `;
 }
 
 function bindCheckoutEvents() {
@@ -760,12 +778,7 @@ function bindCheckoutEvents() {
         }
 
         if (previewMode) {
-          if (successEl) {
-            successEl.textContent = "Your free preview request has been sent. CDLA will contact you soon.";
-          }
-          if (submitBtn) {
-            submitBtn.textContent = "Preview Request Sent";
-          }
+          renderPreviewRequestSuccessState();
           return;
         }
 
