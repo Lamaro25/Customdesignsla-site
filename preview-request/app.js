@@ -84,7 +84,7 @@ function renderForm(draft) {
   const form = document.getElementById("preview-request-form");
   const errorEl = document.getElementById("preview-form-error");
 
-  form?.addEventListener("submit", event => {
+  form?.addEventListener("submit", async event => {
     event.preventDefault();
     if (!orderRecordStore) {
       errorEl.textContent = "Preview store is unavailable. Please refresh and try again.";
@@ -102,6 +102,35 @@ function renderForm(draft) {
       return;
     }
 
+    const payload = {
+      name: fullName,
+      email,
+      phone,
+      product: draft.productTitle || "Custom Ring",
+      sku: draft.sku || "",
+      size: draft.ringSize || "",
+      insideText: draft.engraving?.inside || "",
+      outsideText: draft.engraving?.outside || "",
+      symbols: buildSymbolSummary(draft.symbols),
+      summary: draft.customizationSummary || "",
+      notes: [draft.notes, customerNotes].filter(Boolean).join("\n\n")
+    };
+
+    try {
+      const response = await fetch('/.netlify/functions/submit-preview', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error("Unable to submit preview request. Please try again.");
+      }
+    } catch (error) {
+      errorEl.textContent = error.message || "Unable to submit preview request. Please try again.";
+      return;
+    }
+
     const record = orderRecordStore.createPreviewRecord({
       productTitle: draft.productTitle,
       sku: draft.sku,
@@ -113,7 +142,7 @@ function renderForm(draft) {
       },
       symbols: Array.isArray(draft.symbols) ? draft.symbols : [],
       customRequestFlags: draft.customRequestFlags || {},
-      notes: [draft.notes, customerNotes].filter(Boolean).join("\n\n"),
+      notes: payload.notes,
       customer: {
         fullName,
         email,
@@ -124,6 +153,7 @@ function renderForm(draft) {
 
     orderRecordStore.queueOrderCodeEmail({ to: email, orderCode: record.orderCode });
     orderRecordStore.clearPreviewDraft();
+    alert("Preview request sent successfully");
     renderSuccess(record);
   });
 }
