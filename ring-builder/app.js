@@ -470,6 +470,7 @@ function saveCheckoutDraft(item) {
     baseRingPrice: Number(currentProduct?.price || 0),
     priceBreakdown: getBuilderPriceBreakdown(currentProduct),
     totalPrice: Number(item.unitPrice || 0),
+    requestType: item.requestType === "preview" ? "preview" : "order",
     productImage: item.image || "",
     builderUrl: item.sourceUrl || window.location.pathname + window.location.search
   };
@@ -1418,6 +1419,49 @@ window.addCurrentRingToWishlist = () => {
   const customizationSummary = getCustomizationSummary();
   const combinedOrderNotes = buildOrderNotesSubmissionValue(customizationSummary, customerNotes);
 
+  const item = {
+    id: cartStore ? cartStore.createItemId() : Date.now(),
+    builderKey: currentProduct.builderKey,
+    sku: currentProduct.sku,
+    slug: currentProduct.slug,
+    productName: currentProduct.title,
+    collection: currentProduct.collection,
+    mode: "rings",
+    requestType: "preview",
+    ringSize: selectedRingSize,
+    metal: currentMetal,
+    bandWidth: currentBandWidth || currentProduct.band_width,
+    engravingInside: supportsInsideEngraving(currentProduct) ? engravingTextInside : "",
+    engravingOutside: supportsOutsideEngraving(currentProduct) ? engravingTextOutside : "",
+    addOns: [...selectedAddOns],
+    symbols: [...selectedSymbolDetails],
+    customSymbolCleanupFeeSelected: false,
+    customSymbolDesignRequestSelected: customSymbolDesignRequestOptIn,
+    customSymbolDesignDescription: customSymbolDesignDescription.trim(),
+    customSymbolUploadFileName,
+    orderNotes: combinedOrderNotes,
+    customizationSummary,
+    customerNotes,
+    symbolPlacementNotes: customerNotes,
+    baseRingPrice: Number(currentProduct.price || 0),
+    priceBreakdown: getBuilderPriceBreakdown(currentProduct),
+    unitPrice: calculatePrice(),
+    quantity: 1,
+    shippingProfile: "ring",
+    image: currentProduct.image,
+    gallery: getProductGallery(currentProduct),
+    sourceUrl: window.location.pathname + window.location.search
+  };
+
+  if (cartStore) {
+    const savedItem = cartStore.addItem(item);
+    cart = cartStore.loadCart();
+    cartStore.selectItem(savedItem.id);
+    saveCheckoutDraft(savedItem);
+    window.location.href = `/checkout/?item=${encodeURIComponent(savedItem.id)}`;
+    return;
+  }
+
   if (orderRecordStore) {
     orderRecordStore.setPreviewDraft({
       builderKey: currentProduct.builderKey,
@@ -1447,21 +1491,12 @@ window.addCurrentRingToWishlist = () => {
         priceBreakdown: getBuilderPriceBreakdown(currentProduct)
       }
     });
-    window.location.href = "/preview-request/";
-    return;
   }
 
-  savedPreviews.push({
-    builderKey: currentProduct.builderKey,
-    sku: currentProduct.sku,
-    slug: currentProduct.slug,
-    productTitle: currentProduct.title,
-    mode: "rings",
-    image: currentProduct.image,
-    orderCode: ""
-  });
-  localStorage.setItem("cdla_saved_previews_fallback", JSON.stringify(savedPreviews));
-  render();
+  cart.push(item);
+  persistCart();
+  saveCheckoutDraft(item);
+  window.location.href = "/checkout/";
 };
 
 window.removeSavedPreview = recordId => {

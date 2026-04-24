@@ -16,6 +16,7 @@ const REQUIRED_FIELD_NAMES = [
 ];
 
 const REQUIRED_SHIPPING_FIELD_NAMES = ["shippingName", "address1", "city", "state", "zip"];
+const REQUIRED_PREVIEW_FIELD_NAMES = ["customerName", "customerEmail", "customerPhone"];
 
 let checkoutDraft = null;
 let shippingQuoteState = {
@@ -30,6 +31,10 @@ let stripeConfigStatus = {
   loading: true,
   message: "Checking secure payment setup..."
 };
+
+function isPreviewRequestMode() {
+  return String(checkoutDraft?.requestType || "").trim().toLowerCase() === "preview";
+}
 
 function formatMoney(value) {
   const amount = Number(value || 0);
@@ -152,6 +157,7 @@ function buildCheckoutDraftFromCartItem(item) {
     baseRingPrice: Number(item.baseRingPrice || item.unitPrice || 0),
     priceBreakdown: Array.isArray(item.priceBreakdown) ? item.priceBreakdown : [],
     totalPrice: Number(item.unitPrice || 0),
+    requestType: item.requestType === "preview" ? "preview" : "order",
     productImage: item.image || "",
     builderUrl: item.sourceUrl || "/ring-builder/"
   };
@@ -243,6 +249,14 @@ function renderCheckout() {
   const outsideText = checkoutDraft.outsideText?.trim() || "Not provided";
   const orderNotes = checkoutDraft.orderNotes?.trim() || "Not provided";
   const customSymbolStatus = checkoutDraft.customSymbolRequestSelected ? "Requested" : "Not requested";
+  const previewMode = isPreviewRequestMode();
+  const continueCopy = previewMode
+    ? "Please confirm your customization details to request your free design preview."
+    : "Please confirm your customization details before continuing to payment.";
+  const submitButtonLabel = previewMode ? "Send Free Preview Request" : "Proceed to Payment";
+  const confirmationLabel = previewMode
+    ? "I confirm my customization details and contact information are correct."
+    : "I confirm my customization details and shipping information are correct.";
 
   const priceBreakdownItems = Array.isArray(checkoutDraft.priceBreakdown) ? checkoutDraft.priceBreakdown : [];
   const baseBreakdownLines = priceBreakdownItems
@@ -275,9 +289,9 @@ function renderCheckout() {
   checkoutApp.innerHTML = `
     <section class="checkout-shell">
       <div class="plaque card header-card">
-        <h1>Review & Checkout</h1>
+        <h1>${previewMode ? "Review & Free Preview Request" : "Review & Checkout"}</h1>
         <p class="muted">Reviewing cart item <strong>#${escapeHtml(checkoutDraft.cartItemId || "N/A")}</strong></p>
-        <p class="muted">Please confirm your customization details before continuing to payment.</p>
+        <p class="muted">${continueCopy}</p>
         <p class="muted"><a class="returning-link" href="/order-code/">Returning Customer / Order Code</a></p>
       </div>
 
@@ -337,12 +351,12 @@ function renderCheckout() {
               <input type="email" name="customerEmail" autocomplete="email" value="${escapeHtml(persisted?.customer?.email || "")}" required />
             </label>
             <label>Phone Number
-              <input type="tel" name="customerPhone" autocomplete="tel" value="${escapeHtml(persisted?.customer?.phone || "")}" />
+              <input type="tel" name="customerPhone" autocomplete="tel" value="${escapeHtml(persisted?.customer?.phone || "")}" ${previewMode ? "required" : ""} />
             </label>
           </div>
         </section>
 
-        <section class="plaque card">
+        ${previewMode ? "" : `<section class="plaque card">
           <h2>Shipping Information</h2>
           <div class="form-grid">
             <label>Shipping Full Name*
@@ -361,26 +375,27 @@ function renderCheckout() {
               <input type="text" name="zip" autocomplete="shipping postal-code" value="${escapeHtml(persisted?.shipping?.zip || "")}" required />
             </label>
           </div>
-        </section>
+        </section>`}
 
 
-        <section class="plaque card">
+        ${previewMode ? "" : `<section class="plaque card">
           <h2>Final Summary / Amount Due Today</h2>
           <ul class="breakdown-list final-summary-list">
             <li><span>Product Total</span><strong>${formatMoney(checkoutDraft.totalPrice)}</strong></li>
             <li><span>Shipping</span><strong id="shipping-amount">$0.00</strong></li>
             <li class="total-line"><span>Amount Due Today</span><strong id="amount-due-today">${formatMoney(getAmountDueToday())}</strong></li>
           </ul>
-        </section>
+        </section>`}
 
         <section class="plaque card action-card">
           <label class="confirm-row">
             <input type="checkbox" id="confirmation-checkbox" ${persisted?.confirmationAccepted ? "checked" : ""} required />
-            <span>I confirm my customization details and shipping information are correct.</span>
+            <span>${confirmationLabel}</span>
           </label>
           <p id="shipping-status" class="muted integration-note" aria-live="polite"></p>
+          <p id="form-success" class="success-note" aria-live="polite"></p>
           <p id="form-error" class="form-error" aria-live="polite"></p>
-          <button id="proceed-to-payment-btn" class="primary-btn" type="submit">Proceed to Payment</button>
+          <button id="proceed-to-payment-btn" class="primary-btn" type="submit">${submitButtonLabel}</button>
         </section>
       </form>
     </section>
@@ -396,7 +411,9 @@ function syncStripeButtonReadiness(form) {
 
   const hasRequiredFields = areRequiredFieldsComplete(form);
   const confirmationAccepted = Boolean(document.getElementById("confirmation-checkbox")?.checked);
-  const canProceed = hasRequiredFields && confirmationAccepted && stripeConfigStatus.ready && isShippingReadyForCheckout();
+  const canProceed = isPreviewRequestMode()
+    ? hasRequiredFields && confirmationAccepted
+    : hasRequiredFields && confirmationAccepted && stripeConfigStatus.ready && isShippingReadyForCheckout();
 
   submitBtn.disabled = !canProceed;
 }
@@ -467,10 +484,12 @@ function buildFormState(form) {
 }
 
 function areRequiredFieldsComplete(form) {
-  return REQUIRED_FIELD_NAMES.every(fieldName => Boolean(getTrimmedValue(form, fieldName)));
+  const requiredFields = isPreviewRequestMode() ? REQUIRED_PREVIEW_FIELD_NAMES : REQUIRED_FIELD_NAMES;
+  return requiredFields.every(fieldName => Boolean(getTrimmedValue(form, fieldName)));
 }
 
 function isShippingReadyForCheckout() {
+  if (isPreviewRequestMode()) return true;
   return shippingQuoteState.status === "success" || shippingQuoteState.status === "fallback";
 }
 
@@ -577,6 +596,8 @@ async function calculateShippingIfReady(form) {
 }
 
 function scheduleShippingCalculation(form) {
+  if (isPreviewRequestMode()) return;
+
   if (shippingRequestDebounceTimer) {
     window.clearTimeout(shippingRequestDebounceTimer);
   }
@@ -622,17 +643,20 @@ function bindCheckoutEvents() {
     event.preventDefault();
 
     const errorEl = document.getElementById("form-error");
+    const successEl = document.getElementById("form-success");
     const confirm = document.getElementById("confirmation-checkbox");
+    const submitBtn = document.getElementById("proceed-to-payment-btn");
+    const previewMode = isPreviewRequestMode();
 
     const hasRequiredFields = areRequiredFieldsComplete(form);
 
-    if (!stripeConfigStatus.ready) {
+    if (!previewMode && !stripeConfigStatus.ready) {
       if (errorEl) errorEl.textContent = stripeConfigStatus.message || "Secure payment setup is not ready. Please try again shortly.";
       updateProceedButtonState(form);
       return;
     }
 
-    if (!isShippingReadyForCheckout()) {
+    if (!previewMode && !isShippingReadyForCheckout()) {
       if (errorEl) errorEl.textContent = "Please wait for shipping to finish calculating before continuing.";
       updateProceedButtonState(form);
       return;
@@ -650,6 +674,7 @@ function bindCheckoutEvents() {
     }
 
     if (errorEl) errorEl.textContent = "";
+    if (successEl) successEl.textContent = "";
 
     const persistedFormState = buildFormState(form);
     persistActiveCheckoutForm(persistedFormState);
@@ -664,22 +689,22 @@ function bindCheckoutEvents() {
       shippingQuoteStatus: shippingQuoteState.status,
       shippingAmount: Number(shippingQuoteState.amount || 0),
       amountDueToday: getAmountDueToday(),
-      paymentStatus: "initiating-stripe-checkout"
+      requestType: previewMode ? "preview" : "order",
+      paymentStatus: previewMode ? "not-required-preview-request" : "initiating-stripe-checkout"
     };
 
     sessionStorage.setItem(CHECKOUT_SUBMISSION_KEY, JSON.stringify(checkoutSubmission));
 
-    const submitBtn = document.getElementById("proceed-to-payment-btn");
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = "Redirecting to Stripe...";
+      submitBtn.textContent = previewMode ? "Sending Preview Request..." : "Redirecting to Stripe...";
     }
 
     if (errorEl) {
       errorEl.textContent = "";
     }
 
-    fetch("/.netlify/functions/create-stripe-checkout-session", {
+    fetch(previewMode ? "/.netlify/functions/submit-preview" : "/.netlify/functions/create-stripe-checkout-session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -688,8 +713,22 @@ function bindCheckoutEvents() {
     })
       .then(async response => {
         const data = await response.json().catch(() => ({}));
-        if (!response.ok || !data.checkoutUrl) {
-          throw new Error(data.error || "Unable to start Stripe checkout.");
+        if (!response.ok) {
+          throw new Error(data.error || (previewMode ? "Unable to submit your free preview request." : "Unable to start Stripe checkout."));
+        }
+
+        if (previewMode) {
+          if (successEl) {
+            successEl.textContent = "Your free preview request has been sent. CDLA will contact you soon.";
+          }
+          if (submitBtn) {
+            submitBtn.textContent = "Preview Request Sent";
+          }
+          return;
+        }
+
+        if (!data.checkoutUrl) {
+          throw new Error("Unable to start Stripe checkout.");
         }
 
         window.location.assign(data.checkoutUrl);
@@ -701,7 +740,7 @@ function bindCheckoutEvents() {
 
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.textContent = "Proceed to Payment";
+          submitBtn.textContent = previewMode ? "Send Free Preview Request" : "Proceed to Payment";
         }
       });
   });
@@ -709,7 +748,11 @@ function bindCheckoutEvents() {
   persistAndRefreshButtonState();
   updateShippingSummary();
   scheduleShippingCalculation(form);
-  loadStripeConfigStatus(form);
+  if (isPreviewRequestMode()) {
+    syncStripeButtonReadiness(form);
+  } else {
+    loadStripeConfigStatus(form);
+  }
 }
 
 function initCheckoutPage() {
