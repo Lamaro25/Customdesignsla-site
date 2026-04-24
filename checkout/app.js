@@ -12,12 +12,19 @@ const REQUIRED_FIELD_NAMES = [
   "address1",
   "city",
   "state",
-  "zip",
-  "country"
+  "zip"
 ];
 
+const REQUIRED_SHIPPING_FIELD_NAMES = ["shippingName", "address1", "city", "state", "zip"];
+
 let checkoutDraft = null;
-let selectedPaymentOption = "full";
+let shippingQuoteState = {
+  status: "idle",
+  amount: 0,
+  message: ""
+};
+let lastShippingRequestSignature = "";
+let shippingRequestDebounceTimer = null;
 let stripeConfigStatus = {
   ready: false,
   loading: true,
@@ -171,11 +178,8 @@ function getAmountDueToday() {
   if (!checkoutDraft) return 0;
 
   const total = Number(checkoutDraft.totalPrice || 0);
-  return selectedPaymentOption === "deposit" ? total * 0.5 : total;
-}
-
-function getPaymentOptionLabel() {
-  return selectedPaymentOption === "deposit" ? "50% Deposit" : "Pay in Full";
+  const shippingAmount = shippingQuoteState.status === "success" ? Number(shippingQuoteState.amount || 0) : 0;
+  return total + shippingAmount;
 }
 
 function buildSymbolsSummary() {
@@ -213,7 +217,27 @@ function renderCheckout() {
   }
 
   const persisted = getPersistedFormForActiveItem();
-  selectedPaymentOption = persisted?.paymentOption === "deposit" ? "deposit" : "full";
+  const persistedShippingQuote = persisted?.shippingQuote;
+
+  if (persistedShippingQuote?.status === "success") {
+    shippingQuoteState = {
+      status: "success",
+      amount: Number(persistedShippingQuote.amount || 0),
+      message: ""
+    };
+  } else if (persistedShippingQuote?.status === "fallback") {
+    shippingQuoteState = {
+      status: "fallback",
+      amount: 0,
+      message: "Shipping will be calculated after checkout"
+    };
+  } else {
+    shippingQuoteState = {
+      status: "idle",
+      amount: 0,
+      message: ""
+    };
+  }
 
   const insideText = checkoutDraft.insideText?.trim() || "Not provided";
   const outsideText = checkoutDraft.outsideText?.trim() || "Not provided";
@@ -327,9 +351,6 @@ function renderCheckout() {
             <label>Address Line 1*
               <input type="text" name="address1" autocomplete="shipping address-line1" value="${escapeHtml(persisted?.shipping?.address1 || "")}" required />
             </label>
-            <label>Address Line 2
-              <input type="text" name="address2" autocomplete="shipping address-line2" value="${escapeHtml(persisted?.shipping?.address2 || "")}" />
-            </label>
             <label>City*
               <input type="text" name="city" autocomplete="shipping address-level2" value="${escapeHtml(persisted?.shipping?.city || "")}" required />
             </label>
@@ -339,38 +360,15 @@ function renderCheckout() {
             <label>ZIP / Postal Code*
               <input type="text" name="zip" autocomplete="shipping postal-code" value="${escapeHtml(persisted?.shipping?.zip || "")}" required />
             </label>
-            <label>Country*
-              <input type="text" name="country" autocomplete="shipping country-name" value="${escapeHtml(persisted?.shipping?.country || "")}" required />
-            </label>
           </div>
         </section>
 
-        <section class="plaque card">
-          <h2>Payment Option</h2>
-          <div class="payment-options" role="radiogroup" aria-label="Payment options">
-            <label class="radio-row">
-              <input type="radio" name="paymentOption" value="full" ${selectedPaymentOption === "full" ? "checked" : ""} />
-              <span>Pay in Full</span>
-            </label>
-            <label class="radio-row">
-              <input type="radio" name="paymentOption" value="deposit" ${selectedPaymentOption === "deposit" ? "checked" : ""} />
-              <span>50% Deposit</span>
-            </label>
-          </div>
-        </section>
-
-        <section class="plaque card">
-          <h2>Shipping & Fulfillment</h2>
-          <p class="muted">Shipping will be calculated at checkout.</p>
-          <p class="placeholder-chip">Shippo integration placeholder</p>
-        </section>
 
         <section class="plaque card">
           <h2>Final Summary / Amount Due Today</h2>
           <ul class="breakdown-list final-summary-list">
-            <li><span>Ring Total</span><strong>${formatMoney(checkoutDraft.totalPrice)}</strong></li>
-            <li><span>Shipping</span><strong>Calculated at checkout</strong></li>
-            <li><span>Payment Option</span><strong id="selected-payment-option">${getPaymentOptionLabel()}</strong></li>
+            <li><span>Product Total</span><strong>${formatMoney(checkoutDraft.totalPrice)}</strong></li>
+            <li><span>Shipping</span><strong id="shipping-amount">$0.00</strong></li>
             <li class="total-line"><span>Amount Due Today</span><strong id="amount-due-today">${formatMoney(getAmountDueToday())}</strong></li>
           </ul>
         </section>
@@ -380,8 +378,8 @@ function renderCheckout() {
             <input type="checkbox" id="confirmation-checkbox" ${persisted?.confirmationAccepted ? "checked" : ""} required />
             <span>I confirm my customization details and shipping information are correct.</span>
           </label>
+          <p id="shipping-status" class="muted integration-note" aria-live="polite"></p>
           <p id="form-error" class="form-error" aria-live="polite"></p>
-          <p id="stripe-config-message" class="muted integration-note" aria-live="polite"></p>
           <button id="proceed-to-payment-btn" class="primary-btn" type="submit">Proceed to Payment</button>
         </section>
       </form>
@@ -391,11 +389,6 @@ function renderCheckout() {
   bindCheckoutEvents();
 }
 
-function renderStripeConfigMessage() {
-  const messageEl = document.getElementById("stripe-config-message");
-  if (!messageEl) return;
-  messageEl.textContent = stripeConfigStatus.message || "";
-}
 
 function syncStripeButtonReadiness(form) {
   const submitBtn = document.getElementById("proceed-to-payment-btn");
@@ -403,7 +396,7 @@ function syncStripeButtonReadiness(form) {
 
   const hasRequiredFields = areRequiredFieldsComplete(form);
   const confirmationAccepted = Boolean(document.getElementById("confirmation-checkbox")?.checked);
-  const canProceed = hasRequiredFields && confirmationAccepted && stripeConfigStatus.ready;
+  const canProceed = hasRequiredFields && confirmationAccepted && stripeConfigStatus.ready && isShippingReadyForCheckout();
 
   submitBtn.disabled = !canProceed;
 }
@@ -440,7 +433,6 @@ async function loadStripeConfigStatus(form) {
       message: "Stripe configuration could not be verified. Please refresh and try again."
     };
   } finally {
-    renderStripeConfigMessage();
     syncStripeButtonReadiness(form);
   }
 }
@@ -461,19 +453,137 @@ function buildFormState(form) {
     shipping: {
       fullName: getTrimmedValue(form, "shippingName"),
       address1: getTrimmedValue(form, "address1"),
-      address2: getTrimmedValue(form, "address2"),
       city: getTrimmedValue(form, "city"),
       state: getTrimmedValue(form, "state"),
-      zip: getTrimmedValue(form, "zip"),
-      country: getTrimmedValue(form, "country")
+      zip: getTrimmedValue(form, "zip")
     },
-    paymentOption: selectedPaymentOption,
+    shippingQuote: {
+      status: shippingQuoteState.status,
+      amount: shippingQuoteState.amount
+    },
+    paymentOption: "full",
     confirmationAccepted: Boolean(document.getElementById("confirmation-checkbox")?.checked)
   };
 }
 
 function areRequiredFieldsComplete(form) {
   return REQUIRED_FIELD_NAMES.every(fieldName => Boolean(getTrimmedValue(form, fieldName)));
+}
+
+function isShippingReadyForCheckout() {
+  return shippingQuoteState.status === "success" || shippingQuoteState.status === "fallback";
+}
+
+function updateShippingSummary() {
+  const shippingAmountEl = document.getElementById("shipping-amount");
+  const amountDueEl = document.getElementById("amount-due-today");
+  const shippingStatusEl = document.getElementById("shipping-status");
+
+  if (shippingAmountEl) {
+    if (shippingQuoteState.status === "success") {
+      shippingAmountEl.textContent = formatMoney(shippingQuoteState.amount);
+    } else if (shippingQuoteState.status === "fallback") {
+      shippingAmountEl.textContent = "Shipping will be calculated after checkout";
+    } else {
+      shippingAmountEl.textContent = "$0.00";
+    }
+  }
+
+  if (shippingStatusEl) {
+    if (shippingQuoteState.status === "loading") {
+      shippingStatusEl.textContent = "Calculating shipping...";
+    } else {
+      shippingStatusEl.textContent = shippingQuoteState.message || "";
+    }
+  }
+
+  if (amountDueEl) amountDueEl.textContent = formatMoney(getAmountDueToday());
+}
+
+function getShippingPayload(form) {
+  return {
+    name: getTrimmedValue(form, "shippingName"),
+    address: getTrimmedValue(form, "address1"),
+    city: getTrimmedValue(form, "city"),
+    state: getTrimmedValue(form, "state"),
+    zip: getTrimmedValue(form, "zip"),
+    items: [
+      {
+        name: checkoutDraft?.productTitle || "Custom Ring",
+        quantity: 1,
+        weight: Number(checkoutDraft?.shippingWeight || checkoutDraft?.weight || 0),
+        dimensions: checkoutDraft?.shippingDimensions || checkoutDraft?.dimensions || null
+      }
+    ]
+  };
+}
+
+function areRequiredShippingFieldsComplete(form) {
+  return REQUIRED_SHIPPING_FIELD_NAMES.every(fieldName => Boolean(getTrimmedValue(form, fieldName)));
+}
+
+async function calculateShippingIfReady(form) {
+  if (!areRequiredShippingFieldsComplete(form)) {
+    shippingQuoteState = { status: "idle", amount: 0, message: "" };
+    lastShippingRequestSignature = "";
+    updateShippingSummary();
+    updateProceedButtonState(form);
+    return;
+  }
+
+  const payload = getShippingPayload(form);
+  const requestSignature = JSON.stringify(payload);
+  if (requestSignature === lastShippingRequestSignature) {
+    updateProceedButtonState(form);
+    return;
+  }
+
+  lastShippingRequestSignature = requestSignature;
+  shippingQuoteState = { status: "loading", amount: 0, message: "" };
+  updateShippingSummary();
+  updateProceedButtonState(form);
+
+  try {
+    const response = await fetch("/api/calculate-shipping", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !Number.isFinite(Number(data.shipping_cost))) {
+      throw new Error("shipping unavailable");
+    }
+
+    shippingQuoteState = {
+      status: "success",
+      amount: Number(data.shipping_cost),
+      message: ""
+    };
+  } catch (_error) {
+    shippingQuoteState = {
+      status: "fallback",
+      amount: 0,
+      message: "Shipping will be calculated after checkout"
+    };
+  }
+
+  updateShippingSummary();
+  persistActiveCheckoutForm(buildFormState(form));
+  updateProceedButtonState(form);
+}
+
+function scheduleShippingCalculation(form) {
+  if (shippingRequestDebounceTimer) {
+    window.clearTimeout(shippingRequestDebounceTimer);
+  }
+
+  shippingRequestDebounceTimer = window.setTimeout(() => {
+    calculateShippingIfReady(form);
+  }, 300);
 }
 
 function updateProceedButtonState(form) {
@@ -485,32 +595,23 @@ function bindCheckoutEvents() {
   if (!form) return;
 
   const confirmationCheckbox = document.getElementById("confirmation-checkbox");
-  const paymentOptions = form.querySelectorAll('input[name="paymentOption"]');
   const observedFields = form.querySelectorAll("input[name]");
-
-  renderStripeConfigMessage();
 
   const persistAndRefreshButtonState = () => {
     persistActiveCheckoutForm(buildFormState(form));
     updateProceedButtonState(form);
   };
 
-  paymentOptions.forEach(input => {
-    input.addEventListener("change", event => {
-      selectedPaymentOption = event.target.value;
-      const paymentOptionEl = document.getElementById("selected-payment-option");
-      const amountDueEl = document.getElementById("amount-due-today");
-
-      if (paymentOptionEl) paymentOptionEl.textContent = getPaymentOptionLabel();
-      if (amountDueEl) amountDueEl.textContent = formatMoney(getAmountDueToday());
-
-      persistAndRefreshButtonState();
-    });
-  });
 
   observedFields.forEach(field => {
-    field.addEventListener("input", persistAndRefreshButtonState);
-    field.addEventListener("change", persistAndRefreshButtonState);
+    field.addEventListener("input", () => {
+      persistAndRefreshButtonState();
+      scheduleShippingCalculation(form);
+    });
+    field.addEventListener("change", () => {
+      persistAndRefreshButtonState();
+      scheduleShippingCalculation(form);
+    });
   });
 
   if (confirmationCheckbox) {
@@ -526,7 +627,13 @@ function bindCheckoutEvents() {
     const hasRequiredFields = areRequiredFieldsComplete(form);
 
     if (!stripeConfigStatus.ready) {
-      if (errorEl) errorEl.textContent = stripeConfigStatus.message || "Stripe server configuration is missing.";
+      if (errorEl) errorEl.textContent = stripeConfigStatus.message || "Secure payment setup is not ready. Please try again shortly.";
+      updateProceedButtonState(form);
+      return;
+    }
+
+    if (!isShippingReadyForCheckout()) {
+      if (errorEl) errorEl.textContent = "Please wait for shipping to finish calculating before continuing.";
       updateProceedButtonState(form);
       return;
     }
@@ -552,9 +659,10 @@ function bindCheckoutEvents() {
       checkoutItemKey: getActiveCheckoutItemKey(),
       customer: persistedFormState.customer,
       shipping: persistedFormState.shipping,
-      paymentOption: selectedPaymentOption,
-      paymentOptionLabel: getPaymentOptionLabel(),
-      shippingQuoteStatus: "pending-shippo-address-verification",
+      paymentOption: "full",
+      paymentOptionLabel: "Pay in Full",
+      shippingQuoteStatus: shippingQuoteState.status,
+      shippingAmount: Number(shippingQuoteState.amount || 0),
       amountDueToday: getAmountDueToday(),
       paymentStatus: "initiating-stripe-checkout"
     };
@@ -599,6 +707,8 @@ function bindCheckoutEvents() {
   });
 
   persistAndRefreshButtonState();
+  updateShippingSummary();
+  scheduleShippingCalculation(form);
   loadStripeConfigStatus(form);
 }
 
