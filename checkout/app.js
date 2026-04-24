@@ -611,6 +611,41 @@ function updateProceedButtonState(form) {
   syncStripeButtonReadiness(form);
 }
 
+function buildPreviewSubmissionPayload(form) {
+  const customerName = getTrimmedValue(form, "customerName");
+  const customerEmail = getTrimmedValue(form, "customerEmail");
+  const customerPhone = getTrimmedValue(form, "customerPhone");
+  const productName = String(checkoutDraft?.productTitle || "Custom Ring").trim();
+  const sku = String(checkoutDraft?.sku || "").trim();
+  const ringSize = String(checkoutDraft?.ringSize || "").trim();
+  const insideText = String(checkoutDraft?.insideText || "").trim();
+  const outsideText = String(checkoutDraft?.outsideText || "").trim();
+  const symbols = buildSymbolsSummary();
+  const notes = String(checkoutDraft?.orderNotes || "").trim();
+  const summary = [
+    `Product: ${productName || "Custom Ring"}`,
+    `SKU: ${sku || "N/A"}`,
+    `Ring Size: ${ringSize || "N/A"}`,
+    `Inside Text: ${insideText || "Not provided"}`,
+    `Outside Text: ${outsideText || "Not provided"}`,
+    `Symbols: ${symbols || "None selected"}`
+  ].join(" | ");
+
+  return {
+    customerName,
+    customerEmail,
+    customerPhone,
+    productName,
+    sku,
+    ringSize,
+    insideText,
+    outsideText,
+    symbols,
+    notes,
+    summary
+  };
+}
+
 function bindCheckoutEvents() {
   const form = document.getElementById("checkout-form");
   if (!form) return;
@@ -704,12 +739,19 @@ function bindCheckoutEvents() {
       errorEl.textContent = "";
     }
 
-    fetch(previewMode ? "/.netlify/functions/submit-preview" : "/.netlify/functions/create-stripe-checkout-session", {
+    const endpoint = previewMode ? "/.netlify/functions/submit-preview" : "/.netlify/functions/create-stripe-checkout-session";
+    const requestPayload = previewMode ? buildPreviewSubmissionPayload(form) : checkoutSubmission;
+
+    if (previewMode) {
+      console.log("Preview request payload:", requestPayload);
+    }
+
+    fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(checkoutSubmission)
+      body: JSON.stringify(requestPayload)
     })
       .then(async response => {
         const data = await response.json().catch(() => ({}));
