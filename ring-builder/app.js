@@ -17,7 +17,7 @@ let ringSizingInfoExpanded = false;
 let customSymbolDesignRequestOptIn = false;
 let customSymbolDesignDescription = "";
 let customSymbolUploadFileName = "";
-let orderNotes = "";
+let customerNotes = "";
 let selectedRingSize = "";
 const CUSTOM_SYMBOL_SERVICE_FEE = 10;
 const RING_SIZE_OPTIONS = [
@@ -267,7 +267,7 @@ function initializeSelections() {
   customSymbolDesignRequestOptIn = false;
   customSymbolDesignDescription = "";
   customSymbolUploadFileName = "";
-  orderNotes = "";
+  customerNotes = "";
   selectedRingSize = RING_SIZE_OPTIONS[0];
 }
 
@@ -329,6 +329,66 @@ function updateSymbolSummaryUI() {
   const symbolsTotal = selectedSymbolDetails.reduce((sum, symbol) => sum + Number(symbol.price || 0), 0);
 
   symbolSummary.textContent = `${selectedSymbolDetails.length} symbols selected — $${symbolsTotal}`;
+}
+
+function getSelectedSymbolNames() {
+  return selectedSymbols
+    .map(symbolId => symbolsData.find(item => item.id === symbolId)?.name)
+    .filter(Boolean);
+}
+
+function getCustomizationSummary() {
+  if (!currentProduct) {
+    return [
+      "INSIDE TEXT:",
+      "None",
+      "",
+      "OUTSIDE TEXT:",
+      "None",
+      "",
+      "SYMBOLS:",
+      "None"
+    ].join("\n");
+  }
+
+  const insideText = supportsInsideEngraving(currentProduct)
+    ? (engravingTextInside.trim() || "None")
+    : "None";
+  const outsideText = supportsOutsideEngraving(currentProduct)
+    ? (engravingTextOutside.trim() || "None")
+    : "None";
+  const selectedSymbolNames = getSelectedSymbolNames();
+  const symbolsText = selectedSymbolNames.length
+    ? selectedSymbolNames.join(", ")
+    : "None";
+
+  return [
+    "INSIDE TEXT:",
+    insideText,
+    "",
+    "OUTSIDE TEXT:",
+    outsideText,
+    "",
+    "SYMBOLS:",
+    symbolsText
+  ].join("\n");
+}
+
+function updateCustomizationSummaryUI() {
+  const customizationSummaryEl = document.querySelector("[data-customization-summary]");
+  if (!customizationSummaryEl) return;
+  customizationSummaryEl.textContent = getCustomizationSummary();
+}
+
+function buildOrderNotesSubmissionValue(customizationSummary, notes) {
+  const trimmedNotes = String(notes || "").trim() || "None";
+  return [
+    "CUSTOMIZATION SUMMARY:",
+    customizationSummary,
+    "",
+    "CUSTOMER NOTES:",
+    trimmedNotes
+  ].join("\n");
 }
 
 function formatCurrency(amount) {
@@ -1085,11 +1145,15 @@ function render() {
 
         <div class="builder-mini-card order-notes-section">
           <h4>Order Notes</h4>
+          <p class="order-notes-helper">
+            Please review your customization below. If you selected symbols, tell us where you want them placed in relation to your text. Example: “place cross after Love” or “center symbol between words.”
+          </p>
+          <div class="order-customization-summary" data-customization-summary aria-live="polite">${escapeHtml(getCustomizationSummary())}</div>
           <textarea
-            rows="6"
+            rows="3"
             oninput="setOrderNotes(this.value)"
-            placeholder="Example:&#10;Inside text: I ❤️ love you&#10;Place the heart after the letter I.&#10;You can also use this box to explain symbol placement, order, or custom requests."
-          >${orderNotes}</textarea>
+            placeholder="Add symbol placement or special instructions here. Example: place cross after ‘I’."
+          >${customerNotes}</textarea>
         </div>
       </section>
 
@@ -1190,6 +1254,7 @@ window.toggleAddOn = (addon, checked) => {
 window.setEngraving = (type, value) => {
   if (type === "inside") engravingTextInside = value;
   if (type === "outside") engravingTextOutside = value;
+  updateCustomizationSummaryUI();
   updatePriceUI();
 };
 
@@ -1250,11 +1315,12 @@ window.toggleSymbol = symbolId => {
 
   updateSymbolSelectionCardUI(symbolId, !isSelected);
   updateSymbolSummaryUI();
+  updateCustomizationSummaryUI();
   updatePriceUI();
 };
 
 window.setOrderNotes = value => {
-  orderNotes = value;
+  customerNotes = value;
 };
 
 window.setRingSize = value => {
@@ -1288,6 +1354,8 @@ window.addCurrentRingToCart = () => {
   const selectedSymbolDetails = selectedSymbols
     .map(symbolId => symbolsData.find(item => item.id === symbolId))
     .filter(Boolean);
+  const customizationSummary = getCustomizationSummary();
+  const combinedOrderNotes = buildOrderNotesSubmissionValue(customizationSummary, customerNotes);
 
   const item = {
     id: cartStore ? cartStore.createItemId() : Date.now(),
@@ -1308,8 +1376,10 @@ window.addCurrentRingToCart = () => {
     customSymbolDesignRequestSelected: customSymbolDesignRequestOptIn,
     customSymbolDesignDescription: customSymbolDesignDescription.trim(),
     customSymbolUploadFileName,
-    orderNotes,
-    symbolPlacementNotes: orderNotes,
+    orderNotes: combinedOrderNotes,
+    customizationSummary,
+    customerNotes,
+    symbolPlacementNotes: customerNotes,
     baseRingPrice: Number(currentProduct.price || 0),
     priceBreakdown: getBuilderPriceBreakdown(currentProduct),
     unitPrice: calculatePrice(),
@@ -1345,6 +1415,8 @@ window.addCurrentRingToWishlist = () => {
   const selectedSymbolDetails = selectedSymbols
     .map(symbolId => symbolsData.find(item => item.id === symbolId))
     .filter(Boolean);
+  const customizationSummary = getCustomizationSummary();
+  const combinedOrderNotes = buildOrderNotesSubmissionValue(customizationSummary, customerNotes);
 
   if (orderRecordStore) {
     orderRecordStore.setPreviewDraft({
@@ -1364,7 +1436,9 @@ window.addCurrentRingToWishlist = () => {
         customSymbolDesignDescription: customSymbolDesignDescription.trim(),
         customSymbolUploadFileName
       },
-      notes: orderNotes,
+      notes: combinedOrderNotes,
+      customizationSummary,
+      customerNotes,
       metadata: {
         sourceUrl: window.location.pathname + window.location.search,
         image: currentProduct.image,

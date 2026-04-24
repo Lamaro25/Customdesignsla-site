@@ -291,8 +291,28 @@ button {
 }
 
 .order-notes-section textarea {
-  min-height: 150px;
+  min-height: 96px;
   resize: vertical;
+}
+
+.order-notes-helper {
+  margin: 0 0 0.55rem;
+  color: #d8dfeb;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.order-customization-summary {
+  margin: 0 0 0.65rem;
+  padding: 0.65rem;
+  border-radius: 10px;
+  border: 1px solid rgba(183, 191, 204, 0.55);
+  background: linear-gradient(180deg, #f7f9fd 0%, #e8edf6 100%);
+  color: #141a24;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  white-space: pre-line;
+  word-break: break-word;
 }
 
 .symbol-section {
