@@ -291,7 +291,7 @@ button {
 }
 
 .order-notes-section textarea {
-  min-height: 96px;
+  min-height: 160px;
   resize: vertical;
 }
 
@@ -729,4 +729,5 @@ button:not(.add-to-cart-main) {
   .custom-symbol-examples { grid-template-columns: 1fr; }
   .symbol-card { width: 72px; min-height: 114px; }
   .symbol-image-wrap { width: 44px; height: 44px; }
+  .order-notes-section textarea { min-height: 190px; }
 }

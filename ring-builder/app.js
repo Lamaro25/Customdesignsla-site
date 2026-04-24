@@ -1150,9 +1150,9 @@ function render() {
           </p>
           <div class="order-customization-summary" data-customization-summary aria-live="polite">${escapeHtml(getCustomizationSummary())}</div>
           <textarea
-            rows="3"
+            rows="6"
             oninput="setOrderNotes(this.value)"
-            placeholder="Add symbol placement or special instructions here. Example: place cross after ‘I’."
+            placeholder="Example:&#10;Inside text: I love you&#10;Place the heart after the letter I.&#10;&#10;You can also use this box to explain symbol placement or add any other custom requests."
           >${customerNotes}</textarea>
         </div>
       </section>
