@@ -7,14 +7,15 @@
     {# ===============================
        PRODUCT GALLERY (AUTHORITATIVE)
        =============================== #}
-    {% if page.data.gallery and page.data.gallery.length %}
+    {% set productGallery = gallery or page.data.gallery %}
+    {% if productGallery and productGallery.length %}
       <section class="product-gallery-section">
         <div class="product-gallery-grid">
-          {% for image in page.data.gallery %}
+          {% for image in productGallery %}
             <div class="product-gallery-item">
               <img
                 src="{{ image }}"
-                alt="{{ page.data.title }} image {{ loop.index }}"
+                alt="{{ title or page.data.title }} image {{ loop.index }}"
                 loading="lazy"
               >
             </div>
@@ -24,7 +25,7 @@
     {% endif %}
 
     <section class="product-summary">
-      <h1 class="product-title">{{ page.data.title }}</h1>
+      <h1 class="product-title">{{ title or page.data.title }}</h1>
 
       <h2 class="product-section-heading">Overview</h2>
       {% set overviewHtml = "" %}
@@ -51,13 +52,13 @@
       <div class="product-overview-copy">
         {% if overviewHtml | trim %}
           {{ overviewHtml | safe }}
-        {% elif page.data.description %}
-          <p>{{ page.data.description }}</p>
+        {% elif description or page.data.description %}
+          <p>{{ description or page.data.description }}</p>
         {% endif %}
       </div>
 
-      {% if page.data.price %}
-        <p class="product-total">Total: ${{ page.data.price }} USD</p>
+      {% if price or page.data.price %}
+        <p class="product-total">Total: ${{ price or page.data.price }} USD</p>
       {% endif %}
 
       <!-- ✅ Customize CTA button (routes to builder) -->
