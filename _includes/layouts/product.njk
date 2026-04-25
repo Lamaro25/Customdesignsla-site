@@ -31,12 +31,20 @@
       {% if "<h2>Overview</h2>" in content %}
         {% set overviewParts = content.split("<h2>Overview</h2>") %}
         {% if overviewParts.length > 1 %}
-          {% set afterOverview = overviewParts[1] %}
-          {% if "<h2>" in afterOverview %}
-            {% set overviewHtml = afterOverview.split("<h2>")[0] %}
-          {% else %}
-            {% set overviewHtml = afterOverview %}
-          {% endif %}
+          {% set overviewHtml = overviewParts[1] %}
+          {% for headingStop in [
+            "<h2>Breakdown</h2>",
+            "<h2>Specifications</h2>",
+            "<h2>Notes</h2>",
+            "<h3>Breakdown</h3>",
+            "<h3>Specifications</h3>",
+            "<h3>Notes</h3>",
+            "<h2>"
+          ] %}
+            {% if headingStop in overviewHtml %}
+              {% set overviewHtml = overviewHtml.split(headingStop)[0] %}
+            {% endif %}
+          {% endfor %}
         {% endif %}
       {% endif %}
 
@@ -51,37 +59,37 @@
       {% if page.data.price %}
         <p class="product-total">Total: ${{ page.data.price }} USD</p>
       {% endif %}
-    </section>
 
-    <!-- ✅ Customize CTA button (routes to builder) -->
-    {% set productSku = sku or page.fileSlug %}
-    {% set urlPath = page.url or "" %}
-    {# Detect builder type by URL path (Nunjucks-safe) #}
-    {% set isRing = "/rings/" in urlPath %}
-    {% set isRingBuilderEligible = ("/rings/cuban-link/" in urlPath) or ("/rings/western/" in urlPath) or ("/rings/faith/" in urlPath) %}
+      <!-- ✅ Customize CTA button (routes to builder) -->
+      {% set productSku = sku or page.fileSlug %}
+      {% set urlPath = page.url or "" %}
+      {# Detect builder type by URL path (Nunjucks-safe) #}
+      {% set isRing = "/rings/" in urlPath %}
+      {% set isRingBuilderEligible = ("/rings/cuban-link/" in urlPath) or ("/rings/western/" in urlPath) or ("/rings/faith/" in urlPath) %}
 
-    {% if isRingBuilderEligible or not isRing %}
-      {% if isRing %}
-        {% set builderPath = "/builder/ring/" %}
-      {% else %}
-        {% set builderPath = "/builder/charm/" %}
-      {% endif %}
+      {% if isRingBuilderEligible or not isRing %}
+        {% if isRing %}
+          {% set builderPath = "/builder/ring/" %}
+        {% else %}
+          {% set builderPath = "/builder/charm/" %}
+        {% endif %}
 
-      <div class="product-add-to-cart-wrap product-customize-wrap">
-        <a
-          href="{{ builderPath }}?sku={{ productSku | urlencode }}"
-          class="product-add-to-cart-link product-customize-link"
-          aria-label="Customize and checkout"
-        >
-          <img
-            src="/static/img/ui/add-to-cart.png"
-            alt="Customize"
-            class="product-add-to-cart-btn product-customize-btn"
-            loading="lazy"
+        <div class="product-add-to-cart-wrap product-customize-wrap">
+          <a
+            href="{{ builderPath }}?sku={{ productSku | urlencode }}"
+            class="product-add-to-cart-link product-customize-link"
+            aria-label="Customize and checkout"
           >
-        </a>
-      </div>
-    {% endif %}
+            <img
+              src="/static/img/ui/add-to-cart.png"
+              alt="Customize"
+              class="product-add-to-cart-btn product-customize-btn"
+              loading="lazy"
+            >
+          </a>
+        </div>
+      {% endif %}
+    </section>
 
   </div>
 </section>
