@@ -1397,3 +1397,59 @@ footer.site-footer {
     gap: 2rem;
   }
 }
+
+/* ==========================================================
+   PRODUCT PAGE — MINIMAL CUSTOMER VIEW
+   Keeps only: title, overview, total, customize CTA
+========================================================== */
+
+.product-page-minimal .product-summary {
+  margin-top: 0.9rem;
+}
+
+.product-page-minimal .product-title {
+  margin: 0;
+  font-size: clamp(1.7rem, 4.5vw, 2.25rem);
+  line-height: 1.2;
+}
+
+.product-page-minimal .product-section-heading {
+  margin: 0.85rem 0 0.45rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+.product-page-minimal .product-overview-copy {
+  margin: 0;
+}
+
+.product-page-minimal .product-overview-copy p {
+  margin: 0 0 0.45rem;
+  line-height: 1.5;
+}
+
+.product-page-minimal .product-total {
+  margin: 0.2rem 0 0;
+  font-weight: 700;
+  font-size: 1.04rem;
+}
+
+.product-page-minimal .product-customize-wrap,
+.product-page-minimal .product-add-to-cart-wrap {
+  margin: 0.8rem auto 2.25rem;
+}
+
+@media (max-width: 767px) {
+  .product-page-minimal .product-summary {
+    margin-top: 0.7rem;
+  }
+
+  .product-page-minimal .product-section-heading {
+    margin-top: 0.7rem;
+  }
+
+  .product-page-minimal .product-customize-wrap,
+  .product-page-minimal .product-add-to-cart-wrap {
+    margin-top: 0.7rem;
+  }
+}
