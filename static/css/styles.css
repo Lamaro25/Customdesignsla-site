@@ -1404,52 +1404,58 @@ footer.site-footer {
 ========================================================== */
 
 .product-page-minimal .product-summary {
-  margin-top: 0.9rem;
+  margin-top: 1.6rem;
+  text-align: center;
 }
 
 .product-page-minimal .product-title {
-  margin: 0;
+  margin: 0 0 0.95rem;
   font-size: clamp(1.7rem, 4.5vw, 2.25rem);
   line-height: 1.2;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .product-page-minimal .product-section-heading {
-  margin: 0.85rem 0 0.45rem;
+  margin: 0 0 0.7rem;
   font-size: 1.05rem;
   letter-spacing: 0.01em;
+  text-align: center;
 }
 
 .product-page-minimal .product-overview-copy {
-  margin: 0;
+  margin: 0 0 0.95rem;
+  text-align: center;
 }
 
 .product-page-minimal .product-overview-copy p {
-  margin: 0 0 0.45rem;
+  margin: 0 0 0.55rem;
   line-height: 1.5;
 }
 
 .product-page-minimal .product-total {
-  margin: 0.2rem 0 0;
+  margin: 0 0 0.9rem;
   font-weight: 700;
   font-size: 1.04rem;
+  text-align: center;
 }
 
 .product-page-minimal .product-customize-wrap,
 .product-page-minimal .product-add-to-cart-wrap {
-  margin: 0.8rem auto 2.25rem;
+  margin: 0 auto 2.25rem;
 }
 
 @media (max-width: 767px) {
   .product-page-minimal .product-summary {
-    margin-top: 0.7rem;
+    margin-top: 1.2rem;
   }
 
   .product-page-minimal .product-section-heading {
-    margin-top: 0.7rem;
+    margin-bottom: 0.6rem;
   }
 
   .product-page-minimal .product-customize-wrap,
   .product-page-minimal .product-add-to-cart-wrap {
-    margin-top: 0.7rem;
+    margin-top: 0;
   }
 }
