@@ -3,6 +3,11 @@ const { google } = require('googleapis');
 
 const MAX_UPLOAD_BYTES = 2 * 1024 * 1024;
 const ALLOWED_MIME_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
+const REQUIRED_CLOUDINARY_ENV_VARS = ['CLOUDINARY_CLOUD_NAME', 'CLOUDINARY_API_KEY', 'CLOUDINARY_API_SECRET'];
+
+function getMissingCloudinaryEnvVars() {
+  return REQUIRED_CLOUDINARY_ENV_VARS.filter((envVarName) => !String(process.env[envVarName] || '').trim());
+}
 
 function formatSubmittedAt() {
   const formatter = new Intl.DateTimeFormat('en-US', {
@@ -79,10 +84,19 @@ async function uploadImageToCloudinary(parsedUpload, originalFileName) {
   const cloudName = String(process.env.CLOUDINARY_CLOUD_NAME || '').trim();
   const apiKey = String(process.env.CLOUDINARY_API_KEY || '').trim();
   const apiSecret = String(process.env.CLOUDINARY_API_SECRET || '').trim();
-  const folder = String(process.env.CLOUDINARY_UPLOAD_FOLDER || 'cdla-custom-orders').trim();
+  // Netlify env vars for Cloudinary:
+  // - Required: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
+  // - Optional: CLOUDINARY_FOLDER (preferred) or CLOUDINARY_UPLOAD_FOLDER (legacy fallback)
+  const folder = String(process.env.CLOUDINARY_FOLDER || process.env.CLOUDINARY_UPLOAD_FOLDER || 'cdla-custom-orders').trim();
+  const uploadPreset = String(process.env.CLOUDINARY_UPLOAD_PRESET || '').trim();
+  const missingEnvVars = getMissingCloudinaryEnvVars();
 
-  if (!cloudName || !apiKey || !apiSecret) {
-    throw new Error('Image upload requested but Cloudinary env vars are missing.');
+  if (missingEnvVars.length) {
+    const details = missingEnvVars.join(', ');
+    const error = new Error(`Image upload requested but required Cloudinary env vars are missing: ${details}.`);
+    error.code = 'MISSING_CLOUDINARY_ENV_VARS';
+    error.missingEnvVars = missingEnvVars;
+    throw error;
   }
 
   const safeOriginalFileName = sanitizeFileName(originalFileName);
@@ -106,6 +120,9 @@ async function uploadImageToCloudinary(parsedUpload, originalFileName) {
   formData.append('signature', signature);
   formData.append('folder', folder);
   formData.append('public_id', publicId);
+  if (uploadPreset) {
+    formData.append('upload_preset', uploadPreset);
+  }
 
   const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
     method: 'POST',
@@ -278,9 +295,15 @@ exports.handler = async (event) => {
       })
     };
   } catch (error) {
+    const responseBody = { error: error.message };
+    if (error.code === 'MISSING_CLOUDINARY_ENV_VARS') {
+      responseBody.code = error.code;
+      responseBody.missingEnvVars = Array.isArray(error.missingEnvVars) ? error.missingEnvVars : [];
+    }
+
     return {
-      statusCode: 500,
-      body: JSON.stringify({ error: error.message })
+      statusCode: error.code === 'MISSING_CLOUDINARY_ENV_VARS' ? 422 : 500,
+      body: JSON.stringify(responseBody)
     };
   }
 };
