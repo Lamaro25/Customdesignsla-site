@@ -1421,10 +1421,10 @@ footer.site-footer {
   max-width: 520px;
   margin: 1.5rem auto 1.2rem;
   padding: 1.25rem 1.15rem;
-  background: linear-gradient(180deg, #f5f5f6 0%, #efeff1 100%);
-  border: 1px solid #e3e3e6;
+  background: linear-gradient(180deg, #ececee 0%, #e4e4e7 100%);
+  border: 1px solid #dadade;
   border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .product-page-minimal .product-section-heading {
