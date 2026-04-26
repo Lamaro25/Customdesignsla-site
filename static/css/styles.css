@@ -1417,11 +1417,14 @@ footer.site-footer {
 }
 
 .product-page-minimal .product-overview-card {
-  width: min(90%, 500px);
-  margin: 0 auto 1.15rem;
-  padding: 1rem 1.15rem 1.05rem;
-  background: #f6f6f7;
-  border-radius: 0.9rem;
+  width: 88%;
+  max-width: 520px;
+  margin: 1.5rem auto 1.2rem;
+  padding: 1.25rem 1.15rem;
+  background: linear-gradient(180deg, #f5f5f6 0%, #efeff1 100%);
+  border: 1px solid #e3e3e6;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.06);
 }
 
 .product-page-minimal .product-section-heading {
@@ -1439,6 +1442,10 @@ footer.site-footer {
 .product-page-minimal .product-overview-copy p {
   margin: 0 0 0.55rem;
   line-height: 1.5;
+}
+
+.product-page-minimal .product-overview-copy p:last-child {
+  margin-bottom: 0;
 }
 
 .product-page-minimal .product-total {
@@ -1460,7 +1467,7 @@ footer.site-footer {
 
   .product-page-minimal .product-overview-card {
     width: 88%;
-    padding: 0.9rem 1rem;
+    padding: 1rem 1rem 0.95rem;
     margin-bottom: 1rem;
   }
 
