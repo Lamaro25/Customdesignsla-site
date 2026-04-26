@@ -665,6 +665,55 @@ function buildPreviewSubmissionPayload(form) {
   };
 }
 
+async function submitPreviewRequestWithImageFallback(payload) {
+  const requestPreviewSubmission = async nextPayload => {
+    const response = await fetch("/.netlify/functions/submit-preview", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(nextPayload)
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const error = new Error(data.error || "Unable to submit your free preview request.");
+      error.details = data;
+      throw error;
+    }
+
+    return data;
+  };
+
+  try {
+    return await requestPreviewSubmission(payload);
+  } catch (error) {
+    const missingEnvVars = Array.isArray(error?.details?.missingEnvVars) ? error.details.missingEnvVars : [];
+    const imageWasIncluded = Boolean(String(payload?.uploadedImageDataUrl || "").trim());
+    const envConfigIssue = error?.details?.code === "MISSING_CLOUDINARY_ENV_VARS";
+
+    if (!imageWasIncluded || !envConfigIssue) {
+      throw error;
+    }
+
+    const missingEnvVarText = missingEnvVars.length ? missingEnvVars.join(", ") : "CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET";
+    const continueWithoutImage = window.confirm(
+      `Image upload is currently unavailable because required Cloudinary Netlify env vars are missing: ${missingEnvVarText}.\n\n` +
+        "Press OK to submit this request without an uploaded image, or Cancel to keep your image and try again later."
+    );
+
+    if (!continueWithoutImage) {
+      throw error;
+    }
+
+    return requestPreviewSubmission({
+      ...payload,
+      uploadedImageDataUrl: "",
+      uploadedImageFilename: ""
+    });
+  }
+}
+
 function renderPreviewRequestSuccessState() {
   checkoutApp.innerHTML = `
     <section class="checkout-shell">
@@ -773,29 +822,30 @@ function bindCheckoutEvents() {
       errorEl.textContent = "";
     }
 
-    const endpoint = previewMode ? "/.netlify/functions/submit-preview" : "/.netlify/functions/create-stripe-checkout-session";
     const requestPayload = previewMode ? buildPreviewSubmissionPayload(form) : checkoutSubmission;
 
     if (previewMode) {
       console.log("Preview request payload:", requestPayload);
     }
 
-    fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(requestPayload)
-    })
-      .then(async response => {
-        const data = await response.json().catch(() => ({}));
-        if (!response.ok) {
-          throw new Error(data.error || (previewMode ? "Unable to submit your free preview request." : "Unable to start Stripe checkout."));
-        }
-
+    (async () => {
+      try {
         if (previewMode) {
+          await submitPreviewRequestWithImageFallback(requestPayload);
           renderPreviewRequestSuccessState();
           return;
+        }
+
+        const response = await fetch("/.netlify/functions/create-stripe-checkout-session", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(requestPayload)
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(data.error || "Unable to start Stripe checkout.");
         }
 
         if (!data.checkoutUrl) {
@@ -803,8 +853,7 @@ function bindCheckoutEvents() {
         }
 
         window.location.assign(data.checkoutUrl);
-      })
-      .catch(error => {
+      } catch (error) {
         if (errorEl) {
           errorEl.textContent = error.message || "We couldn't connect to Stripe. Please try again.";
         }
@@ -813,7 +862,8 @@ function bindCheckoutEvents() {
           submitBtn.disabled = false;
           submitBtn.textContent = previewMode ? "Send Free Preview Request" : "Proceed to Payment";
         }
-      });
+      }
+    })();
   });
 
   persistAndRefreshButtonState();
