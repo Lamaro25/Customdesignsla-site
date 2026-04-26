@@ -2,6 +2,7 @@ const checkoutApp = document.getElementById("checkout-app");
 const CHECKOUT_STORAGE_KEY = "cdla_checkout_draft";
 const CHECKOUT_SUBMISSION_KEY = "cdla_checkout_submission";
 const LEGACY_CHECKOUT_FORM_STORAGE_KEY = "cdla_checkout_forms_by_item";
+const CUSTOM_SYMBOL_UPLOAD_STORAGE_KEY = "cdla_custom_symbol_uploads";
 
 const cartStore = window.CdlaCartStore;
 
@@ -140,6 +141,7 @@ function hasValidCheckoutDraft(draft) {
 
 function buildCheckoutDraftFromCartItem(item) {
   if (!item) return null;
+  const customSymbolUpload = loadCustomSymbolUploadForItem(item.id);
 
   return {
     createdAt: item.createdAt || new Date().toISOString(),
@@ -153,6 +155,8 @@ function buildCheckoutDraftFromCartItem(item) {
     selectedSymbols: Array.isArray(item.symbols) ? item.symbols : [],
     customSymbolRequestSelected: Boolean(item.customSymbolDesignRequestSelected),
     customSymbolRequestDescription: item.customSymbolDesignDescription || "",
+    customSymbolUploadFileName: customSymbolUpload.fileName || item.customSymbolUploadFileName || "",
+    customSymbolUploadDataUrl: customSymbolUpload.dataUrl || item.customSymbolUploadDataUrl || "",
     orderNotes: item.orderNotes || "",
     customerNotes: item.customerNotes || "",
     baseRingPrice: Number(item.baseRingPrice || item.unitPrice || 0),
@@ -162,6 +166,23 @@ function buildCheckoutDraftFromCartItem(item) {
     productImage: item.image || "",
     builderUrl: item.sourceUrl || "/ring-builder/"
   };
+}
+
+function loadCustomSymbolUploadForItem(itemId) {
+  try {
+    const raw = sessionStorage.getItem(CUSTOM_SYMBOL_UPLOAD_STORAGE_KEY);
+    if (!raw) return { dataUrl: "", fileName: "" };
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return { dataUrl: "", fileName: "" };
+    const record = parsed[String(itemId || "").trim()];
+    if (!record || typeof record !== "object") return { dataUrl: "", fileName: "" };
+    return {
+      dataUrl: String(record.dataUrl || ""),
+      fileName: String(record.fileName || "")
+    };
+  } catch (_error) {
+    return { dataUrl: "", fileName: "" };
+  }
 }
 
 function resolveCheckoutDraft() {
@@ -624,14 +645,8 @@ function buildPreviewSubmissionPayload(form) {
   const symbols = buildSymbolsSummary();
   const notes = String(checkoutDraft?.customerNotes || "").trim();
   const estimatedTotal = formatMoney(checkoutDraft?.totalPrice || 0);
-  const summary = [
-    `Product: ${productName || "Custom Ring"}`,
-    `SKU: ${sku || "N/A"}`,
-    `Ring Size: ${ringSize || "N/A"}`,
-    `Inside Text: ${insideText || "Not provided"}`,
-    `Outside Text: ${outsideText || "Not provided"}`,
-    `Symbols: ${symbols || "None selected"}`
-  ].join(" | ");
+  const uploadedImageFilename = String(checkoutDraft?.customSymbolUploadFileName || "").trim();
+  const uploadedImageDataUrl = String(checkoutDraft?.customSymbolUploadDataUrl || "").trim();
 
   return {
     customerName,
@@ -644,8 +659,9 @@ function buildPreviewSubmissionPayload(form) {
     outsideText,
     symbols,
     notes,
-    summary,
-    estimatedTotal
+    estimatedTotal,
+    uploadedImageFilename,
+    uploadedImageDataUrl
   };
 }
 
