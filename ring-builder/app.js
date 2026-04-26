@@ -17,9 +17,13 @@ let ringSizingInfoExpanded = false;
 let customSymbolDesignRequestOptIn = false;
 let customSymbolDesignDescription = "";
 let customSymbolUploadFileName = "";
+let customSymbolUploadDataUrl = "";
 let customerNotes = "";
 let selectedRingSize = "";
 const CUSTOM_SYMBOL_SERVICE_FEE = 10;
+const CUSTOM_SYMBOL_UPLOAD_STORAGE_KEY = "cdla_custom_symbol_uploads";
+const MAX_CUSTOM_SYMBOL_UPLOAD_BYTES = 2 * 1024 * 1024;
+const ALLOWED_CUSTOM_SYMBOL_UPLOAD_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
 const RING_SIZE_OPTIONS = [
   "4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9",
   "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5"
@@ -267,6 +271,7 @@ function initializeSelections() {
   customSymbolDesignRequestOptIn = false;
   customSymbolDesignDescription = "";
   customSymbolUploadFileName = "";
+  customSymbolUploadDataUrl = "";
   customerNotes = "";
   selectedRingSize = RING_SIZE_OPTIONS[0];
 }
@@ -466,6 +471,8 @@ function saveCheckoutDraft(item) {
     selectedSymbols: item.symbols || [],
     customSymbolRequestSelected: item.customSymbolDesignRequestSelected,
     customSymbolRequestDescription: item.customSymbolDesignDescription || "",
+    customSymbolUploadFileName: item.customSymbolUploadFileName || "",
+    customSymbolUploadDataUrl: customSymbolUploadDataUrl || "",
     orderNotes: item.orderNotes || "",
     baseRingPrice: Number(currentProduct?.price || 0),
     priceBreakdown: getBuilderPriceBreakdown(currentProduct),
@@ -514,6 +521,40 @@ function persistCart() {
     return;
   }
   localStorage.setItem("cdla_cart", JSON.stringify(cart));
+}
+
+function readCustomSymbolUploadStorage() {
+  try {
+    const raw = sessionStorage.getItem(CUSTOM_SYMBOL_UPLOAD_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (_error) {
+    return {};
+  }
+}
+
+function saveCustomSymbolUploadForItem(itemId, uploadPayload) {
+  const normalizedItemId = String(itemId || "").trim();
+  if (!normalizedItemId) return;
+
+  const storage = readCustomSymbolUploadStorage();
+
+  if (!uploadPayload?.dataUrl) {
+    delete storage[normalizedItemId];
+    sessionStorage.setItem(CUSTOM_SYMBOL_UPLOAD_STORAGE_KEY, JSON.stringify(storage));
+    return;
+  }
+
+  storage[normalizedItemId] = {
+    dataUrl: String(uploadPayload.dataUrl || ""),
+    fileName: String(uploadPayload.fileName || ""),
+    mimeType: String(uploadPayload.mimeType || ""),
+    size: Number(uploadPayload.size || 0),
+    savedAt: new Date().toISOString()
+  };
+
+  sessionStorage.setItem(CUSTOM_SYMBOL_UPLOAD_STORAGE_KEY, JSON.stringify(storage));
 }
 
 function syncCartState() {
@@ -1036,7 +1077,7 @@ function render() {
                   <div class="upload-placeholder">
                     <p class="upload-label">Upload Reference Image (optional)</p>
                     <div class="upload-input-wrap">
-                      <input type="file" aria-label="Upload Reference Image (optional)" onchange="setCustomSymbolUploadFileName(this.files)" />
+                      <input type="file" accept="image/jpeg,image/png,image/webp" aria-label="Upload Reference Image (optional)" onchange="setCustomSymbolUploadFileName(this.files)" />
                     </div>
                     ${customSymbolUploadFileName ? `<p class="upload-file-name">Selected file: ${escapeHtml(customSymbolUploadFileName)}</p>` : ""}
                 </div>
@@ -1305,6 +1346,7 @@ window.toggleSymbol = symbolId => {
     customSymbolDesignRequestOptIn = false;
     customSymbolDesignDescription = "";
     customSymbolUploadFileName = "";
+    customSymbolUploadDataUrl = "";
     render();
     return;
   }
@@ -1342,7 +1384,44 @@ window.setCustomSymbolDesignDescription = value => {
 };
 
 window.setCustomSymbolUploadFileName = files => {
-  customSymbolUploadFileName = files?.[0]?.name || "";
+  const selectedFile = files?.[0];
+
+  if (!selectedFile) {
+    customSymbolUploadFileName = "";
+    customSymbolUploadDataUrl = "";
+    render();
+    return;
+  }
+
+  if (!ALLOWED_CUSTOM_SYMBOL_UPLOAD_TYPES.has(selectedFile.type)) {
+    alert("Unsupported file type. Please upload a JPG, PNG, or WEBP image.");
+    customSymbolUploadFileName = "";
+    customSymbolUploadDataUrl = "";
+    render();
+    return;
+  }
+
+  if (Number(selectedFile.size || 0) > MAX_CUSTOM_SYMBOL_UPLOAD_BYTES) {
+    alert("Image is too large. Please upload an image smaller than 2MB.");
+    customSymbolUploadFileName = "";
+    customSymbolUploadDataUrl = "";
+    render();
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    customSymbolUploadFileName = selectedFile.name || "";
+    customSymbolUploadDataUrl = typeof reader.result === "string" ? reader.result : "";
+    render();
+  };
+  reader.onerror = () => {
+    alert("We couldn't read that file. Please try a different image.");
+    customSymbolUploadFileName = "";
+    customSymbolUploadDataUrl = "";
+    render();
+  };
+  reader.readAsDataURL(selectedFile);
 };
 
 window.addCurrentRingToCart = () => {
@@ -1393,6 +1472,12 @@ window.addCurrentRingToCart = () => {
 
   if (cartStore) {
     const savedItem = cartStore.addItem(item);
+    saveCustomSymbolUploadForItem(savedItem.id, {
+      dataUrl: customSymbolUploadDataUrl,
+      fileName: customSymbolUploadFileName,
+      mimeType: customSymbolUploadDataUrl.split(";")[0].replace("data:", ""),
+      size: customSymbolUploadDataUrl.length
+    });
     cart = cartStore.loadCart();
     cartStore.selectItem(savedItem.id);
     saveCheckoutDraft(savedItem);
@@ -1401,6 +1486,12 @@ window.addCurrentRingToCart = () => {
   }
 
   cart.push(item);
+  saveCustomSymbolUploadForItem(item.id, {
+    dataUrl: customSymbolUploadDataUrl,
+    fileName: customSymbolUploadFileName,
+    mimeType: customSymbolUploadDataUrl.split(";")[0].replace("data:", ""),
+    size: customSymbolUploadDataUrl.length
+  });
   persistCart();
   saveCheckoutDraft(item);
   window.location.href = "/checkout/";
@@ -1455,6 +1546,12 @@ window.addCurrentRingToWishlist = () => {
 
   if (cartStore) {
     const savedItem = cartStore.addItem(item);
+    saveCustomSymbolUploadForItem(savedItem.id, {
+      dataUrl: customSymbolUploadDataUrl,
+      fileName: customSymbolUploadFileName,
+      mimeType: customSymbolUploadDataUrl.split(";")[0].replace("data:", ""),
+      size: customSymbolUploadDataUrl.length
+    });
     cart = cartStore.loadCart();
     cartStore.selectItem(savedItem.id);
     saveCheckoutDraft(savedItem);
@@ -1494,6 +1591,12 @@ window.addCurrentRingToWishlist = () => {
   }
 
   cart.push(item);
+  saveCustomSymbolUploadForItem(item.id, {
+    dataUrl: customSymbolUploadDataUrl,
+    fileName: customSymbolUploadFileName,
+    mimeType: customSymbolUploadDataUrl.split(";")[0].replace("data:", ""),
+    size: customSymbolUploadDataUrl.length
+  });
   persistCart();
   saveCheckoutDraft(item);
   window.location.href = "/checkout/";
