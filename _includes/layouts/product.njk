@@ -30,30 +30,32 @@
       {% set overviewHtml = "" %}
       {% if "<h2>Overview</h2>" in content %}
         {% set overviewParts = content.split("<h2>Overview</h2>") %}
-        {% if overviewParts.length > 1 %}
-          {% set overviewHtml = overviewParts[1] %}
-          {% for headingStop in [
-            "<p><strong>Total:",
-            "<p><strong>Total:</strong>",
-            "<p><strong>➡️ Total:",
-            "<p><strong>➡️ Total:</strong>",
-            "<h2>Breakdown</h2>",
-            "<h2>Specifications</h2>",
-            "<h2>Notes</h2>",
-            "<h3>Breakdown</h3>",
-            "<h3>Specifications</h3>",
-            "<h3>Notes</h3>",
-            "<h2>"
-          ] %}
-            {% if headingStop in overviewHtml %}
-              {% set overviewHtml = overviewHtml.split(headingStop)[0] %}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
+      {% elif "<h2>About this piece</h2>" in content %}
+        {% set overviewParts = content.split("<h2>About this piece</h2>") %}
+      {% endif %}
+      {% if overviewParts and overviewParts.length > 1 %}
+        {% set overviewHtml = overviewParts[1] %}
+        {% for headingStop in [
+          "<p><strong>Total:",
+          "<p><strong>Total:</strong>",
+          "<p><strong>➡️ Total:",
+          "<p><strong>➡️ Total:</strong>",
+          "<h2>Breakdown</h2>",
+          "<h2>Specifications</h2>",
+          "<h2>Notes</h2>",
+          "<h3>Breakdown</h3>",
+          "<h3>Specifications</h3>",
+          "<h3>Notes</h3>",
+          "<h2>"
+        ] %}
+          {% if headingStop in overviewHtml %}
+            {% set overviewHtml = overviewHtml.split(headingStop)[0] %}
+          {% endif %}
+        {% endfor %}
       {% endif %}
 
       <div class="product-overview-card">
-        <h2 class="product-section-heading">Overview</h2>
+        <h2 class="product-section-heading">About this piece</h2>
         <div class="product-overview-copy">
           {% if overviewHtml | trim %}
             {{ overviewHtml | safe }}
