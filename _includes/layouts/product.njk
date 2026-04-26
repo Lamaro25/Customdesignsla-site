@@ -27,7 +27,6 @@
     <section class="product-summary">
       <h1 class="product-title">{{ title or page.data.title }}</h1>
 
-      <h2 class="product-section-heading">Overview</h2>
       {% set overviewHtml = "" %}
       {% if "<h2>Overview</h2>" in content %}
         {% set overviewParts = content.split("<h2>Overview</h2>") %}
@@ -53,12 +52,15 @@
         {% endif %}
       {% endif %}
 
-      <div class="product-overview-copy">
-        {% if overviewHtml | trim %}
-          {{ overviewHtml | safe }}
-        {% elif description or page.data.description %}
-          <p>{{ description or page.data.description }}</p>
-        {% endif %}
+      <div class="product-overview-card">
+        <h2 class="product-section-heading">Overview</h2>
+        <div class="product-overview-copy">
+          {% if overviewHtml | trim %}
+            {{ overviewHtml | safe }}
+          {% elif description or page.data.description %}
+            <p>{{ description or page.data.description }}</p>
+          {% endif %}
+        </div>
       </div>
 
       {% if price or page.data.price %}
