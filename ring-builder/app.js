@@ -1199,12 +1199,17 @@ function render() {
       </section>
 
       <div class="builder-actions builder-plaque">
-        <button class="add-to-cart-main" onclick="addCurrentRingToCart()">
-          Order Now
-        </button>
+        <div class="builder-actions-note" aria-live="polite">
+          <p>Every custom piece includes a design preview for approval before production.</p>
+          <p class="builder-actions-note-priority">Paid orders receive priority turnaround.</p>
+        </div>
 
         <button class="add-to-cart-main" type="button" onclick="addCurrentRingToWishlist()">
-          Save & Get Free Preview
+          Request Free Preview
+        </button>
+
+        <button class="add-to-cart-main" onclick="addCurrentRingToCart()">
+          Start Paid Order
         </button>
       </div>
 
