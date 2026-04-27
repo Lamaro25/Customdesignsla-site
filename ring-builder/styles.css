@@ -141,6 +141,16 @@ footer {
 .product-info-plaque p,
 .how-it-works p { margin: 0.35rem 0; color: #d5dbe6; }
 
+.product-info-collection {
+  margin: 0 0 0.3rem;
+  text-transform: none;
+}
+
+.product-info-final-price {
+  margin-top: 0.5rem;
+  color: #f2f6ff;
+}
+
 .price-breakdown-list {
   list-style: none;
   padding: 0;
@@ -293,6 +303,27 @@ button {
 .order-notes-section textarea {
   min-height: 160px;
   resize: vertical;
+}
+
+.order-notes-toggle {
+  width: 100%;
+  text-align: left;
+  background: linear-gradient(145deg, #dce3ef, #bcc5d4);
+  color: #121824;
+  border: 1px solid #c4ccd9;
+}
+
+.order-notes-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease, margin-top 0.2s ease;
+}
+
+.order-notes-content.is-open {
+  max-height: 560px;
+  opacity: 1;
+  margin-top: 0.65rem;
 }
 
 .order-notes-helper {
