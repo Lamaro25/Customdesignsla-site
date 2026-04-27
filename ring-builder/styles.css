@@ -25,7 +25,7 @@ body.builder-page {
 }
 
 main {
-  padding: 22px 16px 34px;
+  padding: 22px 16px 22px;
   max-width: 920px;
   margin: 0 auto;
   width: 100%;
@@ -50,7 +50,7 @@ footer {
   display: grid;
   gap: 14px;
   width: 100%;
-  padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
 }
 
 .builder-shell > * {
@@ -235,6 +235,7 @@ footer {
 }
 
 .customization-options { padding: 1rem; }
+.customization-options > h3 { text-align: center; }
 
 .builder-mini-card {
   margin-top: 0.8rem;
@@ -293,11 +294,25 @@ button {
 
 .ring-specs-card label { text-align: left; margin-bottom: 0.55rem; }
 
-.engraving-field { text-align: left; margin-bottom: 0.6rem; }
+.engraving-section h4,
+.symbols-card h4 {
+  text-align: center;
+}
+
+.engraving-field {
+  text-align: center;
+  margin-bottom: 0.6rem;
+}
+
+.engraving-field textarea {
+  text-align: left;
+}
+
 .engraving-subtext {
   margin: -0.1rem 0 0.55rem;
   color: #c6d0e0;
   font-size: 0.85rem;
+  text-align: center;
 }
 
 .order-notes-section textarea {
@@ -307,7 +322,7 @@ button {
 
 .order-notes-toggle {
   width: 100%;
-  text-align: left;
+  text-align: center;
   background: linear-gradient(145deg, #dce3ef, #bcc5d4);
   color: #121824;
   border: 1px solid #c4ccd9;
@@ -348,7 +363,7 @@ button {
 
 .symbol-section {
   margin: 0;
-  text-align: left;
+  text-align: center;
 }
 
 .symbol-indicator-row {
@@ -387,7 +402,12 @@ button {
 }
 
 .symbol-help,
-.symbol-summary { margin: 0.35rem 0 0.6rem; font-size: 0.92rem; color: #d0d8e6; }
+.symbol-summary {
+  margin: 0.35rem 0 0.6rem;
+  font-size: 0.92rem;
+  color: #d0d8e6;
+  text-align: center;
+}
 
 .symbol-grid {
   display: flex;
@@ -562,13 +582,6 @@ button {
   filter: brightness(1.05);
 }
 
-.material-note {
-  margin: 0;
-  text-align: center;
-  color: #111;
-  font-size: 0.9rem;
-}
-
 .total-price-card h2 {
   margin: 0;
   font-family: "Playfair Display", Georgia, serif;
@@ -671,34 +684,6 @@ body.input-focused .floating-total-bar.input-focused {
 }
 
 .subtle-text { margin: 0; color: #c2cbda; }
-
-.how-it-works-wrap {
-  text-align: center;
-}
-
-.how-it-works-toggle {
-  width: 100%;
-  background:
-    linear-gradient(178deg, rgba(245,248,255,0.18) 0%, rgba(245,248,255,0.05) 20%, rgba(255,255,255,0) 40%),
-    linear-gradient(145deg, #28303b, #171f2a);
-  color: #f3f7ff;
-  border: 1px solid rgba(176, 188, 206, 0.52);
-  font-weight: 600;
-}
-
-.how-it-works-content {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.25s ease, opacity 0.2s ease;
-}
-
-.how-it-works-content.is-open {
-  max-height: 520px;
-  opacity: 1;
-  margin-top: 0.7rem;
-}
-
 
 .hero-plaque h2,
 .product-info-plaque h3,

@@ -12,7 +12,6 @@ let engravingTextInside = "";
 let engravingTextOutside = "";
 let selectedSymbols = [];
 let symbolSectionExpanded = false;
-let howThisWorksExpanded = false;
 let ringSizingInfoExpanded = false;
 let orderNotesExpanded = false;
 let customSymbolDesignRequestOptIn = false;
@@ -267,7 +266,6 @@ function initializeSelections() {
   engravingTextOutside = "";
   selectedSymbols = [];
   symbolSectionExpanded = false;
-  howThisWorksExpanded = false;
   ringSizingInfoExpanded = false;
   orderNotesExpanded = false;
   customSymbolDesignRequestOptIn = false;
@@ -1200,8 +1198,6 @@ function render() {
         </div>
       </section>
 
-      <p class="material-note">All jewelry pieces are crafted in solid .925 sterling silver.</p>
-
       <div class="builder-actions builder-plaque">
         <button class="add-to-cart-main" onclick="addCurrentRingToCart()">
           Order Now
@@ -1211,31 +1207,6 @@ function render() {
           Save & Get Free Preview
         </button>
       </div>
-
-      <section class="builder-plaque how-it-works-wrap">
-        <button
-          type="button"
-          class="how-it-works-toggle"
-          onclick="toggleHowThisWorks()"
-          aria-expanded="${howThisWorksExpanded ? "true" : "false"}"
-        >
-          How This Works
-        </button>
-        <div class="how-it-works-content ${howThisWorksExpanded ? "is-open" : ""}">
-          <div class="how-it-works">
-            <h3>How This Works</h3>
-            <p><strong>Save &amp; Get Free Preview</strong> — Receive a custom design preview before placing your order.</p>
-            <p>Free previews are completed within 2–3 weeks depending on current workload.</p>
-            <p><strong>Order Now</strong> — Receive your custom design preview within 3–7 business days after payment.</p>
-            <p>Paid orders are prioritized.</p>
-            <p><strong>Payment Options:</strong></p>
-            <p>• Pay in full — highest priority</p>
-            <p>• 50% deposit — design completed within the same 3–7 day window</p>
-            <p>All orders receive a design preview before production begins.</p>
-          </div>
-        </div>
-      </section>
-
 
       <div id="original-total-price" class="price-box builder-plaque total-price-card">
         <h2 data-live-total-price>Total Price: $${price}</h2>
@@ -1281,11 +1252,6 @@ window.setEngraving = (type, value) => {
 
 window.toggleSymbolSection = () => {
   symbolSectionExpanded = !symbolSectionExpanded;
-  render();
-};
-
-window.toggleHowThisWorks = () => {
-  howThisWorksExpanded = !howThisWorksExpanded;
   render();
 };
 
