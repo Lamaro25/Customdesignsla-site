@@ -50,7 +50,7 @@ footer {
   display: grid;
   gap: 14px;
   width: 100%;
-  padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(30px + env(safe-area-inset-bottom, 0px));
 }
 
 .builder-shell > * {
@@ -564,6 +564,24 @@ button {
   gap: 0.55rem;
 }
 
+.builder-actions-note {
+  text-align: center;
+  margin-bottom: 0.35rem;
+}
+
+.builder-actions-note p {
+  margin: 0;
+  line-height: 1.35;
+  font-size: 0.86rem;
+  color: #ced7e6;
+}
+
+.builder-actions-note .builder-actions-note-priority {
+  margin-top: 0.18rem;
+  font-size: 0.78rem;
+  color: #b8c4d8;
+}
+
 .add-to-cart-main {
   background:
     linear-gradient(178deg, rgba(245,248,255,0.2) 0%, rgba(245,248,255,0.05) 22%, rgba(255,255,255,0) 42%),
@@ -587,6 +605,10 @@ button {
   font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(1.3rem, 2.6vw, 1.8rem);
   color: #f5f8ff;
+}
+
+.total-price-card {
+  margin-top: 0.85rem;
 }
 
 .floating-total-bar {
