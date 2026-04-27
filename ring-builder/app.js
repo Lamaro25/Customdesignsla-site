@@ -14,6 +14,7 @@ let selectedSymbols = [];
 let symbolSectionExpanded = false;
 let howThisWorksExpanded = false;
 let ringSizingInfoExpanded = false;
+let orderNotesExpanded = false;
 let customSymbolDesignRequestOptIn = false;
 let customSymbolDesignDescription = "";
 let customSymbolUploadFileName = "";
@@ -268,6 +269,7 @@ function initializeSelections() {
   symbolSectionExpanded = false;
   howThisWorksExpanded = false;
   ringSizingInfoExpanded = false;
+  orderNotesExpanded = false;
   customSymbolDesignRequestOptIn = false;
   customSymbolDesignDescription = "";
   customSymbolUploadFileName = "";
@@ -757,7 +759,6 @@ function render() {
     .filter(Boolean);
   const symbolsTotal = selectedSymbolDetails.reduce((sum, symbol) => sum + Number(symbol.price || 0), 0);
   const price = calculatePrice();
-  const priceBreakdownMarkup = renderPriceBreakdownSection(currentProduct);
 
   const metalOptions = metals.map(metal => `
     <option value="${metal}" ${metal === currentMetal ? "selected" : ""}>
@@ -1092,27 +1093,18 @@ function render() {
 
   app.innerHTML = `
     <section class="builder-shell">
-      <div class="builder-plaque hero-plaque">
-        <h2>Your Vision, Crafted in Silver</h2>
-        <p>Designed by you. Hand-finished by Custom Design’s LA.</p>
+      <div class="builder-plaque product-info-plaque">
+        <p class="product-info-collection">${currentProduct.collection}</p>
+        <h3>${currentProduct.title}</h3>
+        <p class="product-info-final-price"><strong>Final Price:</strong> $${price}</p>
       </div>
 
       <div class="builder-gallery-strip builder-plaque">
         ${galleryMarkup || '<p class="gallery-empty">Reference images coming soon.</p>'}
       </div>
 
-      <div class="builder-plaque product-info-plaque">
-        <h3>${currentProduct.title}</h3>
-        <p><strong>SKU:</strong> ${currentProduct.sku}</p>
-        <p><strong>Collection:</strong> ${currentProduct.collection}</p>
-        <p><strong>Base Price:</strong> $${currentProduct.price}</p>
-        <p><strong>Starting Ring Size:</strong> ${selectedRingSize}</p>
-      </div>
-
-      ${priceBreakdownMarkup}
-
       <section class="builder-plaque ring-size-section">
-        <h3>Ring Size</h3>
+        <h3>Select Your Ring Size</h3>
         <div class="ring-size-grid" role="group" aria-label="Ring size options">
           ${ringSizeOptionsMarkup}
         </div>
@@ -1186,16 +1178,25 @@ function render() {
         ` : ""}
 
         <div class="builder-mini-card order-notes-section">
-          <h4>Order Notes</h4>
-          <p class="order-notes-helper">
-            Please review your customization below. If you selected symbols, tell us where you want them placed in relation to your text. Example: “place cross after Love” or “center symbol between words.”
-          </p>
-          <div class="order-customization-summary" data-customization-summary aria-live="polite">${escapeHtml(getCustomizationSummary())}</div>
-          <textarea
-            rows="6"
-            oninput="setOrderNotes(this.value)"
-            placeholder="Example:&#10;Inside text: I love you&#10;Place the heart after the letter I.&#10;&#10;Use this box to explain symbol placement and add any other custom requests."
-          >${customerNotes}</textarea>
+          <button
+            type="button"
+            class="order-notes-toggle"
+            onclick="toggleOrderNotes()"
+            aria-expanded="${orderNotesExpanded ? "true" : "false"}"
+          >
+            Order Notes
+          </button>
+          <div class="order-notes-content ${orderNotesExpanded ? "is-open" : ""}">
+            <p class="order-notes-helper">
+              Please review your customization below. If you selected symbols, tell us where you want them placed in relation to your text. Example: “place cross after Love” or “center symbol between words.”
+            </p>
+            <div class="order-customization-summary" data-customization-summary aria-live="polite">${escapeHtml(getCustomizationSummary())}</div>
+            <textarea
+              rows="6"
+              oninput="setOrderNotes(this.value)"
+              placeholder="Example:&#10;Inside text: I love you&#10;Place the heart after the letter I.&#10;&#10;Use this box to explain symbol placement and add any other custom requests."
+            >${customerNotes}</textarea>
+          </div>
         </div>
       </section>
 
@@ -1238,28 +1239,6 @@ function render() {
 
       <div id="original-total-price" class="price-box builder-plaque total-price-card">
         <h2 data-live-total-price>Total Price: $${price}</h2>
-      </div>
-
-      <div class="cart-box builder-plaque">
-        <h3>🛒 Cart Status</h3>
-        <p>${cart.length} configured ${cart.length === 1 ? "item" : "items"} saved for checkout.</p>
-        <div class="cart-box-actions">
-          <a class="builder-link-btn" href="/cart/">Continue to Checkout</a>
-          <button class="builder-link-btn muted" type="button" onclick="clearCartFromBuilder()" ${cart.length ? "" : "disabled"}>
-            Clear Cart
-          </button>
-        </div>
-
-        <h3>Saved Previews (${savedPreviews.length})</h3>
-        <ul>
-          ${savedPreviews.slice(0, 3).map(item => `
-            <li>
-              <strong>${item.productTitle}</strong> (${item.orderCode})
-              <button type="button" class="inline-remove-btn" onclick="removeSavedPreview('${item.id}')">Remove</button>
-            </li>
-          `).join("")}
-        </ul>
-        <p class="saved-preview-note">Manage saved previews individually using the Remove button above.</p>
       </div>
 
       <div id="floating-total-bar" class="floating-total-bar builder-plaque" aria-hidden="true">
@@ -1312,6 +1291,11 @@ window.toggleHowThisWorks = () => {
 
 window.toggleRingSizingInfo = () => {
   ringSizingInfoExpanded = !ringSizingInfoExpanded;
+  render();
+};
+
+window.toggleOrderNotes = () => {
+  orderNotesExpanded = !orderNotesExpanded;
   render();
 };
 
