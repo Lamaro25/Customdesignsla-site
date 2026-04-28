@@ -37,10 +37,11 @@ exports.handler = async (event) => {
       insideText: findColumnIndex(headers, ['Inside text', 'Inside Text']),
       outsideText: findColumnIndex(headers, ['Outside text', 'Outside Text']),
       symbols: findColumnIndex(headers, ['Symbols', 'Selected Symbols']),
-      notes: findColumnIndex(headers, ['Customer notes', 'Notes']),
-      estimatedTotal: findColumnIndex(headers, ['Estimated total', 'Estimated Total']),
-      imageUrl: findColumnIndex(headers, ['Uploaded Image URL', 'Uploaded image URL']),
-      imageFilename: findColumnIndex(headers, ['Uploaded Image Filename', 'Uploaded image filename'])
+      notes: findColumnIndex(headers, ['Customer notes', 'Customer Notes', 'Customer notes (optional)', 'Customer Note']),
+      estimatedTotal: findColumnIndex(headers, ['Estimated total', 'Estimated Total', 'Estimated Price', 'Total Estimate']),
+      imageUrl: findColumnIndex(headers, ['Uploaded Image URL', 'Uploaded image URL', 'Uploaded Image', 'Image URL', 'Custom Image URL', 'uploadedImageUrl', 'imageUrl']),
+      imageFilename: findColumnIndex(headers, ['Uploaded Image Filename', 'Uploaded image filename', 'Uploaded Image Name']),
+      adminNotes: findColumnIndex(headers, ['Admin Notes', 'Internal Admin Notes'])
     };
 
     if (idx.status < 0) idx.status = 1;
@@ -67,7 +68,8 @@ exports.handler = async (event) => {
           customerNotes: row[idx.notes] || '',
           estimatedTotal: row[idx.estimatedTotal] || '',
           uploadedImageUrl: row[idx.imageUrl] || '',
-          uploadedImageFilename: row[idx.imageFilename] || ''
+          uploadedImageFilename: row[idx.imageFilename] || '',
+          adminNotes: row[idx.adminNotes] || ''
         };
       })
       .sort((a, b) => (new Date(b.submittedAt).getTime() || 0) - (new Date(a.submittedAt).getTime() || 0));
