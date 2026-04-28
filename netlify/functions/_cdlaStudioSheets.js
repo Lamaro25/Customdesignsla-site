@@ -9,11 +9,20 @@ function normalizeHeader(value) {
   return String(value || '').trim().toLowerCase();
 }
 
+function normalizeHeaderLoose(value) {
+  return normalizeHeader(value).replace(/[^a-z0-9]/g, '');
+}
+
 function findColumnIndex(headers, candidates) {
   const normalized = headers.map(normalizeHeader);
+  const normalizedLoose = headers.map(normalizeHeaderLoose);
   for (const candidate of candidates) {
-    const idx = normalized.indexOf(normalizeHeader(candidate));
+    const normalizedCandidate = normalizeHeader(candidate);
+    const idx = normalized.indexOf(normalizedCandidate);
     if (idx >= 0) return idx;
+
+    const looseIdx = normalizedLoose.indexOf(normalizeHeaderLoose(candidate));
+    if (looseIdx >= 0) return looseIdx;
   }
   return -1;
 }

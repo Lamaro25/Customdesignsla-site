@@ -292,18 +292,18 @@ function closeDetailModal() {
   render();
 }
 
-function isCloudinaryImageUrl(value) {
+function isValidImageUrl(value) {
   if (!value) return false;
   try {
     const parsed = new URL(value);
-    return /^https?:$/.test(parsed.protocol) && parsed.hostname.endsWith('res.cloudinary.com');
+    return /^https?:$/.test(parsed.protocol);
   } catch {
     return false;
   }
 }
 
 function getUploadedImageMarkup(order) {
-  if (!isCloudinaryImageUrl(order.uploadedImageUrl)) {
+  if (!isValidImageUrl(order.uploadedImageUrl)) {
     return '<span class="muted">No image uploaded</span>';
   }
   return `
@@ -379,7 +379,7 @@ function detailModal(order) {
           </article>
           <article>
             <h4>Uploaded Image</h4>
-            ${isCloudinaryImageUrl(order.uploadedImageUrl)
+            ${isValidImageUrl(order.uploadedImageUrl)
               ? `<img class="detail-image" src="${escapeAttr(order.uploadedImageUrl)}" alt="Uploaded by customer" /><p><a href="${escapeAttr(order.uploadedImageUrl)}" target="_blank" rel="noopener noreferrer">Open full image</a></p><p class="muted">${escapeHtml(order.uploadedImageFilename || '')}</p>`
               : '<p>No image uploaded</p>'}
           </article>
