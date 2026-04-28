@@ -37,12 +37,51 @@ exports.handler = async (event) => {
       insideText: findColumnIndex(headers, ['Inside text', 'Inside Text']),
       outsideText: findColumnIndex(headers, ['Outside text', 'Outside Text']),
       symbols: findColumnIndex(headers, ['Symbols', 'Selected Symbols']),
-      notes: findColumnIndex(headers, ['Customer notes', 'Customer Notes', 'Customer notes (optional)', 'Customer Note']),
-      estimatedTotal: findColumnIndex(headers, ['Estimated total', 'Estimated Total', 'Estimated Price', 'Total Estimate']),
-      imageUrl: findColumnIndex(headers, ['Uploaded Image URL', 'Uploaded image URL', 'Uploaded Image', 'Image URL', 'Custom Image URL', 'uploadedImageUrl', 'imageUrl']),
+      notes: findColumnIndex(headers, [
+        'Customer Notes',
+        'Customer notes',
+        'Notes',
+        'Customer Note',
+        'customerNotes',
+        'customer_notes',
+        'Customer notes (optional)'
+      ]),
+      estimatedTotal: findColumnIndex(headers, [
+        'Estimated Total',
+        'Estimated total',
+        'Final Total',
+        'Final total',
+        'Total',
+        'Total Price',
+        'estimatedTotal',
+        'finalTotal',
+        'Estimated Price',
+        'Total Estimate'
+      ]),
+      imageUrl: findColumnIndex(headers, [
+        'Uploaded Image URL',
+        'Uploaded Image Url',
+        'Image URL',
+        'Image Url',
+        'Custom Image URL',
+        'Custom Symbol Image URL',
+        'Uploaded Image',
+        'uploadedImageUrl',
+        'imageUrl',
+        'customImageUrl',
+        'Uploaded image URL'
+      ]),
       imageFilename: findColumnIndex(headers, ['Uploaded Image Filename', 'Uploaded image filename', 'Uploaded Image Name']),
       adminNotes: findColumnIndex(headers, ['Admin Notes', 'Internal Admin Notes'])
     };
+
+    const mappedFields = {
+      customerNotes: idx.notes >= 0 ? String(headers[idx.notes] || '') : '(not found)',
+      estimatedTotal: idx.estimatedTotal >= 0 ? String(headers[idx.estimatedTotal] || '') : '(not found)',
+      uploadedImageUrl: idx.imageUrl >= 0 ? String(headers[idx.imageUrl] || '') : '(not found)'
+    };
+    console.log('[CDLA Studio] Sheet headers:', headers.map((header) => String(header || '').trim()));
+    console.log('[CDLA Studio] Field mapping:', mappedFields);
 
     if (idx.status < 0) idx.status = 1;
 
