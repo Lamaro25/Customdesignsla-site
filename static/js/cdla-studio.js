@@ -109,7 +109,12 @@ function render() {
   const filtered = getFilteredOrders();
   app.innerHTML = `
     <div class="studio-shell ${state.mobileNavOpen ? 'nav-open' : ''}">
+      <button class="sidebar-backdrop" id="sidebar-backdrop" aria-label="Close menu"></button>
       <aside class="sidebar">
+        <div class="sidebar-head">
+          <span>Menu</span>
+          <button class="btn ghost small" id="sidebar-close" aria-label="Close menu">✕</button>
+        </div>
         <div class="brand">
           <h1>CDLA</h1>
           <p>Custom Design’s LA</p>
@@ -124,9 +129,11 @@ function render() {
 
       <section class="main">
         <header class="topbar">
-          <button class="btn menu" id="menu-toggle">☰</button>
-          <h2>CDLA Studio</h2>
-          <p>Orders</p>
+          <div class="topbar-head">
+            <button class="btn menu" id="menu-toggle" aria-label="Open menu">☰</button>
+            <h2>CDLA Studio</h2>
+            <p>Orders</p>
+          </div>
         </header>
 
         <section class="cards">
@@ -141,6 +148,9 @@ function render() {
         <section class="table-wrap">
           <div class="table-controls">
             <input id="search" placeholder="Search by customer, email, phone, product, SKU, or status" value="${escapeHtml(state.query)}" />
+          </div>
+          <div class="order-cards">
+            ${filtered.map((order) => mobileCardHtml(order)).join('') || '<article class="order-card empty">No orders found.</article>'}
           </div>
           <div class="table-scroll">
             <table>
@@ -197,6 +207,14 @@ function bindDashboardEvents() {
   document.getElementById('logout-btn')?.addEventListener('click', logout);
   document.getElementById('menu-toggle')?.addEventListener('click', () => {
     state.mobileNavOpen = !state.mobileNavOpen;
+    render();
+  });
+  document.getElementById('sidebar-close')?.addEventListener('click', () => {
+    state.mobileNavOpen = false;
+    render();
+  });
+  document.getElementById('sidebar-backdrop')?.addEventListener('click', () => {
+    state.mobileNavOpen = false;
     render();
   });
 
@@ -317,6 +335,29 @@ function detailModal(order) {
         </div>
       </section>
     </div>
+  `;
+}
+
+function mobileCardHtml(order) {
+  return `
+    <article class="order-card">
+      <div class="order-card-head">
+        <h4>Order #${order.id}</h4>
+        <span class="chip">${escapeHtml(order.status || '—')}</span>
+      </div>
+      <p><strong>Customer:</strong> ${escapeHtml(order.customerName || '—')}</p>
+      <p><strong>Email:</strong> ${escapeHtml(order.email || '—')}</p>
+      <p><strong>Phone:</strong> ${escapeHtml(order.phone || '—')}</p>
+      <p><strong>Product:</strong> ${escapeHtml(order.productName || '—')}</p>
+      <p><strong>Estimated total:</strong> ${escapeHtml(order.estimatedTotal || '—')}</p>
+      <p><strong>Date submitted:</strong> ${escapeHtml(order.submittedAt || '—')}</p>
+      <div class="order-card-image">
+        ${order.uploadedImageUrl
+          ? `<img class="thumb" src="${escapeAttr(order.uploadedImageUrl)}" alt="Uploaded" />`
+          : '<span class="muted">No image uploaded</span>'}
+      </div>
+      <button class="btn small" data-view-id="${order.id}">View</button>
+    </article>
   `;
 }
 
