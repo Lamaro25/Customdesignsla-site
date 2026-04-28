@@ -45,20 +45,26 @@ table { width: 100%; border-collapse: collapse; min-width: 980px; }
 th, td { padding: 10px 12px; border-bottom: 1px solid #eef2f7; text-align: left; vertical-align: top; }
 .chip { background: #edf2ff; color: #3357b1; border-radius: 999px; padding: 2px 8px; font-size: .8rem; }
 .thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; border: 1px solid #d3dbe7; }
+.image-link { display: inline-block; margin-top: 6px; font-size: .8rem; }
 
 .btn { border: 0; background: var(--accent); color: #fff; padding: 10px 14px; border-radius: 10px; cursor: pointer; }
 .btn.ghost { background: rgba(255,255,255,.12); }
 .btn.small { font-size: .8rem; padding: 7px 10px; }
 .error { color: #bc2138; min-height: 1.2em; }
+.success { color: #167a46; min-height: 1.2em; }
 .muted, small { color: var(--muted); }
 .empty { text-align: center; color: var(--muted); }
 
 .modal-backdrop { position: fixed; inset: 0; background: rgba(14, 18, 27, .65); padding: 20px; overflow: auto; }
 .modal { background: #fff; max-width: 980px; margin: 0 auto; border-radius: 16px; padding: 20px; display: grid; gap: 14px; }
+.modal-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; background: #fff; padding-bottom: 8px; }
+.modal-back-btn { background: #eef2ff !important; color: #1f3c8f !important; }
+.modal-close-btn { width: 44px; height: 44px; border-radius: 999px; border: 0; background: #111827; color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; }
 .detail-grid { display: grid; grid-template-columns: repeat(2, minmax(220px, 1fr)); gap: 14px; }
 .detail-grid article, .admin-controls { border: 1px solid #e5eaf2; border-radius: 12px; padding: 12px; }
 .detail-image { width: 100%; max-height: 220px; object-fit: contain; border-radius: 10px; border: 1px solid #e2e7f1; }
 textarea, select { width: 100%; border: 1px solid #ced5df; border-radius: 8px; padding: 8px; margin-top: 6px; }
+.status-feedback { margin: 8px 0 0; }
 
 @media (max-width: 1024px) {
   .cards { grid-template-columns: repeat(3, minmax(120px,1fr)); }
@@ -82,7 +88,8 @@ textarea, select { width: 100%; border: 1px solid #ced5df; border-radius: 8px; p
   .order-card-image .thumb { width: 64px; height: 64px; }
   .detail-grid { grid-template-columns: 1fr; }
   .modal-backdrop { padding: 8px; }
-  .modal { width: 100%; max-width: 100%; border-radius: 12px; padding: 14px; }
+  .modal { width: 100%; max-width: 100%; border-radius: 12px; padding: 14px; max-height: calc(100dvh - 16px); overflow-y: auto; }
+  .modal-head { top: -2px; padding-top: 2px; }
 }
 
 @media (max-width: 768px) {
@@ -97,6 +104,6 @@ textarea, select { width: 100%; border: 1px solid #ced5df; border-radius: 8px; p
   .topbar p { font-size: .9rem; }
   .cards { grid-template-columns: 1fr; }
   .card p { font-size: 1.15rem; }
-  .modal { max-height: calc(100dvh - 16px); overflow-y: auto; }
   .detail-image { max-height: 180px; }
+  .modal-close-btn { width: 48px; height: 48px; font-size: 1.7rem; }
 }

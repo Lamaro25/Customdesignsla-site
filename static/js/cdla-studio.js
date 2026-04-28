@@ -1,7 +1,7 @@
 const app = document.getElementById('cdla-studio-app');
 
 const STATUS_FILTERS = [
-  'All Orders', 'New', 'Reviewing', 'Designing', 'Preview Sent', 'Approved', 'Paid', 'Printing', 'Casting', 'Ready', 'Shipped/Delivered', 'Cancelled'
+  'All Orders', 'New', 'Reviewing', 'Designing', 'Preview Sent', 'Approved', 'Invoice Sent', 'Paid', 'Printing', 'Casting', 'Finishing', 'Ready', 'Shipped', 'Delivered', 'Cancelled'
 ];
 
 const state = {
@@ -14,7 +14,7 @@ const state = {
   query: '',
   selectedOrder: null,
   mobileNavOpen: false,
-  adminNotesDraft: ''
+  saveStatusState: { type: '', message: '' }
 };
 
 init();
@@ -77,9 +77,7 @@ async function loadOrders() {
 function getFilteredOrders() {
   const q = state.query.trim().toLowerCase();
   return state.orders.filter((order) => {
-    const statusMatch = state.filter === 'All Orders'
-      || order.status === state.filter
-      || (state.filter === 'Shipped/Delivered' && (order.status === 'Shipped' || order.status === 'Delivered'));
+    const statusMatch = state.filter === 'All Orders' || order.status === state.filter;
 
     const text = [
       order.customerName,
@@ -107,6 +105,10 @@ function render() {
   }
 
   const filtered = getFilteredOrders();
+  const emptyMessage = state.filter !== 'All Orders' && !state.query.trim()
+    ? 'No orders found for this status.'
+    : 'No orders found.';
+
   app.innerHTML = `
     <div class="studio-shell ${state.mobileNavOpen ? 'nav-open' : ''}">
       <button class="sidebar-backdrop" id="sidebar-backdrop" aria-label="Close menu"></button>
@@ -150,7 +152,7 @@ function render() {
             <input id="search" placeholder="Search by customer, email, phone, product, SKU, or status" value="${escapeHtml(state.query)}" />
           </div>
           <div class="order-cards">
-            ${filtered.map((order) => mobileCardHtml(order)).join('') || '<article class="order-card empty">No orders found.</article>'}
+            ${filtered.map((order) => mobileCardHtml(order)).join('') || `<article class="order-card empty">${emptyMessage}</article>`}
           </div>
           <div class="table-scroll">
             <table>
@@ -160,7 +162,7 @@ function render() {
                 </tr>
               </thead>
               <tbody>
-                ${filtered.map((order) => rowHtml(order)).join('') || '<tr><td colspan="9" class="empty">No orders found.</td></tr>'}
+                ${filtered.map((order) => rowHtml(order)).join('') || `<tr><td colspan="9" class="empty">${emptyMessage}</td></tr>`}
               </tbody>
             </table>
           </div>
@@ -235,36 +237,94 @@ function bindDashboardEvents() {
     btn.addEventListener('click', () => {
       const id = Number(btn.dataset.viewId);
       state.selectedOrder = state.orders.find((o) => o.id === id) || null;
-      state.adminNotesDraft = '';
+      state.saveStatusState = { type: '', message: '' };
       render();
     });
   });
 
-  document.getElementById('modal-close')?.addEventListener('click', () => {
-    state.selectedOrder = null;
-    render();
+  document.getElementById('modal-close')?.addEventListener('click', closeDetailModal);
+  document.getElementById('modal-back')?.addEventListener('click', closeDetailModal);
+  document.getElementById('modal-backdrop')?.addEventListener('click', (e) => {
+    if (e.target.id !== 'modal-backdrop') return;
+    closeDetailModal();
   });
 
   document.getElementById('save-status')?.addEventListener('click', async () => {
-    const status = document.getElementById('status-select').value;
+    const saveButton = document.getElementById('save-status');
+    const status = document.getElementById('status-select')?.value;
     const notes = document.getElementById('admin-notes')?.value || '';
     const order = state.selectedOrder;
-    if (!order) return;
+    if (!order || !status) return;
 
-    const res = await fetch('/.netlify/functions/cdla-studio-update-status', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ rowNumber: order.id, status, adminNotes: notes })
-    });
-    if (!res.ok) {
-      alert('Unable to save status.');
-      return;
+    saveButton.disabled = true;
+    saveButton.textContent = 'Saving…';
+
+    try {
+      const res = await fetch('/.netlify/functions/cdla-studio-update-status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rowNumber: order.id, status, adminNotes: notes })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Unable to save status.');
+
+      state.orders = state.orders.map((existingOrder) => {
+        if (existingOrder.id !== order.id) return existingOrder;
+        return { ...existingOrder, status, adminNotes: notes };
+      });
+      state.selectedOrder = state.orders.find((o) => o.id === order.id) || null;
+      state.saveStatusState = { type: 'success', message: 'Status updated.' };
+      render();
+
+      await loadOrders();
+      state.selectedOrder = state.orders.find((o) => o.id === order.id) || state.selectedOrder;
+      render();
+    } catch (error) {
+      state.saveStatusState = { type: 'error', message: error.message || 'Unable to save status.' };
+      render();
     }
-
-    await loadOrders();
-    state.selectedOrder = state.orders.find((o) => o.id === order.id) || null;
-    render();
   });
+}
+
+function closeDetailModal() {
+  state.selectedOrder = null;
+  state.saveStatusState = { type: '', message: '' };
+  render();
+}
+
+function isCloudinaryImageUrl(value) {
+  if (!value) return false;
+  try {
+    const parsed = new URL(value);
+    return /^https?:$/.test(parsed.protocol) && parsed.hostname.endsWith('res.cloudinary.com');
+  } catch {
+    return false;
+  }
+}
+
+function getUploadedImageMarkup(order) {
+  if (!isCloudinaryImageUrl(order.uploadedImageUrl)) {
+    return '<span class="muted">No image uploaded</span>';
+  }
+  return `
+    <img class="thumb" src="${escapeAttr(order.uploadedImageUrl)}" alt="Uploaded" />
+    <a class="image-link" href="${escapeAttr(order.uploadedImageUrl)}" target="_blank" rel="noopener noreferrer">Open full image</a>
+  `;
+}
+
+function formatDateTime(value) {
+  if (!value) return '—';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return String(value);
+
+  return new Intl.DateTimeFormat('en-US', {
+    month: '2-digit',
+    day: '2-digit',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  }).format(date);
 }
 
 function rowHtml(order) {
@@ -275,10 +335,10 @@ function rowHtml(order) {
       <td><strong>${escapeHtml(order.customerName || '—')}</strong><br><small>${escapeHtml(order.email || '')}</small></td>
       <td>${escapeHtml(order.productName || '—')}<br><small>${escapeHtml(order.sku || '')}</small></td>
       <td>${escapeHtml(customSummary)}</td>
-      <td>${order.uploadedImageUrl ? `<img class="thumb" src="${escapeAttr(order.uploadedImageUrl)}" alt="Uploaded" />` : '<span class="muted">No image</span>'}</td>
+      <td>${getUploadedImageMarkup(order)}</td>
       <td><span class="chip">${escapeHtml(order.status)}</span></td>
       <td>${escapeHtml(order.estimatedTotal || '—')}</td>
-      <td>${escapeHtml(order.submittedAt || '—')}</td>
+      <td>${escapeHtml(formatDateTime(order.submittedAt))}</td>
       <td><button class="btn small" data-view-id="${order.id}">View</button></td>
     </tr>
   `;
@@ -286,10 +346,14 @@ function rowHtml(order) {
 
 function detailModal(order) {
   return `
-    <div class="modal-backdrop">
-      <section class="modal">
-        <button id="modal-close" class="btn ghost">Close</button>
-        <h3>Order #${order.id}</h3>
+    <div class="modal-backdrop" id="modal-backdrop">
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="order-detail-title">
+        <div class="modal-head">
+          <button id="modal-back" class="btn ghost modal-back-btn">Back to Orders</button>
+          <button id="modal-close" class="modal-close-btn" aria-label="Close order details">✕</button>
+        </div>
+        <h3 id="order-detail-title">Order #${order.id}</h3>
+        <p class="muted">Submitted: ${escapeHtml(formatDateTime(order.submittedAt))}</p>
 
         <div class="detail-grid">
           <article>
@@ -315,7 +379,7 @@ function detailModal(order) {
           </article>
           <article>
             <h4>Uploaded Image</h4>
-            ${order.uploadedImageUrl
+            ${isCloudinaryImageUrl(order.uploadedImageUrl)
               ? `<img class="detail-image" src="${escapeAttr(order.uploadedImageUrl)}" alt="Uploaded by customer" /><p><a href="${escapeAttr(order.uploadedImageUrl)}" target="_blank" rel="noopener noreferrer">Open full image</a></p><p class="muted">${escapeHtml(order.uploadedImageFilename || '')}</p>`
               : '<p>No image uploaded</p>'}
           </article>
@@ -329,9 +393,10 @@ function detailModal(order) {
             </select>
           </label>
           <label>Internal admin notes (optional)
-            <textarea id="admin-notes" placeholder="Add an internal note for this order"></textarea>
+            <textarea id="admin-notes" placeholder="Add an internal note for this order">${escapeHtml(order.adminNotes || '')}</textarea>
           </label>
           <button class="btn" id="save-status">Save status</button>
+          <p class="${state.saveStatusState.type === 'error' ? 'error' : 'success'} status-feedback">${escapeHtml(state.saveStatusState.message || '')}</p>
         </div>
       </section>
     </div>
@@ -350,11 +415,9 @@ function mobileCardHtml(order) {
       <p><strong>Phone:</strong> ${escapeHtml(order.phone || '—')}</p>
       <p><strong>Product:</strong> ${escapeHtml(order.productName || '—')}</p>
       <p><strong>Estimated total:</strong> ${escapeHtml(order.estimatedTotal || '—')}</p>
-      <p><strong>Date submitted:</strong> ${escapeHtml(order.submittedAt || '—')}</p>
+      <p><strong>Date submitted:</strong> ${escapeHtml(formatDateTime(order.submittedAt))}</p>
       <div class="order-card-image">
-        ${order.uploadedImageUrl
-          ? `<img class="thumb" src="${escapeAttr(order.uploadedImageUrl)}" alt="Uploaded" />`
-          : '<span class="muted">No image uploaded</span>'}
+        ${getUploadedImageMarkup(order)}
       </div>
       <button class="btn small" data-view-id="${order.id}">View</button>
     </article>
