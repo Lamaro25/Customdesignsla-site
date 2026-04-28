@@ -73,7 +73,7 @@ function parseUploadedImageData(dataUrl) {
   };
 }
 
-async function uploadImageToCloudinary(parsedUpload, originalFileName) {
+async function uploadImageToCloudinary(parsedUpload, originalFileName, requestedUploadPreset) {
   if (!parsedUpload) {
     return {
       uploadedImageUrl: '',
@@ -88,7 +88,7 @@ async function uploadImageToCloudinary(parsedUpload, originalFileName) {
   // - Required: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
   // - Optional: CLOUDINARY_FOLDER (preferred) or CLOUDINARY_UPLOAD_FOLDER (legacy fallback)
   const folder = String(process.env.CLOUDINARY_FOLDER || process.env.CLOUDINARY_UPLOAD_FOLDER || 'cdla-custom-orders').trim();
-  const uploadPreset = String(process.env.CLOUDINARY_UPLOAD_PRESET || '').trim();
+  const uploadPreset = String(requestedUploadPreset || 'CDLA_UPLOADS').trim();
   const missingEnvVars = getMissingCloudinaryEnvVars();
 
   if (missingEnvVars.length) {
@@ -120,9 +120,8 @@ async function uploadImageToCloudinary(parsedUpload, originalFileName) {
   formData.append('signature', signature);
   formData.append('folder', folder);
   formData.append('public_id', publicId);
-  if (uploadPreset) {
-    formData.append('upload_preset', uploadPreset);
-  }
+  console.log('[Cloudinary Upload] Using upload preset:', uploadPreset);
+  formData.append('upload_preset', uploadPreset);
 
   const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
     method: 'POST',
@@ -239,7 +238,11 @@ exports.handler = async (event) => {
     const data = JSON.parse(event.body || '{}');
 
     const parsedUpload = parseUploadedImageData(data.uploadedImageDataUrl);
-    const { uploadedImageUrl, uploadedImageFilename } = await uploadImageToCloudinary(parsedUpload, data.uploadedImageFilename);
+    const { uploadedImageUrl, uploadedImageFilename } = await uploadImageToCloudinary(
+      parsedUpload,
+      data.uploadedImageFilename,
+      data.uploadPreset
+    );
 
     const row = [
       formatSubmittedAt(),

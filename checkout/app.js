@@ -634,6 +634,7 @@ function updateProceedButtonState(form) {
 }
 
 function buildPreviewSubmissionPayload(form) {
+  const cloudinaryUploadPreset = "CDLA_UPLOADS";
   const customerName = getTrimmedValue(form, "customerName");
   const customerEmail = getTrimmedValue(form, "customerEmail");
   const customerPhone = getTrimmedValue(form, "customerPhone");
@@ -648,6 +649,8 @@ function buildPreviewSubmissionPayload(form) {
   const uploadedImageFilename = String(checkoutDraft?.customSymbolUploadFileName || "").trim();
   const uploadedImageDataUrl = String(checkoutDraft?.customSymbolUploadDataUrl || "").trim();
 
+  console.log("[Preview Upload] Cloudinary upload preset:", cloudinaryUploadPreset);
+
   return {
     customerName,
     customerEmail,
@@ -660,6 +663,7 @@ function buildPreviewSubmissionPayload(form) {
     symbols,
     notes,
     estimatedTotal,
+    uploadPreset: cloudinaryUploadPreset,
     uploadedImageFilename,
     uploadedImageDataUrl
   };
