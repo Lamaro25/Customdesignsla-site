@@ -262,7 +262,7 @@ function buildRowFromHeaders(headers, data) {
     { value: data.insideText || '', headers: ['Inside text', 'Inside Text'] },
     { value: data.outsideText || '', headers: ['Outside text', 'Outside Text'] },
     { value: data.symbols || '', headers: ['Symbols', 'Selected Symbols'] },
-    { value: data.notes || '', headers: ['Customer Notes', 'Customer Note', 'Notes', 'customerNotes'] },
+    { value: data.notes || '', headers: ['Customer Notes', 'Customer Note', 'Customer notes', 'Notes', 'Order Notes', 'Customer Request', 'Custom Requests', 'Special Requests', 'customerNotes', 'orderNotes', 'notes'] },
     { value: data.estimatedTotal || '', headers: ['Estimated Total', 'Final Total', 'Total Price', 'estimatedTotal', 'finalTotal'] },
     { value: data.uploadedImageUrl || '', headers: ['Uploaded Image URL', 'Image URL', 'uploadedImageUrl'] },
     { value: data.uploadedImageFilename || '', headers: ['Uploaded Image Filename', 'Uploaded Image Name', 'uploadedImageFilename'] }

@@ -72,10 +72,16 @@ exports.handler = async (event) => {
       symbols: findColumnIndex(headers, ['Symbols', 'Selected Symbols']),
       notes: findColumnIndex(headers, [
         'Customer Notes',
+        'Customer Note',
         'Customer notes',
         'Notes',
-        'Customer Note',
+        'Order Notes',
+        'Customer Request',
+        'Custom Requests',
+        'Special Requests',
         'customerNotes',
+        'orderNotes',
+        'notes',
         'customer_notes',
         'Customer notes (optional)'
       ]),
@@ -110,7 +116,15 @@ exports.handler = async (event) => {
 
     const mappingCandidates = {
       estimatedTotal: ['estimatedtotal', 'finaltotal', 'totalprice'],
-      customerNotes: ['customernotes', 'customernote', 'notes', 'customernotes'],
+      customerNotes: [
+        'customernotes',
+        'customernote',
+        'notes',
+        'ordernotes',
+        'customerrequest',
+        'customrequests',
+        'specialrequests'
+      ],
       uploadedImageUrl: ['uploadedimageurl', 'imageurl', 'customimageurl'],
       customization: ['insidetext', 'outsidetext', 'symbols']
     };
@@ -153,12 +167,17 @@ exports.handler = async (event) => {
 
         let estimatedTotal = pickField(rowByHeader, mappingCandidates.estimatedTotal);
         let customerNotes = pickField(rowByHeader, mappingCandidates.customerNotes);
+        const rawNotesValue = idx.notes >= 0 ? String(row[idx.notes] || '').trim() : '';
+        if (!customerNotes && rawNotesValue) customerNotes = rawNotesValue;
         const uploadedImageUrlRaw = pickField(rowByHeader, mappingCandidates.uploadedImageUrl);
         const uploadedImageUrl = isValidUrl(uploadedImageUrlRaw) ? uploadedImageUrlRaw : '';
-
-        if (!estimatedTotal && isCurrencyOnly(customerNotes)) {
-          estimatedTotal = customerNotes;
-          customerNotes = '';
+        if (i < 5 || sheetRowNumber === 7) {
+          console.log('[CDLA Studio] Notes debug', {
+            orderRow: sheetRowNumber,
+            detectedNotesHeader: idx.notes >= 0 ? headers[idx.notes] : '(not found)',
+            rawNotesValue,
+            mappedCustomerNotes: customerNotes
+          });
         }
 
         const statusRaw = String(row[idx.status] || 'New').trim();
