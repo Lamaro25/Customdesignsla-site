@@ -88,7 +88,7 @@ async function uploadImageToCloudinary(parsedUpload, originalFileName, requested
   // - Required: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
   // - Optional: CLOUDINARY_FOLDER (preferred) or CLOUDINARY_UPLOAD_FOLDER (legacy fallback)
   const folder = String(process.env.CLOUDINARY_FOLDER || process.env.CLOUDINARY_UPLOAD_FOLDER || 'cdla-custom-orders').trim();
-  const uploadPreset = String(requestedUploadPreset || 'CDLA_UPLOADS').trim();
+  const uploadPreset = 'CDLA_UPLOADS';
   const missingEnvVars = getMissingCloudinaryEnvVars();
 
   if (missingEnvVars.length) {
@@ -121,7 +121,7 @@ async function uploadImageToCloudinary(parsedUpload, originalFileName, requested
   formData.append('folder', folder);
   formData.append('public_id', publicId);
   console.log('[Cloudinary Upload] Using upload preset:', uploadPreset);
-  formData.append('upload_preset', uploadPreset);
+  formData.append("upload_preset", "CDLA_UPLOADS");
 
   const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
     method: 'POST',
@@ -130,7 +130,7 @@ async function uploadImageToCloudinary(parsedUpload, originalFileName, requested
 
   const payload = await response.json().catch(() => ({}));
   if (!response.ok || !payload.secure_url) {
-    throw new Error(payload.error?.message || 'Unable to upload custom symbol image.');
+    throw new Error(payload.error?.message || 'Image upload failed. Please try again or submit without an image.');
   }
 
   return {

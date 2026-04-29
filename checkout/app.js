@@ -634,6 +634,7 @@ function updateProceedButtonState(form) {
 }
 
 function buildPreviewSubmissionPayload(form) {
+  const cloudinaryCloudName = String(window.__CDLA_CONFIG__?.CLOUDINARY_CLOUD_NAME || "").trim();
   const cloudinaryUploadPreset = "CDLA_UPLOADS";
   const customerName = getTrimmedValue(form, "customerName");
   const customerEmail = getTrimmedValue(form, "customerEmail");
@@ -649,7 +650,8 @@ function buildPreviewSubmissionPayload(form) {
   const uploadedImageFilename = String(checkoutDraft?.customSymbolUploadFileName || "").trim();
   const uploadedImageDataUrl = String(checkoutDraft?.customSymbolUploadDataUrl || "").trim();
 
-  console.log("[Preview Upload] Cloudinary upload preset:", cloudinaryUploadPreset);
+  console.log("Cloudinary cloud name exists:", Boolean(cloudinaryCloudName));
+  console.log("Cloudinary upload preset:", cloudinaryUploadPreset);
 
   return {
     customerName,
@@ -697,12 +699,15 @@ async function submitPreviewRequestWithImageFallback(payload) {
     const envConfigIssue = error?.details?.code === "MISSING_CLOUDINARY_ENV_VARS";
 
     if (!imageWasIncluded || !envConfigIssue) {
+      if (imageWasIncluded) {
+        error.message = "Image upload failed. Please try again or submit without an image.";
+      }
       throw error;
     }
 
     const missingEnvVarText = missingEnvVars.length ? missingEnvVars.join(", ") : "CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET";
     const continueWithoutImage = window.confirm(
-      `Image upload is currently unavailable because required Cloudinary Netlify env vars are missing: ${missingEnvVarText}.\n\n` +
+      `Image upload failed. Please try again or submit without an image.\n\nMissing Cloudinary Netlify env vars: ${missingEnvVarText}.\n\n` +
         "Press OK to submit this request without an uploaded image, or Cancel to keep your image and try again later."
     );
 
