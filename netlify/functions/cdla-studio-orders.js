@@ -10,8 +10,34 @@ function json(statusCode, body) {
 }
 
 function parseMoney(value) {
-  const n = Number(String(value || '').replace(/[^0-9.-]/g, ''));
+  const cleaned = String(value || '').replace(/[$,\s]/g, '');
+  if (!cleaned) return 0;
+  const n = Number(cleaned);
   return Number.isFinite(n) ? n : 0;
+}
+
+function normalizeHeaderKey(value) {
+  return String(value || '').toLowerCase().replace(/[\s_]+/g, '');
+}
+
+function pickField(rowByHeader, candidates) {
+  for (const candidate of candidates) {
+    const key = normalizeHeaderKey(candidate);
+    const value = rowByHeader[key];
+    if (value !== undefined && value !== null && String(value).trim() !== '') {
+      return String(value).trim();
+    }
+  }
+  return '';
+}
+
+function isValidUrl(value) {
+  try {
+    const parsed = new URL(String(value || ''));
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+  } catch (_error) {
+    return false;
+  }
 }
 
 exports.handler = async (event) => {
@@ -23,6 +49,8 @@ exports.handler = async (event) => {
 
     const headers = values[0];
     const rows = values.slice(1);
+
+    const normalizedHeaders = headers.map((header) => normalizeHeaderKey(header));
 
     const idx = {
       submittedAt: findColumnIndex(headers, ['Date/time submitted', 'Timestamp', 'Submitted At', 'Date']),
@@ -75,12 +103,20 @@ exports.handler = async (event) => {
       adminNotes: findColumnIndex(headers, ['Admin Notes', 'Internal Admin Notes'])
     };
 
-    const mappedFields = {
-      customerNotes: idx.notes >= 0 ? String(headers[idx.notes] || '') : '(not found)',
-      estimatedTotal: idx.estimatedTotal >= 0 ? String(headers[idx.estimatedTotal] || '') : '(not found)',
-      uploadedImageUrl: idx.imageUrl >= 0 ? String(headers[idx.imageUrl] || '') : '(not found)'
+    const mappingCandidates = {
+      estimatedTotal: ['estimatedtotal', 'finaltotal', 'totalprice', 'total'],
+      customerNotes: ['customernotes', 'notes', 'note'],
+      uploadedImageUrl: ['uploadedimageurl', 'imageurl', 'customimageurl'],
+      customization: ['insidetext', 'outsidetext', 'symbols']
     };
-    console.log('[CDLA Studio] Sheet headers:', headers.map((header) => String(header || '').trim()));
+
+    const mappedFields = Object.fromEntries(
+      Object.entries(mappingCandidates).map(([fieldName, keys]) => {
+        const detected = keys.find((key) => normalizedHeaders.includes(normalizeHeaderKey(key))) || '(not found)';
+        return [fieldName, detected];
+      })
+    );
+    console.log('[CDLA Studio] Detected normalized headers:', normalizedHeaders);
     console.log('[CDLA Studio] Field mapping:', mappedFields);
 
     if (idx.status < 0) idx.status = 1;
@@ -88,6 +124,17 @@ exports.handler = async (event) => {
     const orders = rows
       .map((row, i) => {
         const sheetRowNumber = i + 2;
+        const rowByHeader = {};
+        normalizedHeaders.forEach((headerKey, colIndex) => {
+          if (!headerKey) return;
+          rowByHeader[headerKey] = row[colIndex] || '';
+        });
+
+        const estimatedTotal = pickField(rowByHeader, mappingCandidates.estimatedTotal);
+        const customerNotes = pickField(rowByHeader, mappingCandidates.customerNotes);
+        const uploadedImageUrlRaw = pickField(rowByHeader, mappingCandidates.uploadedImageUrl);
+        const uploadedImageUrl = isValidUrl(uploadedImageUrlRaw) ? uploadedImageUrlRaw : '';
+
         const statusRaw = String(row[idx.status] || 'New').trim();
         const status = STATUS_VALUES.includes(statusRaw) ? statusRaw : statusRaw || 'New';
         return {
@@ -104,9 +151,9 @@ exports.handler = async (event) => {
           insideText: row[idx.insideText] || '',
           outsideText: row[idx.outsideText] || '',
           symbols: row[idx.symbols] || '',
-          customerNotes: row[idx.notes] || '',
-          estimatedTotal: row[idx.estimatedTotal] || '',
-          uploadedImageUrl: row[idx.imageUrl] || '',
+          customerNotes: customerNotes || '—',
+          estimatedTotal: estimatedTotal || '—',
+          uploadedImageUrl,
           uploadedImageFilename: row[idx.imageFilename] || '',
           adminNotes: row[idx.adminNotes] || ''
         };
