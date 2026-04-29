@@ -31,6 +31,11 @@ function pickField(rowByHeader, candidates) {
   return '';
 }
 
+
+function isCurrencyOnly(value) {
+  return /^\$?\d{1,3}(?:,\d{3})*(?:\.\d{2})?$/.test(String(value || '').trim());
+}
+
 function isValidUrl(value) {
   try {
     const parsed = new URL(String(value || ''));
@@ -104,8 +109,8 @@ exports.handler = async (event) => {
     };
 
     const mappingCandidates = {
-      estimatedTotal: ['estimatedtotal', 'finaltotal', 'totalprice', 'total'],
-      customerNotes: ['customernotes', 'notes', 'note'],
+      estimatedTotal: ['estimatedtotal', 'finaltotal', 'totalprice'],
+      customerNotes: ['customernotes', 'customernote', 'notes', 'customernotes'],
       uploadedImageUrl: ['uploadedimageurl', 'imageurl', 'customimageurl'],
       customization: ['insidetext', 'outsidetext', 'symbols']
     };
@@ -118,6 +123,22 @@ exports.handler = async (event) => {
     );
     console.log('[CDLA Studio] Detected normalized headers:', normalizedHeaders);
     console.log('[CDLA Studio] Field mapping:', mappedFields);
+    const notesHeaderIndex = idx.notes;
+    const estimatedTotalHeaderIndex = idx.estimatedTotal;
+    const olderGoodRow = rows.find((row) => {
+      const notes = String(row[notesHeaderIndex] || '').trim();
+      return notes && !isCurrencyOnly(notes);
+    }) || [];
+    const newerBadRow = [...rows].reverse().find((row) => {
+      const notes = String(row[notesHeaderIndex] || '').trim();
+      const total = String(row[estimatedTotalHeaderIndex] || '').trim();
+      return isCurrencyOnly(notes) && !total;
+    }) || [];
+    console.log('[CDLA Studio] Header row:', headers);
+    console.log('[CDLA Studio] Customer Notes column:', notesHeaderIndex >= 0 ? headers[notesHeaderIndex] : '(not found)');
+    console.log('[CDLA Studio] Estimated Total column:', estimatedTotalHeaderIndex >= 0 ? headers[estimatedTotalHeaderIndex] : '(not found)');
+    console.log('[CDLA Studio] Older good order row sample:', olderGoodRow);
+    console.log('[CDLA Studio] Newer bad order row sample:', newerBadRow);
 
     if (idx.status < 0) idx.status = 1;
 
@@ -130,10 +151,15 @@ exports.handler = async (event) => {
           rowByHeader[headerKey] = row[colIndex] || '';
         });
 
-        const estimatedTotal = pickField(rowByHeader, mappingCandidates.estimatedTotal);
-        const customerNotes = pickField(rowByHeader, mappingCandidates.customerNotes);
+        let estimatedTotal = pickField(rowByHeader, mappingCandidates.estimatedTotal);
+        let customerNotes = pickField(rowByHeader, mappingCandidates.customerNotes);
         const uploadedImageUrlRaw = pickField(rowByHeader, mappingCandidates.uploadedImageUrl);
         const uploadedImageUrl = isValidUrl(uploadedImageUrlRaw) ? uploadedImageUrlRaw : '';
+
+        if (!estimatedTotal && isCurrencyOnly(customerNotes)) {
+          estimatedTotal = customerNotes;
+          customerNotes = '';
+        }
 
         const statusRaw = String(row[idx.status] || 'New').trim();
         const status = STATUS_VALUES.includes(statusRaw) ? statusRaw : statusRaw || 'New';
