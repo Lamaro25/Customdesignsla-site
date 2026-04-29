@@ -233,6 +233,49 @@ async function sendNotificationEmail(data, uploadedImageUrl) {
   return false;
 }
 
+
+function normalizeHeaderKey(value) {
+  return String(value || '').trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function findHeaderIndex(headers, candidates) {
+  const normalized = headers.map((header) => normalizeHeaderKey(header));
+  for (const candidate of candidates) {
+    const index = normalized.indexOf(normalizeHeaderKey(candidate));
+    if (index >= 0) return index;
+  }
+  return -1;
+}
+
+function buildRowFromHeaders(headers, data) {
+  const row = new Array(headers.length).fill('');
+
+  const fields = [
+    { value: formatSubmittedAt(), headers: ['Date/time submitted', 'Timestamp', 'Submitted At', 'Date'] },
+    { value: 'NEW', headers: ['Status'] },
+    { value: data.customerName || '', headers: ['Customer name', 'Name'] },
+    { value: data.customerEmail || '', headers: ['Email', 'Customer email'] },
+    { value: data.customerPhone || '', headers: ['Phone', 'Customer phone'] },
+    { value: data.productName || '', headers: ['Product name', 'Product'] },
+    { value: data.sku || '', headers: ['SKU'] },
+    { value: data.ringSize || '', headers: ['Ring size / selected size', 'Ring Size', 'Selected Size'] },
+    { value: data.insideText || '', headers: ['Inside text', 'Inside Text'] },
+    { value: data.outsideText || '', headers: ['Outside text', 'Outside Text'] },
+    { value: data.symbols || '', headers: ['Symbols', 'Selected Symbols'] },
+    { value: data.notes || '', headers: ['Customer Notes', 'Customer Note', 'Notes', 'customerNotes'] },
+    { value: data.estimatedTotal || '', headers: ['Estimated Total', 'Final Total', 'Total Price', 'estimatedTotal', 'finalTotal'] },
+    { value: data.uploadedImageUrl || '', headers: ['Uploaded Image URL', 'Image URL', 'uploadedImageUrl'] },
+    { value: data.uploadedImageFilename || '', headers: ['Uploaded Image Filename', 'Uploaded Image Name', 'uploadedImageFilename'] }
+  ];
+
+  fields.forEach((field) => {
+    const idx = findHeaderIndex(headers, field.headers);
+    if (idx >= 0) row[idx] = field.value;
+  });
+
+  return row;
+}
+
 exports.handler = async (event) => {
   try {
     const data = JSON.parse(event.body || '{}');
@@ -244,23 +287,8 @@ exports.handler = async (event) => {
       data.uploadPreset
     );
 
-    const row = [
-      formatSubmittedAt(),
-      'NEW',
-      data.customerName || '',
-      data.customerEmail || '',
-      data.customerPhone || '',
-      data.productName || '',
-      data.sku || '',
-      data.ringSize || '',
-      data.insideText || '',
-      data.outsideText || '',
-      data.symbols || '',
-      data.notes || '',
-      data.estimatedTotal || '',
-      uploadedImageUrl || '',
-      uploadedImageFilename || ''
-    ];
+    data.uploadedImageUrl = uploadedImageUrl || '';
+    data.uploadedImageFilename = uploadedImageFilename || '';
 
     const auth = new google.auth.JWT(
       process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -270,10 +298,16 @@ exports.handler = async (event) => {
     );
 
     const sheets = google.sheets({ version: 'v4', auth });
+    const headerResponse = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.GOOGLE_SHEET_ID,
+      range: 'Sheet1!1:1'
+    });
+    const headers = (headerResponse.data.values && headerResponse.data.values[0]) || [];
+    const row = buildRowFromHeaders(headers, data);
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: 'Sheet1!A:O',
+      range: 'Sheet1!A:Z',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [row]
