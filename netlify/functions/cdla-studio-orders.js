@@ -31,6 +31,28 @@ function pickField(rowByHeader, candidates) {
   return '';
 }
 
+const TOTAL_HEADER_CANDIDATES = [
+  'Estimated Total',
+  'Final Total',
+  'Total Price',
+  'Total',
+  'estimatedTotal',
+  'finalTotal'
+];
+
+const NOTES_HEADER_CANDIDATES = [
+  'Customer Notes',
+  'Customer Note',
+  'Notes',
+  'Order Notes',
+  'Customer Request',
+  'Custom Requests',
+  'Special Requests',
+  'customerNotes',
+  'orderNotes',
+  'notes'
+];
+
 
 function isCurrencyOnly(value) {
   return /^\$?\d{1,3}(?:,\d{3})*(?:\.\d{2})?$/.test(String(value || '').trim());
@@ -71,32 +93,9 @@ exports.handler = async (event) => {
       outsideText: findColumnIndex(headers, ['Outside text', 'Outside Text']),
       symbols: findColumnIndex(headers, ['Symbols', 'Selected Symbols']),
       notes: findColumnIndex(headers, [
-        'Customer Notes',
-        'Customer Note',
-        'Customer notes',
-        'Notes',
-        'Order Notes',
-        'Customer Request',
-        'Custom Requests',
-        'Special Requests',
-        'customerNotes',
-        'orderNotes',
-        'notes',
-        'customer_notes',
-        'Customer notes (optional)'
+        ...NOTES_HEADER_CANDIDATES
       ]),
-      estimatedTotal: findColumnIndex(headers, [
-        'Estimated Total',
-        'Estimated total',
-        'Final Total',
-        'Final total',
-        'Total',
-        'Total Price',
-        'estimatedTotal',
-        'finalTotal',
-        'Estimated Price',
-        'Total Estimate'
-      ]),
+      estimatedTotal: findColumnIndex(headers, TOTAL_HEADER_CANDIDATES),
       imageUrl: findColumnIndex(headers, [
         'Uploaded Image URL',
         'Uploaded Image Url',
@@ -115,16 +114,8 @@ exports.handler = async (event) => {
     };
 
     const mappingCandidates = {
-      estimatedTotal: ['estimatedtotal', 'finaltotal', 'totalprice'],
-      customerNotes: [
-        'customernotes',
-        'customernote',
-        'notes',
-        'ordernotes',
-        'customerrequest',
-        'customrequests',
-        'specialrequests'
-      ],
+      estimatedTotal: TOTAL_HEADER_CANDIDATES.map(normalizeHeaderKey),
+      customerNotes: NOTES_HEADER_CANDIDATES.map(normalizeHeaderKey),
       uploadedImageUrl: ['uploadedimageurl', 'imageurl', 'customimageurl'],
       customization: ['insidetext', 'outsidetext', 'symbols']
     };
@@ -137,22 +128,9 @@ exports.handler = async (event) => {
     );
     console.log('[CDLA Studio] Detected normalized headers:', normalizedHeaders);
     console.log('[CDLA Studio] Field mapping:', mappedFields);
-    const notesHeaderIndex = idx.notes;
-    const estimatedTotalHeaderIndex = idx.estimatedTotal;
-    const olderGoodRow = rows.find((row) => {
-      const notes = String(row[notesHeaderIndex] || '').trim();
-      return notes && !isCurrencyOnly(notes);
-    }) || [];
-    const newerBadRow = [...rows].reverse().find((row) => {
-      const notes = String(row[notesHeaderIndex] || '').trim();
-      const total = String(row[estimatedTotalHeaderIndex] || '').trim();
-      return isCurrencyOnly(notes) && !total;
-    }) || [];
     console.log('[CDLA Studio] Header row:', headers);
-    console.log('[CDLA Studio] Customer Notes column:', notesHeaderIndex >= 0 ? headers[notesHeaderIndex] : '(not found)');
-    console.log('[CDLA Studio] Estimated Total column:', estimatedTotalHeaderIndex >= 0 ? headers[estimatedTotalHeaderIndex] : '(not found)');
-    console.log('[CDLA Studio] Older good order row sample:', olderGoodRow);
-    console.log('[CDLA Studio] Newer bad order row sample:', newerBadRow);
+    console.log('[CDLA Studio] Customer Notes column:', idx.notes >= 0 ? headers[idx.notes] : '(not found)');
+    console.log('[CDLA Studio] Estimated Total column:', idx.estimatedTotal >= 0 ? headers[idx.estimatedTotal] : '(not found)');
 
     if (idx.status < 0) idx.status = 1;
 
@@ -167,16 +145,32 @@ exports.handler = async (event) => {
 
         let estimatedTotal = pickField(rowByHeader, mappingCandidates.estimatedTotal);
         let customerNotes = pickField(rowByHeader, mappingCandidates.customerNotes);
-        const rawNotesValue = idx.notes >= 0 ? String(row[idx.notes] || '').trim() : '';
-        if (!customerNotes && rawNotesValue) customerNotes = rawNotesValue;
+
+        const rawEstimatedTotal = idx.estimatedTotal >= 0 ? String(row[idx.estimatedTotal] || '').trim() : '';
+        const rawCustomerNotes = idx.notes >= 0 ? String(row[idx.notes] || '').trim() : '';
+
+        // Dashboard display repair for older bad rows:
+        // if total is blank and notes contains only a currency value, show it as total and blank notes.
+        if (!estimatedTotal && isCurrencyOnly(customerNotes)) {
+          estimatedTotal = customerNotes;
+          customerNotes = '';
+        }
+
+        // Never display currency-only values as customer notes.
+        if (isCurrencyOnly(customerNotes)) {
+          customerNotes = '';
+        }
+
         const uploadedImageUrlRaw = pickField(rowByHeader, mappingCandidates.uploadedImageUrl);
         const uploadedImageUrl = isValidUrl(uploadedImageUrlRaw) ? uploadedImageUrlRaw : '';
-        if (i < 5 || sheetRowNumber === 7) {
-          console.log('[CDLA Studio] Notes debug', {
-            orderRow: sheetRowNumber,
-            detectedNotesHeader: idx.notes >= 0 ? headers[idx.notes] : '(not found)',
-            rawNotesValue,
-            mappedCustomerNotes: customerNotes
+        if (sheetRowNumber === 7) {
+          console.log('[CDLA Studio] Order #7 raw values', {
+            rawEstimatedTotal,
+            rawCustomerNotes
+          });
+          console.log('[CDLA Studio] Order #7 normalized mapping', {
+            estimatedTotal,
+            customerNotes
           });
         }
 
