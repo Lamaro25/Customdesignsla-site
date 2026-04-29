@@ -262,8 +262,8 @@ function buildRowFromHeaders(headers, data) {
     { value: data.insideText || '', headers: ['Inside text', 'Inside Text'] },
     { value: data.outsideText || '', headers: ['Outside text', 'Outside Text'] },
     { value: data.symbols || '', headers: ['Symbols', 'Selected Symbols'] },
-    { value: data.notes || '', headers: ['Customer Notes', 'Customer Note', 'Customer notes', 'Notes', 'Order Notes', 'Customer Request', 'Custom Requests', 'Special Requests', 'customerNotes', 'orderNotes', 'notes'] },
-    { value: data.estimatedTotal || '', headers: ['Estimated Total', 'Final Total', 'Total Price', 'estimatedTotal', 'finalTotal'] },
+    { value: data.notes || '', headers: ['Customer Notes', 'Customer Note', 'Notes', 'Order Notes', 'Customer Request', 'Custom Requests', 'Special Requests', 'customerNotes', 'orderNotes', 'notes'] },
+    { value: data.estimatedTotal || '', headers: ['Estimated Total', 'Final Total', 'Total Price', 'Total', 'estimatedTotal', 'finalTotal'] },
     { value: data.uploadedImageUrl || '', headers: ['Uploaded Image URL', 'Image URL', 'uploadedImageUrl'] },
     { value: data.uploadedImageFilename || '', headers: ['Uploaded Image Filename', 'Uploaded Image Name', 'uploadedImageFilename'] }
   ];
@@ -303,6 +303,11 @@ exports.handler = async (event) => {
       range: 'Sheet1!1:1'
     });
     const headers = (headerResponse.data.values && headerResponse.data.values[0]) || [];
+    console.log('[submit-preview] Header row:', headers);
+    console.log('[submit-preview] Customer Notes column:', headers[findHeaderIndex(headers, ['Customer Notes', 'Customer Note', 'Notes', 'Order Notes', 'Customer Request', 'Custom Requests', 'Special Requests', 'customerNotes', 'orderNotes', 'notes'])] || '(not found)');
+    console.log('[submit-preview] Estimated Total column:', headers[findHeaderIndex(headers, ['Estimated Total', 'Final Total', 'Total Price', 'Total', 'estimatedTotal', 'finalTotal'])] || '(not found)');
+    console.log('[submit-preview] Uploaded Image URL column:', headers[findHeaderIndex(headers, ['Uploaded Image URL', 'Image URL', 'uploadedImageUrl'])] || '(not found)');
+    console.log('[submit-preview] Uploaded Image Filename column:', headers[findHeaderIndex(headers, ['Uploaded Image Filename', 'Uploaded Image Name', 'uploadedImageFilename'])] || '(not found)');
     const row = buildRowFromHeaders(headers, data);
 
     await sheets.spreadsheets.values.append({
