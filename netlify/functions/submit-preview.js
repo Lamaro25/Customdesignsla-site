@@ -247,6 +247,19 @@ function findHeaderIndex(headers, candidates) {
   return -1;
 }
 
+function isCurrencyOnly(value) {
+  return /^\$?\d{1,3}(?:,\d{3})*(?:\.\d{2})?$/.test(String(value || '').trim());
+}
+
+function findAllHeaderIndices(headers, candidates) {
+  const normalized = headers.map((header) => normalizeHeaderKey(header));
+  const candidateSet = new Set(candidates.map((candidate) => normalizeHeaderKey(candidate)));
+  return normalized.reduce((acc, header, index) => {
+    if (candidateSet.has(header)) acc.push(index);
+    return acc;
+  }, []);
+}
+
 
 const NOTES_HEADER_CANDIDATES = [
   'Customer Notes',
@@ -292,6 +305,7 @@ function resolveSubmittedNotes(data) {
 
 function buildRowFromHeaders(headers, data) {
   const row = new Array(headers.length).fill('');
+  const preferredNotesColumn = data.__preferredNotesColumnIndex;
 
   const fields = [
     { value: formatSubmittedAt(), headers: ['Date/time submitted', 'Timestamp', 'Submitted At', 'Date'] },
@@ -305,14 +319,16 @@ function buildRowFromHeaders(headers, data) {
     { value: data.insideText || '', headers: ['Inside text', 'Inside Text'] },
     { value: data.outsideText || '', headers: ['Outside text', 'Outside Text'] },
     { value: data.symbols || '', headers: ['Symbols', 'Selected Symbols'] },
-    { value: resolveSubmittedNotes(data), headers: NOTES_HEADER_CANDIDATES },
+    { value: resolveSubmittedNotes(data), headers: NOTES_HEADER_CANDIDATES, forcedIndex: preferredNotesColumn },
     { value: data.estimatedTotal || '', headers: ['Estimated Total', 'Final Total', 'Total Price', 'Total', 'estimatedTotal', 'finalTotal'] },
     { value: data.uploadedImageUrl || '', headers: ['Uploaded Image URL', 'Image URL', 'uploadedImageUrl'] },
     { value: data.uploadedImageFilename || '', headers: ['Uploaded Image Filename', 'Uploaded Image Name', 'uploadedImageFilename'] }
   ];
 
   fields.forEach((field) => {
-    const idx = findHeaderIndex(headers, field.headers);
+    const idx = Number.isInteger(field.forcedIndex) && field.forcedIndex >= 0
+      ? field.forcedIndex
+      : findHeaderIndex(headers, field.headers);
     if (idx >= 0) row[idx] = field.value;
   });
 
@@ -346,8 +362,29 @@ exports.handler = async (event) => {
       range: 'Sheet1!1:1'
     });
     const headers = (headerResponse.data.values && headerResponse.data.values[0]) || [];
+    const sampleRowsResponse = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.GOOGLE_SHEET_ID,
+      range: 'Sheet1!A4:Z7'
+    });
+    const sampleRows = sampleRowsResponse.data.values || [];
+    const notesIndices = findAllHeaderIndices(headers, NOTES_HEADER_CANDIDATES);
+    const order4Raw = sampleRows[0] || [];
+    const order7Raw = sampleRows[3] || [];
+    const order4NoteEntry = notesIndices
+      .map((index) => ({ index, header: headers[index], value: String(order4Raw[index] || '').trim() }))
+      .find((entry) => entry.value && !isCurrencyOnly(entry.value));
+    const order7NoteEntry = notesIndices
+      .map((index) => ({ index, header: headers[index], value: String(order7Raw[index] || '').trim() }))
+      .find((entry) => entry.value && !isCurrencyOnly(entry.value));
+
+    data.__preferredNotesColumnIndex = order4NoteEntry?.index ?? findHeaderIndex(headers, NOTES_HEADER_CANDIDATES);
     console.log('[submit-preview] Header row:', headers);
     console.log('[submit-preview] Customer Notes column:', headers[findHeaderIndex(headers, NOTES_HEADER_CANDIDATES)] || '(not found)');
+    console.log('[submit-preview] Preferred notes write column:', Number.isInteger(data.__preferredNotesColumnIndex) ? headers[data.__preferredNotesColumnIndex] : '(not found)');
+    console.log('[submit-preview] Order #4 raw row data:', order4Raw);
+    console.log('[submit-preview] Order #7 raw row data:', order7Raw);
+    console.log('[submit-preview] Order #4 notes candidate:', order4NoteEntry || '(not found)');
+    console.log('[submit-preview] Order #7 notes candidate:', order7NoteEntry || '(not found)');
     console.log('[submit-preview] Estimated Total column:', headers[findHeaderIndex(headers, ['Estimated Total', 'Final Total', 'Total Price', 'Total', 'estimatedTotal', 'finalTotal'])] || '(not found)');
     console.log('[submit-preview] Uploaded Image URL column:', headers[findHeaderIndex(headers, ['Uploaded Image URL', 'Image URL', 'uploadedImageUrl'])] || '(not found)');
     console.log('[submit-preview] Uploaded Image Filename column:', headers[findHeaderIndex(headers, ['Uploaded Image Filename', 'Uploaded Image Name', 'uploadedImageFilename'])] || '(not found)');
