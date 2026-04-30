@@ -11,8 +11,8 @@ html, body { max-width: 100%; overflow-x: hidden; }
 body { margin: 0; font-family: Inter, system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); }
 
 .login-shell, .center-card { min-height: 100vh; display: grid; place-items: center; padding: 20px; }
-.login-card { background: #fff; width: 100%; max-width: 420px; border-radius: 16px; padding: 24px; box-shadow: 0 16px 40px rgba(8, 13, 22, .12); display: grid; gap: 12px; }
-.login-card input { width: 100%; border: 1px solid #ced5df; border-radius: 10px; padding: 10px; margin-top: 6px; }
+.login-card { background: #fff; width: 100%; max-width: 420px; border-radius: 16px; padding: 24px; box-shadow: 0 16px 40px rgba(8, 13, 22, .12); display: grid; gap: 12px; overflow: hidden; }
+.login-card input { width: 100%; max-width: 100%; border: 1px solid #ced5df; border-radius: 10px; padding: 10px; margin-top: 6px; font-size: 16px; }
 
 .studio-shell { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 100vh; position: relative; }
 .sidebar-backdrop { display: none; }
@@ -99,6 +99,9 @@ textarea, select { width: 100%; border: 1px solid #ced5df; border-radius: 8px; p
 }
 
 @media (max-width: 480px) {
+  .login-shell { padding: 12px; }
+  .login-card { max-width: 100%; padding: 16px; }
+
   .main { padding: 10px; }
   .topbar-head { align-items: flex-start; }
   .topbar p { font-size: .9rem; }
