@@ -247,6 +247,49 @@ function findHeaderIndex(headers, candidates) {
   return -1;
 }
 
+
+const NOTES_HEADER_CANDIDATES = [
+  'Customer Notes',
+  'Customer Note',
+  'Customer notes',
+  'Notes',
+  'Note',
+  'Order Notes',
+  'Order Note',
+  'Customer Request',
+  'Custom Request',
+  'Custom Requests',
+  'Special Requests',
+  'Special Request',
+  'Customer Message',
+  'Message',
+  'Additional Notes',
+  'Additional Requests',
+  'Placement Notes',
+  'Symbol Placement',
+  'Symbol Placement Notes',
+  'customerNotes',
+  'orderNotes',
+  'notes',
+  'message',
+  'specialRequests'
+];
+
+function resolveSubmittedNotes(data) {
+  const candidateFields = [
+    data.notes,
+    data.customerNotes,
+    data.orderNotes,
+    data.customerRequest,
+    data.specialRequests,
+    data.placementNotes,
+    data.message,
+    data.symbolPlacementNotes
+  ];
+  const firstNonEmpty = candidateFields.find((value) => String(value || '').trim() !== '');
+  return String(firstNonEmpty || '').trim();
+}
+
 function buildRowFromHeaders(headers, data) {
   const row = new Array(headers.length).fill('');
 
@@ -262,7 +305,7 @@ function buildRowFromHeaders(headers, data) {
     { value: data.insideText || '', headers: ['Inside text', 'Inside Text'] },
     { value: data.outsideText || '', headers: ['Outside text', 'Outside Text'] },
     { value: data.symbols || '', headers: ['Symbols', 'Selected Symbols'] },
-    { value: data.notes || '', headers: ['Customer Notes', 'Customer Note', 'Notes', 'Order Notes', 'Customer Request', 'Custom Requests', 'Special Requests', 'customerNotes', 'orderNotes', 'notes'] },
+    { value: resolveSubmittedNotes(data), headers: NOTES_HEADER_CANDIDATES },
     { value: data.estimatedTotal || '', headers: ['Estimated Total', 'Final Total', 'Total Price', 'Total', 'estimatedTotal', 'finalTotal'] },
     { value: data.uploadedImageUrl || '', headers: ['Uploaded Image URL', 'Image URL', 'uploadedImageUrl'] },
     { value: data.uploadedImageFilename || '', headers: ['Uploaded Image Filename', 'Uploaded Image Name', 'uploadedImageFilename'] }
@@ -304,10 +347,11 @@ exports.handler = async (event) => {
     });
     const headers = (headerResponse.data.values && headerResponse.data.values[0]) || [];
     console.log('[submit-preview] Header row:', headers);
-    console.log('[submit-preview] Customer Notes column:', headers[findHeaderIndex(headers, ['Customer Notes', 'Customer Note', 'Notes', 'Order Notes', 'Customer Request', 'Custom Requests', 'Special Requests', 'customerNotes', 'orderNotes', 'notes'])] || '(not found)');
+    console.log('[submit-preview] Customer Notes column:', headers[findHeaderIndex(headers, NOTES_HEADER_CANDIDATES)] || '(not found)');
     console.log('[submit-preview] Estimated Total column:', headers[findHeaderIndex(headers, ['Estimated Total', 'Final Total', 'Total Price', 'Total', 'estimatedTotal', 'finalTotal'])] || '(not found)');
     console.log('[submit-preview] Uploaded Image URL column:', headers[findHeaderIndex(headers, ['Uploaded Image URL', 'Image URL', 'uploadedImageUrl'])] || '(not found)');
     console.log('[submit-preview] Uploaded Image Filename column:', headers[findHeaderIndex(headers, ['Uploaded Image Filename', 'Uploaded Image Name', 'uploadedImageFilename'])] || '(not found)');
+    console.log('[submit-preview] Resolved notes payload:', resolveSubmittedNotes(data));
     const row = buildRowFromHeaders(headers, data);
 
     await sheets.spreadsheets.values.append({

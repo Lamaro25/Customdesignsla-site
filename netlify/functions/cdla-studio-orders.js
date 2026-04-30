@@ -17,7 +17,7 @@ function parseMoney(value) {
 }
 
 function normalizeHeaderKey(value) {
-  return String(value || '').toLowerCase().replace(/[\s_]+/g, '');
+  return String(value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
 function pickField(rowByHeader, candidates) {
@@ -43,14 +43,28 @@ const TOTAL_HEADER_CANDIDATES = [
 const NOTES_HEADER_CANDIDATES = [
   'Customer Notes',
   'Customer Note',
+  'Customer notes',
   'Notes',
+  'Note',
   'Order Notes',
+  'Order Note',
   'Customer Request',
+  'Custom Request',
   'Custom Requests',
   'Special Requests',
+  'Special Request',
+  'Customer Message',
+  'Message',
+  'Additional Notes',
+  'Additional Requests',
+  'Placement Notes',
+  'Symbol Placement',
+  'Symbol Placement Notes',
   'customerNotes',
   'orderNotes',
-  'notes'
+  'notes',
+  'message',
+  'specialRequests'
 ];
 
 
@@ -120,6 +134,11 @@ exports.handler = async (event) => {
       customization: ['insidetext', 'outsidetext', 'symbols']
     };
 
+
+    const detectedNotesHeaders = headers.filter((header) =>
+      NOTES_HEADER_CANDIDATES.map(normalizeHeaderKey).includes(normalizeHeaderKey(header))
+    );
+
     const mappedFields = Object.fromEntries(
       Object.entries(mappingCandidates).map(([fieldName, keys]) => {
         const detected = keys.find((key) => normalizedHeaders.includes(normalizeHeaderKey(key))) || '(not found)';
@@ -129,6 +148,7 @@ exports.handler = async (event) => {
     console.log('[CDLA Studio] Detected normalized headers:', normalizedHeaders);
     console.log('[CDLA Studio] Field mapping:', mappedFields);
     console.log('[CDLA Studio] Header row:', headers);
+    console.log('[CDLA Studio] Notes-like headers found:', detectedNotesHeaders);
     console.log('[CDLA Studio] Customer Notes column:', idx.notes >= 0 ? headers[idx.notes] : '(not found)');
     console.log('[CDLA Studio] Estimated Total column:', idx.estimatedTotal >= 0 ? headers[idx.estimatedTotal] : '(not found)');
 
