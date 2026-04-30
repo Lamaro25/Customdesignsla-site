@@ -67,6 +67,16 @@ const NOTES_HEADER_CANDIDATES = [
   'specialRequests'
 ];
 
+function findNotesColumnIndices(headers) {
+  const normalizedCandidates = new Set(NOTES_HEADER_CANDIDATES.map(normalizeHeaderKey));
+  return headers.reduce((acc, header, index) => {
+    if (normalizedCandidates.has(normalizeHeaderKey(header))) {
+      acc.push(index);
+    }
+    return acc;
+  }, []);
+}
+
 
 function isCurrencyOnly(value) {
   return /^\$?\d{1,3}(?:,\d{3})*(?:\.\d{2})?$/.test(String(value || '').trim());
@@ -92,6 +102,7 @@ exports.handler = async (event) => {
     const rows = values.slice(1);
 
     const normalizedHeaders = headers.map((header) => normalizeHeaderKey(header));
+    const notesColumnIndices = findNotesColumnIndices(headers);
 
     const idx = {
       submittedAt: findColumnIndex(headers, ['Date/time submitted', 'Timestamp', 'Submitted At', 'Date']),
@@ -151,8 +162,29 @@ exports.handler = async (event) => {
     console.log('[CDLA Studio] Notes-like headers found:', detectedNotesHeaders);
     console.log('[CDLA Studio] Customer Notes column:', idx.notes >= 0 ? headers[idx.notes] : '(not found)');
     console.log('[CDLA Studio] Estimated Total column:', idx.estimatedTotal >= 0 ? headers[idx.estimatedTotal] : '(not found)');
+    console.log('[CDLA Studio] Notes column candidates:', notesColumnIndices.map((index) => ({
+      index,
+      header: headers[index]
+    })));
 
     if (idx.status < 0) idx.status = 1;
+
+    const inspectRows = [
+      { label: 'Order #4', rowNumber: 4 },
+      { label: 'Order #7', rowNumber: 7 }
+    ];
+    inspectRows.forEach(({ label, rowNumber }) => {
+      const rawRow = values[rowNumber - 1] || [];
+      const notesCandidates = notesColumnIndices
+        .map((index) => ({
+          index,
+          header: headers[index],
+          value: String(rawRow[index] || '').trim()
+        }))
+        .filter((entry) => entry.value);
+      console.log(`[CDLA Studio] ${label} raw row data:`, rawRow);
+      console.log(`[CDLA Studio] ${label} notes candidates:`, notesCandidates);
+    });
 
     const orders = rows
       .map((row, i) => {
@@ -183,12 +215,12 @@ exports.handler = async (event) => {
 
         const uploadedImageUrlRaw = pickField(rowByHeader, mappingCandidates.uploadedImageUrl);
         const uploadedImageUrl = isValidUrl(uploadedImageUrlRaw) ? uploadedImageUrlRaw : '';
-        if (sheetRowNumber === 7) {
-          console.log('[CDLA Studio] Order #7 raw values', {
+        if (sheetRowNumber === 4 || sheetRowNumber === 7) {
+          console.log(`[CDLA Studio] Order #${sheetRowNumber} raw values`, {
             rawEstimatedTotal,
             rawCustomerNotes
           });
-          console.log('[CDLA Studio] Order #7 normalized mapping', {
+          console.log(`[CDLA Studio] Order #${sheetRowNumber} normalized mapping`, {
             estimatedTotal,
             customerNotes
           });
