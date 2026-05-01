@@ -655,30 +655,47 @@ footer.site-footer {
 
 .collections-page .collections-intro-heading {
   max-width: 1100px;
-  margin: 1.35rem auto 1.4rem;
+  margin: 0.95rem auto 1.1rem;
   padding: 0 1rem;
   text-align: center;
 }
 
-.collections-page .collections-intro-heading h1 {
+.collections-page .collection-page-heading {
   margin: 0;
-  font-family: "Great Vibes", "Allura", "Edwardian Script ITC", var(--font-script), cursive;
-  font-size: clamp(2rem, 5.2vw, 3rem);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  line-height: 1.08;
-  color: #2e3339;
-  text-shadow: 0 2px 10px rgba(18, 24, 30, 0.14);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 1.7vw, 1rem);
+  width: min(100%, 41rem);
+  max-width: 100%;
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.5rem, 4vw, 2.45rem);
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  line-height: 1.15;
+  color: #1f2329;
+  text-shadow: 0 1px 6px rgba(15, 19, 24, 0.12);
+}
+
+.collections-page .collection-page-heading::before,
+.collections-page .collection-page-heading::after {
+  content: "";
+  flex: 1 1 clamp(2rem, 12vw, 7rem);
+  min-width: clamp(1.3rem, 8vw, 3.2rem);
+  max-width: clamp(3.1rem, 18vw, 8rem);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(122, 130, 139, 0.14) 0%, rgba(122, 130, 139, 0.7) 50%, rgba(122, 130, 139, 0.14) 100%);
 }
 
 @media (max-width: 390px) {
   .collections-page .collections-intro-heading {
-    margin: 1rem auto 1.1rem;
+    margin: 0.85rem auto 0.9rem;
   }
 
-  .collections-page .collections-intro-heading h1 {
-    font-size: clamp(1.72rem, 9.1vw, 2.1rem);
-    line-height: 1.1;
+  .collections-page .collection-page-heading {
+    font-size: clamp(1.22rem, 7vw, 1.62rem);
+    gap: clamp(0.35rem, 2.8vw, 0.62rem);
+    line-height: 1.2;
   }
 }
 
