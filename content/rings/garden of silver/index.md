@@ -8,7 +8,12 @@ permalink: /rings/garden-of-silver/
 <div class="collection-page">
 
 <header class="collection-intro">
-  <h1 class="collection-intro-title">Garden of Silver Ring Collection</h1>
+  <div class="collection-intro-row">
+    <span class="collection-accent" aria-hidden="true"></span>
+    <h1 class="collection-intro-title">Garden of Silver Ring</h1>
+    <span class="collection-accent" aria-hidden="true"></span>
+  </div>
+  <p class="collection-intro-subtitle">COLLECTION</p>
 </header>
 
 <div class="collection-grid">
@@ -39,48 +44,59 @@ permalink: /rings/garden-of-silver/
 }
 
 .collection-page .collection-intro {
-  margin: 0.5rem 0 1.25rem;
+  margin: clamp(1.1rem, 3vw, 2rem) 0 1.4rem;
   text-align: center;
+}
+
+.collection-page .collection-intro-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.45rem, 1.8vw, 0.95rem);
+  width: 100%;
 }
 
 .collection-page .collection-intro-title {
   margin: 0;
   color: #232323;
   font-family: "Great Vibes", "Times New Roman", serif;
-  font-size: clamp(2rem, 6vw, 3rem);
+  font-size: clamp(1.95rem, 5.7vw, 3rem);
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.1;
+  text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
-.collection-page .collection-intro-title::before,
-.collection-page .collection-intro-title::after {
-  content: "";
-  display: inline-block;
-  width: clamp(2.25rem, 12vw, 5.5rem);
-  border-top: 1px solid rgba(35, 35, 35, 0.28);
-  vertical-align: middle;
-  margin: 0 0.75rem;
-  transform: translateY(-0.14em);
+.collection-page .collection-intro-subtitle {
+  margin: 0.45rem 0 0;
+  color: rgba(35, 35, 35, 0.8);
+  font-size: clamp(0.68rem, 1.7vw, 0.8rem);
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
 }
 
-.collection-page .collection-intro::after {
-  content: "❦";
-  display: block;
-  margin-top: 0.35rem;
-  color: rgba(35, 35, 35, 0.5);
-  font-size: 0.95rem;
-  line-height: 1;
+.collection-page .collection-accent {
+  width: clamp(1.9rem, 9vw, 4.2rem);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(35, 35, 35, 0) 0%, rgba(35, 35, 35, 0.42) 100%);
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  transform: translateY(-0.12em);
+}
+
+.collection-page .collection-accent:last-child {
+  transform: translateY(-0.12em) scaleX(-1);
 }
 
 @media (max-width: 640px) {
   .collection-page .collection-intro {
-    margin: 0.25rem 0 1rem;
+    margin: 1rem 0 1.1rem;
   }
 
-  .collection-page .collection-intro-title::before,
-  .collection-page .collection-intro-title::after {
-    margin: 0 0.4rem;
+  .collection-page .collection-intro-subtitle {
+    margin-top: 0.35rem;
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
   }
 }
 
