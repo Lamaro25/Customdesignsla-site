@@ -5,6 +5,9 @@ description: "Faith-inspired rings — scripture engravings, symbolic crosses, a
 permalink: /rings/faith/
 ---
 
+<div class="collection-page">
+
+
 <header class="collection-intro">
   <div class="collection-intro-row">
     <span class="collection-accent" aria-hidden="true"></span>
@@ -165,3 +168,5 @@ permalink: /rings/faith/
   font-size: 0.95rem;
 }
 </style>
+
+</div>
