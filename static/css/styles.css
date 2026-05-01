@@ -653,6 +653,35 @@ footer.site-footer {
 }
 
 
+.collections-page .collections-intro-heading {
+  max-width: 1100px;
+  margin: 1.35rem auto 1.4rem;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.collections-page .collections-intro-heading h1 {
+  margin: 0;
+  font-family: "Great Vibes", "Allura", "Edwardian Script ITC", var(--font-script), cursive;
+  font-size: clamp(2rem, 5.2vw, 3rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.08;
+  color: #2e3339;
+  text-shadow: 0 2px 10px rgba(18, 24, 30, 0.14);
+}
+
+@media (max-width: 390px) {
+  .collections-page .collections-intro-heading {
+    margin: 1rem auto 1.1rem;
+  }
+
+  .collections-page .collections-intro-heading h1 {
+    font-size: clamp(1.72rem, 9.1vw, 2.1rem);
+    line-height: 1.1;
+  }
+}
+
 /* ==============================================
    Engraved silver collection title style
    Scoped to collection cards on /rings/ collection grid only.
