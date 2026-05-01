@@ -655,7 +655,7 @@ footer.site-footer {
 
 .collections-page .collections-intro-heading {
   max-width: 1100px;
-  margin: 0.75rem auto 0.95rem;
+  margin: 1.05rem auto 1.05rem;
   padding: 0 1rem;
   text-align: center;
 }
@@ -669,35 +669,42 @@ footer.site-footer {
   width: min(100%, 43rem);
   max-width: 100%;
   font-family: "Great Vibes", "Allura", "Parisienne", "Edwardian Script ITC", cursive;
-  font-size: clamp(1.34rem, 3.6vw, 2.1rem);
+  font-size: clamp(1.48rem, 3.85vw, 2.28rem);
   font-weight: 600;
   letter-spacing: 0.012em;
   line-height: 1.1;
   white-space: nowrap;
   color: #262b31;
-  text-shadow: 0 1px 2px rgba(16, 20, 25, 0.12);
+  text-shadow: 0 2px 5px rgba(16, 20, 25, 0.16);
 }
 
 .collections-page .collection-page-heading::before,
 .collections-page .collection-page-heading::after {
   content: "";
-  flex: 1 1 clamp(2rem, 12vw, 7rem);
-  min-width: clamp(1.3rem, 8vw, 3.2rem);
-  max-width: clamp(3.1rem, 18vw, 8rem);
+  flex: 1 1 clamp(1.8rem, 11vw, 6.6rem);
+  min-width: clamp(1.15rem, 7vw, 2.8rem);
+  max-width: clamp(2.75rem, 16vw, 7rem);
   height: 1px;
   background: linear-gradient(90deg, rgba(122, 130, 139, 0.14) 0%, rgba(122, 130, 139, 0.7) 50%, rgba(122, 130, 139, 0.14) 100%);
 }
 
 @media (max-width: 390px) {
   .collections-page .collections-intro-heading {
-    margin: 0.65rem auto 0.8rem;
+    margin: 0.82rem auto 0.9rem;
   }
 
   .collections-page .collection-page-heading {
-    font-size: clamp(1.14rem, 6.9vw, 1.45rem);
-    gap: clamp(0.35rem, 2.8vw, 0.62rem);
+    font-size: clamp(1.24rem, 7.2vw, 1.62rem);
+    gap: clamp(0.3rem, 2.5vw, 0.54rem);
     line-height: 1.16;
     white-space: normal;
+  }
+
+  .collections-page .collection-page-heading::before,
+  .collections-page .collection-page-heading::after {
+    flex-basis: clamp(1.2rem, 8vw, 2.1rem);
+    min-width: clamp(0.95rem, 6vw, 1.65rem);
+    max-width: clamp(1.7rem, 10vw, 2.5rem);
   }
 }
 
