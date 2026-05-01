@@ -11,7 +11,7 @@ permalink: /rings/cuban-link/
 <header class="collection-intro">
   <div class="collection-intro-row">
     <span class="collection-accent" aria-hidden="true"></span>
-    <h1 class="collection-intro-title">Cuban Link Ring</h1>
+    <h1 class="collection-intro-title">Cuban Link</h1>
     <span class="collection-accent" aria-hidden="true"></span>
   </div>
   <p class="collection-intro-subtitle">COLLECTION</p>
@@ -59,11 +59,10 @@ permalink: /rings/cuban-link/
   margin: 0;
   color: #232323;
   font-family: "Great Vibes", "Times New Roman", serif;
-  font-size: clamp(1.7rem, 4.8vw, 2.6rem);
+  font-size: clamp(1.95rem, 5.7vw, 3rem);
   font-weight: 400;
   line-height: 1.1;
   text-align: center;
-  max-width: min(92vw, 24ch);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
