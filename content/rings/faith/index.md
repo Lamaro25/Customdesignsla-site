@@ -5,9 +5,9 @@ description: "Faith-inspired rings — scripture engravings, symbolic crosses, a
 permalink: /rings/faith/
 ---
 
-# Faith Ring Collection
-
-A collection of spiritually inspired rings — each crafted with scripture, symbols of devotion, and meaningful design. Sculpted in .925 Sterling Silver, oxidized for depth, and polished by hand.
+<header class="collection-intro">
+  <h1 class="collection-intro-title">Faith Ring Collection</h1>
+</header>
 
 <div class="collection-grid">
 
@@ -31,7 +31,53 @@ A collection of spiritually inspired rings — each crafted with scripture, symb
 .collection-grid {
   display: grid;
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 1.25rem;
+}
+
+.collection-intro {
+  margin: 0.5rem 0 1.25rem;
+  text-align: center;
+}
+
+.collection-intro-title {
+  margin: 0;
+  color: #232323;
+  font-family: "Great Vibes", "Times New Roman", serif;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.collection-intro-title::before,
+.collection-intro-title::after {
+  content: "";
+  display: inline-block;
+  width: clamp(2.25rem, 12vw, 5.5rem);
+  border-top: 1px solid rgba(35, 35, 35, 0.28);
+  vertical-align: middle;
+  margin: 0 0.75rem;
+  transform: translateY(-0.14em);
+}
+
+.collection-intro::after {
+  content: "❦";
+  display: block;
+  margin-top: 0.35rem;
+  color: rgba(35, 35, 35, 0.5);
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+@media (max-width: 640px) {
+  .collection-intro {
+    margin: 0.25rem 0 1rem;
+  }
+
+  .collection-intro-title::before,
+  .collection-intro-title::after {
+    margin: 0 0.4rem;
+  }
 }
 
 /* MOBILE — single column */

@@ -7,9 +7,9 @@ permalink: /rings/garden-of-silver/
 
 <div class="collection-page">
 
-# Garden of Silver Ring Collection
-
-The Garden of Silver collection is CDLA’s first AI-assisted ring series — inspired by nature and the quiet beauty you can find in it. Sculpted florals, flowing vines, and organic textures — all cast in .925 Sterling Silver.
+<header class="collection-intro">
+  <h1 class="collection-intro-title">Garden of Silver Ring Collection</h1>
+</header>
 
 <div class="collection-grid">
 
@@ -35,7 +35,53 @@ The Garden of Silver collection is CDLA’s first AI-assisted ring series — in
 .collection-page .collection-grid {
   display: grid;
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 1.25rem;
+}
+
+.collection-page .collection-intro {
+  margin: 0.5rem 0 1.25rem;
+  text-align: center;
+}
+
+.collection-page .collection-intro-title {
+  margin: 0;
+  color: #232323;
+  font-family: "Great Vibes", "Times New Roman", serif;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.collection-page .collection-intro-title::before,
+.collection-page .collection-intro-title::after {
+  content: "";
+  display: inline-block;
+  width: clamp(2.25rem, 12vw, 5.5rem);
+  border-top: 1px solid rgba(35, 35, 35, 0.28);
+  vertical-align: middle;
+  margin: 0 0.75rem;
+  transform: translateY(-0.14em);
+}
+
+.collection-page .collection-intro::after {
+  content: "❦";
+  display: block;
+  margin-top: 0.35rem;
+  color: rgba(35, 35, 35, 0.5);
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+@media (max-width: 640px) {
+  .collection-page .collection-intro {
+    margin: 0.25rem 0 1rem;
+  }
+
+  .collection-page .collection-intro-title::before,
+  .collection-page .collection-intro-title::after {
+    margin: 0 0.4rem;
+  }
 }
 
 /* MOBILE — single column */
