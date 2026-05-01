@@ -5,6 +5,9 @@ description: "Handcrafted Western rings — Texas heritage, frontier symbolism, 
 permalink: /rings/western/
 ---
 
+<div class="collection-page">
+
+
 <header class="collection-intro">
   <div class="collection-intro-row">
     <span class="collection-accent" aria-hidden="true"></span>
@@ -165,4 +168,5 @@ permalink: /rings/western/
   font-size: 0.95rem;
 }
 </style>
- 
+
+</div>

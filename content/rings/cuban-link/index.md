@@ -5,6 +5,9 @@ description: "Cuban Link rings — bold sculpted links, polished surfaces, and h
 permalink: /rings/cuban-link/
 ---
 
+<div class="collection-page">
+
+
 <header class="collection-intro">
   <div class="collection-intro-row">
     <span class="collection-accent" aria-hidden="true"></span>
@@ -164,3 +167,5 @@ permalink: /rings/cuban-link/
   font-size: 0.95rem;
 }
 </style>
+
+</div>
