@@ -655,7 +655,7 @@ footer.site-footer {
 
 .collections-page .collections-intro-heading {
   max-width: 1100px;
-  margin: 1.05rem auto 1.05rem;
+  margin: 1.32rem auto 0.78rem;
   padding: 0 1rem;
   text-align: center;
 }
@@ -690,7 +690,7 @@ footer.site-footer {
 
 @media (max-width: 390px) {
   .collections-page .collections-intro-heading {
-    margin: 0.82rem auto 0.9rem;
+    margin: 1.04rem auto 0.68rem;
   }
 
   .collections-page .collection-page-heading {
