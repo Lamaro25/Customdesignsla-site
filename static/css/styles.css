@@ -652,6 +652,76 @@ footer.site-footer {
   color: #111;
 }
 
+
+/* ==============================================
+   Engraved silver collection title style
+   Scoped to collection cards on /rings/ collection grid only.
+============================================== */
+.collections-page .collection-card .collection-plate {
+  padding: 0.65rem 0.9rem 0.85rem;
+  min-height: 98px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.collections-page .collection-card-title-metal {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-script), "Brush Script MT", cursive;
+  font-size: clamp(1.85rem, 7vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: 0.02em;
+  color: #cfd4da;
+  background: linear-gradient(180deg, #f8fafc 6%, #d9dee5 33%, #8f959c 52%, #eef2f7 73%, #b0b6be 96%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7),
+    0 2px 0 rgba(160, 166, 176, 0.65),
+    0 3px 0 rgba(86, 90, 98, 0.55),
+    1px 3px 2px rgba(21, 23, 27, 0.5),
+    -1px 3px 2px rgba(21, 23, 27, 0.45),
+    0 5px 8px rgba(14, 16, 19, 0.36);
+  overflow-wrap: anywhere;
+}
+
+.collections-page .collection-card-subtitle-label {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: clamp(0.56rem, 2.2vw, 0.72rem);
+  letter-spacing: 0.4em;
+  font-weight: 500;
+  color: #2f343a;
+}
+
+.collections-page .collection-card-subtitle-label::before,
+.collections-page .collection-card-subtitle-label::after {
+  content: "";
+  flex: 0 1 44px;
+  height: 1px;
+  background: rgba(47, 52, 58, 0.6);
+}
+
+@media (max-width: 390px) {
+  .collections-page .collection-card .collection-plate {
+    min-height: 90px;
+    padding: 0.6rem 0.75rem 0.72rem;
+  }
+
+  .collections-page .collection-card-title-metal {
+    font-size: clamp(1.65rem, 9vw, 2.05rem);
+  }
+}
+
 /* ===============================
    HOMEPAGE COLLECTION CARD (SCOPED)
 ================================ */
