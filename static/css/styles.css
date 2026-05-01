@@ -658,45 +658,47 @@ footer.site-footer {
    Scoped to collection cards on /rings/ collection grid only.
 ============================================== */
 .collections-page .collection-card .collection-plate {
-  padding: 0.65rem 0.9rem 0.85rem;
-  min-height: 98px;
+  padding: 0.68rem 0.9rem 0.9rem;
+  min-height: 104px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.3rem;
+  gap: 0.34rem;
 }
 
 .collections-page .collection-card-title-metal {
   margin: 0;
   text-align: center;
   font-family: "Great Vibes", "Allura", "Edwardian Script ITC", var(--font-script), cursive;
-  font-size: clamp(2.02rem, 7.5vw, 2.8rem);
+  font-size: clamp(2.16rem, 7.9vw, 3.02rem);
   font-weight: 700;
-  line-height: 1.04;
-  letter-spacing: 0.018em;
-  color: #6f7882;
+  line-height: 1.02;
+  letter-spacing: 0.02em;
+  color: #5e6670;
   background: linear-gradient(
-    180deg,
-    #ffffff 3%,
-    #f3f6fa 15%,
-    #bcc3cb 34%,
-    #6f7780 50%,
-    #2f353d 66%,
-    #dce2e8 84%,
-    #8e969f 100%
+    168deg,
+    #ffffff 0%,
+    #f9fcff 10%,
+    #c8d0d8 26%,
+    #7c858f 44%,
+    #343b44 60%,
+    #21262d 69%,
+    #e7edf4 84%,
+    #a3adb7 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow:
-    0 -1px 0 rgba(255, 255, 255, 0.92),
-    0 1px 0 rgba(230, 235, 241, 0.8),
-    0 2px 0 rgba(110, 118, 128, 0.86),
-    0 3px 0 rgba(54, 61, 70, 0.95),
-    0 4px 0 rgba(20, 24, 29, 0.96),
-    1px 4px 2px rgba(10, 11, 14, 0.78),
-    -1px 4px 2px rgba(10, 11, 14, 0.7),
-    0 7px 12px rgba(8, 9, 12, 0.52);
+    0 -1px 0 rgba(255, 255, 255, 0.96),
+    0 1px 0 rgba(210, 218, 226, 0.88),
+    0 2px 0 rgba(96, 106, 117, 0.92),
+    0 3px 0 rgba(42, 49, 58, 0.96),
+    0 4px 0 rgba(14, 18, 23, 0.98),
+    0 5px 8px rgba(6, 8, 11, 0.5);
+  filter: drop-shadow(0 2px 1px rgba(12, 16, 20, 0.48)) drop-shadow(0 5px 7px rgba(7, 9, 13, 0.32));
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
   overflow-wrap: anywhere;
 }
 
@@ -708,10 +710,11 @@ footer.site-footer {
   gap: 0.6rem;
   width: 100%;
   text-transform: uppercase;
-  font-size: clamp(0.5rem, 1.9vw, 0.66rem);
-  letter-spacing: 0.52em;
-  font-weight: 600;
-  color: #232930;
+  font-size: clamp(0.5rem, 1.9vw, 0.68rem);
+  letter-spacing: 0.58em;
+  font-weight: 650;
+  color: #1f252d;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
 .collections-page .collection-card-subtitle-label::before,
@@ -724,17 +727,25 @@ footer.site-footer {
 
 @media (max-width: 390px) {
   .collections-page .collection-card .collection-plate {
-    min-height: 90px;
-    padding: 0.58rem 0.72rem 0.7rem;
+    min-height: 96px;
+    padding: 0.6rem 0.72rem 0.75rem;
   }
 
   .collections-page .collection-card-title-metal {
-    font-size: clamp(1.76rem, 9.3vw, 2.16rem);
-    line-height: 1.05;
+    font-size: clamp(1.92rem, 9.8vw, 2.28rem);
+    line-height: 1.03;
+    letter-spacing: 0.018em;
+    text-shadow:
+      0 -1px 0 rgba(255, 255, 255, 0.94),
+      0 1px 0 rgba(204, 212, 220, 0.88),
+      0 2px 0 rgba(78, 88, 98, 0.94),
+      0 3px 0 rgba(26, 32, 39, 0.98),
+      0 4px 5px rgba(6, 9, 12, 0.5);
   }
 
   .collections-page .collection-card-subtitle-label {
-    letter-spacing: 0.44em;
+    font-size: clamp(0.49rem, 2.2vw, 0.6rem);
+    letter-spacing: 0.48em;
   }
 }
 
