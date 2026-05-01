@@ -59,10 +59,11 @@ permalink: /rings/cuban-link/
   margin: 0;
   color: #232323;
   font-family: "Great Vibes", "Times New Roman", serif;
-  font-size: clamp(1.95rem, 5.7vw, 3rem);
+  font-size: clamp(1.7rem, 4.8vw, 2.6rem);
   font-weight: 400;
   line-height: 1.1;
   text-align: center;
+  max-width: min(92vw, 24ch);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
