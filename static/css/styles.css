@@ -655,7 +655,7 @@ footer.site-footer {
 
 .collections-page .collections-intro-heading {
   max-width: 1100px;
-  margin: 0.95rem auto 1.1rem;
+  margin: 0.75rem auto 0.95rem;
   padding: 0 1rem;
   text-align: center;
 }
@@ -665,16 +665,17 @@ footer.site-footer {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.5rem, 1.7vw, 1rem);
-  width: min(100%, 41rem);
+  gap: clamp(0.5rem, 1.8vw, 1.05rem);
+  width: min(100%, 43rem);
   max-width: 100%;
-  font-family: "Playfair Display", "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  font-size: clamp(1.5rem, 4vw, 2.45rem);
-  font-weight: 700;
-  letter-spacing: 0.015em;
-  line-height: 1.15;
-  color: #1f2329;
-  text-shadow: 0 1px 6px rgba(15, 19, 24, 0.12);
+  font-family: "Great Vibes", "Allura", "Parisienne", "Edwardian Script ITC", cursive;
+  font-size: clamp(1.34rem, 3.6vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: 0.012em;
+  line-height: 1.1;
+  white-space: nowrap;
+  color: #262b31;
+  text-shadow: 0 1px 2px rgba(16, 20, 25, 0.12);
 }
 
 .collections-page .collection-page-heading::before,
@@ -689,13 +690,14 @@ footer.site-footer {
 
 @media (max-width: 390px) {
   .collections-page .collections-intro-heading {
-    margin: 0.85rem auto 0.9rem;
+    margin: 0.65rem auto 0.8rem;
   }
 
   .collections-page .collection-page-heading {
-    font-size: clamp(1.22rem, 7vw, 1.62rem);
+    font-size: clamp(1.14rem, 6.9vw, 1.45rem);
     gap: clamp(0.35rem, 2.8vw, 0.62rem);
-    line-height: 1.2;
+    line-height: 1.16;
+    white-space: normal;
   }
 }
 
