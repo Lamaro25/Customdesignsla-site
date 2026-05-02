@@ -4,6 +4,8 @@
 <section class="product-page product-page-minimal">
   <div class="container">
 
+    <h1 class="product-title">{{ title or page.data.title }}</h1>
+
     {# ===============================
        PRODUCT GALLERY (AUTHORITATIVE)
        =============================== #}
@@ -25,7 +27,6 @@
     {% endif %}
 
     <section class="product-summary">
-      <h1 class="product-title">{{ title or page.data.title }}</h1>
 
       {% set overviewHtml = "" %}
       {% if "<h2>Overview</h2>" in content %}
