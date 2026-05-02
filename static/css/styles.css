@@ -1837,41 +1837,45 @@ footer.site-footer {
   display: block;
   font-size: 12px;
   letter-spacing: 3px;
-  color: #555;
+  color: #444;
+  opacity: 0.8;
   margin-bottom: 6px;
 }
 
 .collections-page .header-main {
   margin: 0;
   font-family: serif;
-  font-size: 28px;
-  font-weight: 600;
-  color: #d9d9d9;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #bfbfbf;
   text-shadow:
     0 1px 0 #ffffff,
-    0 2px 3px rgba(0,0,0,0.25),
-    0 -1px 0 rgba(0,0,0,0.2);
+    0 -1px 0 rgba(0,0,0,0.6),
+    0 2px 3px rgba(0,0,0,0.4),
+    0 0 1px rgba(0,0,0,0.8);
+  -webkit-text-stroke: 0.3px rgba(0,0,0,0.25);
 }
 
 .collections-page .header-ornament {
-  width: 120px;
+  width: 140px;
   height: 2px;
-  margin: 10px auto 0;
+  margin: 12px auto 0;
   background: linear-gradient(
     to right,
     transparent,
-    rgba(0,0,0,0.4),
+    rgba(0,0,0,0.6),
     transparent
   );
   position: relative;
 }
 
 .collections-page .header-ornament::after {
-  content: "✦";
+  content: "◆";
   position: absolute;
   left: 50%;
-  top: -8px;
+  top: -7px;
   transform: translateX(-50%);
   font-size: 10px;
-  color: rgba(0,0,0,0.5);
+  color: rgba(0,0,0,0.6);
 }
