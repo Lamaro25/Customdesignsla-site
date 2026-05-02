@@ -828,8 +828,8 @@ footer.site-footer {
 ============================================== */
 .collections-page {
   background:
-    radial-gradient(circle at 50% 30%, rgba(245, 245, 245, 0.32) 0%, rgba(245, 245, 245, 0) 56%),
-    linear-gradient(180deg, #d9d9d9 0%, #c4c4c4 52%, #a8a8a8 100%);
+    radial-gradient(circle at 50% 32%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 58%),
+    linear-gradient(180deg, #e3e3e3 0%, #cfcfcf 52%, #b5b5b5 100%);
   position: relative;
   isolation: isolate;
 }
@@ -839,21 +839,23 @@ footer.site-footer {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.025;
   background-image:
     radial-gradient(circle at 14% 18%, rgba(78, 78, 78, 0.28) 0 1px, transparent 1.6px),
     radial-gradient(circle at 78% 38%, rgba(90, 90, 90, 0.22) 0 1px, transparent 1.6px),
-    repeating-linear-gradient(115deg, rgba(92, 92, 92, 0.16) 0 1px, transparent 1px 10px);
+    repeating-linear-gradient(115deg, rgba(92, 92, 92, 0.12) 0 1px, transparent 1px 12px);
   mix-blend-mode: multiply;
 }
 
 .collections-page .collection-page-heading {
-  color: #c7c7c7;
-  background: linear-gradient(180deg, #f2f2f2 0%, #cfcfcf 54%, #9e9e9e 100%);
+  color: #f5f5f5;
+  background: linear-gradient(180deg, #f5f5f5 0%, #a8a8a8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 1px 2px rgba(110, 110, 110, 0.62);
+  text-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.25),
+    0 -1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .collections-page .collection-page-heading::before,
@@ -862,19 +864,19 @@ footer.site-footer {
 }
 
 .collections-page .collection-card {
-  background: linear-gradient(180deg, #d8d8d8 0%, #c8c8c8 48%, #b4b4b4 100%);
-  border: 1px solid #bdbdbd;
+  background: linear-gradient(180deg, #eeeeee 0%, #d6d6d6 52%, #bdbdbd 100%);
+  border: 1px solid #c8c8c8;
   box-shadow:
-    inset 0 1px 0 rgba(241, 241, 241, 0.82),
-    inset 0 -8px 12px rgba(105, 105, 105, 0.16),
-    0 12px 24px rgba(74, 74, 74, 0.16);
+    inset 0 2px 4px rgba(255, 255, 255, 0.6),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.15),
+    0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .collections-page .collection-card:hover {
   box-shadow:
-    inset 0 1px 0 rgba(241, 241, 241, 0.86),
-    inset 0 -9px 13px rgba(105, 105, 105, 0.18),
-    0 14px 26px rgba(74, 74, 74, 0.2);
+    inset 0 2px 4px rgba(255, 255, 255, 0.65),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.18),
+    0 10px 22px rgba(0, 0, 0, 0.14);
 }
 
 .collections-page .collection-image,
@@ -889,28 +891,33 @@ footer.site-footer {
 .collections-page .collection-card .collection-plate {
   margin: 0 0.72rem 0.72rem;
   border-radius: 12px;
-  background: linear-gradient(180deg, #c8c8c8 0%, #b2b2b2 100%);
-  border-top: 1px solid rgba(238, 238, 238, 0.36);
-  box-shadow: inset 0 1px 0 rgba(236, 236, 236, 0.54), inset 0 -5px 10px rgba(97, 97, 97, 0.18);
+  background: linear-gradient(180deg, #eeeeee 0%, #d6d6d6 52%, #bdbdbd 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.6),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .collections-page .collection-card-title-metal {
-  background: linear-gradient(180deg, #f2f2f2 0%, #cfcfcf 56%, #9e9e9e 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 1px 0 rgba(235, 235, 235, 0.78), 0 1px 2px rgba(95, 95, 95, 0.5);
+  color: #e6e6e6;
+  background: none;
+  -webkit-text-fill-color: initial;
+  text-shadow:
+    0 2px 3px rgba(0, 0, 0, 0.35),
+    0 -1px 0 rgba(255, 255, 255, 0.6);
+  -webkit-text-stroke: 0.3px rgba(0, 0, 0, 0.2);
   filter: none;
 }
 
 .collections-page .collection-card-subtitle-label {
-  color: #666;
-  letter-spacing: 0.4em;
+  color: #7a7a7a;
+  letter-spacing: 0.46em;
 }
 
 .collections-page .collection-card-subtitle-label::before,
 .collections-page .collection-card-subtitle-label::after {
-  background: linear-gradient(90deg, rgba(106, 106, 106, 0.1), rgba(106, 106, 106, 0.64), rgba(106, 106, 106, 0.1));
+  opacity: 0.6;
+  background: linear-gradient(90deg, rgba(154, 154, 154, 0.08), rgba(154, 154, 154, 0.72), rgba(154, 154, 154, 0.08));
 }
 
 @media (max-width: 390px) {
@@ -924,11 +931,10 @@ footer.site-footer {
     line-height: 1.03;
     letter-spacing: 0.012em;
     text-shadow:
-      0 1px 0 rgba(247, 250, 254, 0.9),
-      0 2px 0 rgba(194, 202, 211, 0.76),
-      0 3px 1px rgba(27, 33, 39, 0.42),
-      0 5px 6px rgba(13, 17, 22, 0.24);
-    filter: drop-shadow(0 1px 0 rgba(16, 21, 27, 0.66)) drop-shadow(0 2px 4px rgba(10, 13, 18, 0.24));
+      0 2px 3px rgba(0, 0, 0, 0.35),
+      0 -1px 0 rgba(255, 255, 255, 0.6);
+    -webkit-text-stroke: 0.25px rgba(0, 0, 0, 0.2);
+    filter: none;
   }
 
   .collections-page .collection-card-subtitle-label {
