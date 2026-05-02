@@ -762,37 +762,40 @@ footer.site-footer {
   flex-direction: column;
   justify-content: center;
   gap: 0.34rem;
+  background: linear-gradient(180deg, #f5f3f0 0%, #efebe6 100%);
+  border-top: 1px solid rgba(35, 40, 47, 0.08);
 }
 
 .collections-page .collection-card-title-metal {
   margin: 0;
+  position: relative;
   text-align: center;
   font-family: "Great Vibes", "Allura", "Edwardian Script ITC", var(--font-script), cursive;
   font-size: clamp(2.16rem, 7.9vw, 3.02rem);
   font-weight: 700;
   line-height: 1.02;
-  letter-spacing: 0.02em;
-  color: #7a828b;
+  letter-spacing: 0.01em;
+  color: #8f98a3;
   background: linear-gradient(
-    172deg,
+    168deg,
     #ffffff 0%,
-    #f5f8fb 16%,
-    #dce3ea 34%,
-    #9ba4ae 50%,
-    #5d6671 63%,
-    #2c343d 76%,
-    #e3e9ef 90%,
-    #c2cad3 100%
+    #f4f7fa 17%,
+    #d8dee5 36%,
+    #adb6c0 52%,
+    #707b87 66%,
+    #2f3842 79%,
+    #e7ecf1 92%,
+    #c8d0d8 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow:
-    0 -1px 0 rgba(255, 255, 255, 0.78),
-    0 1px 0 rgba(205, 213, 221, 0.72),
-    0 2px 1px rgba(56, 65, 75, 0.44),
-    0 3px 4px rgba(19, 24, 30, 0.24);
-  filter: drop-shadow(0 1px 1px rgba(25, 31, 37, 0.22));
+    0 1px 0 rgba(250, 252, 255, 0.95),
+    0 2px 0 rgba(200, 207, 215, 0.8),
+    0 3px 1px rgba(28, 34, 40, 0.44),
+    0 6px 8px rgba(14, 17, 23, 0.28);
+  filter: drop-shadow(0 2px 0 rgba(18, 22, 28, 0.72)) drop-shadow(0 3px 5px rgba(11, 14, 19, 0.28));
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
   overflow-wrap: anywhere;
@@ -807,10 +810,9 @@ footer.site-footer {
   width: 100%;
   text-transform: uppercase;
   font-size: clamp(0.5rem, 1.9vw, 0.68rem);
-  letter-spacing: 0.58em;
-  font-weight: 650;
-  color: #1f252d;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.54em;
+  font-weight: 680;
+  color: #2b3037;
 }
 
 .collections-page .collection-card-subtitle-label::before,
@@ -830,13 +832,13 @@ footer.site-footer {
   .collections-page .collection-card-title-metal {
     font-size: clamp(1.92rem, 9.8vw, 2.28rem);
     line-height: 1.03;
-    letter-spacing: 0.018em;
+    letter-spacing: 0.012em;
     text-shadow:
-      0 -1px 0 rgba(255, 255, 255, 0.72),
-      0 1px 0 rgba(201, 209, 217, 0.66),
-      0 2px 1px rgba(50, 59, 69, 0.42),
-      0 3px 3px rgba(18, 23, 29, 0.26);
-    filter: drop-shadow(0 1px 1px rgba(23, 29, 35, 0.2));
+      0 1px 0 rgba(247, 250, 254, 0.9),
+      0 2px 0 rgba(194, 202, 211, 0.76),
+      0 3px 1px rgba(27, 33, 39, 0.42),
+      0 5px 6px rgba(13, 17, 22, 0.24);
+    filter: drop-shadow(0 1px 0 rgba(16, 21, 27, 0.66)) drop-shadow(0 2px 4px rgba(10, 13, 18, 0.24));
   }
 
   .collections-page .collection-card-subtitle-label {
