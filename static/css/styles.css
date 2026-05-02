@@ -1685,7 +1685,7 @@ footer.site-footer {
 
 .product-page-minimal .product-customize-wrap,
 .product-page-minimal .product-add-to-cart-wrap {
-  margin: 0 auto 2.25rem;
+  margin: 0 auto var(--product-gallery-gap);
 }
 
 @media (max-width: 767px) {
