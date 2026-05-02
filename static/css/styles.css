@@ -826,15 +826,13 @@ footer.site-footer {
    Silver engraved collections system
 ============================================== */
 .collections-page {
-  background:
-    radial-gradient(circle at 50% 32%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 58%),
-    linear-gradient(180deg, #e3e3e3 0%, #cfcfcf 52%, #b5b5b5 100%);
+  background: transparent !important;
   position: relative;
   isolation: isolate;
 }
 
 .collections-page::before {
-  content: "";
+  content: none;
   position: absolute;
   inset: 0;
   pointer-events: none;
