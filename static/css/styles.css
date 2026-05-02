@@ -1826,3 +1826,52 @@ footer.site-footer {
     margin-top: 0;
   }
 }
+
+/* Collection page 3-layer engraved headers */
+.collections-page .collection-header {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.collections-page .header-top {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.collections-page .header-main {
+  margin: 0;
+  font-family: serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #d9d9d9;
+  text-shadow:
+    0 1px 0 #ffffff,
+    0 2px 3px rgba(0,0,0,0.25),
+    0 -1px 0 rgba(0,0,0,0.2);
+}
+
+.collections-page .header-ornament {
+  width: 120px;
+  height: 2px;
+  margin: 10px auto 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0,0,0,0.4),
+    transparent
+  );
+  position: relative;
+}
+
+.collections-page .header-ornament::after {
+  content: "✦";
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: rgba(0,0,0,0.5);
+}
