@@ -823,6 +823,96 @@ footer.site-footer {
   background: linear-gradient(90deg, rgba(27, 31, 37, 0.1), rgba(27, 31, 37, 0.62), rgba(27, 31, 37, 0.1));
 }
 
+/* ==============================================
+   Silver engraved collections system
+============================================== */
+.collections-page {
+  background:
+    radial-gradient(circle at 50% 30%, rgba(245, 245, 245, 0.32) 0%, rgba(245, 245, 245, 0) 56%),
+    linear-gradient(180deg, #d9d9d9 0%, #c4c4c4 52%, #a8a8a8 100%);
+  position: relative;
+  isolation: isolate;
+}
+
+.collections-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image:
+    radial-gradient(circle at 14% 18%, rgba(78, 78, 78, 0.28) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 78% 38%, rgba(90, 90, 90, 0.22) 0 1px, transparent 1.6px),
+    repeating-linear-gradient(115deg, rgba(92, 92, 92, 0.16) 0 1px, transparent 1px 10px);
+  mix-blend-mode: multiply;
+}
+
+.collections-page .collection-page-heading {
+  color: #c7c7c7;
+  background: linear-gradient(180deg, #f2f2f2 0%, #cfcfcf 54%, #9e9e9e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 2px rgba(110, 110, 110, 0.62);
+}
+
+.collections-page .collection-page-heading::before,
+.collections-page .collection-page-heading::after {
+  background: linear-gradient(90deg, rgba(181, 181, 181, 0.14), rgba(181, 181, 181, 0.72), rgba(181, 181, 181, 0.14));
+}
+
+.collections-page .collection-card {
+  background: linear-gradient(180deg, #d8d8d8 0%, #c8c8c8 48%, #b4b4b4 100%);
+  border: 1px solid #bdbdbd;
+  box-shadow:
+    inset 0 1px 0 rgba(241, 241, 241, 0.82),
+    inset 0 -8px 12px rgba(105, 105, 105, 0.16),
+    0 12px 24px rgba(74, 74, 74, 0.16);
+}
+
+.collections-page .collection-card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(241, 241, 241, 0.86),
+    inset 0 -9px 13px rgba(105, 105, 105, 0.18),
+    0 14px 26px rgba(74, 74, 74, 0.2);
+}
+
+.collections-page .collection-image,
+.collections-page .collection-card img {
+  border-radius: 12px;
+}
+
+.collections-page .collection-image {
+  padding: 0.7rem 0.7rem 0.45rem;
+}
+
+.collections-page .collection-card .collection-plate {
+  margin: 0 0.72rem 0.72rem;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #c8c8c8 0%, #b2b2b2 100%);
+  border-top: 1px solid rgba(238, 238, 238, 0.36);
+  box-shadow: inset 0 1px 0 rgba(236, 236, 236, 0.54), inset 0 -5px 10px rgba(97, 97, 97, 0.18);
+}
+
+.collections-page .collection-card-title-metal {
+  background: linear-gradient(180deg, #f2f2f2 0%, #cfcfcf 56%, #9e9e9e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 0 rgba(235, 235, 235, 0.78), 0 1px 2px rgba(95, 95, 95, 0.5);
+  filter: none;
+}
+
+.collections-page .collection-card-subtitle-label {
+  color: #666;
+  letter-spacing: 0.4em;
+}
+
+.collections-page .collection-card-subtitle-label::before,
+.collections-page .collection-card-subtitle-label::after {
+  background: linear-gradient(90deg, rgba(106, 106, 106, 0.1), rgba(106, 106, 106, 0.64), rgba(106, 106, 106, 0.1));
+}
+
 @media (max-width: 390px) {
   .collections-page .collection-card .collection-plate {
     min-height: 96px;
