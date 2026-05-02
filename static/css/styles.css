@@ -957,7 +957,7 @@ footer.site-footer {
 
 .product-gallery-section {
   --product-gallery-gap: 1rem;
-  margin: var(--product-gallery-gap) 0 1.5rem;
+  margin: calc(var(--product-gallery-gap) * 2) 0 1.5rem;
 }
 
 /* MOBILE FIRST */
@@ -1011,7 +1011,7 @@ footer.site-footer {
 }
 
 .product-content .product-gallery-section {
-  margin-top: var(--product-gallery-gap);
+  margin-top: calc(var(--product-gallery-gap) * 2);
   margin-bottom: 1.25rem;
 }
 
