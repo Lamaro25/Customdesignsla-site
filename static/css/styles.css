@@ -956,14 +956,14 @@ footer.site-footer {
 ========================================================== */
 
 .product-gallery-section {
-  margin: 1.25rem 0;
+  margin: clamp(1.75rem, 4vw, 2.5rem) 0 1.5rem;
 }
 
 /* MOBILE FIRST */
 .product-gallery-grid {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* 🔒 tight mobile spacing */
+  gap: 1rem; /* Increased spacing for premium gallery rhythm */
 }
 
 .product-gallery-item {
@@ -980,15 +980,15 @@ footer.site-footer {
 /* TABLET */
 @media (min-width: 640px) {
   .product-gallery-grid {
-    gap: 0.75rem;
+    gap: 1.25rem;
   }
 }
 
 /* DESKTOP */
 @media (min-width: 1024px) {
   .product-gallery-grid {
-    flex-direction: row;
-    gap: 1rem; /* Matches Cuban / Faith spacing */
+    flex-direction: column;
+    gap: 1.5rem;
   }
 }
 
@@ -1605,10 +1605,18 @@ footer.site-footer {
 
 .product-page-minimal .product-title {
   margin: 0 0 1.05rem;
-  font-size: clamp(1.7rem, 4.5vw, 2.25rem);
-  line-height: 1.2;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(2.05rem, 7vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: 0.35px;
   text-align: center;
   text-wrap: balance;
+  overflow-wrap: anywhere;
+  text-shadow:
+    0 0 0 rgba(0,0,0,0.24),
+    0 1px 0 rgba(0,0,0,0.18),
+    0 2px 8px rgba(0,0,0,0.10);
 }
 
 .product-page-minimal .product-overview-card {
