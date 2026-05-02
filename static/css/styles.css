@@ -956,14 +956,15 @@ footer.site-footer {
 ========================================================== */
 
 .product-gallery-section {
-  margin: clamp(1.75rem, 4vw, 2.5rem) 0 1.5rem;
+  --product-gallery-gap: 1rem;
+  margin: var(--product-gallery-gap) 0 1.5rem;
 }
 
 /* MOBILE FIRST */
 .product-gallery-grid {
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* Increased spacing for premium gallery rhythm */
+  gap: var(--product-gallery-gap); /* Keep first-image offset equal to image-to-image gap */
 }
 
 .product-gallery-item {
@@ -979,16 +980,19 @@ footer.site-footer {
 
 /* TABLET */
 @media (min-width: 640px) {
-  .product-gallery-grid {
-    gap: 1.25rem;
+  .product-gallery-section {
+    --product-gallery-gap: 1.25rem;
   }
 }
 
 /* DESKTOP */
 @media (min-width: 1024px) {
+  .product-gallery-section {
+    --product-gallery-gap: 1.5rem;
+  }
+
   .product-gallery-grid {
     flex-direction: column;
-    gap: 1.5rem;
   }
 }
 
@@ -1007,7 +1011,7 @@ footer.site-footer {
 }
 
 .product-content .product-gallery-section {
-  margin-top: 1.25rem;
+  margin-top: var(--product-gallery-gap);
   margin-bottom: 1.25rem;
 }
 
