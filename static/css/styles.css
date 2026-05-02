@@ -752,8 +752,8 @@ footer.site-footer {
 }
 
 /* ==============================================
-   Engraved silver collection title style
-   Scoped to collection cards on /rings/ collection grid only.
+   Engraved sterling collection title style
+   Scoped to collection cards across collections pages.
 ============================================== */
 .collections-page .collection-card .collection-plate {
   padding: 0.68rem 0.9rem 0.9rem;
@@ -772,29 +772,27 @@ footer.site-footer {
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: 0.02em;
-  color: #5e6670;
+  color: #7a828b;
   background: linear-gradient(
-    168deg,
+    172deg,
     #ffffff 0%,
-    #f9fcff 10%,
-    #c8d0d8 26%,
-    #7c858f 44%,
-    #343b44 60%,
-    #21262d 69%,
-    #e7edf4 84%,
-    #a3adb7 100%
+    #f5f8fb 16%,
+    #dce3ea 34%,
+    #9ba4ae 50%,
+    #5d6671 63%,
+    #2c343d 76%,
+    #e3e9ef 90%,
+    #c2cad3 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow:
-    0 -1px 0 rgba(255, 255, 255, 0.96),
-    0 1px 0 rgba(210, 218, 226, 0.88),
-    0 2px 0 rgba(96, 106, 117, 0.92),
-    0 3px 0 rgba(42, 49, 58, 0.96),
-    0 4px 0 rgba(14, 18, 23, 0.98),
-    0 5px 8px rgba(6, 8, 11, 0.5);
-  filter: drop-shadow(0 2px 1px rgba(12, 16, 20, 0.48)) drop-shadow(0 5px 7px rgba(7, 9, 13, 0.32));
+    0 -1px 0 rgba(255, 255, 255, 0.78),
+    0 1px 0 rgba(205, 213, 221, 0.72),
+    0 2px 1px rgba(56, 65, 75, 0.44),
+    0 3px 4px rgba(19, 24, 30, 0.24);
+  filter: drop-shadow(0 1px 1px rgba(25, 31, 37, 0.22));
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
   overflow-wrap: anywhere;
@@ -834,11 +832,11 @@ footer.site-footer {
     line-height: 1.03;
     letter-spacing: 0.018em;
     text-shadow:
-      0 -1px 0 rgba(255, 255, 255, 0.94),
-      0 1px 0 rgba(204, 212, 220, 0.88),
-      0 2px 0 rgba(78, 88, 98, 0.94),
-      0 3px 0 rgba(26, 32, 39, 0.98),
-      0 4px 5px rgba(6, 9, 12, 0.5);
+      0 -1px 0 rgba(255, 255, 255, 0.72),
+      0 1px 0 rgba(201, 209, 217, 0.66),
+      0 2px 1px rgba(50, 59, 69, 0.42),
+      0 3px 3px rgba(18, 23, 29, 0.26);
+    filter: drop-shadow(0 1px 1px rgba(23, 29, 35, 0.2));
   }
 
   .collections-page .collection-card-subtitle-label {
