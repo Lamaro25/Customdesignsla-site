@@ -1715,6 +1715,30 @@ footer.site-footer {
   }
 }
 
+@media (max-width: 768px) {
+  .collections-page .collections-intro-heading {
+    padding-top: 10px;
+  }
+
+  .collections-page .collection-header-art {
+    margin: 8px 0 12px;
+  }
+
+  .collections-page .collection-header-art-img {
+    max-width: 92vw;
+    margin: 0 auto;
+  }
+
+  .collections-page .collection-grid {
+    margin-top: 8px;
+    row-gap: 22px;
+  }
+
+  .collections-page .collection-card:first-child {
+    margin-top: 0;
+  }
+}
+
 
 .product-page-minimal {
   --product-gallery-gap: 1rem;
