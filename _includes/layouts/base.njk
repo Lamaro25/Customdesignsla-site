@@ -30,6 +30,22 @@
       background: linear-gradient(to bottom, #ffffff, #e3e3e3);
     }
 
+    .cdla-header-wordmark {
+      display: block;
+      max-width: 260px;
+      width: 70vw;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .cdla-collections-button-img {
+      display: block;
+      max-width: 280px;
+      width: 72vw;
+      height: auto;
+      object-fit: contain;
+    }
+
     .top-button-bar {
       display: none;
     }
@@ -87,11 +103,17 @@
       }
     }
 
-    .site-header {
+    .site-header,
+    header {
       position: sticky;
       top: 0;
       z-index: 1500;
-      background: #f8f8f8ee;
+      background: linear-gradient(
+        to bottom,
+        #f2f2f2 0%,
+        #e4e4e4 45%,
+        #d6d6d6 100%
+      );
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       border-bottom: 1px solid rgba(0,0,0,0.08);
@@ -114,7 +136,7 @@
 <header class="site-header">
   <div class="container header-row">
     <a href="/" class="brand">
-      <span class="brand-text">Custom Design’s LA</span>
+      <img src="/static/img/cdla-header-wordmark.png" alt="Custom Design’s LA" class="cdla-header-wordmark">
       <img
         src="/assets/uploads/logo.png"
         alt="Custom Design's LA Logo"
@@ -129,7 +151,7 @@
     aria-expanded="false"
     aria-controls="collections-bar"
   >
-    ☰ Collections
+    <img src="/static/img/cdla-explore-collections-button.png" alt="Explore CDLA Collections" class="cdla-collections-button-img">
   </button>
 
   <div class="top-button-bar" id="collections-bar">
