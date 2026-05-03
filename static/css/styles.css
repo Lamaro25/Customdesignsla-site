@@ -826,7 +826,13 @@ footer.site-footer {
    Silver engraved collections system
 ============================================== */
 .collections-page {
-  background: transparent !important;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.28)),
+    url("/static/img/silver-scroll-background.jpg");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: repeat-y;
+  background-attachment: scroll;
   position: relative;
   isolation: isolate;
 }
