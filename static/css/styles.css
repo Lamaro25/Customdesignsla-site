@@ -189,6 +189,13 @@ canvas {
   padding-bottom: 0;
 }
 
+/* Restore sticky main header behavior */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+}
+
 .site-header *,
 .header-row * {
   line-height: normal;
@@ -1979,8 +1986,8 @@ footer.site-footer {
 
 
 /* Collection card PNG title artwork area */
-/* Top-of-collection header image only (direct child of page container) */
-.collection-page > .container > .collection-title-image-wrap {
+/* Top-of-collection header image only */
+.collection-title-image-wrap {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -1992,12 +1999,43 @@ footer.site-footer {
   box-shadow: none !important;
 }
 
-.collection-page > .container > .collection-title-image-wrap > .collection-title-image {
+.collection-title-image {
   display: block;
   width: min(94vw, 820px);
   height: auto;
   object-fit: contain;
   background: transparent;
+}
+
+/* Keep product/collection card footer/title artwork contained + dark */
+.product-card-title,
+.product-card-brand,
+.product-card-footer,
+.collection-card-title {
+  background: #111 !important;
+  overflow: hidden;
+}
+
+.product-card-title img,
+.product-card-brand img,
+.product-card-footer img,
+.collection-card-title img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 160px;
+  object-fit: contain;
+  background: #111;
+}
+
+@media (max-width: 768px) {
+  .product-card-title img,
+  .product-card-brand img,
+  .product-card-footer img,
+  .collection-card-title img {
+    max-height: 145px;
+  }
 }
 
 
