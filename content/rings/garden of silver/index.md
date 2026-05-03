@@ -7,14 +7,13 @@ permalink: /rings/garden-of-silver/
 
 <div class="collection-page">
 
-<header class="collection-intro">
-  <div class="collection-intro-row">
-    <span class="collection-accent" aria-hidden="true"></span>
-    <h1 class="collection-intro-title">Garden of Silver</h1>
-    <span class="collection-accent" aria-hidden="true"></span>
-  </div>
-  <p class="collection-intro-subtitle">COLLECTION</p>
-</header>
+<div class="collection-title-image-wrap">
+  <img
+    src="/static/img/headers/garden-of-silver-ring-collection.png"
+    alt="Garden of Silver collection header"
+    class="collection-title-image"
+  >
+</div>
 
 <div class="collection-grid">
 
