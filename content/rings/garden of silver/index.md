@@ -32,6 +32,8 @@ permalink: /rings/garden-of-silver/
     {% assign cardTitleImage = "/static/img/gs-005-card-title.png" %}
   {% elsif sku == "GS-006" %}
     {% assign cardTitleImage = "/static/img/gs-006-card-title.png" %}
+  {% elsif sku == "GS-007" %}
+    {% assign cardTitleImage = "/static/img/gs-007-card-title.png" %}
   {% endif %}
   <a href="{{ ring.url }}" class="collection-card">
     <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
