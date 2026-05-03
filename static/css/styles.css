@@ -2031,10 +2031,10 @@ footer.site-footer {
 .collection-listing-page,
 main.collection-page {
   background-image:
-    linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)),
+    linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)),
     url("/static/img/silver-scroll-background.png");
-  background-size: 100% auto;
-  background-position: top center;
+  background-size: 160% auto;
+  background-position: center top;
   background-repeat: repeat-y;
   background-attachment: scroll;
 }
