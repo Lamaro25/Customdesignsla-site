@@ -1985,18 +1985,18 @@ footer.site-footer {
 }
 
 .collection-title-image,
-.collection-title-art-wrap img {
+.collection-title-art-wrap img,
+.collection-title-art-wrap svg {
   display: block;
   width: 98%;
   max-width: 660px;
   height: auto;
   object-fit: contain;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   position: static;
   left: auto;
   right: auto;
-  transform: none;
+  transform: translateX(-3%);
   float: none;
   background: transparent;
   border: none;
@@ -2018,7 +2018,8 @@ footer.site-footer {
   }
 
   .collection-title-image,
-  .collection-title-art-wrap img {
+  .collection-title-art-wrap img,
+  .collection-title-art-wrap svg {
     width: 100%;
     max-width: 600px;
   }
