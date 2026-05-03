@@ -182,11 +182,13 @@
     @media (max-width: 768px) {
       .site-header,
       header {
-        min-height: unset !important;
-        height: auto !important;
-        padding-top: 8px !important;
-        padding-bottom: 10px !important;
-        margin-bottom: 0 !important;
+        height: 150px !important;
+        min-height: 150px !important;
+        max-height: 150px !important;
+        padding: 6px 0 4px 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        position: relative !important;
       }
 
       .header-brand,
@@ -194,9 +196,10 @@
       .header-logo-row {
         position: relative !important;
         display: flex !important;
-        justify-content: center !important;
         align-items: center !important;
+        justify-content: center !important;
         width: 100% !important;
+        height: 74px !important;
         margin: 0 auto !important;
         padding: 0 !important;
         text-align: center !important;
@@ -204,8 +207,8 @@
 
       .cdla-header-wordmark {
         display: block !important;
-        width: clamp(220px, 52vw, 300px) !important;
-        max-width: 300px !important;
+        width: clamp(230px, 56vw, 310px) !important;
+        max-width: 310px !important;
         height: auto !important;
         object-fit: contain !important;
         margin: 0 auto !important;
@@ -213,21 +216,37 @@
 
       .site-logo,
       .header-logo,
-      .logo {
+      .logo,
+      .brand-logo {
         position: absolute !important;
-        right: 16px !important;
+        right: 22px !important;
         top: 50% !important;
         transform: translateY(-50%) !important;
         margin: 0 !important;
         padding: 0 !important;
+        z-index: 3 !important;
+      }
+
+      .site-logo img,
+      .header-logo img,
+      .logo img,
+      .brand-logo {
+        width: 48px !important;
+        max-width: 48px !important;
+        height: auto !important;
+        object-fit: contain !important;
       }
 
       .collections-toggle,
       .collection-toggle,
       .nav-collections-button,
       .collections-link {
-        margin-top: 4px !important;
-        margin-bottom: 2px !important;
+        position: absolute !important;
+        left: 14px !important;
+        bottom: 8px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        z-index: 4 !important;
       }
 
       .collection-card:last-child {
