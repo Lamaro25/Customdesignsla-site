@@ -1779,7 +1779,7 @@ footer.site-footer {
   .collections-page .collection-grid {
     margin-top: 0 !important;
     padding-top: 0 !important;
-    padding-bottom: calc(90px + env(safe-area-inset-bottom)) !important;
+    padding-bottom: 0 !important;
     row-gap: 18px !important;
   }
 
