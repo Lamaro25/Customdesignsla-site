@@ -182,95 +182,62 @@
     @media (max-width: 768px) {
       .site-header,
       header {
-        min-height: 0 !important;
+        min-height: unset !important;
         height: auto !important;
-        padding-top: 2px !important;
-        padding-bottom: 0 !important;
+        padding-top: 8px !important;
+        padding-bottom: 10px !important;
         margin-bottom: 0 !important;
-      }
-
-      .cdla-header-wordmark {
-        width: clamp(180px, 42vw, 235px) !important;
-        max-width: 235px !important;
-        height: auto !important;
-        object-fit: contain !important;
-        margin: 0 !important;
       }
 
       .header-brand,
       .site-brand,
       .header-logo-row {
+        position: relative !important;
         display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
         justify-content: center !important;
-        gap: 10px !important;
+        align-items: center !important;
         width: 100% !important;
+        margin: 0 auto !important;
         padding: 0 !important;
-        margin: 0 !important;
+        text-align: center !important;
+      }
+
+      .cdla-header-wordmark {
+        display: block !important;
+        width: clamp(220px, 52vw, 300px) !important;
+        max-width: 300px !important;
+        height: auto !important;
+        object-fit: contain !important;
+        margin: 0 auto !important;
       }
 
       .site-logo,
       .header-logo,
       .logo {
+        position: absolute !important;
+        right: 16px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
         margin: 0 !important;
         padding: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-
-      .site-logo img,
-      .header-logo img,
-      .logo img {
-        height: auto !important;
-        object-fit: contain !important;
       }
 
       .collections-toggle,
       .collection-toggle,
       .nav-collections-button,
       .collections-link {
-        margin-top: -30px !important;
-        margin-bottom: -26px !important;
-        padding: 0 !important;
-      }
-
-      .collection-section,
-      .collections-section,
-      .collection-group,
-      .collection-panel {
-        margin-top: -10px !important;
-        padding-top: 0 !important;
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
-      }
-
-      .collection-grid,
-      .collection-card-grid,
-      .collections-grid {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
-        row-gap: 16px !important;
+        margin-top: 4px !important;
+        margin-bottom: 2px !important;
       }
 
       .collection-card:last-child {
-        margin-bottom: 0 !important;
-      }
-
-      main,
-      .main-content,
-      .page-content {
-        padding-bottom: 0 !important;
-        margin-bottom: 0 !important;
+        margin-bottom: 14px !important;
       }
 
       footer,
       .site-footer {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
+        margin-top: 12px !important;
+        padding-top: 10px !important;
       }
     }
   </style>
