@@ -10,30 +10,13 @@
 
   <!-- Collections Toggle Styles + Sticky Header -->
   <style>
-    .collections-toggle,
-    .collection-toggle,
-    .nav-collections-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: flex-start;
-      margin-left: 10px;
-      padding: 0;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      width: auto;
-      height: auto;
-      border-radius: 0;
-      cursor: pointer;
-    }
-
     .site-brand,
     .header-brand,
     .header-logo-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0px;
+      gap: 4px;
       width: 100%;
     }
 
@@ -42,27 +25,6 @@
       width: clamp(300px, 68vw, 470px);
       height: auto;
       object-fit: contain;
-      transform: translateX(18px);
-    }
-
-    .cdla-collections-button-img {
-      display: block;
-      width: clamp(240px, 58vw, 340px);
-      height: auto;
-      object-fit: contain;
-      filter:
-        drop-shadow(0 3px 4px rgba(0,0,0,0.32))
-        drop-shadow(0 0 8px rgba(255,255,255,0.58));
-      transition: transform 160ms ease, filter 180ms ease;
-    }
-
-    .collections-toggle:hover .cdla-collections-button-img,
-    .collection-toggle:hover .cdla-collections-button-img,
-    .nav-collections-button:hover .cdla-collections-button-img {
-      transform: translateY(-1px);
-      filter:
-        drop-shadow(0 4px 6px rgba(0,0,0,0.36))
-        drop-shadow(0 0 10px rgba(255,255,255,0.65));
     }
 
     .site-logo img,
@@ -71,8 +33,30 @@
     .brand-logo {
       width: clamp(48px, 11vw, 68px);
       height: auto;
-      margin-left: -8px;
+      margin-left: 0;
       flex-shrink: 0;
+    }
+
+    .collections-link {
+      display: block;
+      margin-left: 16px;
+      margin-top: 12px;
+      width: fit-content;
+      max-width: calc(100% - 16px);
+    }
+
+    .collections-link img {
+      width: 220px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.35));
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .collections-link img:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.5));
     }
 
     .top-button-bar {
@@ -130,19 +114,12 @@
 
 
     @media (max-width: 640px) {
-      .collections-toggle,
-      .collection-toggle,
-      .nav-collections-button {
-        margin-left: 10px;
-      }
-
       .cdla-header-wordmark {
         width: clamp(290px, 70vw, 430px);
-        transform: translateX(22px);
       }
 
-      .cdla-collections-button-img {
-        width: clamp(235px, 60vw, 320px);
+      .collections-link {
+        margin-top: 10px;
       }
     }
 
@@ -192,14 +169,9 @@
     </a>
   </div>
 
-  <button
-    class="collections-toggle"
-    type="button"
-    aria-expanded="false"
-    aria-controls="collections-bar"
-  >
-    <img src="/static/img/cdla-explore-collections-button.png" alt="Explore CDLA Collections" class="cdla-collections-button-img">
-  </button>
+  <a href="/collections/" class="collections-link">
+    <img src="/static/img/collections/collections-filigree-button.png" alt="Collections">
+  </a>
 
   <div class="top-button-bar" id="collections-bar">
 
@@ -271,19 +243,6 @@
   </p>
 </footer>
 {% endblock %}
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const toggle = document.querySelector(".collections-toggle");
-    const bar = document.querySelector(".top-button-bar");
-    if (!toggle || !bar) return;
-    toggle.addEventListener("click", () => {
-      const isOpen = bar.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", isOpen);
-    });
-  });
-</script>
-
 
 <script src="/static/js/mobile-gesture-lock.js" defer></script>
 <script src="/static/js/home-slider.js" defer></script>
