@@ -1925,13 +1925,15 @@ footer.site-footer {
 }
 
 
-/* Collection card PNG title plaque replacement */
-.collection-title-image-wrap {
+/* Collection card PNG title artwork area */
+.collection-title-image-wrap,
+.collection-title-art-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 14px 0 16px;
+  min-height: 140px;
+  padding: 28px 16px 34px;
   background: transparent;
 }
 
@@ -1941,8 +1943,16 @@ footer.site-footer {
   max-width: 520px;
   height: auto;
   object-fit: contain;
+  margin: 0 auto;
 }
 
-.collection-title-image-wrap.is-hidden {
-  display: none;
+@media (max-width: 767px) {
+  .collection-title-image-wrap,
+  .collection-title-art-wrap {
+    min-height: 120px;
+  }
+
+  .collection-title-image {
+    width: 88%;
+  }
 }
