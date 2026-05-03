@@ -25,6 +25,14 @@ permalink: /rings/cuban-link/
     {% assign cardTitleImage = "/static/img/cl-001-card-title.png?v=2" %}
   {% elsif sku == "CL-002" %}
     {% assign cardTitleImage = "/static/img/cl-002-card-title.png" %}
+  {% elsif sku == "CL-003" %}
+    {% assign cardTitleImage = "/static/img/cl-003-card-title.png" %}
+  {% elsif sku == "CL-004" %}
+    {% assign cardTitleImage = "/static/img/cl-004-card-title.png" %}
+  {% elsif sku == "CL-005" %}
+    {% assign cardTitleImage = "/static/img/cl-005-card-title.png" %}
+  {% elsif sku == "CL-006" %}
+    {% assign cardTitleImage = "/static/img/cl-006-card-title.png" %}
   {% endif %}
   <a href="{{ ring.url }}" class="collection-card">
     <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
@@ -221,8 +229,7 @@ permalink: /rings/cuban-link/
   content: none !important;
 }
 
-.collection-card[href*="cl-001-cuban-link-classic-ring"] .product-card-price--silver,
-.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .product-card-price--silver {
+.product-card-price--silver {
   background: linear-gradient(
     180deg,
     #ffffff 0%,
