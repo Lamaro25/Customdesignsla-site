@@ -4,7 +4,19 @@
 <section class="product-page product-page-minimal">
   <div class="container">
 
-    <h1 class="product-title">{{ title or page.data.title }}</h1>
+    {% set currentSku = sku or page.data.sku or "" %}
+    {% if currentSku == "CL-001" %}
+      <div class="cl-001-product-title-wrap">
+        <img
+          src="/static/img/cl-001-page-title.png"
+          alt="{{ title or page.data.title }}"
+          class="cl-001-product-title-image"
+          loading="lazy"
+        >
+      </div>
+    {% else %}
+      <h1 class="product-title">{{ title or page.data.title }}</h1>
+    {% endif %}
 
     {# ===============================
        PRODUCT GALLERY (AUTHORITATIVE)
@@ -103,6 +115,25 @@
 
   </div>
 </section>
+
+{% if currentSku == "CL-001" %}
+  <style>
+    .cl-001-product-title-wrap {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto clamp(1rem, 2.8vw, 1.75rem);
+      text-align: center;
+    }
+
+    .cl-001-product-title-image {
+      display: block;
+      width: 100%;
+      max-height: 140px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+  </style>
+{% endif %}
 {% endblock %}
 
 

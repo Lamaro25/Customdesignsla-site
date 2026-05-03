@@ -21,9 +21,18 @@ permalink: /rings/cuban-link/
 {% for ring in collections["cuban-link"] %}
   <a href="{{ ring.url }}" class="collection-card">
     <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
-    <div class="collection-card-text">
-      <h3>{{ ring.data.title }}</h3>
-      <p class="price">${{ ring.data.price }} USD</p>
+    <div class="collection-card-text{% if ring.data.sku == "CL-001" %} cl-001-card-text{% endif %}">
+      {% if ring.data.sku == "CL-001" %}
+        <img
+          src="/static/img/cl-001-card-title.png"
+          alt="{{ ring.data.title }}"
+          class="cl-001-card-title-image"
+          loading="lazy"
+        >
+      {% else %}
+        <h3>{{ ring.data.title }}</h3>
+      {% endif %}
+      <p class="price{% if ring.data.sku == "CL-001" %} cl-001-price{% endif %}">${{ ring.data.price }} USD</p>
     </div>
   </a>
 {% endfor %}
@@ -164,6 +173,23 @@ permalink: /rings/cuban-link/
 .collection-card-text .price {
   font-weight: 700;
   font-size: 0.95rem;
+}
+
+
+.cl-001-card-text {
+  background: #000;
+}
+
+.cl-001-card-title-image {
+  display: block;
+  width: min(92%, 220px);
+  height: 42px;
+  margin: 0.15rem auto 0.5rem;
+  object-fit: contain;
+}
+
+.cl-001-price {
+  color: #c0c0c0;
 }
 </style>
 
