@@ -182,57 +182,70 @@
     @media (max-width: 768px) {
       .site-header,
       header {
-        padding-top: 4px !important;
+        min-height: 0 !important;
+        height: auto !important;
+        padding-top: 2px !important;
         padding-bottom: 0 !important;
         margin-bottom: 0 !important;
-        min-height: unset !important;
-        height: auto !important;
       }
 
       .cdla-header-wordmark {
-        width: clamp(220px, 48vw, 270px) !important;
-        max-width: 270px !important;
+        width: clamp(180px, 42vw, 235px) !important;
+        max-width: 235px !important;
         height: auto !important;
         object-fit: contain !important;
         margin: 0 auto !important;
+      }
+
+      .header-brand,
+      .site-brand,
+      .header-logo-row {
+        gap: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        line-height: 0 !important;
+      }
+
+      .site-logo,
+      .header-logo,
+      .logo {
+        margin-top: -4px !important;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+        line-height: 0 !important;
       }
 
       .collections-toggle,
       .collection-toggle,
       .nav-collections-button,
       .collections-link {
-        margin-top: -18px !important;
-        margin-bottom: -16px !important;
-      }
-
-      .header-brand,
-      .site-brand,
-      .header-logo-row {
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
-        gap: 0 !important;
-      }
-
-      .site-logo,
-      .header-logo,
-      .logo {
-        margin-top: -2px !important;
-        margin-bottom: 0 !important;
+        margin-top: -28px !important;
+        margin-bottom: -24px !important;
+        padding: 0 !important;
       }
 
       .collection-section,
       .collections-section,
       .collection-group,
-      .collection-panel,
+      .collection-panel {
+        margin-top: -10px !important;
+        padding-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+
       .collection-grid,
       .collection-card-grid,
       .collections-grid {
-        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
         margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        row-gap: 16px !important;
       }
 
       .collection-card:last-child {
-        margin-bottom: 4px !important;
+        margin-bottom: 0 !important;
       }
 
       main,
@@ -244,8 +257,8 @@
 
       footer,
       .site-footer {
-        margin-top: 4px !important;
-        padding-top: 4px !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
       }
     }
   </style>
