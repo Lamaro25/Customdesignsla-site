@@ -39,28 +39,46 @@
 
     .collections-toggle,
     .collection-toggle,
-    .nav-collections-button {
+    .nav-collections-button,
+    .collections-link {
       display: inline-flex;
       align-items: center;
       justify-content: flex-start;
-      width: auto;
-      height: auto;
-      padding: 0;
+      width: auto !important;
+      max-width: none !important;
+      height: auto !important;
+      padding: 0 !important;
       margin-left: 14px;
       margin-top: 10px;
-      background: transparent;
-      border: none;
-      box-shadow: none;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
     }
 
-    .cdla-collections-button-img {
+    .cdla-collections-button-img,
+    .collections-link img,
+    .collections-toggle img,
+    .collection-toggle img,
+    .nav-collections-button img {
       display: block;
-      width: clamp(210px, 52vw, 300px);
-      height: auto;
+      width: 185px !important;
+      max-width: 185px !important;
+      height: auto !important;
       object-fit: contain;
       filter:
-        drop-shadow(0 3px 5px rgba(0,0,0,0.42))
-        drop-shadow(0 0 8px rgba(255,255,255,0.35));
+        drop-shadow(0 4px 7px rgba(0,0,0,0.45))
+        drop-shadow(0 0 8px rgba(255,255,255,0.25));
+    }
+
+    @media (min-width: 768px) {
+      .cdla-collections-button-img,
+      .collections-link img,
+      .collections-toggle img,
+      .collection-toggle img,
+      .nav-collections-button img {
+        width: 220px !important;
+        max-width: 220px !important;
+      }
     }
 
     .top-button-bar {
