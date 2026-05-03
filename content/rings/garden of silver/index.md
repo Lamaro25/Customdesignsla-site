@@ -18,11 +18,35 @@ permalink: /rings/garden-of-silver/
 <div class="collection-grid">
 
 {% for ring in collections["garden-of-silver"] %}
+  {% assign sku = ring.data.sku | default: "" %}
+  {% assign cardTitleImage = "" %}
+  {% if sku == "GS-001" %}
+    {% assign cardTitleImage = "/static/img/gs-001-card-title.png" %}
+  {% elsif sku == "GS-002" %}
+    {% assign cardTitleImage = "/static/img/gs-002-card-title.png" %}
+  {% elsif sku == "GS-003" %}
+    {% assign cardTitleImage = "/static/img/gs-003-card-title.png" %}
+  {% elsif sku == "GS-004" %}
+    {% assign cardTitleImage = "/static/img/gs-004-card-title.png" %}
+  {% elsif sku == "GS-005" %}
+    {% assign cardTitleImage = "/static/img/gs-005-card-title.png" %}
+  {% elsif sku == "GS-006" %}
+    {% assign cardTitleImage = "/static/img/gs-006-card-title.png" %}
+  {% endif %}
   <a href="{{ ring.url }}" class="collection-card">
     <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
-    <div class="collection-card-text">
-      <h3>{{ ring.data.title }}</h3>
-      <p class="price">${{ ring.data.price }} USD</p>
+    <div class="collection-card-text{% if cardTitleImage != "" %} product-card-title-panel--black{% endif %}">
+      {% if cardTitleImage != "" %}
+        <img
+          src="{{ cardTitleImage }}"
+          alt="{{ ring.data.title }}"
+          class="product-card-title-image"
+          loading="lazy"
+        >
+      {% else %}
+        <h3>{{ ring.data.title }}</h3>
+      {% endif %}
+      <p class="price{% if cardTitleImage != "" %} product-card-price--silver{% endif %}">${{ ring.data.price }} USD</p>
     </div>
   </a>
 {% endfor %}
@@ -165,5 +189,57 @@ permalink: /rings/garden-of-silver/
 .collection-page .collection-card-text .price {
   font-weight: 700;
   font-size: 0.95rem;
+}
+
+.product-card-title-panel--black {
+  background: #000;
+  position: relative;
+}
+
+.product-card-title-panel--black::before,
+.product-card-title-panel--black::after {
+  content: none !important;
+}
+
+.product-card-title-image {
+  display: block;
+  margin: 0 auto 8px;
+  width: auto;
+  max-width: 82%;
+  height: auto;
+  max-height: 42px;
+  object-fit: contain;
+  aspect-ratio: auto !important;
+  background: transparent !important;
+  border-radius: 0;
+  padding: 0;
+}
+
+.product-card-price--silver {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #e6e6e6 25%,
+    #cfcfcf 50%,
+    #f5f5f5 75%,
+    #bfbfbf 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 2px;
+  margin-bottom: 0;
+  font-weight: 600;
+  opacity: 1 !important;
+  filter: none !important;
+  text-shadow:
+    0 0 1px rgba(255,255,255,0.3),
+    0 1px 1px rgba(0,0,0,0.4);
+  mix-blend-mode: normal !important;
+  position: relative;
+  z-index: 10;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  transform: none !important;
 }
 </style>
