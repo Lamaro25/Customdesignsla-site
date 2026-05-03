@@ -24,7 +24,7 @@ permalink: /rings/cuban-link/
     <div class="collection-card-text{% if ring.data.sku == "CL-001" %} cl-001-card-text{% endif %}">
       {% if ring.data.sku == "CL-001" %}
         <img
-          src="/static/img/cl-001-card-title.png"
+          src="/static/img/cl-001-card-title.png?v=2"
           alt="{{ ring.data.title }}"
           class="cl-001-card-title-image"
           loading="lazy"
@@ -181,12 +181,23 @@ permalink: /rings/cuban-link/
 }
 
 .cl-001-card-title-image {
-  width: min(72%, 320px);
-  max-height: 58px;
-  object-fit: contain;
-  display: block;
+  max-width: 82%;
+  width: auto;
   height: auto;
-  margin: 0 auto 10px auto;
+  max-height: 42px;
+  object-fit: contain;
+  aspect-ratio: auto !important;
+  display: block;
+  margin: 0 auto 8px;
+  background: transparent !important;
+}
+
+
+.cl-001-card-text .cl-001-card-title-image {
+  object-fit: contain !important;
+  background: transparent !important;
+  border-radius: 0;
+  padding: 0;
 }
 
 .cl-001-price {
