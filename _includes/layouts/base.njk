@@ -182,14 +182,21 @@
     @media (max-width: 768px) {
       .site-header,
       header {
-        height: 128px !important;
-        min-height: 128px !important;
-        max-height: 128px !important;
-        padding-top: 8px !important;
-        padding-bottom: 2px !important;
+        min-height: 124px !important;
+        height: auto !important;
+        max-height: none !important;
+        padding-top: 6px !important;
+        padding-bottom: 4px !important;
         margin: 0 !important;
-        overflow: hidden !important;
+        overflow: visible !important;
         position: relative !important;
+      }
+
+      .site-header.collections-open,
+      header.collections-open,
+      .site-header:has(.top-button-bar.is-open),
+      header:has(.top-button-bar.is-open) {
+        padding-bottom: 56px !important;
       }
 
       .header-brand,
@@ -244,10 +251,41 @@
       .collections-link {
         position: absolute !important;
         left: 14px !important;
-        bottom: 6px !important;
+        bottom: 8px !important;
         margin: 0 !important;
         padding: 0 !important;
-        z-index: 4 !important;
+        z-index: 20 !important;
+      }
+
+      .top-button-bar {
+        position: absolute !important;
+        left: 14px !important;
+        top: calc(100% - 6px) !important;
+        z-index: 30 !important;
+        pointer-events: none !important;
+      }
+
+      .top-button-bar.is-open {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+        gap: 6px !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        pointer-events: auto !important;
+      }
+
+      .top-button-bar .nav-btn {
+        pointer-events: auto !important;
+        position: relative !important;
+        z-index: 31 !important;
+      }
+
+      .top-button-bar .nav-btn img {
+        height: 34px !important;
       }
 
       .collection-card:last-child {
@@ -374,6 +412,7 @@
     toggle.addEventListener('click', function (event) {
       event.preventDefault();
       const isOpen = bar.classList.toggle('is-open');
+      document.querySelector('.site-header')?.classList.toggle('collections-open', isOpen);
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   });
