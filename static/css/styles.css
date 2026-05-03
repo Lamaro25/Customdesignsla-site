@@ -275,67 +275,32 @@ main img:not(.brand-logo):not(.footer-logo) {
 /* ===============================
    COLLECTION HEADER (GLOBAL)
    =============================== */
-
-.collection-intro {
-  margin: clamp(1.1rem, 3vw, 2rem) auto 1.4rem;
-  text-align: center;
-  padding: 0 1rem;
-}
-
-.collection-intro-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(0.45rem, 1.8vw, 0.95rem);
+.collection-header {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
-.collection-intro-title {
+.collection-header-img {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  display: block;
+}
+
+.collection-title {
   margin: 0;
   color: #232323;
-  font-family: "Great Vibes", "Times New Roman", serif;
-  font-size: clamp(1.95rem, 5.7vw, 3rem);
-  font-weight: 400;
-  line-height: 1.1;
   text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  font-size: clamp(1.9rem, 5.2vw, 2.9rem);
 }
 
-.collection-intro-subtitle {
-  margin: 0.45rem 0 0;
-  color: rgba(35, 35, 35, 0.8);
-  font-size: clamp(0.68rem, 1.7vw, 0.8rem);
-  font-weight: 500;
-  letter-spacing: 0.32em;
-  text-indent: 0.32em;
-  text-transform: uppercase;
-}
-
-.collection-accent {
-  width: clamp(1.9rem, 9vw, 4.2rem);
-  height: 1px;
-  background: linear-gradient(90deg, rgba(35, 35, 35, 0) 0%, rgba(35, 35, 35, 0.42) 100%);
-  clip-path: polygon(0 50%, 100% 0, 100% 100%);
-  transform: translateY(-0.12em);
-}
-
-.collection-accent:last-child {
-  transform: translateY(-0.12em) scaleX(-1);
-}
-
-@media (max-width: 640px) {
-  .collection-intro {
-    margin: 1rem auto 1.1rem;
-  }
-
-  .collection-intro-title {
-    font-size: clamp(1.7rem, 10vw, 2.5rem);
-  }
-
-  .collection-intro-subtitle {
-    margin-top: 0.35rem;
-    letter-spacing: 0.28em;
-    text-indent: 0.28em;
+@media (max-width: 768px) {
+  .collection-header-img {
+    max-width: 95%;
   }
 }
 

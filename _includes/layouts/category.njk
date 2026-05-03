@@ -4,17 +4,17 @@
 <section class="collection-page">
   <div class="container">
 
-    {# ===============================
-       COLLECTION HEADER (CENTERED)
-       =============================== #}
-    <header class="collection-intro">
-      <div class="collection-intro-row">
-        <span class="collection-accent" aria-hidden="true"></span>
-        <h1 class="collection-intro-title">{{ title }}</h1>
-        <span class="collection-accent" aria-hidden="true"></span>
-      </div>
-      <p class="collection-intro-subtitle">COLLECTION</p>
-    </header>
+    <div class="collection-header">
+      {% if header_image %}
+        <img
+          src="{{ header_image }}"
+          alt="{{ title }} header"
+          class="collection-header-img"
+        />
+      {% else %}
+        <h1 class="collection-title">{{ title }}</h1>
+      {% endif %}
+    </div>
 
     {# ===============================
        COLLECTION SOURCE LOGIC (DO NOT TOUCH)
