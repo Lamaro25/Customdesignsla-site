@@ -13,37 +13,50 @@
     .collections-toggle {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      margin: 0.75rem 1rem;
-      padding: 0.45rem 0.9rem;
-      font-size: 0.95rem;
-      font-weight: 600;
+      justify-content: center;
+      width: auto;
+      max-width: 285px;
+      margin: 0.65rem 0 0.45rem 24px;
+      padding: 8px 16px;
       border-radius: 999px;
-      border: 1px solid #ccc;
-      background: linear-gradient(to bottom, #f2f2f2, #dcdcdc);
+      border: 2px solid rgba(210, 210, 210, 0.95);
+      background: linear-gradient(180deg, rgba(250,250,250,0.92), rgba(210,210,210,0.88));
       color: #111;
       cursor: pointer;
-      box-shadow: inset 0 1px 0 #fff;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.8),
+        inset 0 -1px 0 rgba(0,0,0,0.18),
+        0 4px 10px rgba(0,0,0,0.12);
     }
 
     .collections-toggle:hover {
       background: linear-gradient(to bottom, #ffffff, #e3e3e3);
     }
 
+    .header-logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+    }
+
     .cdla-header-wordmark {
       display: block;
-      max-width: 260px;
-      width: 70vw;
+      width: clamp(190px, 48vw, 340px);
       height: auto;
       object-fit: contain;
     }
 
     .cdla-collections-button-img {
       display: block;
-      max-width: 280px;
-      width: 72vw;
+      width: clamp(170px, 42vw, 245px);
       height: auto;
       object-fit: contain;
+    }
+
+    .brand-logo {
+      flex-shrink: 0;
     }
 
     .top-button-bar {
@@ -135,7 +148,7 @@
 
 <header class="site-header">
   <div class="container header-row">
-    <a href="/" class="brand">
+    <a href="/" class="brand header-logo-row">
       <img src="/static/img/cdla-header-wordmark.png" alt="Custom Design’s LA" class="cdla-header-wordmark">
       <img
         src="/assets/uploads/logo.png"
