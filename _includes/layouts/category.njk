@@ -4,17 +4,24 @@
 <section class="collection-page">
   <div class="container">
 
-    <div class="collection-header">
-      {% if header_image %}
-        <img
-          src="{{ header_image }}"
-          alt="{{ title }} header"
-          class="collection-header-img"
-        />
-      {% else %}
-        <h1 class="collection-title">{{ title }}</h1>
+    {% set headerImage = header_image %}
+    {% if not headerImage %}
+      {% if title == "Charm Bracelets" %}
+        {% set headerImage = "/static/img/headers/charm-bracelet-collection.png" %}
+      {% elif title == "Cuff Bracelets" %}
+        {% set headerImage = "/static/img/headers/cuff-bracelet-collection.png" %}
       {% endif %}
-    </div>
+    {% endif %}
+
+    {% if headerImage %}
+      <div class="collection-title-image-wrap">
+        <img
+          src="{{ headerImage }}"
+          alt="{{ title }} collection header"
+          class="collection-title-image"
+        >
+      </div>
+    {% endif %}
 
     {# ===============================
        COLLECTION SOURCE LOGIC (DO NOT TOUCH)
