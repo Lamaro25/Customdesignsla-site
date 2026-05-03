@@ -196,7 +196,7 @@
       header.collections-open,
       .site-header:has(.top-button-bar.is-open),
       header:has(.top-button-bar.is-open) {
-        padding-bottom: 56px !important;
+        padding-bottom: 34px !important;
       }
 
       .header-brand,
@@ -260,8 +260,10 @@
 
       .top-button-bar {
         position: absolute !important;
-        left: 14px !important;
-        top: 120px !important;
+        left: 50% !important;
+        top: 118px !important;
+        transform: translateX(-50%) !important;
+        width: min(92vw, 390px) !important;
         bottom: auto !important;
         z-index: 50 !important;
         pointer-events: none !important;
@@ -272,10 +274,8 @@
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 8px !important;
-        flex-wrap: nowrap !important;
-        max-width: none !important;
+        justify-content: space-evenly !important;
+        gap: 10px !important;
         margin: 0 !important;
         padding: 0 !important;
         pointer-events: auto !important;
@@ -286,10 +286,15 @@
         position: relative !important;
         z-index: 51 !important;
         white-space: nowrap !important;
+        min-height: 32px !important;
+        min-width: 64px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
       }
 
       .top-button-bar .nav-btn img {
-        height: 34px !important;
+        height: 38px !important;
       }
 
       .collection-card:last-child {
