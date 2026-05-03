@@ -8,11 +8,11 @@ permalink: /rings/cuban-link/
 <div class="collection-page">
 
 
-<div class="collection-title-image-wrap">
+<div class="collection-page-header-image-wrap">
   <img
     src="/static/img/cuban-link-ring-collection.png"
     alt="Cuban Link collection header"
-    class="collection-title-image"
+    class="collection-page-header-image"
   >
 </div>
 
