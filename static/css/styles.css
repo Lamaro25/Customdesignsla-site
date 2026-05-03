@@ -1753,7 +1753,7 @@ footer.site-footer {
     margin-left: auto !important;
     margin-right: auto !important;
     margin-top: -18px !important;
-    margin-bottom: 4px !important;
+    margin-bottom: 2px !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
   }
@@ -1766,7 +1766,7 @@ footer.site-footer {
     display: block !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    max-height: 112px !important;
+    max-height: 102px !important;
     max-width: 94vw !important;
     width: auto !important;
     height: auto !important;
@@ -1777,8 +1777,9 @@ footer.site-footer {
   .collection-card-grid,
   .collections-grid,
   .collections-page .collection-grid {
-    margin-top: 2px !important;
+    margin-top: 0 !important;
     padding-top: 0 !important;
+    padding-bottom: calc(90px + env(safe-area-inset-bottom)) !important;
     row-gap: 18px !important;
   }
 
