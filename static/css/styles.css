@@ -826,13 +826,6 @@ footer.site-footer {
    Silver engraved collections system
 ============================================== */
 .collections-page {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)),
-    url("/static/img/silver-scroll-background.png");
-  background-size: 100% auto;
-  background-position: top center;
-  background-repeat: repeat-y;
-  background-attachment: scroll;
   position: relative;
   isolation: isolate;
 }
@@ -2026,19 +2019,17 @@ footer.site-footer {
 }
 
 /* Silver scroll background for collection listing pages (PNG) */
+html,
+body {
+  background:
+    linear-gradient(rgba(255,255,255,0.04), rgba(255,255,255,0.04)),
+    url("/static/img/silver-scroll-background.png") center top / 140% auto repeat-y !important;
+}
+
 .collection-page,
 .collections-page,
 .collection-listing-page,
-main.collection-page {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)),
-    url("/static/img/silver-scroll-background.png");
-  background-size: 160% auto;
-  background-position: center top;
-  background-repeat: repeat-y;
-  background-attachment: scroll;
-}
-
+main.collection-page,
 .site-main,
 main,
 .page {
