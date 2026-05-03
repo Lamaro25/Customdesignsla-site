@@ -1720,22 +1720,40 @@ footer.site-footer {
     padding-top: 10px;
   }
 
-  .collections-page .collection-header-art {
-    margin: 8px 0 12px;
-  }
-
+  .collection-heading img,
+  .collection-heading-image img,
+  .collection-title-banner img,
+  .explore-collection-banner img,
   .collections-page .collection-header-art-img {
-    max-width: 92vw;
-    margin: 0 auto;
+    max-height: 120px !important;
+    width: auto !important;
+    max-width: 92vw !important;
+    object-fit: contain !important;
   }
 
+  .collection-heading,
+  .collection-heading-image,
+  .collection-title-banner,
+  .explore-collection-banner,
+  .collections-page .collection-header-art {
+    margin-top: 6px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .collections-page .collection-header-art {
+    margin-inline: auto;
+  }
+
+  .collection-grid,
+  .collection-card-grid,
   .collections-page .collection-grid {
-    margin-top: 8px;
+    margin-top: 6px !important;
     row-gap: 22px;
   }
 
+  .collection-card:first-child,
   .collections-page .collection-card:first-child {
-    margin-top: 0;
+    margin-top: 0 !important;
   }
 }
 
