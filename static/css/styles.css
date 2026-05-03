@@ -1879,3 +1879,34 @@ footer.site-footer {
   font-size: 10px;
   color: rgba(0,0,0,0.6);
 }
+
+
+/* Collection category header artwork system */
+.collections-page .collection-header-art {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.collections-page .collection-header-art-img {
+  display: block;
+  width: 100%;
+  max-width: min(90%, 720px);
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.collections-page .collection-header-art-fallback {
+  display: inline-block;
+  font-family: serif;
+  font-size: clamp(1.35rem, 4.5vw, 2rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #444;
+}
+
+@media (max-width: 767px) {
+  .collections-page .collection-header-art-img {
+    max-width: 90%;
+  }
+}
