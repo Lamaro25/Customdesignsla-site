@@ -37,26 +37,30 @@
       flex-shrink: 0;
     }
 
-    .collections-link {
-      display: block;
-      margin-left: 16px;
-      margin-top: 12px;
-      width: fit-content;
-      max-width: calc(100% - 16px);
-    }
-
-    .collections-link img {
-      width: 220px;
-      max-width: 100%;
+    .collections-toggle,
+    .collection-toggle,
+    .nav-collections-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: auto;
       height: auto;
-      display: block;
-      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.35));
-      transition: transform 0.2s ease, filter 0.2s ease;
+      padding: 0;
+      margin-left: 14px;
+      margin-top: 10px;
+      background: transparent;
+      border: none;
+      box-shadow: none;
     }
 
-    .collections-link img:hover {
-      transform: scale(1.05);
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.5));
+    .cdla-collections-button-img {
+      display: block;
+      width: clamp(210px, 52vw, 300px);
+      height: auto;
+      object-fit: contain;
+      filter:
+        drop-shadow(0 3px 5px rgba(0,0,0,0.42))
+        drop-shadow(0 0 8px rgba(255,255,255,0.35));
     }
 
     .top-button-bar {
@@ -118,9 +122,6 @@
         width: clamp(290px, 70vw, 430px);
       }
 
-      .collections-link {
-        margin-top: 10px;
-      }
     }
 
     .site-header,
@@ -169,8 +170,12 @@
     </a>
   </div>
 
-  <a href="/collections/" class="collections-link">
-    <img src="/static/img/collections/collections-filigree-button.png" alt="Collections">
+  <a class="collections-toggle" href="#" aria-label="Collections">
+    <img
+      src="/static/img/collections-filigree-button.png"
+      alt="Collections"
+      class="cdla-collections-button-img"
+    >
   </a>
 
   <div class="top-button-bar" id="collections-bar">
