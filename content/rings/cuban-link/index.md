@@ -24,7 +24,7 @@ permalink: /rings/cuban-link/
   {% if sku == "CL-001" %}
     {% assign cardTitleImage = "/static/img/cl-001-card-title.png?v=2" %}
   {% elsif sku == "CL-002" %}
-    {% assign cardTitleImage = "/static/img/rings/cl-002/cl-002-card-title.png" %}
+    {% assign cardTitleImage = "/static/img/cl-002-card-title.png" %}
   {% endif %}
   <a href="{{ ring.url }}" class="collection-card">
     <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
