@@ -18,10 +18,13 @@
       justify-content: center;
       gap: 4px;
       width: 100%;
+      position: relative;
     }
 
     .cdla-header-wordmark {
       display: block;
+      margin-left: auto;
+      margin-right: auto;
       width: clamp(300px, 68vw, 470px);
       height: auto;
       object-fit: contain;
@@ -37,22 +40,30 @@
       flex-shrink: 0;
     }
 
+    .header-logo-row .brand-logo {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
     .collections-toggle,
     .collection-toggle,
     .nav-collections-button,
     .collections-link {
       display: inline-flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       width: auto !important;
       max-width: none !important;
       height: auto !important;
       padding: 0 !important;
       margin-left: 14px;
-      margin-top: 10px;
+      margin-top: 8px;
       background: transparent !important;
       border: none !important;
       box-shadow: none !important;
+      cursor: pointer;
     }
 
     .cdla-collections-button-img,
@@ -61,8 +72,8 @@
     .collection-toggle img,
     .nav-collections-button img {
       display: block;
-      width: 185px !important;
-      max-width: 185px !important;
+      width: 150px !important;
+      max-width: 150px !important;
       height: auto !important;
       object-fit: contain;
       filter:
@@ -70,16 +81,6 @@
         drop-shadow(0 0 8px rgba(255,255,255,0.25));
     }
 
-    @media (min-width: 768px) {
-      .cdla-collections-button-img,
-      .collections-link img,
-      .collections-toggle img,
-      .collection-toggle img,
-      .nav-collections-button img {
-        width: 220px !important;
-        max-width: 220px !important;
-      }
-    }
 
     .top-button-bar {
       display: none;
@@ -269,6 +270,22 @@
 
 <script src="/static/js/mobile-gesture-lock.js" defer></script>
 <script src="/static/js/home-slider.js" defer></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.querySelector('.collections-toggle');
+    const bar = document.getElementById('collections-bar');
+    if (!toggle || !bar) return;
+
+    toggle.setAttribute('aria-expanded', 'false');
+
+    toggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      const isOpen = bar.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+</script>
 
 </body>
 </html>
