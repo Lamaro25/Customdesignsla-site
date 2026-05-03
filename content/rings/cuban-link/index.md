@@ -28,18 +28,18 @@ permalink: /rings/cuban-link/
   {% endif %}
   <a href="{{ ring.url }}" class="collection-card">
     <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
-    <div class="collection-card-text{% if cardTitleImage != "" %} cl-001-card-text{% endif %}">
+    <div class="collection-card-text{% if cardTitleImage != "" %} product-card-title-panel--black{% endif %}">
       {% if cardTitleImage != "" %}
         <img
           src="{{ cardTitleImage }}"
           alt="{{ ring.data.title }}"
-          class="cl-001-card-title-image"
+          class="product-card-title-image"
           loading="lazy"
         >
       {% else %}
         <h3>{{ ring.data.title }}</h3>
       {% endif %}
-      <p class="price{% if cardTitleImage != "" %} cl-001-price{% endif %}">${{ ring.data.price }} USD</p>
+      <p class="price{% if cardTitleImage != "" %} product-card-price--silver{% endif %}">${{ ring.data.price }} USD</p>
     </div>
   </a>
 {% endfor %}
@@ -183,52 +183,46 @@ permalink: /rings/cuban-link/
 }
 
 
-.cl-001-card-text {
+.product-card-title-panel--black {
   background: #000;
   position: relative;
 }
 
-.cl-001-card-text::before,
-.cl-001-card-text::after {
+.product-card-title-panel--black::before,
+.product-card-title-panel--black::after {
   content: none !important;
 }
 
-.cl-001-card-title-image {
-  max-width: 82%;
+.product-card-title-image {
+  display: block;
+  margin: 0 auto 8px;
   width: auto;
+  max-width: 82%;
   height: auto;
   max-height: 42px;
   object-fit: contain;
   aspect-ratio: auto !important;
-  display: block;
-  margin: 0 auto 8px;
-  background: transparent !important;
-}
-
-
-.cl-001-card-text .cl-001-card-title-image {
-  object-fit: contain !important;
   background: transparent !important;
   border-radius: 0;
   padding: 0;
 }
 
 /* CL-001 hardening: keep price above any darkening overlays */
-.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-card-text,
-.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .cl-001-card-text {
+.collection-card[href*="cl-001-cuban-link-classic-ring"] .product-card-title-panel--black,
+.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .product-card-title-panel--black {
   opacity: 1 !important;
   filter: none !important;
 }
 
-.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-card-text::before,
-.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-card-text::after,
-.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .cl-001-card-text::before,
-.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .cl-001-card-text::after {
+.collection-card[href*="cl-001-cuban-link-classic-ring"] .product-card-title-panel--black::before,
+.collection-card[href*="cl-001-cuban-link-classic-ring"] .product-card-title-panel--black::after,
+.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .product-card-title-panel--black::before,
+.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .product-card-title-panel--black::after {
   content: none !important;
 }
 
-.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-price,
-.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .cl-001-price {
+.collection-card[href*="cl-001-cuban-link-classic-ring"] .product-card-price--silver,
+.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .product-card-price--silver {
   background: linear-gradient(
     180deg,
     #ffffff 0%,
