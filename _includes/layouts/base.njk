@@ -16,13 +16,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: flex-start;
-      width: auto;
-      height: auto;
-      margin: 0.75rem 0 0.45rem 24px;
+      margin-left: 16px;
       padding: 0;
       background: transparent;
       border: none;
       box-shadow: none;
+      width: auto;
+      height: auto;
       border-radius: 0;
       cursor: pointer;
     }
@@ -39,19 +39,20 @@
 
     .cdla-header-wordmark {
       display: block;
-      width: clamp(285px, 64vw, 440px);
+      width: clamp(300px, 68vw, 470px);
       height: auto;
       object-fit: contain;
+      transform: translateX(18px);
     }
 
     .cdla-collections-button-img {
       display: block;
-      width: clamp(205px, 52vw, 310px);
+      width: clamp(240px, 58vw, 340px);
       height: auto;
       object-fit: contain;
       filter:
-        drop-shadow(0 3px 4px rgba(0,0,0,0.30))
-        drop-shadow(0 0 8px rgba(255,255,255,0.55));
+        drop-shadow(0 3px 4px rgba(0,0,0,0.32))
+        drop-shadow(0 0 8px rgba(255,255,255,0.58));
       transition: transform 160ms ease, filter 180ms ease;
     }
 
@@ -128,8 +129,19 @@
 
 
     @media (max-width: 640px) {
+      .collections-toggle,
+      .collection-toggle,
+      .nav-collections-button {
+        margin-left: 14px;
+      }
+
       .cdla-header-wordmark {
-        width: clamp(245px, 62vw, 350px);
+        width: clamp(290px, 70vw, 430px);
+        transform: translateX(22px);
+      }
+
+      .cdla-collections-button-img {
+        width: clamp(235px, 60vw, 320px);
       }
     }
 
