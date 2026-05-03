@@ -21,6 +21,9 @@ permalink: /rings/cuban-link/
 {% set skuTitleArtMap = {
   "CL-001": {
     "cardTitleImage": "/static/img/cl-001-card-title.png?v=2"
+  },
+  "CL-002": {
+    "cardTitleImage": "/static/img/rings/cl-002/cl-002-card-title.png"
   }
 } %}
 {# Future SKU onboarding example (do not enable yet):
@@ -218,17 +221,21 @@ permalink: /rings/cuban-link/
 }
 
 /* CL-001 hardening: keep price above any darkening overlays */
-.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-card-text {
+.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-card-text,
+.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .cl-001-card-text {
   opacity: 1 !important;
   filter: none !important;
 }
 
 .collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-card-text::before,
-.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-card-text::after {
+.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-card-text::after,
+.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .cl-001-card-text::before,
+.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .cl-001-card-text::after {
   content: none !important;
 }
 
-.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-price {
+.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-price,
+.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .cl-001-price {
   background: linear-gradient(
     180deg,
     #ffffff 0%,
