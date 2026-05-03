@@ -1929,30 +1929,29 @@ footer.site-footer {
 .collection-title-image-wrap,
 .collection-title-art-wrap {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  min-height: 140px;
-  padding: 28px 16px 34px;
+  padding: 24px 12px 32px;
+  min-height: 120px;
   background: transparent;
 }
 
-.collection-title-image {
+.collection-title-image,
+.collection-title-art-wrap img {
   display: block;
-  width: 86%;
-  max-width: 520px;
+  margin: 0 auto;
+  width: 85%;
+  max-width: 480px;
   height: auto;
   object-fit: contain;
-  margin: 0 auto;
+  pointer-events: none;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   .collection-title-image-wrap,
   .collection-title-art-wrap {
-    min-height: 120px;
-  }
-
-  .collection-title-image {
-    width: 88%;
+    min-height: 150px;
+    padding: 28px 16px 36px;
   }
 }
