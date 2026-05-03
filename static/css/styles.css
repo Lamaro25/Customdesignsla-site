@@ -1889,11 +1889,13 @@ footer.site-footer {
 
 .collections-page .collection-header-art-img {
   display: block;
-  width: 100%;
-  max-width: min(90%, 720px);
+  width: min(100%, 720px);
+  max-width: 100%;
   height: auto;
   margin: 0 auto;
   object-fit: contain;
+  background: transparent;
+  border: 0;
 }
 
 .collections-page .collection-header-art-fallback {
