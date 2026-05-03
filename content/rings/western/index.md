@@ -10,7 +10,7 @@ permalink: /rings/western/
 
 <div class="collection-title-image-wrap">
   <img
-    src="/static/img/headers/western-ring-collection.png"
+    src="/static/img/western-ring-collection.png"
     alt="Western collection header"
     class="collection-title-image"
   >

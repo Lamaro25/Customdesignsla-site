@@ -10,7 +10,7 @@ permalink: /rings/cuban-link/
 
 <div class="collection-title-image-wrap">
   <img
-    src="/static/img/headers/cuban-link-ring-collection.png"
+    src="/static/img/cuban-link-ring-collection.png"
     alt="Cuban Link collection header"
     class="collection-title-image"
   >

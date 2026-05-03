@@ -10,7 +10,7 @@ permalink: /rings/faith/
 
 <div class="collection-title-image-wrap">
   <img
-    src="/static/img/headers/faith-ring-collection.png"
+    src="/static/img/faith-ring-collection.png"
     alt="Faith Ring collection header"
     class="collection-title-image"
   >
