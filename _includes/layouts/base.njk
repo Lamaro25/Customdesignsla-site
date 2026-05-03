@@ -14,31 +14,35 @@
     .header-brand,
     .header-logo-row {
       display: flex !important;
+      flex-direction: column !important;
       align-items: center !important;
       justify-content: center !important;
       gap: 0 !important;
       width: 100% !important;
-      position: relative !important;
     }
 
     .cdla-header-wordmark,
     .cdla-header-img {
-      --cdla-wordmark-width: clamp(260px, 62vw, 420px);
+      --cdla-wordmark-width: clamp(250px, 58vw, 390px);
       display: block !important;
       width: var(--cdla-wordmark-width) !important;
       height: auto !important;
       object-fit: contain !important;
       flex-shrink: 1 !important;
+      margin: 0 auto !important;
     }
 
     .site-logo,
     .header-logo,
     .logo {
       display: flex !important;
+      justify-content: center !important;
       align-items: center !important;
-      margin-left: 0 !important;
-      padding-left: 0 !important;
+      margin: -10px auto 0 auto !important;
+      padding: 0 !important;
       flex-shrink: 0 !important;
+      position: relative !important;
+      z-index: 2 !important;
     }
 
     .site-logo img,
@@ -46,13 +50,9 @@
     .logo img,
     .brand-logo {
       display: block !important;
-      width: clamp(49px, 11.2vw, 69px) !important;
+      width: clamp(34px, 8vw, 48px) !important;
       height: auto !important;
-      margin-left: 0 !important;
-      position: absolute !important;
-      top: 50% !important;
-      left: 50% !important;
-      transform: translateY(-50%) translateX(calc((var(--cdla-wordmark-width) / 2) + 10px)) !important;
+      margin: 0 auto !important;
     }
 
     .collections-toggle,
@@ -66,8 +66,9 @@
       max-width: none !important;
       height: auto !important;
       padding: 0 !important;
+      margin-top: 4px;
       margin-left: 14px;
-      margin-top: 16px;
+      margin-bottom: 8px;
       background: transparent !important;
       border: none !important;
       box-shadow: none !important;
@@ -80,8 +81,8 @@
     .collection-toggle img,
     .nav-collections-button img {
       display: block;
-      width: 140px !important;
-      max-width: 140px !important;
+      width: clamp(140px, 38vw, 185px) !important;
+      max-width: 185px !important;
       height: auto !important;
       object-fit: contain;
       filter:
@@ -170,6 +171,8 @@
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       border-bottom: 1px solid rgba(255,255,255,0.18);
+      padding-top: 14px !important;
+      padding-bottom: 14px !important;
     }
 
     main {
