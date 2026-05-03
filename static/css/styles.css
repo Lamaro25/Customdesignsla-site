@@ -1929,29 +1929,41 @@ footer.site-footer {
 .collection-title-image-wrap,
 .collection-title-art-wrap {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  padding: 24px 12px 32px;
+  padding: 22px 12px 28px;
   min-height: 120px;
   background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
 }
 
 .collection-title-image,
 .collection-title-art-wrap img {
   display: block;
-  margin: 0 auto;
-  width: 85%;
-  max-width: 480px;
+  width: 88%;
+  max-width: 560px;
   height: auto;
   object-fit: contain;
+  margin: 0 auto;
+  background: transparent;
+  border: none;
+  box-shadow: none;
   pointer-events: none;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 640px) {
   .collection-title-image-wrap,
   .collection-title-art-wrap {
-    min-height: 150px;
-    padding: 28px 16px 36px;
+    min-height: 115px;
+    padding: 20px 10px 26px;
+  }
+
+  .collection-title-image,
+  .collection-title-art-wrap img {
+    width: 92%;
+    max-width: 460px;
   }
 }
