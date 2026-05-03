@@ -1716,6 +1716,26 @@ footer.site-footer {
 }
 
 @media (max-width: 768px) {
+  .site-header,
+  header {
+    padding-bottom: 0 !important;
+  }
+
+  .collections-toggle,
+  .collection-toggle,
+  .nav-collections-button,
+  .collections-link {
+    margin-bottom: -8px !important;
+  }
+
+  .collection-section,
+  .collections-section,
+  .collection-group,
+  .collection-panel {
+    padding-top: 0 !important;
+    margin-top: -18px !important;
+  }
+
   .collections-page .collections-intro-heading {
     padding-top: 10px;
   }
@@ -1732,7 +1752,7 @@ footer.site-footer {
     width: 100% !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    margin-top: 2px !important;
+    margin-top: -18px !important;
     margin-bottom: 4px !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
@@ -1755,6 +1775,7 @@ footer.site-footer {
 
   .collection-grid,
   .collection-card-grid,
+  .collections-grid,
   .collections-page .collection-grid {
     margin-top: 2px !important;
     padding-top: 0 !important;
