@@ -2024,3 +2024,23 @@ footer.site-footer {
     max-width: 600px;
   }
 }
+
+/* Silver scroll background fix for collection pages (PNG) */
+html,
+body {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.20), rgba(255,255,255,0.20)),
+    url("/static/img/silver-scroll-background.png");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: repeat-y;
+}
+
+.site-main,
+main,
+.page,
+.collection-page,
+.collections-page,
+.collection-listing-page {
+  background: transparent !important;
+}
