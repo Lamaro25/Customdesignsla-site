@@ -5,10 +5,19 @@
   <div class="container">
 
     {% set currentSku = sku or page.data.sku or "" %}
-    {% if currentSku == "CL-001" %}
+    {% set skuTitleArtMap = {
+      "CL-001": {
+        "pageTitleImage": "/static/img/cl-001-page-title.png"
+      }
+    } %}
+    {# Future SKU onboarding example (do not enable yet):
+      "CL-002": { "pageTitleImage": "/static/img/cl-002-page-title.png" }
+    #}
+    {% set skuArt = skuTitleArtMap[currentSku] %}
+    {% if skuArt %}
       <div class="cl-001-product-title-wrap">
         <img
-          src="/static/img/cl-001-page-title.png"
+          src="{{ skuArt.pageTitleImage }}"
           alt="{{ title or page.data.title }}"
           class="cl-001-product-title-image"
           loading="lazy"
@@ -116,7 +125,7 @@
   </div>
 </section>
 
-{% if currentSku == "CL-001" %}
+{% if skuArt %}
   <style>
     .cl-001-product-title-wrap {
       width: 100%;

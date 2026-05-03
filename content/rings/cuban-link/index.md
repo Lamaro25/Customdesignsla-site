@@ -18,13 +18,24 @@ permalink: /rings/cuban-link/
 
 <div class="collection-grid">
 
+{% set skuTitleArtMap = {
+  "CL-001": {
+    "cardTitleImage": "/static/img/cl-001-card-title.png?v=2"
+  }
+} %}
+{# Future SKU onboarding example (do not enable yet):
+  "CL-002": { "cardTitleImage": "/static/img/cl-002-card-title.png" }
+#}
+
 {% for ring in collections["cuban-link"] %}
+  {% set sku = ring.data.sku or "" %}
+  {% set skuArt = skuTitleArtMap[sku] %}
   <a href="{{ ring.url }}" class="collection-card">
     <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
-    <div class="collection-card-text{% if ring.data.sku == "CL-001" %} cl-001-card-text{% endif %}">
-      {% if ring.data.sku == "CL-001" %}
+    <div class="collection-card-text{% if skuArt %} cl-001-card-text{% endif %}">
+      {% if skuArt %}
         <img
-          src="/static/img/cl-001-card-title.png?v=2"
+          src="{{ skuArt.cardTitleImage }}"
           alt="{{ ring.data.title }}"
           class="cl-001-card-title-image"
           loading="lazy"
@@ -32,7 +43,7 @@ permalink: /rings/cuban-link/
       {% else %}
         <h3>{{ ring.data.title }}</h3>
       {% endif %}
-      <p class="price{% if ring.data.sku == "CL-001" %} cl-001-price{% endif %}">${{ ring.data.price }} USD</p>
+      <p class="price{% if skuArt %} cl-001-price{% endif %}">${{ ring.data.price }} USD</p>
     </div>
   </a>
 {% endfor %}
