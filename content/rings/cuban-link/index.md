@@ -206,17 +206,28 @@ permalink: /rings/cuban-link/
   padding: 0;
 }
 
-.cl-001-price {
-  color: #f5f5f5;
+/* CL-001 hardening: keep price above any darkening overlays */
+.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-card-text {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-card-text::before,
+.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-card-text::after {
+  content: none !important;
+}
+
+.collection-card[href*="cl-001-cuban-link-classic-ring"] .cl-001-price {
+  color: #f2f2f2;
   margin-top: 2px;
   margin-bottom: 0;
   font-weight: 600;
-  filter: none !important;
   opacity: 1 !important;
+  filter: none !important;
   text-shadow: none !important;
   mix-blend-mode: normal !important;
   position: relative;
-  z-index: 6;
+  z-index: 10;
   line-height: 1.15;
   letter-spacing: 0.01em;
   transform: none !important;
