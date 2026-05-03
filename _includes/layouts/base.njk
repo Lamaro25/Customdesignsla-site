@@ -182,18 +182,27 @@
     @media (max-width: 768px) {
       .site-header,
       header {
+        padding-top: 6px !important;
         padding-bottom: 0 !important;
         margin-bottom: 0 !important;
         min-height: unset !important;
         height: auto !important;
       }
 
+      .cdla-header-wordmark {
+        width: clamp(240px, 54vw, 300px) !important;
+        max-width: 300px !important;
+        height: auto !important;
+        object-fit: contain !important;
+        margin: 0 auto !important;
+      }
+
       .collections-toggle,
       .collection-toggle,
       .nav-collections-button,
       .collections-link {
-        margin-top: -22px !important;
-        margin-bottom: -18px !important;
+        margin-top: -18px !important;
+        margin-bottom: -14px !important;
       }
 
       .header-brand,
@@ -201,6 +210,42 @@
       .header-logo-row {
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
+        gap: 0 !important;
+      }
+
+      .site-logo,
+      .header-logo,
+      .logo {
+        margin-top: -4px !important;
+        margin-bottom: 0 !important;
+      }
+
+      .collection-section,
+      .collections-section,
+      .collection-group,
+      .collection-panel,
+      .collection-grid,
+      .collection-card-grid,
+      .collections-grid {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+      }
+
+      .collection-card:last-child {
+        margin-bottom: 8px !important;
+      }
+
+      main,
+      .main-content,
+      .page-content {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+      }
+
+      footer,
+      .site-footer {
+        margin-top: 8px !important;
+        padding-top: 8px !important;
       }
     }
   </style>
