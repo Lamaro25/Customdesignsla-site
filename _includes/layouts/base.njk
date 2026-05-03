@@ -182,11 +182,11 @@
     @media (max-width: 768px) {
       .site-header,
       header {
-        min-height: 124px !important;
-        height: auto !important;
-        max-height: none !important;
-        padding-top: 6px !important;
-        padding-bottom: 4px !important;
+        height: 112px !important;
+        min-height: 112px !important;
+        max-height: 112px !important;
+        padding-top: 4px !important;
+        padding-bottom: 0 !important;
         margin: 0 !important;
         overflow: visible !important;
         position: relative !important;
@@ -196,7 +196,9 @@
       header.collections-open,
       .site-header:has(.top-button-bar.is-open),
       header:has(.top-button-bar.is-open) {
-        padding-bottom: 34px !important;
+        height: 160px !important;
+        min-height: 160px !important;
+        max-height: 160px !important;
       }
 
       .header-brand,
@@ -250,8 +252,8 @@
       .nav-collections-button,
       .collections-link {
         position: absolute !important;
-        left: 14px !important;
-        top: 78px !important;
+        left: 8px !important;
+        top: 82px !important;
         bottom: auto !important;
         margin: 0 !important;
         padding: 0 !important;
@@ -261,9 +263,9 @@
       .top-button-bar {
         position: absolute !important;
         left: 50% !important;
-        top: 118px !important;
+        top: 122px !important;
         transform: translateX(-50%) !important;
-        width: min(92vw, 390px) !important;
+        width: min(86vw, 350px) !important;
         bottom: auto !important;
         z-index: 50 !important;
         pointer-events: none !important;
@@ -274,8 +276,8 @@
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         align-items: center !important;
-        justify-content: space-evenly !important;
-        gap: 10px !important;
+        justify-content: space-between !important;
+        gap: 6px !important;
         margin: 0 !important;
         padding: 0 !important;
         pointer-events: auto !important;
@@ -286,8 +288,9 @@
         position: relative !important;
         z-index: 51 !important;
         white-space: nowrap !important;
-        min-height: 32px !important;
-        min-width: 64px !important;
+        min-height: 28px !important;
+        min-width: 54px !important;
+        padding: 0 !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -295,6 +298,12 @@
 
       .top-button-bar .nav-btn img {
         height: 38px !important;
+      }
+
+
+      .top-button-bar .nav-btn.nav-hidden,
+      .top-button-bar .nav-btn:empty {
+        display: none !important;
       }
 
       .collection-card:last-child {
