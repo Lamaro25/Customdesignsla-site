@@ -1979,7 +1979,8 @@ footer.site-footer {
 
 
 /* Collection card PNG title artwork area */
-.collection-title-image-wrap {
+/* Top-of-collection header image only (direct child of page container) */
+.collection-page > .container > .collection-title-image-wrap {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -1991,7 +1992,7 @@ footer.site-footer {
   box-shadow: none !important;
 }
 
-.collection-title-image {
+.collection-page > .container > .collection-title-image-wrap > .collection-title-image {
   display: block;
   width: min(94vw, 820px);
   height: auto;
