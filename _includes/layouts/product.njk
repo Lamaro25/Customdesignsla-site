@@ -18,11 +18,11 @@
     #}
     {% set skuArt = skuTitleArtMap[currentSku] %}
     {% if skuArt %}
-      <div class="cl-001-product-title-wrap">
+      <div class="product-page-title-wrap">
         <img
           src="{{ skuArt.pageTitleImage }}"
           alt="{{ title or page.data.title }}"
-          class="cl-001-product-title-image"
+          class="product-page-title-image"
           loading="lazy"
         >
       </div>
@@ -130,14 +130,14 @@
 
 {% if skuArt %}
   <style>
-    .cl-001-product-title-wrap {
+    .product-page-title-wrap {
       width: 100%;
       max-width: 720px;
       margin: 0 auto clamp(1rem, 2.8vw, 1.75rem);
       text-align: center;
     }
 
-    .cl-001-product-title-image {
+    .product-page-title-image {
       display: block;
       width: 100%;
       max-height: 140px;
