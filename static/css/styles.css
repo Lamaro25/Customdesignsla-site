@@ -1929,25 +1929,30 @@ footer.site-footer {
 .collection-title-image-wrap,
 .collection-title-art-wrap {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  padding: 22px 12px 28px;
   min-height: 120px;
-  background: transparent;
+  max-height: 150px;
+  padding: 18px 10px 22px;
+  background: linear-gradient(180deg, #2f3133 0%, #1f2022 100%);
+  border-radius: 0 0 22px 22px;
   border: none;
   box-shadow: none;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .collection-title-image,
 .collection-title-art-wrap img {
   display: block;
-  width: 88%;
-  max-width: 560px;
+  width: 96%;
+  max-width: 620px;
   height: auto;
   object-fit: contain;
   margin: 0 auto;
+  transform: none;
+  position: static;
+  float: none;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -1957,13 +1962,14 @@ footer.site-footer {
 @media (max-width: 640px) {
   .collection-title-image-wrap,
   .collection-title-art-wrap {
-    min-height: 115px;
-    padding: 20px 10px 26px;
+    min-height: 110px;
+    max-height: 140px;
+    padding: 16px 8px 20px;
   }
 
   .collection-title-image,
   .collection-title-art-wrap img {
-    width: 92%;
-    max-width: 460px;
+    width: 94%;
+    max-width: 520px;
   }
 }
