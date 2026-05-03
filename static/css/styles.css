@@ -861,19 +861,30 @@ footer.site-footer {
 }
 
 .collections-page .collection-card {
-  background: linear-gradient(180deg, #eeeeee 0%, #d6d6d6 52%, #bdbdbd 100%);
-  border: 1px solid #c8c8c8;
+  background:
+    linear-gradient(145deg, #f3f3f3 0%, #c5c7c9 46%, #8f9294 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 34%),
+    radial-gradient(circle at 18% 14%, rgba(255, 255, 255, 0.38), transparent 44%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
   box-shadow:
-    inset 0 2px 4px rgba(255, 255, 255, 0.6),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.15),
-    0 8px 20px rgba(0, 0, 0, 0.12);
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    inset 0 -1px 0 rgba(92, 96, 102, 0.62),
+    inset 0 0 0 1px rgba(123, 128, 133, 0.5),
+    inset 0 10px 14px rgba(255, 255, 255, 0.24),
+    inset 0 -14px 20px rgba(51, 54, 59, 0.28),
+    0 10px 24px rgba(11, 13, 16, 0.26),
+    0 2px 6px rgba(18, 20, 24, 0.18);
 }
 
 .collections-page .collection-card:hover {
   box-shadow:
-    inset 0 2px 4px rgba(255, 255, 255, 0.65),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.18),
-    0 10px 22px rgba(0, 0, 0, 0.14);
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(86, 90, 95, 0.68),
+    inset 0 0 0 1px rgba(118, 123, 128, 0.56),
+    inset 0 10px 14px rgba(255, 255, 255, 0.28),
+    inset 0 -14px 20px rgba(44, 47, 52, 0.34),
+    0 12px 28px rgba(9, 11, 14, 0.3),
+    0 3px 8px rgba(14, 16, 20, 0.2);
 }
 
 .collections-page .collection-image,
