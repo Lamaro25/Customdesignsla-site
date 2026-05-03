@@ -178,6 +178,12 @@ permalink: /rings/cuban-link/
 
 .cl-001-card-text {
   background: #000;
+  position: relative;
+}
+
+.cl-001-card-text::before,
+.cl-001-card-text::after {
+  content: none !important;
 }
 
 .cl-001-card-title-image {
@@ -201,8 +207,8 @@ permalink: /rings/cuban-link/
 }
 
 .cl-001-price {
-  color: #f2f2f2;
-  margin-top: 6px;
+  color: #f5f5f5;
+  margin-top: 2px;
   margin-bottom: 0;
   font-weight: 600;
   filter: none !important;
@@ -210,7 +216,10 @@ permalink: /rings/cuban-link/
   text-shadow: none !important;
   mix-blend-mode: normal !important;
   position: relative;
-  z-index: 5;
+  z-index: 6;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  transform: none !important;
 }
 </style>
 
