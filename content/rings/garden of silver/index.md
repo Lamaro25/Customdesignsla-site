@@ -9,7 +9,7 @@ permalink: /rings/garden-of-silver/
 
 <div class="collection-title-image-wrap">
   <img
-    src="/static/img/headers/garden-of-silver-ring-collection.png"
+    src="/static/img/garden-of-silver-ring-collection.png"
     alt="Garden of Silver collection header"
     class="collection-title-image"
   >

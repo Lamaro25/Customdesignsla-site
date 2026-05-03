@@ -1984,7 +1984,7 @@ footer.site-footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 8px auto 14px;
+  margin: 6px auto 10px;
   padding: 0;
   background: transparent !important;
   border: none !important;
@@ -1993,22 +1993,12 @@ footer.site-footer {
 
 .collection-title-image {
   display: block;
-  width: min(92vw, 820px);
+  width: min(94vw, 820px);
   height: auto;
   object-fit: contain;
   background: transparent;
 }
 
-@media (max-width: 768px) {
-  .collection-title-image-wrap {
-    margin: 6px auto 10px;
-  }
-
-  .collection-title-image {
-    width: 94vw;
-    max-width: 720px;
-  }
-}
 
 /* Silver scroll background for collection listing pages (PNG) */
 html,
