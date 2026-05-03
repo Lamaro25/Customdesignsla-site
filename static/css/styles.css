@@ -862,12 +862,14 @@ footer.site-footer {
 
 .collections-page .collection-card {
   background: #171819;
-  border: 3px solid rgba(235, 235, 235, 0.9);
+  border: 6px solid rgba(224, 224, 224, 0.94);
   border-radius: 24px;
   box-shadow:
     0 18px 34px rgba(0, 0, 0, 0.30),
     inset 0 1px 0 rgba(255, 255, 255, 0.75),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.65);
+    inset 0 -1px 0 rgba(0, 0, 0, 0.65),
+    inset 1px 0 0 rgba(255, 255, 255, 0.28),
+    inset -1px 0 0 rgba(0, 0, 0, 0.32);
   overflow: hidden;
 }
 
@@ -1976,7 +1978,7 @@ footer.site-footer {
 
 @media (max-width: 640px) {
   .collections-page .collection-card {
-    border-width: 3px;
+    border-width: 6px;
     border-radius: 22px;
   }
 
