@@ -1923,3 +1923,26 @@ footer.site-footer {
     max-width: 90%;
   }
 }
+
+
+/* Collection card PNG title plaque replacement */
+.collection-title-image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 0 16px;
+  background: transparent;
+}
+
+.collection-title-image {
+  display: block;
+  width: 86%;
+  max-width: 520px;
+  height: auto;
+  object-fit: contain;
+}
+
+.collection-title-image-wrap.is-hidden {
+  display: none;
+}
