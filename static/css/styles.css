@@ -2109,3 +2109,57 @@ main,
 .page {
   background: transparent !important;
 }
+
+@media (max-width: 768px) {
+  /* FIX alignment — true centering */
+  .header-brand,
+  .site-brand,
+  .header-logo-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 4px 0 !important;
+    text-align: center !important;
+  }
+
+  /* Restore proper wordmark size (slightly larger than current) */
+  .cdla-header-wordmark {
+    width: clamp(210px, 48vw, 270px) !important;
+    max-width: 270px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+
+  /* Keep LA logo to the right — NOT stretched */
+  .site-logo,
+  .header-logo,
+  .logo {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+  }
+
+  /* Slightly increase header height (subtle) */
+  .site-header,
+  header {
+    min-height: unset !important;
+    height: auto !important;
+    padding-top: 6px !important;
+    padding-bottom: 4px !important;
+  }
+
+  /* Collections button — keep it up but not cramped */
+  .collections-toggle,
+  .collection-toggle,
+  .nav-collections-button,
+  .collections-link {
+    margin-top: -22px !important;
+    margin-bottom: -16px !important;
+  }
+}
