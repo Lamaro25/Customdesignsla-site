@@ -181,15 +181,16 @@ permalink: /rings/cuban-link/
 }
 
 .cl-001-card-title-image {
-  display: block;
-  width: min(92%, 220px);
-  height: 42px;
-  margin: 0.15rem auto 0.5rem;
+  width: min(72%, 320px);
+  max-height: 58px;
   object-fit: contain;
+  display: block;
+  height: auto;
+  margin: 0 auto 10px auto;
 }
 
 .cl-001-price {
-  color: #c0c0c0;
+  color: #ffffff;
 }
 </style>
 
