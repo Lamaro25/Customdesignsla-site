@@ -16,14 +16,16 @@
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      gap: 4px !important;
+      gap: 0 !important;
       width: 100% !important;
+      position: relative !important;
     }
 
     .cdla-header-wordmark,
     .cdla-header-img {
+      --cdla-wordmark-width: clamp(260px, 62vw, 420px);
       display: block !important;
-      width: clamp(260px, 62vw, 420px) !important;
+      width: var(--cdla-wordmark-width) !important;
       height: auto !important;
       object-fit: contain !important;
       flex-shrink: 1 !important;
@@ -44,9 +46,13 @@
     .logo img,
     .brand-logo {
       display: block !important;
-      width: clamp(44px, 10vw, 62px) !important;
+      width: clamp(49px, 11.2vw, 69px) !important;
       height: auto !important;
       margin-left: 0 !important;
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translateY(-50%) translateX(calc((var(--cdla-wordmark-width) / 2) + 10px)) !important;
     }
 
     .collections-toggle,
@@ -61,7 +67,7 @@
       height: auto !important;
       padding: 0 !important;
       margin-left: 14px;
-      margin-top: 8px;
+      margin-top: 16px;
       background: transparent !important;
       border: none !important;
       box-shadow: none !important;
@@ -74,8 +80,8 @@
     .collection-toggle img,
     .nav-collections-button img {
       display: block;
-      width: 150px !important;
-      max-width: 150px !important;
+      width: 140px !important;
+      max-width: 140px !important;
       height: auto !important;
       object-fit: contain;
       filter:
