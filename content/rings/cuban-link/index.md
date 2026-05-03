@@ -201,11 +201,16 @@ permalink: /rings/cuban-link/
 }
 
 .cl-001-price {
-  color: #E6E6E6;
-  margin-top: 4px;
+  color: #f2f2f2;
+  margin-top: 6px;
   margin-bottom: 0;
   font-weight: 600;
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.25);
+  filter: none !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+  mix-blend-mode: normal !important;
+  position: relative;
+  z-index: 5;
 }
 </style>
 
