@@ -8,11 +8,11 @@ permalink: /rings/faith/
 <div class="collection-page">
 
 
-<div class="collection-title-image-wrap">
+<div class="collection-page-header-image-wrap">
   <img
     src="/static/img/faith-ring-collection.png"
     alt="Faith Ring collection header"
-    class="collection-title-image"
+    class="collection-page-header-image"
   >
 </div>
 

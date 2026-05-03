@@ -1987,7 +1987,7 @@ footer.site-footer {
 
 /* Collection card PNG title artwork area */
 /* Top-of-collection header image only */
-.collection-title-image-wrap {
+.collection-page-header-image-wrap {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -1999,7 +1999,7 @@ footer.site-footer {
   box-shadow: none !important;
 }
 
-.collection-title-image {
+.collection-page-header-image {
   display: block;
   width: min(94vw, 820px);
   height: auto;
@@ -2009,33 +2009,22 @@ footer.site-footer {
 
 /* Keep product/collection card footer/title artwork contained + dark */
 .product-card-title,
-.product-card-brand,
-.product-card-footer,
-.collection-card-title {
+.collection-card-title,
+.product-title-panel {
   background: #111 !important;
   overflow: hidden;
 }
 
 .product-card-title img,
-.product-card-brand img,
-.product-card-footer img,
-.collection-card-title img {
+.collection-card-title img,
+.product-title-panel img {
   display: block;
   width: 100%;
   max-width: 100%;
   height: auto;
-  max-height: 160px;
+  max-height: 150px;
   object-fit: contain;
-  background: #111;
-}
-
-@media (max-width: 768px) {
-  .product-card-title img,
-  .product-card-brand img,
-  .product-card-footer img,
-  .collection-card-title img {
-    max-height: 145px;
-  }
+  background: #111 !important;
 }
 
 
