@@ -2007,6 +2007,29 @@ footer.site-footer {
   background: transparent;
 }
 
+
+.product-card img,
+.product-title img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.product-card,
+.product-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-title img {
+  padding: 10px 20px;
+}
+
 /* Keep product/collection card footer/title artwork contained + dark */
 .product-card-title,
 .collection-card-title,
@@ -2022,7 +2045,6 @@ footer.site-footer {
   width: 100%;
   max-width: 100%;
   height: auto;
-  max-height: 150px;
   object-fit: contain;
   background: transparent !important;
 }
