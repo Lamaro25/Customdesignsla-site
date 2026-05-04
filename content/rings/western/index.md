@@ -197,11 +197,17 @@ permalink: /rings/western/
 .product-card-title-panel--black {
   background: #000;
   position: relative;
-  min-height: 94px;
+  height: 88px;
+  min-height: 88px;
+  max-height: 88px;
+  padding: 8px 10px 7px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .product-card-title-panel--black::before,
@@ -210,10 +216,12 @@ permalink: /rings/western/
 }
 
 .product-card-title-image-slot {
-  height: 42px;
+  height: 46px;
+  max-height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .product-card-title-image-slot.is-empty::before {
@@ -237,6 +245,8 @@ permalink: /rings/western/
 }
 
 .product-card-price--silver {
+  margin-top: 5px;
+  line-height: 1.1;
   background: linear-gradient(
     180deg,
     #ffffff 0%,
