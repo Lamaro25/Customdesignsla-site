@@ -352,6 +352,28 @@ permalink: /rings/cuban-link/
   filter: none !important;
 }
 
+.product-card[data-sku^="CL-"] .product-card-price--cl001 {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  z-index: 20 !important;
+  color: #d8d8d8 !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  line-height: 1.1 !important;
+  filter: none !important;
+}
+
+.product-card[data-sku^="CL-"] .product-card-title-slot:empty {
+  display: none !important;
+  margin: 0 !important;
+}
+
 </style>
 
 </div>
