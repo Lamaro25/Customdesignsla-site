@@ -304,8 +304,52 @@ permalink: /rings/cuban-link/
   filter: none !important;
 }
 
-.product-card[data-sku="CL-001"] .product-card-footer {
-  overflow: visible;
+.product-card[data-sku^="CL-"] .product-card-footer {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow: hidden !important;
+}
+
+.product-card[data-sku^="CL-"] .product-card-title-slot {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 0 0 8px 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+}
+
+.product-card[data-sku^="CL-"] .product-card-title-image {
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  max-width: calc(100% - 32px) !important;
+  max-height: 58px !important;
+  object-fit: contain !important;
+}
+
+.product-card[data-sku^="CL-"] .product-card-price {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  z-index: 20 !important;
+  color: #d8d8d8 !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  line-height: 1.1 !important;
+  filter: none !important;
 }
 
 </style>
