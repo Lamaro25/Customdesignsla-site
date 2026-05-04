@@ -198,34 +198,44 @@ permalink: /rings/cuban-link/
 
 
 .product-card .product-card-footer {
+  width: 100% !important;
+  box-sizing: border-box;
   background: #000 !important;
   color: #d8d8d8;
+  min-height: 120px;
+  max-height: 150px;
+  padding: 18px 18px 16px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  gap: 12px;
   overflow: hidden;
+  border-radius: 0 0 inherit inherit;
 }
 
 .product-card .product-card-title-slot {
+  width: 100% !important;
   background: transparent !important;
-  width: 100%;
-  min-height: 54px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  min-height: 42px;
+  max-height: 66px;
+  overflow: visible;
 }
 
 .product-card .product-card-title-image {
   display: block;
-  max-width: 92%;
-  max-height: 64px;
   width: auto;
+  max-width: 94%;
+  max-height: 64px;
   height: auto;
   object-fit: contain;
   background: transparent !important;
-  opacity: 1;
-  filter: none;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
 }
 
 .product-card .product-card-title-image[src=""],
@@ -240,9 +250,9 @@ permalink: /rings/cuban-link/
   color: #d8d8d8 !important;
   font-weight: 800;
   text-align: center;
-  margin-top: 10px;
+  margin: 0;
   position: relative;
-  z-index: 5;
+  z-index: 10;
   filter: none !important;
   text-shadow:
     0 1px 0 #fff,
