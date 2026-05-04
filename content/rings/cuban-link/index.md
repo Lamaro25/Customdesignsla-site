@@ -20,6 +20,10 @@ permalink: /rings/cuban-link/
 
 {% for ring in collections["cuban-link"] %}
   {% assign sku = ring.data.sku | default: "" %}
+  {% assign isTargetCard = false %}
+  {% if sku == "CL-001" or sku == "CL-002" or sku == "CL-003" or sku == "CL-004" or sku == "CL-005" %}
+    {% assign isTargetCard = true %}
+  {% endif %}
   {% assign cardTitleImage = "" %}
   {% if sku == "CL-001" %}
     {% assign cardTitleImage = "/static/img/cl-001-card-title.png" %}
@@ -27,30 +31,28 @@ permalink: /rings/cuban-link/
     {% assign cardTitleImage = "/static/img/cl-002-card-title.png" %}
   {% elsif sku == "CL-003" %}
     {% assign cardTitleImage = "/static/img/cl-003-card-title.png" %}
-  {% elsif sku == "CL-004" %}
-    {% assign cardTitleImage = "/static/img/cl-004-card-title.png" %}
-  {% elsif sku == "CL-005" %}
-    {% assign cardTitleImage = "/static/img/cl-005-card-title.png" %}
   {% elsif sku == "CL-006" %}
     {% assign cardTitleImage = "/static/img/cl-006-card-title.png" %}
   {% endif %}
   <a href="{{ ring.url }}" class="collection-card product-card" data-sku="{{ sku }}">
     <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
-    <div class="collection-card-text{% if cardTitleImage != "" %} product-card-title-panel--black{% endif %}">
-      {% if cardTitleImage != "" %}
-        <div class="product-card-title-image-slot">
-          <img
-            src="{{ cardTitleImage }}"
-            alt="{{ ring.data.title }}"
-            class="product-card-title-image"
-            loading="lazy"
-            onerror="this.style.display='none'; this.parentElement.classList.add('is-empty');"
-          >
+    <div class="collection-card-text{% if isTargetCard %} product-card-footer{% endif %}">
+      {% if isTargetCard %}
+        <div class="product-card-title-slot">
+          {% if cardTitleImage != "" %}
+            <img
+              src="{{ cardTitleImage }}"
+              alt="{{ ring.data.title }}"
+              class="product-card-title-image"
+              loading="lazy"
+              onerror="this.removeAttribute('src'); this.style.display='none';"
+            >
+          {% endif %}
         </div>
       {% else %}
         <h3>{{ ring.data.title }}</h3>
       {% endif %}
-      <p class="price{% if cardTitleImage != "" %} product-card-price--silver{% endif %}">${{ ring.data.price }} USD</p>
+      <p class="price{% if isTargetCard %} product-card-price{% endif %}">${{ ring.data.price }} USD</p>
     </div>
   </a>
 {% endfor %}
@@ -194,99 +196,60 @@ permalink: /rings/cuban-link/
 }
 
 
-.product-card .product-card-title-panel--black {
-  position: relative;
-  background: #000;
-  height: 88px;
-  min-height: 88px;
-  max-height: 88px;
-  padding: 8px 10px 7px;
+
+.product-card .product-card-footer {
+  background: #000 !important;
+  color: #d8d8d8;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  box-sizing: border-box;
   overflow: hidden;
 }
 
-.product-card-title-panel--black::before,
-.product-card-title-panel--black::after {
-  content: none !important;
-}
-
-.product-card-title-image-slot {
+.product-card .product-card-title-slot {
+  background: transparent !important;
+  width: 100%;
+  min-height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  overflow: visible;
-}
-
-.product-card-title-image-slot.is-empty::before {
-  content: "";
-  width: 1px;
-  height: 1px;
 }
 
 .product-card .product-card-title-image {
   display: block;
+  max-width: 92%;
+  max-height: 64px;
   width: auto;
   height: auto;
   object-fit: contain;
+  background: transparent !important;
   opacity: 1;
   filter: none;
-  background: transparent;
-  position: relative;
-  z-index: 2;
-  margin: 0 auto 14px auto;
 }
 
-.product-card[data-sku="CL-001"] .product-card-title-image {
-  max-width: 88%;
-  max-height: 62px;
+.product-card .product-card-title-image[src=""],
+.product-card .product-card-title-image:not([src]) {
+  display: none !important;
 }
 
-.product-card[data-sku="CL-002"] .product-card-title-image,
-.product-card[data-sku="CL-003"] .product-card-title-image {
-  max-width: 96%;
-  max-height: 72px;
-}
-
-.product-card .product-card-price--silver {
+.product-card .product-card-price {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  position: relative;
-  z-index: 5;
-  margin: 0;
-  color: #d8d8d8;
+  color: #d8d8d8 !important;
   font-weight: 800;
   text-align: center;
+  margin-top: 10px;
+  position: relative;
+  z-index: 5;
   filter: none !important;
   text-shadow:
-    0 1px 0 #ffffff,
-    0 2px 4px rgba(255,255,255,0.35),
+    0 1px 0 #fff,
+    0 2px 4px rgba(255,255,255,.35),
     0 -1px 0 #555;
 }
 
-.product-card .product-card-title-panel--black {
-  position: relative;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.product-card .product-card-title-image-slot .product-card-title-image {
-  width: auto;
-  margin: 8px auto 0 auto;
-  border-radius: 0;
-  padding: 0;
-  aspect-ratio: auto;
-}
 
 </style>
 
