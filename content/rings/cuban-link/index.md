@@ -51,10 +51,15 @@ permalink: /rings/cuban-link/
             onerror="this.removeAttribute('src'); this.style.display='none';"
           >
         </div>
+        {% if sku == "CL-001" %}
+          <div class="product-card-price product-card-price--cl001">$114 USD</div>
+        {% else %}
+          <p class="price product-card-price">${{ displayPrice }} USD</p>
+        {% endif %}
       {% else %}
         <h3>{{ ring.data.title }}</h3>
+        <p class="price">${{ displayPrice }} USD</p>
       {% endif %}
-      <p class="price{% if isTargetCard %} product-card-price{% endif %}{% if sku == "CL-001" %} product-card-price--silver{% endif %}">${{ displayPrice }} USD</p>
     </div>
   </a>
 {% endfor %}
@@ -282,26 +287,21 @@ permalink: /rings/cuban-link/
     0 1px 1px rgba(0,0,0,0.4);
 }
 
-.product-card[data-sku="CL-001"] .product-card-price {
+.product-card[data-sku="CL-001"] .product-card-price,
+.product-card[data-sku="CL-001"] .product-card-price--cl001 {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  position: relative !important;
-  z-index: 20 !important;
   color: #d8d8d8 !important;
-  -webkit-text-fill-color: #d8d8d8 !important;
-  background: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
+  font-size: 22px;
   font-weight: 800;
+  line-height: 1.1;
   text-align: center;
-  margin-top: 8px;
-  filter: none !important;
+  margin-top: 10px;
+  position: relative !important;
+  z-index: 9999 !important;
   transform: none !important;
-  text-shadow:
-    0 1px 0 #fff,
-    0 2px 4px rgba(255,255,255,.35),
-    0 -1px 0 #555;
+  filter: none !important;
 }
 
 .product-card[data-sku="CL-001"] .product-card-footer {
