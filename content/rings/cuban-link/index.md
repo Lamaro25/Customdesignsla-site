@@ -38,12 +38,15 @@ permalink: /rings/cuban-link/
     <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
     <div class="collection-card-text{% if cardTitleImage != "" %} product-card-title-panel--black{% endif %}">
       {% if cardTitleImage != "" %}
-        <img
-          src="{{ cardTitleImage }}"
-          alt="{{ ring.data.title }}"
-          class="product-card-title-image"
-          loading="lazy"
-        >
+        <div class="product-card-title-image-slot">
+          <img
+            src="{{ cardTitleImage }}"
+            alt="{{ ring.data.title }}"
+            class="product-card-title-image"
+            loading="lazy"
+            onerror="this.style.display='none'; this.parentElement.classList.add('is-empty');"
+          >
+        </div>
       {% else %}
         <h3>{{ ring.data.title }}</h3>
       {% endif %}
@@ -194,6 +197,11 @@ permalink: /rings/cuban-link/
 .product-card-title-panel--black {
   background: #000;
   position: relative;
+  min-height: 94px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
 }
 
 .product-card-title-panel--black::before,
@@ -201,12 +209,26 @@ permalink: /rings/cuban-link/
   content: none !important;
 }
 
+.product-card-title-image-slot {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-card-title-image-slot.is-empty::before {
+  content: "";
+  width: 1px;
+  height: 1px;
+}
+
 .product-card-title-image {
   display: block;
-  margin: 0 auto 8px;
+  margin: 0 auto;
   width: auto;
-  max-width: 82%;
   height: auto;
+  max-width: 90%;
+  max-height: 100%;
   object-fit: contain;
   aspect-ratio: auto !important;
   background: transparent !important;
@@ -240,7 +262,7 @@ permalink: /rings/cuban-link/
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-top: 2px;
+  margin-top: 0;
   margin-bottom: 0;
   font-weight: 600;
   opacity: 1 !important;
