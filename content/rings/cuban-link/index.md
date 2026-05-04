@@ -54,7 +54,7 @@ permalink: /rings/cuban-link/
       {% else %}
         <h3>{{ ring.data.title }}</h3>
       {% endif %}
-      <p class="price{% if isTargetCard %} product-card-price{% endif %}">${{ displayPrice }} USD</p>
+      <p class="price{% if isTargetCard %} product-card-price{% endif %}{% if sku == "CL-001" %} product-card-price--silver{% endif %}">${{ displayPrice }} USD</p>
     </div>
   </a>
 {% endfor %}
@@ -265,6 +265,22 @@ permalink: /rings/cuban-link/
     0 -1px 0 #555;
 }
 
+.product-card .product-card-price--silver {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #e6e6e6 25%,
+    #cfcfcf 50%,
+    #f5f5f5 75%,
+    #bfbfbf 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow:
+    0 0 1px rgba(255,255,255,0.3),
+    0 1px 1px rgba(0,0,0,0.4);
+}
 
 </style>
 
