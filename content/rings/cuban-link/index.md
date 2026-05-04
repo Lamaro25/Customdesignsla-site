@@ -7,7 +7,6 @@ permalink: /rings/cuban-link/
 
 <div class="collection-page">
 
-
 <div class="collection-page-header-image-wrap">
   <img
     src="/static/img/cuban-link-ring-collection.png"
@@ -18,34 +17,44 @@ permalink: /rings/cuban-link/
 
 <div class="collection-grid">
 
-{% set skuTitleArtMap = {
-  "CL-001": { "cardTitleImage": "/static/img/cl-001-card-title.png" },
-  "CL-002": { "cardTitleImage": "/static/img/cl-002-card-title.png" },
-  "CL-003": { "cardTitleImage": "/static/img/cl-003-card-title.png" },
-  "CL-006": { "cardTitleImage": "/static/img/cl-006-card-title.png" }
-} %}
-
 {% for ring in collections["cuban-link"] %}
-  {% set sku = ring.data.sku or "" %}
-  {% set skuArt = skuTitleArtMap[sku] %}
-  {% set productImage = ring.data.images | first %}
-  <a href="{{ ring.url }}" class="collection-card product-card" data-sku="{{ sku }}">
-    <img src="{{ productImage or '/static/img/placeholder.png' }}" alt="{{ ring.data.title }}">
-    <div class="collection-card-text{% if skuArt %} product-card-footer{% endif %}">
-      {% if skuArt %}
-        <div class="product-card-title-slot">
+  {% assign sku = ring.data.sku | default: "" %}
+  {% assign cardTitleImage = "" %}
+
+  {% if sku == "CL-001" %}
+    {% assign cardTitleImage = "/static/img/cl-001-card-title.png" %}
+  {% elsif sku == "CL-002" %}
+    {% assign cardTitleImage = "/static/img/cl-002-card-title.png" %}
+  {% elsif sku == "CL-003" %}
+    {% assign cardTitleImage = "/static/img/cl-003-card-title.png" %}
+  {% elsif sku == "CL-004" %}
+    {% assign cardTitleImage = "/static/img/cl-004-card-title.png" %}
+  {% elsif sku == "CL-005" %}
+    {% assign cardTitleImage = "/static/img/cl-005-card-title.png" %}
+  {% elsif sku == "CL-006" %}
+    {% assign cardTitleImage = "/static/img/cl-006-card-title.png" %}
+  {% endif %}
+
+  <a href="{{ ring.url }}" class="collection-card">
+    <img src="{{ ring.data.images | first | default: '/static/img/placeholder.png' }}" alt="{{ ring.data.title }}">
+
+    <div class="collection-card-text{% if cardTitleImage != "" %} product-card-title-panel--black{% endif %}">
+      {% if cardTitleImage != "" %}
+        <div class="product-card-title-image-slot">
           <img
-            src="{{ skuArt.cardTitleImage }}"
+            src="{{ cardTitleImage }}"
             alt="{{ ring.data.title }}"
             class="product-card-title-image"
             loading="lazy"
           >
         </div>
-        <p class="price product-card-price">${{ ring.data.price }} USD</p>
       {% else %}
         <h3>{{ ring.data.title }}</h3>
-        <p class="price">${{ ring.data.price }} USD</p>
       {% endif %}
+
+      <p class="price{% if cardTitleImage != "" %} product-card-price--silver{% endif %}">
+        ${{ ring.data.price }} USD
+      </p>
     </div>
   </a>
 {% endfor %}
@@ -169,7 +178,7 @@ permalink: /rings/cuban-link/
 }
 
 /* ===============================
-   TEXT
+   TEXT / PRODUCT CARD FOOTER
 ================================ */
 
 .collection-card-text {
@@ -188,75 +197,54 @@ permalink: /rings/cuban-link/
   font-size: 0.95rem;
 }
 
-
-
-.product-card .product-card-footer {
-  width: 100% !important;
-  box-sizing: border-box;
-  background: #000 !important;
-  color: #d8d8d8;
-  min-height: 120px;
-  max-height: 150px;
-  padding: 18px 18px 16px;
+.product-card-title-panel--black {
+  background: #000;
+  position: relative;
+  height: 88px;
+  min-height: 88px;
+  max-height: 88px;
+  padding: 8px 10px 7px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 0;
+  box-sizing: border-box;
   overflow: hidden;
-  border-radius: 0 0 inherit inherit;
 }
 
-.product-card .product-card-title-slot {
-  width: 100%;
-  max-width: 100%;
-  background: transparent !important;
+.product-card-title-panel--black::before,
+.product-card-title-panel--black::after {
+  content: none !important;
+}
+
+.product-card-title-image-slot {
+  height: 46px;
+  max-height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow: hidden;
 }
 
-.product-card .product-card-title-image {
-  display: block !important;
-  width: 92% !important;
-  max-width: calc(100% - 32px) !important;
-  height: auto !important;
-  max-height: 72px !important;
-  object-fit: contain !important;
+.product-card-title-image {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  max-width: 90%;
+  max-height: 100%;
+  object-fit: contain;
+  aspect-ratio: auto !important;
   background: transparent !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  filter: none !important;
-  position: relative;
-  z-index: 5;
+  border-radius: 0;
+  padding: 0;
 }
 
-.product-card .product-card-title-image[src=""],
-.product-card .product-card-title-image:not([src]) {
-  display: none !important;
-}
-
-
-.product-card .product-card-price {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  color: #d8d8d8 !important;
-  font-weight: 800;
-  text-align: center;
-  margin-top: 8px;
-  position: relative;
-  z-index: 10;
-  filter: none !important;
-  transform: none !important;
-  text-shadow:
-    0 1px 0 #fff,
-    0 2px 4px rgba(255,255,255,.35),
-    0 -1px 0 #555;
-}
-
-.product-card .product-card-price--silver {
+.product-card-price--silver {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.15;
   background: linear-gradient(
     180deg,
     #ffffff 0%,
@@ -268,98 +256,18 @@ permalink: /rings/cuban-link/
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-weight: 600;
+  opacity: 1 !important;
+  filter: none !important;
   text-shadow:
     0 0 1px rgba(255,255,255,0.3),
     0 1px 1px rgba(0,0,0,0.4);
-}
-
-.product-card[data-sku="CL-001"] .product-card-price,
-.product-card[data-sku="CL-001"] .product-card-price--cl001 {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  color: #d8d8d8 !important;
-  font-size: 22px;
-  font-weight: 800;
-  line-height: 1.1;
-  text-align: center;
-  margin-top: 10px;
-  position: relative !important;
-  z-index: 9999 !important;
+  mix-blend-mode: normal !important;
+  position: relative;
+  z-index: 10;
+  letter-spacing: 0.01em;
   transform: none !important;
-  filter: none !important;
 }
-
-.product-card[data-sku^="CL-"] .product-card-footer {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-  overflow: hidden !important;
-}
-
-.product-card[data-sku^="CL-"] .product-card-title-slot {
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin: 0 0 8px 0 !important;
-  padding: 0 !important;
-  transform: none !important;
-  position: relative !important;
-  top: auto !important;
-  bottom: auto !important;
-}
-
-.product-card[data-sku^="CL-"] .product-card-title-image {
-  position: relative !important;
-  top: auto !important;
-  bottom: auto !important;
-  transform: none !important;
-  max-width: calc(100% - 32px) !important;
-  max-height: 58px !important;
-  object-fit: contain !important;
-}
-
-.product-card[data-sku^="CL-"] .product-card-price {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  top: auto !important;
-  bottom: auto !important;
-  transform: none !important;
-  margin: 0 !important;
-  z-index: 20 !important;
-  color: #d8d8d8 !important;
-  font-weight: 800 !important;
-  text-align: center !important;
-  line-height: 1.1 !important;
-  filter: none !important;
-}
-
-.product-card[data-sku^="CL-"] .product-card-price--cl001 {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  top: auto !important;
-  bottom: auto !important;
-  transform: none !important;
-  margin: 0 !important;
-  z-index: 20 !important;
-  color: #d8d8d8 !important;
-  font-weight: 800 !important;
-  text-align: center !important;
-  line-height: 1.1 !important;
-  filter: none !important;
-}
-
-.product-card[data-sku^="CL-"] .product-card-title-slot:empty {
-  display: none !important;
-  margin: 0 !important;
-}
-
 </style>
 
 </div>
