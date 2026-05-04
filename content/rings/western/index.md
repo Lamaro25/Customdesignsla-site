@@ -35,7 +35,7 @@ permalink: /rings/western/
     {% assign cardTitleImage = "/static/img/wr-006-card-title.png" %}
   {% endif %}
   <a href="{{ ring.url }}" class="collection-card">
-    <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
+    <img src="{{ (ring.data.images | first) or '/static/img/placeholder.png' }}" alt="{{ ring.data.title }}">
     <div class="collection-card-text{% if cardTitleImage != "" %} product-card-title-panel--black{% endif %}">
       {% if cardTitleImage != "" %}
         <div class="product-card-title-image-slot">
@@ -44,7 +44,6 @@ permalink: /rings/western/
             alt="{{ ring.data.title }}"
             class="product-card-title-image"
             loading="lazy"
-            onerror="this.style.display='none'; this.parentElement.classList.add('is-empty');"
           >
         </div>
       {% else %}
