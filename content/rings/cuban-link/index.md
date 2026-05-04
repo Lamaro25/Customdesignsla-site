@@ -1,44 +1,45 @@
 ---
 layout: base.njk
-title: "Cuban Link Ring Collection — Custom Designs LA"
-description: "Cuban Link rings — bold sculpted links, polished surfaces, and handcrafted .925 Sterling Silver designs. Sculpted, oxidized, and finished by hand."
-permalink: /rings/cuban-link/
+title: "Western Ring Collection — Custom Designs LA"
+description: "Handcrafted Western rings — Texas heritage, frontier symbolism, and sculpted sterling silver designs by Custom Designs LA."
+permalink: /rings/western/
 ---
 
 <div class="collection-page">
 
 <div class="collection-page-header-image-wrap">
   <img
-    src="/static/img/cuban-link-ring-collection.png"
-    alt="Cuban Link collection header"
+    src="/static/img/western-ring-collection.png"
+    alt="Western collection header"
     class="collection-page-header-image"
   >
 </div>
 
 <div class="collection-grid">
 
-{% for ring in collections["cuban-link"] %}
+{% for ring in collections["western"] %}
   {% assign sku = ring.data.sku | default: "" %}
   {% assign cardTitleImage = "" %}
 
-  {% if sku == "CL-001" %}
-    {% assign cardTitleImage = "/static/img/cl-001-card-title.png" %}
-  {% elsif sku == "CL-002" %}
-    {% assign cardTitleImage = "/static/img/cl-002-card-title.png" %}
-  {% elsif sku == "CL-003" %}
-    {% assign cardTitleImage = "/static/img/cl-003-card-title.png" %}
-  {% elsif sku == "CL-004" %}
-    {% assign cardTitleImage = "/static/img/cl-004-card-title.png" %}
-  {% elsif sku == "CL-005" %}
-    {% assign cardTitleImage = "/static/img/cl-005-card-title.png" %}
-  {% elsif sku == "CL-006" %}
-    {% assign cardTitleImage = "/static/img/cl-006-card-title.png" %}
+  {% if sku == "WR-001" %}
+    {% assign cardTitleImage = "/static/img/wr-001-card-title.png" %}
+  {% elsif sku == "WR-002" %}
+    {% assign cardTitleImage = "/static/img/wr-002-card-title.png" %}
+  {% elsif sku == "WR-003" %}
+    {% assign cardTitleImage = "/static/img/wr-003-card-title.png" %}
+  {% elsif sku == "WR-004" %}
+    {% assign cardTitleImage = "/static/img/wr-004-card-title.png" %}
+  {% elsif sku == "WR-005" %}
+    {% assign cardTitleImage = "/static/img/wr-005-card-title.png" %}
+  {% elsif sku == "WR-006" %}
+    {% assign cardTitleImage = "/static/img/wr-006-card-title.png" %}
   {% endif %}
 
   <a href="{{ ring.url }}" class="collection-card">
     <img src="{{ ring.data.images | first | default: '/static/img/placeholder.png' }}" alt="{{ ring.data.title }}">
 
     <div class="collection-card-text{% if cardTitleImage != "" %} product-card-title-panel--black{% endif %}">
+
       {% if cardTitleImage != "" %}
         <div class="product-card-title-image-slot">
           <img
@@ -55,6 +56,7 @@ permalink: /rings/cuban-link/
       <p class="price{% if cardTitleImage != "" %} product-card-price--silver{% endif %}">
         ${{ ring.data.price }} USD
       </p>
+
     </div>
   </a>
 {% endfor %}
@@ -129,14 +131,14 @@ permalink: /rings/cuban-link/
   }
 }
 
-/* MOBILE — single column */
+/* MOBILE */
 @media (max-width: 1023px) {
   .collection-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* DESKTOP — 4 columns */
+/* DESKTOP */
 @media (min-width: 1024px) {
   .collection-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -162,23 +164,16 @@ permalink: /rings/cuban-link/
   text-decoration: none;
   color: #111;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.collection-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
 .collection-card img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  display: block;
 }
 
 /* ===============================
-   TEXT / PRODUCT CARD FOOTER
+   FOOTER (WORKING SYSTEM)
 ================================ */
 
 .collection-card-text {
@@ -186,87 +181,33 @@ permalink: /rings/cuban-link/
   text-align: center;
 }
 
-.collection-card-text h3 {
-  margin: 0.25rem 0 0.4rem;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.collection-card-text .price {
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-
 .product-card-title-panel--black {
   background: #000;
-  position: relative;
   height: 88px;
-  min-height: 88px;
-  max-height: 88px;
-  padding: 8px 10px 7px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.product-card-title-panel--black::before,
-.product-card-title-panel--black::after {
-  content: none !important;
 }
 
 .product-card-title-image-slot {
   height: 46px;
-  max-height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
 .product-card-title-image {
-  display: block;
-  margin: 0 auto;
-  width: auto;
-  height: auto;
   max-width: 90%;
   max-height: 100%;
   object-fit: contain;
-  aspect-ratio: auto !important;
-  background: transparent !important;
-  border-radius: 0;
-  padding: 0;
 }
 
 .product-card-price--silver {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 1.15;
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #e6e6e6 25%,
-    #cfcfcf 50%,
-    #f5f5f5 75%,
-    #bfbfbf 100%
-  );
+  background: linear-gradient(180deg,#fff,#ccc,#fff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
   font-weight: 600;
-  opacity: 1 !important;
-  filter: none !important;
-  text-shadow:
-    0 0 1px rgba(255,255,255,0.3),
-    0 1px 1px rgba(0,0,0,0.4);
-  mix-blend-mode: normal !important;
-  position: relative;
-  z-index: 10;
-  letter-spacing: 0.01em;
-  transform: none !important;
 }
 </style>
 
