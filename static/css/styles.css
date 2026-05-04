@@ -1163,9 +1163,9 @@ footer.site-footer {
 }
 
 .collection-card-text h3 img,
-.product-card-title-wrapper img,
-.product-card-title img,
-.collection-card-title img {
+.collection-card-title img,
+.collection-card-title-panel img,
+.collection-card-title-image {
   max-width: 90%;
   max-height: 100%;
   width: auto;
@@ -1180,6 +1180,44 @@ footer.site-footer {
   text-align: center;
   font-size: inherit;
   font-weight: 700;
+}
+
+/* Collection card premium layout (separate from product cards) */
+.collection-card {
+  border: 2px solid rgba(214, 219, 224, 0.95);
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f6f8 100%);
+}
+
+.collection-card-media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.collection-card-title-panel,
+.collection-card-text {
+  height: 120px;
+  min-height: 120px;
+  max-height: 120px;
+  flex: 0 0 120px;
+  background: #050505;
+  padding: 14px 14px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collection-card-title-image,
+.collection-card-title img,
+.collection-card-text h3 img {
+  display: block;
+  width: auto;
+  max-width: 84%;
+  max-height: 92px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
 .product-card-title-wrapper {
@@ -2075,14 +2113,12 @@ footer.site-footer {
 
 /* Keep product/collection card footer/title artwork contained + dark */
 .product-card-title,
-.collection-card-title,
 .product-title-panel {
   background: transparent !important;
   overflow: hidden;
 }
 
 .product-card-title img,
-.collection-card-title img,
 .product-title-panel img {
   display: block;
   width: 100%;
@@ -2094,15 +2130,12 @@ footer.site-footer {
 
 /* Transparency hardening for PNG product title artwork wrappers */
 .product-card-title,
-.collection-card-title,
 .product-title-panel,
 .product-card-title-wrap,
-.collection-card-title-wrap,
 .product-title-wrap,
 .image-wrapper,
 .card .image-wrapper,
 .card .product-card-title,
-.card .collection-card-title,
 .product-page .product-title,
 .product-page .product-title-panel {
   background: transparent !important;
@@ -2111,8 +2144,6 @@ footer.site-footer {
 
 .product-card-title::before,
 .product-card-title::after,
-.collection-card-title::before,
-.collection-card-title::after,
 .product-title-panel::before,
 .product-title-panel::after,
 .product-title-wrap::before,
@@ -2124,7 +2155,6 @@ footer.site-footer {
 }
 
 .product-card-title img,
-.collection-card-title img,
 .product-title-panel img,
 .product-title-wrap img,
 .image-wrapper img,
@@ -2132,6 +2162,30 @@ footer.site-footer {
 .product-page .product-title img {
   background: transparent !important;
   background-color: transparent !important;
+}
+
+/* Collection card title panel keeps dark base + visible title artwork */
+.collection-card-title,
+.collection-card-title-wrap,
+.collection-card-title-panel {
+  background: #050505 !important;
+  overflow: hidden;
+}
+
+.collection-card-title::before,
+.collection-card-title::after,
+.collection-card-title-wrap::before,
+.collection-card-title-wrap::after,
+.collection-card-title-panel::before,
+.collection-card-title-panel::after {
+  content: none !important;
+}
+
+.collection-card-title img,
+.collection-card-title-panel img,
+.collection-card-title-image {
+  background: transparent !important;
+  display: block;
 }
 
 
