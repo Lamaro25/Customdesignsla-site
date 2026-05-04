@@ -2188,6 +2188,34 @@ footer.site-footer {
   display: block;
 }
 
+/* Final refinement: collection card title footer only */
+.collection-card .collection-card-title-panel,
+.collection-card .collection-card-title,
+.collection-card .collection-title-art-wrap {
+  height: 95px;
+  min-height: 95px;
+  max-height: 95px;
+  flex: 0 0 95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 16px;
+}
+
+.collection-card .collection-card-title-image,
+.collection-card .collection-card-title-panel img,
+.collection-card .collection-card-title img,
+.collection-card .collection-title-art-wrap img {
+  max-height: 70%;
+  max-width: 90%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
 
 /* Silver scroll background for collection listing pages (PNG) */
 html,
