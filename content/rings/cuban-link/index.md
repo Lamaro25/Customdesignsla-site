@@ -18,47 +18,33 @@ permalink: /rings/cuban-link/
 
 <div class="collection-grid">
 
+{% set skuTitleArtMap = {
+  "CL-001": { "cardTitleImage": "/static/img/cl-001-card-title.png" },
+  "CL-002": { "cardTitleImage": "/static/img/cl-002-card-title.png" },
+  "CL-003": { "cardTitleImage": "/static/img/cl-003-card-title.png" },
+  "CL-006": { "cardTitleImage": "/static/img/cl-006-card-title.png" }
+} %}
+
 {% for ring in collections["cuban-link"] %}
-  {% assign sku = ring.data.sku | default: "" %}
-  {% assign isTargetCard = false %}
-  {% if sku == "CL-001" or sku == "CL-002" or sku == "CL-003" or sku == "CL-004" or sku == "CL-005" or sku == "CL-006" %}
-    {% assign isTargetCard = true %}
-  {% endif %}
-  {% assign cardTitleImage = "" %}
-  {% assign displayPrice = ring.data.price %}
-  {% if sku == "CL-001" %}
-    {% assign displayPrice = 114 %}
-    {% assign cardTitleImage = "/static/img/cl-001-card-title.png" %}
-  {% elsif sku == "CL-002" %}
-    {% assign cardTitleImage = "/static/img/cl-002-card-title.png" %}
-    {% assign displayPrice = 176 %}
-  {% elsif sku == "CL-003" %}
-    {% assign cardTitleImage = "/static/img/cl-003-card-title.png" %}
-    {% assign displayPrice = 136 %}
-  {% elsif sku == "CL-006" %}
-    {% assign cardTitleImage = "/static/img/cl-006-card-title.png" %}
-  {% endif %}
+  {% set sku = ring.data.sku or "" %}
+  {% set skuArt = skuTitleArtMap[sku] %}
+  {% set productImage = ring.data.images | first %}
   <a href="{{ ring.url }}" class="collection-card product-card" data-sku="{{ sku }}">
-    <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
-    <div class="collection-card-text{% if isTargetCard %} product-card-footer{% endif %}">
-      {% if isTargetCard %}
+    <img src="{{ productImage or '/static/img/placeholder.png' }}" alt="{{ ring.data.title }}">
+    <div class="collection-card-text{% if skuArt %} product-card-footer{% endif %}">
+      {% if skuArt %}
         <div class="product-card-title-slot">
           <img
-            {% if cardTitleImage != "" %}src="{{ cardTitleImage }}"{% endif %}
+            src="{{ skuArt.cardTitleImage }}"
             alt="{{ ring.data.title }}"
             class="product-card-title-image"
             loading="lazy"
-            onerror="this.removeAttribute('src'); this.style.display='none';"
           >
         </div>
-        {% if sku == "CL-001" %}
-          <div class="product-card-price product-card-price--cl001">$114 USD</div>
-        {% else %}
-          <p class="price product-card-price">${{ displayPrice }} USD</p>
-        {% endif %}
+        <p class="price product-card-price">${{ ring.data.price }} USD</p>
       {% else %}
         <h3>{{ ring.data.title }}</h3>
-        <p class="price">${{ displayPrice }} USD</p>
+        <p class="price">${{ ring.data.price }} USD</p>
       {% endif %}
     </div>
   </a>
