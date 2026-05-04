@@ -22,7 +22,7 @@ permalink: /rings/cuban-link/
   {% assign sku = ring.data.sku | default: "" %}
   {% assign cardTitleImage = "" %}
   {% if sku == "CL-001" %}
-    {% assign cardTitleImage = "/static/img/cl-001-card-title.png?v=2" %}
+    {% assign cardTitleImage = "/static/img/cl-001-card-title.png" %}
   {% elsif sku == "CL-002" %}
     {% assign cardTitleImage = "/static/img/cl-002-card-title.png" %}
   {% elsif sku == "CL-003" %}
@@ -216,12 +216,11 @@ permalink: /rings/cuban-link/
 }
 
 .product-card-title-image-slot {
-  height: 46px;
-  max-height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  width: 100%;
+  overflow: visible;
 }
 
 .product-card-title-image-slot.is-empty::before {
@@ -230,18 +229,20 @@ permalink: /rings/cuban-link/
   height: 1px;
 }
 
-.product-card-title-image {
+.product-card-title-image-slot .product-card-title-image {
   display: block;
-  margin: 0 auto;
-  width: auto;
-  height: auto;
-  max-width: 90%;
-  max-height: 100%;
-  object-fit: contain;
-  aspect-ratio: auto !important;
+  width: auto !important;
+  max-width: 86% !important;
+  max-height: 58px !important;
+  height: auto !important;
+  object-fit: contain !important;
+  margin: 0 auto 14px auto;
+  opacity: 1 !important;
+  filter: none !important;
   background: transparent !important;
   border-radius: 0;
   padding: 0;
+  aspect-ratio: auto !important;
 }
 
 /* CL-001 hardening: keep price above any darkening overlays */
