@@ -34,7 +34,7 @@ permalink: /rings/cuban-link/
   {% elsif sku == "CL-006" %}
     {% assign cardTitleImage = "/static/img/cl-006-card-title.png" %}
   {% endif %}
-  <a href="{{ ring.url }}" class="collection-card">
+  <a href="{{ ring.url }}" class="collection-card product-card" data-sku="{{ sku }}">
     <img src="{{ ring.data.images | first }}" alt="{{ ring.data.title }}">
     <div class="collection-card-text{% if cardTitleImage != "" %} product-card-title-panel--black{% endif %}">
       {% if cardTitleImage != "" %}
@@ -194,7 +194,7 @@ permalink: /rings/cuban-link/
 }
 
 
-.collection-card .product-card-title-panel--black {
+.product-card .product-card-title-panel--black {
   position: relative;
   background: #000;
   height: 88px;
@@ -229,48 +229,65 @@ permalink: /rings/cuban-link/
   height: 1px;
 }
 
-.collection-card .product-card-title-image-slot .product-card-title-image {
+.product-card .product-card-title-image {
   display: block;
   width: auto;
-  max-width: 88%;
   height: auto;
-  max-height: 62px;
   object-fit: contain;
-  margin: 8px auto 0 auto;
   opacity: 1;
   filter: none;
   background: transparent;
-  border-radius: 0;
-  padding: 0;
-  aspect-ratio: auto;
   position: relative;
   z-index: 2;
+  margin: 0 auto 14px auto;
 }
 
+.product-card[data-sku="CL-001"] .product-card-title-image {
+  max-width: 88%;
+  max-height: 62px;
+}
 
-.collection-card .product-card-price--silver {
-  display: block;
-  color: #d9d9d9;
+.product-card[data-sku="CL-002"] .product-card-title-image,
+.product-card[data-sku="CL-003"] .product-card-title-image {
+  max-width: 96%;
+  max-height: 72px;
+}
+
+.product-card .product-card-price--silver {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 5;
+  margin: 0;
+  color: #d8d8d8;
   font-weight: 800;
+  text-align: center;
+  filter: none !important;
   text-shadow:
     0 1px 0 #ffffff,
     0 2px 4px rgba(255,255,255,0.35),
     0 -1px 0 #555;
-  opacity: 1;
-  filter: none;
-  visibility: visible;
-  position: relative;
-  z-index: 3;
-  margin: 0;
-  line-height: 1.15;
-  letter-spacing: 0.01em;
 }
 
-.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .product-card-title-image,
-.collection-card[href*="cl-003-cuban-link-statement-ring-thin"] .product-card-title-image {
-  max-width: 94%;
-  max-height: 68px;
+.product-card .product-card-title-panel--black {
+  position: relative;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
+
+.product-card .product-card-title-image-slot .product-card-title-image {
+  width: auto;
+  margin: 8px auto 0 auto;
+  border-radius: 0;
+  padding: 0;
+  aspect-ratio: auto;
+}
+
 </style>
 
 </div>
