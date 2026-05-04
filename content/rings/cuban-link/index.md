@@ -194,9 +194,9 @@ permalink: /rings/cuban-link/
 }
 
 
-.product-card-title-panel--black {
-  background: #000;
+.collection-card .product-card-title-panel--black {
   position: relative;
+  background: #000;
   height: 88px;
   min-height: 88px;
   max-height: 88px;
@@ -205,7 +205,7 @@ permalink: /rings/cuban-link/
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0;
+  gap: 12px;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -229,64 +229,47 @@ permalink: /rings/cuban-link/
   height: 1px;
 }
 
-.product-card-title-image-slot .product-card-title-image {
+.collection-card .product-card-title-image-slot .product-card-title-image {
   display: block;
-  width: auto !important;
-  max-width: 86% !important;
-  max-height: 58px !important;
-  height: auto !important;
-  object-fit: contain !important;
-  margin: 0 auto 14px auto;
-  opacity: 1 !important;
-  filter: none !important;
-  background: transparent !important;
+  width: auto;
+  max-width: 88%;
+  height: auto;
+  max-height: 62px;
+  object-fit: contain;
+  margin: 8px auto 0 auto;
+  opacity: 1;
+  filter: none;
+  background: transparent;
   border-radius: 0;
   padding: 0;
-  aspect-ratio: auto !important;
-}
-
-/* CL-001 hardening: keep price above any darkening overlays */
-.collection-card[href*="cl-001-cuban-link-classic-ring"] .product-card-title-panel--black,
-.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .product-card-title-panel--black {
-  opacity: 1 !important;
-  filter: none !important;
-}
-
-.collection-card[href*="cl-001-cuban-link-classic-ring"] .product-card-title-panel--black::before,
-.collection-card[href*="cl-001-cuban-link-classic-ring"] .product-card-title-panel--black::after,
-.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .product-card-title-panel--black::before,
-.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .product-card-title-panel--black::after {
-  content: none !important;
-}
-
-.product-card-price--silver {
-  margin-top: 5px;
-  line-height: 1.1;
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #e6e6e6 25%,
-    #cfcfcf 50%,
-    #f5f5f5 75%,
-    #bfbfbf 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-top: 0;
-  margin-bottom: 0;
-  font-weight: 600;
-  opacity: 1 !important;
-  filter: none !important;
-  text-shadow:
-    0 0 1px rgba(255,255,255,0.3),
-    0 1px 1px rgba(0,0,0,0.4);
-  mix-blend-mode: normal !important;
+  aspect-ratio: auto;
   position: relative;
-  z-index: 10;
+  z-index: 2;
+}
+
+
+.collection-card .product-card-price--silver {
+  display: block;
+  color: #d9d9d9;
+  font-weight: 800;
+  text-shadow:
+    0 1px 0 #ffffff,
+    0 2px 4px rgba(255,255,255,0.35),
+    0 -1px 0 #555;
+  opacity: 1;
+  filter: none;
+  visibility: visible;
+  position: relative;
+  z-index: 3;
+  margin: 0;
   line-height: 1.15;
   letter-spacing: 0.01em;
-  transform: none !important;
+}
+
+.collection-card[href*="cl-002-cuban-link-statement-ring-thick"] .product-card-title-image,
+.collection-card[href*="cl-003-cuban-link-statement-ring-thin"] .product-card-title-image {
+  max-width: 94%;
+  max-height: 68px;
 }
 </style>
 
