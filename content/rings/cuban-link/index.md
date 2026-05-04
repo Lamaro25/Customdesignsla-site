@@ -301,6 +301,10 @@ permalink: /rings/cuban-link/
     0 -1px 0 #555;
 }
 
+.product-card[data-sku="CL-001"] .product-card-footer {
+  overflow: visible;
+}
+
 </style>
 
 </div>
