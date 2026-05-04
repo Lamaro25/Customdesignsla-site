@@ -207,7 +207,6 @@ permalink: /rings/faith/
   width: auto;
   max-width: 82%;
   height: auto;
-  max-height: 42px;
   object-fit: contain;
   aspect-ratio: auto !important;
   background: transparent !important;
