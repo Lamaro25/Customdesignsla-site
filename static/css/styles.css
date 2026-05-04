@@ -2192,22 +2192,23 @@ footer.site-footer {
 .collection-card .collection-card-title-panel,
 .collection-card .collection-card-title,
 .collection-card .collection-title-art-wrap {
-  height: 95px;
-  min-height: 95px;
-  max-height: 95px;
-  flex: 0 0 95px;
+  height: 165px;
+  min-height: 155px;
+  max-height: 175px;
+  flex: 0 0 165px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 16px;
+  padding: 12px 18px;
+  overflow: hidden;
 }
 
 .collection-card .collection-card-title-image,
 .collection-card .collection-card-title-panel img,
 .collection-card .collection-card-title img,
 .collection-card .collection-title-art-wrap img {
-  max-height: 70%;
+  max-height: 84%;
   max-width: 90%;
   width: auto;
   height: auto;
