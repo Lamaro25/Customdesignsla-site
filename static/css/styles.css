@@ -2011,7 +2011,7 @@ footer.site-footer {
 .product-card-title,
 .collection-card-title,
 .product-title-panel {
-  background: #111 !important;
+  background: transparent !important;
   overflow: hidden;
 }
 
@@ -2024,7 +2024,49 @@ footer.site-footer {
   height: auto;
   max-height: 150px;
   object-fit: contain;
-  background: #111 !important;
+  background: transparent !important;
+}
+
+/* Transparency hardening for PNG product title artwork wrappers */
+.product-card-title,
+.collection-card-title,
+.product-title-panel,
+.product-card-title-wrap,
+.collection-card-title-wrap,
+.product-title-wrap,
+.image-wrapper,
+.card .image-wrapper,
+.card .product-card-title,
+.card .collection-card-title,
+.product-page .product-title,
+.product-page .product-title-panel {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.product-card-title::before,
+.product-card-title::after,
+.collection-card-title::before,
+.collection-card-title::after,
+.product-title-panel::before,
+.product-title-panel::after,
+.product-title-wrap::before,
+.product-title-wrap::after,
+.image-wrapper::before,
+.image-wrapper::after {
+  content: none !important;
+  background: transparent !important;
+}
+
+.product-card-title img,
+.collection-card-title img,
+.product-title-panel img,
+.product-title-wrap img,
+.image-wrapper img,
+.card img.product-title-image,
+.product-page .product-title img {
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
 
