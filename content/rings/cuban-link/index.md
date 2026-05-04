@@ -21,7 +21,7 @@ permalink: /rings/cuban-link/
 {% for ring in collections["cuban-link"] %}
   {% assign sku = ring.data.sku | default: "" %}
   {% assign isTargetCard = false %}
-  {% if sku == "CL-001" or sku == "CL-002" or sku == "CL-003" or sku == "CL-004" or sku == "CL-005" %}
+  {% if sku == "CL-001" or sku == "CL-002" or sku == "CL-003" or sku == "CL-004" or sku == "CL-005" or sku == "CL-006" %}
     {% assign isTargetCard = true %}
   {% endif %}
   {% assign cardTitleImage = "" %}
@@ -43,15 +43,13 @@ permalink: /rings/cuban-link/
     <div class="collection-card-text{% if isTargetCard %} product-card-footer{% endif %}">
       {% if isTargetCard %}
         <div class="product-card-title-slot">
-          {% if cardTitleImage != "" %}
-            <img
-              src="{{ cardTitleImage }}"
-              alt="{{ ring.data.title }}"
-              class="product-card-title-image"
-              loading="lazy"
-              onerror="this.removeAttribute('src'); this.style.display='none';"
-            >
-          {% endif %}
+          <img
+            {% if cardTitleImage != "" %}src="{{ cardTitleImage }}"{% endif %}
+            alt="{{ ring.data.title }}"
+            class="product-card-title-image"
+            loading="lazy"
+            onerror="this.removeAttribute('src'); this.style.display='none';"
+          >
         </div>
       {% else %}
         <h3>{{ ring.data.title }}</h3>
@@ -223,24 +221,24 @@ permalink: /rings/cuban-link/
   max-width: 100%;
   background: transparent !important;
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 42px;
-  max-height: 72px;
+  justify-content: center;
   overflow: visible;
 }
 
 .product-card .product-card-title-image {
-  display: block;
-  width: auto;
-  max-width: calc(100% - 36px);
-  max-height: 58px;
-  height: auto;
-  object-fit: contain;
+  display: block !important;
+  width: 92% !important;
+  max-width: calc(100% - 32px) !important;
+  height: auto !important;
+  max-height: 72px !important;
+  object-fit: contain !important;
   background: transparent !important;
   opacity: 1 !important;
   visibility: visible !important;
   filter: none !important;
+  position: relative;
+  z-index: 5;
 }
 
 .product-card .product-card-title-image[src=""],
@@ -248,16 +246,6 @@ permalink: /rings/cuban-link/
   display: none !important;
 }
 
-.product-card[data-sku="CL-001"] .product-card-title-image {
-  max-width: calc(100% - 36px);
-  max-height: 62px;
-}
-
-.product-card[data-sku="CL-002"] .product-card-title-image,
-.product-card[data-sku="CL-003"] .product-card-title-image {
-  max-width: calc(100% - 28px);
-  max-height: 68px;
-}
 
 .product-card .product-card-price {
   display: block !important;
@@ -266,10 +254,11 @@ permalink: /rings/cuban-link/
   color: #d8d8d8 !important;
   font-weight: 800;
   text-align: center;
-  margin: 8px 0 0 0;
+  margin-top: 8px;
   position: relative;
   z-index: 10;
   filter: none !important;
+  transform: none !important;
   text-shadow:
     0 1px 0 #fff,
     0 2px 4px rgba(255,255,255,.35),
