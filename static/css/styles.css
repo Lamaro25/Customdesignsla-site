@@ -1197,24 +1197,25 @@ footer.site-footer {
 
 .collection-card-title-panel,
 .collection-card-text {
-  height: 120px;
-  min-height: 120px;
-  max-height: 120px;
-  flex: 0 0 120px;
-  background: #050505;
-  padding: 14px 14px 12px;
+  height: 118px;
+  min-height: 118px;
+  max-height: 118px;
+  flex: 0 0 118px;
+  background: #0b0b0b;
+  padding: 8px 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .collection-card-title-image,
 .collection-card-title img,
 .collection-card-text h3 img {
   display: block;
-  width: auto;
-  max-width: 84%;
-  max-height: 92px;
+  width: 88%;
+  max-width: 88%;
+  max-height: 92%;
   height: auto;
   object-fit: contain;
   margin: 0 auto;
@@ -2192,15 +2193,16 @@ footer.site-footer {
 .collection-card .collection-card-title-panel,
 .collection-card .collection-card-title,
 .collection-card .collection-title-art-wrap {
-  height: 165px;
-  min-height: 155px;
-  max-height: 175px;
-  flex: 0 0 165px;
+  height: 118px;
+  min-height: 118px;
+  max-height: 118px;
+  flex: 0 0 118px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 12px 18px;
+  padding: 8px 14px;
+  background: #0b0b0b;
   overflow: hidden;
 }
 
@@ -2208,10 +2210,10 @@ footer.site-footer {
 .collection-card .collection-card-title-panel img,
 .collection-card .collection-card-title img,
 .collection-card .collection-title-art-wrap img {
-  max-height: 84%;
-  max-width: 90%;
-  width: auto;
+  width: 88%;
+  max-width: 88%;
   height: auto;
+  max-height: 92%;
   object-fit: contain;
   display: block;
   margin: 0 auto;
