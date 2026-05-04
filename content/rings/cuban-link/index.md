@@ -290,6 +290,9 @@ permalink: /rings/cuban-link/
   z-index: 20 !important;
   color: #d8d8d8 !important;
   -webkit-text-fill-color: #d8d8d8 !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
   font-weight: 800;
   text-align: center;
   margin-top: 8px;
